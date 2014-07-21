@@ -16,9 +16,9 @@ package com.hpcloud.mon;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.hpcloud.messaging.kafka.KafkaConfiguration;
 import com.hpcloud.mon.infrastructure.middleware.MiddlewareConfiguration;
-import com.hpcloud.mon.infrastructure.persistence.DatabaseConfiguration;
-import com.hpcloud.mon.infrastructure.persistence.influxdb.InfluxDbConfig;
+import com.hpcloud.configuration.DatabaseConfiguration;
 
+import com.hpcloud.configuration.InfluxDbConfiguration;
 import io.dropwizard.Configuration;
 import io.dropwizard.db.DataSourceFactory;
 
@@ -26,6 +26,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+
 
 public class MonApiConfiguration extends Configuration {
   @NotEmpty
@@ -52,9 +53,8 @@ public class MonApiConfiguration extends Configuration {
   @NotNull
   public MiddlewareConfiguration middleware;
   @Valid
-  public InfluxDbConfig influxDB;
+  public InfluxDbConfiguration influxDB;
   @Valid
-  @NotNull
   @JsonProperty
   public DatabaseConfiguration databaseConfiguration;
 
