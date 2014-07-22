@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baada198_6f1ace70",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 2860
+      },
+      "writtenOn": "2014-07-22T20:29:40Z",
+      "side": 1,
+      "message": "I think we still need a key to indicate the resource type. so it should be\nGET /versions which returns a list of versions available and which is\nactive or usable etc.",
+      "revId": "293b46aa246cf47d2c26cc29b42fbc0385835de3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baada198_5403dd0f",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 2860
+      },
+      "writtenOn": "2014-07-22T20:29:40Z",
+      "side": 1,
+      "message": "I would think we will still need to have versions in the path. like \n/versions/{version_id}, otherwise, this url does not indicate what type of the\nresource we are getting.",
+      "revId": "293b46aa246cf47d2c26cc29b42fbc0385835de3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
