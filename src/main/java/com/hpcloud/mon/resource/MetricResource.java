@@ -33,6 +33,9 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
+
+import org.joda.time.DateTime;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -92,11 +95,14 @@ public class MetricResource {
   @ApiOperation(value = "Get metrics", response = MetricDefinition.class,
       responseContainer = "List")
   public List<MetricDefinition> getMetrics(@HeaderParam("X-Tenant-Id") String tenantId,
-      @QueryParam("name") String name, @QueryParam("dimensions") String dimensionsStr)
-      throws Exception {
+      @QueryParam("name") String name, @QueryParam("dimensions") String dimensionsStr,
+      @QueryParam("created_since") String createdSinceStr) throws Exception {
+    // Validate query parameters
     Map<String, String> dimensions =
         Strings.isNullOrEmpty(dimensionsStr) ? null : Validation.parseAndValidateNameAndDimensions(
             name, dimensionsStr);
-    return metricRepo.find(tenantId, name, dimensions);
+    DateTime createdSince = Validation.parseAndValidateDate(createdSinceStr, "created_since", false);
+
+    return metricRepo.find(tenantId, name, dimensions, createdSince);
   }
 }

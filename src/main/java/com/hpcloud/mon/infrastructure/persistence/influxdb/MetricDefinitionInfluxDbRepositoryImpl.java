@@ -13,22 +13,29 @@
  */
 package com.hpcloud.mon.infrastructure.persistence.influxdb;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeSet;
+import java.util.concurrent.TimeUnit;
+
+import org.influxdb.InfluxDB;
+import org.influxdb.dto.Serie;
+import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.common.base.Joiner;
 import com.google.inject.Inject;
 import com.hpcloud.mon.MonApiConfiguration;
 import com.hpcloud.mon.common.model.metric.MetricDefinition;
 import com.hpcloud.mon.domain.model.metric.MetricDefinitionRepository;
-import org.influxdb.InfluxDB;
-import org.influxdb.dto.Serie;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 public class MetricDefinitionInfluxDbRepositoryImpl implements MetricDefinitionRepository {
-  private static final Logger logger = LoggerFactory.getLogger
-      (AlarmStateHistoryInfluxDbRepositoryImpl.class);
+  private static final Logger logger = LoggerFactory
+      .getLogger(AlarmStateHistoryInfluxDbRepositoryImpl.class);
 
   private final MonApiConfiguration config;
   private final InfluxDB influxDB;
@@ -40,8 +47,8 @@ public class MetricDefinitionInfluxDbRepositoryImpl implements MetricDefinitionR
   }
 
   @Override
-  public List<MetricDefinition> find(String tenantId, String name, Map<String,
-      String> dimensions) throws Exception {
+  public List<MetricDefinition> find(String tenantId, String name, Map<String, String> dimensions,
+      DateTime createdSince) throws Exception {
 
     String namePart = name == null ? "/.*/" : Utils.SQLSanitizer.sanitize(name);
 
@@ -51,16 +58,17 @@ public class MetricDefinitionInfluxDbRepositoryImpl implements MetricDefinitionR
     if (dimensions == null || dimensions.isEmpty()) {
 
       // First find all time series (measurements) with all their dimensions.
-      String query = String.format("select * from %1$s where tenant_id = '%2$s' limit 1",
-          namePart, Utils.SQLSanitizer.sanitize(tenantId));
+      String query =
+          String.format("select * from %1$s where tenant_id = '%2$s' limit 1", namePart,
+              Utils.SQLSanitizer.sanitize(tenantId));
 
       logger.debug("Query string: {}", query);
 
-      List<Serie> result = this.influxDB.Query(this.config.influxDB.getName(), query,
-          TimeUnit.SECONDS);
+      List<Serie> result =
+          this.influxDB.Query(this.config.influxDB.getName(), query, TimeUnit.SECONDS);
 
       // Group time series names under their unique set of dimensions.
-      Map<TreeSet, List<String>> columnsToNamesMap = new HashMap<TreeSet, List<String>>();
+      Map<TreeSet<?>, List<String>> columnsToNamesMap = new HashMap<TreeSet<?>, List<String>>();
       for (Serie serie : result) {
         TreeSet<String> columnsSet = new TreeSet<String>();
         for (String columnName : serie.getColumns()) {
@@ -92,8 +100,8 @@ public class MetricDefinitionInfluxDbRepositoryImpl implements MetricDefinitionR
 
       // For each set of unique dimensions, issue a query for all time series with that
       // unique set of dimensions.
-      for (TreeSet columnsSet : columnsToNamesMap.keySet()) {
-        List nameList = columnsToNamesMap.get(columnsSet);
+      for (TreeSet<?> columnsSet : columnsToNamesMap.keySet()) {
+        List<?> nameList = columnsToNamesMap.get(columnsSet);
 
         String groupByPart = "";
 
@@ -103,14 +111,15 @@ public class MetricDefinitionInfluxDbRepositoryImpl implements MetricDefinitionR
         }
         String namesPart = "/(" + Joiner.on("|").join(nameList) + ")/";
 
-        // Can use any aggregate function.  We chose max.
-        String query2 = String.format("Select max(value) from %1$s where tenant_id = '%2$s' %3$s",
-            namesPart, Utils.SQLSanitizer.sanitize(tenantId), groupByPart);
+        // Can use any aggregate function. We chose max.
+        String query2 =
+            String.format("Select max(value) from %1$s where tenant_id = '%2$s' %3$s", namesPart,
+                Utils.SQLSanitizer.sanitize(tenantId), groupByPart);
 
         logger.debug("Query string: {}", query2);
 
-        List<Serie> result2 = this.influxDB.Query(this.config.influxDB.getName(), query2,
-            TimeUnit.SECONDS);
+        List<Serie> result2 =
+            this.influxDB.Query(this.config.influxDB.getName(), query2, TimeUnit.SECONDS);
 
         for (Serie serie : result2) {
 
@@ -138,20 +147,21 @@ public class MetricDefinitionInfluxDbRepositoryImpl implements MetricDefinitionR
 
       String dimsPart = Utils.WhereClauseBuilder.buildDimsPart(dimensions);
 
-      String query = String.format("select first(value) from %1$s where tenant_id = '%2$s' " +
-          "%3$s", namePart, Utils.SQLSanitizer.sanitize(tenantId), dimsPart);
+      String query =
+          String.format("select first(value) from %1$s where tenant_id = '%2$s' " + "%3$s",
+              namePart, Utils.SQLSanitizer.sanitize(tenantId), dimsPart);
 
       logger.debug("Query string: {}", query);
 
-      List<Serie> result = this.influxDB.Query(this.config.influxDB.getName(), query,
-          TimeUnit.SECONDS);
+      List<Serie> result =
+          this.influxDB.Query(this.config.influxDB.getName(), query, TimeUnit.SECONDS);
 
       for (Serie serie : result) {
 
         MetricDefinition metricDefinition = new MetricDefinition();
         metricDefinition.name = serie.getName();
-        metricDefinition.setDimensions(dimensions == null ? new HashMap<String,
-            String>() : dimensions);
+        metricDefinition.setDimensions(dimensions == null ? new HashMap<String, String>()
+            : dimensions);
         metricDefinitionList.add(metricDefinition);
       }
     }
