@@ -21,6 +21,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.influxdb.InfluxDB;
 import org.influxdb.dto.Serie;
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,8 +44,8 @@ public class MetricDefinitionInfluxDbRepositoryImpl implements MetricDefinitionR
   }
 
   @Override
-  public List<MetricDefinition> find(String tenantId, String name, Map<String, String> dimensions)
-      throws Exception {
+  public List<MetricDefinition> find(String tenantId, String name, Map<String, String> dimensions,
+      DateTime createdSince) throws Exception {
 
     String dimsPart = Utils.WhereClauseBuilder.buildDimsPart(dimensions);
 

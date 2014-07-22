@@ -13,6 +13,7 @@
  */
 package com.hpcloud.mon.infrastructure.persistence.vertica;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -22,6 +23,7 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.joda.time.DateTime;
 import org.skife.jdbi.v2.DBI;
 import org.skife.jdbi.v2.Handle;
 import org.skife.jdbi.v2.Query;
@@ -48,12 +50,15 @@ public class MetricDefinitionVerticaRepositoryImpl implements MetricDefinitionRe
   }
 
   @Override
-  public List<MetricDefinition> find(String tenantId, String name, Map<String, String> dimensions) {
+  public List<MetricDefinition> find(String tenantId, String name, Map<String, String> dimensions,
+      DateTime createdSince) {
     try (Handle h = db.open()) {
       // Build sql
       StringBuilder sbWhere = new StringBuilder();
       if (name != null)
         sbWhere.append(" and def.name = :name");
+      if (createdSince != null)
+        sbWhere.append(" and def.time_stamp >= :createdSince");
       String sql =
           String.format(FIND_BY_METRIC_DEF_SQL, MetricQueries.buildJoinClauseFor(dimensions),
               sbWhere);
@@ -62,6 +67,8 @@ public class MetricDefinitionVerticaRepositoryImpl implements MetricDefinitionRe
       Query<Map<String, Object>> query = h.createQuery(sql).bind("tenantId", tenantId);
       if (name != null)
         query.bind("name", name);
+      if (createdSince != null)
+        query.bind("createdSince", new Timestamp(createdSince.getMillis()));
       DimensionQueries.bindDimensionsToQuery(query, dimensions);
 
       // Execute query
