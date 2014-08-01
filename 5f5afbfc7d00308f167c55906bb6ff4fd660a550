@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baada198_2415db9a",
+        "filename": "src/main/java/com/hpcloud/mon/infrastructure/persistence/influxdb/MetricDefinitionInfluxDbRepositoryImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-08-01T20:10:14Z",
+      "side": 1,
+      "message": "Not sure we changed this to \u003c?\u003e.  We know what types we are dealing with.",
+      "revId": "5f5afbfc7d00308f167c55906bb6ff4fd660a550",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baada198_a4764b3d",
+        "filename": "src/main/java/com/hpcloud/mon/infrastructure/persistence/influxdb/MetricDefinitionInfluxDbRepositoryImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-08-01T20:10:14Z",
+      "side": 1,
+      "message": "Is \u003c?\u003e appropriate here.  These are Strings.  We know what type we are dealing with.",
+      "revId": "5f5afbfc7d00308f167c55906bb6ff4fd660a550",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
