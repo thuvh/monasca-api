@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa98f980_8b47f31c",
+        "filename": "src/main/java/com/hpcloud/mon/infrastructure/persistence/influxdb/Utils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-09-08T23:09:28Z",
+      "side": 1,
+      "message": "This is really serieIsMetricSerie or something like that. As long as you are cleaning up.",
+      "revId": "edebecfe724aa92c9c139ad5af2e473d88c36e37",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
