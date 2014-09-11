@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa98f980_e0f691f8",
+        "filename": ".gitignore",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2014-09-11T00:03:34Z",
+      "side": 1,
+      "message": "windows line encoding?",
+      "revId": "50331252acdbf96f70e1a1520d35c40c3532f257",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_a0d3a95d",
+        "filename": "monasca/api/server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2014-09-11T00:03:34Z",
+      "side": 1,
+      "message": "2014",
+      "revId": "50331252acdbf96f70e1a1520d35c40c3532f257",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_60b9c114",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2014-09-11T00:03:34Z",
+      "side": 1,
+      "message": "mixing stdlib imports with 3rd party imports",
+      "revId": "50331252acdbf96f70e1a1520d35c40c3532f257",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_a061e9a9",
+        "filename": "monasca/middleware/login.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2014-09-11T00:03:34Z",
+      "side": 1,
+      "message": "demonstrates",
+      "revId": "50331252acdbf96f70e1a1520d35c40c3532f257",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_40559dc4",
+        "filename": "monasca/middleware/login.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2014-09-11T00:03:34Z",
+      "side": 1,
+      "message": "don\u0027t need the else:\n\nCan outdent the rest",
+      "revId": "50331252acdbf96f70e1a1520d35c40c3532f257",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
