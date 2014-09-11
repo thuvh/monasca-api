@@ -144,7 +144,7 @@ final class Utils {
     }
   }
 
-  static class SerieNameConverter {
+  static class SerieNameDecoder {
 
     private final String serieName;
     private final String metricName;
@@ -152,7 +152,11 @@ final class Utils {
     private final String region;
     private final Map<String, String> dimensions;
 
-    SerieNameConverter(final String serieName) throws UnsupportedEncodingException {
+    SerieNameDecoder(final String serieName) throws Exception {
+
+      if (!isSerieMetricName(serieName)) {
+        throw new Exception ("Serie name is not decodable: " + serieName);
+      }
 
       this.serieName = serieName;
 
