@@ -2,6 +2,91 @@
   "comments": [
     {
       "key": {
+        "uuid": "fa98f980_5c0c8c3b",
+        "filename": "etc/monasca.ini",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-09-11T20:57:16Z",
+      "side": 1,
+      "message": "The default topic name in Monasca for metrics is \"metrics\"",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_e1003704",
+        "filename": "etc/monasca.ini",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-09-11T20:57:16Z",
+      "side": 1,
+      "message": "Async is dangerous because the metric could be lost. With async messages the messages are buffered in-memory by the client.",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_a1238fbb",
+        "filename": "etc/monasca.ini",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-09-11T20:57:16Z",
+      "side": 1,
+      "message": "Currently, the rest of the Monasca implementation doesn\u0027t support a \"compact\" mode.",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_fc2700b4",
+        "filename": "etc/monasca.ini",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-09-11T20:57:16Z",
+      "side": 1,
+      "message": "Should this be monasca-api?",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_7c4cf042",
+        "filename": "monasca/dispatcher/file.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-09-11T20:57:16Z",
+      "side": 1,
+      "message": "Monasca doesn\u0027t have a \"datapoints\" resource right now and this code.",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa98f980_7c26b0cf",
         "filename": "monasca/dispatcher/kafka_queue.py",
         "patchSetId": 1
@@ -13,6 +98,176 @@
       "writtenOn": "2014-09-11T20:53:00Z",
       "side": 1,
       "message": "Consider initializing the Kafka client/producer once for all requests",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_9e0b4923",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-09-11T20:57:16Z",
+      "side": 1,
+      "message": "This method should be moved into a resource class called something like \"MetricsResource\" with a method called \"on_post\".\n\nAs we add other resource, like Measurements and Alarms, they should all be in their own files/classes.\n\nThe KafkaDIspatcher should purely be about sending messages to Kafka and initialized one somewhere and passed into a resource class for MetricsResource and everything else.",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_7e06a51d",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-09-11T20:57:16Z",
+      "side": 1,
+      "message": "In my performance analysis this sort of loop to copy the data over was slower than just reading it all in at once.\n\nJust wondering why this was added. For example, was it performance related or some other reason.",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_bc0018ac",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-09-11T20:57:16Z",
+      "side": 1,
+      "message": "If you wrote this as \n\nif not msg:\n    res.status \u003d ?\n    return\n\nyou wouldn\u0027t have to indent everything else in this method.\n\nI\u0027m not exactly sure what the Java implementation does in this case, but I would be happy to test it out.",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_9c24340e",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-09-11T20:57:16Z",
+      "side": 1,
+      "message": "Do you really want to do manual retries like this?\n\nI think it would be OK to not retry at all and return a 500 or 503 error rather than retry at all.\n\nUnfortunately, I didn\u0027t see an option for retrying in the Python Kafka Client, but all this retry looping would be repeated everywhere if we did this.",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_5c3e4cdb",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-09-11T20:57:16Z",
+      "side": 1,
+      "message": "Note, \"compact\" isn\u0027t supported in the rest of the Monasca implementation.",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_3c3988f2",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-09-11T20:57:16Z",
+      "side": 1,
+      "message": "The problem with this loop is that for each metric it tries to convert to a string and send the metric, but if it fails an exception is caught down below in the ValueError exception block, which could occur partially through the list.",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_3e009d00",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-09-11T20:57:16Z",
+      "side": 1,
+      "message": "The message that is sent here does not match what is currently used in Monasca. In other words, this code doesn\u0027t work.\n\nWhat is required right now is something the following:\n\n{\"metric\":{\"name\":\"disk_space_utilization_perc\",\"dimensions\":{\"service\":\"monitoring\",\"device\":\"v-csdb-3\",\"hostname\":\"mini-mon\"},\"timestamp\":1410459284,\"value\":87.36112721917534},\"meta\":{\"tenantId\":\"3c1f6223f44d42c0b88623e75ed3c996\",\"region\":\"useast\"},\"creation_time\":1410459285}",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_dcc23c52",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-09-11T20:57:16Z",
+      "side": 1,
+      "message": "This is a lot of debug logging messages which could really fill up the log file and make it very difficult to read when trying to debug.\n\nMaybe this log message and the one above should be moved to LOG.trace, but I\u0027m wondering if that should be reported?",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_bcc1f830",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-09-11T20:57:16Z",
+      "side": 1,
+      "message": "Seems to me that this should be\n\n10.4.1 400 Bad Request\n\nThe request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications.\n\n406 is used in this situation\n\n10.4.7 406 Not Acceptable\n\nThe resource identified by the request is only capable of generating response entities which have content characteristics not acceptable according to the accept headers sent in the request.\n\nUnless it was a HEAD request, the response SHOULD include an entity containing a list of available entity characteristics and location(s) from which the user or user agent can choose the one most appropriate. The entity format is specified by the media type given in the Content-Type header field. Depending upon the format and the capabilities of the user agent, selection of the most appropriate choice MAY be performed automatically. However, this specification does not define any standard for such automatic selection.\n\n      Note: HTTP/1.1 servers are allowed to return responses which are\n      not acceptable according to the accept headers sent in the\n      request. In some cases, this may even be preferable to sending a\n      406 response. User agents are encouraged to inspect the headers of\n      an incoming response to determine if it is acceptable.\nIf the response could be unacceptable, a user agent SHOULD temporarily stop receipt of more data and query the user for a decision on further actions.\n\n\nAs this was a problem parsing the incoming JSON body that would be that the JSON is malformed.",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_9c3d142e",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-09-11T20:57:16Z",
+      "side": 1,
+      "message": "Do we really want to sleep in the case that Kafka is unavailable or just return to the client a 500 or 503 error?",
       "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
