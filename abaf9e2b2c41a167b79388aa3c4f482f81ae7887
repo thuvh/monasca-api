@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "fa98f980_613d248f",
+        "filename": "etc/monasca.ini",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 2860
+      },
+      "writtenOn": "2014-09-11T21:31:36Z",
+      "side": 1,
+      "message": "this is just an example. change to whatever you like for production. I can make the default to be metrics.",
+      "parentUuid": "fa98f980_5c0c8c3b",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa98f980_e1003704",
         "filename": "etc/monasca.ini",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2014-09-11T20:57:16Z",
       "side": 1,
       "message": "Async is dangerous because the metric could be lost. With async messages the messages are buffered in-memory by the client.",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_e16f5490",
+        "filename": "etc/monasca.ini",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 2860
+      },
+      "writtenOn": "2014-09-11T21:31:36Z",
+      "side": 1,
+      "message": "can change the default to False.",
+      "parentUuid": "fa98f980_e1003704",
       "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "fa98f980_810cc8ed",
+        "filename": "etc/monasca.ini",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 2860
+      },
+      "writtenOn": "2014-09-11T21:31:36Z",
+      "side": 1,
+      "message": "so the default is correct. messages will be unpacked and send one by one.",
+      "parentUuid": "fa98f980_a1238fbb",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa98f980_fc2700b4",
         "filename": "etc/monasca.ini",
         "patchSetId": 1
@@ -64,6 +118,24 @@
       "writtenOn": "2014-09-11T20:57:16Z",
       "side": 1,
       "message": "Should this be monasca-api?",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_0100d8a9",
+        "filename": "etc/monasca.ini",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 2860
+      },
+      "writtenOn": "2014-09-11T21:31:36Z",
+      "side": 1,
+      "message": "sure.",
+      "parentUuid": "fa98f980_fc2700b4",
       "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -121,6 +193,24 @@
     },
     {
       "key": {
+        "uuid": "fa98f980_deadd132",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 2860
+      },
+      "writtenOn": "2014-09-11T21:31:36Z",
+      "side": 1,
+      "message": "imagine you have many other methods to handle different http requests at\ndifferent endpoint. Really not like having to use the method name to do that.\nthat was whole point of having a subclass.",
+      "parentUuid": "fa98f980_9e0b4923",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa98f980_7e06a51d",
         "filename": "monasca/dispatcher/kafka_queue.py",
         "patchSetId": 1
@@ -132,6 +222,24 @@
       "writtenOn": "2014-09-11T20:57:16Z",
       "side": 1,
       "message": "In my performance analysis this sort of loop to copy the data over was slower than just reading it all in at once.\n\nJust wondering why this was added. For example, was it performance related or some other reason.",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_9e6fc9fb",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 2860
+      },
+      "writtenOn": "2014-09-11T21:31:36Z",
+      "side": 1,
+      "message": "the problem is that you do not know how much to read. performance wise,\nthere is no difference.",
+      "parentUuid": "fa98f980_7e06a51d",
       "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -155,6 +263,24 @@
     },
     {
       "key": {
+        "uuid": "fa98f980_7e414562",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 2860
+      },
+      "writtenOn": "2014-09-11T21:31:36Z",
+      "side": 1,
+      "message": "in python, I believe return in the middle of a method is a bad practice. Some\nmay like that style. I do not.",
+      "parentUuid": "fa98f980_bc0018ac",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa98f980_fe729548",
         "filename": "monasca/dispatcher/kafka_queue.py",
         "patchSetId": 1
@@ -166,6 +292,24 @@
       "writtenOn": "2014-09-11T21:03:50Z",
       "side": 1,
       "message": "There needs to be some input validation on the message prior to doing any further processing on it.",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_fe2b7592",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 2860
+      },
+      "writtenOn": "2014-09-11T21:31:36Z",
+      "side": 1,
+      "message": "we talked about this. adding your own middle ware to do that.",
+      "parentUuid": "fa98f980_fe729548",
       "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -189,6 +333,24 @@
     },
     {
       "key": {
+        "uuid": "fa98f980_a10b8c22",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 2860
+      },
+      "writtenOn": "2014-09-11T21:31:36Z",
+      "side": 1,
+      "message": "I would think so. fail faster is fine as well. Trying to be nice.",
+      "parentUuid": "fa98f980_9c24340e",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa98f980_5c3e4cdb",
         "filename": "monasca/dispatcher/kafka_queue.py",
         "patchSetId": 1
@@ -200,6 +362,24 @@
       "writtenOn": "2014-09-11T20:57:16Z",
       "side": 1,
       "message": "Note, \"compact\" isn\u0027t supported in the rest of the Monasca implementation.",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_e1103450",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 2860
+      },
+      "writtenOn": "2014-09-11T21:31:36Z",
+      "side": 1,
+      "message": "just an option. if we really want to be fast, we should not parse here. \nwe discussed this before as well.",
+      "parentUuid": "fa98f980_5c3e4cdb",
       "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -223,6 +403,24 @@
     },
     {
       "key": {
+        "uuid": "fa98f980_e13e74b7",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 2860
+      },
+      "writtenOn": "2014-09-11T21:31:36Z",
+      "side": 1,
+      "message": "not sure there is anything you can do though. if we receive a lot of message\nin one request and monasca requires send one by one. I thought this is what\nhp does. I would rather not to support this.",
+      "parentUuid": "fa98f980_3c3988f2",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa98f980_3e009d00",
         "filename": "monasca/dispatcher/kafka_queue.py",
         "patchSetId": 1
@@ -234,6 +432,24 @@
       "writtenOn": "2014-09-11T20:57:16Z",
       "side": 1,
       "message": "The message that is sent here does not match what is currently used in Monasca. In other words, this code doesn\u0027t work.\n\nWhat is required right now is something the following:\n\n{\"metric\":{\"name\":\"disk_space_utilization_perc\",\"dimensions\":{\"service\":\"monitoring\",\"device\":\"v-csdb-3\",\"hostname\":\"mini-mon\"},\"timestamp\":1410459284,\"value\":87.36112721917534},\"meta\":{\"tenantId\":\"3c1f6223f44d42c0b88623e75ed3c996\",\"region\":\"useast\"},\"creation_time\":1410459285}",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_e16594e1",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 2860
+      },
+      "writtenOn": "2014-09-11T21:31:36Z",
+      "side": 1,
+      "message": "it did not care. it is a json and it will send. validate the message in your\nvalidator. stop the flow before it reaches this point.",
+      "parentUuid": "fa98f980_3e009d00",
       "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -257,6 +473,24 @@
     },
     {
       "key": {
+        "uuid": "fa98f980_a1a70c0a",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 2860
+      },
+      "writtenOn": "2014-09-11T21:31:36Z",
+      "side": 1,
+      "message": "set your log level higher.",
+      "parentUuid": "fa98f980_dcc23c52",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa98f980_bcc1f830",
         "filename": "monasca/dispatcher/kafka_queue.py",
         "patchSetId": 1
@@ -274,6 +508,24 @@
     },
     {
       "key": {
+        "uuid": "fa98f980_c196d093",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 2860
+      },
+      "writtenOn": "2014-09-11T21:31:36Z",
+      "side": 1,
+      "message": "not valid json is not acceptable by this service. I am ok to change it to 400.\nI think that 406 is better.",
+      "parentUuid": "fa98f980_bcc1f830",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa98f980_9c3d142e",
         "filename": "monasca/dispatcher/kafka_queue.py",
         "patchSetId": 1
@@ -285,6 +537,24 @@
       "writtenOn": "2014-09-11T20:57:16Z",
       "side": 1,
       "message": "Do we really want to sleep in the case that Kafka is unavailable or just return to the client a 500 or 503 error?",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_81f048fe",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 2860
+      },
+      "writtenOn": "2014-09-11T21:31:36Z",
+      "side": 1,
+      "message": "remember the retries. want to sleep a bit then retry. Unless we do not do\nretry.",
+      "parentUuid": "fa98f980_9c3d142e",
       "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
