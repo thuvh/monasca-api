@@ -16,6 +16,24 @@
       "revId": "914919ba0bba7dbafafdac5e21a1ed34b0b42f95",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_244faa35",
+        "filename": "src/main/java/com/hpcloud/mon/infrastructure/persistence/influxdb/MeasurementInfluxDbRepositoryImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-09-11T22:13:45Z",
+      "side": 1,
+      "message": "The exceptions that you mention are Runtime/Unchecked exceptions.  This code will catch them and log them.  Yeah, they\u0027ll be logged as warnings.  We\u0027ll handle them gracefully, see them more quickly and be able to fix them.  If the check wasn\u0027t there, they\u0027d be caught most likely higher up the stack and logged as well.  Probably at error level, but then someone would need to check the log to see them as well.   The probability of these types of exceptions coming out of this method is extremely low.  Testing should find problems here.\n\nThe code locates the check in the proper place; the client doesn\u0027t have to do the check itself.  So, the code is safer and applies the DRY convention.\n\nWe could create a specific type of exception for this, but that seems overkill and not much value add.",
+      "parentUuid": "fa98f980_7e6a25ee",
+      "revId": "914919ba0bba7dbafafdac5e21a1ed34b0b42f95",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
