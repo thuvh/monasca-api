@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa98f980_7e6a25ee",
+        "filename": "src/main/java/com/hpcloud/mon/infrastructure/persistence/influxdb/MeasurementInfluxDbRepositoryImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-09-11T21:25:43Z",
+      "side": 1,
+      "message": "This just seems weird. You are catching Exception which I know means you want to catch the series name problem, but it will also catch NullPointerException, IllegalArgumentException, etc.\n\nThe main concern is that this hides programming errors.\n\nAnd the code isn\u0027t really any simpler",
+      "revId": "914919ba0bba7dbafafdac5e21a1ed34b0b42f95",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
