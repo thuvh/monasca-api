@@ -418,6 +418,24 @@
     },
     {
       "key": {
+        "uuid": "fa98f980_fd9a7b12",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 2860
+      },
+      "writtenOn": "2014-09-12T20:20:31Z",
+      "side": 1,
+      "message": "Roland, I would like you to read wsgi tutorial. Which will help you to\nunderstand this. Using a code here will not allow you to use configuration\nto take away these validations. I will write a small middleware to demostrate\nhow this is done. Actually there are already two middlewares in the code.\nYou can use it in the wsgi pipeline to do things. This way, use it or not is\na configuration choice, not a code choice.",
+      "parentUuid": "fa98f980_e26d7933",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa98f980_9c24340e",
         "filename": "monasca/dispatcher/kafka_queue.py",
         "patchSetId": 1
@@ -574,6 +592,24 @@
     },
     {
       "key": {
+        "uuid": "fa98f980_fd68bbf6",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 2860
+      },
+      "writtenOn": "2014-09-12T20:20:31Z",
+      "side": 1,
+      "message": "not really. the problem is that if you have many messages in one request.\nthey are all good ones in terms of the format, remember the validation\nmiddleware I was talking about. The problem is that if kafka goes down or this service goes down after first few messages are sent successfully. then you have a partial message sent, other part not, you can fail the entire request, but still you may end up with duplicate data in the system. Again, I argue that using the distributed unique id will ease this problem.",
+      "parentUuid": "fa98f980_624b4987",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa98f980_3e009d00",
         "filename": "monasca/dispatcher/kafka_queue.py",
         "patchSetId": 1
@@ -620,6 +656,24 @@
       "writtenOn": "2014-09-12T17:42:51Z",
       "side": 1,
       "message": "This doesn\u0027t work with the rest of the Monasca system as it is currently defined. \n\nClearly this code was never tested with the rest of the Monasca system.",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_201f765c",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 2860
+      },
+      "writtenOn": "2014-09-12T20:20:31Z",
+      "side": 1,
+      "message": "it posts the messages onto the queue. With your own validator in the pipeline,\nvalid message gets here and will be posted onto the queue. This code\nsupports sending message in bulk and one by one. I am not sure why it\nwon\u0027t work with rest of the Monasca system.",
+      "parentUuid": "fa98f980_025c3d4a",
       "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -689,6 +743,24 @@
       "writtenOn": "2014-09-12T17:42:51Z",
       "side": 1,
       "message": "Keeping log files semi-usable and uncluttered is extremely useful. Think about this, there is a big that shows up in production. You want to enable debug level logging. \n\nIs it really important to you to have every message logged that is was successfully sent. If your code is deployed in production you\u0027ll fill up your log file and make it impossible to see the forest through the trees.\n\nI think logging the messages that weren\u0027t sent successfully might be OK, but every successful message, that isn\u0027t a DEBUG level logging IMHO, that would be trace level debugging.\n\nThe OpenStack community talks about appropriate log messages and how cluttered up the log files are already.",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_00535217",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 2860
+      },
+      "writtenOn": "2014-09-12T20:20:31Z",
+      "side": 1,
+      "message": "I think at the beginning, when we try things, it is good to have more message.\nI added these to especially make you guys know what is going on when bad\nthings happen. I normally do not write that many debug messages as they\ndo cost some cpu cycles. We can remove some of these later.",
+      "parentUuid": "fa98f980_dd3a1acc",
       "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -776,6 +848,24 @@
       "writtenOn": "2014-09-12T17:42:51Z",
       "side": 1,
       "message": "OK. I understand. I still think this sort of logic deserves to be implemented in interface/class/method similar to what I\u0027ve out-lined above and shouldn\u0027t be repeated for every single http resource method that we are implementing.",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_4059da33",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 2860
+      },
+      "writtenOn": "2014-09-12T20:20:31Z",
+      "side": 1,
+      "message": "I actually made quite a bit of changes and have a kafka_connection class\nwhich will deal with all the error conditions. Stay tuned.",
+      "parentUuid": "fa98f980_fd3efeb6",
       "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
