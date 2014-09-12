@@ -159,6 +159,23 @@
     },
     {
       "key": {
+        "uuid": "fa98f980_5d9c6ac0",
+        "filename": "monasca/dispatcher/file.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-09-12T17:42:51Z",
+      "side": 1,
+      "message": "This is dead-code and shouldn\u0027t be checked in. It doesn\u0027t implement anything.",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa98f980_7c26b0cf",
         "filename": "monasca/dispatcher/kafka_queue.py",
         "patchSetId": 1
@@ -170,6 +187,23 @@
       "writtenOn": "2014-09-11T20:53:00Z",
       "side": 1,
       "message": "Consider initializing the Kafka client/producer once for all requests",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_c22235a2",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-09-12T17:42:51Z",
+      "side": 1,
+      "message": "Agree with Jonathan\u0027s POST above. Initialization logic should be done in the constructor following the Resource Initialization is Acquisition principle in OO design. In other words create objects in their fully constructed state. Don\u0027t do partial object creation. That would take the code below\n\n               if not self.client or not self.producer:\n                    self._init_kafka()\n\nand it would get moved into the constructor as just\n\nself._init_kafka() and be done once and never need to be looked at again.",
       "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -211,6 +245,23 @@
     },
     {
       "key": {
+        "uuid": "fa98f980_a21d3164",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-09-12T17:42:51Z",
+      "side": 1,
+      "message": "That is exactly what I imagine. A class called MetricResource with several methods in it corresponding to each HTTP VERB that is supported. One method for POST and one for GET, ... The use of classes to model resources really helps out with grouping.\n\nIndependent of modeling resources as classes putting on_post_metrics in side a class called KafkaDispatcher is clearly poor OO design. \n\nThink about in the future when I want to have RabbitMQDispatcher or MockDispatcher.",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa98f980_7e06a51d",
         "filename": "monasca/dispatcher/kafka_queue.py",
         "patchSetId": 1
@@ -240,6 +291,23 @@
       "side": 1,
       "message": "the problem is that you do not know how much to read. performance wise,\nthere is no difference.",
       "parentUuid": "fa98f980_7e06a51d",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_e2f8197e",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-09-12T17:42:51Z",
+      "side": 1,
+      "message": "From the Falcon API documentation for stream\n\nEither a file-like object with a read() method that takes an optional size argument and returns a block of bytes, or an iterable object, representing response content, and yielding blocks as byte strings. Falcon will use wsgi.file_wrapper, if provided by the WSGI server, in order to efficiently serve file-like objects.\n\nWhat that says is that the size parameter is optional. I read that to mean if it isn\u0027t supplied the amount of data to read will be computed. That is what I wrote in my implementation which I tested and it worked.",
       "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -281,6 +349,23 @@
     },
     {
       "key": {
+        "uuid": "fa98f980_c2007568",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-09-12T17:42:51Z",
+      "side": 1,
+      "message": "Cite me a reference on that. Here is one for you to read. http://stackoverflow.com/questions/36707/should-a-function-have-only-one-return-statement\n\nAll these indented blocks make it much harder to read the code and for something like input validation in which it is very clear what is being done and tested and that you don\u0027t want to continue unless input validation has been succesful it is much nicer to have at the top.\n\nIf this was a return statement in the middle of several nested blocks of code, that would be different, and I would agree doing something like that should be avoided.",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa98f980_fe729548",
         "filename": "monasca/dispatcher/kafka_queue.py",
         "patchSetId": 1
@@ -310,6 +395,23 @@
       "side": 1,
       "message": "we talked about this. adding your own middle ware to do that.",
       "parentUuid": "fa98f980_fe729548",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_e26d7933",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-09-12T17:42:51Z",
+      "side": 1,
+      "message": "I understand that we talked about it, that doesn\u0027t mean I think that it is a good idea. \n\nAnyway, I\u0027m kinda wondering how that would work and what would be implemented in the end using the middle-ware approach.\n\nAnother way that seems much more straight-forward is to just have a check for\n\nif is_input_validation:\n    do_input_validation()\n\nrather than implementing as middle-ware. The code is nice and localized in that case.",
       "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -351,6 +453,23 @@
     },
     {
       "key": {
+        "uuid": "fa98f980_c2a15547",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-09-12T17:42:51Z",
+      "side": 1,
+      "message": "So, I think retry logic is desirable.\n\nMy preference would be then to have an interface for talking to queues that has a method in it called something like \"send_messages\"\n\nThe Kafka implementation of that would implement the retry logic:\n\nclass KafkaDispatcher(object):\n    self.producer \u003d ...\n\n    def send_messages(...):\n        while True:\n            self.producer.send_messages(...)\n            ...\n\nThis way we don\u0027t end-up repeating the same exact code and the same indented code block in every single method that handles a http request.",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa98f980_5c3e4cdb",
         "filename": "monasca/dispatcher/kafka_queue.py",
         "patchSetId": 1
@@ -380,6 +499,23 @@
       "side": 1,
       "message": "just an option. if we really want to be fast, we should not parse here. \nwe discussed this before as well.",
       "parentUuid": "fa98f980_5c3e4cdb",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_428d65d2",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-09-12T17:42:51Z",
+      "side": 1,
+      "message": "It isn\u0027t an option that works today anywhere in the rest of the Monasca system.\n\nWhy are we adding options and code that doesn\u0027t work?\n\nIf/when we get to doing something like this we can add it and completely implement it in the rest of the system. I\u0027m not accepting any partially implemented options and code.",
       "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -421,6 +557,23 @@
     },
     {
       "key": {
+        "uuid": "fa98f980_624b4987",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-09-12T17:42:51Z",
+      "side": 1,
+      "message": "Sure, there are ways of coding for this.\n\nClearly what is implemented will return a success to the client half-way through the list if they ended up with bad data in there.",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa98f980_3e009d00",
         "filename": "monasca/dispatcher/kafka_queue.py",
         "patchSetId": 1
@@ -456,6 +609,23 @@
     },
     {
       "key": {
+        "uuid": "fa98f980_025c3d4a",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-09-12T17:42:51Z",
+      "side": 1,
+      "message": "This doesn\u0027t work with the rest of the Monasca system as it is currently defined. \n\nClearly this code was never tested with the rest of the Monasca system.",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa98f980_dcc23c52",
         "filename": "monasca/dispatcher/kafka_queue.py",
         "patchSetId": 1
@@ -485,6 +655,23 @@
       "side": 1,
       "message": "set your log level higher.",
       "parentUuid": "fa98f980_dcc23c52",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_dd3a1acc",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-09-12T17:42:51Z",
+      "side": 1,
+      "message": "Keeping log files semi-usable and uncluttered is extremely useful. Think about this, there is a big that shows up in production. You want to enable debug level logging. \n\nIs it really important to you to have every message logged that is was successfully sent. If your code is deployed in production you\u0027ll fill up your log file and make it impossible to see the forest through the trees.\n\nI think logging the messages that weren\u0027t sent successfully might be OK, but every successful message, that isn\u0027t a DEBUG level logging IMHO, that would be trace level debugging.\n\nThe OpenStack community talks about appropriate log messages and how cluttered up the log files are already.",
       "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -555,6 +742,23 @@
       "side": 1,
       "message": "remember the retries. want to sleep a bit then retry. Unless we do not do\nretry.",
       "parentUuid": "fa98f980_9c3d142e",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_fd3efeb6",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-09-12T17:42:51Z",
+      "side": 1,
+      "message": "OK. I understand. I still think this sort of logic deserves to be implemented in interface/class/method similar to what I\u0027ve out-lined above and shouldn\u0027t be repeated for every single http resource method that we are implementing.",
       "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
