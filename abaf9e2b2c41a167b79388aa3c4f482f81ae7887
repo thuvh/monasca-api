@@ -626,6 +626,23 @@
     },
     {
       "key": {
+        "uuid": "fa98f980_1873d04e",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-09-12T18:25:30Z",
+      "side": 1,
+      "message": "One other point related to this is that we need extra information, such as the tenantId, region and creation_time included in the message that is published to Kafka. The full message is listed above. The persister and other down-stream components use the tenant ID as this is a multi-tenant system and the database schemas require this information too.",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa98f980_dcc23c52",
         "filename": "monasca/dispatcher/kafka_queue.py",
         "patchSetId": 1
