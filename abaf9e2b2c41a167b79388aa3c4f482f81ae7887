@@ -610,6 +610,23 @@
     },
     {
       "key": {
+        "uuid": "fa98f980_b51d5f11",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-09-13T13:04:19Z",
+      "side": 1,
+      "message": "We\u0027ll have to discuss. I\u0027m not sure how the distributed unique ID fits in.\n\nMy preference is to fail the entire message or process it completely. If you fail the entire message, at least the client knows it was not processed and can try again, hopefully with a smaller message. \n\nThat is a good point about how we currently handle the Kafka messages though. The entire http request is not processed atomically in our current system as we add each metric to the queue separately. If Kafka goes down partially through, then we\u0027ll end-up in a partially processed state. \n\nThat would argue for passing the metrics in as arrays, which is what your \"compact\" option is for. So, I agree that this would be a good option to add. However, since the rest of the Monasca system doesn\u0027t support it yet, and we still will need the tenant ID, region, and creation_time, we still can\u0027t pass the original http request body exactly through the system.",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa98f980_3e009d00",
         "filename": "monasca/dispatcher/kafka_queue.py",
         "patchSetId": 1
@@ -674,6 +691,23 @@
       "side": 1,
       "message": "it posts the messages onto the queue. With your own validator in the pipeline,\nvalid message gets here and will be posted onto the queue. This code\nsupports sending message in bulk and one by one. I am not sure why it\nwon\u0027t work with rest of the Monasca system.",
       "parentUuid": "fa98f980_025c3d4a",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_35640fb8",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-09-13T13:04:19Z",
+      "side": 1,
+      "message": "It won\u0027t work with the rest of the current Monasca system as it is currently implemented. \n\nIn this porting effort I think we should first be maintaining a fully functional system as in the current components, whether they are Java or Python, all continue to work. We can then come back and re-visit message formats and see if there are any improvements that could or should be made.\n\nThe current message format required by the rest of the Monasca pipeline is a JSON message with a few parts in it.\n\n{\n    \"metric\": {The metric as a JSON object},\n    \"meta\": {\n        \"tenantId\": \"the tenant ID acquired via authentication with Keystone\",\n        \"region\": \"the region that the metric was submitted under\",\n    },\n    \"creation_time\": the time when the API received the metric as UNIX time\n}\n\nThat is what the rest of the current Monasca system expects.\n\nAs far as I recall in my performance analysis there wasn\u0027t a significant performance difference when just passing the metric through as compared to what is listed above.\n\nCurrently, we need the tenant ID, region and creation_time in the format above.",
       "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -866,6 +900,23 @@
       "side": 1,
       "message": "I actually made quite a bit of changes and have a kafka_connection class\nwhich will deal with all the error conditions. Stay tuned.",
       "parentUuid": "fa98f980_fd3efeb6",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_5557d3c9",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-09-13T13:04:19Z",
+      "side": 1,
+      "message": "Great! Look forward to the improvements.",
       "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
