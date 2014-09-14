@@ -210,6 +210,24 @@
     },
     {
       "key": {
+        "uuid": "fa98f980_eb81c3c3",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 2860
+      },
+      "writtenOn": "2014-09-14T02:06:49Z",
+      "side": 1,
+      "message": "that will only work in a perfect world. Think about this, you have this service\nrunning, after awhile, your kafka goes down, few minutes later, your kafka \ncomes back up. The client has gone stale, it won\u0027t be able to recover. \nThis is particularly important for a distributed system. the implementation like\nthis can actually tolerate the kafka goes down and back up.",
+      "parentUuid": "fa98f980_c22235a2",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa98f980_9e0b4923",
         "filename": "monasca/dispatcher/kafka_queue.py",
         "patchSetId": 1
@@ -256,6 +274,24 @@
       "writtenOn": "2014-09-12T17:42:51Z",
       "side": 1,
       "message": "That is exactly what I imagine. A class called MetricResource with several methods in it corresponding to each HTTP VERB that is supported. One method for POST and one for GET, ... The use of classes to model resources really helps out with grouping.\n\nIndependent of modeling resources as classes putting on_post_metrics in side a class called KafkaDispatcher is clearly poor OO design. \n\nThink about in the future when I want to have RabbitMQDispatcher or MockDispatcher.",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_4b6acf1a",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 2860
+      },
+      "writtenOn": "2014-09-14T02:06:49Z",
+      "side": 1,
+      "message": "I will give you an example on why this is a current limitation of falcon. and why\nresource_api.py (which is an extension to the falcon.API) corrected that problem. you will see it in next patch set.",
+      "parentUuid": "fa98f980_a21d3164",
       "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -540,6 +576,24 @@
     },
     {
       "key": {
+        "uuid": "fa98f980_8b703709",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 2860
+      },
+      "writtenOn": "2014-09-14T02:06:49Z",
+      "side": 1,
+      "message": "it will be an option for our use case. Roland, remember you kept arguing that\nyou do not want to crack open a message? Why would I want to always do\nthat here? If you do not want to use, disable that. and default is False.",
+      "parentUuid": "fa98f980_428d65d2",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa98f980_3c3988f2",
         "filename": "monasca/dispatcher/kafka_queue.py",
         "patchSetId": 1
@@ -621,6 +675,24 @@
       "writtenOn": "2014-09-13T13:04:19Z",
       "side": 1,
       "message": "We\u0027ll have to discuss. I\u0027m not sure how the distributed unique ID fits in.\n\nMy preference is to fail the entire message or process it completely. If you fail the entire message, at least the client knows it was not processed and can try again, hopefully with a smaller message. \n\nThat is a good point about how we currently handle the Kafka messages though. The entire http request is not processed atomically in our current system as we add each metric to the queue separately. If Kafka goes down partially through, then we\u0027ll end-up in a partially processed state. \n\nThat would argue for passing the metrics in as arrays, which is what your \"compact\" option is for. So, I agree that this would be a good option to add. However, since the rest of the Monasca system doesn\u0027t support it yet, and we still will need the tenant ID, region, and creation_time, we still can\u0027t pass the original http request body exactly through the system.",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_cb65df45",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 2860
+      },
+      "writtenOn": "2014-09-14T02:06:49Z",
+      "side": 1,
+      "message": "I am writing a validator for metric messages. You will see how that will work\nonce I have it uploaded.",
+      "parentUuid": "fa98f980_b51d5f11",
       "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
