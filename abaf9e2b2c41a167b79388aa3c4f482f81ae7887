@@ -786,6 +786,24 @@
     },
     {
       "key": {
+        "uuid": "fa98f980_2bdd8be0",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 2860
+      },
+      "writtenOn": "2014-09-14T02:10:39Z",
+      "side": 1,
+      "message": "The metric format I was looking at is this (from the API spec). Looks like what you indicated above is not the same as the spec. Any idea why?\nis meta in the place of dimensions or someone just changed the spec?\nis it creation_time or timestamp? I will use the above to write the validator.\n\n{  \n      \"name\":\"name1\",\n      \"dimensions\":{  \n         \"key1\":\"value1\",\n         \"key2\":\"value2\"\n      },\n      \"timestamp\":1405630174,\n      \"value\":1.0\n   },",
+      "parentUuid": "fa98f980_35640fb8",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa98f980_1873d04e",
         "filename": "monasca/dispatcher/kafka_queue.py",
         "patchSetId": 1
