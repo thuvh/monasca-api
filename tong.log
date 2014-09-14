@@ -1,0 +1,168 @@
+[2014-09-13 12:12:49 +0000] [5496] [INFO] Starting gunicorn 19.1.1
+[2014-09-13 12:12:49 +0000] [5496] [INFO] Listening at: http://0.0.0.0:9090 (5496)
+[2014-09-13 12:12:49 +0000] [5496] [INFO] Using worker: eventlet
+[2014-09-13 12:12:49 +0000] [5501] [INFO] Booting worker with pid: 5501
+[2014-09-13 13:27:48 +0000] [5501] [INFO] Worker exiting (pid: 5501)
+[2014-09-13 13:27:48 +0000] [5496] [INFO] Handling signal: int
+[2014-09-13 13:27:48 +0000] [5496] [INFO] Shutting down: Master
+[2014-09-13 13:30:03 +0000] [6447] [INFO] Starting gunicorn 19.1.1
+[2014-09-13 13:30:03 +0000] [6447] [INFO] Listening at: http://0.0.0.0:9090 (6447)
+[2014-09-13 13:30:03 +0000] [6447] [INFO] Using worker: eventlet
+[2014-09-13 13:30:03 +0000] [6454] [INFO] Booting worker with pid: 6454
+[2014-09-13 13:30:50 +0000] [6454] [INFO] Worker exiting (pid: 6454)
+[2014-09-13 13:30:50 +0000] [6447] [INFO] Handling signal: int
+[2014-09-13 13:30:50 +0000] [6447] [INFO] Shutting down: Master
+[2014-09-13 13:31:49 +0000] [6476] [INFO] Starting gunicorn 19.1.1
+[2014-09-13 13:31:49 +0000] [6476] [INFO] Listening at: http://0.0.0.0:9090 (6476)
+[2014-09-13 13:31:49 +0000] [6476] [INFO] Using worker: eventlet
+[2014-09-13 13:31:49 +0000] [6481] [INFO] Booting worker with pid: 6481
+[2014-09-13 13:32:45 +0000] [6481] [INFO] Worker exiting (pid: 6481)
+[2014-09-13 13:32:45 +0000] [6476] [INFO] Handling signal: int
+[2014-09-13 13:32:45 +0000] [6476] [INFO] Shutting down: Master
+[2014-09-13 13:32:48 +0000] [6495] [INFO] Starting gunicorn 19.1.1
+[2014-09-13 13:32:48 +0000] [6495] [INFO] Listening at: http://0.0.0.0:9090 (6495)
+[2014-09-13 13:32:48 +0000] [6495] [INFO] Using worker: eventlet
+[2014-09-13 13:32:48 +0000] [6500] [INFO] Booting worker with pid: 6500
+[2014-09-13 13:35:34 +0000] [6500] [INFO] Worker exiting (pid: 6500)
+[2014-09-13 13:35:34 +0000] [6495] [INFO] Handling signal: int
+[2014-09-13 13:35:34 +0000] [6495] [INFO] Shutting down: Master
+[2014-09-13 13:35:37 +0000] [6536] [INFO] Starting gunicorn 19.1.1
+[2014-09-13 13:35:37 +0000] [6536] [INFO] Listening at: http://0.0.0.0:9090 (6536)
+[2014-09-13 13:35:37 +0000] [6536] [INFO] Using worker: eventlet
+[2014-09-13 13:35:37 +0000] [6541] [INFO] Booting worker with pid: 6541
+[2014-09-13 13:36:18 +0000] [6541] [INFO] Worker exiting (pid: 6541)
+[2014-09-13 13:36:18 +0000] [6536] [INFO] Handling signal: int
+[2014-09-13 13:36:18 +0000] [6536] [INFO] Shutting down: Master
+[2014-09-13 13:36:21 +0000] [6552] [INFO] Starting gunicorn 19.1.1
+[2014-09-13 13:36:21 +0000] [6552] [INFO] Listening at: http://0.0.0.0:9090 (6552)
+[2014-09-13 13:36:21 +0000] [6552] [INFO] Using worker: eventlet
+[2014-09-13 13:36:21 +0000] [6557] [INFO] Booting worker with pid: 6557
+[2014-09-13 13:38:06 +0000] [6557] [INFO] Worker exiting (pid: 6557)
+[2014-09-13 13:38:06 +0000] [6552] [INFO] Handling signal: int
+[2014-09-13 13:38:06 +0000] [6552] [INFO] Shutting down: Master
+[2014-09-13 13:38:08 +0000] [6581] [INFO] Starting gunicorn 19.1.1
+[2014-09-13 13:38:08 +0000] [6581] [INFO] Listening at: http://0.0.0.0:9090 (6581)
+[2014-09-13 13:38:08 +0000] [6581] [INFO] Using worker: eventlet
+[2014-09-13 13:38:08 +0000] [6586] [INFO] Booting worker with pid: 6586
+[2014-09-13 13:39:38 +0000] [6586] [INFO] Worker exiting (pid: 6586)
+[2014-09-13 13:39:38 +0000] [6581] [INFO] Handling signal: int
+[2014-09-13 13:39:38 +0000] [6581] [INFO] Shutting down: Master
+[2014-09-13 13:40:43 +0000] [6622] [INFO] Starting gunicorn 19.1.1
+[2014-09-13 13:40:43 +0000] [6622] [INFO] Listening at: http://0.0.0.0:9090 (6622)
+[2014-09-13 13:40:43 +0000] [6622] [INFO] Using worker: eventlet
+[2014-09-13 13:40:43 +0000] [6627] [INFO] Booting worker with pid: 6627
+[2014-09-13 13:41:01 +0000] [6627] [INFO] Worker exiting (pid: 6627)
+[2014-09-13 13:41:01 +0000] [6622] [INFO] Handling signal: int
+[2014-09-13 13:41:01 +0000] [6622] [INFO] Shutting down: Master
+[2014-09-13 13:42:23 +0000] [6650] [INFO] Starting gunicorn 19.1.1
+[2014-09-13 13:42:23 +0000] [6650] [INFO] Listening at: http://0.0.0.0:9090 (6650)
+[2014-09-13 13:42:23 +0000] [6650] [INFO] Using worker: eventlet
+[2014-09-13 13:42:23 +0000] [6655] [INFO] Booting worker with pid: 6655
+[2014-09-13 13:45:37 +0000] [6655] [INFO] Worker exiting (pid: 6655)
+[2014-09-13 13:45:37 +0000] [6650] [INFO] Handling signal: int
+[2014-09-13 13:45:37 +0000] [6650] [INFO] Shutting down: Master
+[2014-09-13 13:45:40 +0000] [6694] [INFO] Starting gunicorn 19.1.1
+[2014-09-13 13:45:40 +0000] [6694] [INFO] Listening at: http://0.0.0.0:9090 (6694)
+[2014-09-13 13:45:40 +0000] [6694] [INFO] Using worker: eventlet
+[2014-09-13 13:45:40 +0000] [6699] [INFO] Booting worker with pid: 6699
+[2014-09-13 13:51:15 +0000] [6699] [INFO] Worker exiting (pid: 6699)
+[2014-09-13 13:51:15 +0000] [6694] [INFO] Handling signal: int
+[2014-09-13 13:51:15 +0000] [6694] [INFO] Shutting down: Master
+[2014-09-13 13:51:17 +0000] [6769] [INFO] Starting gunicorn 19.1.1
+[2014-09-13 13:51:17 +0000] [6769] [INFO] Listening at: http://0.0.0.0:9090 (6769)
+[2014-09-13 13:51:17 +0000] [6769] [INFO] Using worker: eventlet
+[2014-09-13 13:51:17 +0000] [6774] [INFO] Booting worker with pid: 6774
+[2014-09-13 13:51:27 +0000] [6774] [INFO] Worker exiting (pid: 6774)
+[2014-09-13 13:51:27 +0000] [6769] [INFO] Handling signal: int
+[2014-09-13 13:51:27 +0000] [6769] [INFO] Shutting down: Master
+[2014-09-13 14:18:09 +0000] [7112] [INFO] Starting gunicorn 19.1.1
+[2014-09-13 14:18:09 +0000] [7112] [INFO] Listening at: http://0.0.0.0:9090 (7112)
+[2014-09-13 14:18:09 +0000] [7112] [INFO] Using worker: eventlet
+[2014-09-13 14:18:09 +0000] [7117] [INFO] Booting worker with pid: 7117
+[2014-09-13 14:18:15 +0000] [7117] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/gunicorn/workers/async.py", line 47, in handle
+    self.handle_request(listener_name, req, client, addr)
+  File "/usr/local/lib/python2.7/dist-packages/gunicorn/workers/async.py", line 107, in handle_request
+    for item in respiter:
+TypeError: 'NoneType' object is not iterable
+[2014-09-13 14:18:23 +0000] [7117] [INFO] Worker exiting (pid: 7117)
+[2014-09-13 14:18:23 +0000] [7112] [INFO] Handling signal: int
+[2014-09-13 14:18:24 +0000] [7112] [INFO] Shutting down: Master
+[2014-09-13 14:18:35 +0000] [7124] [INFO] Starting gunicorn 19.1.1
+[2014-09-13 14:18:35 +0000] [7124] [INFO] Listening at: http://0.0.0.0:9090 (7124)
+[2014-09-13 14:18:35 +0000] [7124] [INFO] Using worker: eventlet
+[2014-09-13 14:18:35 +0000] [7129] [INFO] Booting worker with pid: 7129
+[2014-09-13 21:49:57 +0000] [7129] [INFO] Worker exiting (pid: 7129)
+[2014-09-13 21:49:57 +0000] [7124] [INFO] Handling signal: int
+[2014-09-13 21:49:57 +0000] [7124] [INFO] Shutting down: Master
+[2014-09-13 22:31:51 +0000] [13474] [INFO] Starting gunicorn 19.1.1
+[2014-09-13 22:31:51 +0000] [13474] [INFO] Listening at: http://0.0.0.0:9090 (13474)
+[2014-09-13 22:31:51 +0000] [13474] [INFO] Using worker: eventlet
+[2014-09-13 22:31:51 +0000] [13479] [INFO] Booting worker with pid: 13479
+[2014-09-13 22:33:23 +0000] [13479] [INFO] Worker exiting (pid: 13479)
+[2014-09-13 22:33:23 +0000] [13474] [INFO] Handling signal: int
+[2014-09-13 22:33:23 +0000] [13474] [INFO] Shutting down: Master
+[2014-09-13 22:33:25 +0000] [13500] [INFO] Starting gunicorn 19.1.1
+[2014-09-13 22:33:25 +0000] [13500] [INFO] Listening at: http://0.0.0.0:9090 (13500)
+[2014-09-13 22:33:25 +0000] [13500] [INFO] Using worker: eventlet
+[2014-09-13 22:33:25 +0000] [13505] [INFO] Booting worker with pid: 13505
+[2014-09-13 22:34:16 +0000] [13505] [INFO] Worker exiting (pid: 13505)
+[2014-09-13 22:34:16 +0000] [13500] [INFO] Handling signal: int
+[2014-09-13 22:34:16 +0000] [13500] [INFO] Shutting down: Master
+[2014-09-13 22:34:18 +0000] [13517] [INFO] Starting gunicorn 19.1.1
+[2014-09-13 22:34:18 +0000] [13517] [INFO] Listening at: http://0.0.0.0:9090 (13517)
+[2014-09-13 22:34:18 +0000] [13517] [INFO] Using worker: eventlet
+[2014-09-13 22:34:18 +0000] [13522] [INFO] Booting worker with pid: 13522
+[2014-09-13 22:34:34 +0000] [13522] [INFO] Worker exiting (pid: 13522)
+[2014-09-13 22:34:34 +0000] [13517] [INFO] Handling signal: int
+[2014-09-13 22:34:34 +0000] [13517] [INFO] Shutting down: Master
+[2014-09-13 22:35:56 +0000] [13545] [INFO] Starting gunicorn 19.1.1
+[2014-09-13 22:35:56 +0000] [13545] [INFO] Listening at: http://0.0.0.0:9090 (13545)
+[2014-09-13 22:35:56 +0000] [13545] [INFO] Using worker: eventlet
+[2014-09-13 22:35:56 +0000] [13550] [INFO] Booting worker with pid: 13550
+[2014-09-13 22:37:45 +0000] [13550] [INFO] Worker exiting (pid: 13550)
+[2014-09-13 22:37:45 +0000] [13545] [INFO] Handling signal: int
+[2014-09-13 22:37:45 +0000] [13545] [INFO] Shutting down: Master
+[2014-09-13 22:37:48 +0000] [13574] [INFO] Starting gunicorn 19.1.1
+[2014-09-13 22:37:48 +0000] [13574] [INFO] Listening at: http://0.0.0.0:9090 (13574)
+[2014-09-13 22:37:48 +0000] [13574] [INFO] Using worker: eventlet
+[2014-09-13 22:37:48 +0000] [13579] [INFO] Booting worker with pid: 13579
+[2014-09-13 22:38:32 +0000] [13579] [INFO] Worker exiting (pid: 13579)
+[2014-09-13 22:38:32 +0000] [13574] [INFO] Handling signal: int
+[2014-09-13 22:38:32 +0000] [13574] [INFO] Shutting down: Master
+[2014-09-13 22:38:34 +0000] [13590] [INFO] Starting gunicorn 19.1.1
+[2014-09-13 22:38:34 +0000] [13590] [INFO] Listening at: http://0.0.0.0:9090 (13590)
+[2014-09-13 22:38:34 +0000] [13590] [INFO] Using worker: eventlet
+[2014-09-13 22:38:34 +0000] [13595] [INFO] Booting worker with pid: 13595
+[2014-09-13 22:39:31 +0000] [13595] [INFO] Worker exiting (pid: 13595)
+[2014-09-13 22:39:31 +0000] [13590] [INFO] Handling signal: int
+[2014-09-13 22:39:31 +0000] [13590] [INFO] Shutting down: Master
+[2014-09-13 22:39:37 +0000] [13608] [INFO] Starting gunicorn 19.1.1
+[2014-09-13 22:39:37 +0000] [13608] [INFO] Listening at: http://0.0.0.0:9090 (13608)
+[2014-09-13 22:39:37 +0000] [13608] [INFO] Using worker: eventlet
+[2014-09-13 22:39:37 +0000] [13613] [INFO] Booting worker with pid: 13613
+[2014-09-13 22:40:17 +0000] [13613] [INFO] Worker exiting (pid: 13613)
+[2014-09-13 22:40:17 +0000] [13608] [INFO] Handling signal: int
+[2014-09-13 22:40:17 +0000] [13608] [INFO] Shutting down: Master
+[2014-09-13 22:40:20 +0000] [13622] [INFO] Starting gunicorn 19.1.1
+[2014-09-13 22:40:20 +0000] [13622] [INFO] Listening at: http://0.0.0.0:9090 (13622)
+[2014-09-13 22:40:20 +0000] [13622] [INFO] Using worker: eventlet
+[2014-09-13 22:40:20 +0000] [13627] [INFO] Booting worker with pid: 13627
+[2014-09-13 22:40:50 +0000] [13627] [INFO] Worker exiting (pid: 13627)
+[2014-09-13 22:40:50 +0000] [13622] [INFO] Handling signal: int
+[2014-09-13 22:40:50 +0000] [13622] [INFO] Shutting down: Master
+[2014-09-13 22:40:53 +0000] [13635] [INFO] Starting gunicorn 19.1.1
+[2014-09-13 22:40:53 +0000] [13635] [INFO] Listening at: http://0.0.0.0:9090 (13635)
+[2014-09-13 22:40:53 +0000] [13635] [INFO] Using worker: eventlet
+[2014-09-13 22:40:53 +0000] [13642] [INFO] Booting worker with pid: 13642
+[2014-09-13 22:44:29 +0000] [13642] [INFO] Worker exiting (pid: 13642)
+[2014-09-13 22:44:29 +0000] [13635] [INFO] Handling signal: int
+[2014-09-13 22:44:29 +0000] [13635] [INFO] Shutting down: Master
+[2014-09-13 22:44:32 +0000] [13687] [INFO] Starting gunicorn 19.1.1
+[2014-09-13 22:44:32 +0000] [13687] [INFO] Listening at: http://0.0.0.0:9090 (13687)
+[2014-09-13 22:44:32 +0000] [13687] [INFO] Using worker: eventlet
+[2014-09-13 22:44:32 +0000] [13692] [INFO] Booting worker with pid: 13692
+[2014-09-13 23:45:43 +0000] [13692] [INFO] Worker exiting (pid: 13692)
+[2014-09-13 23:45:43 +0000] [13687] [INFO] Handling signal: int
+[2014-09-13 23:45:43 +0000] [13687] [INFO] Shutting down: Master
