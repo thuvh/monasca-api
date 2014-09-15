@@ -804,6 +804,24 @@
     },
     {
       "key": {
+        "uuid": "fa98f980_1db2c993",
+        "filename": "monasca/dispatcher/kafka_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-09-15T15:38:14Z",
+      "side": 1,
+      "message": "You are looking at the external message format. The internal message format is augmented by tenantId and region because monasca is a multi-tenant solution. The tenantId is provided by Keystone based on the user and token (or password) that is used when the metric post is authenticated. The API is the only part of the system that can ascertain the correct tenantId so it adds it to the metric for the internal message format.\n\nThe region is used to specify which region the API server is running in. It will only be used when metrics from multiple regions are aggregated into a single database.\n\nThe timestamp is used to help track performance of the monasca system as the metric flows through the system. The Threshold Engine uses it specifically to know if metrics are being received in a timely manner so that the Threshold Engine does not mark alarms as being in the Undetermined state if it is still catching up on metrics after the Threshold Engine restarts.\n\nThis is the format that must be used on the kafka queue so that the rest of monasca functions correctly.",
+      "parentUuid": "fa98f980_2bdd8be0",
+      "revId": "abaf9e2b2c41a167b79388aa3c4f482f81ae7887",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa98f980_1873d04e",
         "filename": "monasca/dispatcher/kafka_queue.py",
         "patchSetId": 1
