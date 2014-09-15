@@ -41,6 +41,7 @@ public class MeasurementInfluxDbRepositoryImpl implements MeasurementRepository 
 
   private static final Logger logger = LoggerFactory
       .getLogger(MeasurementInfluxDbRepositoryImpl.class);
+  private static final String COULD_NOT_LOOK_UP_COLUMNS_EXC_MSG = "Couldn't look up columns";
 
   private final MonApiConfiguration config;
   private final InfluxDB influxDB;
@@ -70,19 +71,23 @@ public class MeasurementInfluxDbRepositoryImpl implements MeasurementRepository 
                       serieNameRegex, timePart);
     logger.debug("Query string: {}", query);
 
-    List<Measurements> measurementsList = new LinkedList<>();
-
     List<Serie> result = null;
     try {
       result = this.influxDB.Query(this.config.influxDB.getName(), query, TimeUnit.MILLISECONDS);
     } catch (RuntimeException e) {
-      if (e.getMessage().equals("Couldn't look up columns")) {
-        return measurementsList;
+      if (e.getMessage().equals(COULD_NOT_LOOK_UP_COLUMNS_EXC_MSG)) {
+        return new LinkedList<>();
       } else {
         logger.error("Failed to get data from InfluxDB", e);
         throw e;
       }
     }
+
+    return buildMeasurementList(result);
+  }
+
+  private List<Measurements> buildMeasurementList(List<Serie> result) throws Exception {
+    List<Measurements> measurementsList = new LinkedList<>();
 
     for (Serie serie : result) {
 
@@ -116,7 +121,8 @@ public class MeasurementInfluxDbRepositoryImpl implements MeasurementRepository 
       measurements.setMeasurements(valObjArryList);
       measurementsList.add(measurements);
     }
-    return measurementsList;
+
+    return measurementsList ;
   }
 
 }
