@@ -34,6 +34,24 @@
       "revId": "ed99a4edb39e29a2bf1c165ee4e944a543bc597b",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_07b7ba3a",
+        "filename": "setup.cfg",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 12133
+      },
+      "writtenOn": "2014-09-15T20:13:50Z",
+      "side": 1,
+      "message": "Our team voted to change it.  We want the package name to be \"monasca_api\"",
+      "parentUuid": "fa98f980_27a8411f",
+      "revId": "ed99a4edb39e29a2bf1c165ee4e944a543bc597b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
