@@ -16,6 +16,24 @@
       "revId": "ed99a4edb39e29a2bf1c165ee4e944a543bc597b",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa98f980_27a8411f",
+        "filename": "setup.cfg",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 2860
+      },
+      "writtenOn": "2014-09-15T18:36:14Z",
+      "side": 1,
+      "message": "no. this is package names. should not be changed.",
+      "parentUuid": "fa98f980_ec6e202e",
+      "revId": "ed99a4edb39e29a2bf1c165ee4e944a543bc597b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
