@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa98f980_711a0b7e",
+        "filename": "src/main/java/com/hpcloud/mon/infrastructure/persistence/influxdb/MeasurementInfluxDbRepositoryImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-09-15T17:32:55Z",
+      "side": 1,
+      "message": "I think it would be a good idea to put this String in only one of the files and reference it from the other. That way, it only needs to be changed once when the influxdb message changes.",
+      "revId": "f84f1beb9723fa36536090ed22ee06dca98fbb1a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
