@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa98f980_ec6e202e",
+        "filename": "setup.cfg",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 12133
+      },
+      "writtenOn": "2014-09-15T18:02:18Z",
+      "side": 1,
+      "message": "The package name, and top level directory in this project, should be \"monasca_api\", not \"monasca\".  This should be installed as monasca_api.\nThis is a similar naming convention to our other components which are all installed in different packages.",
+      "revId": "ed99a4edb39e29a2bf1c165ee4e944a543bc597b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
