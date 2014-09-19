@@ -13,12 +13,16 @@
  */
 package com.hpcloud.mon.domain.model.alarmstatehistory;
 
+import java.util.Map;
+
 import org.joda.time.DateTime;
 
 import com.hpcloud.mon.common.model.alarm.AlarmState;
 
 public class AlarmStateHistory {
   private String alarmId;
+  private String metricName;
+  private Map<String, String> metricDimensions;
   private AlarmState oldState;
   private AlarmState newState;
   private String reason;
@@ -43,13 +47,23 @@ public class AlarmStateHistory {
       return true;
     if (obj == null)
       return false;
-    if (getClass() != obj.getClass())
+    if (!(obj instanceof AlarmStateHistory))
       return false;
     AlarmStateHistory other = (AlarmStateHistory) obj;
     if (alarmId == null) {
       if (other.alarmId != null)
         return false;
     } else if (!alarmId.equals(other.alarmId))
+      return false;
+    if (metricDimensions == null) {
+      if (other.metricDimensions != null)
+        return false;
+    } else if (!metricDimensions.equals(other.metricDimensions))
+      return false;
+    if (metricName == null) {
+      if (other.metricName != null)
+        return false;
+    } else if (!metricName.equals(other.metricName))
       return false;
     if (newState != other.newState)
       return false;
@@ -77,6 +91,14 @@ public class AlarmStateHistory {
     return alarmId;
   }
 
+  public Map<String, String> getMetricDimensions() {
+    return metricDimensions;
+  }
+
+  public String getMetricName() {
+    return metricName;
+  }
+
   public AlarmState getNewState() {
     return newState;
   }
@@ -102,6 +124,8 @@ public class AlarmStateHistory {
     final int prime = 31;
     int result = 1;
     result = prime * result + ((alarmId == null) ? 0 : alarmId.hashCode());
+    result = prime * result + ((metricDimensions == null) ? 0 : metricDimensions.hashCode());
+    result = prime * result + ((metricName == null) ? 0 : metricName.hashCode());
     result = prime * result + ((newState == null) ? 0 : newState.hashCode());
     result = prime * result + ((oldState == null) ? 0 : oldState.hashCode());
     result = prime * result + ((reason == null) ? 0 : reason.hashCode());
@@ -112,6 +136,14 @@ public class AlarmStateHistory {
 
   public void setAlarmId(String alarmId) {
     this.alarmId = alarmId;
+  }
+
+  public void setMetricDimensions(Map<String, String> metricDimensions) {
+    this.metricDimensions = metricDimensions;
+  }
+
+  public void setMetricName(String metricName) {
+    this.metricName = metricName;
   }
 
   public void setNewState(AlarmState newState) {
@@ -136,9 +168,9 @@ public class AlarmStateHistory {
 
   @Override
   public String toString() {
-    return String
-        .format(
-            "AlarmStateHistory [alarmId=%s, oldState=%s, newState=%s, reason=%s, reasonData=%s, timestamp=%s]",
-            alarmId, oldState, newState, reason, reasonData, timestamp);
+    return "AlarmStateHistory [alarmId=" + alarmId + ", metricName=" + metricName
+        + ", metricDimensions=" + metricDimensions + ", oldState=" + oldState + ", newState="
+        + newState + ", reason=" + reason + ", reasonData=" + reasonData + ", timestamp="
+        + timestamp + "]";
   }
 }
