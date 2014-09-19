@@ -1154,9 +1154,7 @@ Returns a JSON array of alarm objects with the following fields:
 * description (string) - Description of alarm.
 * expression (string) - The alarm expression.
 * expression_data (JSON object) - The alarm expression as a JSON object.
-* state (string) - State of alarm. Either `OK`, `ALARM` or `UNDETERMINED`. The initial state of an alarm is `UNDETERMINED`. 
 * severity (string) - The severity of an alarm. Either `LOW`, `MEDIUM`, `HIGH` or `CRITICAL`.
-* actions_enabled (boolean) - If true the alarm is enable else the alarm is disabled.
 * alarm_actions ([string]) - Array of notification method IDs that are invoked when the alarm transitions to the `ALARM` state.
 * ok_actions ([string]) - Array of notification method IDs that are invoked when the alarm transitions to the `OK` state.
 * undetermined_actions ([string]) - Array of notification method IDs that are invoked when the alarm transitions to the `UNDETERMINED` state.
@@ -1189,9 +1187,7 @@ Returns a JSON array of alarm objects with the following fields:
       "period":60,
       "periods":1
    },
-   "state":"UNDETERMINED",
    "severity":"LOW",
-   "actions_enabled":true,
    "alarm_actions":[  
       "c60ec47e-5038-4bf1-9f95-4046c6e9a759"
    ],
@@ -1220,7 +1216,6 @@ None.
 #### Query Parameters
 * name (string(255), optional) - Name of alarm to filter by.
 * dimensions (string, optional) - Dimensions of metrics to filter by specified as a comma separated array of (key, value) pairs as `key1:value1,key1:value1, ...`
-* state (string, optional) - State of alarm to filter by. Must be either `UNDETERMINED`, `OK` or `ALARM`.
 
 #### Request Body
 None.
@@ -1247,9 +1242,7 @@ Returns a JSON array of alarm objects with the following fields:
 * description (string) - Description of alarm.
 * expression (string) - The alarm expression.
 * expression_data (JSON object) - The alarm expression as a JSON object.
-* state (string) - State of alarm. Either `OK`, `ALARM` or `UNDETERMINED`. The initial state of an alarm is `UNDETERMINED`. 
 * severity (string) - The severity of an alarn. Either `LOW`, `MEDIUM`, `HIGH` or `CRITICAL`.
-* actions_enabled (boolean) - If true the alarm is enable else the alarm is disabled.
 * alarm_actions ([string]) - Array of notification method IDs that are invoked when the alarm transitions to the `ALARM` state.
 * ok_actions ([string]) - Array of notification method IDs that are invoked when the alarm transitions to the `OK` state.
 * undetermined_actions ([string]) - Array of notification method IDs that are invoked when the alarm transitions to the `UNDETERMINED` state.
@@ -1493,8 +1486,6 @@ Consists of an alarm definition. An alarm has the following properties:
 * name (string(255), required) - A name of the alarm.
 * description (string(255), optional) -  A description of an alarm.
 * expression (string, required) - An alarm expression.
-* state (string, required) - State of alarm to set. Must be either `OK`, `ALARM` or `UNDETERMINED`.
-* enabled (boolean, required)
 * alarmActions ([string(50)], optional) 
 * okActions ([string(50)], optional)
 * undeterminedActions ([string(50)], optional)
@@ -1514,8 +1505,6 @@ Cache-Control: no-cache
    "name":"CPU percent greater than 15",
    "description":"Release the hounds",
    "expression":"(avg(cpu_user_perc{hostname=devstack}) > 15)",
-   "state":"UNDETERMINED",
-   "actions_enabled":true,
    "alarm_actions":[  
       "c60ec47e-5038-4bf1-9f95-4046c6e9a759"
    ],
@@ -1541,9 +1530,7 @@ Returns a JSON alarm object with the following parameters:
 * description (string) - Description of alarm.
 * expression (string) - The alarm expression.
 * expression_data (JSON object) - The alarm expression as a JSON object.
-* state (string) - State of alarm. Either `OK`, `ALARM` or `UNDETERMINED`. The initial state of an alarm is `UNDETERMINED`. 
 * severity (string) - The severity of an alarm. Either `LOW`, `MEDIUM`, `HIGH` or `CRITICAL`.
-* actions_enabled (boolean) - If true the alarm is enable else the alarm is disabled.
 * alarm_actions (array[string(50)] - Array of notification method IDs that are invoked when the alarm transitions to the `ALARM` state.
 * ok_actions (array[string(50)] - Array of notification method IDs that are invoked when the alarm transitions to the `OK` state.
 * undetermined_actions (array[string(50)] - Array of notification method IDs that are invoked when the alarm transitions to the `UNDETERMINED` state.
@@ -1576,9 +1563,7 @@ Returns a JSON alarm object with the following parameters:
         "period": 60,
         "periods": 1
     },
-    "state": "UNDETERMINED",
     "severity": "CRITICAL",
-    "actions_enabled": true,
     "alarm_actions": [
         "c60ec47e-5038-4bf1-9f95-4046c6e9a759"
     ],
@@ -1613,8 +1598,6 @@ Consists of an alarm with the following properties:
 * name (string(255), optional) - A name of the alarm.
 * description (string(255), optional) -  A description of an alarm.
 * expression (string, optional) - An alarm expression.
-* state (string, optional) - State of alarm to set. Must be either `UNDETERMINED`, `OK` or `ALARM`.
-* enabled (boolean, optional)
 * alarm_actions ([string(50)], optional) - Array of notification method IDs that are invoked when the alarm transitions to the `ALARM` state.
 * ok_actions ([string(50)], optional) - Array of notification method IDs that are invoked when the alarm transitions to the `OK` state.
 * undetermined_actions ([string(50)], optional) - Array of notification method IDs that are invoked when the alarm transitions to the `UNDETERMINED` state.
@@ -1633,8 +1616,6 @@ Cache-Control: no-cache
    "name":"CPU percent greater than 15",
    "description":"Release the hounds",
    "expression":"(avg(cpu_user_perc{hostname=devstack}) > 15)",
-   "state":"UNDETERMINED",
-   "actions_enabled":true,
    "severity":"CRITICAL",
    "alarm_actions":[  
       "c60ec47e-5038-4bf1-9f95-4046c6e9a759"
@@ -1661,9 +1642,7 @@ Returns a JSON alarm object with the following fields:
 * description (string) - Description of alarm.
 * expression (string) - The alarm expression.
 * expression_data (JSON object) - The alarm expression as a JSON object.
-* state (string) - State of alarm. Either `OK`, `ALARM` or `UNDETERMINED`. The initial state of an alarm is `UNDETERMINED`. 
 * severity (string) - The severity of an alarm. Either `LOW`, `MEDIUM`, `HIGH` or `CRITICAL`.
-* actions_enabled (boolean) - If true the alarm is enable else the alarm is disabled.
 * alarm_actions ([string]) - Array of notification method IDs that are invoked when the alarm transitions to the `ALARM` state.
 * ok_actions ([string]) - Array of notification method IDs that are invoked when the alarm transitions to the `OK` state.
 * undetermined_actions ([string]) - Array of notification method IDs that are invoked when the alarm transitions to the `UNDETERMINED` state.
@@ -1696,9 +1675,7 @@ Returns a JSON alarm object with the following fields:
         "period": 60,
         "periods": 1
     },
-    "state": "UNDETERMINED",
     "severity": "CRITICAL",
-    "actions_enabled": true,
     "alarm_actions": [
         "c60ec47e-5038-4bf1-9f95-4046c6e9a759"
     ],
