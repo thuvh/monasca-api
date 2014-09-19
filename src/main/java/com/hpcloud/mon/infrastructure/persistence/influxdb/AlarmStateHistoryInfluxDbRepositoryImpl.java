@@ -52,16 +52,14 @@ public class AlarmStateHistoryInfluxDbRepositoryImpl implements AlarmStateHistor
   private final InfluxDB influxDB;
   private final DBI mysql;
 
-  private static final String FIND_ALARMS_SQL = "select distinct a.id from alarm as a " + "join"
-                                                + " sub_alarm sa on a.id = sa.alarm_id "
-                                                + "left outer join sub_alarm_dimension dim on "
-                                                + "sa.id = dim.sub_alarm_id%s "
-                                                + "where a.tenant_id = :tenantId and a.deleted_at is "
-                                                + "NULL";
+  private static final String FIND_ALARMS_SQL = "select distinct ad.id from alarm_definition as ad "
+      + "join sub_alarm_definition sad on ad.id = sad.alarm_definition_id "
+      + "left outer join sub_alarm_definition_dimension dim on sad.id = dim.sub_alarm_definition_id%s "
+      + "where ad.tenant_id = :tenantId and ad.deleted_at is NULL";
 
   @Inject
   public AlarmStateHistoryInfluxDbRepositoryImpl(@Named("mysql") DBI mysql,
-                                                 MonApiConfiguration config, InfluxDB influxDB) {
+      MonApiConfiguration config, InfluxDB influxDB) {
     this.mysql = mysql;
     this.config = config;
     this.influxDB = influxDB;
@@ -78,16 +76,13 @@ public class AlarmStateHistoryInfluxDbRepositoryImpl implements AlarmStateHistor
   String buildQueryForFindById(String tenantId, String alarmId) throws Exception {
 
     return String.format("select alarm_id, old_state, new_state, reason, reason_data "
-                         + "from alarm_state_history "
-                         + "where tenant_id = '%1$s' and alarm_id = '%2$s'",
-                         Utils.SQLSanitizer.sanitize(tenantId),
-                         Utils.SQLSanitizer.sanitize(alarmId));
+        + "from alarm_state_history where tenant_id = '%1$s' and alarm_id = '%2$s'",
+        Utils.SQLSanitizer.sanitize(tenantId), Utils.SQLSanitizer.sanitize(alarmId));
   }
 
   @Override
   public Collection<AlarmStateHistory> find(String tenantId, Map<String, String> dimensions,
-                                            DateTime startTime, @Nullable DateTime endTime)
-      throws Exception {
+      DateTime startTime, @Nullable DateTime endTime) throws Exception {
 
     List<String> alarmIds = null;
     // Find alarm Ids for dimensions
@@ -117,8 +112,8 @@ public class AlarmStateHistoryInfluxDbRepositoryImpl implements AlarmStateHistor
 
   String buildQueryForFind(String tenantId, String timePart, String alarmsPart) throws Exception {
     return String.format("select alarm_id, old_state, new_state, reason, reason_data "
-                         + "from alarm_state_history " + "where tenant_id = '%1$s' %2$s %3$s",
-                         Utils.SQLSanitizer.sanitize(tenantId), timePart, alarmsPart);
+        + "from alarm_state_history where tenant_id = '%1$s' %2$s %3$s",
+        Utils.SQLSanitizer.sanitize(tenantId), timePart, alarmsPart);
   }
 
   String buildAlarmsPart(List<String> alarmIds) {
@@ -144,8 +139,7 @@ public class AlarmStateHistoryInfluxDbRepositoryImpl implements AlarmStateHistor
 
     List<Serie> result;
     try {
-      result =
-          this.influxDB.Query(this.config.influxDB.getName(), query, TimeUnit.MILLISECONDS);
+      result = this.influxDB.Query(this.config.influxDB.getName(), query, TimeUnit.MILLISECONDS);
     } catch (Exception e) {
       if (e.getMessage().startsWith(Utils.COULD_NOT_LOOK_UP_COLUMNS_EXC_MSG)) {
         return new LinkedList();
