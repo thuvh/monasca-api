@@ -21,27 +21,29 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import com.hpcloud.mon.app.validation.AlarmValidation;
 
-public class CreateAlarmCommand {
+public class CreateAlarmDefinitionCommand {
   @NotEmpty
   public String name;
   public String description;
   @NotEmpty
   public String expression;
+  public List<String> matchBy;
   public String severity;
   public List<String> alarmActions;
   public List<String> okActions;
   public List<String> undeterminedActions;
 
-  public CreateAlarmCommand() {
+  public CreateAlarmDefinitionCommand() {
     this.severity = "LOW";
   }
 
-  public CreateAlarmCommand(String name, @Nullable String description, String expression,
-      String severity, List<String> alarmActions, List<String> okActions,
+  public CreateAlarmDefinitionCommand(String name, @Nullable String description, String expression,
+      List<String> matchBy, String severity, List<String> alarmActions, List<String> okActions,
       List<String> undeterminedActions) {
     this.name = name;
     this.description = description;
     this.expression = expression;
+    this.matchBy = matchBy;
     this.alarmActions = alarmActions;
     this.okActions = okActions;
     this.undeterminedActions = undeterminedActions;
@@ -56,7 +58,7 @@ public class CreateAlarmCommand {
       return false;
     if (getClass() != obj.getClass())
       return false;
-    CreateAlarmCommand other = (CreateAlarmCommand) obj;
+    CreateAlarmDefinitionCommand other = (CreateAlarmDefinitionCommand) obj;
     if (name == null) {
       if (other.name != null)
         return false;
