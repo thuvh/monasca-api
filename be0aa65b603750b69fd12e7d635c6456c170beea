@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da9df570_668caf80",
+        "filename": "etc/monasca.conf",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 12133
+      },
+      "writtenOn": "2014-09-23T17:36:30Z",
+      "side": 1,
+      "message": "Currently the kafka events topic is \u0027raw-events\u0027 for the events to be published.  There was an existing events topic used by notification engine?\nWhich name does this refer to?",
+      "revId": "be0aa65b603750b69fd12e7d635c6456c170beea",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
