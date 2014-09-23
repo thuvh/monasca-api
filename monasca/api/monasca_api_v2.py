@@ -26,8 +26,8 @@ class V2API(object):
         LOG.debug('initializing V2API!')
         self.global_conf = global_conf
 
-    @resource_api.Restify('/v2.0/metrics/{id}')
-    def do_get_metrics(self, req, res, id):
+    @resource_api.Restify('/v2.0/metrics')
+    def do_get_metrics(self, req, res):
         res.status = '501 Not Implemented'
 
     @resource_api.Restify('/v2.0/metrics/', method='post')
@@ -92,4 +92,8 @@ class V2API(object):
 
     @resource_api.Restify('/v2.0/alarms/{id}/state-history')
     def do_get_alarm_state_history(self, req, res, id):
+        res.status = '501 Not Implemented'
+
+    @resource_api.Restify('/v2.0/events/', method='post')
+    def do_post_events(self, req, res):
         res.status = '501 Not Implemented'
