@@ -1,4 +1,4 @@
-# Copyright 2013 IBM Corp
+# Copyright 2014 Hewlett-Packard
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -14,7 +14,6 @@
 
 from kafka import client
 from kafka import common
-from kafka import consumer
 from kafka import producer
 from oslo.config import cfg
 import time
@@ -25,12 +24,14 @@ except ImportError:
     import json
 
 from monasca.openstack.common import log
+from monasca.common.messaging import publisher
+from monasca.common.messaging import exceptions
+
 
 LOG = log.getLogger(__name__)
 
 
-class KafkaConnection(object):
-
+class KafkaPublisher(publisher.Publisher):
     def __init__(self):
         if not cfg.CONF.kafka.uri:
             raise Exception('Kafka is not configured correctly! '
@@ -88,20 +89,6 @@ class KafkaConnection(object):
             # Wait a bit and try again to get a client
             time.sleep(self.wait_time)
 
-    def _init_consumer(self):
-        try:
-            if not self._client:
-                self._init_client()
-            self._consumer = consumer.SimpleConsumer(
-                self._client, self.group, self.topic,
-                auto_commit=self.auto_commit,
-                partitions=self.partitions)
-            LOG.debug('Consumer was created successfully.')
-        except Exception:
-            self._consumer = None
-            LOG.exception('Kafka (%s) consumer can not be created.' %
-                          self.uri)
-
     def _init_producer(self):
         try:
             if not self._client:
@@ -124,54 +111,17 @@ class KafkaConnection(object):
             self._producer = None
             self._client.close()
 
-    def get_messages(self):
-        try:
-            if not self._consumer:
-                self._init_consumer()
-
-            for message in self._consumer:
-                LOG.debug(message.message.value)
-                yield message
-        except Exception:
-            LOG.error('Error occurred while handling kafka messages.')
-            self._consumer = None
-            yield None
-
-    def send_messages(self, messages):
-        LOG.debug('Prepare to send messages.')
-        if not messages or self.drop_data:
-            return 204
-
-        code = 400
+    def send_message(self, message):
         try:
             if not self._producer:
                 self._init_producer()
+            self._producer.send_messages(self.topic, message)
 
-            LOG.debug('Start sending messages to kafka.')
-            if self.compact:
-                self._producer.send_messages(self.topic, messages)
-            else:
-                data = json.loads(messages)
-                LOG.debug('Msg parsed successfully.')
-                if isinstance(data, list):
-                    for item in data:
-                        self._producer.send_messages(
-                            self.topic, json.dumps(item))
-                else:
-                    self._producer.send_messages(self.topic, messages)
-            LOG.debug('Message posted successfully.')
-            code = 204
         except (common.KafkaUnavailableError,
                 common.LeaderNotAvailableError):
             self._client = None
-            code = 503
-            LOG.exception('Error occurred while posting data to '
-                          'Kafka.')
-        except ValueError:
-            code = 406
-            LOG.exception('Message %s is not valid json.' % messages)
+            LOG.exception('Error occurred while posting data to Kafka.')
+            raise exceptions.MessageQueueException()
         except Exception:
-            code = 500
             LOG.exception('Unknown error.')
-
-        return code
+            raise exceptions.MessageQueueException()
