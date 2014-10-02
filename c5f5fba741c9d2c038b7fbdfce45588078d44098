@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa201ad_79f26dd3",
+        "filename": "etc/monasca.conf",
+        "patchSetId": 10
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2014-10-02T21:56:46Z",
+      "side": 1,
+      "message": "to",
+      "revId": "c5f5fba741c9d2c038b7fbdfce45588078d44098",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa201ad_99ed51f2",
+        "filename": "etc/monasca.conf",
+        "patchSetId": 10
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2014-10-02T21:56:46Z",
+      "side": 1,
+      "message": "to",
+      "revId": "c5f5fba741c9d2c038b7fbdfce45588078d44098",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa201ad_b99cd5c1",
+        "filename": "monasca/api/monasca_transforms_api_v2.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2014-10-02T21:56:46Z",
+      "side": 1,
+      "message": "Could transforms be applied to any json payload, not just events?",
+      "revId": "c5f5fba741c9d2c038b7fbdfce45588078d44098",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
