@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa201ad_abe69be6",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-10-09T22:44:51Z",
+      "side": 1,
+      "message": "I think a comment giving an example of a series name would be helpful here",
+      "revId": "37d490c64262b1801799771fbf9616b35e725282",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa201ad_ab813bfd",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-10-09T22:44:51Z",
+      "side": 1,
+      "message": "What happens if no series names were matched? Do you need to check for that before trying to access series_names[0]. Maybe a comment giving an example of the returned json would be helpful",
+      "revId": "37d490c64262b1801799771fbf9616b35e725282",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa201ad_cb103fab",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-10-09T22:44:51Z",
+      "side": 1,
+      "message": "Why isn\u0027t dimensions_part the same as dimensions? Seems like you have already pulled this out",
+      "revId": "37d490c64262b1801799771fbf9616b35e725282",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
