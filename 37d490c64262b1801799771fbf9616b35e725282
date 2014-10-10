@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "baa201ad_7b570f27",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-10-10T14:38:06Z",
+      "side": 1,
+      "message": "funny, once again that thought went thru my mind, but i was too lazy to do it.  i\u0027ll add it.",
+      "parentUuid": "baa201ad_abe69be6",
+      "revId": "37d490c64262b1801799771fbf9616b35e725282",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa201ad_ab813bfd",
         "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "baa201ad_1bbb6373",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-10-10T14:38:06Z",
+      "side": 1,
+      "message": "if no series names are matched, then \u0027[]\u0027 is returned.",
+      "parentUuid": "baa201ad_ab813bfd",
+      "revId": "37d490c64262b1801799771fbf9616b35e725282",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa201ad_cb103fab",
         "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
         "patchSetId": 2
@@ -47,6 +83,24 @@
       "writtenOn": "2014-10-09T22:44:51Z",
       "side": 1,
       "message": "Why isn\u0027t dimensions_part the same as dimensions? Seems like you have already pulled this out",
+      "revId": "37d490c64262b1801799771fbf9616b35e725282",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa201ad_bb497790",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-10-10T14:38:06Z",
+      "side": 1,
+      "message": "it\u0027s not the same.  it\u0027s complicated. this was necessary because of the way python handles multiple group matches.  swing by my desk for more details.",
+      "parentUuid": "baa201ad_cb103fab",
       "revId": "37d490c64262b1801799771fbf9616b35e725282",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
