@@ -32,7 +32,6 @@ LOG = log.getLogger(__name__)
 
 
 class MetricsRepository(metrics_repository.MetricsRepository):
-
     def __init__(self):
 
         try:
@@ -63,16 +62,17 @@ class MetricsRepository(metrics_repository.MetricsRepository):
 
         return query
 
-    def _build_select_query(self, dimensions, name, tenant_id):
+    def _build_select_query(self, dimensions, name, tenant_id, timestamp):
 
-        from_clause = self._build_from_clause(dimensions, name, tenant_id)
+        from_clause = self._build_from_clause(dimensions, name, tenant_id,
+                                              timestamp)
 
         query = 'select * ' + from_clause
 
         return query
 
 
-    def _build_from_clause(self, dimensions, name, tenant_id):
+    def _build_from_clause(self, dimensions, name, tenant_id, timestamp=None):
 
         from_clause = 'from /^'
 
@@ -95,6 +95,9 @@ class MetricsRepository(metrics_repository.MetricsRepository):
                                             safe='')
 
         from_clause += '/'
+
+        if timestamp is not None:
+            from_clause += " where time > " + str(timestamp)
 
         return from_clause
 
@@ -200,7 +203,7 @@ class MetricsRepository(metrics_repository.MetricsRepository):
         return metric
 
 
-    def measurement_list(self, tenant_id, name, dimensions):
+    def measurement_list(self, tenant_id, name, dimensions, timestamp):
         """
         Example result from InfluxDB.
         [
@@ -251,7 +254,8 @@ class MetricsRepository(metrics_repository.MetricsRepository):
         json_measurement_list = []
 
         try:
-            query = self._build_select_query(dimensions, name, tenant_id)
+            query = self._build_select_query(dimensions, name, tenant_id,
+                                             timestamp)
 
             try:
                 result = self.influxdb_client.query(query, 's')

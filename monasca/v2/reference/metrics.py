@@ -128,9 +128,10 @@ class Metrics(monasca_api_v2.V2API):
             raise falcon.HTTPServiceUnavailable('Service unavailable',
                                                 ex.message)
 
-    def _measurement_list(self, tenant_id, name, dimensions):
+    def _measurement_list(self, tenant_id, name, dimensions, timestamp):
         try:
-            return self._metrics_repo.measurement_list(tenant_id, name, dimensions)
+            return self._metrics_repo.measurement_list(tenant_id, name,
+                                                       dimensions, timestamp)
         except Exception as ex:
             LOG.exception(ex)
             raise falcon.HTTPServiceUnavailable('Service unavailable',
@@ -171,6 +172,7 @@ class Metrics(monasca_api_v2.V2API):
         helpers.validate_query_name(name)
         dimensions = helpers.get_query_dimensions(req)
         helpers.validate_query_dimensions(dimensions)
-        result = self._measurement_list(tenant_id, name, dimensions)
+        timestamp = helpers.get_query_timestamp(req)
+        result = self._measurement_list(tenant_id, name, dimensions, timestamp)
         res.body = json.dumps(result, ensure_ascii=False).encode('utf8')
         res.status = falcon.HTTP_200
