@@ -14,18 +14,16 @@
 # under the License.
 import re
 import urllib
+from time import strftime
+from time import gmtime
 
 from influxdb import InfluxDBClient
 from influxdb.client import InfluxDBClientError
+from oslo.config import cfg
 
 from monasca.common.repositories import exceptions
 from monasca.common.repositories import metrics_repository
 from monasca.openstack.common import log
-
-from oslo.config import cfg
-
-from time import strftime
-from time import gmtime
 
 
 LOG = log.getLogger(__name__)
@@ -62,8 +60,8 @@ class MetricsRepository(metrics_repository.MetricsRepository):
 
         return query
 
-    def _build_select_query(self, dimensions, name, tenant_id,
-                            start_timestamp, end_timestamp):
+    def _build_select_query(self, dimensions, name, tenant_id, start_timestamp,
+                            end_timestamp):
 
         from_clause = self._build_from_clause(dimensions, name, tenant_id,
                                               start_timestamp, end_timestamp)
@@ -72,6 +70,28 @@ class MetricsRepository(metrics_repository.MetricsRepository):
 
         return query
 
+    def _build_statistics_query(self, dimensions, name, tenant_id,
+                                start_timestamp, end_timestamp, statistics,
+                                period):
+
+        from_clause = self._build_from_clause(dimensions, name, tenant_id,
+                                              start_timestamp, end_timestamp)
+
+        statistics = [statistic.replace('avg', 'mean') for statistic in
+                      statistics]
+        statistics = [statistic.replace(statistic, statistic + '(value)') for
+                      statistic in statistics]
+
+        statistic_string = ",".join(statistics)
+
+        query = 'select ' + statistic_string + ' ' + from_clause
+
+        if period is None:
+            period = str(300)
+
+        query += " group by time(" + period + "s)"
+
+        return query
 
     def _build_from_clause(self, dimensions, name, tenant_id,
                            start_timestamp=None, end_timestamp=None):
@@ -298,6 +318,59 @@ class MetricsRepository(metrics_repository.MetricsRepository):
                 json_measurement_list.append(measurement)
 
             return json_measurement_list
+
+        except Exception as ex:
+            LOG.exception(ex)
+            raise exceptions.RepositoryException(ex)
+
+
+    def metrics_statistics(self, tenant_id, name, dimensions, start_timestamp,
+                           end_timestamp, statistics, period):
+
+        json_statistics_list = []
+
+        try:
+            query = self._build_statistics_query(dimensions, name, tenant_id,
+                                                 start_timestamp,
+                                                 end_timestamp, statistics,
+                                                 period)
+
+            try:
+                result = self.influxdb_client.query(query, 's')
+            except InfluxDBClientError as ex:
+                if ex.code == 400 and ex.content == 'Couldn\'t look up ' \
+                                                    'columns':
+                    return json_statistics_list
+                else:
+                    raise ex
+
+            for serie in result:
+
+                metric = self._decode_influxdb_serie_name(serie['name'])
+
+                if metric is None:
+                    continue
+
+                # Replace 'sequence_number' -> 'id' for column name
+                columns = [column.replace('mean', 'avg') for column in
+                           serie['columns']]
+                # Replace 'time' -> 'timestamp' for column name
+                columns = [column.replace('time', 'timestamp') for column in
+                           columns]
+
+                # format the utc date in the points. time is always the
+                # first point.  the rest are statistics.
+                fmtd_pts = [[strftime("%Y-%m-%dT%H:%M:%SZ", gmtime(point[0])),
+                             statistic] for point in serie['points'] for
+                            statistic in point[1:]]
+
+                measurement = {"name": metric['name'],
+                               "dimensions": metric['dimensions'],
+                               "columns": columns, "measurements": fmtd_pts}
+
+                json_statistics_list.append(measurement)
+
+            return json_statistics_list
 
         except Exception as ex:
             LOG.exception(ex)
