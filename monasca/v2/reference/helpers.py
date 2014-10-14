@@ -11,7 +11,7 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
-
+import datetime
 import falcon
 import json
 from falcon.util.uri import parse_query_string
@@ -120,6 +120,20 @@ def get_query_dimensions(req):
     except Exception as ex:
         LOG.debug(ex)
         raise falcon.HTTPBadRequest('Bad request', ex.message)
+
+def get_query_timestamp(req):
+    try:
+        params = parse_query_string(req.query_string)
+        if 'start_time' in params:
+            start_time = datetime.datetime.strptime(params['start_time'], "%Y-%m-%dT%H:%M:%SZ")
+            timestamp = (start_time - datetime.datetime(1970,1,1)).total_seconds()
+            return timestamp
+        else:
+            raise Exception("Missing start time")
+    except Exception as ex:
+        LOG.debug(ex)
+        raise falcon.HTTPBadRequest('Bad request', ex.message)
+
 
 
 def validate_query_name(name):
