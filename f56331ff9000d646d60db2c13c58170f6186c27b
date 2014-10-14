@@ -87,6 +87,24 @@
       "revId": "f56331ff9000d646d60db2c13c58170f6186c27b",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa201ad_b67cd7ec",
+        "filename": "monasca/v2/reference/helpers.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-10-14T17:01:46Z",
+      "side": 1,
+      "message": "the inner is a specific problem that we check for. the outer is any problem, including parse problems from the datetime functions.",
+      "parentUuid": "baa201ad_b62e97f8",
+      "revId": "f56331ff9000d646d60db2c13c58170f6186c27b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
