@@ -162,6 +162,27 @@ def _convert_time_string(date_time_string):
     timestamp = (dt - datetime.datetime(1970, 1, 1)).total_seconds()
     return timestamp
 
+def get_query_statistics(req):
+    try:
+        params = parse_query_string(req.query_string)
+        if 'statistics' in params:
+            return params['statistics'].split(',')
+        else:
+            raise Exception("Missing statistics")
+    except Exception as ex:
+        LOG.debug(ex)
+        raise falcon.HTTPBadRequest('Bad request', ex.message)
+
+def get_query_period(req):
+    try:
+        params = parse_query_string(req.query_string)
+        if 'period' in params:
+            return params['period']
+        else:
+            return None
+    except Exception as ex:
+        LOG.debug(ex)
+        raise falcon.HTTPBadRequest('Bad request', ex.message)
 
 def validate_query_name(name):
     '''
