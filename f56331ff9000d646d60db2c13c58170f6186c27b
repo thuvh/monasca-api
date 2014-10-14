@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "baa201ad_7650afd4",
+        "filename": "monasca/v2/reference/helpers.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-10-14T16:48:35Z",
+      "side": 1,
+      "message": "this is in iso format.  http://en.wikipedia.org/wiki/ISO_8601",
+      "parentUuid": "baa201ad_96827350",
+      "revId": "f56331ff9000d646d60db2c13c58170f6186c27b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa201ad_166843b9",
         "filename": "monasca/v2/reference/helpers.py",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2014-10-14T16:43:13Z",
       "side": 1,
       "message": "Shouldn\u0027t this also be a falcon.HTTPBadRequest? Wouldn\u0027t this cause a HTTP 500?",
+      "revId": "f56331ff9000d646d60db2c13c58170f6186c27b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa201ad_960513c4",
+        "filename": "monasca/v2/reference/helpers.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-10-14T16:48:35Z",
+      "side": 1,
+      "message": "the exception will be caught by the outer try-catch and be rethrown as an falcoln.HTTPBadRequest.",
+      "parentUuid": "baa201ad_166843b9",
       "revId": "f56331ff9000d646d60db2c13c58170f6186c27b",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
