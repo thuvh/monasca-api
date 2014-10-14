@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "baa201ad_a389f427",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-10-14T19:54:03Z",
+      "side": 1,
+      "message": "Can you subtract 1 and add 1 or something? Can\u0027t change the semantics of what start_time and end_time mean.",
+      "parentUuid": "baa201ad_6300ecab",
+      "revId": "2358a84b4a7d5c491f4287447b475d32be146df3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa201ad_400afe26",
         "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
         "patchSetId": 3
