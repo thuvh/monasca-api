@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa201ad_96827350",
+        "filename": "monasca/v2/reference/helpers.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-10-14T16:43:13Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be the ISO format?",
+      "revId": "f56331ff9000d646d60db2c13c58170f6186c27b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa201ad_166843b9",
+        "filename": "monasca/v2/reference/helpers.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-10-14T16:43:13Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this also be a falcon.HTTPBadRequest? Wouldn\u0027t this cause a HTTP 500?",
+      "revId": "f56331ff9000d646d60db2c13c58170f6186c27b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
