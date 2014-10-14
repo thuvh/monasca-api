@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa201ad_a032ca0d",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-10-14T19:42:58Z",
+      "side": 1,
+      "message": "CLI says:\n  \u003cUTC_START_TIME\u003e      measurements \u003e\u003d UTC time. format:\n                        2014-01-01T00:00:00Z.\n\nNote the \u003e\u003d. Same for end time",
+      "revId": "2358a84b4a7d5c491f4287447b475d32be146df3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa201ad_400afe26",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-10-14T19:42:58Z",
+      "side": 1,
+      "message": "Should probably be under the if start_timestamp: above since bad things will happen if end_timestamp is set and start_timestamp is None",
+      "revId": "2358a84b4a7d5c491f4287447b475d32be146df3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
