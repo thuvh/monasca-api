@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa201ad_ad00e834",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-10-15T15:26:59Z",
+      "side": 1,
+      "message": "The simpler and I think clearer python way to do this is:\nfmtd_pts_list \u003d [strftime(\"%Y-%m-%dT%H:%M:%SZ\", gmtime(pts_list[0]))] + pts_list[1:]",
+      "revId": "dd21776e6bce4dd916a09ac7cc5847af4da5c87c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
