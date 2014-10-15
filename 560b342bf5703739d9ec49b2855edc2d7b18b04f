@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa201ad_c7751d99",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-10-15T12:50:06Z",
+      "side": 1,
+      "message": "This could be written simpler as:\n\nstatistics \u003d [statistic + \u0027(value)\u0027 for statistic in statistics]\n\nOr \n\nstatistics \u003d [statistic.replace(\u0027avg\u0027, \u0027mean\u0027) + \u0027(value)\u0027 for statistic in statistics]\n\nBut I would probably go for the two separate statements to be clear about what is happening",
+      "revId": "560b342bf5703739d9ec49b2855edc2d7b18b04f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa201ad_a75c991a",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-10-15T12:50:06Z",
+      "side": 1,
+      "message": "Either the comment or the code is wrong",
+      "revId": "560b342bf5703739d9ec49b2855edc2d7b18b04f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa201ad_c727ddb4",
+        "filename": "monasca/v2/reference/helpers.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-10-15T12:50:06Z",
+      "side": 1,
+      "message": "There should be some validation for the statistics types",
+      "revId": "560b342bf5703739d9ec49b2855edc2d7b18b04f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
