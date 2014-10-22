@@ -20,7 +20,7 @@ from monasca.openstack.common import log
 from monasca.v2.common.schemas import exceptions as schemas_exceptions
 from monasca.v2.common.schemas import metric_name_schema
 from monasca.v2.common.schemas import dimensions_schema
-
+import simplejson
 
 LOG = log.getLogger(__name__)
 
@@ -41,7 +41,7 @@ def is_in_role(req, authorized_roles):
     :return: Returns True if in the list of authorized roles, otherwise False.
     '''
     str_roles = req.get_header('X-ROLES')
-    if str_roles == None:
+    if str_roles is None:
         return False
     roles = str_roles.lower().split(',')
     for role in roles:
@@ -59,7 +59,7 @@ def validate_authorization(req, authorized_roles):
     :raises falcon.HTTPUnauthorized:
     '''
     str_roles = req.get_header('X-ROLES')
-    if str_roles == None:
+    if str_roles is None:
         raise falcon.HTTPUnauthorized('Forbidden',
                                       'Tenant does not have any roles', '')
     roles = str_roles.lower().split(',')
@@ -216,3 +216,67 @@ def validate_query_dimensions(dimensions):
     except schemas_exceptions.ValidationException as ex:
         LOG.debug(ex)
         raise falcon.HTTPBadRequest('Bad request', ex.message)
+
+
+def get_link(uri, resource_id, rel='self'):
+    '''
+    Returns a link dictionary containing href, and rel.
+    :param uri: the http request.uri.
+    :param resource_id: the id of the resource
+    '''
+    href = uri + '/' + resource_id
+    link_dict = dict(href=href, rel=rel)
+    return link_dict
+
+
+def add_links_to_resource(resource, uri):
+    '''
+    Adds links to the given resource dictionary.
+    :param resource: the resource dictionary you wish to add links.
+    :param uri: the http request.uri.
+    '''
+    resource['links'] = [get_link(uri, resource['id'])]
+    return resource
+
+
+def add_links_to_resource_list(resourcelist, uri):
+    '''
+    Adds links to the given resource dictionary list.
+    :param resourcelist: the list of resources you wish to add links.
+    :param uri: the http request.uri.
+    '''
+    for resource in resourcelist:
+        add_links_to_resource(resource, uri)
+    return resourcelist
+
+
+def read_http_resource(req):
+    '''
+    Read from http request and return json.
+    :param req: the http request.
+    '''
+    try:
+        msg = req.stream.read()
+        json_msg = simplejson.loads(msg)
+        return json_msg
+    except ValueError as ex:
+        LOG.debug(ex)
+        raise falcon.HTTPBadRequest(
+            'Bad request',
+            'Request body is not valid JSON')
+
+
+def raise_not_found_exception(resource_name, resource_id, tenant_id):
+    '''
+    Provides exception for not found requests (update, delete, list).
+    :param resource_name: the name of the resource.
+    :param resource_id: id of the resource.
+    :param tenant_id: id of the tenant
+    '''
+    msg = 'No %s method exists for tenant_id = %s id = %s' % (
+        resource_name, tenant_id, resource_id)
+    raise falcon.HTTPError(
+        status='404 Not Found',
+        title='Not Found',
+        description=msg,
+        code=404)
