@@ -41,7 +41,7 @@ def is_in_role(req, authorized_roles):
     :return: Returns True if in the list of authorized roles, otherwise False.
     '''
     str_roles = req.get_header('X-ROLES')
-    if str_roles == None:
+    if str_roles is None:
         return False
     roles = str_roles.lower().split(',')
     for role in roles:
@@ -59,7 +59,7 @@ def validate_authorization(req, authorized_roles):
     :raises falcon.HTTPUnauthorized:
     '''
     str_roles = req.get_header('X-ROLES')
-    if str_roles == None:
+    if str_roles is None:
         raise falcon.HTTPUnauthorized('Forbidden',
                                       'Tenant does not have any roles', '')
     roles = str_roles.lower().split(',')
@@ -216,3 +216,35 @@ def validate_query_dimensions(dimensions):
     except schemas_exceptions.ValidationException as ex:
         LOG.debug(ex)
         raise falcon.HTTPBadRequest('Bad request', ex.message)
+
+
+def get_link(uri, resource_id, rel='self'):
+    '''
+    Returns a link dictionary containing href, and rel.
+    :param uri: the http request.uri.
+    :param resource_id: the id of the resource
+    '''
+    href = uri + '/' + resource_id
+    link_dict = dict(href=href, rel=rel)
+    return link_dict
+
+
+def add_links_to_resource(resource, uri):
+    '''
+    Adds links to the given resource dictionary.
+    :param resource: the resource dictionary you wish to add links.
+    :param uri: the http request.uri.
+    '''
+    resource['links'] = [get_link(uri, resource['id'])]
+    return resource
+
+
+def add_links_to_resource_list(resourcelist, uri):
+    '''
+    Adds links to the given resource dictionary list.
+    :param resourcelist: the list of resources you wish to add links.
+    :param uri: the http request.uri.
+    '''
+    for resource in resourcelist:
+        add_links_to_resource(resource, uri)
+    return resourcelist
