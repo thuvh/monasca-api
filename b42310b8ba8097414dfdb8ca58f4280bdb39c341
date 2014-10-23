@@ -19,6 +19,40 @@
     },
     {
       "key": {
+        "uuid": "9aa7fdbe_6b127c58",
+        "filename": "etc/monasca.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-10-23T14:23:45Z",
+      "side": 1,
+      "message": "why do we need this?",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9aa7fdbe_4b3cd8c8",
+        "filename": "etc/monasca.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-10-23T14:23:45Z",
+      "side": 1,
+      "message": "i think this repo is going to be used for more than just notifications.  i think it should be called mysq_metrics_repo to reflect that it is separate from tranforms and events, but is for all metric things.",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9aa7fdbe_5e7826f2",
         "filename": "monasca/api/monasca_api_v2.py",
         "patchSetId": 1
@@ -30,6 +64,23 @@
       "writtenOn": "2014-10-23T01:10:07Z",
       "side": 1,
       "message": "Should this just get do_get_notification_method and the one above plural, as in do_get_notfication_methods?\n\nI see that the precedent has already been set of do_get_alarm_by_id below and I\u0027m OK following that, I\u0027m just wondering if we should change this in both places.",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9aa7fdbe_8b8ec077",
+        "filename": "monasca/api/monasca_notifications_api_v2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-10-23T14:23:45Z",
+      "side": 1,
+      "message": "i think all metric-like things should go in the metrics.py file.",
       "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -53,6 +104,40 @@
     },
     {
       "key": {
+        "uuid": "9aa7fdbe_8be5e039",
+        "filename": "monasca/api/server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-10-23T14:23:45Z",
+      "side": 1,
+      "message": "i think that there should only be one driver for all the metric-related things.",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9aa7fdbe_6b4a7c27",
+        "filename": "monasca/common/repositories/mysql/notifications_repository.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-10-23T14:23:45Z",
+      "side": 1,
+      "message": "i think that there should be only one repository for all metric-related things.  so, this file could be renamed to metrics_repository.py and all metric-related mysql stuff goes in it.",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9aa7fdbe_5e4f46bd",
         "filename": "monasca/common/repositories/mysql/notifications_repository.py",
         "patchSetId": 1
@@ -64,6 +149,23 @@
       "writtenOn": "2014-10-23T01:10:07Z",
       "side": 1,
       "message": "Shouldn\u0027t have that \"_\" in there I\u0027m assuming.",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9aa7fdbe_eb3e6c8b",
+        "filename": "monasca/common/repositories/mysql/notifications_repository.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-10-23T14:23:45Z",
+      "side": 1,
+      "message": "i would prefer to use pyodbc instead of peewee or sqlalchemy.",
       "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -149,6 +251,23 @@
       "writtenOn": "2014-10-23T13:47:07Z",
       "side": 1,
       "message": "Doesn\u0027t this already get translated into a 404? Do you really have to prepend it with a 404?",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9aa7fdbe_cb8a881a",
+        "filename": "monasca/common/repositories/notifications_repository.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-10-23T14:23:45Z",
+      "side": 1,
+      "message": "i think that this should go in metrics_repository.py",
       "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
