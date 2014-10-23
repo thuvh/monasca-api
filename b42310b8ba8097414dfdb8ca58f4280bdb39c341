@@ -70,6 +70,57 @@
     },
     {
       "key": {
+        "uuid": "9aa7fdbe_2afa41bd",
+        "filename": "monasca/common/repositories/mysql/notifications_repository.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-10-23T13:47:07Z",
+      "side": 1,
+      "message": "Should return True and False. Might be better to do a count() and return True if q.execute() is \u003e 0\n\nIf you want to still use select, it should be return len(results) \u003e 0",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9aa7fdbe_8a8fadcb",
+        "filename": "monasca/common/repositories/mysql/notifications_repository.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-10-23T13:47:07Z",
+      "side": 1,
+      "message": "This should be written as:\n\nnotifications \u003d [self.notification_from_result(result) for result in results ]\n\nIts more pythonic :) \n\nhttp://python.net/~goodger/projects/pycon/2007/idiomatic/handout.html#list-comprehensions",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9aa7fdbe_ca99b520",
+        "filename": "monasca/common/repositories/mysql/notifications_repository.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-10-23T13:47:07Z",
+      "side": 1,
+      "message": "Seems strange this is called list_notifications_by_id when there is only ever one returned",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9aa7fdbe_7ef88a49",
         "filename": "monasca/common/repositories/mysql/notifications_repository.py",
         "patchSetId": 1
@@ -87,6 +138,23 @@
     },
     {
       "key": {
+        "uuid": "9aa7fdbe_6a9449e2",
+        "filename": "monasca/common/repositories/mysql/notifications_repository.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-10-23T13:47:07Z",
+      "side": 1,
+      "message": "Doesn\u0027t this already get translated into a 404? Do you really have to prepend it with a 404?",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9aa7fdbe_1e8a1ebf",
         "filename": "monasca/v2/reference/helpers.py",
         "patchSetId": 1
@@ -98,6 +166,23 @@
       "writtenOn": "2014-10-23T01:10:07Z",
       "side": 1,
       "message": "Good catch.",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9aa7fdbe_8aa6cd51",
+        "filename": "monasca/v2/reference/helpers.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-10-23T13:47:07Z",
+      "side": 1,
+      "message": "This should be written as:\n\nadd_links_to_resource(resource, uri) for resource in resourcelist",
       "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -138,6 +223,23 @@
     },
     {
       "key": {
+        "uuid": "9aa7fdbe_285cfaec",
+        "filename": "monasca/v2/reference/notifications.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-10-23T13:47:07Z",
+      "side": 1,
+      "message": "This same code block exists below. Maybe you should call a helper method?",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9aa7fdbe_5e07461c",
         "filename": "monasca/v2/reference/notifications.py",
         "patchSetId": 1
@@ -166,6 +268,23 @@
       "writtenOn": "2014-10-23T01:10:07Z",
       "side": 1,
       "message": "Should be notifications with an \"s\"",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9aa7fdbe_885326e1",
+        "filename": "monasca/v2/reference/notifications.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-10-23T13:47:07Z",
+      "side": 1,
+      "message": "This should be _get_notification_by_id. It only returns one",
       "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
