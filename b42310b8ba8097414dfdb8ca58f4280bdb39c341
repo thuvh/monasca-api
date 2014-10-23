@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9aa7fdbe_3e228201",
+        "filename": "etc/monasca.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-10-23T01:10:07Z",
+      "side": 1,
+      "message": "Is this funky syntax correct?",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9aa7fdbe_5e7826f2",
+        "filename": "monasca/api/monasca_api_v2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-10-23T01:10:07Z",
+      "side": 1,
+      "message": "Should this just get do_get_notification_method and the one above plural, as in do_get_notfication_methods?\n\nI see that the precedent has already been set of do_get_alarm_by_id below and I\u0027m OK following that, I\u0027m just wondering if we should change this in both places.",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9aa7fdbe_fe5e3a75",
+        "filename": "monasca/api/server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-10-23T01:10:07Z",
+      "side": 1,
+      "message": "I wanted to do this last time around, but this same block of code is duplicated, except for the dispatcher namespace and driver, several times. Maybe we should make a method for this, or even make this table driven too.",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9aa7fdbe_5e4f46bd",
+        "filename": "monasca/common/repositories/mysql/notifications_repository.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-10-23T01:10:07Z",
+      "side": 1,
+      "message": "Shouldn\u0027t have that \"_\" in there I\u0027m assuming.",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9aa7fdbe_7ef88a49",
+        "filename": "monasca/common/repositories/mysql/notifications_repository.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-10-23T01:10:07Z",
+      "side": 1,
+      "message": "Should just be e or ex, not dnex. I think most of the Pyhonistas would use just e as idiomatic. But I tend to use ex, as I can search for ex, but e just results in too much.",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9aa7fdbe_1e8a1ebf",
+        "filename": "monasca/v2/reference/helpers.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-10-23T01:10:07Z",
+      "side": 1,
+      "message": "Good catch.",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9aa7fdbe_1e785ec3",
+        "filename": "monasca/v2/reference/notifications.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-10-23T01:10:07Z",
+      "side": 1,
+      "message": "Maybe we should create a helper. We keep re-creating this snippet of code in all the implementations.",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9aa7fdbe_de45f670",
+        "filename": "monasca/v2/reference/notifications.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-10-23T01:10:07Z",
+      "side": 1,
+      "message": "Also, maybe we should create a helper for this too, as it is the same for metrics.",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9aa7fdbe_5e07461c",
+        "filename": "monasca/v2/reference/notifications.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-10-23T01:10:07Z",
+      "side": 1,
+      "message": "Do you really need to use multiple lines for these exceptions. Just trying to make the code as concise as possible, and this definitely stretches it out a bit.",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9aa7fdbe_010e4334",
+        "filename": "monasca/v2/reference/notifications.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-10-23T01:10:07Z",
+      "side": 1,
+      "message": "Should be notifications with an \"s\"",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
