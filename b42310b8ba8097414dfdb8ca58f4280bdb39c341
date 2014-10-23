@@ -36,6 +36,42 @@
     },
     {
       "key": {
+        "uuid": "9aa7fdbe_a11565e6",
+        "filename": "etc/monasca.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 12133
+      },
+      "writtenOn": "2014-10-23T15:32:19Z",
+      "side": 1,
+      "message": "it works, i had wanted to turn debug on.  I will remove this line, it\u0027s only for debug.  just log_level\u003dDEBUG does not turn on debug level for monasca.",
+      "parentUuid": "9aa7fdbe_3e228201",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9aa7fdbe_c1d5091d",
+        "filename": "etc/monasca.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 12133
+      },
+      "writtenOn": "2014-10-23T15:32:19Z",
+      "side": 1,
+      "message": "i had wanted to turn debug on.  I will remove this line, it\u0027s only for debug.  just log_level\u003dDEBUG does not turn on debug level for monasca.",
+      "parentUuid": "9aa7fdbe_6b127c58",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9aa7fdbe_4b3cd8c8",
         "filename": "etc/monasca.conf",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2014-10-23T14:23:45Z",
       "side": 1,
       "message": "i think this repo is going to be used for more than just notifications.  i think it should be called mysq_metrics_repo to reflect that it is separate from tranforms and events, but is for all metric things.",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9aa7fdbe_01aab184",
+        "filename": "etc/monasca.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 12133
+      },
+      "writtenOn": "2014-10-23T15:32:19Z",
+      "side": 1,
+      "message": "If you look above that there is a separate repo for transforms as well.  I think Roland want\u0027s to keep this very configurable by resource, he pointed out that I needed one for Notifications.  What do you think?",
+      "parentUuid": "9aa7fdbe_4b3cd8c8",
       "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "9aa7fdbe_2102556f",
+        "filename": "monasca/api/monasca_api_v2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 12133
+      },
+      "writtenOn": "2014-10-23T15:32:19Z",
+      "side": 1,
+      "message": "I was following Jonathan\u0027s naming, I can change this to the names you suggest.",
+      "parentUuid": "9aa7fdbe_5e7826f2",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9aa7fdbe_8b8ec077",
         "filename": "monasca/api/monasca_notifications_api_v2.py",
         "patchSetId": 1
@@ -81,6 +153,24 @@
       "writtenOn": "2014-10-23T14:23:45Z",
       "side": 1,
       "message": "i think all metric-like things should go in the metrics.py file.",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9aa7fdbe_414119a8",
+        "filename": "monasca/api/monasca_notifications_api_v2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 12133
+      },
+      "writtenOn": "2014-10-23T15:32:19Z",
+      "side": 1,
+      "message": "I was following Roland\u0027s recommendation.  This way each resource is configurable.  I guess we need a decision on this, because I was told to do it this way.",
+      "parentUuid": "9aa7fdbe_8b8ec077",
       "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -121,6 +211,24 @@
     },
     {
       "key": {
+        "uuid": "9aa7fdbe_a172c50e",
+        "filename": "monasca/api/server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 12133
+      },
+      "writtenOn": "2014-10-23T15:32:19Z",
+      "side": 1,
+      "message": "That\u0027s a good idea.",
+      "parentUuid": "9aa7fdbe_fe5e3a75",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9aa7fdbe_6b4a7c27",
         "filename": "monasca/common/repositories/mysql/notifications_repository.py",
         "patchSetId": 1
@@ -149,6 +257,24 @@
       "writtenOn": "2014-10-23T01:10:07Z",
       "side": 1,
       "message": "Shouldn\u0027t have that \"_\" in there I\u0027m assuming.",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9aa7fdbe_6101bd37",
+        "filename": "monasca/common/repositories/mysql/notifications_repository.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 12133
+      },
+      "writtenOn": "2014-10-23T15:32:19Z",
+      "side": 1,
+      "message": "I\u0027ll try that out, wasn\u0027t sure if peewee needed it.",
+      "parentUuid": "9aa7fdbe_5e4f46bd",
       "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -189,6 +315,24 @@
     },
     {
       "key": {
+        "uuid": "9aa7fdbe_418bd9c2",
+        "filename": "monasca/common/repositories/mysql/notifications_repository.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 12133
+      },
+      "writtenOn": "2014-10-23T15:32:19Z",
+      "side": 1,
+      "message": "good idea, will do",
+      "parentUuid": "9aa7fdbe_2afa41bd",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9aa7fdbe_8a8fadcb",
         "filename": "monasca/common/repositories/mysql/notifications_repository.py",
         "patchSetId": 1
@@ -200,6 +344,24 @@
       "writtenOn": "2014-10-23T13:47:07Z",
       "side": 1,
       "message": "This should be written as:\n\nnotifications \u003d [self.notification_from_result(result) for result in results ]\n\nIts more pythonic :) \n\nhttp://python.net/~goodger/projects/pycon/2007/idiomatic/handout.html#list-comprehensions",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9aa7fdbe_41b2f994",
+        "filename": "monasca/common/repositories/mysql/notifications_repository.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 12133
+      },
+      "writtenOn": "2014-10-23T15:32:19Z",
+      "side": 1,
+      "message": "thanks for the tip, will do",
+      "parentUuid": "9aa7fdbe_8a8fadcb",
       "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -223,6 +385,24 @@
     },
     {
       "key": {
+        "uuid": "9aa7fdbe_817f81aa",
+        "filename": "monasca/common/repositories/mysql/notifications_repository.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 12133
+      },
+      "writtenOn": "2014-10-23T15:32:19Z",
+      "side": 1,
+      "message": "will change the name to list_notification",
+      "parentUuid": "9aa7fdbe_ca99b520",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9aa7fdbe_7ef88a49",
         "filename": "monasca/common/repositories/mysql/notifications_repository.py",
         "patchSetId": 1
@@ -240,6 +420,24 @@
     },
     {
       "key": {
+        "uuid": "9aa7fdbe_8156a128",
+        "filename": "monasca/common/repositories/mysql/notifications_repository.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 12133
+      },
+      "writtenOn": "2014-10-23T15:32:19Z",
+      "side": 1,
+      "message": "thanks for the tip, I will do that.",
+      "parentUuid": "9aa7fdbe_7ef88a49",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9aa7fdbe_6a9449e2",
         "filename": "monasca/common/repositories/mysql/notifications_repository.py",
         "patchSetId": 1
@@ -251,6 +449,24 @@
       "writtenOn": "2014-10-23T13:47:07Z",
       "side": 1,
       "message": "Doesn\u0027t this already get translated into a 404? Do you really have to prepend it with a 404?",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9aa7fdbe_213fb5d7",
+        "filename": "monasca/common/repositories/mysql/notifications_repository.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 12133
+      },
+      "writtenOn": "2014-10-23T15:32:19Z",
+      "side": 1,
+      "message": "The exception requires a title, I\u0027ll change it to Not Found.",
+      "parentUuid": "9aa7fdbe_6a9449e2",
       "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -308,6 +524,24 @@
     },
     {
       "key": {
+        "uuid": "9aa7fdbe_7c3960d6",
+        "filename": "monasca/v2/reference/helpers.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 12133
+      },
+      "writtenOn": "2014-10-23T15:32:19Z",
+      "side": 1,
+      "message": "will do",
+      "parentUuid": "9aa7fdbe_8aa6cd51",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9aa7fdbe_1e785ec3",
         "filename": "monasca/v2/reference/notifications.py",
         "patchSetId": 1
@@ -319,6 +553,24 @@
       "writtenOn": "2014-10-23T01:10:07Z",
       "side": 1,
       "message": "Maybe we should create a helper. We keep re-creating this snippet of code in all the implementations.",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9aa7fdbe_bc5d8817",
+        "filename": "monasca/v2/reference/notifications.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 12133
+      },
+      "writtenOn": "2014-10-23T15:32:19Z",
+      "side": 1,
+      "message": "yeah, for initializing the repo, good idea",
+      "parentUuid": "9aa7fdbe_1e785ec3",
       "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -342,6 +594,24 @@
     },
     {
       "key": {
+        "uuid": "9aa7fdbe_9cb7e439",
+        "filename": "monasca/v2/reference/notifications.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 12133
+      },
+      "writtenOn": "2014-10-23T15:32:19Z",
+      "side": 1,
+      "message": "yep, good eye, it\u0027s the same",
+      "parentUuid": "9aa7fdbe_de45f670",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9aa7fdbe_285cfaec",
         "filename": "monasca/v2/reference/notifications.py",
         "patchSetId": 1
@@ -353,6 +623,24 @@
       "writtenOn": "2014-10-23T13:47:07Z",
       "side": 1,
       "message": "This same code block exists below. Maybe you should call a helper method?",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9aa7fdbe_1c0e94e5",
+        "filename": "monasca/v2/reference/notifications.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 12133
+      },
+      "writtenOn": "2014-10-23T15:32:19Z",
+      "side": 1,
+      "message": "I think you mean the exception handling part? I could create a helper for that.",
+      "parentUuid": "9aa7fdbe_285cfaec",
       "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -376,6 +664,24 @@
     },
     {
       "key": {
+        "uuid": "9aa7fdbe_3ce198fe",
+        "filename": "monasca/v2/reference/notifications.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 12133
+      },
+      "writtenOn": "2014-10-23T15:32:19Z",
+      "side": 1,
+      "message": "I was getting pep8 errors about line length, I could condense it a bit.",
+      "parentUuid": "9aa7fdbe_5e07461c",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9aa7fdbe_010e4334",
         "filename": "monasca/v2/reference/notifications.py",
         "patchSetId": 1
@@ -393,6 +699,24 @@
     },
     {
       "key": {
+        "uuid": "9aa7fdbe_dcbc0cdf",
+        "filename": "monasca/v2/reference/notifications.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 12133
+      },
+      "writtenOn": "2014-10-23T15:32:19Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "9aa7fdbe_010e4334",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9aa7fdbe_885326e1",
         "filename": "monasca/v2/reference/notifications.py",
         "patchSetId": 1
@@ -404,6 +728,24 @@
       "writtenOn": "2014-10-23T13:47:07Z",
       "side": 1,
       "message": "This should be _get_notification_by_id. It only returns one",
+      "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9aa7fdbe_bcc3c855",
+        "filename": "monasca/v2/reference/notifications.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 12133
+      },
+      "writtenOn": "2014-10-23T15:32:19Z",
+      "side": 1,
+      "message": "changing to list_notification, satisfies roland too.",
+      "parentUuid": "9aa7fdbe_885326e1",
       "revId": "b42310b8ba8097414dfdb8ca58f4280bdb39c341",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
