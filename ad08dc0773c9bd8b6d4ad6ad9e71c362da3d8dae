@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9aa7fdbe_50bc66dc",
+        "filename": "monasca/common/repositories/mysql/notifications_repository.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-10-24T14:22:20Z",
+      "side": 1,
+      "message": "i don\u0027 think that the str(ex) is necessary; just ex works, i believe.",
+      "revId": "ad08dc0773c9bd8b6d4ad6ad9e71c362da3d8dae",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9aa7fdbe_f07aba22",
+        "filename": "monasca/common/resource_api.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-10-24T14:22:20Z",
+      "side": 1,
+      "message": "docstrings should follow these guidelines.  http://docs.openstack.org/developer/hacking/  yes, i know it\u0027s a pain.",
+      "revId": "ad08dc0773c9bd8b6d4ad6ad9e71c362da3d8dae",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
