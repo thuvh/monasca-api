@@ -113,7 +113,8 @@ class Notifications(monasca_notifications_api_v2.NotificationsV2API):
             'type': notification_type,
             'address': address
         }
-        return json.dumps(helpers.add_links_to_resource(response, uri))
+        return json.dumps(helpers.add_links_to_resource(response, uri),
+                          ensure_ascii=False).encode('utf8')
 
     def _list_notifications(self, tenant_id, uri):
         """Lists all notifications for this tenant id.
@@ -141,17 +142,16 @@ class Notifications(monasca_notifications_api_v2.NotificationsV2API):
         """
         try:
             notifications = self._notifications_repo.list_notification(
-                tenant_id,
-                notification_id)
+                tenant_id, notification_id)
             return json.dumps(
                 helpers.add_links_to_resource(notifications, uri))
         except repository_exceptions.DoesNotExistException:
-            helpers.raise_not_found_exception('notification', notification_id, tenant_id)
+            helpers.raise_not_found_exception('notification', notification_id,
+                                              tenant_id)
         except repository_exceptions.RepositoryException as ex:
             LOG.error(ex)
-            raise falcon.HTTPInternalServerError(
-                'Service unavailable',
-                ex.message)
+            raise falcon.HTTPInternalServerError('Service unavailable',
+                                                 ex.message)
 
     def _delete_notification(self, tenant_id, notification_id):
         """Deletes the notification using the repository.
@@ -161,16 +161,15 @@ class Notifications(monasca_notifications_api_v2.NotificationsV2API):
         :raises: falcon.HTTPServiceUnavailable,falcon.HTTPError (404)
         """
         try:
-            self._notifications_repo.delete_notification(
-                tenant_id,
-                notification_id)
+            self._notifications_repo.delete_notification(tenant_id,
+                                                         notification_id)
         except repository_exceptions.DoesNotExistException:
-            helpers.raise_not_found_exception('notification', notification_id, tenant_id)
+            helpers.raise_not_found_exception('notification', notification_id,
+                                              tenant_id)
         except repository_exceptions.RepositoryException as ex:
             LOG.error(ex)
-            raise falcon.HTTPInternalServerError(
-                'Service unavailable',
-                ex.message)
+            raise falcon.HTTPInternalServerError('Service unavailable',
+                                                 ex.message)
 
     @resource_api.Restify('/v2.0/notification-methods', method='post')
     def do_post_notification_methods(self, req, res):

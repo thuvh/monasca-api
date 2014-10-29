@@ -12,6 +12,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 import datetime
+import json
 
 import falcon
 from falcon.util.uri import parse_query_string
@@ -24,6 +25,22 @@ import simplejson
 
 LOG = log.getLogger(__name__)
 
+
+def read_json_msg_body(req):
+    '''
+    Read the metrics from the http request and return them as JSON.
+    :param req: HTTP request object.
+    :return: Returns the metrics as a JSON object.
+    :raises falcon.HTTPBadRequest:
+    '''
+    try:
+        msg = req.stream.read()
+        json_msg = json.loads(msg)
+        return json_msg
+    except ValueError as ex:
+        LOG.debug(ex)
+        raise falcon.HTTPBadRequest('Bad request',
+                                    'Request body is not valid JSON')
 
 def validate_json_content_type(req):
     if req.content_type not in ['application/json']:
@@ -95,16 +112,48 @@ def get_cross_tenant_or_tenant_id(req, delegate_authorized_roles):
     return get_tenant_id(req)
 
 
-def get_query_name(req):
-    """Returns the query param "name" if supplied.
-    
+def get_query_name(req, name_required=False):
+    '''
+    Returns the query param "name" if supplied.
     :param req: HTTP request object.
-    """
-    params = parse_query_string(req.query_string)
-    name = ''
-    if 'name' in params:
-        name = params['name']
-    return name
+    '''
+    try:
+        params = parse_query_string(req.query_string)
+        if 'name' in params:
+            name = params['name']
+            return name
+        else:
+            if name_required:
+                raise Exception("Missing name")
+            else:
+                return ''
+    except Exception as ex:
+        LOG.debug(ex)
+        raise falcon.HTTPBadRequest('Bad request', ex.message)
+
+
+def get_query_alarm_definition_name(alarm_definition):
+    try:
+        if 'name' in alarm_definition:
+            name = alarm_definition['name']
+            return name
+        else:
+            raise Exception("Missing name")
+    except Exception as ex:
+        LOG.debug(ex)
+        raise falcon.HTTPBadRequest('Bad request', ex.message)
+
+
+def get_query_alarm_definition_expression(alarm_definition):
+    try:
+        if 'expression' in alarm_definition:
+            expression = alarm_definition['expression']
+            return expression
+        else:
+            raise Exception("Missing expression")
+    except Exception as ex:
+        LOG.debug(ex)
+        raise falcon.HTTPBadRequest('Bad request', ex.message)
 
 
 def get_query_dimensions(req):
@@ -215,6 +264,57 @@ def validate_query_dimensions(dimensions):
         dimensions_schema.validate(dimensions)
     except schemas_exceptions.ValidationException as ex:
         LOG.debug(ex)
+        raise falcon.HTTPBadRequest('Bad request', ex.message)
+
+
+def get_query_alarm_definition_description(alarm_definition):
+    if 'description' in alarm_definition:
+        return alarm_definition['description']
+    else:
+        return ''
+
+
+def get_query_alarm_definition_severity(alarm_definition):
+    if 'severity' in alarm_definition:
+        severity = alarm_definition['severity']
+        severity = severity.decode('utf8').lower()
+        if severity not in ['low', 'med', 'high', 'critical']:
+            raise falcon.HTTPBadRequest('Bad request, Invalid severity')
+        return severity
+    else:
+        return ''
+
+
+def get_query_alarm_definition_match_by(alarm_definition):
+    if 'match_by' in alarm_definition:
+        match_by = alarm_definition['match_by']
+        return match_by
+    else:
+        return []
+
+
+def get_query_alarm_definition_alarm_actions(alarm_definition):
+    if 'alarm_actions' in alarm_definition:
+        alarm_actions = alarm_definition['alarm_actions']
+        return alarm_actions
+    else:
+        return []
+
+
+def get_query_alarm_definition_undetermined_actions(alarm_definition):
+    if 'undetermined_actions' in alarm_definition:
+        undetermined_actions = alarm_definition['undetermined_actions']
+        return undetermined_actions
+    else:
+        return []
+
+
+def get_query_ok_actions(alarm_definition):
+    if 'ok_actions' in alarm_definition:
+        ok_actions = alarm_definition['ok_actions']
+        return ok_actions
+    else:
+        return []
         raise falcon.HTTPBadRequest('Bad request', ex.message)
 
 
