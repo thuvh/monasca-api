@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a8c0949_17051ec2",
+        "filename": "monasca/api/alarm_definitions_api_v2.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-10-30T01:39:45Z",
+      "side": 1,
+      "message": "This shouldn\u0027t be Tong, it should be Deklan",
+      "revId": "0104e4e5ea9df9e6419cced3d05860b987744adc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8c0949_775f4273",
+        "filename": "monasca/v2/common/schemas/alarm_definition_request_body_schema.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-10-30T01:39:45Z",
+      "side": 1,
+      "message": "The schema limit is 250 for name",
+      "revId": "0104e4e5ea9df9e6419cced3d05860b987744adc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8c0949_5799666d",
+        "filename": "monasca/v2/common/schemas/alarm_definition_request_body_schema.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-10-30T01:39:45Z",
+      "side": 1,
+      "message": "According to the schema file, the valid values are:\n\u0027LOW\u0027,\u0027MEDIUM\u0027,\u0027HIGH\u0027,\u0027CRITICAL\u0027\n\nNot MED",
+      "revId": "0104e4e5ea9df9e6419cced3d05860b987744adc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8c0949_1760be34",
+        "filename": "monasca/v2/reference/alarm_definitions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-10-30T01:39:45Z",
+      "side": 1,
+      "message": "Somewhere in this path should be a check to ensure the name doesn\u0027t already exist for this tenant id",
+      "revId": "0104e4e5ea9df9e6419cced3d05860b987744adc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8c0949_37685af5",
+        "filename": "monasca/v2/reference/alarm_definitions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-10-30T01:39:45Z",
+      "side": 1,
+      "message": "The Java API deletes the Alarm Definition if the message can\u0027t be sent. This prevents thresh from getting out of sync. I\u0027m not sure if this is right, but we should be wary of changing behaviors",
+      "revId": "0104e4e5ea9df9e6419cced3d05860b987744adc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8c0949_174a7e83",
+        "filename": "monasca/v2/reference/helpers.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-10-30T01:39:45Z",
+      "side": 1,
+      "message": "Is this only metrics? Looks like it could be alarm definitions, notifications, etc.",
+      "revId": "0104e4e5ea9df9e6419cced3d05860b987744adc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8c0949_573b26eb",
+        "filename": "monasca/v2/reference/helpers.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-10-30T01:39:45Z",
+      "side": 1,
+      "message": "Seems like this one and next one could have a helper method where you passed in \u0027name\u0027 or \u0027expression\u0027",
+      "revId": "0104e4e5ea9df9e6419cced3d05860b987744adc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8c0949_d72e36a5",
+        "filename": "monasca/v2/reference/helpers.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-10-30T01:39:45Z",
+      "side": 1,
+      "message": "medium",
+      "revId": "0104e4e5ea9df9e6419cced3d05860b987744adc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8c0949_b708ca2e",
+        "filename": "monasca/v2/reference/helpers.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-10-30T01:39:45Z",
+      "side": 1,
+      "message": "These 4 are practically the same",
+      "revId": "0104e4e5ea9df9e6419cced3d05860b987744adc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8c0949_820e2a33",
+        "filename": "monasca/v2/reference/metrics.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-10-30T01:39:45Z",
+      "side": 1,
+      "message": "I don\u0027t think pep8 is going to like these blank lines at the end of the file",
+      "revId": "0104e4e5ea9df9e6419cced3d05860b987744adc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
