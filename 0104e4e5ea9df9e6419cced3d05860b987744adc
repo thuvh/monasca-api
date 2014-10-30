@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "7a8c0949_6b0aebd3",
+        "filename": "monasca/api/alarm_definitions_api_v2.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-10-30T16:37:43Z",
+      "side": 1,
+      "message": "HP copyright should be added",
+      "revId": "0104e4e5ea9df9e6419cced3d05860b987744adc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a8c0949_17051ec2",
         "filename": "monasca/api/alarm_definitions_api_v2.py",
         "patchSetId": 2
@@ -13,6 +30,23 @@
       "writtenOn": "2014-10-30T01:39:45Z",
       "side": 1,
       "message": "This shouldn\u0027t be Tong, it should be Deklan",
+      "revId": "0104e4e5ea9df9e6419cced3d05860b987744adc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8c0949_96f3be09",
+        "filename": "monasca/common/repositories/Alarm_Definitions_Repository.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-10-30T16:37:43Z",
+      "side": 1,
+      "message": "The file name should be \"alarm_definition_repository.py\", all lowercase.",
       "revId": "0104e4e5ea9df9e6419cced3d05860b987744adc",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -53,6 +87,40 @@
     },
     {
       "key": {
+        "uuid": "7a8c0949_ab8853e8",
+        "filename": "monasca/v2/reference/alarm_definitions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-10-30T16:37:43Z",
+      "side": 1,
+      "message": "Should be removed",
+      "revId": "0104e4e5ea9df9e6419cced3d05860b987744adc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8c0949_eb5a5b4f",
+        "filename": "monasca/v2/reference/alarm_definitions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-10-30T16:37:43Z",
+      "side": 1,
+      "message": "Just wondering if these should be in helpers or as private methods in this class. Most of these helpers seem specific to alarm definitions.",
+      "revId": "0104e4e5ea9df9e6419cced3d05860b987744adc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a8c0949_1760be34",
         "filename": "monasca/v2/reference/alarm_definitions.py",
         "patchSetId": 2
@@ -81,6 +149,23 @@
       "writtenOn": "2014-10-30T01:39:45Z",
       "side": 1,
       "message": "The Java API deletes the Alarm Definition if the message can\u0027t be sent. This prevents thresh from getting out of sync. I\u0027m not sure if this is right, but we should be wary of changing behaviors",
+      "revId": "0104e4e5ea9df9e6419cced3d05860b987744adc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8c0949_9609fe2e",
+        "filename": "monasca/v2/reference/alarm_definitions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-10-30T16:37:43Z",
+      "side": 1,
+      "message": "Should probably be moved to a helper as this will be common across multiple resource classes.",
       "revId": "0104e4e5ea9df9e6419cced3d05860b987744adc",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
