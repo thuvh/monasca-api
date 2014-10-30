@@ -87,6 +87,23 @@
     },
     {
       "key": {
+        "uuid": "7a8c0949_e681ad4b",
+        "filename": "monasca/v2/reference/alarm_definitions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 12133
+      },
+      "writtenOn": "2014-10-30T17:28:11Z",
+      "side": 1,
+      "message": "You can remove this, and replace it with a call to resource_api.init_driver to init self._message_queue.  That\u0027s what the other resources do",
+      "revId": "0104e4e5ea9df9e6419cced3d05860b987744adc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a8c0949_ab8853e8",
         "filename": "monasca/v2/reference/alarm_definitions.py",
         "patchSetId": 2
