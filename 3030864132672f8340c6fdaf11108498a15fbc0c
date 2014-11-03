@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "7a8c0949_6f7d69e7",
+        "filename": "monasca/common/repositories/mysql/alarm_definitions_repository.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-11-03T17:04:35Z",
+      "side": 1,
+      "message": "Are you going to go through and rename every other use of id to uuid, for Alarm Definitions, Alarms, Sub Alarms, etc.? Or do you see this one as special?",
+      "parentUuid": "7a8c0949_8f0d3593",
+      "revId": "3030864132672f8340c6fdaf11108498a15fbc0c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a8c0949_4f2c2d03",
         "filename": "monasca/expression_parser/alarm_expr_parser.py",
         "patchSetId": 1
