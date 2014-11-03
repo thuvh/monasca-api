@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a8c0949_eff3199d",
+        "filename": "monasca/common/repositories/mysql/alarm_definitions_repository.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-11-03T16:55:51Z",
+      "side": 1,
+      "message": "Why did you rename this? It is the id which happens to be a uuid, but every other usage of a field like this is called id",
+      "revId": "3030864132672f8340c6fdaf11108498a15fbc0c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8c0949_4f2c2d03",
+        "filename": "monasca/expression_parser/alarm_expr_parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-11-03T16:55:51Z",
+      "side": 1,
+      "message": "Same question again",
+      "revId": "3030864132672f8340c6fdaf11108498a15fbc0c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
