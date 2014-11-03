@@ -91,6 +91,24 @@
     },
     {
       "key": {
+        "uuid": "7a8c0949_9a21f5a1",
+        "filename": "monasca/common/repositories/mysql/alarm_definitions_repository.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-11-03T17:58:48Z",
+      "side": 1,
+      "message": "I just think it is confusing. It is being used as the id but named uuid. You can see it being used as the id when the alarm definition created event is created.\nIf we were really going to separate the two, then there should be an id and a uuid. The id for some databases could be an integer so the uuid couldn\u0027t be used for it.",
+      "parentUuid": "7a8c0949_ef59595c",
+      "revId": "3030864132672f8340c6fdaf11108498a15fbc0c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a8c0949_4f2c2d03",
         "filename": "monasca/expression_parser/alarm_expr_parser.py",
         "patchSetId": 1
