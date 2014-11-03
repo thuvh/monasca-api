@@ -81,7 +81,7 @@ class AlarmDefinitionsRepository(
 
             for sub_expr in sub_expr_list:
                 sub_alarm_definition_id = uuidutils.generate_uuid()
-                sub_expr.id = sub_alarm_definition_id
+                sub_expr.uuid = sub_alarm_definition_id
                 cursor.execute("insert into sub_alarm_definition("
                                "id, "
                                "alarm_definition_id,"
@@ -95,16 +95,16 @@ class AlarmDefinitionsRepository(
                                "updated_at)"
                                " values(?,?,?,?,?,?,?,?,?,?)",
                                sub_alarm_definition_id, alarm_definition_id,
-                               sub_expr.get_normalized_func().encode('utf8'),
-                               sub_expr.get_normalized_metric_name().encode(
+                               sub_expr.normalized_func.encode('utf8'),
+                               sub_expr.normalized_metric_name.encode(
                                    "utf8"),
-                               sub_expr.get_normalized_operator().encode(
+                               sub_expr.normalized_operator.encode(
                                    'utf8'),
-                               sub_expr.get_threshold().encode('utf8'),
-                               sub_expr.get_period().encode('utf8'),
-                               sub_expr.get_periods().encode('utf8'), now, now)
+                               sub_expr.threshold.encode('utf8'),
+                               sub_expr.period.encode('utf8'),
+                               sub_expr.periods.encode('utf8'), now, now)
 
-                for dimension in sub_expr.get_dimensions_as_list():
+                for dimension in sub_expr.dimensions_as_list:
                     parsed_dimension = dimension.split('=')
                     cursor.execute(
                         "insert into sub_alarm_definition_dimension("
