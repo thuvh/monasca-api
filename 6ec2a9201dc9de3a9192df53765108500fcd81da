@@ -67,6 +67,23 @@
       "revId": "6ec2a9201dc9de3a9192df53765108500fcd81da",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8c0949_c572a3e2",
+        "filename": "monasca/v2/reference/alarm_definitions.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 12133
+      },
+      "writtenOn": "2014-11-05T17:56:02Z",
+      "side": 1,
+      "message": "Is this code pep8 compliant? lines seem long.",
+      "revId": "6ec2a9201dc9de3a9192df53765108500fcd81da",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
