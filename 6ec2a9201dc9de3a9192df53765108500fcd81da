@@ -125,6 +125,24 @@
     },
     {
       "key": {
+        "uuid": "7a8c0949_00f81948",
+        "filename": "monasca/v2/reference/alarm_definitions.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-11-05T19:27:59Z",
+      "side": 1,
+      "message": "if we change it, we will break compatibility because the java version of the api uses \u0027definitions\u0027.",
+      "parentUuid": "7a8c0949_80ec0991",
+      "revId": "6ec2a9201dc9de3a9192df53765108500fcd81da",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a8c0949_65ff2f68",
         "filename": "monasca/v2/reference/alarm_definitions.py",
         "patchSetId": 3
