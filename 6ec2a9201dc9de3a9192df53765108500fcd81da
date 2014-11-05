@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7a8c0949_60a63d12",
+        "filename": "monasca/common/repositories/mysql/alarm_definitions_repository.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-11-05T18:11:21Z",
+      "side": 1,
+      "message": "the code iterates over the alarm_metrics not the sub_alarms.  the order by clause is on the get_alarm_metrics method.",
+      "parentUuid": "7a8c0949_85ba5b6c",
+      "revId": "6ec2a9201dc9de3a9192df53765108500fcd81da",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a8c0949_054aebab",
         "filename": "monasca/common/repositories/mysql/alarm_definitions_repository.py",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2014-11-05T17:55:23Z",
       "side": 1,
       "message": "In the Java code, this throws a EntityNotFoundException which ultimately returns a 404 if the Alarm Defintition doesn\u0027t exist. You need an equivalent check somewhere",
+      "revId": "6ec2a9201dc9de3a9192df53765108500fcd81da",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8c0949_80a969e1",
+        "filename": "monasca/common/repositories/mysql/alarm_definitions_repository.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-11-05T18:11:21Z",
+      "side": 1,
+      "message": "good catch.",
+      "parentUuid": "7a8c0949_054aebab",
       "revId": "6ec2a9201dc9de3a9192df53765108500fcd81da",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -81,6 +117,24 @@
       "writtenOn": "2014-11-05T17:56:02Z",
       "side": 1,
       "message": "Is this code pep8 compliant? lines seem long.",
+      "revId": "6ec2a9201dc9de3a9192df53765108500fcd81da",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8c0949_20835557",
+        "filename": "monasca/v2/reference/alarm_definitions.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-11-05T18:11:21Z",
+      "side": 1,
+      "message": "for the most part.  some of the lines are \u003e 79.  tim says that\u0027s ok.  i\u0027m not sure if it\u0027s ok or not, but i\u0027m trying to slip them thru because to break some of the lines would cause ugly code.",
+      "parentUuid": "7a8c0949_c572a3e2",
       "revId": "6ec2a9201dc9de3a9192df53765108500fcd81da",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
