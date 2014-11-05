@@ -107,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "7a8c0949_80ec0991",
+        "filename": "monasca/v2/reference/alarm_definitions.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-11-05T19:25:31Z",
+      "side": 1,
+      "message": "It takes a single id, hence it only works on one alarm definition",
+      "parentUuid": "7a8c0949_80d5e9ba",
+      "revId": "6ec2a9201dc9de3a9192df53765108500fcd81da",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a8c0949_65ff2f68",
         "filename": "monasca/v2/reference/alarm_definitions.py",
         "patchSetId": 3
@@ -136,6 +154,24 @@
       "side": 1,
       "message": "the api uses \u0027definitions\u0027. why do you think it should not be plural?",
       "parentUuid": "7a8c0949_65ff2f68",
+      "revId": "6ec2a9201dc9de3a9192df53765108500fcd81da",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8c0949_60e9dd7f",
+        "filename": "monasca/v2/reference/alarm_definitions.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-11-05T19:25:31Z",
+      "side": 1,
+      "message": "see above",
+      "parentUuid": "7a8c0949_a0dbc5eb",
       "revId": "6ec2a9201dc9de3a9192df53765108500fcd81da",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
