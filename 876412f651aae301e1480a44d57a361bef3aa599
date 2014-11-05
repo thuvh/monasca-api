@@ -1,0 +1,191 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a8c0949_e534ffdf",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-11-05T17:19:02Z",
+      "side": 1,
+      "message": "should the date be updated?",
+      "revId": "876412f651aae301e1480a44d57a361bef3aa599",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8c0949_05302be7",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-11-05T17:19:02Z",
+      "side": 1,
+      "message": "rev the version?",
+      "revId": "876412f651aae301e1480a44d57a361bef3aa599",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8c0949_259c47c0",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-11-05T17:19:02Z",
+      "side": 1,
+      "message": "\u0027alarms, and querying...\u0027  needs comma.",
+      "revId": "876412f651aae301e1480a44d57a361bef3aa599",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8c0949_c5aaa3d1",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-11-05T17:19:02Z",
+      "side": 1,
+      "message": "string(64)? is that supposed to be length 64?  \u0027string(64)\u0027 can be interpreted as an encoding.  maybe we should change that for clarification while were workng on the docs.",
+      "revId": "876412f651aae301e1480a44d57a361bef3aa599",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8c0949_25ea870f",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-11-05T17:19:02Z",
+      "side": 1,
+      "message": "we really need to get rid of these restrictions to support unicode.  (just a comment)",
+      "revId": "876412f651aae301e1480a44d57a361bef3aa599",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8c0949_e5e79f3e",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-11-05T17:19:02Z",
+      "side": 1,
+      "message": "maybe show multiple dimensions.",
+      "revId": "876412f651aae301e1480a44d57a361bef3aa599",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8c0949_05e3cb33",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-11-05T17:19:02Z",
+      "side": 1,
+      "message": "missing \u0027more\u0027",
+      "revId": "876412f651aae301e1480a44d57a361bef3aa599",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8c0949_c5bf03fb",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-11-05T17:19:02Z",
+      "side": 1,
+      "message": "\u0027from\u0027 instead of \u0027form\u0027",
+      "revId": "876412f651aae301e1480a44d57a361bef3aa599",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8c0949_2538c79f",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-11-05T17:19:02Z",
+      "side": 1,
+      "message": "formatting doesn\u0027t show up correctly in Mou markdown editor.\n\nMaybe use Alarm Definition 1,2,etc with Alarm A,B,etc for more clarity.",
+      "revId": "876412f651aae301e1480a44d57a361bef3aa599",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8c0949_e56cff9e",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-11-05T17:19:02Z",
+      "side": 1,
+      "message": "these are showing up as only 2 separate lines in mou.",
+      "revId": "876412f651aae301e1480a44d57a361bef3aa599",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8c0949_450953dc",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 507,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-11-05T17:19:02Z",
+      "side": 1,
+      "message": "maybe remove the \u0027\u003d\u0027 between name and cpu.system",
+      "revId": "876412f651aae301e1480a44d57a361bef3aa599",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
