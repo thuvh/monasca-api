@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a8c0949_85ba5b6c",
+        "filename": "monasca/common/repositories/mysql/alarm_definitions_repository.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-11-05T17:55:23Z",
+      "side": 1,
+      "message": "I think you need a order by sa.alarm_id since the message creating code assumes that",
+      "revId": "6ec2a9201dc9de3a9192df53765108500fcd81da",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8c0949_054aebab",
+        "filename": "monasca/common/repositories/mysql/alarm_definitions_repository.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-11-05T17:55:23Z",
+      "side": 1,
+      "message": "In the Java code, this throws a EntityNotFoundException which ultimately returns a 404 if the Alarm Defintition doesn\u0027t exist. You need an equivalent check somewhere",
+      "revId": "6ec2a9201dc9de3a9192df53765108500fcd81da",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8c0949_85717be2",
+        "filename": "monasca/v2/reference/alarm_definitions.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-11-05T17:55:23Z",
+      "side": 1,
+      "message": "This should not be plural. Sorry, missed that last time",
+      "revId": "6ec2a9201dc9de3a9192df53765108500fcd81da",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8c0949_65ff2f68",
+        "filename": "monasca/v2/reference/alarm_definitions.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-11-05T17:55:23Z",
+      "side": 1,
+      "message": "This should not be plural",
+      "revId": "6ec2a9201dc9de3a9192df53765108500fcd81da",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
