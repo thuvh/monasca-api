@@ -70,6 +70,24 @@
     },
     {
       "key": {
+        "uuid": "7a8c0949_a5b0378c",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-11-05T17:51:46Z",
+      "side": 1,
+      "message": "schema allows lenght of 100 for metric name. maybe this would be a good time to update this doc.",
+      "parentUuid": "7a8c0949_c5aaa3d1",
+      "revId": "876412f651aae301e1480a44d57a361bef3aa599",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a8c0949_25ea870f",
         "filename": "docs/monasca-api-spec.md",
         "patchSetId": 2
