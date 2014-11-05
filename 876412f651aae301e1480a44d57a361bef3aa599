@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7a8c0949_e02f8d9f",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-11-05T19:53:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a8c0949_e534ffdf",
+      "revId": "876412f651aae301e1480a44d57a361bef3aa599",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a8c0949_05302be7",
         "filename": "docs/monasca-api-spec.md",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "7a8c0949_c007f11b",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-11-05T19:53:32Z",
+      "side": 1,
+      "message": "I don\u0027t think so. I think it would be good to keep the version in sync with the API. But, I could be wrong",
+      "parentUuid": "7a8c0949_05302be7",
+      "revId": "876412f651aae301e1480a44d57a361bef3aa599",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a8c0949_259c47c0",
         "filename": "docs/monasca-api-spec.md",
         "patchSetId": 2
@@ -47,6 +83,24 @@
       "writtenOn": "2014-11-05T17:19:02Z",
       "side": 1,
       "message": "\u0027alarms, and querying...\u0027  needs comma.",
+      "revId": "876412f651aae301e1480a44d57a361bef3aa599",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8c0949_e006ad1f",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-11-05T19:53:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a8c0949_259c47c0",
       "revId": "876412f651aae301e1480a44d57a361bef3aa599",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -88,6 +142,42 @@
     },
     {
       "key": {
+        "uuid": "7a8c0949_0a04b713",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-11-05T19:53:32Z",
+      "side": 1,
+      "message": "I think it will work since it is now string(100). If you want to update the whole doc, go ahead.",
+      "parentUuid": "7a8c0949_c5aaa3d1",
+      "revId": "876412f651aae301e1480a44d57a361bef3aa599",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8c0949_ea004b03",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-11-05T19:53:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a8c0949_a5b0378c",
+      "revId": "876412f651aae301e1480a44d57a361bef3aa599",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a8c0949_25ea870f",
         "filename": "docs/monasca-api-spec.md",
         "patchSetId": 2
@@ -122,6 +212,24 @@
     },
     {
       "key": {
+        "uuid": "7a8c0949_2a0b3326",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-11-05T19:53:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a8c0949_e5e79f3e",
+      "revId": "876412f651aae301e1480a44d57a361bef3aa599",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a8c0949_05e3cb33",
         "filename": "docs/monasca-api-spec.md",
         "patchSetId": 2
@@ -133,6 +241,24 @@
       "writtenOn": "2014-11-05T17:19:02Z",
       "side": 1,
       "message": "missing \u0027more\u0027",
+      "revId": "876412f651aae301e1480a44d57a361bef3aa599",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8c0949_4a0ebf35",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-11-05T19:53:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a8c0949_05e3cb33",
       "revId": "876412f651aae301e1480a44d57a361bef3aa599",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -156,6 +282,24 @@
     },
     {
       "key": {
+        "uuid": "7a8c0949_6a145b44",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-11-05T19:53:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a8c0949_c5bf03fb",
+      "revId": "876412f651aae301e1480a44d57a361bef3aa599",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a8c0949_2538c79f",
         "filename": "docs/monasca-api-spec.md",
         "patchSetId": 2
@@ -167,6 +311,24 @@
       "writtenOn": "2014-11-05T17:19:02Z",
       "side": 1,
       "message": "formatting doesn\u0027t show up correctly in Mou markdown editor.\n\nMaybe use Alarm Definition 1,2,etc with Alarm A,B,etc for more clarity.",
+      "revId": "876412f651aae301e1480a44d57a361bef3aa599",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8c0949_aa1e4361",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-11-05T19:53:32Z",
+      "side": 1,
+      "message": "I used the ``` notation. See if that works better",
+      "parentUuid": "7a8c0949_2538c79f",
       "revId": "876412f651aae301e1480a44d57a361bef3aa599",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -190,6 +352,24 @@
     },
     {
       "key": {
+        "uuid": "7a8c0949_ca19cf7a",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-11-05T19:53:32Z",
+      "side": 1,
+      "message": "I used the ``` notation. See if that works better",
+      "parentUuid": "7a8c0949_e56cff9e",
+      "revId": "876412f651aae301e1480a44d57a361bef3aa599",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a8c0949_450953dc",
         "filename": "docs/monasca-api-spec.md",
         "patchSetId": 2
@@ -201,6 +381,24 @@
       "writtenOn": "2014-11-05T17:19:02Z",
       "side": 1,
       "message": "maybe remove the \u0027\u003d\u0027 between name and cpu.system",
+      "revId": "876412f651aae301e1480a44d57a361bef3aa599",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8c0949_2a597336",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 507,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-11-05T19:53:32Z",
+      "side": 1,
+      "message": "Missed this one",
+      "parentUuid": "7a8c0949_450953dc",
       "revId": "876412f651aae301e1480a44d57a361bef3aa599",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
