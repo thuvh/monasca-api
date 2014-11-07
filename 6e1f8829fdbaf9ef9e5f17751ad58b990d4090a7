@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "7a8c0949_27e988e6",
+        "filename": "monasca/common/repositories/mysql/alarm_definitions_repository.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-11-07T15:51:50Z",
+      "side": 1,
+      "message": "I know it is tempting to do this, but you just put in a sql injection vulnerability. You should add name and value to parms instead",
+      "revId": "6e1f8829fdbaf9ef9e5f17751ad58b990d4090a7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a8c0949_27c6e89a",
         "filename": "monasca/common/repositories/mysql/alarm_definitions_repository.py",
         "patchSetId": 2
