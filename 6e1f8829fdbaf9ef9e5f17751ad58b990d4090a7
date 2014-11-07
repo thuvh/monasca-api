@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a8c0949_27c6e89a",
+        "filename": "monasca/common/repositories/mysql/alarm_definitions_repository.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 11094
+      },
+      "writtenOn": "2014-11-07T15:44:53Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be a more specific sql exception base class.",
+      "revId": "6e1f8829fdbaf9ef9e5f17751ad58b990d4090a7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8c0949_e7c860aa",
+        "filename": "monasca/v2/reference/alarm_definitions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 11094
+      },
+      "writtenOn": "2014-11-07T15:44:53Z",
+      "side": 1,
+      "message": "This seems like a good opportunity for a dictionary comprehension. Though I could also see arguments against it as it may make it a bit less readable.",
+      "revId": "6e1f8829fdbaf9ef9e5f17751ad58b990d4090a7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
