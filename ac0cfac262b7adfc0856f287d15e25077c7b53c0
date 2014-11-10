@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a890539_ce73e4af",
+        "filename": "monasca/expression_parser/alarm_expr_parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-11-10T19:21:15Z",
+      "side": 1,
+      "message": "You should probably print out expr here so you know which sub_expression goes with which expr",
+      "revId": "ac0cfac262b7adfc0856f287d15e25077c7b53c0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a890539_2e62a8d8",
+        "filename": "monasca/v2/reference/alarm_definitions.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-11-10T19:21:15Z",
+      "side": 1,
+      "message": "Do you need to set res.status? You do in do_get_alarm_definitions?",
+      "revId": "ac0cfac262b7adfc0856f287d15e25077c7b53c0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
