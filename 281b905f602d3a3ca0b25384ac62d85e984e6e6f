@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a890539_6e31100b",
+        "filename": "monasca/common/repositories/alarm_definitions_repository.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 12133
+      },
+      "writtenOn": "2014-11-10T20:09:27Z",
+      "side": 1,
+      "message": "to be consistent, i think this should be \"get_alarm_definitions\" instead of \"get_sub_alarm_definitions\".",
+      "revId": "281b905f602d3a3ca0b25384ac62d85e984e6e6f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
