@@ -34,6 +34,24 @@
       "revId": "281b905f602d3a3ca0b25384ac62d85e984e6e6f",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a890539_89ee3621",
+        "filename": "monasca/common/repositories/alarm_definitions_repository.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-11-10T20:30:31Z",
+      "side": 1,
+      "message": "i see where the confusion is. i forgot to add the     def get_alarm_definition_list(self, tenant_id, name, dimensions) method to the abstract class.  i think i\u0027ll rename this to get_alarm_definitions to be consistent as you suggested.",
+      "parentUuid": "5a890539_6e31100b",
+      "revId": "281b905f602d3a3ca0b25384ac62d85e984e6e6f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
