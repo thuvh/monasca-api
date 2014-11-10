@@ -16,6 +16,24 @@
       "revId": "281b905f602d3a3ca0b25384ac62d85e984e6e6f",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a890539_4948ce5b",
+        "filename": "monasca/common/repositories/alarm_definitions_repository.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-11-10T20:22:33Z",
+      "side": 1,
+      "message": "only one definition is ever returned, so i think the singular form is more informative.",
+      "parentUuid": "5a890539_6e31100b",
+      "revId": "281b905f602d3a3ca0b25384ac62d85e984e6e6f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
