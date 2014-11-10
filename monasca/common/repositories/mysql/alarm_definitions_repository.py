@@ -17,6 +17,7 @@ import pyodbc
 from oslo.config import cfg
 
 from monasca.common.repositories import alarm_definitions_repository
+from monasca.common.repositories.exceptions import DoesNotExistException
 from monasca.common.repositories.mysql.mysql_repository import MySQLRepository
 from monasca.openstack.common import log
 from monasca.openstack.common import uuidutils
@@ -29,11 +30,68 @@ LOG = log.getLogger(__name__)
 class AlarmDefinitionsRepository(MySQLRepository,
         alarm_definitions_repository.AlarmDefinitionsRepository):
 
+    base_query = \
+        """
+          select ad.id, ad.name, ad.description, ad.expression,
+            ad.match_by, ad.severity, ad.actions_enabled,
+            aaa.alarm_actions, aao.ok_actions, aau.undetermined_actions
+          from alarm_definition as ad
+          left join (select alarm_definition_id,
+           group_concat(action_id) as alarm_actions
+              from alarm_action
+              where alarm_state = 'ALARM'
+              group by alarm_definition_id) as aaa
+              on aaa.alarm_definition_id = ad.id
+          left join (select alarm_definition_id,
+            group_concat(action_id) as ok_actions
+              from alarm_action
+              where alarm_state = 'OK'
+              group by alarm_definition_id) as aao
+              on aao.alarm_definition_id = ad.id
+          left join (select alarm_definition_id,
+            group_concat(action_id) as undetermined_actions
+              from alarm_action
+              where alarm_state = 'UNDETERMINED'
+              group by alarm_definition_id) as aau
+              on aau.alarm_definition_id = ad.id
+        """
 
     def __init__(self):
 
         super(AlarmDefinitionsRepository, self).__init__()
 
+
+    def get_alarm_definition(self, tenant_id, id):
+
+        try:
+
+            parms = [tenant_id, id]
+
+            where_clause = \
+                """ where ad.tenant_id = ? and ad.id = ? """
+
+            query = \
+                AlarmDefinitionsRepository.base_query \
+                + where_clause
+
+            cnxn, cursor = self._get_cnxn_cursor_tuple()
+
+            cursor.execute(query, parms)
+
+            row = cursor.fetchall()
+
+            self._commit_close_cnxn(cnxn)
+
+            if row:
+                return row[0]
+            else:
+                raise DoesNotExistException
+
+        except DoesNotExistException:
+            raise
+        except Exception as ex:
+            LOG.exception(ex)
+            raise exceptions.RepositoryException(ex)
 
     def get_alarm_definition_list(self, tenant_id, name, dimensions):
 
@@ -41,30 +99,8 @@ class AlarmDefinitionsRepository(MySQLRepository,
 
             parms = [tenant_id]
 
-            select_clause = """
-                  select ad.id, ad.name, ad.description, ad.expression,
-                    ad.match_by, ad.severity, ad.actions_enabled,
-                    aaa.alarm_actions, aao.ok_actions, aau.undetermined_actions
-                  from alarm_definition as ad
-                  left join (select alarm_definition_id,
-                   group_concat(action_id) as alarm_actions
-                      from alarm_action
-                      where alarm_state = 'ALARM'
-                      group by alarm_definition_id) as aaa
-                      on aaa.alarm_definition_id = ad.id
-                  left join (select alarm_definition_id,
-                    group_concat(action_id) as ok_actions
-                      from alarm_action
-                      where alarm_state = 'OK'
-                      group by alarm_definition_id) as aao
-                      on aao.alarm_definition_id = ad.id
-                  left join (select alarm_definition_id,
-                    group_concat(action_id) as undetermined_actions
-                      from alarm_action
-                      where alarm_state = 'UNDETERMINED'
-                      group by alarm_definition_id) as aau
-                      on aau.alarm_definition_id = ad.id
-                      """
+            select_clause = \
+                AlarmDefinitionsRepository.base_query
 
             where_clause = " where ad.tenant_id = ? "
 
