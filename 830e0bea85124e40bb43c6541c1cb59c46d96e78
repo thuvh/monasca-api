@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a890539_d2cc2f64",
+        "filename": "monasca/v2/reference/alarms.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-11-12T18:29:07Z",
+      "side": 1,
+      "message": "Why is rel None? Seems like it should be self. Java API returns this as the alarm_definition part of the alarm:\n\n  \"alarm_definition\": {\n    \"severity\": \"LOW\", \n    \"id\": \"6df2eb14-6813-4f2f-9c3e-29aef6188424\", \n    \"links\": [\n      {\n        \"href\": \"http://10.22.156.13:8080/v2.0/alarm-definitions/6df2eb14-6813-4f2f-9c3e-29aef6188424\", \n        \"rel\": \"self\"\n      }\n    ], \n    \"name\": \"test_alarm_def1\"\n  }",
+      "revId": "830e0bea85124e40bb43c6541c1cb59c46d96e78",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
