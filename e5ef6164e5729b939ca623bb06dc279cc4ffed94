@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a890539_c9a63d53",
+        "filename": "monasca/common/repositories/mysql/alarm_definitions_repository.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-11-12T23:55:48Z",
+      "side": 1,
+      "message": "I like the more descriptive name",
+      "revId": "e5ef6164e5729b939ca623bb06dc279cc4ffed94",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a890539_49408d56",
+        "filename": "monasca/common/repositories/mysql/alarms_repository.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-11-12T23:55:48Z",
+      "side": 1,
+      "message": "This needs to take the tenant_id. The way this is written, any user could delete any alarm as long as they knew the Id. Gary is fixing that in the Java API",
+      "revId": "e5ef6164e5729b939ca623bb06dc279cc4ffed94",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a890539_8c6443e6",
+        "filename": "monasca/v2/reference/alarming.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-11-12T23:55:48Z",
+      "side": 1,
+      "message": "Given this rather alarming name, I think it would be good to have a comment about what this class does",
+      "revId": "e5ef6164e5729b939ca623bb06dc279cc4ffed94",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
