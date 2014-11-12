@@ -16,6 +16,24 @@
       "revId": "830e0bea85124e40bb43c6541c1cb59c46d96e78",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a890539_d2218ffd",
+        "filename": "monasca/v2/reference/alarms.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-11-12T18:31:12Z",
+      "side": 1,
+      "message": "the existing api is wrong.\n\nself is for the alarm. roland and i discussed this and decided to remove rel from the alarm-definition.",
+      "parentUuid": "5a890539_d2cc2f64",
+      "revId": "830e0bea85124e40bb43c6541c1cb59c46d96e78",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
