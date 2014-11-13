@@ -12,22 +12,19 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-# TODO: Used simplejson to read the yaml as simplejson transforms to "str"
-# not "unicode"
-
 import json
 
 import falcon
 from oslo.config import cfg
 
+from monasca.api import monasca_notifications_api_v2
+from monasca.common.repositories import exceptions as repository_exceptions
+from monasca.common import resource_api
 from monasca.openstack.common import log
 from monasca.openstack.common import uuidutils
-from monasca.api import monasca_notifications_api_v2
-from monasca.common import resource_api
-from monasca.common.repositories import exceptions as repository_exceptions
-from monasca.v2.common.schemas import exceptions as schemas_exceptions
-from monasca.v2.common.schemas import \
-    notifications_request_body_schema as schemas_notifications
+from monasca.v2.common.schemas import (exceptions as schemas_exceptions)
+from monasca.v2.common.schemas import (
+    notifications_request_body_schema as schemas_notifications)
 from monasca.v2.reference import helpers
 
 LOG = log.getLogger(__name__)
@@ -37,8 +34,8 @@ class Notifications(monasca_notifications_api_v2.NotificationsV2API):
     def __init__(self, global_conf):
         super(Notifications, self).__init__(global_conf)
         self._region = cfg.CONF.region
-        self._default_authorized_roles = \
-            cfg.CONF.security.default_authorized_roles
+        self._default_authorized_roles = (
+            cfg.CONF.security.default_authorized_roles)
         self._notifications_repo = resource_api.init_driver(
             'monasca.repositories', cfg.CONF.repositories.notifications_driver)
 
