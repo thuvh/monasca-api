@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a890539_b105c67b",
+        "filename": "src/main/java/monasca/api/infrastructure/servlet/PreAuthenticationFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-11-13T14:21:32Z",
+      "side": 1,
+      "message": "seems a bit unorthodox/awkward, but i\u0027m sure there\u0027s a reason.",
+      "revId": "0f485e260820320732923eb27a555b6ce889d46c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
