@@ -12,12 +12,13 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 import json
-import falcon
+
+import monasca.expression_parser.alarm_expr_parser
 from oslo.config import cfg
-from monasca.common import resource_api
-from monasca.expression_parser.alarm_expr_parser import AlarmExprParser
+import falcon
 from monasca.openstack.common import log
 from monasca.common.messaging import exceptions as message_queue_exceptions
+from monasca.common import resource_api
 
 LOG = log.getLogger(__name__)
 
@@ -99,7 +100,8 @@ class Alarming(object):
 
         for sub_alarm in sub_alarm_dict[alarm_id]:
             # There's only one expr in a sub alarm, so just take the first.
-            sub_expr = AlarmExprParser(sub_alarm.expression).sub_expr_list[0]
+            sub_expr = (monasca.expression_parser.alarm_expr_parser.
+                        AlarmExprParser(sub_alarm.expression).sub_expr_list[0])
             dimensions = {}
             sub_alarms_deleted_event_msg[sub_alarm.sub_alarm_id] = {
                 u'function': sub_expr.normalized_func,
