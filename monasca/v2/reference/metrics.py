@@ -16,7 +16,6 @@ import json
 
 import falcon
 from oslo.config import cfg
-from stevedore import driver
 
 from monasca.openstack.common import log
 from monasca.api import monasca_api_v2
@@ -27,21 +26,20 @@ from monasca.v2.common import utils
 from monasca.v2.common.schemas import exceptions as schemas_exceptions
 from monasca.v2.common.schemas import \
     metrics_request_body_schema as schemas_metrics
-
-from monasca.common.repositories import exceptions
-
 from monasca.v2.reference import helpers
-from monasca.v2.reference.helpers import read_json_msg_body
 
 
 LOG = log.getLogger(__name__)
 
 
 class Metrics(monasca_api_v2.V2API):
+
     def __init__(self, global_conf):
 
         try:
+
             super(Metrics, self).__init__(global_conf)
+
             self._region = cfg.CONF.region
             self._default_authorized_roles = \
                 cfg.CONF.security.default_authorized_roles
@@ -90,7 +88,7 @@ class Metrics(monasca_api_v2.V2API):
             except message_queue_exceptions.MessageQueueException as ex:
                 LOG.exception(ex)
                 raise falcon.HTTPServiceUnavailable('Service unavailable',
-                                                    ex.message)
+                                                    ex.message, 60)
 
         if isinstance(metrics, list):
             for metric in metrics:
@@ -112,7 +110,7 @@ class Metrics(monasca_api_v2.V2API):
         except Exception as ex:
             LOG.exception(ex)
             raise falcon.HTTPServiceUnavailable('Service unavailable',
-                                                ex.message)
+                                                ex.message, 60)
 
     def _measurement_list(self, tenant_id, name, dimensions, start_timestamp,
                           end_timestamp):
@@ -124,7 +122,7 @@ class Metrics(monasca_api_v2.V2API):
         except Exception as ex:
             LOG.exception(ex)
             raise falcon.HTTPServiceUnavailable('Service unavailable',
-                                                ex.message)
+                                                ex.message, 60)
 
     def _metric_statistics(self, tenant_id, name, dimensions, start_timestamp,
                            end_timestamp, statistics, period):
@@ -137,7 +135,7 @@ class Metrics(monasca_api_v2.V2API):
         except Exception as ex:
             LOG.exception(ex)
             raise falcon.HTTPServiceUnavailable('Service unavailable',
-                                                ex.message)
+                                                ex.message, 60)
 
     @resource_api.Restify('/v2.0/metrics/', method='post')
     def do_post_metrics(self, req, res):
@@ -175,7 +173,7 @@ class Metrics(monasca_api_v2.V2API):
         dimensions = helpers.get_query_dimensions(req)
         helpers.validate_query_dimensions(dimensions)
         start_timestamp = helpers.get_query_starttime_timestamp(req)
-        end_timestamp = helpers.get_query_endtime_timestamp(req)
+        end_timestamp = helpers.get_query_endtime_timestamp(req, False)
         result = self._measurement_list(tenant_id, name, dimensions,
                                         start_timestamp, end_timestamp)
         res.body = json.dumps(result, ensure_ascii=False).encode('utf8')
@@ -190,7 +188,7 @@ class Metrics(monasca_api_v2.V2API):
         dimensions = helpers.get_query_dimensions(req)
         helpers.validate_query_dimensions(dimensions)
         start_timestamp = helpers.get_query_starttime_timestamp(req)
-        end_timestamp = helpers.get_query_endtime_timestamp(req)
+        end_timestamp = helpers.get_query_endtime_timestamp(req, False)
         statistics = helpers.get_query_statistics(req)
         period = helpers.get_query_period(req)
         result = self._metric_statistics(tenant_id, name, dimensions,
