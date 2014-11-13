@@ -49,6 +49,9 @@ class Alarms(AlarmsV2API, Alarming):
             self._alarms_repo = resource_api.init_driver(
                 'monasca.repositories', cfg.CONF.repositories.alarms_driver)
 
+            self._metrics_repo = resource_api.init_driver(
+                'monasca.repositories', cfg.CONF.repositories.metrics_driver)
+
         except Exception as ex:
             LOG.exception(ex)
             raise exceptions.RepositoryException(ex)
@@ -108,6 +111,26 @@ class Alarms(AlarmsV2API, Alarming):
 
         res.body = json.dumps(result, ensure_ascii=False).encode('utf8')
         res.status = falcon.HTTP_200
+
+    @resource_api.Restify('/v2.0/alarms/state-history', method='get')
+    def do_get_alarms_state_history(self, req, res, id):
+        res.status = '501 Not Implemented'
+
+    @resource_api.Restify('/v2.0/alarms/{id}/state-history', method='get')
+    def do_get_alarm_state_history(self, req, res, id):
+
+        helpers.validate_authorization(req, self._default_authorized_roles)
+        tenant_id = helpers.get_tenant_id(req)
+
+        result = self._alarm_history(tenant_id, id)
+
+        res.body = json.dumps(result, ensure_ascii=False).encode('utf8')
+        res.status = falcon.HTTP_200
+
+    @resource_try_catch_block
+    def _alarm_history(self, tenant_id, alarm_id):
+
+        return self._metrics_repo.alarm_history(tenant_id, alarm_id)
 
     @resource_try_catch_block
     def _alarm_delete(self, tenant_id, id):
