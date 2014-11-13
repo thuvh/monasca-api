@@ -13,7 +13,6 @@
 # under the License.
 
 import abc
-
 import six
 
 
@@ -30,5 +29,5 @@ class MetricsRepository(object):
 
     @abc.abstractmethod
     def metrics_statistics(self, tenant_id, name, dimensions, start_timestamp,
-                           end_timestamp, statistics):
+                           end_timestamp, statistics, period):
         pass
