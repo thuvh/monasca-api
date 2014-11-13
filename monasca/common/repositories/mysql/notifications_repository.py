@@ -13,11 +13,14 @@
 # under the License.
 
 import datetime
-from monasca.common.repositories import notifications_repository
-from monasca.common.repositories import exceptions
-from monasca.openstack.common import log
+
 import peewee
 import model
+
+from monasca.common.repositories import exceptions
+from monasca.common.repositories import notifications_repository
+from monasca.openstack.common import log
+
 
 LOG = log.getLogger(__name__)
 
