@@ -18,11 +18,10 @@ import six
 
 @six.add_metaclass(abc.ABCMeta)
 class Publisher(object):
-
     @abc.abstractmethod
     def send_message(self, message):
-        '''
-        Sends the message using the message queue.
+        """Sends the message using the message queue.
+
         :param message: Message to send.
-        '''
+        """
         return
