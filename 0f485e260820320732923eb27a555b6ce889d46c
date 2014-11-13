@@ -1,0 +1,8 @@
+Verified+2: Jenkins
+Code-Review+2: Deklan Dieterly <deklan.dieterly@hp.com>
+Workflow+1: Deklan Dieterly <deklan.dieterly@hp.com>
+Submitted-by: Jenkins
+Submitted-at: Thu, 13 Nov 2014 14:21:33 +0000
+Reviewed-on: https://review.openstack.org/134077
+Project: stackforge/monasca-api
+Branch: refs/heads/master
