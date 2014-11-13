@@ -17,6 +17,7 @@ import monasca.common.messaging.message_formats.reference.metrics as reference_m
 import monasca.common.messaging.message_formats.cadf.metrics as cadf_metrics
 import monasca.common.messaging.message_formats.identity.metrics as identity_metrics
 
+
 def create_metrics_transform():
     metrics_message_format = cfg.CONF.messaging.metrics_message_format
     if metrics_message_format == 'reference':
