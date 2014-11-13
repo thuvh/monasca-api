@@ -13,9 +13,13 @@
 # under the License.
 
 from oslo.config import cfg
-import monasca.common.messaging.message_formats.reference.events as reference_events
-import monasca.common.messaging.message_formats.cadf.events as cadf_events
-import monasca.common.messaging.message_formats.identity.events as identity_events
+import monasca.common.messaging.message_formats.cadf.events \
+    as cadf_events
+import monasca.common.messaging.message_formats.identity.events \
+    as identity_events
+import monasca.common.messaging.message_formats.reference.events \
+    as reference_events
+
 
 def create_events_transform():
     message_format = cfg.CONF.messaging.events_message_format
