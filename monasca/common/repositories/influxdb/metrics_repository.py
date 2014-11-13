@@ -12,6 +12,7 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
+import json
 import re
 import urllib
 from time import strftime
@@ -30,6 +31,7 @@ LOG = log.getLogger(__name__)
 
 
 class MetricsRepository(metrics_repository.MetricsRepository):
+
     def __init__(self):
 
         try:
@@ -178,7 +180,6 @@ class MetricsRepository(metrics_repository.MetricsRepository):
 
         return json_metric_list
 
-
     def _decode_influxdb_serie_name(self, serie_name):
 
         """
@@ -226,7 +227,6 @@ class MetricsRepository(metrics_repository.MetricsRepository):
             metric = None
 
         return metric
-
 
     def measurement_list(self, tenant_id, name, dimensions, start_timestamp,
                          end_timestamp):
@@ -322,7 +322,6 @@ class MetricsRepository(metrics_repository.MetricsRepository):
             LOG.exception(ex)
             raise exceptions.RepositoryException(ex)
 
-
     def metrics_statistics(self, tenant_id, name, dimensions, start_timestamp,
                            end_timestamp, statistics, period):
 
@@ -369,6 +368,109 @@ class MetricsRepository(metrics_repository.MetricsRepository):
                 json_statistics_list.append(measurement)
 
             return json_statistics_list
+
+        except Exception as ex:
+            LOG.exception(ex)
+            raise exceptions.RepositoryException(ex)
+
+    def alarm_history(self, tenant_id, alarm_id):
+        """
+        Example result from Influxdb.
+        [
+            {
+                "points": [
+                    [
+                        1415894490,
+                        272140001,
+                        "6ac10841-d02f-4f7d-a191-ae0a3d9a25f2",
+                        "[{\"name\": \"cpu.system_perc\", \"dimensions\": {\"hostname\": \"mini-mon\", \"component\": \"monasca-agent\", \"service\": \"monitoring\"}}, {\"name\": \"load.avg_1_min\", \"dimensions\": {\"hostname\": \"mini-mon\", \"component\": \"monasca-agent\", \"service\": \"monitoring\"}}]",
+                        "ALARM",
+                        "OK",
+                        "Thresholds were exceeded for the sub-alarms: [max(load.avg_1_min{hostname=mini-mon}) > 0.0, max(cpu.system_perc) > 0.0]",
+                        "{}"
+                    ],
+                    [
+                        1415894431,
+                        269060001,
+                        "6ac10841-d02f-4f7d-a191-ae0a3d9a25f2",
+                        "[{\"name\": \"load.avg_1_min\", \"dimensions\": {\"hostname\": \"mini-mon\", \"component\": \"monasca-agent\", \"service\": \"monitoring\"}}, {\"name\": \"cpu.system_perc\", \"dimensions\": {\"hostname\": \"mini-mon\", \"component\": \"monasca-agent\", \"service\": \"monitoring\"}}]",
+                        "OK",
+                        "ALARM",
+                        "Alarm state updated via API",
+                        "{}"
+                    ],
+                    [
+                        1415894430,
+                        269050001,
+                        "6ac10841-d02f-4f7d-a191-ae0a3d9a25f2",
+                        "[{\"name\": \"cpu.system_perc\", \"dimensions\": {\"hostname\": \"mini-mon\", \"component\": \"monasca-agent\", \"service\": \"monitoring\"}}, {\"name\": \"load.avg_1_min\", \"dimensions\": {\"hostname\": \"mini-mon\", \"component\": \"monasca-agent\", \"service\": \"monitoring\"}}]",
+                        "ALARM",
+                        "UNDETERMINED",
+                        "Thresholds were exceeded for the sub-alarms: [max(load.avg_1_min{hostname=mini-mon}) > 0.0, max(cpu.system_perc) > 0.0]",
+                        "{}"
+                    ]
+                ],
+                "name": "alarm_state_history",
+                "columns": [
+                    "time",
+                    "sequence_number",
+                    "alarm_id",
+                    "metrics",
+                    "new_state",
+                    "old_state",
+                    "reason",
+                    "reason_data"
+                ]
+            }
+        ]
+
+        :param tenant_id:
+        :param alarm_id:
+        :return:
+        """
+
+        try:
+
+            if '\'' in alarm_id or ';' in alarm_id:
+                raise Exception("Input from user contains single quote ['] or "
+                                "semi-colon [;] characters[ {} ]".format(alarm_id))
+
+            json_alarm_history_list = []
+
+            query = """
+              select alarm_id, metrics, old_state, new_state,
+                     reason, reason_data
+              from alarm_state_history
+              where tenant_id = '{}' and alarm_id = '{}';
+              """.format(tenant_id.encode('utf8'), alarm_id.encode('utf8'))
+
+            try:
+                result = self.influxdb_client.query(query, 's')
+            except InfluxDBClientError as ex:
+                if ex.code == 400 and ex.content == 'Couldn\'t look up ' \
+                                                    'columns':
+                    return json_alarm_history_list
+                else:
+                    raise ex
+
+            if not result:
+                return json_alarm_history_list
+
+            # There's only one serie, alarm_state_history.
+            for point in result[0]['points']:
+
+                alarm_point = {u'alarm_id': point[2],
+                               u'metrics': json.loads(point[3]),
+                               u'old_state': point[4],
+                               u'new_state': point[5],
+                               u'reason': point[6],
+                               u'reason_data': point[7],
+                               u'timestamp': strftime("%Y-%m-%dT%H:%M:%SZ",
+                                                      gmtime(point[0]))}
+
+                json_alarm_history_list.append(alarm_point)
+
+            return json_alarm_history_list
 
         except Exception as ex:
             LOG.exception(ex)

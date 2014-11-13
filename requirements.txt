@@ -9,3 +9,4 @@ oslo.config>=1.2.1
 ujson>=1.33
 Pyparsing>=2.0.3
 pyodbc>=3.0.7
+influxdb>=0.1.12
