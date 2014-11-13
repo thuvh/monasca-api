@@ -16,18 +16,20 @@
 import itertools
 import sys
 
-from pyparsing import CaselessLiteral
-from pyparsing import alphanums
-from pyparsing import delimitedList
-from pyparsing import Forward
-from pyparsing import Group
-from pyparsing import Literal
-from pyparsing import nums
-from pyparsing import opAssoc
-from pyparsing import operatorPrecedence
-from pyparsing import Optional
-from pyparsing import stringEnd
-from pyparsing import Word
+import pyparsing
+
+# from pyparsing import CaselessLiteral
+# from pyparsing import alphanums
+# from pyparsing import delimitedList
+# from pyparsing import Forward
+# from pyparsing import Group
+# from pyparsing import Literal
+# from pyparsing import nums
+# from pyparsing import opAssoc
+# from pyparsing import operatorPrecedence
+# from pyparsing import Optional
+# from pyparsing import stringEnd
+# from pyparsing import Word
 
 
 class SubExpr(object):
@@ -184,56 +186,56 @@ class OrSubExpr(BinaryOp):
     pass
 
 
-COMMA = Literal(",")
-LPAREN = Literal("(")
-RPAREN = Literal(")")
-EQUAL = Literal("=")
-LBRACE = Literal("{")
-RBRACE = Literal("}")
+COMMA = pyparsing.Literal(",")
+LPAREN = pyparsing.Literal("(")
+RPAREN = pyparsing.Literal(")")
+EQUAL = pyparsing.Literal("=")
+LBRACE = pyparsing.Literal("{")
+RBRACE = pyparsing.Literal("}")
 
 # Initialize non-ascii unicode code points in the Basic Multilingual Plane.
 unicode_printables = u''.join(
     unichr(c) for c in xrange(128, 65536) if not unichr(c).isspace())
 
 # Does not like comma. No Literals from above allowed.
-valid_identifier_chars = (unicode_printables + alphanums + ".-_#!$%&'*+/:;?@["
+valid_identifier_chars = (unicode_printables + pyparsing.alphanums + ".-_#!$%&'*+/:;?@["
                                                            "\\]^`|~")
 
-metric_name = Word(valid_identifier_chars, min=1, max=255)("metric_name")
-dimension_name = Word(valid_identifier_chars, min=1, max=255)
-dimension_value = Word(valid_identifier_chars, min=1, max=255)
+metric_name = pyparsing.Word(valid_identifier_chars, min=1, max=255)("metric_name")
+dimension_name = pyparsing.Word(valid_identifier_chars, min=1, max=255)
+dimension_value = pyparsing.Word(valid_identifier_chars, min=1, max=255)
 
-integer_number = Word(nums)
-decimal_number = Word(nums + ".")
+integer_number = pyparsing.Word(pyparsing.nums)
+decimal_number = pyparsing.Word(pyparsing.nums + ".")
 
-max = CaselessLiteral("max")
-min = CaselessLiteral("min")
-avg = CaselessLiteral("avg")
-count = CaselessLiteral("count")
-sum = CaselessLiteral("sum")
+max = pyparsing.CaselessLiteral("max")
+min = pyparsing.CaselessLiteral("min")
+avg = pyparsing.CaselessLiteral("avg")
+count = pyparsing.CaselessLiteral("count")
+sum = pyparsing.CaselessLiteral("sum")
 func = (max | min | avg | count | sum)("func")
 
-less_than_op = (CaselessLiteral("<") | CaselessLiteral("lt"))
-less_than_eq_op = (CaselessLiteral("<=") | CaselessLiteral("lte"))
-greater_than_op = (CaselessLiteral(">") | CaselessLiteral("gt"))
-greater_than_eq_op = (CaselessLiteral(">=") | CaselessLiteral("gte"))
+less_than_op = (pyparsing.CaselessLiteral("<") | pyparsing.CaselessLiteral("lt"))
+less_than_eq_op = (pyparsing.CaselessLiteral("<=") | pyparsing.CaselessLiteral("lte"))
+greater_than_op = (pyparsing.CaselessLiteral(">") | pyparsing.CaselessLiteral("gt"))
+greater_than_eq_op = (pyparsing.CaselessLiteral(">=") | pyparsing.CaselessLiteral("gte"))
 
 # Order is important. Put longer prefix first.
 relational_op = (
     less_than_eq_op | less_than_op | greater_than_eq_op | greater_than_op)(
     "relational_op")
 
-AND = CaselessLiteral("and") | CaselessLiteral("&&")
-OR = CaselessLiteral("or") | CaselessLiteral("||")
+AND = pyparsing.CaselessLiteral("and") | pyparsing.CaselessLiteral("&&")
+OR = pyparsing.CaselessLiteral("or") | pyparsing.CaselessLiteral("||")
 logical_op = (AND | OR)("logical_op")
 
-times = CaselessLiteral("times")
+times = pyparsing.CaselessLiteral("times")
 
-dimension = Group(dimension_name + EQUAL + dimension_value)
+dimension = pyparsing.Group(dimension_name + EQUAL + dimension_value)
 
 # Cannot have any whitespace after the comma delimiter.
-dimension_list = Group(Optional(
-    LBRACE + delimitedList(dimension, delim=',', combine=True)(
+dimension_list = pyparsing.Group(pyparsing.Optional(
+    LBRACE + pyparsing.delimitedList(dimension, delim=',', combine=True)(
         "dimensions_list") + RBRACE))
 
 metric = metric_name + dimension_list("dimensions")
@@ -241,17 +243,17 @@ period = integer_number("period")
 threshold = decimal_number("threshold")
 periods = integer_number("periods")
 
-expression = Forward()
+expression = pyparsing.Forward()
 
-sub_expression = (func + LPAREN + metric + Optional(
-    COMMA + period) + RPAREN + relational_op + threshold + Optional(
+sub_expression = (func + LPAREN + metric + pyparsing.Optional(
+    COMMA + period) + RPAREN + relational_op + threshold + pyparsing.Optional(
     times + periods) | LPAREN + expression + RPAREN)
 
 sub_expression.setParseAction(SubExpr)
 
-expression = operatorPrecedence(sub_expression,
-                                [(AND, 2, opAssoc.LEFT, AndSubExpr),
-                                 (OR, 2, opAssoc.LEFT, OrSubExpr)])
+expression = pyparsing.operatorPrecedence(sub_expression,
+                                [(AND, 2, pyparsing.opAssoc.LEFT, AndSubExpr),
+                                 (OR, 2, pyparsing.opAssoc.LEFT, OrSubExpr)])
 
 
 class AlarmExprParser(object):
@@ -262,7 +264,7 @@ class AlarmExprParser(object):
     def sub_expr_list(self):
         # Remove all spaces before parsing. Simple, quick fix for whitespace
         # issue with dimension list not allowing whitespace after comma.
-        parseResult = (expression + stringEnd).parseString(
+        parseResult = (expression + pyparsing.stringEnd).parseString(
             self._expr.replace(' ', ''))
         sub_expr_list = parseResult[0].operands_list
         return sub_expr_list
