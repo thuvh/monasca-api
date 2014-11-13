@@ -27,21 +27,19 @@ LOG = log.getLogger(__name__)
 
 def init_driver(namespace, driver_name, drv_invoke_args=()):
     """Initialize the resource driver and returns it.
-    
+
     :param namespace: the resource namespace (in setup.cfg).
     :param driver_name: the driver name (in monasca.conf)
     :param invoke_args: args to pass to the driver (a tuple)
     """
-    mgr = driver.DriverManager(
-            namespace = namespace,
-            name = driver_name,
-            invoke_on_load = True,
-            invoke_args = drv_invoke_args
-    )
+    mgr = driver.DriverManager(namespace=namespace, name=driver_name,
+                               invoke_on_load=True,
+                               invoke_args=drv_invoke_args)
     return mgr.driver
 
 
 class Restify(object):
+
     def __init__(self, path='', method='GET'):
         if not path:
             raise Exception('Path has to be specified.')
@@ -131,7 +129,7 @@ class ResourceAPI(falcon.API):
             LOG.exception('Error occurred while adding the resource')
         LOG.debug(self._routes)
     
-    def add_resource(self, resource_name, namespace, driver_name, 
+    def add_resource(self, resource_name, namespace, driver_name,
                      invoke_args=(), uri=None):
         """Loads the resource driver, and adds it to the routes.
         
@@ -142,8 +140,8 @@ class ResourceAPI(falcon.API):
         :param uri: the uri to associate with the resource
         """
         resource_driver = init_driver(namespace, driver_name, invoke_args)
-        LOG.debug('%s dispatcher driver %s is loaded.' % 
+        LOG.debug('%s dispatcher driver %s is loaded.' %
                   (resource_name, driver_name))
         self.add_route(uri, resource_driver)
-        LOG.debug('%s dispatcher driver has been added to the routes!' % 
+        LOG.debug('%s dispatcher driver has been added to the routes!' %
                   (resource_name))
