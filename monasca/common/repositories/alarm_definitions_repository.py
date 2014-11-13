@@ -17,15 +17,14 @@ import six
 
 @six.add_metaclass(abc.ABCMeta)
 class AlarmDefinitionsRepository(object):
-
     def __init__(self):
-
-            super(AlarmDefinitionsRepository, self).__init__()
+        super(AlarmDefinitionsRepository, self).__init__()
 
     @abc.abstractmethod
-    def create_alarm_definition(self, tenant_id, name,
-            expression, sub_expr_list, description, severity, match_by, alarm_actions,
-            undetermined_actions, ok_action):
+    def create_alarm_definition(self, tenant_id, name, expression,
+                                sub_expr_list, description, severity, match_by,
+                                alarm_actions, undetermined_actions,
+                                ok_action):
         pass
 
     @abc.abstractmethod

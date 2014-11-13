@@ -13,19 +13,17 @@
 # under the License.
 import datetime
 
+import monasca.common.repositories.exceptions as repository_exceptions
+import monasca.common.repositories.mysql.mysql_repository as mysql_repository
 from monasca.common.repositories import alarm_definitions_repository
-from monasca.common.repositories.exceptions import DoesNotExistException
-from monasca.common.repositories.mysql.mysql_repository import MySQLRepository
-from monasca.common.repositories.mysql.mysql_repository import mysql_try_catch_block
 from monasca.openstack.common import log
 from monasca.openstack.common import uuidutils
-from monasca.common.repositories import exceptions
 
 
 LOG = log.getLogger(__name__)
 
 
-class AlarmDefinitionsRepository(MySQLRepository,
+class AlarmDefinitionsRepository(mysql_repository.MySQLRepository,
                                  alarm_definitions_repository.AlarmDefinitionsRepository):
     base_query = """
           select ad.id, ad.name, ad.description, ad.expression,
@@ -56,7 +54,7 @@ class AlarmDefinitionsRepository(MySQLRepository,
 
         super(AlarmDefinitionsRepository, self).__init__()
 
-    @mysql_try_catch_block
+    @mysql_repository.mysql_try_catch_block
     def get_alarm_definition(self, tenant_id, id):
 
         parms = [tenant_id, id]
@@ -72,9 +70,9 @@ class AlarmDefinitionsRepository(MySQLRepository,
         if rows:
             return rows[0]
         else:
-            raise DoesNotExistException
+            raise repository_exceptions.exceptions.DoesNotExistException
 
-    @mysql_try_catch_block
+    @mysql_repository.mysql_try_catch_block
     def get_alarm_definitions(self, tenant_id, name, dimensions):
 
         parms = [tenant_id]
@@ -114,7 +112,7 @@ class AlarmDefinitionsRepository(MySQLRepository,
         return self._execute_query(query, parms)
 
 
-    @mysql_try_catch_block
+    @mysql_repository.mysql_try_catch_block
     def get_sub_alarms(self, tenant_id, alarm_definition_id):
 
         parms = [tenant_id, alarm_definition_id]
@@ -131,7 +129,7 @@ class AlarmDefinitionsRepository(MySQLRepository,
 
         return self._execute_query(query, parms)
 
-    @mysql_try_catch_block
+    @mysql_repository.mysql_try_catch_block
     def get_alarm_metrics(self, tenant_id, alarm_definition_id):
 
         parms =  [tenant_id, alarm_definition_id]
@@ -156,7 +154,7 @@ class AlarmDefinitionsRepository(MySQLRepository,
 
         return self._execute_query(query, parms)
 
-    @mysql_try_catch_block
+    @mysql_repository.mysql_try_catch_block
     def delete_alarm_definition(self, tenant_id, alarm_definition_id):
         """Soft delete the alarm definition.
 
@@ -187,7 +185,7 @@ class AlarmDefinitionsRepository(MySQLRepository,
 
         return True
 
-    @mysql_try_catch_block
+    @mysql_repository.mysql_try_catch_block
     def get_sub_alarm_definitions(self, alarm_definition_id):
 
         parms = [alarm_definition_id]
@@ -206,7 +204,7 @@ class AlarmDefinitionsRepository(MySQLRepository,
 
         return self._execute_query(query, parms)
 
-    @mysql_try_catch_block
+    @mysql_repository.mysql_try_catch_block
     def create_alarm_definition(self, tenant_id, name, expression,
                                 sub_expr_list, description, severity, match_by,
                                 alarm_actions, undetermined_actions,
@@ -283,7 +281,7 @@ class AlarmDefinitionsRepository(MySQLRepository,
                            action.encode('utf8'))
             row = cursor.fetchone()
             if not row:
-                raise exceptions.RepositoryException(
+                raise mysql_repository.exceptions.RepositoryException(
                     "Non-existent notification id {} submitted for {} "
                     "notification action".format(action.encode('utf8'),
                                                  alarm_state.encode('utf8')))
@@ -293,5 +291,3 @@ class AlarmDefinitionsRepository(MySQLRepository,
                                action_id)
                                values(?,?,?)""", alarm_definition_id,
                            alarm_state.encode('utf8'), action.encode('utf8'))
-
-
