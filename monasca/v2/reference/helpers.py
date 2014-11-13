@@ -160,25 +160,31 @@ def get_query_dimensions(req):
         raise falcon.HTTPBadRequest('Bad request', ex.message)
 
 
-def get_query_starttime_timestamp(req):
+def get_query_starttime_timestamp(req, required=True):
     try:
         params = parse_query_string(req.query_string)
         if 'start_time' in params:
             return _convert_time_string(params['start_time'])
         else:
-            raise Exception("Missing start time")
+            if required:
+                raise Exception("Missing start time")
+            else:
+                return None
     except Exception as ex:
         LOG.debug(ex)
         raise falcon.HTTPBadRequest('Bad request', ex.message)
 
 
-def get_query_endtime_timestamp(req):
+def get_query_endtime_timestamp(req, required=True):
     try:
         params = parse_query_string(req.query_string)
         if 'end_time' in params:
             return _convert_time_string(params['end_time'])
         else:
-            return None
+            if required:
+                raise Exception("Missing end time")
+            else:
+                return None
     except Exception as ex:
         LOG.debug(ex)
         raise falcon.HTTPBadRequest('Bad request', ex.message)
