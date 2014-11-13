@@ -11,27 +11,22 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
-import datetime
 import pyodbc
-from monasca.common.repositories.exceptions import DoesNotExistException
 
 from oslo.config import cfg
 
-from monasca.common.repositories import alarms_repository
+import monasca.common.repositories.exceptions as repository_exceptions
 from monasca.openstack.common import log
-from monasca.openstack.common import uuidutils
-from monasca.common.repositories import exceptions
 
 
 LOG = log.getLogger(__name__)
 
 
 class MySQLRepository(object):
-
     database_driver = 'MySQL ODBC 5.3 ANSI Driver'
-    database_cnxn_template = 'DRIVER={' \
-                             '%s};Server=%s;CHARSET=UTF8;Database=%s;Uid=%s' \
-                             ';Pwd=%s'
+    database_cnxn_template = ('DRIVER={'
+                              '%s};Server=%s;CHARSET=UTF8;Database=%s;Uid=%s'
+                              ';Pwd=%s')
 
     def __init__(self):
 
@@ -52,7 +47,7 @@ class MySQLRepository(object):
 
         except Exception as ex:
             LOG.exception(ex)
-            raise exceptions.RepositoryException(ex)
+            raise repository_exceptions.RepositoryException(ex)
 
     def _get_cnxn_cursor_tuple(self):
 
@@ -64,7 +59,6 @@ class MySQLRepository(object):
 
         cnxn.commit()
         cnxn.close()
-
 
     def _execute_query(self, query, parms):
 
@@ -78,7 +72,6 @@ class MySQLRepository(object):
 
         return rows
 
-
 def mysql_try_catch_block(fun):
 
     def try_it(*args, **kwargs):
@@ -87,10 +80,10 @@ def mysql_try_catch_block(fun):
 
             return fun(*args, **kwargs)
 
-        except DoesNotExistException:
+        except repository_exceptions.DoesNotExistException:
             raise
         except Exception as ex:
             LOG.exception(ex)
-            raise exceptions.RepositoryException(ex)
+            raise repository_exceptions.RepositoryException(ex)
 
     return try_it
