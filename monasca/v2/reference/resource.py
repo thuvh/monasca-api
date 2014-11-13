@@ -1,6 +1,6 @@
 import falcon
-from monasca.common.messaging import exceptions
 from monasca.common.repositories.exceptions import DoesNotExistException
+from monasca.common.repositories.exceptions import RepositoryException
 from monasca.openstack.common import log
 
 
@@ -21,7 +21,7 @@ def resource_try_catch_block(fun):
             raise falcon.HTTPNotFound
         except falcon.HTTPBadRequest:
             raise
-        except exceptions.RepositoryException as ex:
+        except RepositoryException as ex:
             LOG.exception(ex)
             msg = "".join(ex.message.args)
             raise falcon.HTTPInternalServerError('Service unavailable', msg)

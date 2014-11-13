@@ -8,4 +8,8 @@ gunicorn>=19.1.0
 oslo.config>=1.2.1
 ujson>=1.33
 Pyparsing>=2.0.3
+--extra-index-url  http://code.google.com/p/pyodbc/downloads/list
+--allow-external pyodbc
+--allow-unverified pyodbc
 pyodbc>=3.0.7
+influxdb>=0.1.12
