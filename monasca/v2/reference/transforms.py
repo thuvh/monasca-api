@@ -12,24 +12,21 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-# TODO: Used simplejson to read the yaml as simplejson transforms to "str"
-# not "unicode"
-
 import json
-import simplejson
 
 import falcon
 from oslo.config import cfg
 
+from monasca.api import monasca_transforms_api_v2
+from monasca.common.repositories import exceptions as repository_exceptions
+from monasca.common import resource_api
 from monasca.openstack.common import log
 from monasca.openstack.common import uuidutils
-from monasca.api import monasca_transforms_api_v2
-from monasca.common import resource_api
-from monasca.common.repositories import exceptions as repository_exceptions
-from monasca.v2.common.schemas import exceptions as schemas_exceptions
-from monasca.v2.common.schemas import \
-    transforms_request_body_schema as schemas_transforms
+from monasca.v2.common.schemas import (exceptions as schemas_exceptions)
+from monasca.v2.common.schemas import (
+    transforms_request_body_schema as schemas_transforms)
 from monasca.v2.reference import helpers
+
 
 LOG = log.getLogger(__name__)
 
@@ -45,7 +42,7 @@ class Transforms(monasca_transforms_api_v2.TransformsV2API):
 
     def _validate_transform(self, transform):
         """Validates the transform
-        
+
         :param transform: An event object.
         :raises falcon.HTTPBadRequest
         """
@@ -57,7 +54,7 @@ class Transforms(monasca_transforms_api_v2.TransformsV2API):
 
     def _create_transform(self, id, tenant_id, transform):
         """Store the transform using the repository.
-        
+
         :param transform: A transform object.
         :raises: falcon.HTTPServiceUnavailable
         """
