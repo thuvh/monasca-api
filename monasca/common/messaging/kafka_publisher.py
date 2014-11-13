@@ -19,8 +19,8 @@ from oslo.config import cfg
 import time
 
 from monasca.openstack.common import log
-from monasca.common.messaging import publisher
 from monasca.common.messaging import exceptions
+from monasca.common.messaging import publisher
 
 
 LOG = log.getLogger(__name__)
