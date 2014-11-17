@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a890539_020fc5e1",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-11-17T18:27:19Z",
+      "side": 1,
+      "message": "did you want to just say \u0027mean\u0027 instead of \u0027avg/mean\u0027?",
+      "revId": "97000ade04c5fa44997dae0e776a0f4e13bdbb53",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
