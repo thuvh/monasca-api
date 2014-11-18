@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a890539_cf7214e3",
+        "filename": "monasca/common/repositories/mysql/mysql_repository.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-11-18T22:15:31Z",
+      "side": 1,
+      "message": "This code should be removed.",
+      "revId": "8e98e19e4be1e2e1e1ac05ef25afb13728f44c60",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a890539_ef7fd0a9",
+        "filename": "monasca/common/repositories/mysql/mysql_repository.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-11-18T22:15:31Z",
+      "side": 1,
+      "message": "Should be renamed to cnxn to be consistent.",
+      "revId": "8e98e19e4be1e2e1e1ac05ef25afb13728f44c60",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
