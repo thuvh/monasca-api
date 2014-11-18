@@ -184,7 +184,7 @@ class AlarmDefinitions(AlarmDefinitionsV2API, Alarming):
         self._send_alarm_definition_deleted_event(id,
                                                   sub_alarm_definition_rows)
 
-        self._send_alarm_deleted_event(tenant_id, id, alarm_metric_rows,
+        self._send_alarm_event(u'alarm-deleted', tenant_id, id, alarm_metric_rows,
                                        sub_alarm_rows)
 
     @resource_try_catch_block
