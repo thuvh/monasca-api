@@ -12,8 +12,8 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+import MySQLdb as mdb
 from oslo.config import cfg
-import pyodbc
 
 from monasca.common.repositories import exceptions
 from monasca.openstack.common import log
@@ -35,15 +35,10 @@ class MySQLRepository(object):
             super(MySQLRepository, self).__init__()
 
             self.conf = cfg.CONF
-            database_name = self.conf.mysql.database_name
-            database_server = self.conf.mysql.hostname
-            database_uid = self.conf.mysql.username
-            database_pwd = self.conf.mysql.password
-            self._cnxn_string = (
-                MySQLRepository.database_cnxn_template % (
-                    MySQLRepository.database_driver,
-                    database_server, database_name, database_uid,
-                    database_pwd))
+            self.database_name = self.conf.mysql.database_name
+            self.database_server = self.conf.mysql.hostname
+            self.database_uid = self.conf.mysql.username
+            self.database_pwd = self.conf.mysql.password
 
         except Exception as ex:
             LOG.exception(ex)
@@ -51,26 +46,22 @@ class MySQLRepository(object):
 
     def _get_cnxn_cursor_tuple(self):
 
-        cnxn = pyodbc.connect(self._cnxn_string)
-        cursor = cnxn.cursor()
+        cnxn = mdb.connect(self.database_server, self.database_uid,
+                           self.database_pwd, self.database_name,
+                           use_unicode=True)
+
+        cursor = cnxn.cursor(mdb.cursors.DictCursor)
+
         return cnxn, cursor
-
-    def _commit_close_cnxn(self, cnxn):
-
-        cnxn.commit()
-        cnxn.close()
 
     def _execute_query(self, query, parms):
 
-        cnxn, cursor = self._get_cnxn_cursor_tuple()
+        con, cursor = self._get_cnxn_cursor_tuple()
 
-        cursor.execute(query, parms)
+        with con:
 
-        rows = cursor.fetchall()
-
-        self._commit_close_cnxn(cnxn)
-
-        return rows
+            cursor.execute(query, parms)
+            return cursor.fetchall()
 
 
 def mysql_try_catch_block(fun):
