@@ -88,6 +88,34 @@ class AlarmsRepository(mysql_repository.MySQLRepository,
         return self._execute_query(query, parms)
 
     @mysql_repository.mysql_try_catch_block
+    def update_alarm(self, tenant_id, id, state):
+
+        parms = [state, tenant_id, id]
+
+        query = """
+            update alarm
+            set state = %s
+            where alarm.id in
+            (select distinct id
+              from
+                (select distinct alarm.id
+                 from alarm
+                 inner join alarm_definition
+                  on alarm_definition.id = alarm.alarm_definition_id
+              where alarm_definition.tenant_id = %s and alarm.id = %s)
+              as tmptable
+            )"""
+
+        cnxn, cursor = self._get_cnxn_cursor_tuple()
+
+        with cnxn:
+
+            cursor.execute(query, parms)
+
+            if cursor.rowcount < 1:
+                raise exceptions.DoesNotExistException
+
+    @mysql_repository.mysql_try_catch_block
     def delete_alarm(self, tenant_id, id):
 
         parms = [tenant_id, id]
