@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5a890539_e1cc408d",
+        "filename": "src/main/java/monasca/api/domain/model/notificationmethod/NotificationMethodType.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 10046
+      },
+      "writtenOn": "2014-11-19T14:47:47Z",
+      "side": 1,
+      "message": "That\u0027s ok. I was in doubt of which one to name it. I\u0027ll change.",
+      "parentUuid": "5a890539_8a571aca",
+      "revId": "a2f0bdcbd9048696837fb72174334b1b5593bde0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a890539_0a9eca63",
         "filename": "src/test/resources/monasca/api/infrastructure/persistence/mysql/notification_method.sql",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2014-11-18T22:34:14Z",
       "side": 1,
       "message": "Would prefer WEBHOOK",
+      "revId": "a2f0bdcbd9048696837fb72174334b1b5593bde0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a890539_01ca2c6e",
+        "filename": "src/test/resources/monasca/api/infrastructure/persistence/mysql/notification_method.sql",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 10046
+      },
+      "writtenOn": "2014-11-19T14:47:47Z",
+      "side": 1,
+      "message": "++",
+      "parentUuid": "5a890539_0a9eca63",
       "revId": "a2f0bdcbd9048696837fb72174334b1b5593bde0",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
