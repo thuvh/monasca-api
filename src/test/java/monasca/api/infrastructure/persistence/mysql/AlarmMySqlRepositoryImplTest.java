@@ -126,7 +126,7 @@ public class AlarmMySqlRepositoryImplTest {
     repo.deleteById("123111");
 
     try {
-      assertNull(repo.findById("123111"));
+      assertNull(repo.findById("bob", "123111"));
       fail();
     } catch (EntityNotFoundException expected) {
     }
@@ -176,7 +176,7 @@ public class AlarmMySqlRepositoryImplTest {
     beforeMethod();
 
     final String alarmId = "1";
-    Alarm alarm = repo.findById(alarmId);
+    Alarm alarm = repo.findById("bob", alarmId);
 
     assertEquals(alarm.getId(), alarmId);
     assertEquals(alarm.getAlarmDefinition().getId(), "1");
