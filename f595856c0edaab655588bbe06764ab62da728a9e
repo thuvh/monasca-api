@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a890539_e30cdf96",
+        "filename": "src/main/java/monasca/api/app/command/CreateNotificationMethodCommand.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 10046
+      },
+      "writtenOn": "2014-11-21T13:28:33Z",
+      "side": 1,
+      "message": "Is there some problem with these characters?",
+      "revId": "f595856c0edaab655588bbe06764ab62da728a9e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
