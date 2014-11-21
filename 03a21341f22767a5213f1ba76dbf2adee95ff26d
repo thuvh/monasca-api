@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a890539_3fb18a8f",
+        "filename": "src/main/java/monasca/api/app/AlarmService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-11-21T23:24:17Z",
+      "side": 1,
+      "message": "There is a better way to do this from an interface stand-point. deleteById should just take the tenantId and alarmId.\n\nAlso, you shouldn\u0027t have to do this as two separate SQL queries. It would be better to do this as a single SQL query.\n\nSee the SQL queries in the Python API at\n\nmonasca-api/python/monasca/common/repositories/mysqlalarms_repository.py\n\nUnless there is a strong reason why deleteById should have tenantId added as a parameter. Then delete would just invoke deleteById(tenantId, alarmId) and the code in the repository would decide if if was going to implement as two queries or one, but one is better.",
+      "revId": "03a21341f22767a5213f1ba76dbf2adee95ff26d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a890539_7f74f2fd",
+        "filename": "src/main/java/monasca/api/domain/model/alarm/AlarmRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-11-21T23:24:17Z",
+      "side": 1,
+      "message": "I think this interface should have tenantId added to it similar to findById as deleteById has a potential security hole in it.",
+      "revId": "03a21341f22767a5213f1ba76dbf2adee95ff26d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a890539_7f1dd2bd",
+        "filename": "src/main/java/monasca/api/domain/model/alarm/AlarmRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2014-11-21T23:24:17Z",
+      "side": 1,
+      "message": "I think this interface should have tenantId added to it similar to the method up above. My concern is that this is exposing a possible security issue.",
+      "revId": "03a21341f22767a5213f1ba76dbf2adee95ff26d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
