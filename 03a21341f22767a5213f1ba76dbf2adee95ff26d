@@ -50,6 +50,41 @@
       "revId": "03a21341f22767a5213f1ba76dbf2adee95ff26d",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a890539_8d3b26d0",
+        "filename": "src/main/java/monasca/api/domain/model/alarm/AlarmRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-11-23T22:41:30Z",
+      "side": 1,
+      "message": "I agree on the others, but I disagree on this one. This is only called from code that has already validated the alarm exists for the tenant id",
+      "parentUuid": "5a890539_7f1dd2bd",
+      "revId": "03a21341f22767a5213f1ba76dbf2adee95ff26d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a890539_cd31aeee",
+        "filename": "src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmMySqlRepositoryImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-11-23T22:41:30Z",
+      "side": 1,
+      "message": "Again, here, has the tenant id already been validated? If so, then don\u0027t require it here",
+      "revId": "03a21341f22767a5213f1ba76dbf2adee95ff26d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
