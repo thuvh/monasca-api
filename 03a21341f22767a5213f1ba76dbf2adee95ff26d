@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5a890539_c4da4e4a",
+        "filename": "src/main/java/monasca/api/app/AlarmService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 12108
+      },
+      "writtenOn": "2014-11-24T20:55:12Z",
+      "side": 1,
+      "message": "I think I understand what you are saying on passing the tenantId to the deleteById method but the alarm, metrics and subAlarmMetricDefs above are all needed by the event processing code below.  If I delete any of the queries above, I won\u0027t have the information needed to create the AlarmDeletedEvent object below.  I may be missing something?",
+      "parentUuid": "5a890539_3fb18a8f",
+      "revId": "03a21341f22767a5213f1ba76dbf2adee95ff26d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a890539_7f74f2fd",
         "filename": "src/main/java/monasca/api/domain/model/alarm/AlarmRepository.java",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2014-11-21T23:24:17Z",
       "side": 1,
       "message": "I think this interface should have tenantId added to it similar to findById as deleteById has a potential security hole in it.",
+      "revId": "03a21341f22767a5213f1ba76dbf2adee95ff26d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a890539_84a206ac",
+        "filename": "src/main/java/monasca/api/domain/model/alarm/AlarmRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 12108
+      },
+      "writtenOn": "2014-11-24T20:55:12Z",
+      "side": 1,
+      "message": "Agreed",
+      "parentUuid": "5a890539_7f74f2fd",
       "revId": "03a21341f22767a5213f1ba76dbf2adee95ff26d",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -71,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "5a890539_046e162f",
+        "filename": "src/main/java/monasca/api/domain/model/alarm/AlarmRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 12108
+      },
+      "writtenOn": "2014-11-24T20:55:12Z",
+      "side": 1,
+      "message": "Craig is correct that the AlarmSubExpressions are not queried unless the Alarm is queried successfully first.",
+      "parentUuid": "5a890539_7f1dd2bd",
+      "revId": "03a21341f22767a5213f1ba76dbf2adee95ff26d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a890539_cd31aeee",
         "filename": "src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmMySqlRepositoryImpl.java",
         "patchSetId": 1
@@ -82,6 +136,24 @@
       "writtenOn": "2014-11-23T22:41:30Z",
       "side": 1,
       "message": "Again, here, has the tenant id already been validated? If so, then don\u0027t require it here",
+      "revId": "03a21341f22767a5213f1ba76dbf2adee95ff26d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a890539_c4adee85",
+        "filename": "src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmMySqlRepositoryImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 12108
+      },
+      "writtenOn": "2014-11-24T20:55:12Z",
+      "side": 1,
+      "message": "The tenantId is validated in some but not all cases.",
+      "parentUuid": "5a890539_cd31aeee",
       "revId": "03a21341f22767a5213f1ba76dbf2adee95ff26d",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
