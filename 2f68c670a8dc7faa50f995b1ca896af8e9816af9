@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a890539_f3b3484b",
+        "filename": "src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmMySqlRepositoryImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2014-11-26T16:24:01Z",
+      "side": 1,
+      "message": "i know this was done in the python port, but i\u0027ve been thinking that we should call the temp table \u0027tmptable\u0027 instead of \u0027b\u0027.",
+      "revId": "2f68c670a8dc7faa50f995b1ca896af8e9816af9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
