@@ -16,6 +16,24 @@
       "revId": "f388c678df05fec40e5198fef68a5a4eb1597262",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a890539_bf8c91d8",
+        "filename": "monasca/v2/reference/__init__.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 2860
+      },
+      "writtenOn": "2014-12-02T21:49:30Z",
+      "side": 1,
+      "message": "I actually prefer all these configuration parameters not being put in single files. They should be in a file where they get used. Please see my comments.",
+      "parentUuid": "5a890539_34ce082e",
+      "revId": "f388c678df05fec40e5198fef68a5a4eb1597262",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
