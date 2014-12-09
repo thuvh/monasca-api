@@ -78,20 +78,20 @@ final class Utils {
 
   }
 
-  static String buildSerieNameRegex(final String tenantId, final String name,
+  static String buildSerieNameRegex(final String tenantId, String region, final String name,
                                     final Map<String, String> dimensions) throws Exception {
+
     final StringBuilder regex = new StringBuilder("^");
+
+    regex.append(urlEncodeUTF8(tenantId));
+    regex.append("\\?");
+    regex.append(urlEncodeUTF8(region));
 
     // Name is optional.
     if (name != null) {
+      regex.append("&");
       regex.append(urlEncodeUTF8(name));
-    } else {
-      regex.append(".+");
     }
-
-    // Tenant ID will always be included in the regex.
-    regex.append("\\?");
-    regex.append(urlEncodeUTF8(tenantId));
 
     // Dimensions are optional.
     if (dimensions != null && !dimensions.isEmpty()) {
