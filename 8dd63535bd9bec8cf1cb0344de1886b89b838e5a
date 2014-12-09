@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a961159_f6fe86ad",
+        "filename": "monasca/v2/reference/alarm_definitions.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-12-09T18:06:29Z",
+      "side": 1,
+      "message": "I\u0027m pretty sure this should be a 200 (OK) not 201 (Created)",
+      "revId": "8dd63535bd9bec8cf1cb0344de1886b89b838e5a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a961159_762a962d",
+        "filename": "monasca/v2/reference/alarm_definitions.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-12-09T18:06:29Z",
+      "side": 1,
+      "message": "200",
+      "revId": "8dd63535bd9bec8cf1cb0344de1886b89b838e5a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a961159_96262215",
+        "filename": "monasca/v2/reference/alarm_definitions.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-12-09T18:06:29Z",
+      "side": 1,
+      "message": "This is not really an event, just part of an event. I would just take out the _event of the name",
+      "revId": "8dd63535bd9bec8cf1cb0344de1886b89b838e5a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a961159_56e83ab4",
+        "filename": "monasca/v2/reference/alarm_definitions.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 552,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-12-09T18:06:29Z",
+      "side": 1,
+      "message": "Looks like there are two variations on these that could be done by helper methods. The only complications are the severity validation and actions_enabled extra handling\n\nThat would make this code simpler",
+      "revId": "8dd63535bd9bec8cf1cb0344de1886b89b838e5a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
