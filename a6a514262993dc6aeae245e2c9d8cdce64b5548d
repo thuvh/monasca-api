@@ -1,0 +1,8 @@
+Verified+2: Jenkins
+Code-Review+2: Craig Bryant <craig.bryant@hp.com>
+Workflow+1: Craig Bryant <craig.bryant@hp.com>
+Submitted-by: Jenkins
+Submitted-at: Tue, 09 Dec 2014 20:19:38 +0000
+Reviewed-on: https://review.openstack.org/140461
+Project: stackforge/monasca-api
+Branch: refs/heads/master
