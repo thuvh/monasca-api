@@ -18,22 +18,19 @@ import falcon
 
 from monasca.api import monasca_api_v2
 from monasca.common import kafka_conn
-from monasca.common import resource_api
 from monasca.openstack.common import log
-
 
 LOG = log.getLogger(__name__)
 
 
-class KafkaDispatcher(monasca_api_v2.V2API):
-    def __init__(self, global_conf):
-        LOG.debug('initializing KafkaDispatcher!')
-        super(KafkaDispatcher, self).__init__(global_conf)
+class BaseDispatcher(monasca_api_v2.V2API):
+    def __init__(self, global_conf, topic):
+        LOG.debug('initializing BaseDispatcher!')
+        super(BaseDispatcher, self).__init__(global_conf)
 
-        self._kafka_conn = kafka_conn.KafkaConnection()
+        self._kafka_conn = kafka_conn.KafkaConnection(topic)
 
-    @resource_api.Restify('/v2.0/metrics/', method='post')
-    def do_post_metrics(self, req, res):
+    def post_data(self, req, res):
         LOG.debug('Getting the call.')
         msg = req.stream.read()
 
