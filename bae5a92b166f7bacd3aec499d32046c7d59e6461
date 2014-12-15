@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a961159_c084aeb3",
+        "filename": "etc/monasca.ini",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 2860
+      },
+      "writtenOn": "2014-12-15T19:03:03Z",
+      "side": 1,
+      "message": "I think it may be better just to add commented examples to enable keystone middleware such as this\n\n# use keystone authenticatation, use pipe line like this line.\n# pipeline \u003d keystonecontext api",
+      "revId": "bae5a92b166f7bacd3aec499d32046c7d59e6461",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a961159_606cda09",
+        "filename": "monasca/middleware/auth.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 2860
+      },
+      "writtenOn": "2014-12-15T19:03:03Z",
+      "side": 1,
+      "message": "not sure what editor you are using. maybe windows based editor.\nnot sure why it showed like that. I use eclipse, it worked quite well.",
+      "revId": "bae5a92b166f7bacd3aec499d32046c7d59e6461",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a961159_2049f28e",
+        "filename": "monasca/middleware/auth.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 2860
+      },
+      "writtenOn": "2014-12-15T19:03:03Z",
+      "side": 1,
+      "message": "this will introduce webob as dependency. Not sure if that is a good idea though.",
+      "revId": "bae5a92b166f7bacd3aec499d32046c7d59e6461",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a961159_80162654",
+        "filename": "monasca/middleware/auth.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 2860
+      },
+      "writtenOn": "2014-12-15T19:03:03Z",
+      "side": 1,
+      "message": "I am not seeing anywhere that the token get verified. You do not\nwant this to actually do authentication and just to create a new \ncontext, right?",
+      "revId": "bae5a92b166f7bacd3aec499d32046c7d59e6461",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a961159_3b2a037f",
+        "filename": "requirements.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 2860
+      },
+      "writtenOn": "2014-12-15T19:03:03Z",
+      "side": 1,
+      "message": "your code is based on older code, I assume, you need to do a rebase first. these things have been moved to implementation specific requirement.txt.",
+      "revId": "bae5a92b166f7bacd3aec499d32046c7d59e6461",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a961159_1b7387b5",
+        "filename": "requirements.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 2860
+      },
+      "writtenOn": "2014-12-15T19:03:03Z",
+      "side": 1,
+      "message": "I do not think you need this line.",
+      "revId": "bae5a92b166f7bacd3aec499d32046c7d59e6461",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
