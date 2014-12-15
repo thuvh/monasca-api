@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "3a961159_61dcdc47",
+        "filename": "etc/monasca.ini",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 10046
+      },
+      "writtenOn": "2014-12-15T20:16:46Z",
+      "side": 1,
+      "message": "I don\u0027t think so... We currently have no authentication, just the mock. So, shouldn\u0027t the default auth mode really be an auth process?",
+      "parentUuid": "3a961159_c084aeb3",
+      "revId": "bae5a92b166f7bacd3aec499d32046c7d59e6461",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a961159_606cda09",
         "filename": "monasca/middleware/auth.py",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2014-12-15T19:03:03Z",
       "side": 1,
       "message": "not sure what editor you are using. maybe windows based editor.\nnot sure why it showed like that. I use eclipse, it worked quite well.",
+      "revId": "bae5a92b166f7bacd3aec499d32046c7d59e6461",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a961159_a1c24484",
+        "filename": "monasca/middleware/auth.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 10046
+      },
+      "writtenOn": "2014-12-15T20:16:46Z",
+      "side": 1,
+      "message": "IDK why it\u0027s like this... But I\u0027ll also check it in the next one.",
+      "parentUuid": "3a961159_606cda09",
       "revId": "bae5a92b166f7bacd3aec499d32046c7d59e6461",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "3a961159_e1bc4c09",
+        "filename": "monasca/middleware/auth.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 10046
+      },
+      "writtenOn": "2014-12-15T20:16:46Z",
+      "side": 1,
+      "message": "why not? did we have some problem in Monasca with webob before?",
+      "parentUuid": "3a961159_2049f28e",
+      "revId": "bae5a92b166f7bacd3aec499d32046c7d59e6461",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a961159_80162654",
         "filename": "monasca/middleware/auth.py",
         "patchSetId": 1
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "3a961159_61577ccb",
+        "filename": "monasca/middleware/auth.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 10046
+      },
+      "writtenOn": "2014-12-15T20:16:46Z",
+      "side": 1,
+      "message": "the token verification is made by keytonemiddleware. This is the called module where the process happens: https://github.com/openstack/keystonemiddleware/blob/master/keystonemiddleware/auth_token.py",
+      "parentUuid": "3a961159_80162654",
+      "revId": "bae5a92b166f7bacd3aec499d32046c7d59e6461",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a961159_3b2a037f",
         "filename": "requirements.txt",
         "patchSetId": 1
@@ -81,6 +153,24 @@
       "writtenOn": "2014-12-15T19:03:03Z",
       "side": 1,
       "message": "your code is based on older code, I assume, you need to do a rebase first. these things have been moved to implementation specific requirement.txt.",
+      "revId": "bae5a92b166f7bacd3aec499d32046c7d59e6461",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a961159_61c93cac",
+        "filename": "requirements.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 10046
+      },
+      "writtenOn": "2014-12-15T20:16:46Z",
+      "side": 1,
+      "message": "I\u0027ll check on that in my next patch.",
+      "parentUuid": "3a961159_3b2a037f",
       "revId": "bae5a92b166f7bacd3aec499d32046c7d59e6461",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
