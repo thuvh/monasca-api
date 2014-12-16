@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a961159_fc9daa5a",
+        "filename": "monasca/v2/reference/notifications.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2014-12-16T20:52:33Z",
+      "side": 1,
+      "message": "At some point you should create a helper method that does the json.dumps and sets the status in the response. It gets ugly seeing the ensure_ascii\u003dFalse).encode(\u0027utf8\u0027) repeated so often",
+      "revId": "ebbe74a901a7ee908dfca00f1aef8759aa96806d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
