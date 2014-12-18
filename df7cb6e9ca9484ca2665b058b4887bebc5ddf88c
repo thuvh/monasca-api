@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a961159_1e45ce6f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 10046
+      },
+      "writtenOn": "2014-12-18T12:16:37Z",
+      "side": 1,
+      "message": "Shouldn\u0027t you explain here why you are removing it?",
+      "revId": "df7cb6e9ca9484ca2665b058b4887bebc5ddf88c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
