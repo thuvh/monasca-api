@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "3a961159_f71807d5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14375
+      },
+      "writtenOn": "2014-12-19T05:39:54Z",
+      "side": 1,
+      "message": "Removed the HealthCheck API to solve Defect JAH-936 which requests removal of the healthcheck as it is not doing anything valuable from a functional point.",
+      "revId": "df7cb6e9ca9484ca2665b058b4887bebc5ddf88c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a961159_1e45ce6f",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
