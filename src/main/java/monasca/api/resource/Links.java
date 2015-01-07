@@ -21,6 +21,8 @@ import javax.ws.rs.core.UriInfo;
 import com.google.common.base.Preconditions;
 
 import monasca.api.MonApiConfiguration;
+import monasca.api.domain.model.common.Paged;
+import monasca.api.domain.model.measurement.Measurements;
 import monasca.common.model.domain.common.AbstractEntity;
 import monasca.api.domain.model.common.Link;
 import monasca.api.domain.model.common.Linked;
@@ -135,4 +137,90 @@ public final class Links {
     resource.setLinks(links);
     return resource;
   }
+
+
+  public static Object paginate(String offset, List<? extends AbstractEntity> elements,
+                                UriInfo uriInfo) {
+
+    if (offset != null) {
+
+      Paged paged = new Paged();
+      Link selfLink = new Link();
+      selfLink.rel = "self";
+      selfLink.href = uriInfo.getRequestUri().toString();
+      paged.links.add(selfLink);
+
+      if (elements != null) {
+        if (elements.size() >= Paged.limit) {
+          Link nextLink = new Link();
+          nextLink.rel = "next";
+          // Create a new URL with the new offset.
+          nextLink.href =
+              uriInfo.getAbsolutePath().toString() + "?offset=" + elements.get(elements.size() - 1)
+                  .getId();
+          // Add the query parms back to the URL without the original offset.
+          for (String parmKey : uriInfo.getQueryParameters().keySet()) {
+            if (!parmKey.equalsIgnoreCase("offset")) {
+              List<String> parmValList = uriInfo.getQueryParameters().get(parmKey);
+              for (String parmVal : parmValList) {
+                nextLink.href += "&" + parmKey + "=" + parmVal;
+              }
+            }
+          }
+          paged.links.add(nextLink);
+        }
+      }
+
+      paged.elements = elements != null ? elements : new ArrayList();
+
+      return paged;
+
+    } else {
+
+      return elements;
+    }
+  }
+
+  public static Object paginateMeasurements(String offset, Measurements measurements,
+                                            UriInfo uriInfo) {
+
+    if (offset != null) {
+
+      Paged paged = new Paged();
+      Link selfLink = new Link();
+      selfLink.rel = "self";
+      selfLink.href = uriInfo.getRequestUri().toString();
+      paged.links.add(selfLink);
+
+      if (measurements.getMeasurements().size() >= Paged.limit) {
+        Link nextLink = new Link();
+        nextLink.rel = "next";
+        // Create a new URL with the new offset.
+        nextLink.href = uriInfo.getAbsolutePath().toString() + "?offset=" + measurements.getId();
+        // Add the query parms back to the URL without the original offset.
+        for (String parmKey : uriInfo.getQueryParameters().keySet()) {
+          if (!parmKey.equalsIgnoreCase("offset")) {
+            List<String> parmValList = uriInfo.getQueryParameters().get(parmKey);
+            for (String parmVal : parmValList) {
+              nextLink.href += "&" + parmKey + "=" + parmVal;
+            }
+          }
+        }
+        paged.links.add(nextLink);
+      }
+
+      List<Measurements> measurementsList = new ArrayList();
+      measurementsList.add(measurements);
+      paged.elements = measurementsList;
+
+      return paged;
+
+    } else {
+
+      return measurements;
+    }
+  }
+
+
+
 }
