@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "3a961159_07b18c8e",
+        "filename": "src/main/java/monasca/api/domain/model/common/Paged.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-01-08T15:53:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a961159_01d25cff",
+      "revId": "de292fa9c56cfe8e487675d08f0645366ac47b4b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a961159_e1fe3069",
         "filename": "src/main/java/monasca/api/domain/model/measurement/Measurements.java",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2015-01-08T15:13:09Z",
       "side": 1,
       "message": "This format doesn\u0027t match the rest of the code",
+      "revId": "de292fa9c56cfe8e487675d08f0645366ac47b4b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a961159_c76a24ec",
+        "filename": "src/main/java/monasca/api/domain/model/measurement/Measurements.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-01-08T15:53:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a961159_e1fe3069",
       "revId": "de292fa9c56cfe8e487675d08f0645366ac47b4b",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "3a961159_275a0850",
+        "filename": "src/main/java/monasca/api/infrastructure/persistence/influxdb/MeasurementInfluxDbRepositoryImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-01-08T15:53:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a961159_e13b90e7",
+      "revId": "de292fa9c56cfe8e487675d08f0645366ac47b4b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a961159_4103840f",
         "filename": "src/main/java/monasca/api/infrastructure/persistence/influxdb/MetricDefinitionInfluxDbRepositoryImpl.java",
         "patchSetId": 1
@@ -64,6 +118,24 @@
       "writtenOn": "2015-01-08T15:13:09Z",
       "side": 1,
       "message": "Don\u0027t rearrange the imports",
+      "revId": "de292fa9c56cfe8e487675d08f0645366ac47b4b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a961159_e73ba0e7",
+        "filename": "src/main/java/monasca/api/infrastructure/persistence/influxdb/MetricDefinitionInfluxDbRepositoryImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-01-08T15:53:33Z",
+      "side": 1,
+      "message": "OK",
+      "parentUuid": "3a961159_4103840f",
       "revId": "de292fa9c56cfe8e487675d08f0645366ac47b4b",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "3a961159_e712c05f",
+        "filename": "src/main/java/monasca/api/resource/Links.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-01-08T15:53:33Z",
+      "side": 1,
+      "message": "Methods have been modified in subsequent patches to make them sufficiently different.",
+      "parentUuid": "3a961159_ac67bf23",
+      "revId": "de292fa9c56cfe8e487675d08f0645366ac47b4b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a961159_ec446774",
         "filename": "src/main/java/monasca/api/resource/MetricResource.java",
         "patchSetId": 1
@@ -98,6 +188,24 @@
       "writtenOn": "2015-01-08T15:13:09Z",
       "side": 1,
       "message": "Don\u0027t reformat this code. You didn\u0027t make any changes to it",
+      "revId": "de292fa9c56cfe8e487675d08f0645366ac47b4b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a961159_320fa42f",
+        "filename": "src/main/java/monasca/api/resource/MetricResource.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-01-08T15:53:33Z",
+      "side": 1,
+      "message": "OK",
+      "parentUuid": "3a961159_ec446774",
       "revId": "de292fa9c56cfe8e487675d08f0645366ac47b4b",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
