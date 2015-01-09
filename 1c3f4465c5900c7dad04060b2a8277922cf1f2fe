@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a961159_e1728c49",
+        "filename": "src/main/java/monasca/api/infrastructure/persistence/influxdb/Utils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 12149
+      },
+      "writtenOn": "2015-01-09T17:45:21Z",
+      "side": 1,
+      "message": "Any thoughts on using the Apache Commons StringUtils library calling\n\nif (!dimensions.isBlank()) {\n\nin place of\n\nif (dimensions !\u003d null \u0026\u0026 !dimensions.isEmpty()) {\n\nThis would catch the condition where the dimension could have white space in it.  Not sure if .strip() is already being called on the dimension insert which would negate the need to do this.",
+      "revId": "1c3f4465c5900c7dad04060b2a8277922cf1f2fe",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
