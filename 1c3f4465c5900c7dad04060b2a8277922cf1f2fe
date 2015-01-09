@@ -16,6 +16,24 @@
       "revId": "1c3f4465c5900c7dad04060b2a8277922cf1f2fe",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a961159_61e4dce0",
+        "filename": "src/main/java/monasca/api/infrastructure/persistence/influxdb/Utils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-01-09T17:49:01Z",
+      "side": 1,
+      "message": "We use the google guava library. it has a similar function for strings.",
+      "parentUuid": "3a961159_e1728c49",
+      "revId": "1c3f4465c5900c7dad04060b2a8277922cf1f2fe",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
