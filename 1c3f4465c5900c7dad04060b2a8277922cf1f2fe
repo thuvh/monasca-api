@@ -34,6 +34,24 @@
       "revId": "1c3f4465c5900c7dad04060b2a8277922cf1f2fe",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a961159_4197e0eb",
+        "filename": "src/main/java/monasca/api/infrastructure/persistence/influxdb/Utils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-01-09T17:56:36Z",
+      "side": 1,
+      "message": "Dimensions is a Map, not a String so can\u0027t use StringUtils.",
+      "parentUuid": "3a961159_e1728c49",
+      "revId": "1c3f4465c5900c7dad04060b2a8277922cf1f2fe",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
