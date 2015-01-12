@@ -19,6 +19,23 @@
     },
     {
       "key": {
+        "uuid": "3a961159_981ae46d",
+        "filename": "monasca/common/repositories/metrics_repository.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 12133
+      },
+      "writtenOn": "2015-01-12T21:39:35Z",
+      "side": 1,
+      "message": "Does the alarm_history abstract method belong here?  (This is the metrics_repository file I believe.)",
+      "revId": "482bf6b19a1fd04c426adf9f14b63311ad3fc719",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a961159_5d486e2e",
         "filename": "monasca/v2/reference/alarms.py",
         "patchSetId": 7
