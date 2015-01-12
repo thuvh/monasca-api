@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a961159_3d0c823b",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-01-12T21:23:21Z",
+      "side": 1,
+      "message": "I believe you don\u0027t need the ( on this line",
+      "revId": "482bf6b19a1fd04c426adf9f14b63311ad3fc719",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a961159_5d486e2e",
+        "filename": "monasca/v2/reference/alarms.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-01-12T21:23:21Z",
+      "side": 1,
+      "message": "Extra comma",
+      "revId": "482bf6b19a1fd04c426adf9f14b63311ad3fc719",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a961159_bdfdd2b3",
+        "filename": "monasca/v2/reference/helpers.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-01-12T21:23:21Z",
+      "side": 1,
+      "message": "Why \u0027x\u0027?",
+      "revId": "482bf6b19a1fd04c426adf9f14b63311ad3fc719",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a961159_bd707241",
+        "filename": "monasca/v2/reference/metrics.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-01-12T21:23:21Z",
+      "side": 1,
+      "message": "This piece of code seems to be changing the format of the returned json even if offset isn\u0027t given",
+      "revId": "482bf6b19a1fd04c426adf9f14b63311ad3fc719",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
