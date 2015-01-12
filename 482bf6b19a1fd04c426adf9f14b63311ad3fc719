@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "3a961159_fd4cba9f",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-01-12T21:43:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a961159_3d0c823b",
+      "revId": "482bf6b19a1fd04c426adf9f14b63311ad3fc719",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a961159_981ae46d",
         "filename": "monasca/common/repositories/metrics_repository.py",
         "patchSetId": 7
@@ -30,6 +48,24 @@
       "writtenOn": "2015-01-12T21:39:35Z",
       "side": 1,
       "message": "Does the alarm_history abstract method belong here?  (This is the metrics_repository file I believe.)",
+      "revId": "482bf6b19a1fd04c426adf9f14b63311ad3fc719",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a961159_18f19401",
+        "filename": "monasca/common/repositories/metrics_repository.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-01-12T21:43:43Z",
+      "side": 1,
+      "message": "yeah, but the alarm history is in the influxdb. so... we put the code that access influxdb in the metrics_repository. i admit it is a bit confusing.",
+      "parentUuid": "3a961159_981ae46d",
       "revId": "482bf6b19a1fd04c426adf9f14b63311ad3fc719",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "3a961159_7d58ca57",
+        "filename": "monasca/v2/reference/alarms.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-01-12T21:43:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a961159_5d486e2e",
+      "revId": "482bf6b19a1fd04c426adf9f14b63311ad3fc719",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a961159_bdfdd2b3",
         "filename": "monasca/v2/reference/helpers.py",
         "patchSetId": 7
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "3a961159_780d3835",
+        "filename": "monasca/v2/reference/helpers.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-01-12T21:43:43Z",
+      "side": 1,
+      "message": "Without a value for the query parameter, the python library will not pass the name on. With java, we could have a query parm \u0027offset\u003d\u0027 and the query parm name \u0027offset\u0027 would come thru with a value of null. Some way was needed to indicate an unknown offset. \u0027x\u0027 seemed like a good choice. When we make paging mandatory, the \u0027x\u0027 will go away.",
+      "parentUuid": "3a961159_bdfdd2b3",
+      "revId": "482bf6b19a1fd04c426adf9f14b63311ad3fc719",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a961159_bd707241",
         "filename": "monasca/v2/reference/metrics.py",
         "patchSetId": 7
@@ -81,6 +153,24 @@
       "writtenOn": "2015-01-12T21:23:21Z",
       "side": 1,
       "message": "This piece of code seems to be changing the format of the returned json even if offset isn\u0027t given",
+      "revId": "482bf6b19a1fd04c426adf9f14b63311ad3fc719",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a961159_18a35401",
+        "filename": "monasca/v2/reference/metrics.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-01-12T21:43:43Z",
+      "side": 1,
+      "message": "Indeed. Fixed.",
+      "parentUuid": "3a961159_bd707241",
       "revId": "482bf6b19a1fd04c426adf9f14b63311ad3fc719",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
