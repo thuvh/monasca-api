@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a961159_6ea1cf94",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-01-13T18:59:12Z",
+      "side": 1,
+      "message": "missing \"be\"?",
+      "revId": "055b4338e0125ae4878942a80b265912e7647f52",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a961159_6ecf0f58",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-01-13T18:59:12Z",
+      "side": 1,
+      "message": "\"or of the number\"?",
+      "revId": "055b4338e0125ae4878942a80b265912e7647f52",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
