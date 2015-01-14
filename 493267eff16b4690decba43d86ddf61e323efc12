@@ -16,6 +16,24 @@
       "revId": "493267eff16b4690decba43d86ddf61e323efc12",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a961159_998e3878",
+        "filename": "src/main/java/monasca/api/app/AlarmDefinitionService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-01-14T01:10:36Z",
+      "side": 1,
+      "message": "The calculations of what subexpressions have changed is really in subExpressionsFor(). This code just uses the result from subExpressionsFor() which is subExpressions to do the final validation",
+      "parentUuid": "3a961159_68c7fc65",
+      "revId": "493267eff16b4690decba43d86ddf61e323efc12",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
