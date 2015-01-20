@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a961159_a51ea672",
+        "filename": "etc/monasca.ini",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-01-20T15:28:35Z",
+      "side": 1,
+      "message": "Should this be snake case?",
+      "revId": "cf7ee05da3c67328ccfe205b45fcfe2dd4fde165",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a961159_6884950b",
+        "filename": "etc/monasca.ini",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-01-20T15:28:35Z",
+      "side": 1,
+      "message": "Snake case?",
+      "revId": "cf7ee05da3c67328ccfe205b45fcfe2dd4fde165",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
