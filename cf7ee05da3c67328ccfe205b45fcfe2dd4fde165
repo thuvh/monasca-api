@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "3a961159_1c398fa3",
+        "filename": "etc/monasca.ini",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 10046
+      },
+      "writtenOn": "2015-01-20T17:28:44Z",
+      "side": 1,
+      "message": "Ok. Will change it in my next patch.",
+      "parentUuid": "3a961159_a51ea672",
+      "revId": "cf7ee05da3c67328ccfe205b45fcfe2dd4fde165",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a961159_6884950b",
         "filename": "etc/monasca.ini",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2015-01-20T15:28:35Z",
       "side": 1,
       "message": "Snake case?",
+      "revId": "cf7ee05da3c67328ccfe205b45fcfe2dd4fde165",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a961159_5c5a37f3",
+        "filename": "etc/monasca.ini",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 10046
+      },
+      "writtenOn": "2015-01-20T17:28:44Z",
+      "side": 1,
+      "message": "If you\u0027re talking about \u0027keystonemiddleware\u0027, it\u0027s the name of the library, so, we can\u0027t change it.",
+      "parentUuid": "3a961159_6884950b",
       "revId": "cf7ee05da3c67328ccfe205b45fcfe2dd4fde165",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
