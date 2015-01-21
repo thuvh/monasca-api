@@ -89,6 +89,7 @@ public class MonApiModule extends AbstractModule {
     Properties props = new Properties();
     props.put("metadata.broker.list", Joiner.on(',').join(config.kafka.brokerUris));
     props.put("serializer.class", "kafka.serializer.StringEncoder");
+    props.put("partitioner.class", MonascaStringPartitioner.class.getName());
     props.put("request.required.acks", "1");
     ProducerConfig config = new ProducerConfig(props);
     return new Producer<String, String>(config);
