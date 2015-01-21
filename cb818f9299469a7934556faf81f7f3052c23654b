@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a930d6b_b2635a19",
+        "filename": "src/main/java/monasca/api/MonascaStringPartitioner.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-01-21T16:15:55Z",
+      "side": 1,
+      "message": "I don\u0027t understand why the shifting and adding is necessary. I also don\u0027t understand why it is being shifted down by 6 and 12.",
+      "revId": "cb818f9299469a7934556faf81f7f3052c23654b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
