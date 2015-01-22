@@ -16,6 +16,24 @@
       "revId": "1f2747d2531d5c3e71c22f106b723f11c284a0d9",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a930d6b_f22047f9",
+        "filename": "src/main/java/monasca/api/app/MetricService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-01-22T23:41:49Z",
+      "side": 1,
+      "message": "Yes, the treemap would do it automatically, but that would require the creation of the TreeMap with all of its elements. This way only creates an ArrayList which I think is more efficient",
+      "parentUuid": "1a930d6b_f7aaf917",
+      "revId": "1f2747d2531d5c3e71c22f106b723f11c284a0d9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
