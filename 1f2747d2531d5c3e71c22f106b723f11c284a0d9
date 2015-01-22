@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a930d6b_f7aaf917",
+        "filename": "src/main/java/monasca/api/app/MetricService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-01-22T23:11:52Z",
+      "side": 1,
+      "message": "a TreeMap will do this for you automatically.",
+      "revId": "1f2747d2531d5c3e71c22f106b723f11c284a0d9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
