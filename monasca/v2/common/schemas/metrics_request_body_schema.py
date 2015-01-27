@@ -26,7 +26,7 @@ metric_schema = {
     voluptuous.Optional('dimensions'): dimensions_schema.dimensions_schema,
     voluptuous.Required('timestamp'): voluptuous.All(
         voluptuous.Any(int, float), voluptuous.Range(min=0)),
-    voluptuous.Required('value'): voluptuous.Any(int, float)}
+    voluptuous.Required('value'): voluptuous.Any(int, float, str, None)}
 
 request_body_schema = voluptuous.Schema(
     voluptuous.Any(metric_schema, [metric_schema]))
