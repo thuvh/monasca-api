@@ -13,7 +13,7 @@
 # under the License.
 
 import datetime
-
+import copy
 
 def transform(metrics, tenant_id, region):
     transformed_metric = {'metric': {},
@@ -23,8 +23,9 @@ def transform(metrics, tenant_id, region):
     if isinstance(metrics, list):
         transformed_metrics = []
         for metric in metrics:
-            transformed_metric['metric'] = metric
-            transformed_metrics.append(transformed_metric)
+            transformed_copy = copy.deepcopy(transformed_metric)
+            transformed_copy['metric'] = metric
+            transformed_metrics.append(transformed_copy)
         return transformed_metrics
     else:
         transformed_metric['metric'] = metrics
