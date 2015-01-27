@@ -31,6 +31,12 @@ OPTS = [
     cfg.MultiStrOpt('dispatcher',
                     default=[],
                     help='Dispatchers to process data.'),
+    cfg.StrOpt('bind_host',
+               default='0.0.0.0',
+               help='Interface to bind API daemon'),
+    cfg.IntOpt('bind_port',
+               default=9000,
+               help='Port to bind API daemon'),
 ]
 cfg.CONF.register_opts(OPTS)
 
@@ -65,10 +71,13 @@ def api_app(conf):
     LOG.debug('Dispatcher drivers have been added to the routes!')
     return app
 
+def run():
+    wsgi_app = (
+        paste.deploy.loadapp('config:/etc/monasca/monasca.ini'))
+    bind_host = cfg.CONF.bind_host
+    bind_port = cfg.CONF.bind_port
+    httpd = simple_server.make_server(bind_host, bind_port, wsgi_app)
+    httpd.serve_forever()
 
 if __name__ == '__main__':
-    wsgi_app = (
-        paste.deploy.loadapp('config:etc/monasca.ini',
-                             relative_to=os.getcwd()))
-    httpd = simple_server.make_server('127.0.0.1', 9000, wsgi_app)
-    httpd.serve_forever()
+    run()
