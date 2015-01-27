@@ -24,6 +24,9 @@ import javax.inject.Singleton;
 
 import kafka.javaapi.producer.Producer;
 import kafka.producer.ProducerConfig;
+import monasca.api.app.ApplicationModule;
+import monasca.api.domain.DomainModule;
+import monasca.api.infrastructure.InfrastructureModule;
 
 import org.skife.jdbi.v2.DBI;
 
@@ -33,9 +36,6 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.ProvisionException;
 import com.google.inject.name.Names;
-import monasca.api.app.ApplicationModule;
-import monasca.api.domain.DomainModule;
-import monasca.api.infrastructure.InfrastructureModule;
 
 /**
  * Monitoring API server bindings.
