@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa81d914_60304b57",
+        "filename": "src/main/java/monasca/api/MonApiModule.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-01-28T00:49:30Z",
+      "side": 1,
+      "message": "Revert this file. We don\u0027t want import order changes",
+      "revId": "1fe585b22a2bd3faee849e0c17634819f523ab3a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa81d914_401267b5",
+        "filename": "src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-01-28T00:49:30Z",
+      "side": 1,
+      "message": "This should be an inner class in AlarmDefinitionMySqlRepositoryImpl",
+      "revId": "1fe585b22a2bd3faee849e0c17634819f523ab3a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa81d914_607e8be6",
+        "filename": "src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMySqlRepositoryImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-01-28T00:49:30Z",
+      "side": 1,
+      "message": "Don\u0027t rearrange the imports",
+      "revId": "1fe585b22a2bd3faee849e0c17634819f523ab3a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa81d914_00e5cfa7",
+        "filename": "src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMySqlRepositoryImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-01-28T00:49:30Z",
+      "side": 1,
+      "message": "The monasca coding standards call for two spaces for indentation. Please reformat.",
+      "revId": "1fe585b22a2bd3faee849e0c17634819f523ab3a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
