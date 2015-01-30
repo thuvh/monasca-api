@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa81d914_f79c7c11",
+        "filename": "monasca/v2/common/schemas/metrics_request_body_schema.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-01-30T13:56:26Z",
+      "side": 1,
+      "message": "\"value\" must be a int or float and it is not optional. \n\nI don\u0027t think \"str\" and \"None\" are correct.",
+      "revId": "1fcbbb9ee4c9529ba32c87294c7feafd60117f02",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
