@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da86d52c_fac5953d",
+        "filename": "monasca/middleware/auth.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-02-02T22:09:18Z",
+      "side": 1,
+      "message": "2015",
+      "revId": "3b64fbcee8b0e4e28c72bb964f6e520058c72239",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da86d52c_d37277ac",
+        "filename": "monasca/middleware/auth.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-02-02T22:09:18Z",
+      "side": 1,
+      "message": "That comment is not very useful. Might as well remove.",
+      "revId": "3b64fbcee8b0e4e28c72bb964f6e520058c72239",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da86d52c_9a8499d5",
+        "filename": "monasca/middleware/auth.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-02-02T22:09:18Z",
+      "side": 1,
+      "message": "Do we just want to name the file keystone_context_filter.py and name this class KeystoneContextFilter.\n\nIt seems a little redundant to have Monasca as the prefix on the class.",
+      "revId": "3b64fbcee8b0e4e28c72bb964f6e520058c72239",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da86d52c_da545156",
+        "filename": "monasca/middleware/auth.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-02-02T22:09:18Z",
+      "side": 1,
+      "message": "If app and conf are meant to be private members of this class I would prefer _app and _conf.",
+      "revId": "3b64fbcee8b0e4e28c72bb964f6e520058c72239",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da86d52c_3a8f2dce",
+        "filename": "monasca/middleware/auth.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-02-02T22:09:18Z",
+      "side": 1,
+      "message": "Who\u0027s jamielennox? Probably should remove this comment.\nBTW, Annie Lennox was the lead singer for the Eurythmics.",
+      "revId": "3b64fbcee8b0e4e28c72bb964f6e520058c72239",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da86d52c_f03f7123",
+        "filename": "monasca/middleware/context.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-02-02T22:09:18Z",
+      "side": 1,
+      "message": "2015",
+      "revId": "3b64fbcee8b0e4e28c72bb964f6e520058c72239",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da86d52c_90cb951d",
+        "filename": "monasca/middleware/context.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-02-02T22:09:18Z",
+      "side": 1,
+      "message": "What happens if timestamp is not a string? Looks like the code just continues on silently.",
+      "revId": "3b64fbcee8b0e4e28c72bb964f6e520058c72239",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da86d52c_10d7a5c0",
+        "filename": "monasca/middleware/context.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-02-02T22:09:18Z",
+      "side": 1,
+      "message": "What does this previous statement do? Looks like it is looking for \"volume\" and \"volumev2\", is that correct?",
+      "revId": "3b64fbcee8b0e4e28c72bb964f6e520058c72239",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da86d52c_50e11d99",
+        "filename": "monasca/middleware/context.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-02-02T22:09:18Z",
+      "side": 1,
+      "message": "It would be good to get all these private members with a \"_\" prefix.",
+      "revId": "3b64fbcee8b0e4e28c72bb964f6e520058c72239",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
