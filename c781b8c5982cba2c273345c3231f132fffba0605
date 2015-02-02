@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "da86d52c_3ddade78",
+        "filename": "etc/monasca.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 10046
+      },
+      "writtenOn": "2015-02-02T12:23:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da86d52c_ac36cbe5",
+      "revId": "c781b8c5982cba2c273345c3231f132fffba0605",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa81d914_665639d4",
         "filename": "monasca/middleware/auth.py",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2015-01-29T22:18:21Z",
       "side": 1,
       "message": "spelling",
+      "revId": "c781b8c5982cba2c273345c3231f132fffba0605",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da86d52c_9dd02a55",
+        "filename": "monasca/middleware/auth.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 10046
+      },
+      "writtenOn": "2015-02-02T12:23:06Z",
+      "side": 1,
+      "message": "Done. I\u0027ll also provide a better commit message.",
+      "parentUuid": "fa81d914_665639d4",
       "revId": "c781b8c5982cba2c273345c3231f132fffba0605",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
