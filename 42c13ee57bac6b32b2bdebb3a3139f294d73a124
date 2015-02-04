@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da86d52c_d5e2092e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-02-04T15:12:12Z",
+      "side": 1,
+      "message": "Change this to your original message about what this patch is doing.\n\nUse git commit --amend",
+      "revId": "42c13ee57bac6b32b2bdebb3a3139f294d73a124",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da86d52c_b5bcb507",
+        "filename": "src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMySqlRepositoryImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-02-04T15:12:12Z",
+      "side": 1,
+      "message": "Space at end of line",
+      "revId": "42c13ee57bac6b32b2bdebb3a3139f294d73a124",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da86d52c_754ddd3d",
+        "filename": "src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMySqlRepositoryImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-02-04T15:12:12Z",
+      "side": 1,
+      "message": "Don\u0027t reformat things you didn\u0027t change",
+      "revId": "42c13ee57bac6b32b2bdebb3a3139f294d73a124",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da86d52c_954a5124",
+        "filename": "src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMySqlRepositoryImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-02-04T15:12:12Z",
+      "side": 1,
+      "message": "And here. Etc.",
+      "revId": "42c13ee57bac6b32b2bdebb3a3139f294d73a124",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da86d52c_b56af57e",
+        "filename": "src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMySqlRepositoryImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-02-04T15:12:12Z",
+      "side": 1,
+      "message": "The full name is good",
+      "revId": "42c13ee57bac6b32b2bdebb3a3139f294d73a124",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da86d52c_d515a9e5",
+        "filename": "src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMySqlRepositoryImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-02-04T15:12:12Z",
+      "side": 1,
+      "message": "The @Override was lost",
+      "revId": "42c13ee57bac6b32b2bdebb3a3139f294d73a124",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
