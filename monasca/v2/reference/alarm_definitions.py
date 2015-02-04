@@ -483,7 +483,7 @@ class AlarmDefinitions(AlarmDefinitionsV2API, Alarming):
         result = (
             {u'alarm_actions': alarm_actions, u'ok_actions': ok_actions,
              u'description': description, u'match_by': match_by,
-             u'severity': severity.lower(), u'actions_enabled': u'true',
+             u'severity': severity, u'actions_enabled': u'true',
              u'undetermined_actions': undetermined_actions,
              u'expression': expression, u'id': alarm_definition_id,
              u'name': name})
@@ -600,15 +600,15 @@ def get_query_alarm_definition_description(alarm_definition,
 def get_query_alarm_definition_severity(alarm_definition, return_none=False):
     if 'severity' in alarm_definition:
         severity = alarm_definition['severity']
-        severity = severity.decode('utf8').lower()
-        if severity not in ['low', 'medium', 'high', 'critical']:
+        severity = severity.decode('utf8').upper()
+        if severity not in ['LOW', 'MEDIUM', 'HIGH', 'CRITICAL']:
             raise falcon.HTTPBadRequest('Bad request', 'Invalid severity')
         return severity
     else:
         if return_none:
             return None
         else:
-            return ''
+            return 'LOW'
 
 
 def get_query_alarm_definition_match_by(alarm_definition, return_none=False):
