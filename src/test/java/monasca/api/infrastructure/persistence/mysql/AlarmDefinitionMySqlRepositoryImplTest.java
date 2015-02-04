@@ -80,6 +80,7 @@ public class AlarmDefinitionMySqlRepositoryImplTest {
     handle.execute("truncate table alarm_action");
     handle.execute("truncate table sub_alarm_definition_dimension");
     handle.execute("truncate table alarm_definition");
+    handle.execute("truncate table notification_method");
 
     handle
         .execute("insert into alarm_definition (id, tenant_id, name, severity, expression, match_by, actions_enabled, created_at, updated_at, deleted_at) "
@@ -108,6 +109,9 @@ public class AlarmDefinitionMySqlRepositoryImplTest {
     handle.execute("insert into sub_alarm_definition_dimension values ('222', 'metric_name', 'mem')");
     handle.execute("insert into alarm_action values ('234', 'ALARM', '29387234')");
     handle.execute("insert into alarm_action values ('234', 'ALARM', '77778687')");
+    handle.execute("insert into notification_method values ('29387234', 'bob', 'Default Email', 'EMAIL','root@localhost',NOW(),NOW())");
+    handle.execute("insert into notification_method values ('77778687', 'bob', 'Default Email', 'EMAIL','root@localhost',NOW(),NOW())");
+    
   }
 
   public void shouldCreate() {
