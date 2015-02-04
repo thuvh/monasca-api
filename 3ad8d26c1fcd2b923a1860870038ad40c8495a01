@@ -16,6 +16,24 @@
       "revId": "3ad8d26c1fcd2b923a1860870038ad40c8495a01",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da86d52c_e37024de",
+        "filename": "monasca/v2/reference/alarm_definitions.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-02-04T21:48:36Z",
+      "side": 1,
+      "message": "I do the upper before inserting it into the database, but it wouldn\u0027t hurt to do it again. I\u0027ll add it in.\n\nIt is already documented that it returns upper case",
+      "parentUuid": "da86d52c_431e50bc",
+      "revId": "3ad8d26c1fcd2b923a1860870038ad40c8495a01",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
