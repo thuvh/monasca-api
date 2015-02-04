@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da86d52c_431e50bc",
+        "filename": "monasca/v2/reference/alarm_definitions.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-02-04T21:45:18Z",
+      "side": 1,
+      "message": "should we do \u0027severity.upper()\u0027 to ensure uppercase and document that it is always upper?",
+      "revId": "3ad8d26c1fcd2b923a1860870038ad40c8495a01",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
