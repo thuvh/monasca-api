@@ -34,6 +34,24 @@
       "revId": "3ad8d26c1fcd2b923a1860870038ad40c8495a01",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da86d52c_06b1c646",
+        "filename": "monasca/v2/reference/alarm_definitions.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-02-04T21:54:27Z",
+      "side": 1,
+      "message": "Actually, it is guaranteed to be upper case at this point because get_query_alarm_definition_severity() does the upper()\n\nBut, I think I will add the upper() on the return from the database",
+      "parentUuid": "da86d52c_e37024de",
+      "revId": "3ad8d26c1fcd2b923a1860870038ad40c8495a01",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
