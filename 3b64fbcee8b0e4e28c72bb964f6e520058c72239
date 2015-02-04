@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "da86d52c_417104df",
+        "filename": "monasca/middleware/auth.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 10046
+      },
+      "writtenOn": "2015-02-04T12:38:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da86d52c_fac5953d",
+      "revId": "3b64fbcee8b0e4e28c72bb964f6e520058c72239",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da86d52c_d37277ac",
         "filename": "monasca/middleware/auth.py",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2015-02-02T22:09:18Z",
       "side": 1,
       "message": "That comment is not very useful. Might as well remove.",
+      "revId": "3b64fbcee8b0e4e28c72bb964f6e520058c72239",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da86d52c_0152ac3a",
+        "filename": "monasca/middleware/auth.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 10046
+      },
+      "writtenOn": "2015-02-04T12:38:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da86d52c_d37277ac",
       "revId": "3b64fbcee8b0e4e28c72bb964f6e520058c72239",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "da86d52c_618b68c3",
+        "filename": "monasca/middleware/auth.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 10046
+      },
+      "writtenOn": "2015-02-04T12:38:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da86d52c_9a8499d5",
+      "revId": "3b64fbcee8b0e4e28c72bb964f6e520058c72239",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da86d52c_da545156",
         "filename": "monasca/middleware/auth.py",
         "patchSetId": 2
@@ -64,6 +118,24 @@
       "writtenOn": "2015-02-02T22:09:18Z",
       "side": 1,
       "message": "If app and conf are meant to be private members of this class I would prefer _app and _conf.",
+      "revId": "3b64fbcee8b0e4e28c72bb964f6e520058c72239",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da86d52c_a191e0f2",
+        "filename": "monasca/middleware/auth.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 10046
+      },
+      "writtenOn": "2015-02-04T12:38:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da86d52c_da545156",
       "revId": "3b64fbcee8b0e4e28c72bb964f6e520058c72239",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "da86d52c_016b8cf2",
+        "filename": "monasca/middleware/auth.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 10046
+      },
+      "writtenOn": "2015-02-04T12:38:51Z",
+      "side": 1,
+      "message": "LOL. He\u0027s a keystone core, one of the main developers of keystonemiddleware. Will remove this",
+      "parentUuid": "da86d52c_3a8f2dce",
+      "revId": "3b64fbcee8b0e4e28c72bb964f6e520058c72239",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da86d52c_f03f7123",
         "filename": "monasca/middleware/context.py",
         "patchSetId": 2
@@ -104,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "da86d52c_3c7277ad",
+        "filename": "monasca/middleware/context.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 10046
+      },
+      "writtenOn": "2015-02-04T12:38:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da86d52c_f03f7123",
+      "revId": "3b64fbcee8b0e4e28c72bb964f6e520058c72239",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da86d52c_90cb951d",
         "filename": "monasca/middleware/context.py",
         "patchSetId": 2
@@ -115,6 +223,24 @@
       "writtenOn": "2015-02-02T22:09:18Z",
       "side": 1,
       "message": "What happens if timestamp is not a string? Looks like the code just continues on silently.",
+      "revId": "3b64fbcee8b0e4e28c72bb964f6e520058c72239",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da86d52c_1c0e93e5",
+        "filename": "monasca/middleware/context.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 10046
+      },
+      "writtenOn": "2015-02-04T12:38:51Z",
+      "side": 1,
+      "message": "We are currently not passing timestamp. I\u0027ll simplify this",
+      "parentUuid": "da86d52c_90cb951d",
       "revId": "3b64fbcee8b0e4e28c72bb964f6e520058c72239",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -149,6 +275,24 @@
       "writtenOn": "2015-02-02T22:09:18Z",
       "side": 1,
       "message": "It would be good to get all these private members with a \"_\" prefix.",
+      "revId": "3b64fbcee8b0e4e28c72bb964f6e520058c72239",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da86d52c_9cab6374",
+        "filename": "monasca/middleware/context.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 10046
+      },
+      "writtenOn": "2015-02-04T12:38:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da86d52c_50e11d99",
       "revId": "3b64fbcee8b0e4e28c72bb964f6e520058c72239",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
