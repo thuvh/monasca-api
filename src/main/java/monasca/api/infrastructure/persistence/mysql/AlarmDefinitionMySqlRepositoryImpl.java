@@ -13,6 +13,9 @@
  */
 package monasca.api.infrastructure.persistence.mysql;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -25,11 +28,15 @@ import javax.inject.Named;
 import org.skife.jdbi.v2.DBI;
 import org.skife.jdbi.v2.Handle;
 import org.skife.jdbi.v2.Query;
+import org.skife.jdbi.v2.StatementContext;
+import org.skife.jdbi.v2.tweak.ResultSetMapper;
 import org.skife.jdbi.v2.util.StringMapper;
 
 import com.google.common.base.Joiner;
+import com.google.common.base.Splitter;
 import com.google.common.collect.Iterables;
-
+import com.google.common.collect.Lists;
+  
 import monasca.api.domain.model.common.Paged;
 import monasca.common.model.alarm.AggregateFunction;
 import monasca.common.model.alarm.AlarmOperator;
@@ -48,10 +55,9 @@ import monasca.common.persistence.BeanMapper;
  */
 public class AlarmDefinitionMySqlRepositoryImpl implements AlarmDefinitionRepository {
   private static final Joiner COMMA_JOINER = Joiner.on(',');
-  private static final String SUB_ALARM_SQL =
-      "select sa.*, sad.dimensions from sub_alarm_definition as sa "
-          + "left join (select sub_alarm_definition_id, group_concat(dimension_name, '=', value) as dimensions from sub_alarm_definition_dimension group by sub_alarm_definition_id ) as sad "
-          + "on sad.sub_alarm_definition_id = sa.id where sa.alarm_definition_id = :alarmDefId";
+  private static final String SUB_ALARM_SQL = "select sa.*, sad.dimensions from sub_alarm_definition as sa "
+      + "left join (select sub_alarm_definition_id, group_concat(dimension_name, '=', value) as dimensions from sub_alarm_definition_dimension group by sub_alarm_definition_id ) as sad "
+      + "on sad.sub_alarm_definition_id = sa.id where sa.alarm_definition_id = :alarmDefId";
 
   private final DBI db;
 
@@ -63,7 +69,9 @@ public class AlarmDefinitionMySqlRepositoryImpl implements AlarmDefinitionReposi
   @Override
   public AlarmDefinition create(String tenantId, String id, String name, String description,
       String severity, String expression, Map<String, AlarmSubExpression> subExpressions,
+      
       List<String> matchBy, List<String> alarmActions, List<String> okActions,
+      
       List<String> undeterminedActions) {
     Handle h = db.open();
 
@@ -71,8 +79,14 @@ public class AlarmDefinitionMySqlRepositoryImpl implements AlarmDefinitionReposi
       h.begin();
       h.insert(
           "insert into alarm_definition (id, tenant_id, name, description, severity, expression, match_by, actions_enabled, created_at, updated_at, deleted_at) values (?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW(), NULL)",
-          id, tenantId, name, description, severity, expression,
-          matchBy == null || Iterables.isEmpty(matchBy) ? null : COMMA_JOINER.join(matchBy), true);
+          id,
+          tenantId,
+          name,
+          description,
+          severity,
+          expression,
+          matchBy == null || Iterables.isEmpty(matchBy) ? null : COMMA_JOINER
+              .join(matchBy), true);
 
       // Persist sub-alarms
       createSubExpressions(h, id, subExpressions);
@@ -83,9 +97,11 @@ public class AlarmDefinitionMySqlRepositoryImpl implements AlarmDefinitionReposi
       persistActions(h, id, AlarmState.UNDETERMINED, undeterminedActions);
 
       h.commit();
-      return new AlarmDefinition(id, name, description, severity, expression, matchBy, true,
-          alarmActions, okActions == null ? Collections.<String>emptyList() : okActions,
-          undeterminedActions == null ? Collections.<String>emptyList() : undeterminedActions);
+      return new AlarmDefinition(id, name, description, severity, expression,
+          matchBy, true, alarmActions,
+          okActions == null ? Collections.<String> emptyList() : okActions,
+          undeterminedActions == null ? Collections.<String> emptyList()
+              : undeterminedActions);
     } catch (RuntimeException e) {
       h.rollback();
       throw e;
@@ -101,8 +117,9 @@ public class AlarmDefinitionMySqlRepositoryImpl implements AlarmDefinitionReposi
           .update(
               "update alarm_definition set deleted_at = NOW() where tenant_id = ? and id = ? and deleted_at is NULL",
               tenantId, alarmDefId) == 0)
-        throw new EntityNotFoundException("No alarm definition exists for %s", alarmDefId);
-      
+        throw new EntityNotFoundException("No alarm definition exists for %s",
+            alarmDefId);
+
       // Cascade soft delete to alarms
       h.execute("delete from alarm where alarm_definition_id = :id", alarmDefId);
     }
@@ -114,35 +131,41 @@ public class AlarmDefinitionMySqlRepositoryImpl implements AlarmDefinitionReposi
       return h
           .createQuery(
               "select exists(select 1 from alarm_definition where tenant_id = :tenantId and name = :name and deleted_at is NULL)")
-          .bind("tenantId", tenantId).bind("name", name).mapTo(Boolean.TYPE).first();
+          .bind("tenantId", tenantId).bind("name", name).mapTo(Boolean.TYPE)
+          .first();
     }
   }
 
-  @Override
   @SuppressWarnings("unchecked")
-  public List<AlarmDefinition> find(String tenantId, String name, Map<String, String> dimensions, String offset) {
+  @Override
+  public List<AlarmDefinition> find(String tenantId, String name,
+      Map<String, String> dimensions, String offset) {
+
     try (Handle h = db.open()) {
-      String query =
-          "select distinct ad.id, ad.description, ad.tenant_id, ad.severity, ad.expression, ad.match_by, ad.name, ad.actions_enabled, ad.created_at, ad.updated_at, ad.deleted_at "
-              + "from alarm_definition ad join sub_alarm_definition sub on ad.id = sub.alarm_definition_id "
-              + "left outer join sub_alarm_definition_dimension dim on sub.id = dim.sub_alarm_definition_id%s "
-              + "where tenant_id = :tenantId and deleted_at is NULL %s order by %s ad.created_at %s" ;
+      String query = "select T1.* ,group_concat(notification_method.name) as alarmNames, "
+          + "group_concat(alarm_action.alarm_state) as states, group_concat(alarm_action.action_id) as notificationIds from  (select distinct alarm_definition.id,tenant_id,"
+          + "name,description, severity, expression, match_by, actions_enabled, alarm_definition.created_at, alarm_definition.updated_at,"
+          + " alarm_definition.deleted_at from alarm_definition inner join sub_alarm_definition sub on alarm_definition.id = sub.alarm_definition_id"
+          + " left outer join sub_alarm_definition_dimension dim on sub.id = dim.sub_alarm_definition_id%s where tenant_id = :tenantId"
+          + " and deleted_at is NULL %s order by %s alarm_definition.created_at %s) AS T1 INNER JOIN alarm_action ON T1.id=alarm_action.alarm_definition_id"
+          + " INNER JOIN notification_method ON alarm_action.action_id=notification_method.id";
       StringBuilder sbWhere = new StringBuilder();
 
       if (name != null) {
-        sbWhere.append(" and ad.name = :name");
+        sbWhere.append(" and alarm_definition.name = :name");
       }
 
       if (offset != null) {
-        sbWhere.append(" and ad.id > :offset");
+        sbWhere.append(" and alarm_definition.id > :offset");
       }
 
-      String orderBy = offset != null ? "ad.id," : "";
+      String orderBy = offset != null ? "alarm_definition.id," : "";
 
       String limit = offset != null ? " limit :limit" : "";
 
-      String sql = String.format(query, SubAlarmQueries.buildJoinClauseFor(dimensions), sbWhere, orderBy,
-                                 limit);
+      String sql = String.format(query,
+          SubAlarmQueries.buildJoinClauseFor(dimensions), sbWhere, orderBy,
+          limit);
       Query<?> q = h.createQuery(sql).bind("tenantId", tenantId);
 
       if (name != null) {
@@ -153,47 +176,47 @@ public class AlarmDefinitionMySqlRepositoryImpl implements AlarmDefinitionReposi
         q.bind("offset", offset);
         q.bind("limit", Paged.LIMIT);
       }
-
-      q = q.map(new BeanMapper<AlarmDefinition>(AlarmDefinition.class));
+      q.registerMapper(new AlarmDefinitionMapper());
+      q = q.mapTo(AlarmDefinition.class);
       DimensionQueries.bindDimensionsToQuery(q, dimensions);
-
-      List<AlarmDefinition> alarms = (List<AlarmDefinition>) q.list();
-
-      for (AlarmDefinition alarm : alarms)
-        hydrateRelationships(h, alarm);
-      return alarms;
+      List<AlarmDefinition> resultSet = (List<AlarmDefinition>) q.list();
+      return resultSet;
     }
   }
-
   @Override
   public AlarmDefinition findById(String tenantId, String alarmDefId) {
+
     try (Handle h = db.open()) {
-      AlarmDefinition alarm =
-          h.createQuery(
-              "select * from alarm_definition where tenant_id = :tenantId and id = :id and deleted_at is NULL")
-              .bind("tenantId", tenantId).bind("id", alarmDefId)
-              .map(new BeanMapper<AlarmDefinition>(AlarmDefinition.class)).first();
+      String query = "select alarm_definition.*, group_concat(notification_method.name)as alarmNames,"
+          + "group_concat(alarm_action.action_id) as notificationIds,group_concat(alarm_action.alarm_state) as states "
+          + "from alarm_definition, alarm_action,notification_method where alarm_definition.id=alarm_action.alarm_definition_id "
+          + "and alarm_action.action_id=notification_method.id and alarm_definition.tenant_id=:tenantId and alarm_definition.id=:alarmDefId and alarm_definition.deleted_at is NULL group by alarm_definition.id";
 
-      if (alarm == null)
-        throw new EntityNotFoundException("No alarm definition exists for %s", alarmDefId);
+      Query<?> q = h.createQuery(query);
+      q.bind("tenantId", tenantId);
+      q.bind("alarmDefId", alarmDefId);
 
-      hydrateRelationships(h, alarm);
-      return alarm;
+      q.registerMapper(new AlarmDefinitionMapper());
+      q = q.mapTo(AlarmDefinition.class);
+      AlarmDefinition alarmDefinition = (AlarmDefinition) q.first();
+      return alarmDefinition;
     }
   }
 
   @Override
-  public Map<String, MetricDefinition> findSubAlarmMetricDefinitions(String alarmDefId) {
+  public Map<String, MetricDefinition> findSubAlarmMetricDefinitions(
+      String alarmDefId) {
     try (Handle h = db.open()) {
-      List<Map<String, Object>> rows =
-          h.createQuery(SUB_ALARM_SQL).bind("alarmDefId", alarmDefId).list();
+      List<Map<String, Object>> rows = h.createQuery(SUB_ALARM_SQL)
+          .bind("alarmDefId", alarmDefId).list();
       Map<String, MetricDefinition> subAlarmMetricDefs = new HashMap<>();
       for (Map<String, Object> row : rows) {
         String id = (String) row.get("id");
         String metricName = (String) row.get("metric_name");
-        Map<String, String> dimensions =
-            DimensionQueries.dimensionsFor((String) row.get("dimensions"));
-        subAlarmMetricDefs.put(id, new MetricDefinition(metricName, dimensions));
+        Map<String, String> dimensions = DimensionQueries
+            .dimensionsFor((String) row.get("dimensions"));
+        subAlarmMetricDefs
+            .put(id, new MetricDefinition(metricName, dimensions));
       }
 
       return subAlarmMetricDefs;
@@ -203,21 +226,24 @@ public class AlarmDefinitionMySqlRepositoryImpl implements AlarmDefinitionReposi
   @Override
   public Map<String, AlarmSubExpression> findSubExpressions(String alarmDefId) {
     try (Handle h = db.open()) {
-      List<Map<String, Object>> rows =
-          h.createQuery(SUB_ALARM_SQL).bind("alarmDefId", alarmDefId).list();
+      List<Map<String, Object>> rows = h.createQuery(SUB_ALARM_SQL)
+          .bind("alarmDefId", alarmDefId).list();
       Map<String, AlarmSubExpression> subExpressions = new HashMap<>();
       for (Map<String, Object> row : rows) {
         String id = (String) row.get("id");
-        AggregateFunction function = AggregateFunction.fromJson((String) row.get("function"));
+        AggregateFunction function = AggregateFunction.fromJson((String) row
+            .get("function"));
         String metricName = (String) row.get("metric_name");
-        AlarmOperator operator = AlarmOperator.fromJson((String) row.get("operator"));
+        AlarmOperator operator = AlarmOperator.fromJson((String) row
+            .get("operator"));
         Double threshold = (Double) row.get("threshold");
         Integer period = (Integer) row.get("period");
         Integer periods = (Integer) row.get("periods");
-        Map<String, String> dimensions =
-            DimensionQueries.dimensionsFor((String) row.get("dimensions"));
-        subExpressions.put(id, new AlarmSubExpression(function, new MetricDefinition(metricName,
-            dimensions), operator, threshold, period, periods));
+        Map<String, String> dimensions = DimensionQueries
+            .dimensionsFor((String) row.get("dimensions"));
+        subExpressions.put(id, new AlarmSubExpression(function,
+            new MetricDefinition(metricName, dimensions), operator, threshold,
+            period, periods));
       }
 
       return subExpressions;
@@ -225,9 +251,11 @@ public class AlarmDefinitionMySqlRepositoryImpl implements AlarmDefinitionReposi
   }
 
   @Override
-  public void update(String tenantId, String id, boolean patch, String name, String description,
-      String expression, List<String> matchBy, String severity, boolean actionsEnabled,
-      Collection<String> oldSubAlarmIds, Map<String, AlarmSubExpression> changedSubAlarms,
+  public void update(String tenantId, String id, boolean patch, String name,
+      String description, String expression, List<String> matchBy,
+      String severity, boolean actionsEnabled,
+      Collection<String> oldSubAlarmIds,
+      Map<String, AlarmSubExpression> changedSubAlarms,
       Map<String, AlarmSubExpression> newSubAlarms, List<String> alarmActions,
       List<String> okActions, List<String> undeterminedActions) {
     Handle h = db.open();
@@ -236,17 +264,22 @@ public class AlarmDefinitionMySqlRepositoryImpl implements AlarmDefinitionReposi
       h.begin();
       h.insert(
           "update alarm_definition set name = ?, description = ?, expression = ?, match_by = ?, severity = ?, actions_enabled = ?, updated_at = NOW() where tenant_id = ? and id = ?",
-          name, description, expression, matchBy == null || Iterables.isEmpty(matchBy) ? null
-              : COMMA_JOINER.join(matchBy), severity, actionsEnabled, tenantId, id);
+          name,
+          description,
+          expression,
+          matchBy == null || Iterables.isEmpty(matchBy) ? null : COMMA_JOINER
+              .join(matchBy), severity, actionsEnabled, tenantId, id);
 
       // Delete old sub-alarms
       if (oldSubAlarmIds != null)
         for (String oldSubAlarmId : oldSubAlarmIds)
-          h.execute("delete from sub_alarm_definition where id = ?", oldSubAlarmId);
+          h.execute("delete from sub_alarm_definition where id = ?",
+              oldSubAlarmId);
 
       // Update changed sub-alarms
       if (changedSubAlarms != null)
-        for (Map.Entry<String, AlarmSubExpression> entry : changedSubAlarms.entrySet()) {
+        for (Map.Entry<String, AlarmSubExpression> entry : changedSubAlarms
+            .entrySet()) {
           AlarmSubExpression sa = entry.getValue();
           h.execute(
               "update sub_alarm_definition set operator = ?, threshold = ?, updated_at = NOW() where id = ?",
@@ -278,36 +311,37 @@ public class AlarmDefinitionMySqlRepositoryImpl implements AlarmDefinitionReposi
     }
   }
 
-  private void deleteActions(Handle handle, String id, AlarmState alarmState, List<String> actions) {
+  private void deleteActions(Handle handle, String id, AlarmState alarmState,
+      List<String> actions) {
     if (actions != null)
-      handle.execute("delete from alarm_action where alarm_definition_id = ? and alarm_state = ?", id,
-          alarmState.name());
+      handle
+          .execute(
+              "delete from alarm_action where alarm_definition_id = ? and alarm_state = ?",
+              id, alarmState.name());
   }
 
-  private List<String> findActionsById(Handle handle, String alarmDefId, AlarmState state) {
+  private List<String> findActionsById(Handle handle, String alarmDefId,
+      AlarmState state) {
     return handle
         .createQuery(
             "select action_id from alarm_action where alarm_definition_id = :alarmDefId and alarm_state = :alarmState")
-        .bind("alarmDefId", alarmDefId).bind("alarmState", state.name()).map(StringMapper.FIRST)
-        .list();
+        .bind("alarmDefId", alarmDefId).bind("alarmState", state.name())
+        .map(StringMapper.FIRST).list();
   }
 
-  private void persistActions(Handle handle, String id, AlarmState alarmState, List<String> actions) {
+  private void persistActions(Handle handle, String id, AlarmState alarmState,
+      List<String> actions) {
     if (actions != null)
       for (String action : actions)
-        handle.insert("insert into alarm_action values (?, ?, ?)", id, alarmState.name(), action);
-  }
-
-  private void hydrateRelationships(Handle handle, AlarmDefinition alarm) {
-    alarm.setAlarmActions(findActionsById(handle, alarm.getId(), AlarmState.ALARM));
-    alarm.setOkActions(findActionsById(handle, alarm.getId(), AlarmState.OK));
-    alarm.setUndeterminedActions(findActionsById(handle, alarm.getId(), AlarmState.UNDETERMINED));
+        handle.insert("insert into alarm_action values (?, ?, ?)", id,
+            alarmState.name(), action);
   }
 
   private void createSubExpressions(Handle handle, String id,
       Map<String, AlarmSubExpression> alarmSubExpressions) {
     if (alarmSubExpressions != null) {
-      for (Map.Entry<String, AlarmSubExpression> subEntry : alarmSubExpressions.entrySet()) {
+      for (Map.Entry<String, AlarmSubExpression> subEntry : alarmSubExpressions
+          .entrySet()) {
         String subAlarmId = subEntry.getKey();
         AlarmSubExpression subExpr = subEntry.getValue();
         MetricDefinition metricDef = subExpr.getMetricDefinition();
@@ -316,16 +350,63 @@ public class AlarmDefinitionMySqlRepositoryImpl implements AlarmDefinitionReposi
         handle
             .insert(
                 "insert into sub_alarm_definition (id, alarm_definition_id, function, metric_name, operator, threshold, period, periods, created_at, updated_at) "
-                    + "values (?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())", subAlarmId, id, subExpr
-                    .getFunction().name(), metricDef.name, subExpr.getOperator().name(), subExpr
-                    .getThreshold(), subExpr.getPeriod(), subExpr.getPeriods());
+                    + "values (?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())",
+                subAlarmId, id, subExpr.getFunction().name(), metricDef.name,
+                subExpr.getOperator().name(), subExpr.getThreshold(),
+                subExpr.getPeriod(), subExpr.getPeriods());
 
         // Persist sub-alarm dimensions
         if (metricDef.dimensions != null && !metricDef.dimensions.isEmpty())
-          for (Map.Entry<String, String> dimEntry : metricDef.dimensions.entrySet())
-            handle.insert("insert into sub_alarm_definition_dimension values (?, ?, ?)", subAlarmId,
-                dimEntry.getKey(), dimEntry.getValue());
+          for (Map.Entry<String, String> dimEntry : metricDef.dimensions
+              .entrySet())
+            handle.insert(
+                "insert into sub_alarm_definition_dimension values (?, ?, ?)",
+                subAlarmId, dimEntry.getKey(), dimEntry.getValue());
       }
     }
   }
+
+}
+
+class AlarmDefinitionMapper implements ResultSetMapper<AlarmDefinition> {
+  private static final Splitter COMMA_SPLITTER = Splitter.on(',')
+      .omitEmptyStrings().trimResults();
+
+  public AlarmDefinition map(int index, ResultSet r, StatementContext ctx)
+      throws SQLException {
+    String notificationIds = r.getString("notificationIds");
+    String states = r.getString("states");
+    String matchBy = r.getString("match_by");
+
+    List<String> notifications = splitStringIntoList(notificationIds);
+    List<String> state = splitStringIntoList(states);
+    List<String> match = splitStringIntoList(matchBy);
+
+    List<String> okActionIds = new ArrayList<String>();
+    List<String> alarmActionIds = new ArrayList<String>();
+    List<String> undeterminedActionIds = new ArrayList<String>();
+
+    int stateAndActionIndex = 0;
+    for (String singleState : state) {
+      if (singleState.equals(AlarmState.UNDETERMINED.name()))
+        undeterminedActionIds.add(notifications.get(stateAndActionIndex));
+      if (singleState.equals(AlarmState.OK.name()))
+        okActionIds.add(notifications.get(stateAndActionIndex));
+      if (singleState.equals(AlarmState.ALARM.name()))
+        alarmActionIds.add(notifications.get(stateAndActionIndex));
+
+      stateAndActionIndex++;
+    }
+
+    return new AlarmDefinition(r.getString("id"), r.getString("name"),
+        r.getString("description"), r.getString("severity"),
+        r.getString("expression"), match, r.getBoolean("actions_enabled"),
+        alarmActionIds, okActionIds, undeterminedActionIds);
+  }
+
+  private List<String> splitStringIntoList(String commaDelimitedString) {
+    Iterable<String> split = COMMA_SPLITTER.split(commaDelimitedString);
+    return Lists.newArrayList(split);
+  }
+
 }
