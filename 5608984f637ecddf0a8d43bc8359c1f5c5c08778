@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da86d52c_ce3a3c98",
+        "filename": "monasca/common/messaging/message_formats/reference/metrics.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-02-05T19:12:31Z",
+      "side": 1,
+      "message": "Wouldn\u0027t it better to move the transformed_metric declaration into the loop and just set metric immediately, like below so you don\u0027t have to copy it?:\n\n transformed_metric \u003d {\u0027metric\u0027: metric,\n\t                          \u0027meta\u0027: {\u0027tenantId\u0027: tenant_id, \u0027region\u0027: region},\t                          \n\t                          \u0027creation_time\u0027: datetime.now()}",
+      "revId": "5608984f637ecddf0a8d43bc8359c1f5c5c08778",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
