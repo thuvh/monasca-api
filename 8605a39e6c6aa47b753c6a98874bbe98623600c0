@@ -16,6 +16,24 @@
       "revId": "8605a39e6c6aa47b753c6a98874bbe98623600c0",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da86d52c_24285e99",
+        "filename": "monasca/v2/reference/alarm_definitions.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-02-05T18:14:31Z",
+      "side": 1,
+      "message": "No. _alarm_definition_create is called from do_post_alarm_definitions() which gets the severity from get_query_alarm_definition_severity() which does the upper()",
+      "parentUuid": "da86d52c_a4f1ae6c",
+      "revId": "8605a39e6c6aa47b753c6a98874bbe98623600c0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
