@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da86d52c_a4f1ae6c",
+        "filename": "monasca/v2/reference/alarm_definitions.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-02-05T18:10:24Z",
+      "side": 1,
+      "message": "does this severity need an upper()?",
+      "revId": "8605a39e6c6aa47b753c6a98874bbe98623600c0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
