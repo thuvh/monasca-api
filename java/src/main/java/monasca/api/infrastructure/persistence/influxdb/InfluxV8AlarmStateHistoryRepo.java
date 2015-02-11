@@ -13,7 +13,6 @@
  */
 package monasca.api.infrastructure.persistence.influxdb;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -40,19 +39,18 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.google.inject.Inject;
 
 import monasca.api.MonApiConfiguration;
-import monasca.api.domain.model.common.Paged;
 import monasca.common.model.alarm.AlarmState;
 import monasca.common.model.metric.MetricDefinition;
 import monasca.api.domain.model.alarmstatehistory.AlarmStateHistory;
-import monasca.api.domain.model.alarmstatehistory.AlarmStateHistoryRepository;
+import monasca.api.domain.model.alarmstatehistory.AlarmStateHistoryRepo;
 import monasca.api.infrastructure.persistence.DimensionQueries;
 
-public class AlarmStateHistoryInfluxDbRepositoryImpl implements AlarmStateHistoryRepository {
+public class InfluxV8AlarmStateHistoryRepo implements AlarmStateHistoryRepo {
   private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
   private static final TypeReference<List<MetricDefinition>> METRICS_TYPE =
       new TypeReference<List<MetricDefinition>>() {};
   private static final Logger logger = LoggerFactory
-      .getLogger(AlarmStateHistoryInfluxDbRepositoryImpl.class);
+      .getLogger(InfluxV8AlarmStateHistoryRepo.class);
   private static final String FIND_ALARMS_SQL =
       "select distinct a.id from alarm as a "  +
       "join alarm_definition as ad on a.alarm_definition_id=ad.id " + 
@@ -68,8 +66,8 @@ public class AlarmStateHistoryInfluxDbRepositoryImpl implements AlarmStateHistor
   }
 
   @Inject
-  public AlarmStateHistoryInfluxDbRepositoryImpl(@Named("mysql") DBI mysql,
-      MonApiConfiguration config, InfluxDB influxDB) {
+  public InfluxV8AlarmStateHistoryRepo(@Named("mysql") DBI mysql, MonApiConfiguration config,
+                                       InfluxDB influxDB) {
     this.mysql = mysql;
     this.config = config;
     this.influxDB = influxDB;
