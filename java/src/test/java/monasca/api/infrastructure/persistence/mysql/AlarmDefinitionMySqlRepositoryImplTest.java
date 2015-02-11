@@ -45,13 +45,13 @@ import monasca.common.model.alarm.AlarmSubExpression;
 import monasca.common.model.metric.MetricDefinition;
 import monasca.api.domain.exception.EntityNotFoundException;
 import monasca.api.domain.model.alarmdefinition.AlarmDefinition;
-import monasca.api.domain.model.alarmdefinition.AlarmDefinitionRepository;
+import monasca.api.domain.model.alarmdefinition.AlarmDefinitionRepo;
 
 @Test(groups = "database")
 public class AlarmDefinitionMySqlRepositoryImplTest {
   private DBI db;
   private Handle handle;
-  private AlarmDefinitionRepository repo;
+  private AlarmDefinitionRepo repo;
   private List<String> alarmActions;
 
   @BeforeClass
@@ -60,7 +60,7 @@ public class AlarmDefinitionMySqlRepositoryImplTest {
     handle = db.open();
     handle
         .execute(Resources.toString(getClass().getResource("alarm.sql"), Charset.defaultCharset()));
-    repo = new AlarmDefinitionMySqlRepositoryImpl(db);
+    repo = new AlarmDefinitionMySqlRepoImpl(db);
 
     alarmActions = new ArrayList<String>();
     alarmActions.add("29387234");
@@ -143,7 +143,7 @@ public class AlarmDefinitionMySqlRepositoryImplTest {
     // Warning, this will truncate your mini-mon database
     db = new DBI("jdbc:mysql://192.168.10.4/mon", "monapi", "password");
     handle = db.open();
-    repo = new AlarmDefinitionMySqlRepositoryImpl(db);
+    repo = new AlarmDefinitionMySqlRepoImpl(db);
     beforeMethod();
 
     List<String> oldSubAlarmIds = Arrays.asList("222");
@@ -191,7 +191,7 @@ public class AlarmDefinitionMySqlRepositoryImplTest {
     // Warning, this will truncate your mini-mon database
     db = new DBI("jdbc:mysql://192.168.10.4/mon", "monapi", "password");
     handle = db.open();
-    repo = new AlarmDefinitionMySqlRepositoryImpl(db);
+    repo = new AlarmDefinitionMySqlRepoImpl(db);
     beforeMethod();
 
     assertEquals(
@@ -214,7 +214,7 @@ public class AlarmDefinitionMySqlRepositoryImplTest {
     // Warning, this will truncate your mini-mon database
     db = new DBI("jdbc:mysql://192.168.10.4/mon", "monapi", "password");
     handle = db.open();
-    repo = new AlarmDefinitionMySqlRepositoryImpl(db);
+    repo = new AlarmDefinitionMySqlRepoImpl(db);
     beforeMethod();
 
     assertEquals(

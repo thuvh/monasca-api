@@ -16,8 +16,8 @@ package monasca.api.domain;
 import javax.inject.Singleton;
 
 import com.google.inject.AbstractModule;
-import monasca.api.domain.model.version.VersionRepository;
-import monasca.api.domain.service.impl.VersionRepositoryImpl;
+import monasca.api.domain.model.version.VersionRepo;
+import monasca.api.domain.service.impl.VersionRepoImpl;
 
 /**
  * Domain layer bindings.
@@ -25,6 +25,6 @@ import monasca.api.domain.service.impl.VersionRepositoryImpl;
 public class DomainModule extends AbstractModule {
   @Override
   protected void configure() {
-    bind(VersionRepository.class).to(VersionRepositoryImpl.class).in(Singleton.class);
+    bind(VersionRepo.class).to(VersionRepoImpl.class).in(Singleton.class);
   }
 }
