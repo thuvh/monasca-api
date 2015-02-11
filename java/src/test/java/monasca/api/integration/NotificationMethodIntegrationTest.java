@@ -36,9 +36,9 @@ import monasca.api.MonApiModule;
 import monasca.api.app.command.CreateNotificationMethodCommand;
 import monasca.api.domain.exception.EntityNotFoundException;
 import monasca.api.domain.model.notificationmethod.NotificationMethod;
-import monasca.api.domain.model.notificationmethod.NotificationMethodRepository;
+import monasca.api.domain.model.notificationmethod.NotificationMethodRepo;
 import monasca.api.domain.model.notificationmethod.NotificationMethodType;
-import monasca.api.infrastructure.persistence.mysql.NotificationMethodMySqlRepositoryImpl;
+import monasca.api.infrastructure.persistence.mysql.NotificationMethodMySqlRepoImpl;
 import monasca.api.resource.AbstractMonApiResourceTest;
 import monasca.api.resource.NotificationMethodResource;
 import com.sun.jersey.api.client.ClientResponse;
@@ -48,7 +48,7 @@ public class NotificationMethodIntegrationTest extends AbstractMonApiResourceTes
   private static final String TENANT_ID = "notification-method-test";
   private DBI db;
   private NotificationMethod notificationMethod;
-  private NotificationMethodRepository repo;
+  private NotificationMethodRepo repo;
 
   @Override
   protected void setupResources() throws Exception {
@@ -59,7 +59,7 @@ public class NotificationMethodIntegrationTest extends AbstractMonApiResourceTes
         .execute("insert into notification_method (id, tenant_id, name, type, address, created_at, updated_at) values ('29387234', 'notification-method-test', 'MySMS', 'SMS', '8675309', NOW(), NOW())");
     db.close(handle);
 
-    repo = new NotificationMethodMySqlRepositoryImpl(db);
+    repo = new NotificationMethodMySqlRepoImpl(db);
     addResources(new NotificationMethodResource(repo));
   }
 
@@ -70,7 +70,7 @@ public class NotificationMethodIntegrationTest extends AbstractMonApiResourceTes
     db = injector.getInstance(DBI.class);
     Handle handle = db.open();
     handle.execute(Resources.toString(
-        NotificationMethodMySqlRepositoryImpl.class.getResource("notification_method.sql"),
+        NotificationMethodMySqlRepoImpl.class.getResource("notification_method.sql"),
         Charset.defaultCharset()));
     handle.close();
 
