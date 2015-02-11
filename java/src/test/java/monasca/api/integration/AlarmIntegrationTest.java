@@ -48,11 +48,11 @@ import monasca.api.app.AlarmDefinitionService;
 import monasca.api.app.command.CreateAlarmDefinitionCommand;
 import monasca.api.domain.exception.EntityNotFoundException;
 import monasca.api.domain.model.alarmdefinition.AlarmDefinition;
-import monasca.api.domain.model.alarmdefinition.AlarmDefinitionRepository;
-import monasca.api.domain.model.alarmstatehistory.AlarmStateHistoryRepository;
-import monasca.api.infrastructure.persistence.mysql.AlarmDefinitionMySqlRepositoryImpl;
-import monasca.api.infrastructure.persistence.mysql.AlarmMySqlRepositoryImpl;
-import monasca.api.infrastructure.persistence.mysql.NotificationMethodMySqlRepositoryImpl;
+import monasca.api.domain.model.alarmdefinition.AlarmDefinitionRepo;
+import monasca.api.domain.model.alarmstatehistory.AlarmStateHistoryRepo;
+import monasca.api.infrastructure.persistence.mysql.AlarmDefinitionMySqlRepoImpl;
+import monasca.api.infrastructure.persistence.mysql.AlarmMySqlRepoImpl;
+import monasca.api.infrastructure.persistence.mysql.NotificationMethodMySqlRepoImpl;
 import monasca.api.resource.AbstractMonApiResourceTest;
 import monasca.api.resource.AlarmDefinitionResource;
 import com.sun.jersey.api.client.ClientResponse;
@@ -65,8 +65,8 @@ public class AlarmIntegrationTest extends AbstractMonApiResourceTest {
   private AlarmDefinitionService service;
   private MonApiConfiguration config;
   private Producer<String, String> producer;
-  private AlarmDefinitionRepository repo;
-  AlarmStateHistoryRepository stateHistoryRepo;
+  private AlarmDefinitionRepo repo;
+  AlarmStateHistoryRepo stateHistoryRepo;
   private Map<String, String> dimensions;
   private List<String> alarmActions;
 
@@ -83,10 +83,10 @@ public class AlarmIntegrationTest extends AbstractMonApiResourceTest {
         .execute("insert into notification_method (id, tenant_id, name, type, address, created_at, updated_at) values ('77778687', 'alarm-test', 'MySMS', 'SMS', '8675309', NOW(), NOW())");
     mysqlDb.close(handle);
 
-    repo = new AlarmDefinitionMySqlRepositoryImpl(mysqlDb);
+    repo = new AlarmDefinitionMySqlRepoImpl(mysqlDb);
     service =
-        new AlarmDefinitionService(config, producer, repo, new AlarmMySqlRepositoryImpl(mysqlDb),
-            new NotificationMethodMySqlRepositoryImpl(mysqlDb));
+        new AlarmDefinitionService(config, producer, repo, new AlarmMySqlRepoImpl(mysqlDb),
+            new NotificationMethodMySqlRepoImpl(mysqlDb));
     addResources(new AlarmDefinitionResource(service, repo));
   }
 
@@ -98,10 +98,10 @@ public class AlarmIntegrationTest extends AbstractMonApiResourceTest {
     mysqlDb = injector.getInstance(Key.get(DBI.class, Names.named("mysql")));
     Handle handle = mysqlDb.open();
     handle.execute(Resources.toString(
-        NotificationMethodMySqlRepositoryImpl.class.getResource("alarm.sql"),
+        NotificationMethodMySqlRepoImpl.class.getResource("alarm.sql"),
         Charset.defaultCharset()));
     handle.execute(Resources.toString(
-        NotificationMethodMySqlRepositoryImpl.class.getResource("notification_method.sql"),
+        NotificationMethodMySqlRepoImpl.class.getResource("notification_method.sql"),
         Charset.defaultCharset()));
     handle.close();
 

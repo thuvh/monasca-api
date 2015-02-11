@@ -27,7 +27,7 @@ import org.testng.annotations.Test;
 import scala.actors.threadpool.Arrays;
 
 @Test
-public class AlarmStateHistoryInfluxDbRepositoryImplTest {
+public class InfluxV8AlarmStateHistoryRepoTest {
 
   @Mock(name = "mysql")
   private DBI mysql;
@@ -39,7 +39,7 @@ public class AlarmStateHistoryInfluxDbRepositoryImplTest {
   private InfluxDB influxDB;
 
   @InjectMocks
-  private AlarmStateHistoryInfluxDbRepositoryImpl alarmStateHistoryInfluxDBRepository;
+  private InfluxV8AlarmStateHistoryRepo alarmStateHistoryInfluxDBRepository;
 
   @BeforeMethod(alwaysRun = true)
   public void initMocks() {
