@@ -11,21 +11,21 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package monasca.api.domain.model.measurement;
+package monasca.api.domain.model.metric;
 
-import org.joda.time.DateTime;
+import monasca.common.model.metric.MetricDefinition;
 
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
 
 /**
- * Repository for measurements.
+ * Repository for metrics.
  */
-public interface MeasurementRepository {
+public interface MetricDefinitionRepo {
   /**
-   * Finds measurements for the given criteria.
+   * Finds metrics for the given criteria.
    */
-  List<Measurements> find(String tenantId, String name, Map<String, String> dimensions,
-      DateTime startTime, @Nullable DateTime endTime, @Nullable String offset) throws Exception;
+  List<MetricDefinition> find(String tenantId, String name, Map<String, String> dimensions,
+                              String offset)
+      throws Exception;
 }
