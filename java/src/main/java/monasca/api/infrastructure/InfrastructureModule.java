@@ -13,39 +13,51 @@
  */
 package monasca.api.infrastructure;
 
-import javax.inject.Singleton;
+import com.google.inject.AbstractModule;
+import com.google.inject.Provides;
+import com.google.inject.ProvisionException;
 
 import org.influxdb.InfluxDB;
 import org.influxdb.InfluxDBFactory;
 
-import com.google.inject.AbstractModule;
-import com.google.inject.Provides;
-import com.google.inject.ProvisionException;
+import javax.inject.Singleton;
+
 import monasca.api.MonApiConfiguration;
 import monasca.api.domain.model.alarm.AlarmRepository;
 import monasca.api.domain.model.alarmdefinition.AlarmDefinitionRepository;
-import monasca.api.domain.model.alarmstatehistory.AlarmStateHistoryRepository;
-import monasca.api.domain.model.measurement.MeasurementRepository;
-import monasca.api.domain.model.metric.MetricDefinitionRepository;
+import monasca.api.domain.model.alarmstatehistory.AlarmStateHistoryRepo;
+import monasca.api.domain.model.measurement.MeasurementRepo;
+import monasca.api.domain.model.metric.MetricDefinitionRepo;
 import monasca.api.domain.model.notificationmethod.NotificationMethodRepository;
-import monasca.api.domain.model.statistic.StatisticRepository;
-import monasca.api.infrastructure.persistence.influxdb.AlarmStateHistoryInfluxDbRepositoryImpl;
-import monasca.api.infrastructure.persistence.influxdb.MeasurementInfluxDbRepositoryImpl;
-import monasca.api.infrastructure.persistence.influxdb.MetricDefinitionInfluxDbRepositoryImpl;
-import monasca.api.infrastructure.persistence.influxdb.StatisticInfluxDbRepositoryImpl;
+import monasca.api.domain.model.statistic.StatisticRepo;
+import monasca.api.infrastructure.persistence.influxdb.InfluxV8AlarmStateHistoryRepo;
+import monasca.api.infrastructure.persistence.influxdb.InfluxV8MeasurementRepo;
+import monasca.api.infrastructure.persistence.influxdb.InfluxV8MetricDefinitionRepo;
+import monasca.api.infrastructure.persistence.influxdb.InfluxV8StatisticRepo;
+import monasca.api.infrastructure.persistence.influxdb.InfluxV9AlarmStateHistoryRepo;
+import monasca.api.infrastructure.persistence.influxdb.InfluxV9MeasurementRepo;
+import monasca.api.infrastructure.persistence.influxdb.InfluxV9MetricDefinitionRepo;
+import monasca.api.infrastructure.persistence.influxdb.InfluxV9StatisticRepo;
 import monasca.api.infrastructure.persistence.mysql.AlarmDefinitionMySqlRepositoryImpl;
 import monasca.api.infrastructure.persistence.mysql.AlarmMySqlRepositoryImpl;
 import monasca.api.infrastructure.persistence.mysql.NotificationMethodMySqlRepositoryImpl;
-import monasca.api.infrastructure.persistence.vertica.AlarmStateHistoryVerticaRepositoryImpl;
-import monasca.api.infrastructure.persistence.vertica.MeasurementVerticaRepositoryImpl;
-import monasca.api.infrastructure.persistence.vertica.MetricDefinitionVerticaRepositoryImpl;
-import monasca.api.infrastructure.persistence.vertica.StatisticVerticaRepositoryImpl;
+import monasca.api.infrastructure.persistence.vertica.AlarmStateHistoryVerticaRepoImpl;
+import monasca.api.infrastructure.persistence.vertica.MeasurementVerticaRepoImpl;
+import monasca.api.infrastructure.persistence.vertica.MetricDefinitionVerticaRepoImpl;
+import monasca.api.infrastructure.persistence.vertica.StatisticVerticaRepoImpl;
 
 /**
  * Infrastructure layer bindings.
  */
 public class InfrastructureModule extends AbstractModule {
+
   private MonApiConfiguration config;
+
+  private static final String VERTICA = "vertica";
+  private static final String INFLUXDB = "influxdb";
+  private static final String INFLUXDB_V8 = "v8";
+  private static final String INFLUXDB_V9 = "v9";
+
 
   public InfrastructureModule(MonApiConfiguration config) {
     this.config = config;
@@ -55,39 +67,53 @@ public class InfrastructureModule extends AbstractModule {
   protected void configure() {
     // Bind repositories
     bind(AlarmRepository.class).to(AlarmMySqlRepositoryImpl.class).in(Singleton.class);
-    bind(AlarmDefinitionRepository.class).to(AlarmDefinitionMySqlRepositoryImpl.class).in(
-        Singleton.class);
-    if (config.databaseConfiguration.getDatabaseType().trim().toLowerCase().equals("vertica")) {
-      bind(AlarmStateHistoryRepository.class).to(AlarmStateHistoryVerticaRepositoryImpl.class).in(
-          Singleton.class);
-      bind(MetricDefinitionRepository.class).to(MetricDefinitionVerticaRepositoryImpl.class).in(
-          Singleton.class);
-      bind(MeasurementRepository.class).to(MeasurementVerticaRepositoryImpl.class).in(
-          Singleton.class);
-      bind(StatisticRepository.class).to(StatisticVerticaRepositoryImpl.class).in(Singleton.class);
+    bind(AlarmDefinitionRepository.class).to(AlarmDefinitionMySqlRepositoryImpl.class)
+        .in(Singleton.class);
+    if (config.databaseConfiguration.getDatabaseType().trim().toLowerCase().equals(VERTICA)) {
+      bind(AlarmStateHistoryRepo.class).to(AlarmStateHistoryVerticaRepoImpl.class)
+          .in(Singleton.class);
+      bind(MetricDefinitionRepo.class).to(MetricDefinitionVerticaRepoImpl.class)
+          .in(Singleton.class);
+      bind(MeasurementRepo.class).to(MeasurementVerticaRepoImpl.class).in(Singleton.class);
+      bind(StatisticRepo.class).to(StatisticVerticaRepoImpl.class).in(Singleton.class);
     } else if (config.databaseConfiguration.getDatabaseType().trim().toLowerCase()
-        .equals("influxdb")) {
-      bind(AlarmStateHistoryRepository.class).to(AlarmStateHistoryInfluxDbRepositoryImpl.class).in(
-          Singleton.class);
-      bind(MetricDefinitionRepository.class).to(MetricDefinitionInfluxDbRepositoryImpl.class).in(
-          Singleton.class);
-      bind(MeasurementRepository.class).to(MeasurementInfluxDbRepositoryImpl.class).in(
-          Singleton.class);
-      bind(StatisticRepository.class).to(StatisticInfluxDbRepositoryImpl.class).in(Singleton.class);
+        .equals(INFLUXDB)) {
+
+      if (config.influxDB.getVersion() == null || config.influxDB.getVersion()
+          .equalsIgnoreCase(INFLUXDB_V8)) {
+        bind(AlarmStateHistoryRepo.class).to(InfluxV8AlarmStateHistoryRepo.class)
+            .in(Singleton.class);
+        bind(MetricDefinitionRepo.class).to(InfluxV8MetricDefinitionRepo.class).in(Singleton.class);
+        bind(MeasurementRepo.class).to(InfluxV8MeasurementRepo.class).in(Singleton.class);
+        bind(StatisticRepo.class).to(InfluxV8StatisticRepo.class).in(Singleton.class);
+      } else if (config.influxDB.getVersion().equalsIgnoreCase(INFLUXDB_V9)) {
+
+        bind(AlarmStateHistoryRepo.class).to(InfluxV9AlarmStateHistoryRepo.class)
+            .in(Singleton.class);
+        bind(MetricDefinitionRepo.class).to(InfluxV9MetricDefinitionRepo.class).in(Singleton.class);
+        bind(MeasurementRepo.class).to(InfluxV9MeasurementRepo.class).in(Singleton.class);
+        bind(StatisticRepo.class).to(InfluxV9StatisticRepo.class).in(Singleton.class);
+      } else {
+        throw new ProvisionException(
+            "Found unknown Influxdb version: " + config.influxDB.getVersion() + "."
+            + " Supported Influxdb versions are 'v8' and 'v9'. Please check your config file");
+
+      }
     } else {
       throw new ProvisionException("Failed to detect supported database. Supported databases are "
-          + "'vertica' and 'influxdb'. Check your config file.");
+                                   + "'vertica' and 'influxdb'. Please check your config file.");
     }
 
-    bind(NotificationMethodRepository.class).to(NotificationMethodMySqlRepositoryImpl.class).in(
-        Singleton.class);
+    bind(NotificationMethodRepository.class).to(NotificationMethodMySqlRepositoryImpl.class)
+        .in(Singleton.class);
   }
 
   @Provides
   InfluxDB provideInfluxDB() {
-    InfluxDB influxDB =
+    InfluxDB
+        influxDB =
         InfluxDBFactory.connect(this.config.influxDB.getUrl(), this.config.influxDB.getUser(),
-            this.config.influxDB.getPassword());
+                                this.config.influxDB.getPassword());
     return influxDB;
   }
 }

@@ -49,7 +49,7 @@ import monasca.api.app.command.CreateAlarmDefinitionCommand;
 import monasca.api.domain.exception.EntityNotFoundException;
 import monasca.api.domain.model.alarmdefinition.AlarmDefinition;
 import monasca.api.domain.model.alarmdefinition.AlarmDefinitionRepository;
-import monasca.api.domain.model.alarmstatehistory.AlarmStateHistoryRepository;
+import monasca.api.domain.model.alarmstatehistory.AlarmStateHistoryRepo;
 import monasca.api.infrastructure.persistence.mysql.AlarmDefinitionMySqlRepositoryImpl;
 import monasca.api.infrastructure.persistence.mysql.AlarmMySqlRepositoryImpl;
 import monasca.api.infrastructure.persistence.mysql.NotificationMethodMySqlRepositoryImpl;
@@ -66,7 +66,7 @@ public class AlarmIntegrationTest extends AbstractMonApiResourceTest {
   private MonApiConfiguration config;
   private Producer<String, String> producer;
   private AlarmDefinitionRepository repo;
-  AlarmStateHistoryRepository stateHistoryRepo;
+  AlarmStateHistoryRepo stateHistoryRepo;
   private Map<String, String> dimensions;
   private List<String> alarmActions;
 

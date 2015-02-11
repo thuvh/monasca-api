@@ -30,11 +30,14 @@ mysql:
   checkConnectionOnBorrow: true
 
 databaseConfiguration:
-# vertica | influxdb
+# databaseType can be (vertica | influxdb)
   databaseType: influxdb
 
 # Uncomment if databaseType is influxDB
 influxDB:
+  # If no version set then defaults to V8.
+  # version can be (V8 | V9)
+  version: V8
   name: mon
   replicationFactor: 1
   url: http://192.168.10.4:8086
@@ -55,7 +58,7 @@ vertica:
   checkConnectionWhileIdle: false
 
 middleware:
-  enabled: true
+  enabled: false
   serverVIP: 192.168.10.5
   serverPort: 5000
   connTimeout: 500
