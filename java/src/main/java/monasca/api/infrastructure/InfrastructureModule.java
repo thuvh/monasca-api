@@ -29,10 +29,10 @@ import monasca.api.domain.model.measurement.MeasurementRepository;
 import monasca.api.domain.model.metric.MetricDefinitionRepository;
 import monasca.api.domain.model.notificationmethod.NotificationMethodRepository;
 import monasca.api.domain.model.statistic.StatisticRepository;
-import monasca.api.infrastructure.persistence.influxdb.AlarmStateHistoryInfluxDbRepositoryImpl;
-import monasca.api.infrastructure.persistence.influxdb.MeasurementInfluxDbRepositoryImpl;
-import monasca.api.infrastructure.persistence.influxdb.MetricDefinitionInfluxDbRepositoryImpl;
-import monasca.api.infrastructure.persistence.influxdb.StatisticInfluxDbRepositoryImpl;
+import monasca.api.infrastructure.persistence.influxdb.InfluxV8AlarmStateHistoryRepo;
+import monasca.api.infrastructure.persistence.influxdb.InfluxV8MeasurementRepo;
+import monasca.api.infrastructure.persistence.influxdb.InfluxV8MetricDefinitionRepo;
+import monasca.api.infrastructure.persistence.influxdb.InfluxV8StatisticRepo;
 import monasca.api.infrastructure.persistence.mysql.AlarmDefinitionMySqlRepositoryImpl;
 import monasca.api.infrastructure.persistence.mysql.AlarmMySqlRepositoryImpl;
 import monasca.api.infrastructure.persistence.mysql.NotificationMethodMySqlRepositoryImpl;
@@ -67,13 +67,13 @@ public class InfrastructureModule extends AbstractModule {
       bind(StatisticRepository.class).to(StatisticVerticaRepositoryImpl.class).in(Singleton.class);
     } else if (config.databaseConfiguration.getDatabaseType().trim().toLowerCase()
         .equals("influxdb")) {
-      bind(AlarmStateHistoryRepository.class).to(AlarmStateHistoryInfluxDbRepositoryImpl.class).in(
+      bind(AlarmStateHistoryRepository.class).to(InfluxV8AlarmStateHistoryRepo.class).in(
           Singleton.class);
-      bind(MetricDefinitionRepository.class).to(MetricDefinitionInfluxDbRepositoryImpl.class).in(
+      bind(MetricDefinitionRepository.class).to(InfluxV8MetricDefinitionRepo.class).in(
           Singleton.class);
-      bind(MeasurementRepository.class).to(MeasurementInfluxDbRepositoryImpl.class).in(
+      bind(MeasurementRepository.class).to(InfluxV8MeasurementRepo.class).in(
           Singleton.class);
-      bind(StatisticRepository.class).to(StatisticInfluxDbRepositoryImpl.class).in(Singleton.class);
+      bind(StatisticRepository.class).to(InfluxV8StatisticRepo.class).in(Singleton.class);
     } else {
       throw new ProvisionException("Failed to detect supported database. Supported databases are "
           + "'vertica' and 'influxdb'. Check your config file.");

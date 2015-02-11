@@ -34,17 +34,17 @@ import static monasca.api.infrastructure.persistence.influxdb.Utils.buildSerieNa
 import static monasca.api.infrastructure.persistence.influxdb.Utils.urlDecodeUTF8;
 import static monasca.api.infrastructure.persistence.influxdb.Utils.urlEncodeUTF8;
 
-public class MetricDefinitionInfluxDbRepositoryImpl implements MetricDefinitionRepository {
+public class InfluxV8MetricDefinitionRepo implements MetricDefinitionRepository {
 
   private static final Logger
       logger =
-      LoggerFactory.getLogger(MetricDefinitionInfluxDbRepositoryImpl.class);
+      LoggerFactory.getLogger(InfluxV8MetricDefinitionRepo.class);
 
   private final MonApiConfiguration config;
   private final InfluxDB influxDB;
 
   @Inject
-  public MetricDefinitionInfluxDbRepositoryImpl(MonApiConfiguration config, InfluxDB influxDB) {
+  public InfluxV8MetricDefinitionRepo(MonApiConfiguration config, InfluxDB influxDB) {
     this.config = config;
     this.influxDB = influxDB;
   }

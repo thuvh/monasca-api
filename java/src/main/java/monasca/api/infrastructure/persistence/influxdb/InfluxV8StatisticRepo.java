@@ -37,10 +37,10 @@ import javax.annotation.Nullable;
 
 import static monasca.api.infrastructure.persistence.influxdb.Utils.buildSerieNameRegex;
 
-public class StatisticInfluxDbRepositoryImpl implements StatisticRepository {
+public class InfluxV8StatisticRepo implements StatisticRepository {
 
   private static final Logger logger = LoggerFactory
-      .getLogger(StatisticInfluxDbRepositoryImpl.class);
+      .getLogger(InfluxV8StatisticRepo.class);
 
   private final MonApiConfiguration config;
   private final InfluxDB influxDB;
@@ -49,7 +49,7 @@ public class StatisticInfluxDbRepositoryImpl implements StatisticRepository {
       .withZoneUTC();
 
   @Inject
-  public StatisticInfluxDbRepositoryImpl(MonApiConfiguration config, InfluxDB influxDB) {
+  public InfluxV8StatisticRepo(MonApiConfiguration config, InfluxDB influxDB) {
     this.config = config;
     this.influxDB = influxDB;
   }
