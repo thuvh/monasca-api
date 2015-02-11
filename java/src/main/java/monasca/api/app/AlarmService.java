@@ -33,9 +33,9 @@ import monasca.common.model.alarm.AlarmSubExpression;
 import monasca.api.domain.exception.EntityNotFoundException;
 import monasca.api.domain.exception.InvalidEntityException;
 import monasca.api.domain.model.alarm.Alarm;
-import monasca.api.domain.model.alarm.AlarmRepository;
+import monasca.api.domain.model.alarm.AlarmRepo;
 import monasca.api.domain.model.alarmdefinition.AlarmDefinition;
-import monasca.api.domain.model.alarmdefinition.AlarmDefinitionRepository;
+import monasca.api.domain.model.alarmdefinition.AlarmDefinitionRepo;
 import monasca.common.util.Exceptions;
 import monasca.common.util.Serialization;
 
@@ -47,13 +47,13 @@ public class AlarmService {
 
   private final MonApiConfiguration config;
   private final Producer<String, String> producer;
-  private final AlarmRepository repo;
-  private final AlarmDefinitionRepository alarmDefRepo;
+  private final AlarmRepo repo;
+  private final AlarmDefinitionRepo alarmDefRepo;
   private long messageCount = 0;
 
   @Inject
   public AlarmService(MonApiConfiguration config, Producer<String, String> producer,
-      AlarmRepository repo, AlarmDefinitionRepository alarmDefRepo) {
+      AlarmRepo repo, AlarmDefinitionRepo alarmDefRepo) {
     this.config = config;
     this.producer = producer;
     this.repo = repo;

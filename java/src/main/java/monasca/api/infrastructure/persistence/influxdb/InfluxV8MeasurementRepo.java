@@ -16,7 +16,7 @@ package monasca.api.infrastructure.persistence.influxdb;
 import com.google.inject.Inject;
 
 import monasca.api.MonApiConfiguration;
-import monasca.api.domain.model.measurement.MeasurementRepository;
+import monasca.api.domain.model.measurement.MeasurementRepo;
 import monasca.api.domain.model.measurement.Measurements;
 
 import org.influxdb.InfluxDB;
@@ -27,7 +27,6 @@ import org.joda.time.format.ISODateTimeFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -37,10 +36,10 @@ import javax.annotation.Nullable;
 
 import static monasca.api.infrastructure.persistence.influxdb.Utils.buildSerieNameRegex;
 
-public class MeasurementInfluxDbRepositoryImpl implements MeasurementRepository {
+public class InfluxV8MeasurementRepo implements MeasurementRepo {
 
   private static final Logger logger = LoggerFactory
-      .getLogger(MeasurementInfluxDbRepositoryImpl.class);
+      .getLogger(InfluxV8MeasurementRepo.class);
 
   private final MonApiConfiguration config;
   private final InfluxDB influxDB;
@@ -49,7 +48,7 @@ public class MeasurementInfluxDbRepositoryImpl implements MeasurementRepository 
       .withZoneUTC();
 
   @Inject
-  public MeasurementInfluxDbRepositoryImpl(MonApiConfiguration config, InfluxDB influxDB) {
+  public InfluxV8MeasurementRepo(MonApiConfiguration config, InfluxDB influxDB) {
     this.config = config;
 
     this.influxDB = influxDB;
