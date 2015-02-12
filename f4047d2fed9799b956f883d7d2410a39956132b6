@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da86d52c_6e095030",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMySqlRepositoryImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-02-12T15:34:09Z",
+      "side": 1,
+      "message": "StringMapper is no longer used. Remove this import",
+      "revId": "f4047d2fed9799b956f883d7d2410a39956132b6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da86d52c_1108f926",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMySqlRepositoryImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-02-12T15:34:09Z",
+      "side": 1,
+      "message": "BeanMapper is no longer used. Remove this import",
+      "revId": "f4047d2fed9799b956f883d7d2410a39956132b6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da86d52c_fbbb44c1",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMySqlRepositoryImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-02-12T15:34:09Z",
+      "side": 1,
+      "message": "The inner join prevents Alarm Definitions from being found that don\u0027t have any Notifications",
+      "revId": "f4047d2fed9799b956f883d7d2410a39956132b6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da86d52c_1bfd786e",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMySqlRepositoryImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-02-12T15:34:09Z",
+      "side": 1,
+      "message": "The lack of a join on alarm_action prevents an AlarmDefinition from being found that doesn\u0027t have any Notifications",
+      "revId": "f4047d2fed9799b956f883d7d2410a39956132b6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da86d52c_b1164d47",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMySqlRepositoryImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-02-12T15:34:09Z",
+      "side": 1,
+      "message": "Remove extra blank line",
+      "revId": "f4047d2fed9799b956f883d7d2410a39956132b6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da86d52c_d1282188",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMySqlRepositoryImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-02-12T15:34:09Z",
+      "side": 1,
+      "message": "Remove extra blank line",
+      "revId": "f4047d2fed9799b956f883d7d2410a39956132b6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da86d52c_111f195c",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMySqlRepositoryImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-02-12T15:34:09Z",
+      "side": 1,
+      "message": "Add a blank line",
+      "revId": "f4047d2fed9799b956f883d7d2410a39956132b6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
