@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da86d52c_91cec52b",
+        "filename": "requirements.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-02-12T01:35:23Z",
+      "side": 1,
+      "message": "I thought Deklan got all the pee out?",
+      "revId": "eaf7b437198404788185cfd00808818e148678aa",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da86d52c_d102fd3c",
+        "filename": "requirements.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-02-12T01:35:23Z",
+      "side": 1,
+      "message": "Reality is that we work with 0.8 or greater, soon to be 0.9 only.",
+      "revId": "eaf7b437198404788185cfd00808818e148678aa",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
