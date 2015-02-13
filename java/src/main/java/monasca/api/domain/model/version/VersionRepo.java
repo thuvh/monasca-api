@@ -11,21 +11,20 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package monasca.api.domain.model.metric;
+package monasca.api.domain.model.version;
 
-import monasca.common.model.metric.MetricDefinition;
+import monasca.api.domain.exception.EntityNotFoundException;
 
 import java.util.List;
-import java.util.Map;
 
 /**
- * Repository for metrics.
+ * Repository for versions.
  */
-public interface MetricDefinitionRepository {
+public interface VersionRepo {
+  List<Version> find();
+
   /**
-   * Finds metrics for the given criteria.
+   * @throws EntityNotFoundException a version cannot be found for the {@code versionId}
    */
-  List<MetricDefinition> find(String tenantId, String name, Map<String, String> dimensions,
-                              String offset)
-      throws Exception;
+  Version findById(String versionId);
 }
