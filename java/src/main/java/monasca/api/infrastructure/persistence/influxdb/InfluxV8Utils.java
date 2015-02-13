@@ -26,13 +26,13 @@ import java.util.regex.Pattern;
 
 import monasca.api.domain.model.common.Paged;
 
-final class Utils {
+final class InfluxV8Utils {
 
   // Serie names match this pattern.
   private static final Pattern serieNamePattern = Pattern.compile("^.+\\?.+&.+(&.+=.+)*$");
   static final String COULD_NOT_LOOK_UP_COLUMNS_EXC_MSG = "Couldn't look up columns";
 
-  private Utils() {
+  private InfluxV8Utils() {
   }
 
   /**
