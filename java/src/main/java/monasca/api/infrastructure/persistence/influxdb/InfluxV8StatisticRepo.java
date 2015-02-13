@@ -15,8 +15,8 @@ package monasca.api.infrastructure.persistence.influxdb;
 
 import com.google.inject.Inject;
 
-import monasca.api.MonApiConfiguration;
-import monasca.api.domain.model.statistic.StatisticRepository;
+import monasca.api.ApiConfig;
+import monasca.api.domain.model.statistic.StatisticRepo;
 import monasca.api.domain.model.statistic.Statistics;
 
 import org.influxdb.InfluxDB;
@@ -37,19 +37,19 @@ import javax.annotation.Nullable;
 
 import static monasca.api.infrastructure.persistence.influxdb.Utils.buildSerieNameRegex;
 
-public class StatisticInfluxDbRepositoryImpl implements StatisticRepository {
+public class InfluxV8StatisticRepo implements StatisticRepo {
 
   private static final Logger logger = LoggerFactory
-      .getLogger(StatisticInfluxDbRepositoryImpl.class);
+      .getLogger(InfluxV8StatisticRepo.class);
 
-  private final MonApiConfiguration config;
+  private final ApiConfig config;
   private final InfluxDB influxDB;
 
   public static final DateTimeFormatter DATETIME_FORMATTER = ISODateTimeFormat.dateTimeNoMillis()
       .withZoneUTC();
 
   @Inject
-  public StatisticInfluxDbRepositoryImpl(MonApiConfiguration config, InfluxDB influxDB) {
+  public InfluxV8StatisticRepo(ApiConfig config, InfluxDB influxDB) {
     this.config = config;
     this.influxDB = influxDB;
   }
