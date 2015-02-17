@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da86d52c_788fa8cd",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMySqlRepositoryImpl.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-02-17T23:13:03Z",
+      "side": 1,
+      "message": "can we format this so it\u0027s readable?\n\nI liked jonathan\u0027s convention for nameing tables. can we stick with that? alarm_definition.foo -\u003e ad.foo \n\nselecting * is probably not a good idea. If the table changes, then a different set of columns could be returned.",
+      "revId": "1571cbeea721d70038a72e89d42fcfbc6029684f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da86d52c_fb1c7268",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMySqlRepositoryImpl.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-02-17T23:13:03Z",
+      "side": 1,
+      "message": "selecting * is not a good idea.",
+      "revId": "1571cbeea721d70038a72e89d42fcfbc6029684f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da86d52c_1b594635",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMySqlRepositoryImpl.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-02-17T23:13:03Z",
+      "side": 1,
+      "message": "can we try to format this a bit better?",
+      "revId": "1571cbeea721d70038a72e89d42fcfbc6029684f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da86d52c_98a37c42",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMySqlRepositoryImpl.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-02-17T23:13:03Z",
+      "side": 1,
+      "message": "can we use braces?",
+      "revId": "1571cbeea721d70038a72e89d42fcfbc6029684f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da86d52c_bba11aab",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMySqlRepositoryImpl.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-02-17T23:13:03Z",
+      "side": 1,
+      "message": "braces?",
+      "revId": "1571cbeea721d70038a72e89d42fcfbc6029684f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da86d52c_3b952a40",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMySqlRepositoryImpl.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-02-17T23:13:03Z",
+      "side": 1,
+      "message": "braces?",
+      "revId": "1571cbeea721d70038a72e89d42fcfbc6029684f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da86d52c_b8c76011",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMySqlRepositoryImpl.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-02-17T23:13:03Z",
+      "side": 1,
+      "message": "can we put ws around operators? i.e., x \u003d\u003d null\n\ncan we make sure we use braces?",
+      "revId": "1571cbeea721d70038a72e89d42fcfbc6029684f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
