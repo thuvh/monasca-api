@@ -2,8 +2,13 @@
 
 case "$1" in
   configure)
-    if ! [ `getent passwd monasca_api` ]; then
-      adduser --system --group monasca_api
+    if ! [ `getent passwd monasca-api` ]; then
+      adduser --system --group --no-create-home monasca-api
+    fi
+
+    if ! [ -d "/var/log/monasca/api"]; then
+      mkdir -p /var/log/monasca/api
+      chown monasca-api:monasca-api /var/log/monasca/api
     fi
 
     #Restart does not pick up upstart job config changes stop/start is needed

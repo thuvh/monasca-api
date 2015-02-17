@@ -81,10 +81,10 @@ logging:
       logFormat: # TODO
 
     - type: file
-      currentLogFilename: ./log/monasca-api.log
+      currentLogFilename: /var/log/monasca/api/monasca-api.log
       threshold: ALL
       archive: true
-      archivedLogFilenamePattern: ./log/monasca-api-%d.log
+      archivedLogFilenamePattern: /var/log/monasca/api/monasca-api-%d.log
       archivedFileCount: 5
       timeZone: UTC
       logFormat: # TODO

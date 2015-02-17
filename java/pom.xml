@@ -378,7 +378,7 @@
                                     <type>file</type>
                                     <src>${project.basedir}/src/deb/etc/api-config.yml-sample
                                     </src>
-                                    <dst>/etc/monasca/api-config.yml-sample</dst>
+                                    <dst>/etc/monasca/api/api-config.yml-sample</dst>
                                 </data>
                             </dataSet>
                         </configuration>
