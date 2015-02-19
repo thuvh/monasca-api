@@ -18,7 +18,7 @@ import datetime
 def transform(metrics, tenant_id, region):
     transformed_metric = {'metric': {},
                           'meta': {'tenantId': tenant_id, 'region': region},
-                          'creation_time': datetime.now()}
+                          'creation_time': datetime.datetime.now()}
 
     if isinstance(metrics, list):
         transformed_metrics = []
