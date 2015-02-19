@@ -23,6 +23,7 @@ import java.util.concurrent.TimeUnit;
 import javax.annotation.Nullable;
 import javax.inject.Named;
 
+import monasca.common.model.alarm.AlarmTransitionSubAlarm;
 import org.influxdb.InfluxDB;
 import org.influxdb.dto.Serie;
 import org.joda.time.DateTime;
@@ -51,6 +52,9 @@ public class AlarmStateHistoryInfluxDbRepositoryImpl implements AlarmStateHistor
   private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
   private static final TypeReference<List<MetricDefinition>> METRICS_TYPE =
       new TypeReference<List<MetricDefinition>>() {};
+  private static final TypeReference<List<AlarmTransitionSubAlarm>> SUBALARMS_TYPE =
+      new TypeReference<List<AlarmTransitionSubAlarm>>() {};
+    
   private static final Logger logger = LoggerFactory
       .getLogger(AlarmStateHistoryInfluxDbRepositoryImpl.class);
   private static final String FIND_ALARMS_SQL =
@@ -84,7 +88,7 @@ public class AlarmStateHistoryInfluxDbRepositoryImpl implements AlarmStateHistor
 
   String buildQueryForFindById(String tenantId, String alarmId, String offset) throws Exception {
     String offsetPart = Utils.buildOffsetPart(offset);
-    return String.format("select alarm_id, metrics, old_state, new_state, reason, reason_data "
+    return String.format("select alarm_id, metrics, old_state, new_state, sub_alarms, reason, reason_data "
         + "from alarm_state_history where tenant_id = '%1$s' and alarm_id = '%2$s' %3$s",
         Utils.SQLSanitizer.sanitize(tenantId), Utils.SQLSanitizer.sanitize(alarmId), offsetPart);
   }
@@ -146,7 +150,7 @@ public class AlarmStateHistoryInfluxDbRepositoryImpl implements AlarmStateHistor
   }
 
   String buildQueryForFind(String tenantId, String timePart, String alarmsPart, String offsetPart) throws Exception {
-    return String.format("select alarm_id, metrics, old_state, new_state, reason, reason_data "
+    return String.format("select alarm_id, metrics, old_state, new_state, sub_alarms, reason, reason_data "
         + "from alarm_state_history where tenant_id = '%1$s' %2$s %3$s %4$s",
         Utils.SQLSanitizer.sanitize(tenantId), timePart, alarmsPart, offsetPart);
   }
@@ -207,8 +211,16 @@ public class AlarmStateHistoryInfluxDbRepositoryImpl implements AlarmStateHistor
 
         alarmStateHistory.setNewState(AlarmState.valueOf((String) row.get(colNames[4])));
         alarmStateHistory.setOldState(AlarmState.valueOf((String) row.get(colNames[5])));
+          
         alarmStateHistory.setReason((String) row.get(colNames[6]));
         alarmStateHistory.setReasonData((String) row.get(colNames[7]));
+
+        try {
+          alarmStateHistory.setSubAlarms((List<AlarmTransitionSubAlarm>) OBJECT_MAPPER.readValue(
+              (String) row.get(colNames[8]), SUBALARMS_TYPE));
+        } catch (Exception ignore) {
+          alarmStateHistory.setSubAlarms(Collections.<AlarmTransitionSubAlarm>emptyList());
+        }
 
         alarmStateHistoryList.add(alarmStateHistory);
       }
