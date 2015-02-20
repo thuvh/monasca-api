@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba7be1f8_daed588d",
+        "filename": "java/src/main/java/monasca/api/domain/model/alarmstatehistory/AlarmStateHistory.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-02-20T14:52:12Z",
+      "side": 1,
+      "message": "You have extra whitespace at the end of a bunch of these lines",
+      "revId": "7e29d4b10e07932ccd8be05d706979bded98d208",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_9a1da076",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/AlarmStateHistoryInfluxDbRepositoryImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-02-20T14:52:12Z",
+      "side": 1,
+      "message": "I think you need a comment here about why you are doing this. I know why, but it is not obvious",
+      "revId": "7e29d4b10e07932ccd8be05d706979bded98d208",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
