@@ -238,6 +238,10 @@ public class AlarmDefinitionService {
         assertAlarmDefinitionExists(tenantId, alarmDefId, alarmActions, okActions,
             undeterminedActions);
     name = name == null ? oldAlarmDefinition.getName() : name;
+    if(repo.exists(tenantId, name)){
+      throw new EntityExistsException(
+          "An alarm definition with the same name already exists for project / tenant: %s named: %s", tenantId, name);
+    }
     description = description == null ? oldAlarmDefinition.getDescription() : description;
     expression = expression == null ? oldAlarmDefinition.getExpression() : expression;
     severity = severity == null ? oldAlarmDefinition.getSeverity() : severity;
