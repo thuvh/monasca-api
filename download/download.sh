@@ -3,6 +3,9 @@ set -x
 ME=`whoami`
 echo "Running as user: $ME"
 VERSION=$1
+echo "Settings.xml"
+cat ~/.m2/settings.xml
+echo "END Settings.xml"
 
 check_user() {
     ME=$1
