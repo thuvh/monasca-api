@@ -238,6 +238,13 @@ public class AlarmDefinitionService {
         assertAlarmDefinitionExists(tenantId, alarmDefId, alarmActions, okActions,
             undeterminedActions);
     name = name == null ? oldAlarmDefinition.getName() : name;
+    List<AlarmDefinition> alarmsDefinitions = returnAlarmDefinitionsForTenantID(tenantId);
+    for (AlarmDefinition alarmDefinition : alarmsDefinitions) {
+      if(alarmDefinition.getName().equalsIgnoreCase(name)){
+        throw new EntityExistsException(
+            "An alarm definition with the same name already exists for project / tenant: %s named: %s", tenantId, name);
+      }
+    }
     description = description == null ? oldAlarmDefinition.getDescription() : description;
     expression = expression == null ? oldAlarmDefinition.getExpression() : expression;
     severity = severity == null ? oldAlarmDefinition.getSeverity() : severity;
@@ -369,5 +376,15 @@ public class AlarmDefinitionService {
       for (String action : actions)
         if (!notificationMethodRepo.exists(tenantId, action))
           throw new InvalidEntityException("No notification method exists for action %s", action);
+  }
+
+  /**
+   * Returns the list of AlarmDefinitions for a tenantIDfor the {@code tenantID}.
+   *
+   * @throws EntityNotFoundException if the alarm cannot be found
+   */
+  private List<AlarmDefinition> returnAlarmDefinitionsForTenantID(String tenantID) {
+    List<AlarmDefinition> alarmDefinitions = repo.find(tenantID, null, null, null);
+    return alarmDefinitions;
   }
 }
