@@ -238,6 +238,10 @@ public class AlarmDefinitionService {
         assertAlarmDefinitionExists(tenantId, alarmDefId, alarmActions, okActions,
             undeterminedActions);
     name = name == null ? oldAlarmDefinition.getName() : name;
+    if(repo.exists(tenantId, name)){
+      throw new EntityExistsException(
+          "An alarm definition with the same name already exists for project / tenant: %s named: %s", tenantId, name);
+    }
     description = description == null ? oldAlarmDefinition.getDescription() : description;
     expression = expression == null ? oldAlarmDefinition.getExpression() : expression;
     severity = severity == null ? oldAlarmDefinition.getSeverity() : severity;
@@ -262,6 +266,10 @@ public class AlarmDefinitionService {
       AlarmExpression alarmExpression, Boolean enabled, List<String> alarmActions,
       List<String> okActions, List<String> undeterminedActions, SubExpressions subExpressions) {
 
+    if(repo.exists(tenantId, name)){
+      throw new EntityExistsException(
+          "An alarm definition with the same name already exists for project / tenant: %s named: %s", tenantId, name);
+    }
     try {
       LOG.debug("Updating alarm definition {} for tenant {}", name, tenantId);
       repo.update(tenantId, alarmDefId, patch, name, description, expression, matchBy, severity,
