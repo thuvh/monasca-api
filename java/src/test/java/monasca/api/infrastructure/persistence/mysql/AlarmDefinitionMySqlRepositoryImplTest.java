@@ -238,10 +238,10 @@ public class AlarmDefinitionMySqlRepositoryImplTest {
   }
 
   public void testExists() {
-    assertTrue(repo.exists("bob", "90% CPU"));
+    assertEquals(repo.exists("bob", "90% CPU"),"123");
 
     // Negative
-    assertFalse(repo.exists("bob", "999% CPU"));
+    assertNull(repo.exists("bob", "999% CPU"));
   }
 
   public void shouldFind() {
