@@ -57,6 +57,7 @@ import monasca.api.domain.model.alarm.AlarmRepo;
 import monasca.api.domain.model.alarmdefinition.AlarmDefinition;
 import monasca.api.domain.model.alarmdefinition.AlarmDefinitionRepo;
 import monasca.api.domain.model.notificationmethod.NotificationMethodRepo;
+import monasca.api.domain.exception.EntityExistsException;
 
 @Test
 public class AlarmDefinitionServiceTest {
@@ -488,5 +489,30 @@ public class AlarmDefinitionServiceTest {
 
     // Assert new expressions
     assertTrue(expressions.newAlarmSubExpressions.isEmpty());
+  }
+
+  @Test(expectedExceptions = EntityExistsException.class)
+  public void testPatchSameName() {
+    final String alarmDefId = "123";
+    String exprStr = EXPR1 + " or " + EXPR2;
+    List<String> alarmActions = Arrays.asList("1", "2", "3");
+    List<String> okActions = Arrays.asList("2", "3");
+    List<String> undeterminedActions = Arrays.asList("3");
+    List<String> matchBy = Arrays.asList("service", "instance_id");
+    AlarmDefinition firstAlarmDef =
+        new AlarmDefinition(alarmDefId, "91% CPU", "description1", "LOW", exprStr, matchBy, true, alarmActions,
+            okActions, undeterminedActions);
+
+    AlarmDefinition secondAlarmDef =
+        new AlarmDefinition(alarmDefId, "92% CPU", "description2", "LOW", exprStr, matchBy, true, alarmActions,
+            okActions, undeterminedActions);
+
+    when(repo.findById(TENANT_ID, secondAlarmDef.getId())).thenReturn(secondAlarmDef);
+    when(repo.findById(TENANT_ID, firstAlarmDef.getId())).thenReturn(firstAlarmDef);
+    when(repo.exists(TENANT_ID, "91% CPU")).thenReturn(true);
+    when(notificationMethodRepo.exists(eq(TENANT_ID), anyString())).thenReturn(true);    
+    service.patch(TENANT_ID, secondAlarmDef.getId(), "91% CPU", "foo", "LOW", exprStr, null,
+        matchBy, true, alarmActions, okActions, undeterminedActions);
+
   }
 }
