@@ -101,7 +101,8 @@ public class AlarmDefinitionService {
       List<String> alarmActions, @Nullable List<String> okActions,
       @Nullable List<String> undeterminedActions) {
     // Assert no alarm exists by the name
-    if (repo.exists(tenantId, name))
+    String alarmDefID=repo.exists(tenantId, name);
+    if (alarmDefID!=null)
       throw new EntityExistsException(
           "An alarm definition already exists for project / tenant: %s named: %s", tenantId, name);
 
@@ -238,6 +239,11 @@ public class AlarmDefinitionService {
         assertAlarmDefinitionExists(tenantId, alarmDefId, alarmActions, okActions,
             undeterminedActions);
     name = name == null ? oldAlarmDefinition.getName() : name;
+    String alarmID= repo.exists(tenantId, name);
+    if(alarmID!=null && !alarmID.equalsIgnoreCase(alarmDefId)){
+      throw new EntityExistsException(
+          "An alarm definition with the same name already exists for project / tenant: %s named: %s", tenantId, name);
+    }
     description = description == null ? oldAlarmDefinition.getDescription() : description;
     expression = expression == null ? oldAlarmDefinition.getExpression() : expression;
     severity = severity == null ? oldAlarmDefinition.getSeverity() : severity;

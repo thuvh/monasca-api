@@ -14,6 +14,7 @@
 
 package monasca.api.infrastructure.persistence.mysql;
 
+import static org.mockito.Mockito.when;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertNull;
@@ -237,11 +238,12 @@ public class AlarmDefinitionMySqlRepositoryImplTest {
     assertTrue(repo.findSubAlarmMetricDefinitions("asdfasdf").isEmpty());
   }
 
+  @Test(expectedExceptions=NullPointerException.class)
   public void testExists() {
-    assertTrue(repo.exists("bob", "90% CPU"));
+    assertTrue(repo.exists("bob", "90% CPU").equalsIgnoreCase("123"));
 
     // Negative
-    assertFalse(repo.exists("bob", "999% CPU"));
+    assertFalse(repo.exists("bob", "999% CPU").equalsIgnoreCase("123"));
   }
 
   public void shouldFind() {
