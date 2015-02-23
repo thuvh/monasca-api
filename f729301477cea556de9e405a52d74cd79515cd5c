@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba7be1f8_97c0ebe1",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/AlarmStateHistoryInfluxDbRepositoryImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-02-23T05:50:23Z",
+      "side": 1,
+      "message": "Sorry. I was looking for something more like handle old alarmStateHistory that don\u0027t have subAlarms, but your comment points out that even some of the new alarmStateHistory objects don\u0027t have Sub Alarms. So, I was wrong and you don\u0027t need to comment this. Take it back out",
+      "revId": "f729301477cea556de9e405a52d74cd79515cd5c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
