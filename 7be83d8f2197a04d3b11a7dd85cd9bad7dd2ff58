@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "ba7be1f8_786ef402",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9RepoReader.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-02-23T17:39:54Z",
+      "side": 1,
+      "message": "Sorry, basic auth is all influxdb 9 has. :-(",
+      "parentUuid": "ba7be1f8_390aed21",
+      "revId": "7be83d8f2197a04d3b11a7dd85cd9bad7dd2ff58",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba7be1f8_7941c538",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9StatisticRepo.java",
         "patchSetId": 8
