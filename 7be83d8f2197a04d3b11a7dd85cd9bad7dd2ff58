@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ba7be1f8_49896c25",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9MetricDefinitionRepo.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-02-23T16:04:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba7be1f8_4efc403f",
+      "revId": "7be83d8f2197a04d3b11a7dd85cd9bad7dd2ff58",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba7be1f8_390aed21",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9RepoReader.java",
         "patchSetId": 8
@@ -30,6 +48,24 @@
       "writtenOn": "2015-02-20T23:33:31Z",
       "side": 1,
       "message": "Have they added basic authentication yet? That would be better than using the user and password in the url",
+      "revId": "7be83d8f2197a04d3b11a7dd85cd9bad7dd2ff58",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_497a4cf2",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9RepoReader.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-02-23T16:04:52Z",
+      "side": 1,
+      "message": "I\u0027m not sure. I put the question to Paul D. Waiting for response. Don\u0027t want to hold merging for this though.",
+      "parentUuid": "ba7be1f8_390aed21",
       "revId": "7be83d8f2197a04d3b11a7dd85cd9bad7dd2ff58",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "ba7be1f8_e9d6a0c2",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9StatisticRepo.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-02-23T16:04:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba7be1f8_7941c538",
+      "revId": "7be83d8f2197a04d3b11a7dd85cd9bad7dd2ff58",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba7be1f8_595ec1e7",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9StatisticRepo.java",
         "patchSetId": 8
@@ -64,6 +118,24 @@
       "writtenOn": "2015-02-20T23:33:31Z",
       "side": 1,
       "message": "Note this query will be invalid if tenantId is ever null because you will get a \"where and\"",
+      "revId": "7be83d8f2197a04d3b11a7dd85cd9bad7dd2ff58",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_a9eca890",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9StatisticRepo.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-02-23T16:04:52Z",
+      "side": 1,
+      "message": "When I wrote this, I knew that tenant_id can never be null. But, let\u0027s add an exception.",
+      "parentUuid": "ba7be1f8_595ec1e7",
       "revId": "7be83d8f2197a04d3b11a7dd85cd9bad7dd2ff58",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "ba7be1f8_4c2dfa45",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9Utils.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-02-23T16:04:52Z",
+      "side": 1,
+      "message": "Cannot quote the key in influx 9.",
+      "parentUuid": "ba7be1f8_f9d05555",
+      "revId": "7be83d8f2197a04d3b11a7dd85cd9bad7dd2ff58",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba7be1f8_b9033db7",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/Series.java",
         "patchSetId": 8
@@ -98,6 +188,24 @@
       "writtenOn": "2015-02-20T23:33:31Z",
       "side": 1,
       "message": "This is the same as:\nreturn this.results[0].rows \u003d\u003d null;",
+      "revId": "7be83d8f2197a04d3b11a7dd85cd9bad7dd2ff58",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_ac2af629",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/Series.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-02-23T16:04:52Z",
+      "side": 1,
+      "message": "OK. ;-) Done",
+      "parentUuid": "ba7be1f8_b9033db7",
       "revId": "7be83d8f2197a04d3b11a7dd85cd9bad7dd2ff58",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "ba7be1f8_acb836e6",
+        "filename": "java/src/main/resources/api-config.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-02-23T16:04:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba7be1f8_19a7e9be",
+      "revId": "7be83d8f2197a04d3b11a7dd85cd9bad7dd2ff58",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba7be1f8_7995453f",
         "filename": "java/src/main/resources/api-config.yml",
         "patchSetId": 8
@@ -138,6 +264,24 @@
     },
     {
       "key": {
+        "uuid": "ba7be1f8_ecc94e7a",
+        "filename": "java/src/main/resources/api-config.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-02-23T16:04:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba7be1f8_7995453f",
+      "revId": "7be83d8f2197a04d3b11a7dd85cd9bad7dd2ff58",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba7be1f8_d99c716c",
         "filename": "java/src/main/resources/api-config.yml",
         "patchSetId": 8
@@ -149,6 +293,24 @@
       "writtenOn": "2015-02-20T23:33:31Z",
       "side": 1,
       "message": "Don\u0027t change this. It makes it hard for other people to debug problems",
+      "revId": "7be83d8f2197a04d3b11a7dd85cd9bad7dd2ff58",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_acaf5693",
+        "filename": "java/src/main/resources/api-config.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-02-23T16:04:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba7be1f8_d99c716c",
       "revId": "7be83d8f2197a04d3b11a7dd85cd9bad7dd2ff58",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
