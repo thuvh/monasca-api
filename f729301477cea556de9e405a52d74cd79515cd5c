@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "ba7be1f8_f70cc744",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 1989,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-02-23T06:04:29Z",
+      "side": 1,
+      "message": "This is really the alarm state transition ID. There is a problem with them not being unique but we will fix that. Make them all unique for this doc",
+      "revId": "f729301477cea556de9e405a52d74cd79515cd5c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_17087b2c",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 2368,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-02-23T06:04:29Z",
+      "side": 1,
+      "message": "See ablve",
+      "revId": "f729301477cea556de9e405a52d74cd79515cd5c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba7be1f8_97c0ebe1",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/AlarmStateHistoryInfluxDbRepositoryImpl.java",
         "patchSetId": 3
