@@ -16,6 +16,24 @@
       "revId": "8a64f6eda71df99318c688470d1599ecd9990dac",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_653fefd6",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9Utils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-02-24T22:06:23Z",
+      "side": 0,
+      "message": "yeah, i added that after i tested this stuff as an afterthought and it was broken.",
+      "parentUuid": "ba7be1f8_e58e7fcf",
+      "revId": "8a64f6eda71df99318c688470d1599ecd9990dac",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
