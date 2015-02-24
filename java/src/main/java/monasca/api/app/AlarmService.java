@@ -123,6 +123,10 @@ public class AlarmService {
 
       // Notify interested parties of transitioned alarm state
       if (!oldState.equals(newState)) {
+        //
+        // HOW DOES THIS BUILD WITHOUT
+        // java.util.List<monasca.common.model.alarm.AlarmTransitionSubAlarm>?
+        //
         event =
             Serialization.toJson(new AlarmStateTransitionedEvent(tenantId, alarmId, alarmDef
                 .getId(), alarm.getMetrics(), alarmDef.getName(), alarmDef.getDescription(),
