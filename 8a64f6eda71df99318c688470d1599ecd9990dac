@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba7be1f8_e58e7fcf",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9Utils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 8126
+      },
+      "writtenOn": "2015-02-24T22:04:51Z",
+      "side": 0,
+      "message": "awesome -- this should fix my NPE",
+      "revId": "8a64f6eda71df99318c688470d1599ecd9990dac",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
