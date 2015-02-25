@@ -1,15 +1,27 @@
 package monasca.api.infrastructure.persistence.influxdb;
 
+import com.google.inject.Inject;
+
 import org.joda.time.DateTime;
 import org.joda.time.format.ISODateTimeFormat;
 
 import java.util.Map;
 
+import monasca.api.infrastructure.persistence.PersistUtils;
+
 import static monasca.api.infrastructure.persistence.influxdb.InfluxV8Utils.SQLSanitizer.sanitize;
 
 public class InfluxV9Utils {
 
-  public static String namePart(String name) throws Exception {
+  private final PersistUtils persistUtils;
+
+  @Inject
+  public InfluxV9Utils(PersistUtils persistUtils) {
+    this.persistUtils = persistUtils;
+
+  }
+
+  public String namePart(String name) throws Exception {
 
     if (name != null && !name.isEmpty()) {
       sanitize(name);
@@ -19,7 +31,7 @@ public class InfluxV9Utils {
     }
   }
 
-  public static String tenantIdPart(String tenantId) throws Exception {
+  public String tenantIdPart(String tenantId) throws Exception {
 
     if (tenantId == null || tenantId.isEmpty()) {
       throw new Exception(String.format("Found null or empty tenant id: %1$s", tenantId));
@@ -31,7 +43,7 @@ public class InfluxV9Utils {
 
   }
 
-  public static String regionPart(String region) throws Exception {
+  public String regionPart(String region) throws Exception {
 
     if (region == null || region.isEmpty()) {
       throw new Exception(String.format("Found null or empty region: %1$s", region));
@@ -43,7 +55,7 @@ public class InfluxV9Utils {
 
   }
 
-  public static String dimPart(Map<String, String> dims) throws Exception {
+  public String dimPart(Map<String, String> dims) throws Exception {
 
     StringBuilder sb = new StringBuilder();
 
@@ -61,11 +73,35 @@ public class InfluxV9Utils {
     return sb.toString();
   }
 
-  public static String startTimePart (DateTime startTime) {
-    return startTime != null ? " and time > " + "'" + ISODateTimeFormat.dateTime().print(startTime) + "'" : "";
+  public String startTimePart(DateTime startTime) {
+    return startTime != null ? " and time > " + "'" + ISODateTimeFormat.dateTime().print(startTime)
+                               + "'" : "";
   }
 
-  public static String endTimePart (DateTime endTime) {
-    return endTime != null ? " and time < " + "'" + ISODateTimeFormat.dateTime().print(endTime) + "'" : "";
+  public String endTimePart(DateTime endTime) {
+    return endTime != null ? " and time < " + "'" + ISODateTimeFormat.dateTime().print(endTime)
+                             + "'" : "";
+  }
+
+  public String limitPart(String limit) {
+
+    // We add 1 to limit to determine if we need to insert a next link.
+    return String.format(" limit %1$d", this.persistUtils.getLimit(limit) + 1);
+  }
+
+  public String offsetPart(int startIndex) {
+
+    return String.format(" offset %1$d", startIndex);
+  }
+
+  public int startIndex(String offset) {
+
+    // Influxdb offsets start at 1.
+    if (offset == null || offset.isEmpty()) {
+      return 1;
+    }
+
+    // We've already returned up to offset, so return offset + 1.
+    return Integer.parseInt(offset) + 1;
   }
 }

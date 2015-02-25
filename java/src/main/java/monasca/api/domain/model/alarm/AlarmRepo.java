@@ -16,8 +16,8 @@ public interface AlarmRepo {
   /**
    * Returns alarms for the given criteria.
    */
-  List<Alarm> find(String tenantId, String alarmDefId, String metricName,
-      Map<String, String> metricDimensions, AlarmState state, String offset);
+  List<Alarm> find(String tenantId, String alarmDefId, String metricName, Map<String,
+      String> metricDimensions, AlarmState state, String offset, String limit, boolean enforseLimit);
 
   /**
    * @throws EntityNotFoundException if an alarm cannot be found for the {@code id}

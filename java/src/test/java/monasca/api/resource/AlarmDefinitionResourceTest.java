@@ -40,6 +40,7 @@ import org.testng.annotations.Test;
 import monasca.api.app.AlarmDefinitionService;
 import monasca.api.app.command.CreateAlarmDefinitionCommand;
 import monasca.api.app.command.UpdateAlarmDefinitionCommand;
+import monasca.api.infrastructure.persistence.PersistUtils;
 import monasca.common.model.alarm.AlarmExpression;
 import monasca.api.domain.exception.EntityNotFoundException;
 import monasca.api.domain.model.alarmdefinition.AlarmDefinition;
@@ -83,10 +84,10 @@ public class AlarmDefinitionResourceTest extends AbstractMonApiResourceTest {
 
     repo = mock(AlarmDefinitionRepo.class);
     when(repo.findById(eq("abc"), eq("123"))).thenReturn(alarm);
-    when(repo.find(anyString(), anyString(), (Map<String, String>) anyMap(), anyString())).thenReturn(
+    when(repo.find(anyString(), anyString(), (Map<String, String>) anyMap(), anyString(), anyString())).thenReturn(
         Arrays.asList(alarmItem));
 
-    addResources(new AlarmDefinitionResource(service, repo));
+    addResources(new AlarmDefinitionResource(service, repo, new PersistUtils()));
   }
 
   @SuppressWarnings("unchecked")
@@ -272,7 +273,7 @@ public class AlarmDefinitionResourceTest extends AbstractMonApiResourceTest {
             .get(new GenericType<List<AlarmDefinition>>() {});
 
     assertEquals(alarms, Arrays.asList(alarmItem));
-    verify(repo).find(eq("abc"), anyString(), (Map<String, String>) anyMap(), anyString());
+    verify(repo).find(eq("abc"), anyString(), (Map<String, String>) anyMap(), anyString(), anyString());
   }
 
   @SuppressWarnings("unchecked")
@@ -282,7 +283,7 @@ public class AlarmDefinitionResourceTest extends AbstractMonApiResourceTest {
             .header("X-Tenant-Id", "abc").get(new GenericType<List<AlarmDefinition>>() {});
 
     assertEquals(alarms, Arrays.asList(alarmItem));
-    verify(repo).find(eq("abc"), eq("foo bar baz"), (Map<String, String>) anyMap(), anyString());
+    verify(repo).find(eq("abc"), eq("foo bar baz"), (Map<String, String>) anyMap(), anyString(), anyString());
   }
 
   public void shouldGet() {
@@ -325,7 +326,7 @@ public class AlarmDefinitionResourceTest extends AbstractMonApiResourceTest {
   @SuppressWarnings("unchecked")
   public void should500OnInternalException() {
     doThrow(new RuntimeException("")).when(repo).find(anyString(), anyString(),
-        (Map<String, String>) anyObject(), anyString());
+        (Map<String, String>) anyObject(), anyString(), anyString());
 
     try {
       client().resource("/v2.0/alarm-definitions").header("X-Tenant-Id", "abc").get(List.class);

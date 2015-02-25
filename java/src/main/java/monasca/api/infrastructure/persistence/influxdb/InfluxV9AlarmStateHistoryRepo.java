@@ -55,6 +55,7 @@ public class InfluxV9AlarmStateHistoryRepo implements AlarmStateHistoryRepo {
   private final ApiConfig config;
   private final String region;
   private final InfluxV9RepoReader influxV9RepoReader;
+  private final InfluxV9Utils influxV9Utils;
   private final ObjectMapper objectMapper = new ObjectMapper();
 
   private final SimpleDateFormat simpleDateFormat =
@@ -66,23 +67,31 @@ public class InfluxV9AlarmStateHistoryRepo implements AlarmStateHistoryRepo {
   @Inject
   public InfluxV9AlarmStateHistoryRepo(@Named("mysql") DBI mysql,
                                        ApiConfig config,
-                                       InfluxV9RepoReader influxV9RepoReader) {
+                                       InfluxV9RepoReader influxV9RepoReader,
+                                       InfluxV9Utils influxV9Utils) {
 
     this.mysql = mysql;
     this.config = config;
     this.region = config.region;
     this.influxV9RepoReader = influxV9RepoReader;
+    this.influxV9Utils = influxV9Utils;
 
   }
 
   @Override
-  public List<AlarmStateHistory> findById(String tenantId, String alarmId, String offset)
+  public List<AlarmStateHistory> findById(String tenantId, String alarmId, String offset, String limit)
       throws Exception {
 
+    // Need Influxdb 9 to support limit on points.
+
     String q = String.format("select alarm_id, metrics, old_state, new_state, reason, reason_data "
-                             + "from alarm_state_history where tenant_id = '%1$s' and alarm_id = '%2$s'",
+                             + "from alarm_state_history "
+                             + "where tenant_id = '%1$s' and alarm_id = '%2$s' "
+                             + "%3$s %4$s",
                              InfluxV8Utils.SQLSanitizer.sanitize(tenantId),
-                             InfluxV8Utils.SQLSanitizer.sanitize(alarmId));
+                             InfluxV8Utils.SQLSanitizer.sanitize(alarmId),
+                             timeOffsetPart(offset),
+                             this.influxV9Utils.limitPart(limit));
 
     logger.debug("Alarm state history query: {}", q);
 
@@ -100,7 +109,9 @@ public class InfluxV9AlarmStateHistoryRepo implements AlarmStateHistoryRepo {
   @Override
   public List<AlarmStateHistory> find(String tenantId, Map<String, String> dimensions,
                                       DateTime startTime, @Nullable DateTime endTime,
-                                      @Nullable String offset) throws Exception {
+                                      @Nullable String offset, String limit) throws Exception {
+
+    // Need Influxdb 9 to support limit on points.
 
     List<String> alarmIdList = findAlarmIds(this.mysql, tenantId, dimensions);
 
@@ -112,8 +123,14 @@ public class InfluxV9AlarmStateHistoryRepo implements AlarmStateHistoryRepo {
     String alarmsPart = buildAlarmsPart(alarmIdList);
 
     String q = String.format("select alarm_id, metrics, old_state, new_state, reason, reason_data "
-                             + "from alarm_state_history where tenant_id = '%1$s' %2$s %3$s",
-                             InfluxV8Utils.SQLSanitizer.sanitize(tenantId), timePart, alarmsPart);
+                             + "from alarm_state_history "
+                             + "where tenant_id = '%1$s' "
+                             + "%2$s %3$s %4$s %5$s",
+                             InfluxV8Utils.SQLSanitizer.sanitize(tenantId),
+                             timePart,
+                             alarmsPart,
+                             timeOffsetPart(offset),
+                             this.influxV9Utils.limitPart(limit));
 
     logger.debug("Alarm state history list query: {}", q);
 
@@ -127,6 +144,15 @@ public class InfluxV9AlarmStateHistoryRepo implements AlarmStateHistoryRepo {
 
     return alarmStateHistoryList;
 
+  }
+
+  private String timeOffsetPart(String offset) {
+
+    if (offset == null || offset.isEmpty()) {
+      return "";
+    }
+
+    return String.format("and where time > %1$s", offset);
   }
 
   private List<AlarmStateHistory> alarmStateHistoryList(Series series) {
