@@ -48,64 +48,73 @@ import monasca.common.model.metric.Metric;
  */
 @Path("/v2.0/metrics")
 public class MetricResource {
-  private static final String MONITORING_DELEGATE_ROLE = "monitoring-delegate";
+    private static final String MONITORING_DELEGATE_ROLE = "monitoring-delegate";
     private static final Splitter COMMA_SPLITTER = Splitter.on(',').omitEmptyStrings().trimResults();
 
     private final MetricService service;
-  private final MetricDefinitionRepo metricRepo;
+    private final MetricDefinitionRepo metricRepo;
 
-  @Inject
-  public MetricResource(MetricService service, MetricDefinitionRepo metricRepo) {
-    this.service = service;
-    this.metricRepo = metricRepo;
-  }
-
-  @POST
-  @Timed
-  @Consumes(MediaType.APPLICATION_JSON)
-  public void create(@Context UriInfo uriInfo, @HeaderParam("X-Tenant-Id") String tenantId,
-                     @HeaderParam("X-Roles") String roles,
-                     @QueryParam("tenant_id") String crossTenantId,
-                     @Valid CreateMetricCommand[] commands) {
-    boolean
-        isDelegate =
-        !Strings.isNullOrEmpty(roles) && COMMA_SPLITTER.splitToList(roles)
-            .contains(MONITORING_DELEGATE_ROLE);
-    List<Metric> metrics = new ArrayList<>(commands.length);
-    for (CreateMetricCommand command : commands) {
-      if (!isDelegate) {
-        if (command.dimensions != null) {
-          String service = command.dimensions.get(Services.SERVICE_DIMENSION);
-          if (service != null && Services.isReserved(service)) {
-            throw Exceptions
-                .forbidden("Project %s cannot POST metrics for the hpcs service", tenantId);
-          }
-        }
-        if (!Strings.isNullOrEmpty(crossTenantId)) {
-          throw Exceptions.forbidden("Project %s cannot POST cross tenant metrics", tenantId);
-        }
-      }
-
-      command.validate();
-      metrics.add(command.toMetric());
+    @Inject
+    public MetricResource(MetricService service, MetricDefinitionRepo metricRepo) {
+        this.service = service;
+        this.metricRepo = metricRepo;
     }
 
-    service.create(metrics, tenantId, crossTenantId);
-  }
+    @POST
+    @Timed
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void create(@Context UriInfo uriInfo, @HeaderParam("X-Tenant-Id") String tenantId,
+                       @HeaderParam("X-Roles") String roles,
+                       @QueryParam("tenant_id") String crossTenantId,
+                       @Valid CreateMetricCommand[] commands) {
+        boolean
+                isDelegate =
+                !Strings.isNullOrEmpty(roles) && COMMA_SPLITTER.splitToList(roles)
+                        .contains(MONITORING_DELEGATE_ROLE);
+        List<Metric> metrics = new ArrayList<>(commands.length);
+        for (CreateMetricCommand command : commands) {
+            if (!isDelegate) {
+                if (command.dimensions != null) {
+                    String service = command.dimensions.get(Services.SERVICE_DIMENSION);
+                    if (service != null && Services.isReserved(service)) {
+                        throw Exceptions
+                                .forbidden("Project %s cannot POST metrics for the hpcs service", tenantId);
+                    }
+                }
+                if (!Strings.isNullOrEmpty(crossTenantId)) {
+                    throw Exceptions.forbidden("Project %s cannot POST cross tenant metrics", tenantId);
+                }
+            }
 
-  @GET
-  @Timed
-  @Produces(MediaType.APPLICATION_JSON)
-  public Object getMetrics(@Context UriInfo uriInfo,
-                                           @HeaderParam("X-Tenant-Id") String tenantId,
-                                           @QueryParam("name") String name,
-                                           @QueryParam("dimensions") String dimensionsStr,
-                                           @QueryParam("offset") String offset) throws Exception {
-    Map<String, String>
-        dimensions =
-        Strings.isNullOrEmpty(dimensionsStr) ? null : Validation
-            .parseAndValidateNameAndDimensions(name, dimensionsStr);
+            command.validate();
+            metrics.add(command.toMetric());
+        }
 
-    return Links.paginate(offset, metricRepo.find(tenantId, name, dimensions, offset), uriInfo);
-  }
+        service.create(metrics, tenantId, crossTenantId);
+    }
+
+    @GET
+    @Timed
+    @Produces(MediaType.APPLICATION_JSON)
+    public Object getMetrics(@Context UriInfo uriInfo,
+                             @HeaderParam("X-Tenant-Id") String tenantId,
+                             @QueryParam("name") String name,
+                             @QueryParam("dimensions") String dimensionsStr,
+                             @QueryParam("offset") String offset) throws Exception {
+        Map<String, String>
+                dimensions =
+                Strings.isNullOrEmpty(dimensionsStr) ? null : Validation
+                        .parseAndValidateNameAndDimensions(name, dimensionsStr);
+
+        return Links.paginate(offset, metricRepo.find(tenantId, name, dimensions, offset), uriInfo);
+    }
+
+    @GET
+    @Path("/names")
+    @Timed
+    @Produces(MediaType.APPLICATION_JSON)
+    public Object getMetricNames(@Context UriInfo uriInfo,
+                                 @HeaderParam("X-Tenant-Id") String tenantId) throws Exception {
+        return metricRepo.listNames(tenantId);
+    }
 }

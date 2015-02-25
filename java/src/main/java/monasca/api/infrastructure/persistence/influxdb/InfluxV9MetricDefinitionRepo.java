@@ -28,6 +28,7 @@ import java.util.Map;
 import monasca.api.ApiConfig;
 import monasca.api.domain.model.metric.MetricDefinitionRepo;
 import monasca.common.model.metric.MetricDefinition;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import static monasca.api.infrastructure.persistence.influxdb.InfluxV9Utils.dimPart;
 import static monasca.api.infrastructure.persistence.influxdb.InfluxV9Utils.namePart;
@@ -76,6 +77,11 @@ public class InfluxV9MetricDefinitionRepo implements MetricDefinitionRepo {
     logger.debug("Found {} metric definitions matching query", metricDefinitionList.size());
 
     return metricDefinitionList;
+  }
+
+  @Override
+  public List<String> listNames(String tenantId) throws Exception {
+    throw new NotImplementedException();
   }
 
   private List<MetricDefinition> metricDefinitionList(Series series) {

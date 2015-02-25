@@ -23,6 +23,8 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.concurrent.TimeUnit;
 
 import monasca.api.ApiConfig;
@@ -36,80 +38,114 @@ import static monasca.api.infrastructure.persistence.influxdb.InfluxV8Utils.urlE
 
 public class InfluxV8MetricDefinitionRepo implements MetricDefinitionRepo {
 
-  private static final Logger
-      logger =
-      LoggerFactory.getLogger(InfluxV8MetricDefinitionRepo.class);
+    private static final Logger
+            logger =
+            LoggerFactory.getLogger(InfluxV8MetricDefinitionRepo.class);
 
-  private final ApiConfig config;
-  private final InfluxDB influxDB;
+    private final ApiConfig config;
+    private final InfluxDB influxDB;
 
-  @Inject
-  public InfluxV8MetricDefinitionRepo(ApiConfig config, InfluxDB influxDB) {
-    this.config = config;
-    this.influxDB = influxDB;
-  }
-
-  @Override
-  public List<MetricDefinition> find(String tenantId, String name, Map<String, String> dimensions,
-                                     String offset) throws Exception {
-
-    String serieNameRegex = buildSerieNameRegex(tenantId, config.region, name, dimensions);
-
-    String query = String.format("list series /%1$s/", serieNameRegex);
-    logger.debug("Query string: {}", query);
-
-    List<Serie>
-        result =
-        this.influxDB.Query(this.config.influxDB.getName(), query, TimeUnit.SECONDS);
-    return buildMetricDefList(result, offset);
-  }
-
-  private List<MetricDefinition> buildMetricDefList(List<Serie> result, String offset)
-      throws Exception {
-
-    // offset comes in as url encoded.
-    String decodedOffset = null;
-    if (offset != null) {
-      decodedOffset = urlDecodeUTF8(offset);
+    @Inject
+    public InfluxV8MetricDefinitionRepo(ApiConfig config, InfluxDB influxDB) {
+        this.config = config;
+        this.influxDB = influxDB;
     }
 
-    List<MetricDefinition> metricDefinitionList = new ArrayList<>();
-    for (Serie serie : result) {
-      for (Map<String, Object> point : serie.getRows()) {
+    @Override
+    public List<MetricDefinition> find(String tenantId, String name, Map<String, String> dimensions,
+                                       String offset) throws Exception {
 
-        String encodedMetricName = (String) point.get("name");
+        String serieNameRegex = buildSerieNameRegex(tenantId, config.region, name, dimensions);
 
+        String query = String.format("list series /%1$s/", serieNameRegex);
+        logger.debug("Query string: {}", query);
 
-        if (offset != null) {
-          if (encodedMetricName.compareTo(decodedOffset) <= 0) {
-            continue;
-          }
-        }
-
-        InfluxV8Utils.SerieNameDecoder serieNameDecoder;
-
-        try {
-          serieNameDecoder = new InfluxV8Utils.SerieNameDecoder(encodedMetricName);
-        } catch (InfluxV8Utils.SerieNameDecodeException e) {
-          logger.warn("Dropping series name that is not decodable: {}", point.get("name"), e);
-          continue;
-        }
-
-        MetricDefinition
-            metricDefinition =
-            new MetricDefinition(serieNameDecoder.getMetricName(),
-                                 serieNameDecoder.getDimensions());
-        // Must url encode offset because it is part of a url.
-        metricDefinition.setId(urlEncodeUTF8(encodedMetricName));
-        metricDefinitionList.add(metricDefinition);
-
-        if (offset != null) {
-          if (metricDefinitionList.size() >= Paged.LIMIT) {
-            return metricDefinitionList;
-          }
-        }
-      }
+        List<Serie>
+                result =
+                this.influxDB.Query(this.config.influxDB.getName(), query, TimeUnit.SECONDS);
+        return buildMetricDefList(result, offset);
     }
-    return metricDefinitionList;
-  }
+
+    private List<MetricDefinition> buildMetricDefList(List<Serie> result, String offset)
+            throws Exception {
+
+        // offset comes in as url encoded.
+        String decodedOffset = null;
+        if (offset != null) {
+            decodedOffset = urlDecodeUTF8(offset);
+        }
+
+        List<MetricDefinition> metricDefinitionList = new ArrayList<>();
+        for (Serie serie : result) {
+            for (Map<String, Object> point : serie.getRows()) {
+
+                String encodedMetricName = (String) point.get("name");
+
+
+                if (offset != null) {
+                    if (encodedMetricName.compareTo(decodedOffset) <= 0) {
+                        continue;
+                    }
+                }
+
+                InfluxV8Utils.SerieNameDecoder serieNameDecoder;
+
+                try {
+                    serieNameDecoder = new InfluxV8Utils.SerieNameDecoder(encodedMetricName);
+                } catch (InfluxV8Utils.SerieNameDecodeException e) {
+                    logger.warn("Dropping series name that is not decodable: {}", point.get("name"), e);
+                    continue;
+                }
+
+                MetricDefinition
+                        metricDefinition =
+                        new MetricDefinition(serieNameDecoder.getMetricName(),
+                                serieNameDecoder.getDimensions());
+                // Must url encode offset because it is part of a url.
+                metricDefinition.setId(urlEncodeUTF8(encodedMetricName));
+                metricDefinitionList.add(metricDefinition);
+
+                if (offset != null) {
+                    if (metricDefinitionList.size() >= Paged.LIMIT) {
+                        return metricDefinitionList;
+                    }
+                }
+            }
+        }
+        return metricDefinitionList;
+    }
+
+    public List<String> listNames(String tenantId) throws Exception {
+        String serieNameRegex = buildSerieNameRegex(tenantId, config.region, null, null);
+
+        String query = String.format("list series /%1$s/", serieNameRegex);
+        logger.debug("Query string: {}", query);
+
+        List<Serie>
+                result =
+                this.influxDB.Query(this.config.influxDB.getName(), query, TimeUnit.SECONDS);
+        return buildMetricNameList(result);
+    }
+
+    private List<String> buildMetricNameList(List<Serie> result) throws Exception {
+        Set<String> metricNameSet = new TreeSet<>();
+        for (Serie serie : result) {
+            for (Map<String, Object> point : serie.getRows()) {
+
+                String encodedMetricName = (String) point.get("name");
+
+                InfluxV8Utils.SerieNameDecoder serieNameDecoder;
+
+                try {
+                    serieNameDecoder = new InfluxV8Utils.SerieNameDecoder(encodedMetricName);
+                } catch (InfluxV8Utils.SerieNameDecodeException e) {
+                    logger.warn("Dropping series name that is not decodable: {}", point.get("name"), e);
+                    continue;
+                }
+
+                metricNameSet.add(serieNameDecoder.getMetricName());
+            }
+        }
+        return new ArrayList<String>(metricNameSet);
+    }
 }
