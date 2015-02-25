@@ -33,12 +33,6 @@ import monasca.api.ApiConfig;
 import monasca.api.domain.model.statistic.StatisticRepo;
 import monasca.api.domain.model.statistic.Statistics;
 
-import static monasca.api.infrastructure.persistence.influxdb.InfluxV9Utils.dimPart;
-import static monasca.api.infrastructure.persistence.influxdb.InfluxV9Utils.endTimePart;
-import static monasca.api.infrastructure.persistence.influxdb.InfluxV9Utils.namePart;
-import static monasca.api.infrastructure.persistence.influxdb.InfluxV9Utils.regionPart;
-import static monasca.api.infrastructure.persistence.influxdb.InfluxV9Utils.startTimePart;
-import static monasca.api.infrastructure.persistence.influxdb.InfluxV9Utils.tenantIdPart;
 
 public class InfluxV9StatisticRepo implements StatisticRepo{
 
@@ -48,34 +42,50 @@ public class InfluxV9StatisticRepo implements StatisticRepo{
   private final ApiConfig config;
   private final String region;
   private final InfluxV9RepoReader influxV9RepoReader;
+  private final InfluxV9Utils influxV9Utils;
 
   private final ObjectMapper objectMapper = new ObjectMapper();
 
 
   @Inject
   public InfluxV9StatisticRepo(ApiConfig config,
-                               InfluxV9RepoReader influxV9RepoReader) {
+                               InfluxV9RepoReader influxV9RepoReader,
+                               InfluxV9Utils influxV9Utils) {
     this.config = config;
     this.region = config.region;
     this.influxV9RepoReader = influxV9RepoReader;
+    this.influxV9Utils = influxV9Utils;
   }
 
   @Override
   public List<Statistics> find(String tenantId, String name, Map<String, String> dimensions,
                                DateTime startTime, @Nullable DateTime endTime,
-                               List<String> statistics, int period) throws Exception {
+                               List<String> statistics, int period, String offset, int limit) throws Exception {
 
-
-    String q = String.format("select %1$s %2$s where %3$s %4$s %5$s %6$s %7$s %8$s",
-                             funcPart(statistics), namePart(name), tenantIdPart(tenantId),
-                             regionPart(this.region), startTimePart(startTime), dimPart(dimensions),
-                             endTimePart(endTime), periodPart(period));
+    String q = String.format("select %1$s %2$s "
+                             + "where %3$s %4$s %5$s %6$s %7$s %8$s %9$s %10$s",
+                             funcPart(statistics),
+                             this.influxV9Utils.namePart(name, true),
+                             this.influxV9Utils.tenantIdPart(tenantId),
+                             this.influxV9Utils.regionPart(this.region),
+                             this.influxV9Utils.startTimePart(startTime),
+                             this.influxV9Utils.dimPart(dimensions),
+                             this.influxV9Utils.endTimePart(endTime),
+                             this.influxV9Utils.timeOffsetPart(offset),
+                             this.influxV9Utils.periodPart(period),
+                             this.influxV9Utils.limitPart(limit));
 
     logger.debug("Measurements query: {}", q);
 
     String r = this.influxV9RepoReader.read(q);
 
     Series series = this.objectMapper.readValue(r, Series.class);
+
+    if (series.getSeriesLength() > 1) {
+
+      throw new IllegalArgumentException ("Found multiple metrics matching search criteria. "
+                                          + "Please refine your search criteria using additional dimensions.");
+    }
 
     List<Statistics> statisticsList = statisticslist(series);
 
@@ -125,21 +135,19 @@ public class InfluxV9StatisticRepo implements StatisticRepo{
   private String funcPart(List<String> statistics) {
 
     StringBuilder sb = new StringBuilder();
+
     for (String stat : statistics) {
       if (sb.length() != 0) {
         sb.append(",");
       }
+
       if (stat.trim().toLowerCase().equals("avg")) {
-        sb.append(" mean(value)");
+        sb.append("mean(value)");
       } else {
         sb.append(String.format("%1$s(value)", stat));
       }
     }
 
     return sb.toString();
-  }
-
-  private String periodPart(int period) {
-    return period >= 1 ? String.format("group by time(%1$ds)", period) : "";
   }
 }
