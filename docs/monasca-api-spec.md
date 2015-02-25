@@ -922,6 +922,59 @@ Returns a JSON array of measurements objects for each unique metric with the fol
 ```
 ___
 
+# Metric Names
+Operations for accessing names of metrics.
+
+## List names
+Get names for metrics.
+
+### GET /v2.0/metrics/names
+
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+* Accept (string) - application/json
+
+#### Path Parameters
+None.
+
+#### Query Parameters
+* name (string(255), optional) - A metric name to filter metrics by.
+* dimensions (string, optional) - A dictionary to filter metrics by specified as a comma separated array of (key, value) pairs as `key1:value1,key2:value2, ...`
+
+#### Request Body
+None.
+
+#### Request Examples
+```
+GET /v2.0/metrics/names HTTP/1.1
+Host: 192.168.10.4:8080
+Content-Type: application/json
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Cache-Control: no-cache
+```
+
+### Response
+#### Status Code
+* 200 - OK
+
+#### Response Body
+Returns a JSON array of metric name objects for each unique metric name (not including dimensions) with the following fields:
+
+* name (string(255)) - A name of a metric.
+
+#### Response Examples
+```
+[
+   {
+      "name":"name1"
+   },
+   {
+      "name":"name2"
+   }
+]
+```
+___
+
 # Statistics
 Operations for calculating statistics of metrics.
 
