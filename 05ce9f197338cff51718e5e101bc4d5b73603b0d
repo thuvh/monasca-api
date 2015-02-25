@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ba7be1f8_f429a88a",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV8MetricDefinitionRepo.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-02-25T16:30:35Z",
+      "side": 1,
+      "message": "Automatic change, I\u0027ll see how to turn of the automatic imports",
+      "parentUuid": "ba7be1f8_a6e46aac",
+      "revId": "05ce9f197338cff51718e5e101bc4d5b73603b0d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba7be1f8_46a2ce4b",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV8MetricDefinitionRepo.java",
         "patchSetId": 1
@@ -53,6 +71,24 @@
     },
     {
       "key": {
+        "uuid": "ba7be1f8_299f6d04",
+        "filename": "java/src/main/resources/api-config.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-02-25T16:30:35Z",
+      "side": 1,
+      "message": "Whoops, didn\u0027t mean to add this to my commit. I\u0027ll revert it in the next patch set",
+      "parentUuid": "ba7be1f8_660fd237",
+      "revId": "05ce9f197338cff51718e5e101bc4d5b73603b0d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba7be1f8_6916c54d",
         "filename": "java/src/main/resources/api-config.yml",
         "patchSetId": 1
@@ -64,6 +100,24 @@
       "writtenOn": "2015-02-25T16:21:53Z",
       "side": 1,
       "message": "I like debug, your mileage may vary",
+      "revId": "05ce9f197338cff51718e5e101bc4d5b73603b0d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_8975b9cc",
+        "filename": "java/src/main/resources/api-config.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-02-25T16:30:35Z",
+      "side": 1,
+      "message": "Same comment as above",
+      "parentUuid": "ba7be1f8_6916c54d",
       "revId": "05ce9f197338cff51718e5e101bc4d5b73603b0d",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
