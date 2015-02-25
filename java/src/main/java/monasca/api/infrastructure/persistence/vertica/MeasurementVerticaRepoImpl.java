@@ -56,9 +56,10 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
 
   @Override
   public List<Measurements> find(String tenantId, String name,
-      Map<String, String> dimensions, DateTime startTime, @Nullable DateTime endTime, @Nullable String offset) {
+      Map<String, String> dimensions, DateTime startTime, @Nullable DateTime endTime,
+      @Nullable String offset, int limit) {
 
-    // Todo. Use offset for pagination.
+    // Todo. Use offset and limit for pagination.
 
     try (Handle h = db.open()) {
       // Build sql

@@ -13,6 +13,8 @@
  */
 package monasca.api.infrastructure.persistence.influxdb;
 
+import java.util.Map;
+
 public class Series {
 
   public SeriesElement[] results;
@@ -21,6 +23,10 @@ public class Series {
   boolean isEmpty() {
 
     return this.results[0].series == null;
+  }
+
+  int getSeriesLength () {
+    return this.results[0].series.length;
   }
 
   Serie[] getSeries() {
@@ -45,11 +51,16 @@ class SeriesElement {
 class Serie {
 
   public String name;
+  Map tags;
   public String[] columns;
   public String[][] values;
 
   public String getName() {
     return name;
+  }
+
+  public Map getTags() {
+    return tags;
   }
 
   public String[] getColumns() {
