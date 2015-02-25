@@ -21,6 +21,7 @@ import monasca.api.domain.exception.EntityNotFoundException;
 import monasca.api.domain.model.notificationmethod.NotificationMethod;
 import monasca.api.domain.model.notificationmethod.NotificationMethodRepo;
 import monasca.api.domain.model.notificationmethod.NotificationMethodType;
+import monasca.api.infrastructure.persistence.PersistUtils;
 import monasca.api.resource.exception.ErrorMessages;
 import org.testng.annotations.Test;
 
@@ -57,9 +58,9 @@ public class NotificationMethodResourceTest extends AbstractMonApiResourceTest {
     when(repo.create(eq("abc"), eq("MyPd"), eq(NotificationMethodType.PAGERDUTY), anyString()))
         .thenReturn(notificationMethodPagerduty);
     when(repo.findById(eq("abc"), eq("123"))).thenReturn(notificationMethod);
-    when(repo.find(eq("abc"), anyString())).thenReturn(Arrays.asList(notificationMethod));
+    when(repo.find(eq("abc"), anyString(), anyString())).thenReturn(Arrays.asList(notificationMethod));
 
-    addResources(new NotificationMethodResource(repo));
+    addResources(new NotificationMethodResource(repo, new PersistUtils()));
   }
 
   public void shouldCreate() {
@@ -191,7 +192,7 @@ public class NotificationMethodResourceTest extends AbstractMonApiResourceTest {
             .get(new GenericType<List<NotificationMethod>>() {});
 
     assertEquals(notificationMethods, Arrays.asList(notificationMethod));
-    verify(repo).find(eq("abc"), anyString());
+    verify(repo).find(eq("abc"), anyString(), anyString());
   }
 
   public void shouldGet() {
@@ -233,7 +234,7 @@ public class NotificationMethodResourceTest extends AbstractMonApiResourceTest {
   }
 
   public void should500OnInternalException() {
-    doThrow(new RuntimeException("")).when(repo).find(anyString(), anyString());
+    doThrow(new RuntimeException("")).when(repo).find(anyString(), anyString(), anyString());
 
     try {
       client().resource("/v2.0/notification-methods").header("X-Tenant-Id", "abc")
