@@ -57,8 +57,10 @@ public class InfluxV8StatisticRepo implements StatisticRepo {
   @Override
   public List<Statistics> find(String tenantId, String name, Map<String, String> dimensions,
                                DateTime startTime, @Nullable DateTime endTime,
-                               List<String> statistics, int period)
+                               List<String> statistics, int period, String offset, String limit)
       throws Exception {
+
+    // Limit is not implemented for Influxdb V8.
 
     String serieNameRegex = buildSerieNameRegex(tenantId, config.region, name, dimensions);
     String statsPart = buildStatsPart(statistics);
