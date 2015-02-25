@@ -30,11 +30,13 @@ import javax.ws.rs.HeaderParam;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.UriInfo;
 
 import monasca.api.app.validation.Validation;
 import monasca.api.domain.model.statistic.StatisticRepo;
-import monasca.api.domain.model.statistic.Statistics;
+import monasca.api.infrastructure.persistence.PersistUtils;
 
 // import monasca.common.util.stats.Statistics;
 
@@ -46,20 +48,27 @@ public class StatisticResource {
   private static final Splitter COMMA_SPLITTER = Splitter.on(',').omitEmptyStrings().trimResults();
 
   private final StatisticRepo repo;
+  private final PersistUtils persistUtils;
 
   @Inject
-  public StatisticResource(StatisticRepo repo) {
+  public StatisticResource(StatisticRepo repo, PersistUtils persistUtils) {
     this.repo = repo;
+    this.persistUtils = persistUtils;
   }
 
   @GET
   @Timed
   @Produces(MediaType.APPLICATION_JSON)
-  public List<Statistics> get(@HeaderParam("X-Tenant-Id") String tenantId,
-      @QueryParam("name") String name, @QueryParam("dimensions") String dimensionsStr,
-      @QueryParam("start_time") String startTimeStr, @QueryParam("end_time") String endTimeStr,
+  public Object get(@Context UriInfo uriInfo, @HeaderParam("X-Tenant-Id") String tenantId,
+      @QueryParam("name") String name,
+      @QueryParam("dimensions") String dimensionsStr,
+      @QueryParam("start_time") String startTimeStr,
+      @QueryParam("end_time") String endTimeStr,
       @QueryParam("statistics") String statisticsStr,
-      @DefaultValue("300") @QueryParam("period") String periodStr) throws Exception {
+      @DefaultValue("300")
+      @QueryParam("period") String periodStr,
+      @QueryParam("offset") String offset,
+      @QueryParam("limit") String limit) throws Exception {
 
     // Validate query parameters
     DateTime startTime = Validation.parseAndValidateDate(startTimeStr, "start_time", true);
@@ -73,6 +82,8 @@ public class StatisticResource {
         Strings.isNullOrEmpty(dimensionsStr) ? null : Validation.parseAndValidateNameAndDimensions(
             name, dimensionsStr);
 
-    return repo.find(tenantId, name, dimensions, startTime, endTime, statistics, period);
+    return Links.paginateStatistics(this.persistUtils.getLimit(limit),
+                          repo.find(tenantId, name, dimensions, startTime, endTime, statistics,
+                                    period, offset, this.persistUtils.getLimit(limit)), uriInfo);
   }
 }
