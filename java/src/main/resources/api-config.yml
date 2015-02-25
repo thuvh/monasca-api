@@ -10,6 +10,9 @@ metricsTopic: metrics
 # Topic for publishing domain events to
 eventsTopic: events
 
+# Maximum rows (Mysql) or points (Influxdb) to return when listing elements. Only set with Influxdb V9.
+#maxQueryLimit: 10000
+
 kafka:
   brokerUris:
     - 192.168.10.4:9092
@@ -36,7 +39,7 @@ databaseConfiguration:
 # Uncomment if databaseType is influxDB
 influxDB:
   # version can be (V8 | V9)
-  # If noversion set then defaults to V8.
+  # If no version set then defaults to V8.
   version: V8
   # Used only if version is V9.
   maxHttpConnections: 100
