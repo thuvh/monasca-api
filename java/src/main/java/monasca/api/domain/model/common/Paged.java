@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Paged {
 
-  public static final int LIMIT = 50;
+  public static final int LIMIT = 10000;
 
   public List<Link> links = new ArrayList<>();
 
