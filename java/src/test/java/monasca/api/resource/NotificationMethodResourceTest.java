@@ -18,15 +18,19 @@ import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.GenericType;
 import monasca.api.app.command.CreateNotificationMethodCommand;
 import monasca.api.domain.exception.EntityNotFoundException;
+import monasca.api.domain.model.alarmdefinition.AlarmDefinition;
+import monasca.api.domain.model.common.Paged;
 import monasca.api.domain.model.notificationmethod.NotificationMethod;
 import monasca.api.domain.model.notificationmethod.NotificationMethodRepo;
 import monasca.api.domain.model.notificationmethod.NotificationMethodType;
+import monasca.api.infrastructure.persistence.PersistUtils;
 import monasca.api.resource.exception.ErrorMessages;
 import org.testng.annotations.Test;
 
 import javax.ws.rs.core.MediaType;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
@@ -57,9 +61,9 @@ public class NotificationMethodResourceTest extends AbstractMonApiResourceTest {
     when(repo.create(eq("abc"), eq("MyPd"), eq(NotificationMethodType.PAGERDUTY), anyString()))
         .thenReturn(notificationMethodPagerduty);
     when(repo.findById(eq("abc"), eq("123"))).thenReturn(notificationMethod);
-    when(repo.find(eq("abc"), anyString())).thenReturn(Arrays.asList(notificationMethod));
+    when(repo.find(eq("abc"), anyString(), anyInt())).thenReturn(Arrays.asList(notificationMethod));
 
-    addResources(new NotificationMethodResource(repo));
+    addResources(new NotificationMethodResource(repo, new PersistUtils()));
   }
 
   public void shouldCreate() {
@@ -186,12 +190,21 @@ public class NotificationMethodResourceTest extends AbstractMonApiResourceTest {
   }
 
   public void shouldList() {
-    List<NotificationMethod> notificationMethods =
-        client().resource("/v2.0/notification-methods").header("X-Tenant-Id", "abc")
-            .get(new GenericType<List<NotificationMethod>>() {});
 
+    Map
+        lhm =
+        (Map) client().resource("/v2.0/notification-methods").header("X-Tenant-Id", "abc")
+            .get(Paged.class).elements.get(0);
+
+    NotificationMethod
+        nm =
+        new NotificationMethod((String) lhm.get("id"), (String) lhm.get("name"),
+                               NotificationMethodType.fromJson((String) lhm.get("type")),
+                               (String) lhm.get("address"));
+
+    List<NotificationMethod> notificationMethods = Arrays.asList(nm);
     assertEquals(notificationMethods, Arrays.asList(notificationMethod));
-    verify(repo).find(eq("abc"), anyString());
+    verify(repo).find(eq("abc"), anyString(), anyInt());
   }
 
   public void shouldGet() {
@@ -233,7 +246,7 @@ public class NotificationMethodResourceTest extends AbstractMonApiResourceTest {
   }
 
   public void should500OnInternalException() {
-    doThrow(new RuntimeException("")).when(repo).find(anyString(), anyString());
+    doThrow(new RuntimeException("")).when(repo).find(anyString(), anyString(), anyInt());
 
     try {
       client().resource("/v2.0/notification-methods").header("X-Tenant-Id", "abc")
