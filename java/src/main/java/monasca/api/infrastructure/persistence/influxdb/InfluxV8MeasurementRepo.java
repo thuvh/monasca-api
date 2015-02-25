@@ -67,8 +67,11 @@ public class InfluxV8MeasurementRepo implements MeasurementRepo {
   @Override
   public List<Measurements> find(String tenantId, String name,
                                        Map<String, String> dimensions, DateTime startTime,
-                                       @Nullable DateTime endTime, @Nullable String offset)
+                                       @Nullable DateTime endTime, @Nullable String offset,
+                                       int limit)
       throws Exception {
+
+    // Limit is not implemented for Influxdb V8.
 
     String serieNameRegex = buildSerieNameRegex(tenantId, config.region, name, dimensions);
 
