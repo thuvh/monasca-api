@@ -49,8 +49,9 @@ import monasca.common.model.metric.Metric;
  */
 @Path("/v2.0/metrics")
 public class MetricResource {
+
   private static final String MONITORING_DELEGATE_ROLE = "monitoring-delegate";
-    private static final Splitter COMMA_SPLITTER = Splitter.on(',').omitEmptyStrings().trimResults();
+  private static final Splitter COMMA_SPLITTER = Splitter.on(',').omitEmptyStrings().trimResults();
 
   private final MetricService service;
   private final MetricDefinitionRepo metricRepo;
@@ -113,5 +114,24 @@ public class MetricResource {
 
     return Links.paginate(this.persistUtils.getLimit(limit),
                           metricRepo.find(tenantId, name, dimensions, offset, this.persistUtils.getLimit(limit)), uriInfo);
+  }
+
+  @GET
+  @Path("/names")
+  @Timed
+  @Produces(MediaType.APPLICATION_JSON)
+  public Object getMetricNames(@Context UriInfo uriInfo,
+                               @HeaderParam("X-Tenant-Id") String tenantId,
+                               @QueryParam("name") String name,
+                               @QueryParam("dimensions") String dimensionsStr,
+                               @QueryParam("offset") String offset,
+                               @QueryParam("limit") String limit) throws Exception {
+    Map<String, String>
+        dimensions =
+        Strings.isNullOrEmpty(dimensionsStr) ? null : Validation
+            .parseAndValidateNameAndDimensions(name, dimensionsStr);
+
+    return Links.paginate(this.persistUtils.getLimit(limit),
+                          metricRepo.findNames(tenantId, name, dimensions, offset, this.persistUtils.getLimit(limit)), uriInfo);
   }
 }

@@ -27,7 +27,9 @@ import java.util.Map;
 
 import monasca.api.ApiConfig;
 import monasca.api.domain.model.metric.MetricDefinitionRepo;
+import monasca.api.domain.model.metric.MetricName;
 import monasca.common.model.metric.MetricDefinition;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 
 public class InfluxV9MetricDefinitionRepo implements MetricDefinitionRepo {
@@ -109,9 +111,12 @@ public class InfluxV9MetricDefinitionRepo implements MetricDefinitionRepo {
     return metricDefinitionList;
   }
 
+  @Override
+  public List<MetricName> findNames(String tenantId, String name, Map<String, String> dimensions, String offset, int limit) throws Exception {
+    throw new NotImplementedException();
+  }
 
-
-  private List<MetricDefinition> metricDefinitionList(Series series, int startIndex) {
+    private List<MetricDefinition> metricDefinitionList(Series series, int startIndex) {
 
     List<MetricDefinition> metricDefinitionList = new ArrayList<>();
 
