@@ -32,13 +32,6 @@ import monasca.api.ApiConfig;
 import monasca.api.domain.model.measurement.MeasurementRepo;
 import monasca.api.domain.model.measurement.Measurements;
 
-import static monasca.api.infrastructure.persistence.influxdb.InfluxV9Utils.dimPart;
-import static monasca.api.infrastructure.persistence.influxdb.InfluxV9Utils.endTimePart;
-import static monasca.api.infrastructure.persistence.influxdb.InfluxV9Utils.namePart;
-import static monasca.api.infrastructure.persistence.influxdb.InfluxV9Utils.regionPart;
-import static monasca.api.infrastructure.persistence.influxdb.InfluxV9Utils.startTimePart;
-import static monasca.api.infrastructure.persistence.influxdb.InfluxV9Utils.tenantIdPart;
-
 public class InfluxV9MeasurementRepo implements MeasurementRepo {
 
 
@@ -49,27 +42,36 @@ public class InfluxV9MeasurementRepo implements MeasurementRepo {
   private final ApiConfig config;
   private final String region;
   private final InfluxV9RepoReader influxV9RepoReader;
+  private final InfluxV9Utils influxV9Utils;
   private final ObjectMapper objectMapper = new ObjectMapper();
 
   @Inject
   public InfluxV9MeasurementRepo(ApiConfig config,
-                                 InfluxV9RepoReader influxV9RepoReader) {
+                                 InfluxV9RepoReader influxV9RepoReader,
+                                 InfluxV9Utils influxV9Utils) {
     this.config = config;
     this.region = config.region;
     this.influxV9RepoReader = influxV9RepoReader;
+    this.influxV9Utils = influxV9Utils;
 
   }
 
   @Override
   public List<Measurements> find(String tenantId, String name, Map<String, String> dimensions,
                                  DateTime startTime, @Nullable DateTime endTime,
-                                 @Nullable String offset) throws Exception {
+                                 @Nullable String offset, int limit) throws Exception {
 
+    // Todo. Need Influxdb 9 to support limit on points.
 
-    String q = String.format("select value %1$s where %2$s %3$s %4$s %5$s %6$s", namePart(name),
-                             tenantIdPart(tenantId), regionPart(this.region), startTimePart(startTime),
-                             dimPart(dimensions), endTimePart(endTime));
-
+    String q = String.format("select value %1$s where %2$s %3$s %4$s %5$s %6$s %7$s %8$s",
+                             this.influxV9Utils.namePart(name, true),
+                             this.influxV9Utils.tenantIdPart(tenantId),
+                             this.influxV9Utils.regionPart(this.region),
+                             this.influxV9Utils.startTimePart(startTime),
+                             this.influxV9Utils.dimPart(dimensions),
+                             this.influxV9Utils.endTimePart(endTime),
+                             this.influxV9Utils.timeOffsetPart(offset),
+                             this.influxV9Utils.limitPart(limit));
 
     logger.debug("Measurements query: {}", q);
 
@@ -91,6 +93,7 @@ public class InfluxV9MeasurementRepo implements MeasurementRepo {
 
     if (!series.isEmpty()) {
 
+      // Influxdb is returning all series back in one series.
       for (Serie serie : series.getSeries()) {
 
         // Influxdb 0.9.0 does not return dimensions at this time.
