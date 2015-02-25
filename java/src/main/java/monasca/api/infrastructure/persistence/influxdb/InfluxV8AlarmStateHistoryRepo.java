@@ -78,7 +78,11 @@ public class InfluxV8AlarmStateHistoryRepo implements AlarmStateHistoryRepo {
   }
 
   @Override
-  public List<AlarmStateHistory> findById(String tenantId, String alarmId, String offset) throws Exception {
+  public List<AlarmStateHistory> findById(String tenantId, String alarmId,
+                                          String offset, String limit) throws Exception {
+
+    // Limit is not implemented for Influxdb V8.
+
     // InfluxDB orders queries by time stamp desc by default.
     String query = buildQueryForFindById(tenantId, alarmId, offset);
     return queryInfluxDBForAlarmStateHistory(query);
@@ -93,7 +97,9 @@ public class InfluxV8AlarmStateHistoryRepo implements AlarmStateHistoryRepo {
 
   @Override
   public List<AlarmStateHistory> find(String tenantId, Map<String, String> dimensions,
-      DateTime startTime, @Nullable DateTime endTime, String offset) throws Exception {
+      DateTime startTime, @Nullable DateTime endTime, String offset, String limit) throws Exception {
+
+    // Limit is not implemented for Influxdb V8.
 
     List<String> alarmIdList = findAlarmIds(this.mysql, tenantId, dimensions);
 
