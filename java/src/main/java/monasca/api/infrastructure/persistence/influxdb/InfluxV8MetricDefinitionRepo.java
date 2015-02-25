@@ -20,9 +20,7 @@ import org.influxdb.dto.Serie;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 import monasca.api.ApiConfig;
@@ -111,5 +109,39 @@ public class InfluxV8MetricDefinitionRepo implements MetricDefinitionRepo {
       }
     }
     return metricDefinitionList;
+  }
+
+  public List<String> listNames(String tenantId) throws Exception{
+    String serieNameRegex = buildSerieNameRegex(tenantId, config.region, null, null);
+
+    String query = String.format("list series /%1$s/", serieNameRegex);
+    logger.debug("Query string: {}", query);
+
+    List<Serie>
+            result =
+            this.influxDB.Query(this.config.influxDB.getName(), query, TimeUnit.SECONDS);
+    return buildMetricNameList(result);
+  }
+
+  private List<String> buildMetricNameList(List<Serie> result) throws Exception{
+    Set<String> metricNameSet = new TreeSet<>();
+    for (Serie serie : result) {
+      for (Map<String, Object> point : serie.getRows()) {
+
+        String encodedMetricName = (String) point.get("name");
+
+        InfluxV8Utils.SerieNameDecoder serieNameDecoder;
+
+        try {
+          serieNameDecoder = new InfluxV8Utils.SerieNameDecoder(encodedMetricName);
+        } catch (InfluxV8Utils.SerieNameDecodeException e) {
+          logger.warn("Dropping series name that is not decodable: {}", point.get("name"), e);
+          continue;
+        }
+
+        metricNameSet.add(serieNameDecoder.getMetricName());
+      }
+    }
+    return new ArrayList<String>(metricNameSet);
   }
 }

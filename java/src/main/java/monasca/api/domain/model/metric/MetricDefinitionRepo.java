@@ -28,4 +28,6 @@ public interface MetricDefinitionRepo {
   List<MetricDefinition> find(String tenantId, String name, Map<String, String> dimensions,
                               String offset)
       throws Exception;
+
+    List<String> listNames(String tenantId) throws Exception;
 }

@@ -108,4 +108,13 @@ public class MetricResource {
 
     return Links.paginate(offset, metricRepo.find(tenantId, name, dimensions, offset), uriInfo);
   }
+
+    @GET
+    @Path("/names")
+    @Timed
+    @Produces(MediaType.APPLICATION_JSON)
+    public Object getMetricNames(@Context UriInfo uriInfo,
+                                 @HeaderParam("X-Tenant-Id") String tenantId) throws Exception{
+        return metricRepo.listNames(tenantId);
+    }
 }
