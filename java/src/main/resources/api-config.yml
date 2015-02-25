@@ -10,6 +10,9 @@ metricsTopic: metrics
 # Topic for publishing domain events to
 eventsTopic: events
 
+# Maximum rows (Mysql) or points (Influxdb) to return when listing elements.
+maxQueryLimit: 10000
+
 kafka:
   brokerUris:
     - 192.168.10.4:9092
@@ -44,8 +47,8 @@ influxDB:
   replicationFactor: 1
   url: http://192.168.10.4:8086
 #  url: http://10.10.10.2:8086
-  user: mon_api
-  password: password
+  user: root
+  password: root
 
 # Uncomment if databaseType is vertica
 # As of 7/10 there is a bug in the monasca-api that requires this section even if databaseType is set to influxdb
