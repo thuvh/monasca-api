@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba7be1f8_0e600bce",
+        "filename": "java/src/test/java/monasca/api/app/AlarmDefinitionServiceTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-02-25T03:27:34Z",
+      "side": 1,
+      "message": "You have trailing whitespace on this line",
+      "revId": "a46ca496974da81e06d0cbe307282255c5c255cc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
