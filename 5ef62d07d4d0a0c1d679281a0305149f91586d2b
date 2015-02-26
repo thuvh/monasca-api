@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ba7be1f8_d19d5668",
+        "filename": "java/src/main/java/monasca/api/domain/model/metric/MetricDefinitionRepo.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-02-26T20:41:22Z",
+      "side": 1,
+      "message": "Yes, that sounds better. The resource doesn\u0027t actually accept name or dimension filtering right now. Should that be included?",
+      "parentUuid": "ba7be1f8_3f3da28f",
+      "revId": "5ef62d07d4d0a0c1d679281a0305149f91586d2b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba7be1f8_3f31225a",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV8MetricDefinitionRepo.java",
         "patchSetId": 3
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "ba7be1f8_f167bab5",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV8MetricDefinitionRepo.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-02-26T20:41:22Z",
+      "side": 1,
+      "message": "Oh, actually I don\u0027t need that line, I\u0027ll just remove it.",
+      "parentUuid": "ba7be1f8_3f31225a",
+      "revId": "5ef62d07d4d0a0c1d679281a0305149f91586d2b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba7be1f8_bf235203",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9MetricDefinitionRepo.java",
         "patchSetId": 3
@@ -47,6 +83,24 @@
       "writtenOn": "2015-02-26T18:28:11Z",
       "side": 1,
       "message": "For v9, we need to have a limit passed in.",
+      "revId": "5ef62d07d4d0a0c1d679281a0305149f91586d2b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_31a5d2b5",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9MetricDefinitionRepo.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-02-26T20:41:22Z",
+      "side": 1,
+      "message": "Should I add that now? The find method above doesn\u0027t include it currently either.",
+      "parentUuid": "ba7be1f8_bf235203",
       "revId": "5ef62d07d4d0a0c1d679281a0305149f91586d2b",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
