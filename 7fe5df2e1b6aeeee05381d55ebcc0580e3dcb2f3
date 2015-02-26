@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba7be1f8_e56a9180",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 925,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-02-26T23:36:13Z",
+      "side": 1,
+      "message": "You also need to update the table of contents. I installed doctoc on my mini-mon and ran it through. https://github.com/thlorenz/doctoc#installation\n\nYou have to change the first line of /usr/local/bin/doctoc to use nodejs not node",
+      "revId": "7fe5df2e1b6aeeee05381d55ebcc0580e3dcb2f3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
