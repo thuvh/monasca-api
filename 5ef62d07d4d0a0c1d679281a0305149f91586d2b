@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba7be1f8_3f3da28f",
+        "filename": "java/src/main/java/monasca/api/domain/model/metric/MetricDefinitionRepo.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-02-26T18:28:11Z",
+      "side": 1,
+      "message": "Probably should name this \u0027findNames\u0027 to be consistent. Also, we may be passed partial names or regexes and \u0027findNames\u0027 would be more apt.",
+      "revId": "5ef62d07d4d0a0c1d679281a0305149f91586d2b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_3f31225a",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV8MetricDefinitionRepo.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-02-26T18:28:11Z",
+      "side": 1,
+      "message": "This should be logged, not sent to sysout.",
+      "revId": "5ef62d07d4d0a0c1d679281a0305149f91586d2b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_bf235203",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9MetricDefinitionRepo.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-02-26T18:28:11Z",
+      "side": 1,
+      "message": "For v9, we need to have a limit passed in.",
+      "revId": "5ef62d07d4d0a0c1d679281a0305149f91586d2b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
