@@ -1,0 +1,208 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba7be1f8_9f4dae40",
+        "filename": "java/src/main/java/monasca/api/app/AlarmDefinitionService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-02-26T18:40:20Z",
+      "side": 1,
+      "message": "Formatting guide says use brackets",
+      "revId": "14057d34585245779036d1cbfae6a54399252409",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_1fd37e60",
+        "filename": "java/src/main/java/monasca/api/app/AlarmDefinitionService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-02-26T18:40:20Z",
+      "side": 1,
+      "message": "Please use the correct formatting",
+      "revId": "14057d34585245779036d1cbfae6a54399252409",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_3f0be2d6",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMySqlRepoImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-02-26T18:40:20Z",
+      "side": 1,
+      "message": "Not used?",
+      "revId": "14057d34585245779036d1cbfae6a54399252409",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_9ffbeebf",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMySqlRepoImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-02-26T18:40:20Z",
+      "side": 1,
+      "message": "please format correctly. Check the whole method",
+      "revId": "14057d34585245779036d1cbfae6a54399252409",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_5a08a427",
+        "filename": "java/src/test/java/monasca/api/app/AlarmDefinitionServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-02-26T18:40:20Z",
+      "side": 1,
+      "message": "You don\u0027t have any tests for update",
+      "revId": "14057d34585245779036d1cbfae6a54399252409",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_9fd3ee02",
+        "filename": "java/src/test/java/monasca/api/app/AlarmDefinitionServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-02-26T18:40:20Z",
+      "side": 1,
+      "message": "Change \"91% CPU\" to firstAlarmDef.getName() to make it clearer what you are checking",
+      "revId": "14057d34585245779036d1cbfae6a54399252409",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_dff00693",
+        "filename": "java/src/test/java/monasca/api/app/AlarmDefinitionServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-02-26T18:40:20Z",
+      "side": 1,
+      "message": "Use secondAlarmDef properties instead of constants",
+      "revId": "14057d34585245779036d1cbfae6a54399252409",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_9f412eab",
+        "filename": "java/src/test/java/monasca/api/app/AlarmDefinitionServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-02-26T18:40:20Z",
+      "side": 1,
+      "message": "Add checking that the result of service.patch matches the name you elect",
+      "revId": "14057d34585245779036d1cbfae6a54399252409",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_3f8e822e",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMySqlRepositoryImplTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-02-26T18:40:20Z",
+      "side": 1,
+      "message": "Used?",
+      "revId": "14057d34585245779036d1cbfae6a54399252409",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_ff986a76",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMySqlRepositoryImplTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-02-26T18:40:20Z",
+      "side": 1,
+      "message": "You should never get a NullPointerException. This shows your code is wrong",
+      "revId": "14057d34585245779036d1cbfae6a54399252409",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_9f7e8e17",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMySqlRepositoryImplTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-02-26T18:40:20Z",
+      "side": 1,
+      "message": "Use assertEquals",
+      "revId": "14057d34585245779036d1cbfae6a54399252409",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_1f929e4b",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMySqlRepositoryImplTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-02-26T18:40:20Z",
+      "side": 1,
+      "message": "Use assertNull",
+      "revId": "14057d34585245779036d1cbfae6a54399252409",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
