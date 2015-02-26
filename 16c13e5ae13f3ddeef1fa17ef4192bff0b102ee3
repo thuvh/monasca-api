@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba7be1f8_b159c25d",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9AlarmStateHistoryRepo.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 8126
+      },
+      "writtenOn": "2015-02-26T20:43:38Z",
+      "side": 1,
+      "message": "As an operator -- i really like these log statements, thx!",
+      "revId": "16c13e5ae13f3ddeef1fa17ef4192bff0b102ee3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
