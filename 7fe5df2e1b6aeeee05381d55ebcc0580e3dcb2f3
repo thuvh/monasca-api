@@ -16,6 +16,57 @@
       "revId": "7fe5df2e1b6aeeee05381d55ebcc0580e3dcb2f3",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_7e57f526",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 941,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-02-27T13:43:42Z",
+      "side": 1,
+      "message": "Not sure that name should be a query parameter or part of the resource, as in \n\nGET /v2.0/metrics/names/{name}?dimensions\n\nI think it should be the latter though.\n\nIf you supply a nem dont\u0027 you just get one metric back though. Isn\u0027t \"name\" as a query parameter pretty useless?\n\nHowever, I didn\u0027t think we were going to add query parameters to this right now as in just give me all the names.",
+      "revId": "7fe5df2e1b6aeeee05381d55ebcc0580e3dcb2f3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_393917d9",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 942,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-02-27T13:43:42Z",
+      "side": 1,
+      "message": "Looking at how we describe this elsewhere in the document we use the following description.\n\ndimensions ({string(255): string(255)}, optional) - A dictionary consisting of (key, value) pairs used to uniquely identify a metric.\n\nI think we should use something that is consistent a well as define the max length.",
+      "revId": "7fe5df2e1b6aeeee05381d55ebcc0580e3dcb2f3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_19aa93d4",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 974,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-02-27T13:43:42Z",
+      "side": 1,
+      "message": "Response body should be\n\n{\n    \"elements\" : [{names}],\n    \"links\": []\n}",
+      "revId": "7fe5df2e1b6aeeee05381d55ebcc0580e3dcb2f3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
