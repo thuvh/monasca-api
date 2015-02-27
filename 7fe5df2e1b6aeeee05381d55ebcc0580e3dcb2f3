@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ba7be1f8_562bee2f",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 925,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-02-27T16:30:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba7be1f8_e56a9180",
+      "revId": "7fe5df2e1b6aeeee05381d55ebcc0580e3dcb2f3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba7be1f8_7e57f526",
         "filename": "docs/monasca-api-spec.md",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2015-02-27T13:43:42Z",
       "side": 1,
       "message": "Not sure that name should be a query parameter or part of the resource, as in \n\nGET /v2.0/metrics/names/{name}?dimensions\n\nI think it should be the latter though.\n\nIf you supply a nem dont\u0027 you just get one metric back though. Isn\u0027t \"name\" as a query parameter pretty useless?\n\nHowever, I didn\u0027t think we were going to add query parameters to this right now as in just give me all the names.",
+      "revId": "7fe5df2e1b6aeeee05381d55ebcc0580e3dcb2f3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_f5ce9bb3",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 941,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-02-27T16:30:26Z",
+      "side": 1,
+      "message": "The thought was to allow filtering by dimensions, but the system currently requires a name if dimensions are present. Additionally, influx would support regular expressions for the name parameter, if our api allowed it, which could be very useful. I\u0027m planning on looking into both of these afterwards.",
+      "parentUuid": "ba7be1f8_7e57f526",
       "revId": "7fe5df2e1b6aeeee05381d55ebcc0580e3dcb2f3",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "ba7be1f8_f00dc938",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 942,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-02-27T16:30:26Z",
+      "side": 1,
+      "message": "The request body descriptions use that, but I can only find one instance of that format in the query parameters. Should they all change to that format?",
+      "parentUuid": "ba7be1f8_393917d9",
+      "revId": "7fe5df2e1b6aeeee05381d55ebcc0580e3dcb2f3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba7be1f8_19aa93d4",
         "filename": "docs/monasca-api-spec.md",
         "patchSetId": 4
@@ -64,6 +118,24 @@
       "writtenOn": "2015-02-27T13:43:42Z",
       "side": 1,
       "message": "Response body should be\n\n{\n    \"elements\" : [{names}],\n    \"links\": []\n}",
+      "revId": "7fe5df2e1b6aeeee05381d55ebcc0580e3dcb2f3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_76955287",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 974,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-02-27T16:30:26Z",
+      "side": 1,
+      "message": "This response body will only appear if the \"offset\" query parameter is present. I didn\u0027t add it since the other response bodies do not reflect this (ex. the list metrics response body)",
+      "parentUuid": "ba7be1f8_19aa93d4",
       "revId": "7fe5df2e1b6aeeee05381d55ebcc0580e3dcb2f3",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
