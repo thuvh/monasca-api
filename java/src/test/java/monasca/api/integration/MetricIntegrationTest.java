@@ -81,7 +81,7 @@ public class MetricIntegrationTest extends AbstractMonApiResourceTest {
     dimensions.put("instance_id", "937");
     dimensions.put("az", "2");
     dimensions.put("instance_uuid", "abc123");
-    long timestamp = System.currentTimeMillis() / 1000;
+    long timestamp = System.currentTimeMillis();
     ClientResponse response =
         client()
             .resource("/v2.0/metrics")
@@ -98,7 +98,7 @@ public class MetricIntegrationTest extends AbstractMonApiResourceTest {
     dimensions.put("instance_id", "937");
     dimensions.put("az", "2");
     dimensions.put("instance_uuid", "abc123");
-    long timestamp = System.currentTimeMillis() / 1000;
+    long timestamp = System.currentTimeMillis();
     double timestampD = (double) timestamp;
     double[][] timeValues = { {timestampD, 22.0}, {timestampD + 1, 23.0}};
     ClientResponse response =

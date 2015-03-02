@@ -44,7 +44,7 @@ public class InfluxV8MeasurementRepo implements MeasurementRepo {
   private final ApiConfig config;
   private final InfluxDB influxDB;
 
-  public static final DateTimeFormatter DATETIME_FORMATTER = ISODateTimeFormat.dateTimeNoMillis()
+  public static final DateTimeFormatter DATETIME_FORMATTER = ISODateTimeFormat.dateTime()
       .withZoneUTC();
 
   @Inject
