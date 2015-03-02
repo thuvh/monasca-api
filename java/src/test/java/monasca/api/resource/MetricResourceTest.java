@@ -52,7 +52,7 @@ public class MetricResourceTest extends AbstractMonApiResourceTest {
     dimensions = new HashMap<String, String>();
     dimensions.put("instance_id", "937");
     dimensions.put("service", "foo.compute");
-    timestamp = System.currentTimeMillis() / 1000L;
+    timestamp = System.currentTimeMillis();
 
     service = mock(MetricService.class);
     doNothing().when(service).create(any(List.class), anyString(), anyString());
@@ -272,7 +272,7 @@ public class MetricResourceTest extends AbstractMonApiResourceTest {
   }
 
   public void shouldErrorOnCreateWithHighTimestamp() {
-    long local_timestamp = timestamp + 1000;
+    long local_timestamp = timestamp + 1000000;
     ClientResponse response =
         createResponseFor(new CreateMetricCommand("test_metrictype", dimensions, local_timestamp,
             22.0));
@@ -282,7 +282,7 @@ public class MetricResourceTest extends AbstractMonApiResourceTest {
   }
 
   public void shouldErrorOnCreateWithLowTimestamp() {
-    long local_timestamp = timestamp - 1309600;
+    long local_timestamp = timestamp - 1309600000;
     ClientResponse response =
         createResponseFor(new CreateMetricCommand("test_metrictype", dimensions, local_timestamp,
             22.0));
@@ -292,7 +292,7 @@ public class MetricResourceTest extends AbstractMonApiResourceTest {
   }
 
   public void shouldErrorOnCreateWithTimestampHighInTimeValues() {
-    double timestampD = (double) timestamp + 1000;
+    double timestampD = (double) timestamp + 1000000;
     double[][] timeValues = { {timestampD, 22.0}, {timestampD + 1, 23.0}};
     ClientResponse response =
         createResponseFor(new CreateMetricCommand("test_metrictype", dimensions, timestamp,
