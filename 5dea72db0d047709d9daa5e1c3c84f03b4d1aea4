@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba7be1f8_2d1dc4be",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV8MeasurementRepo.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-03-03T18:40:43Z",
+      "side": 1,
+      "message": "oh, i see you didn\u0027t put the value_meta in one column.",
+      "revId": "5dea72db0d047709d9daa5e1c3c84f03b4d1aea4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
