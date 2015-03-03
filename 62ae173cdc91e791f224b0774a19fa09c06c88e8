@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba7be1f8_1886aadb",
+        "filename": "java/src/main/java/monasca/api/ApiConfig.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-03T00:39:06Z",
+      "side": 1,
+      "message": "What will happen if this version of the API is used with an old version of the config file? Will it fail to start? If so, maybe this should be defaulted at first until the ansible role has been updated",
+      "revId": "62ae173cdc91e791f224b0774a19fa09c06c88e8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_9870da41",
+        "filename": "java/src/main/java/monasca/api/resource/AlarmDefinitionResource.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-03T00:39:06Z",
+      "side": 1,
+      "message": "I think the conversion of the limit to an int and handling of null and empty should be done at this level, the resource level. Otherwise, if the user screws up and send a non-numeric limit, it will cause 500 instead of a 400",
+      "revId": "62ae173cdc91e791f224b0774a19fa09c06c88e8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_d8bc12be",
+        "filename": "java/src/main/resources/api-config.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-03T00:39:06Z",
+      "side": 1,
+      "message": "Don\u0027t change these",
+      "revId": "62ae173cdc91e791f224b0774a19fa09c06c88e8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_f8ad5685",
+        "filename": "java/src/main/resources/api-config.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-03T00:39:06Z",
+      "side": 1,
+      "message": "Or this",
+      "revId": "62ae173cdc91e791f224b0774a19fa09c06c88e8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_78efa6b1",
+        "filename": "java/src/test/java/monasca/api/resource/AlarmDefinitionResourceTest.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-03T00:39:06Z",
+      "side": 1,
+      "message": "Why is this one commented out?",
+      "revId": "62ae173cdc91e791f224b0774a19fa09c06c88e8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_d831725b",
+        "filename": "java/src/test/java/monasca/api/resource/NotificationMethodResourceTest.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-03T00:39:06Z",
+      "side": 1,
+      "message": "Why is this commented out?",
+      "revId": "62ae173cdc91e791f224b0774a19fa09c06c88e8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_f832b65c",
+        "filename": "java/src/test/java/monasca/api/resource/StatisticResourceTest.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-03T00:39:06Z",
+      "side": 1,
+      "message": "Why is this commented out?",
+      "revId": "62ae173cdc91e791f224b0774a19fa09c06c88e8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
