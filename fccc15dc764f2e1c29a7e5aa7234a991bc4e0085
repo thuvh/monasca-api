@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba7be1f8_fb6d2533",
+        "filename": "java/src/main/java/monasca/api/domain/model/metric/MetricName.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-03T18:22:07Z",
+      "side": 1,
+      "message": "You must add the copyright",
+      "revId": "fccc15dc764f2e1c29a7e5aa7234a991bc4e0085",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_dbd301d3",
+        "filename": "java/src/main/java/monasca/api/domain/model/metric/MetricName.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-03T18:22:07Z",
+      "side": 1,
+      "message": "This is not the correct formatting",
+      "revId": "fccc15dc764f2e1c29a7e5aa7234a991bc4e0085",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
