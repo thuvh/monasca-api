@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "ba7be1f8_2d55c41d",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV8MeasurementRepo.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-03-03T18:45:35Z",
+      "side": 1,
+      "message": "i see we have to do \u0027select *\u0027 because we don\u0027t know what the value_meta columns are in advance. i recommend putting the value_meta in a single column just for this reason.",
+      "revId": "5dea72db0d047709d9daa5e1c3c84f03b4d1aea4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba7be1f8_2d1dc4be",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV8MeasurementRepo.java",
         "patchSetId": 3
