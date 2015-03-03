@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ba7be1f8_107ad323",
+        "filename": "java/src/main/java/monasca/api/app/command/CreateMetricCommand.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-03T18:55:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba7be1f8_3be25da0",
+      "revId": "d5f17ff67ecb16e215d87597c76f7822c45ed73a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba7be1f8_5b29d199",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV8MeasurementRepo.java",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2015-03-03T18:27:42Z",
       "side": 1,
       "message": "can we not use \u0027select *\u0027. It\u0027s nice to be specific about what we are selecting.",
+      "revId": "d5f17ff67ecb16e215d87597c76f7822c45ed73a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_cd5a68f1",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV8MeasurementRepo.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-03T18:55:04Z",
+      "side": 1,
+      "message": "This version stores each value_meta in its own column by the value_meta name so the names of the columns are not known previously",
+      "parentUuid": "ba7be1f8_5b29d199",
       "revId": "d5f17ff67ecb16e215d87597c76f7822c45ed73a",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "ba7be1f8_4d6678bc",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV8MeasurementRepo.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-03T18:55:04Z",
+      "side": 1,
+      "message": "See above",
+      "parentUuid": "ba7be1f8_8d531016",
+      "revId": "d5f17ff67ecb16e215d87597c76f7822c45ed73a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba7be1f8_2d5f8410",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9MeasurementRepo.java",
         "patchSetId": 2
@@ -64,6 +118,24 @@
       "writtenOn": "2015-03-03T18:27:42Z",
       "side": 1,
       "message": "Why are there 2 \u0027values[0]\u0027? is that a mistake?",
+      "revId": "d5f17ff67ecb16e215d87597c76f7822c45ed73a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_8d3230a5",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9MeasurementRepo.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-03T18:55:04Z",
+      "side": 1,
+      "message": "I was adding the measurement_Id which was missing",
+      "parentUuid": "ba7be1f8_2d5f8410",
       "revId": "d5f17ff67ecb16e215d87597c76f7822c45ed73a",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
