@@ -27,6 +27,7 @@ import org.joda.time.format.ISODateTimeFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -67,7 +68,7 @@ public class InfluxV8MeasurementRepo implements MeasurementRepo {
     String offsetPart = InfluxV8Utils.buildOffsetPart(offset);
 
     String query =
-        String.format("select value " + "from /%1$s/ where 1 = 1 " + " %2$s  %3$s",
+        String.format("select * " + "from /%1$s/ where 1 = 1 " + " %2$s  %3$s",
                       serieNameRegex, timePart, offsetPart);
     logger.debug("Query string: {}", query);
 
@@ -106,18 +107,35 @@ public class InfluxV8MeasurementRepo implements MeasurementRepo {
       List<Object[]> valObjArryList = new LinkedList<>();
       for (Map<String, Object> row : serie.getRows()) {
 
-        Object[] objArry = new Object[3];
+        Object[] objArry = new Object[4];
 
         // sequence_number
-        objArry[0] = ((Double) row.get(serie.getColumns()[1])).longValue();
+        objArry[0] = ((Double) row.get("sequence_number")).longValue();
         // time
-        Double timeDouble = (Double) row.get(serie.getColumns()[0]);
+        Double timeDouble = (Double) row.get("time");
         // last id wins. ids should be in descending order.
         measurements.setId(String.valueOf(timeDouble.longValue()));
         objArry[1] = DATETIME_FORMATTER.print(timeDouble.longValue());
         // value
-        objArry[2] = (Double) row.get(serie.getColumns()[2]);
+        objArry[2] = (Double) row.get("value");
 
+        final Map<String, String> valueMeta = new HashMap<String, String>();
+        if (serie.getColumns().length > 3) {
+          for (int i = 0; i < serie.getColumns().length; i++) {
+            final String key = serie.getColumns()[i];
+            if ("value".equals(key) || "sequence_number".equals(key) || "time".equals(key)) {
+              continue;
+            }
+            final Object valueObj = row.get(key);
+            if (valueObj != null) {
+              // Have to use String.valueOf() because Influx will store stings like "9.0" as
+              // Doubles
+              final String metaValue = String.valueOf(valueObj);
+              valueMeta.put(key, metaValue);
+            }
+          }
+        }
+        objArry[3] = valueMeta;
         valObjArryList.add(objArry);
       }
       measurements.setMeasurements(valObjArryList);
