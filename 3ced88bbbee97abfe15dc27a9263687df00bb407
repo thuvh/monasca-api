@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba7be1f8_46df35d6",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-03-03T19:55:48Z",
+      "side": 1,
+      "message": "The measurements",
+      "revId": "3ced88bbbee97abfe15dc27a9263687df00bb407",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_06ae1d2e",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 731,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-03-03T19:55:48Z",
+      "side": 1,
+      "message": "The second string should have a max length of 2048. Is that correct?",
+      "revId": "3ced88bbbee97abfe15dc27a9263687df00bb407",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_0138c7d1",
+        "filename": "java/src/main/java/monasca/api/app/validation/ValueMetaValidation.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-03-03T19:55:48Z",
+      "side": 1,
+      "message": "Would this be better as \"Length of valueMeta\" ... ?",
+      "revId": "3ced88bbbee97abfe15dc27a9263687df00bb407",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_418abf64",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV8MeasurementRepo.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-03-03T19:55:48Z",
+      "side": 1,
+      "message": "Do you really want to use a wildcard here instead of identifying each column explicitly?",
+      "revId": "3ced88bbbee97abfe15dc27a9263687df00bb407",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
