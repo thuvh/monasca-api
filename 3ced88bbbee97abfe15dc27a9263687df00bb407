@@ -72,6 +72,57 @@
     },
     {
       "key": {
+        "uuid": "ba7be1f8_c146af7a",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 768,
+      "author": {
+        "id": 12108
+      },
+      "writtenOn": "2015-03-03T21:12:46Z",
+      "side": 1,
+      "message": "Extra space",
+      "revId": "3ced88bbbee97abfe15dc27a9263687df00bb407",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_dc13f459",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 964,
+      "author": {
+        "id": 12108
+      },
+      "writtenOn": "2015-03-03T21:12:46Z",
+      "side": 1,
+      "message": "Should the response code be a number?",
+      "revId": "3ced88bbbee97abfe15dc27a9263687df00bb407",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_32b3574e",
+        "filename": "java/src/main/java/monasca/api/app/command/CreateMetricCommand.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 12108
+      },
+      "writtenOn": "2015-03-03T21:12:46Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be (this.valueMeta !\u003d null) ?",
+      "revId": "3ced88bbbee97abfe15dc27a9263687df00bb407",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba7be1f8_0138c7d1",
         "filename": "java/src/main/java/monasca/api/app/validation/ValueMetaValidation.java",
         "patchSetId": 4
