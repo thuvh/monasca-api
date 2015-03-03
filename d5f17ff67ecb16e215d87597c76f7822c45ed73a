@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba7be1f8_3be25da0",
+        "filename": "java/src/main/java/monasca/api/app/command/CreateMetricCommand.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-03-03T18:27:42Z",
+      "side": 1,
+      "message": "it would probably be better to initialize with an empty map instead of null. makes downstream processing more easy and regular because we don\u0027t have to check for null.",
+      "revId": "d5f17ff67ecb16e215d87597c76f7822c45ed73a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_5b29d199",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV8MeasurementRepo.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-03-03T18:27:42Z",
+      "side": 1,
+      "message": "can we not use \u0027select *\u0027. It\u0027s nice to be specific about what we are selecting.",
+      "revId": "d5f17ff67ecb16e215d87597c76f7822c45ed73a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_8d531016",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV8MeasurementRepo.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-03-03T18:27:42Z",
+      "side": 1,
+      "message": "in this case, can we just say \u0027row.get(\u0027value_meta\u0027)\u0027?",
+      "revId": "d5f17ff67ecb16e215d87597c76f7822c45ed73a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7be1f8_2d5f8410",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9MeasurementRepo.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-03-03T18:27:42Z",
+      "side": 1,
+      "message": "Why are there 2 \u0027values[0]\u0027? is that a mistake?",
+      "revId": "d5f17ff67ecb16e215d87597c76f7822c45ed73a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
