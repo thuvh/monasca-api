@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ba7be1f8_af2d1daa",
+        "filename": "java/src/main/java/monasca/api/ApiConfig.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-03-03T23:34:51Z",
+      "side": 1,
+      "message": "It works fine. The default is 10000.",
+      "parentUuid": "ba7be1f8_1886aadb",
+      "revId": "62ae173cdc91e791f224b0774a19fa09c06c88e8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba7be1f8_9870da41",
         "filename": "java/src/main/java/monasca/api/resource/AlarmDefinitionResource.java",
         "patchSetId": 12
