@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a80dd14_c851c2d9",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9Utils.java",
+        "patchSetId": 28
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-03-05T23:39:21Z",
+      "side": 1,
+      "message": "This actually seems to remove the first result. Are you sure their offset starts at 1?",
+      "revId": "f278cc4b234b06a45635436bb6b934edb9f754ad",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a80dd14_8d4a7cc3",
+        "filename": "java/src/main/java/monasca/api/resource/Links.java",
+        "patchSetId": 28
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-03-05T23:39:21Z",
+      "side": 1,
+      "message": "This doesn\u0027t catch a list of length 0",
+      "revId": "f278cc4b234b06a45635436bb6b934edb9f754ad",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
