@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9a80dd14_632662bc",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-03-11T17:23:40Z",
+      "side": 1,
+      "message": "The default is milliseconds.",
+      "parentUuid": "9a80dd14_98cae19f",
+      "revId": "033b34aaa3d03ea582c619ef118ae813359c6cc3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a80dd14_987ca174",
         "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2015-03-11T17:07:12Z",
       "side": 1,
       "message": "This went from a \u0027s\u0027 to an \u0027m\u0027.  Should it have been \u0027ms\u0027?",
+      "revId": "033b34aaa3d03ea582c619ef118ae813359c6cc3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a80dd14_63d02254",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-03-11T17:23:40Z",
+      "side": 1,
+      "message": "I\u0027ll make it \u0027ms\u0027",
+      "parentUuid": "9a80dd14_987ca174",
       "revId": "033b34aaa3d03ea582c619ef118ae813359c6cc3",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
