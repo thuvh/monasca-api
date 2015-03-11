@@ -16,6 +16,23 @@
       "revId": "b3a804294998ed77d244326aac7d5076c8672456",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a80dd14_c35d4e7b",
+        "filename": "java/src/test/java/monasca/api/resource/MetricResourceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-03-11T17:33:48Z",
+      "side": 1,
+      "message": "What is this magic number? Can we make it a const?",
+      "revId": "b3a804294998ed77d244326aac7d5076c8672456",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
