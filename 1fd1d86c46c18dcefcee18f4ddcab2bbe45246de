@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a80dd14_34466b24",
+        "filename": "java/src/main/java/monasca/api/resource/Links.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-11T14:36:07Z",
+      "side": 1,
+      "message": "Wouldn\u0027t it make more sense to add the offset !\u003d null check here? Might as well add in the self URL and then it handles elements \u003d\u003d null and offset \u003d\u003d null. Less code duplication that way, too",
+      "revId": "1fd1d86c46c18dcefcee18f4ddcab2bbe45246de",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a80dd14_d45d0fee",
+        "filename": "java/src/main/java/monasca/api/resource/Links.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-11T14:36:07Z",
+      "side": 1,
+      "message": "Doesn\u0027t seem to handle elements \u003d\u003d null like above",
+      "revId": "1fd1d86c46c18dcefcee18f4ddcab2bbe45246de",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a80dd14_9402b7b2",
+        "filename": "java/src/main/java/monasca/api/resource/MeasurementResource.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-11T14:36:07Z",
+      "side": 1,
+      "message": "Both the if and the else have the exact same code. Why?",
+      "revId": "1fd1d86c46c18dcefcee18f4ddcab2bbe45246de",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
