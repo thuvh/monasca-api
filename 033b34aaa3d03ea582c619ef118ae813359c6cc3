@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a80dd14_98cae19f",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2015-03-11T17:07:12Z",
+      "side": 1,
+      "message": "You removed the \u0027s\u0027 parameter here but it looks like the query function defaults to \u0027s\u0027.  Did we want different behaviour or was this just removing an unnecessary parameter?",
+      "revId": "033b34aaa3d03ea582c619ef118ae813359c6cc3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a80dd14_987ca174",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2015-03-11T17:07:12Z",
+      "side": 1,
+      "message": "This went from a \u0027s\u0027 to an \u0027m\u0027.  Should it have been \u0027ms\u0027?",
+      "revId": "033b34aaa3d03ea582c619ef118ae813359c6cc3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
