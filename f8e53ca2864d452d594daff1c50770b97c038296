@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a80dd14_d8129957",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-11T17:28:01Z",
+      "side": 1,
+      "message": "I think this could be a little clearer. Maybe something like adminProjectId has precedence over adminProjectName",
+      "revId": "f8e53ca2864d452d594daff1c50770b97c038296",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a80dd14_b87165aa",
+        "filename": "java/src/main/java/monasca/api/MonApiApplication.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-11T17:28:01Z",
+      "side": 1,
+      "message": "This should be AuthConstants.ADMIN_PROJECT_ID which you can do once the common change has been merged",
+      "revId": "f8e53ca2864d452d594daff1c50770b97c038296",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a80dd14_186271d8",
+        "filename": "java/src/main/java/monasca/api/MonApiApplication.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-11T17:28:01Z",
+      "side": 1,
+      "message": "This should be AuthConstants.ADMIN_PROJECT_NAME which you can do once the common change has been merged",
+      "revId": "f8e53ca2864d452d594daff1c50770b97c038296",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a80dd14_0390464d",
+        "filename": "java/src/main/java/monasca/api/infrastructure/middleware/MiddlewareConfiguration.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-11T17:28:01Z",
+      "side": 1,
+      "message": "You should set a default of \"\" so that this will work with old config files. Otherwise, I get:\n\nException in thread \"main\" java.lang.IllegalArgumentException: non-null value required for init parameter AdminProjectId\n        at org.eclipse.jetty.servlet.Holder$HolderRegistration.setInitParameters(Holder.java:411)\n        at monasca.api.MonApiApplication.run(MonApiApplication.java:177)\n        at monasca.api.MonApiApplication.run(MonApiApplication.java:62)",
+      "revId": "f8e53ca2864d452d594daff1c50770b97c038296",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a80dd14_63882223",
+        "filename": "java/src/main/java/monasca/api/infrastructure/middleware/MiddlewareConfiguration.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-11T17:28:01Z",
+      "side": 1,
+      "message": "Same for this one",
+      "revId": "f8e53ca2864d452d594daff1c50770b97c038296",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
