@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a80dd14_f22f83f4",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-11T15:13:52Z",
+      "side": 1,
+      "message": "Shouldn\u0027t there be a change for the return of measurements that shows it returns milliseconds on the timestamp?",
+      "revId": "b3a804294998ed77d244326aac7d5076c8672456",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
