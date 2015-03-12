@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a80dd14_da5896fc",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/NotificationMethodMySqlRepoImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-12T17:12:00Z",
+      "side": 1,
+      "message": "Please fix the formatting of this line",
+      "revId": "2b2dd7d5f7e278a265a4660e3d0ead1550c64f0f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a80dd14_fa12ba07",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/NotificationMethodMySqlRepoImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-12T17:12:00Z",
+      "side": 1,
+      "message": "This would be better written as if (map !\u003d null \u0026\u0026 !map.isEmpty()) {",
+      "revId": "2b2dd7d5f7e278a265a4660e3d0ead1550c64f0f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a80dd14_bad68225",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/mysql/NotificationMethodMySqlRepositoryImplTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-12T17:12:00Z",
+      "side": 1,
+      "message": "Where is the test that trying to change the name to an existing one throws EntityNotFoundException?",
+      "revId": "2b2dd7d5f7e278a265a4660e3d0ead1550c64f0f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
