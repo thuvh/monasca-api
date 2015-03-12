@@ -23,6 +23,11 @@ import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.List;
 
+import monasca.api.domain.exception.EntityExistsException;
+import monasca.api.domain.exception.EntityNotFoundException;
+import monasca.api.domain.model.notificationmethod.NotificationMethod;
+import monasca.api.domain.model.notificationmethod.NotificationMethodType;
+
 import org.skife.jdbi.v2.DBI;
 import org.skife.jdbi.v2.Handle;
 import org.testng.annotations.AfterClass;
@@ -31,9 +36,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.google.common.io.Resources;
-import monasca.api.domain.exception.EntityNotFoundException;
-import monasca.api.domain.model.notificationmethod.NotificationMethod;
-import monasca.api.domain.model.notificationmethod.NotificationMethodType;
+
+import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.mock;
 
 @Test
 public class NotificationMethodMySqlRepositoryImplTest {
@@ -60,6 +65,8 @@ public class NotificationMethodMySqlRepositoryImplTest {
     handle.execute("truncate table notification_method");
     handle
         .execute("insert into notification_method (id, tenant_id, name, type, address, created_at, updated_at) values ('123', '444', 'MyEmail', 'EMAIL', 'a@b', NOW(), NOW())");
+    handle
+    .execute("insert into notification_method (id, tenant_id, name, type, address, created_at, updated_at) values ('124', '444', 'OtherEmail', 'EMAIL', 'a@b', NOW(), NOW())");
   }
 
   public void shouldCreate() {
@@ -87,7 +94,8 @@ public class NotificationMethodMySqlRepositoryImplTest {
     List<NotificationMethod> nms = repo.find("444", null);
 
     assertEquals(nms, Arrays.asList(new NotificationMethod("123", "MyEmail",
-        NotificationMethodType.EMAIL, "a@b")));
+        NotificationMethodType.EMAIL, "a@b"),new NotificationMethod("124", "OtherEmail",
+                NotificationMethodType.EMAIL, "a@b")));
   }
 
   public void shouldUpdate() {
@@ -106,4 +114,18 @@ public class NotificationMethodMySqlRepositoryImplTest {
     } catch (EntityNotFoundException expected) {
     }
   }
+
+  public void shouldUpdateDuplicateWithSameValues() {
+      repo.update("444", "123", "Foo", NotificationMethodType.EMAIL, "abc");
+      NotificationMethod nm = repo.findById("444", "123");
+
+      assertEquals(nm, new NotificationMethod("123", "Foo", NotificationMethodType.EMAIL, "abc"));
+    }
+
+  @Test(expectedExceptions = EntityExistsException.class)
+  public void shouldNotUpdateDuplicateWithSameName() {
+
+      repo.update("444", "124", "MyEmail", NotificationMethodType.EMAIL, "abc");
+    }
+
 }
