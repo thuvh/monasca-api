@@ -23,6 +23,11 @@ import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.List;
 
+import monasca.api.domain.exception.EntityExistsException;
+import monasca.api.domain.exception.EntityNotFoundException;
+import monasca.api.domain.model.notificationmethod.NotificationMethod;
+import monasca.api.domain.model.notificationmethod.NotificationMethodType;
+
 import org.skife.jdbi.v2.DBI;
 import org.skife.jdbi.v2.Handle;
 import org.testng.annotations.AfterClass;
@@ -31,9 +36,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.google.common.io.Resources;
-import monasca.api.domain.exception.EntityNotFoundException;
-import monasca.api.domain.model.notificationmethod.NotificationMethod;
-import monasca.api.domain.model.notificationmethod.NotificationMethodType;
+
+import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.mock;
 
 @Test
 public class NotificationMethodMySqlRepositoryImplTest {
@@ -106,4 +111,12 @@ public class NotificationMethodMySqlRepositoryImplTest {
     } catch (EntityNotFoundException expected) {
     }
   }
+
+  public void shouldUpdateDuplicateWithSameValues() {
+      repo.update("444", "123", "Foo", NotificationMethodType.EMAIL, "abc");
+      NotificationMethod nm = repo.findById("444", "123");
+
+      assertEquals(nm, new NotificationMethod("123", "Foo", NotificationMethodType.EMAIL, "abc"));
+    }
+
 }

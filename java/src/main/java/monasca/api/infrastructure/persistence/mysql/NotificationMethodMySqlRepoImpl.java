@@ -14,6 +14,7 @@
 package monasca.api.infrastructure.persistence.mysql;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.inject.Inject;
@@ -48,7 +49,7 @@ public class NotificationMethodMySqlRepoImpl implements NotificationMethodRepo {
   @Override
   public NotificationMethod create(String tenantId, String name, NotificationMethodType type,
       String address) {
-    if (exists(tenantId, name, type, address))
+    if (exists(tenantId, name, type, address)!=null)
       throw new EntityExistsException("Notification method %s \"%s\" %s \"%s\" already exists.",
           tenantId, name, type, address);
 
@@ -83,13 +84,22 @@ public class NotificationMethodMySqlRepoImpl implements NotificationMethodRepo {
     }
   }
 
-  public boolean exists(String tenantId, String name, NotificationMethodType type, String address) {
+  public String exists(String tenantId, String name, NotificationMethodType type, String address) {
     try (Handle h = db.open()) {
-      return h
+        Map<String, Object> map = h
           .createQuery(
-              "select exists(select 1 from notification_method where tenant_id = :tenantId and name = :name and type = :type and address = :address)")
+              "select id from notification_method where tenant_id = :tenantId and name = :name and type = :type and address = :address")
           .bind("tenantId", tenantId).bind("name", name).bind("type", type.toString())
-          .bind("address", address).mapTo(Boolean.TYPE).first();
+          .bind("address", address).first();
+        if (map != null) {
+            if (map.values().size() != 0) {
+                return map.get("id").toString();
+            } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
     }
   }
 
@@ -133,7 +143,14 @@ public class NotificationMethodMySqlRepoImpl implements NotificationMethodRepo {
   @Override
   public NotificationMethod update(String tenantId, String notificationMethodId, String name,
       NotificationMethodType type, String address) {
-    try (Handle h = db.open()) {
+
+      String notificationID = exists(tenantId, name,type,address);
+      if (notificationID != null && !notificationID.equalsIgnoreCase(notificationMethodId)) {
+          throw new EntityExistsException("Notification method %s \"%s\" %s \"%s\" already exists.",
+                  tenantId, name, type, address);
+      }
+
+      try (Handle h = db.open()) {
       if (h
           .update(
               "update notification_method set name = ?, type = ?, address = ? where tenant_id = ? and id = ?",
