@@ -15,6 +15,7 @@ package monasca.api.resource;
 
 import com.codahale.metrics.annotation.Timed;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -26,8 +27,10 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
 
+import monasca.api.domain.model.common.Paged;
 import monasca.api.domain.model.version.Version;
 import monasca.api.domain.model.version.VersionRepo;
+import scala.actors.threadpool.Arrays;
 
 /**
  * Version resource implementation.
@@ -51,7 +54,13 @@ public class VersionResource {
   @GET
   @Timed
   @Path("{version_id}")
-  public Version get(@Context UriInfo uriInfo, @PathParam("version_id") String versionId) {
-    return Links.hydrate(repository.findById(versionId), uriInfo, true);
+  public Object get(@Context UriInfo uriInfo, @PathParam("version_id") String versionId) {
+    Version version = Links.hydrate(repository.findById(versionId), uriInfo, true);
+
+    List<Version> versionList = Arrays.asList(new Object[]{version});
+
+    Paged paged = new Paged();
+    paged.elements = versionList;
+    return paged;
   }
 }
