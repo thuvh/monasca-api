@@ -14,6 +14,7 @@
 package monasca.api.infrastructure.persistence.mysql;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.inject.Inject;
@@ -45,22 +46,23 @@ public class NotificationMethodMySqlRepoImpl implements NotificationMethodRepo {
     this.db = db;
   }
 
-  @Override
-  public NotificationMethod create(String tenantId, String name, NotificationMethodType type,
-      String address) {
-    if (exists(tenantId, name, type, address))
-      throw new EntityExistsException("Notification method %s \"%s\" %s \"%s\" already exists.",
-          tenantId, name, type, address);
+    @Override
+    public NotificationMethod create(String tenantId, String name,
+            NotificationMethodType type, String address) {
+        try (Handle h = db.open()) {
+            if (getNotificationIdForTenantIdAndName(tenantId, name) != null)
+                throw new EntityExistsException(
+                        "Notification method %s \"%s\" already exists.",
+                        tenantId, name);
 
-    try (Handle h = db.open()) {
-      String id = UUID.randomUUID().toString();
-      h.insert(
-          "insert into notification_method (id, tenant_id, name, type, address, created_at, updated_at) values (?, ?, ?, ?, ?, NOW(), NOW())",
-          id, tenantId, name, type.toString(), address);
-      LOG.debug("Creating notification method {} for {}", name, tenantId);
-      return new NotificationMethod(id, name, type, address);
+            String id = UUID.randomUUID().toString();
+            h.insert(
+                    "insert into notification_method (id, tenant_id, name, type, address, created_at, updated_at) values (?, ?, ?, ?, ?, NOW(), NOW())",
+                    id, tenantId, name, type.toString(), address);
+            LOG.debug("Creating notification method {} for {}", name, tenantId);
+            return new NotificationMethod(id, name, type, address);
+        }
     }
-  }
 
   @Override
   public void deleteById(String tenantId, String notificationMethodId) {
@@ -82,15 +84,20 @@ public class NotificationMethodMySqlRepoImpl implements NotificationMethodRepo {
           .mapTo(Boolean.TYPE).first();
     }
   }
-
-  public boolean exists(String tenantId, String name, NotificationMethodType type, String address) {
+  
+  public String getNotificationIdForTenantIdAndName(String tenantId, String name) {
     try (Handle h = db.open()) {
-      return h
+        Map<String, Object> map = h
           .createQuery(
-              "select exists(select 1 from notification_method where tenant_id = :tenantId and name = :name and type = :type and address = :address)")
-          .bind("tenantId", tenantId).bind("name", name).bind("type", type.toString())
-          .bind("address", address).mapTo(Boolean.TYPE).first();
+              "select id from notification_method where tenant_id = :tenantId and name = :name")
+          .bind("tenantId", tenantId).bind("name", name).first();
+        
+        if (map != null && !map.isEmpty()) {
+                return map.get("id").toString();
+        } else {
+            return null;
     }
+   }
   }
 
   @Override
@@ -133,7 +140,14 @@ public class NotificationMethodMySqlRepoImpl implements NotificationMethodRepo {
   @Override
   public NotificationMethod update(String tenantId, String notificationMethodId, String name,
       NotificationMethodType type, String address) {
-    try (Handle h = db.open()) {
+
+      String notificationID = getNotificationIdForTenantIdAndName(tenantId, name);
+      if (notificationID != null && !notificationID.equalsIgnoreCase(notificationMethodId)) {
+          throw new EntityExistsException("Notification method %s \"%s\" already exists.",
+                  tenantId, name);
+      }
+
+      try (Handle h = db.open()) {
       if (h
           .update(
               "update notification_method set name = ?, type = ?, address = ? where tenant_id = ? and id = ?",
