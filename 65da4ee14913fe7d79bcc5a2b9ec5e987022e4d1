@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a80dd14_f8ac42ef",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/NotificationMethodMySqlRepoImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-13T19:31:03Z",
+      "side": 1,
+      "message": "Fix the formatting in this whole section",
+      "revId": "65da4ee14913fe7d79bcc5a2b9ec5e987022e4d1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
