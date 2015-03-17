@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a80dd14_7468e321",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/NotificationMethodMySqlRepoImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-03-17T16:51:59Z",
+      "side": 1,
+      "message": "this needs to be in the same transaction as the create. if you separate them into 2 transactions, then there is no gaurantee that duplicates will not get introduced.",
+      "revId": "8b59ba44f353617d0f68f394ed8ddb52f7112c42",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
