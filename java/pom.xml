@@ -336,8 +336,11 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            <packageName>monasca.api</packageName>
                         </manifest>
+                        <manifestEntries>
+                            <Implementation-Version>${project.artifactId}-${computedVersion}</Implementation-Version>
+                        </manifestEntries>
                     </archive>
                 </configuration>
             </plugin>
