@@ -57,7 +57,7 @@ public class LinksTest {
     final URI uri = new URI(base);
     when(uriInfo.getBaseUri()).thenReturn(uri);
     final String alarmDefinitionId = "af72b3d8-51f3-4eee-8086-535b5e7a9dc8";
-    final Alarm alarm = new Alarm(alarmId, alarmDefinitionId, "Test", "LOW", null, AlarmState.OK);
+    final Alarm alarm = new Alarm(alarmId, alarmDefinitionId, "Test", "LOW", null, AlarmState.OK, null);
     alarm.setId("42");
     Links.hydrate(alarm.getAlarmDefinition(), uriInfo, AlarmDefinitionResource.ALARM_DEFINITIONS_PATH);
     assertEquals(alarm.getAlarmDefinition().getLinks().size(), 1);
