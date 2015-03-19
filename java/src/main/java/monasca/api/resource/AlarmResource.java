@@ -141,13 +141,18 @@ public class AlarmResource {
       @QueryParam("metric_name") String metricName,
       @QueryParam("metric_dimensions") String metricDimensionsStr,
       @QueryParam("state") AlarmState state,
+      @QueryParam("state_updated_at") String stateUpdatedAtStr,
       @QueryParam("offset") String offset,
       @QueryParam("limit") String limit)
       throws Exception {
+
     Map<String, String> metricDimensions =
         Strings.isNullOrEmpty(metricDimensionsStr) ? null : Validation
             .parseAndValidateNameAndDimensions(metricName, metricDimensionsStr);
-    final List<Alarm> alarms = repo.find(tenantId, alarmDefId, metricName, metricDimensions, state,
+
+    DateTime stateUpdatedAt = Validation.parseAndValidateDate(stateUpdatedAtStr, "state_updated_at", false);
+
+    final List<Alarm> alarms = repo.find(tenantId, alarmDefId, metricName, metricDimensions, state, stateUpdatedAt,
                                          offset, this.persistUtils.getLimit(limit), true);
     for (final Alarm alarm : alarms) {
       Links.hydrate(alarm.getAlarmDefinition(), uriInfo, AlarmDefinitionResource.ALARM_DEFINITIONS_PATH);
