@@ -13,6 +13,17 @@
  */
 package monasca.api.domain.model.alarm;
 
+import com.google.inject.Inject;
+
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import java.io.IOException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;
@@ -30,14 +41,16 @@ public class Alarm extends AbstractEntity implements Linked {
   private List<MetricDefinition> metrics;
   private AlarmState state;
   private AlarmDefinitionShort alarmDefinition;
+  private Timestamp stateUpdatedAt;
 
   public Alarm() {}
 
   public Alarm(String id, String alarmDefinitionId, String alarmDefinitionName,
-      String alarmDefinitionSeverity, List<MetricDefinition> metrics, AlarmState state) {
+      String alarmDefinitionSeverity, List<MetricDefinition> metrics, AlarmState state, Timestamp stateUpdatedAt) {
     this.id = id;
     setMetrics(metrics);
     setState(state);
+    setStateUpdatedAt(stateUpdatedAt);
     this.alarmDefinition = new AlarmDefinitionShort(alarmDefinitionId, alarmDefinitionName, alarmDefinitionSeverity);
   }
 
@@ -53,6 +66,8 @@ public class Alarm extends AbstractEntity implements Linked {
     return state;
   }
 
+  public Timestamp getStateUpdatedAt() { return stateUpdatedAt; }
+
   @XmlElement(name = "id")
   public void setId(String id) {
     this.id = id;
@@ -66,6 +81,8 @@ public class Alarm extends AbstractEntity implements Linked {
   public void setState(AlarmState state) {
     this.state = state;
   }
+
+  public void setStateUpdatedAt(Timestamp stateUpdatedAt) { this.stateUpdatedAt = stateUpdatedAt; }
 
   public List<MetricDefinition> getMetrics() {
     return metrics;
@@ -91,6 +108,7 @@ public class Alarm extends AbstractEntity implements Linked {
     result = prime * result + ((links == null) ? 0 : links.hashCode());
     result = prime * result + ((metrics == null) ? 0 : metrics.hashCode());
     result = prime * result + ((state == null) ? 0 : state.hashCode());
+    result = prime * result + ((stateUpdatedAt == null) ? 0 : stateUpdatedAt.hashCode());
     return result;
   }
 
@@ -120,6 +138,9 @@ public class Alarm extends AbstractEntity implements Linked {
       return false;
     if (state != other.state)
       return false;
+    if (!stateUpdatedAt.equals(other.stateUpdatedAt)) {
+      return false;
+    }
     return true;
   }
 

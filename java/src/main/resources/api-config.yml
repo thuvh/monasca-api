@@ -11,7 +11,7 @@ metricsTopic: metrics
 eventsTopic: events
 
 # Maximum rows (Mysql) or points (Influxdb) to return when listing elements. Only set with Influxdb V9.
-#maxQueryLimit: 10000
+maxQueryLimit: 10000
 
 kafka:
   brokerUris:
@@ -22,7 +22,7 @@ kafka:
 
 mysql:
   driverClass: com.mysql.jdbc.Driver
-  url: jdbc:mysql://192.168.10.4:3306/mon?connectTimeout=5000&autoReconnect=true
+  url: jdbc:mysql://192.168.10.4:3306/mon?connectTimeout=5000&autoReconnect=true&useLegacyDatetimeCode=false&useTimezone=true&serverTimezone=UTC
   user: monapi
   password: password
   maxWaitForConnection: 1s
@@ -64,7 +64,7 @@ vertica:
   checkConnectionWhileIdle: false
 
 middleware:
-  enabled: true
+  enabled: false
   serverVIP: 192.168.10.5
   serverPort: 5000
   connTimeout: 500

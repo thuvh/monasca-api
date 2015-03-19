@@ -52,6 +52,7 @@ import monasca.api.resource.exception.JsonMappingExceptionManager;
 import monasca.api.resource.exception.JsonProcessingExceptionMapper;
 import monasca.api.resource.exception.ThrowableExceptionMapper;
 import monasca.api.resource.serialization.SubAlarmExpressionSerializer;
+import monasca.api.resource.serialization.TimestampSerializer;
 import monasca.common.middleware.AuthConstants;
 import monasca.common.middleware.TokenAuth;
 import monasca.common.util.Injector;
@@ -108,9 +109,10 @@ public class MonApiApplication extends Application<ApiConfig> {
     environment.getObjectMapper().disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     SimpleModule module = new SimpleModule("SerializationModule");
     module.addSerializer(new SubAlarmExpressionSerializer());
+    module.addSerializer(new TimestampSerializer());
     environment.getObjectMapper().registerModule(module);
 
-    
+
     /** Configure CORS filter */
     Dynamic corsFilter = environment.servlets().addFilter("cors", CrossOriginFilter.class);
     corsFilter.addMappingForUrlPatterns(null, true, "/*");
