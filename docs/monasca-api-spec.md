@@ -1966,7 +1966,8 @@ None.
 * alarm_definition_id (string, optional) - Alarm definition ID to filter by.
 * metric_name (string(255), optional) - Name of metric to filter by.
 * metric_dimensions ({string(255): string(255)}, optional) - Dimensions of metrics to filter by specified as a comma separated array of (key, value) pairs as `key1:value1,key1:value1, ...`
-* state (string) - State of alarm to filter by, either `OK`, `ALARM` or `UNDETERMINED`.
+* state (string, optional) - State of alarm to filter by, either `OK`, `ALARM` or `UNDETERMINED`.
+* state_updated_at (string, optional) - ISO 8601 formatted timestamp to filter by, includes only alarms updated after the time specified
 
 #### Request Body
 None.
