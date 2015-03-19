@@ -13,6 +13,9 @@
  */
 package monasca.api.domain.model.alarm;
 
+import org.joda.time.DateTime;
+
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -30,7 +33,7 @@ public interface AlarmRepo {
    * Returns alarms for the given criteria.
    */
   List<Alarm> find(String tenantId, String alarmDefId, String metricName, Map<String,
-      String> metricDimensions, AlarmState state, String offset, int limit, boolean enforceLimit);
+      String> metricDimensions, AlarmState state, DateTime stateUpdatedAt, String offset, int limit, boolean enforceLimit);
 
   /**
    * @throws EntityNotFoundException if an alarm cannot be found for the {@code id}

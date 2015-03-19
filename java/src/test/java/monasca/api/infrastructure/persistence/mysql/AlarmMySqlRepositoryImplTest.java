@@ -137,16 +137,16 @@ public class AlarmMySqlRepositoryImplTest {
 
     alarm1 =
         new Alarm("1", "1", "90% CPU", "LOW", buildAlarmMetrics(
-            buildMetricDefinition("cpu.idle_perc", "instance_id", "123", "service", "monitoring"),
-            buildMetricDefinition("cpu.idle_perc", "flavor_id", "222")), AlarmState.OK);
+            buildMetricDefinition("cpu.idle_perc", "instance_id", "123", "service", "monitoring", null),
+            buildMetricDefinition("cpu.idle_perc", "flavor_id", "222")), AlarmState.OK, null);
 
     alarm2 =
         new Alarm("2", "1", "90% CPU", "LOW", buildAlarmMetrics(
-            buildMetricDefinition("cpu.idle_perc", "instance_id", "123", "service", "monitoring")), AlarmState.UNDETERMINED);
+            buildMetricDefinition("cpu.idle_perc", "instance_id", "123", "service", "monitoring")), AlarmState.UNDETERMINED, null);
 
     alarm3 =
         new Alarm("3", "1", "90% CPU", "LOW", buildAlarmMetrics(
-            buildMetricDefinition("cpu.idle_perc", "flavor_id", "222")), AlarmState.ALARM);
+            buildMetricDefinition("cpu.idle_perc", "flavor_id", "222")), AlarmState.ALARM, null);
 
     handle
         .execute("insert into alarm_definition (id, tenant_id, name, severity, expression, match_by, actions_enabled, created_at, updated_at, deleted_at) "
@@ -190,7 +190,7 @@ public class AlarmMySqlRepositoryImplTest {
             buildMetricDefinition("cpu.sys_mem", "service", "monitoring", "hostname", "roland",
                 "region", "colorado"),
             buildMetricDefinition("cpu.idle_perc", "service", "monitoring", "hostname", "roland",
-                "region", "colorado", "extra", "vivi")), AlarmState.UNDETERMINED);
+                "region", "colorado", "extra", "vivi")), AlarmState.UNDETERMINED, null);
   }
 
   private List<MetricDefinition> buildAlarmMetrics(final MetricDefinition ... metricDefinitions) {
@@ -254,49 +254,49 @@ public class AlarmMySqlRepositoryImplTest {
 
   @Test(groups = "database")
   public void shouldFind() {
-    checkList(repo.find("Not a tenant id", null, null, null, null, null, 1, false));
+    checkList(repo.find("Not a tenant id", null, null, null, null, null, null, 1, false));
 
-    checkList(repo.find(TENANT_ID, null, null, null, null, null, 1, false), alarm1, alarm2, alarm3, compoundAlarm);
+    checkList(repo.find(TENANT_ID, null, null, null, null, null, null, 1, false), alarm1, alarm2, alarm3, compoundAlarm);
 
-    checkList(repo.find(TENANT_ID, compoundAlarm.getAlarmDefinition().getId(), null, null, null, null, 1, false), compoundAlarm);
+    checkList(repo.find(TENANT_ID, compoundAlarm.getAlarmDefinition().getId(), null, null, null, null, null, 1, false), compoundAlarm);
 
-    checkList(repo.find(TENANT_ID, null, "cpu.sys_mem", null, null, null, 1, false), compoundAlarm);
+    checkList(repo.find(TENANT_ID, null, "cpu.sys_mem", null, null, null, null, 1, false), compoundAlarm);
 
-    checkList(repo.find(TENANT_ID, null, "cpu.idle_perc", null, null, null, 1, false), alarm1, alarm2, alarm3, compoundAlarm);
+    checkList(repo.find(TENANT_ID, null, "cpu.idle_perc", null, null, null, null, 1, false), alarm1, alarm2, alarm3, compoundAlarm);
 
     checkList(
         repo.find(TENANT_ID, null, "cpu.idle_perc",
-            ImmutableMap.<String, String>builder().put("flavor_id", "222").build(), null, null, 1, false), alarm1,
+            ImmutableMap.<String, String>builder().put("flavor_id", "222").build(), null, null, null, 1, false), alarm1,
         alarm3);
 
     checkList(
         repo.find(TENANT_ID, null, "cpu.idle_perc",
             ImmutableMap.<String, String>builder().put("service", "monitoring")
-                .put("hostname", "roland").build(), null, null, 1, false), compoundAlarm);
+                .put("hostname", "roland").build(), null, null, null, 1, false), compoundAlarm);
 
-    checkList(repo.find(TENANT_ID, null, null, null, AlarmState.UNDETERMINED, null, 1, false), alarm2,
+    checkList(repo.find(TENANT_ID, null, null, null, AlarmState.UNDETERMINED, null, null, 1, false), alarm2,
         compoundAlarm);
 
     checkList(
         repo.find(TENANT_ID, alarm1.getAlarmDefinition().getId(), "cpu.idle_perc", ImmutableMap
-            .<String, String>builder().put("service", "monitoring").build(), null, null, 1, false), alarm1, alarm2);
+            .<String, String>builder().put("service", "monitoring").build(), null, null, null, 1, false), alarm1, alarm2);
 
     checkList(
-        repo.find(TENANT_ID, alarm1.getAlarmDefinition().getId(), "cpu.idle_perc", null, null, null, 1, false),
+        repo.find(TENANT_ID, alarm1.getAlarmDefinition().getId(), "cpu.idle_perc", null, null, null, null, 1, false),
         alarm1, alarm2, alarm3);
 
     checkList(repo.find(TENANT_ID, compoundAlarm.getAlarmDefinition().getId(), null, null,
-        AlarmState.UNDETERMINED, null, 1, false), compoundAlarm);
+        AlarmState.UNDETERMINED, null, null, 1, false), compoundAlarm);
 
-    checkList(repo.find(TENANT_ID, null, "cpu.sys_mem", null, AlarmState.UNDETERMINED, null, 1, false),
+    checkList(repo.find(TENANT_ID, null, "cpu.sys_mem", null, AlarmState.UNDETERMINED, null, null, 1, false),
         compoundAlarm);
 
     checkList(repo.find(TENANT_ID, null, "cpu.idle_perc", ImmutableMap.<String, String>builder()
-        .put("service", "monitoring").build(), AlarmState.UNDETERMINED, null, 1,false), alarm2, compoundAlarm);
+        .put("service", "monitoring").build(), AlarmState.UNDETERMINED, null, null, 1,false), alarm2, compoundAlarm);
 
     checkList(repo.find(TENANT_ID, alarm1.getAlarmDefinition().getId(), "cpu.idle_perc",
         ImmutableMap.<String, String>builder().put("service", "monitoring").build(),
-        AlarmState.UNDETERMINED, null, 1, false), alarm2);
+        AlarmState.UNDETERMINED, null, null, 1, false), alarm2);
   }
 
   @Test(groups = "database")
