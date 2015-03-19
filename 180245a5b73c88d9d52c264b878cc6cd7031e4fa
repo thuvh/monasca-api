@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a80dd14_ef682cf7",
+        "filename": "java/src/main/java/monasca/api/domain/model/common/Paged.java",
+        "patchSetId": 44
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-03-19T13:19:11Z",
+      "side": 1,
+      "message": "Should this be DEFAULT_MAX_QUERY_LIMIT?",
+      "revId": "180245a5b73c88d9d52c264b878cc6cd7031e4fa",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a80dd14_4f25b8c0",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/PersistUtils.java",
+        "patchSetId": 44
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-03-19T13:19:11Z",
+      "side": 1,
+      "message": "2015",
+      "revId": "180245a5b73c88d9d52c264b878cc6cd7031e4fa",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
