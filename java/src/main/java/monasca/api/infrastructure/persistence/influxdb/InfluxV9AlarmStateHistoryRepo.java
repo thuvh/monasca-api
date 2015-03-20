@@ -86,7 +86,7 @@ public class InfluxV9AlarmStateHistoryRepo implements AlarmStateHistoryRepo {
       throws Exception {
 
 
-    String q = String.format("select alarm_id, metrics, old_state, new_state, reason, reason_data "
+    String q = String.format("select alarm_id, metrics, old_state, new_state, reason, reason_data, sub_alarms "
                              + "from alarm_state_history "
                              + "where %1$s %2$s %3$s %4$s",
                              this.influxV9Utils.tenantIdPart(tenantId),
@@ -119,7 +119,7 @@ public class InfluxV9AlarmStateHistoryRepo implements AlarmStateHistoryRepo {
     }
 
 
-    String q = String.format("select alarm_id, metrics, old_state, new_state, reason, reason_data "
+    String q = String.format("select alarm_id, metrics, old_state, new_state, reason, reason_data, sub_alarms "
                              + "from alarm_state_history "
                              + "where %1$s %2$s %3$s %4$s %5$s",
                              this.influxV9Utils.tenantIdPart(tenantId),
