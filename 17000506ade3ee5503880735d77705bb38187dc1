@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a6ced46_9a4af081",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9StatisticRepo.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-23T18:06:32Z",
+      "side": 1,
+      "message": "Did you try this with meta-data? Those are Strings",
+      "revId": "17000506ade3ee5503880735d77705bb38187dc1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
