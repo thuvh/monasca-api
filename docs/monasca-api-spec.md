@@ -638,7 +638,12 @@ Returns a JSON object with an 'elements' array of supported versions.
 #### Response Examples
 ```
 {
-    "links": [],
+    "links": [
+        {
+            "rel": "self",
+            "href": "http://192.168.10.4:8080/"
+        }
+    ],
     "elements": [
         {
             "id": "v2.0",
@@ -927,7 +932,7 @@ Cache-Control: no-cache
 
 #### Response Body
 Returns a JSON object with an 'elements' array of measurements objects for each unique metric with the following fields:
-
+ 
 * name (string(255)) - A name of a metric.
 * dimensions ({string(255): string(255)}) - The dimensions of a metric.
 * columns (array[string]) - An array of column names corresponding to the columns in measurements.
@@ -936,7 +941,16 @@ Returns a JSON object with an 'elements' array of measurements objects for each 
 #### Response Examples
 ```
 {
-    "links": [],
+    "links": [
+        {
+            "rel": "self",
+            "href": "http://192.168.10.4:8080/v2.0/metrics/measurements?start_time=2014-07-18T03%3A00%3A00Z&name=cpu.system_perc&dimensions=hostname%3Adevstack"
+        },
+        {
+            "rel": "next",
+            "href": "http://192.168.10.4:8080/v2.0/metrics/measurements?offset=2015-03-03T05%3A21%3A55Z&name=cpu.system_perc&dimensions=hostname%3Adevstack&start_time=2014-07-18T03%3A00%3A00Z"
+        }
+    ],
     "elements": [
         {
             "id": "1425359919000",
@@ -978,7 +992,6 @@ Returns a JSON object with an 'elements' array of measurements objects for each 
         }
     ]
 }
-
 ```
 ___
 
@@ -1033,7 +1046,16 @@ Returns a JSON object with an 'elements' array of statistic objects for each uni
 #### Response Examples
 ```
 {
-    "links": [],
+    "links": [
+        {
+            "rel": "self",
+            "href": "http://192.168.10.4:8080/v2.0/metrics/statistics?start_time=2014-07-18T03%3A00%3A00Z&name=cpu.system_perc&dimensions=hostname%3Adevstack&statistics=avg%2Cmin%2Cmax%2Csum%2Ccount"
+        },
+        {
+            "rel": "next",
+            "href": "http://192.168.10.4:8080/v2.0/metrics/statistics?offset=2014-07-18T03%3A22%3A00Z&name=cpu.system_perc&dimensions=hostname%3Adevstack&start_time=2014-07-18T03%3A00%3A00Z&statistics=avg%2Cmin%2Cmax%2Csum%2Ccount"
+        }
+    ],
     "elements": [
         {
             "name": "cpu.system_perc",
@@ -1058,7 +1080,7 @@ Returns a JSON object with an 'elements' array of statistic objects for each uni
                     8
                 ],
                 [
-                    "2014-07-18T03:10:00Z",
+                    "2014-07-18T03:21:00Z",
                     2.412941176470588,
                     1.71,
                     4.09,
@@ -1066,7 +1088,7 @@ Returns a JSON object with an 'elements' array of statistic objects for each uni
                     17
                 ],
                 [
-                    "2014-07-18T03:00:00Z",
+                    "2014-07-18T03:22:00Z",
                     2.1135294117647065,
                     1.62,
                     3.85,
@@ -1077,7 +1099,6 @@ Returns a JSON object with an 'elements' array of statistic objects for each uni
         }
     ]
 }
-
 ```
 ___
 
@@ -1195,7 +1216,16 @@ Returns a JSON object with an 'elements' array of notification method objects wi
 #### Response Examples
 ```
 {
-    "links": [],
+    "links": [
+        {
+            "rel": "self",
+            "href": "http://192.168.10.4:8080/v2.0/notification-methods"
+        },
+        {
+            "rel": "next",
+            "href": "http://192.168.10.4:8080/v2.0/notification-methods?offset=c60ec47e-5038-4bf1-9f95-4046c6e9a759"
+        }
+    ],
     "elements": [
         {
             "id": "35cc6f1c-3a29-49fb-a6fc-d9d97d190508",
@@ -1223,7 +1253,6 @@ Returns a JSON object with an 'elements' array of notification method objects wi
         }
     ]
 }
-
 ```
 ___
 
@@ -1552,7 +1581,16 @@ Returns a JSON object with an 'elements' array of alarm objects with the followi
 #### Response Examples
 ```
 {
-    "links": [],
+    "links": [
+        {
+            "rel": "self",
+            "href": "http://192.168.10.4:8080/v2.0/alarm-definitions?name=CPU%20percent%20greater%20than%2010&dimensions=hostname:devstack&state=UNDETERMINED"
+        },
+        {
+            "rel": "next",
+            "href": "http://localhost:8080/v2.0/alarm-definitions?offset=f9935bcc-9641-4cbf-8224-0993a947ea83&name=CPU%20percent%20greater%20than%2010&dimensions=hostname:devstack&state=UNDETERMINED"
+        }
+    ],
     "elements": [
         {
             "id": "f9935bcc-9641-4cbf-8224-0993a947ea83",
@@ -1593,7 +1631,6 @@ Returns a JSON object with an 'elements' array of alarm objects with the followi
         }
     ]
 }
-
 ```
 ___
 
@@ -1996,7 +2033,16 @@ Returns a JSON object with an 'elements' array of alarm objects with the followi
 #### Response Examples
 ```
 {
-    "links": [],
+    "links": [
+        {
+            "rel": "self",
+            "href": "http://192.168.10.4:8080/v2.0/alarms?name=cpu.system_perc&dimensions=hostname%3Adevstack&state=UNDETERMINED"
+        },
+        {
+            "rel": "next",
+            "href": "http://192.168.10.4:8080/v2.0/alarms?offset=f9935bcc-9641-4cbf-8224-0993a947ea83&name=cpu.system_perc&dimensions=hostname%3Adevstack&state=UNDETERMINED"
+        }
+    ],
     "elements": [
         {
             "id": "f9935bcc-9641-4cbf-8224-0993a947ea83",
@@ -2076,7 +2122,16 @@ Returns a JSON object with an 'elements' array of alarm state transition objects
 #### Response Examples
 ```
 {
-    "links": [],
+    "links": [
+        {
+            "rel": "self",
+            "href": "http://192.168.10.4:8080/v2.0/alarms/state-history?dimensions=hostname%3Adevstack"
+        },
+        {
+            "rel": "next",
+            "href": "http://192.168.10.4:8080/v2.0/alarms/state-history?offset=1424448667000&dimensions=hostname%3Adevstack"
+        }
+    ],
     "elements": [
         {
             "id": "1424451007002",
@@ -2486,7 +2541,16 @@ Returns a JSON object with an 'elements' array of alarm state transition objects
 #### Response Examples
 ```
 {
-    "links": [],
+    "links": [
+        {
+            "rel": "self",
+            "href": "http://192.168.10.4:8080/v2.0/alarms/37d1ddf0-d7e3-4fc0-979b-25ac3779d9e0/state-history"
+        },
+        {
+            "rel": "next",
+            "href": "http://192.168.10.4:8080/v2.0/alarms/37d1ddf0-d7e3-4fc0-979b-25ac3779d9e0/state-history?offset=1424451367001"
+        }
+    ],
     "elements": [
         {
             "id": "1424452147003",
