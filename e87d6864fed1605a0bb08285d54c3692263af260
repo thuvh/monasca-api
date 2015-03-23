@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a6ced46_95bac3df",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 1994,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-23T18:31:22Z",
+      "side": 1,
+      "message": "Need to add state_updated_at here",
+      "revId": "e87d6864fed1605a0bb08285d54c3692263af260",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a6ced46_d5fefb6a",
+        "filename": "java/src/main/java/monasca/api/domain/model/alarm/Alarm.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-23T18:31:22Z",
+      "side": 1,
+      "message": "How many of these new imports do you really use? Get rid of extraneous ones",
+      "revId": "e87d6864fed1605a0bb08285d54c3692263af260",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a6ced46_f59e9755",
+        "filename": "java/src/main/java/monasca/api/domain/model/alarm/Alarm.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-23T18:31:22Z",
+      "side": 1,
+      "message": "How come you aren\u0027t using createdAt?",
+      "revId": "e87d6864fed1605a0bb08285d54c3692263af260",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a6ced46_75aaa771",
+        "filename": "java/src/main/java/monasca/api/domain/model/alarm/Alarm.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-23T18:31:22Z",
+      "side": 1,
+      "message": "How come you aren\u0027t using createdAt?",
+      "revId": "e87d6864fed1605a0bb08285d54c3692263af260",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a6ced46_754b87b0",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmMySqlRepoImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-23T18:31:22Z",
+      "side": 1,
+      "message": "Are you sure there is value in reformatting this code?",
+      "revId": "e87d6864fed1605a0bb08285d54c3692263af260",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a6ced46_b5689ff6",
+        "filename": "java/src/main/resources/api-config.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-23T18:31:22Z",
+      "side": 1,
+      "message": "Is this needed? It seems like if so, it should be added to the real config file",
+      "revId": "e87d6864fed1605a0bb08285d54c3692263af260",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a6ced46_5926c5b8",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/mysql/AlarmMySqlRepositoryImplTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-23T18:31:22Z",
+      "side": 1,
+      "message": "You need to add a test that exercises the new code you added. It might require setting state_updated_at in the alarm creation in the tables",
+      "revId": "e87d6864fed1605a0bb08285d54c3692263af260",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a6ced46_79af01e4",
+        "filename": "java/src/test/java/monasca/api/resource/LinksTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-23T18:31:22Z",
+      "side": 1,
+      "message": "I\u0027d rather see real values put in here instead of null",
+      "revId": "e87d6864fed1605a0bb08285d54c3692263af260",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
