@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a6ced46_a1e22e9d",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 1031,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-23T15:43:09Z",
+      "side": 1,
+      "message": "Actually this returns a JSON object that contains a JSON Array",
+      "revId": "da757bdeb88e07693d93e3d01ce5fb2920a1e996",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a6ced46_c163aa18",
+        "filename": "java/src/main/java/monasca/api/domain/model/metric/MetricName.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-23T15:43:09Z",
+      "side": 1,
+      "message": "Since you have getters and setters, these should be private",
+      "revId": "da757bdeb88e07693d93e3d01ce5fb2920a1e996",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a6ced46_9c48355d",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9MetricDefinitionRepo.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-23T15:43:09Z",
+      "side": 1,
+      "message": "Do not reformat code you aren\u0027t working on",
+      "revId": "da757bdeb88e07693d93e3d01ce5fb2920a1e996",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a6ced46_dca0edf6",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9MetricDefinitionRepo.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-23T15:43:09Z",
+      "side": 1,
+      "message": "You have an extra blank line here",
+      "revId": "da757bdeb88e07693d93e3d01ce5fb2920a1e996",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a6ced46_9c8d957e",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9MetricDefinitionRepo.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-23T15:43:09Z",
+      "side": 1,
+      "message": "Should be a space after the for and before the {",
+      "revId": "da757bdeb88e07693d93e3d01ce5fb2920a1e996",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
