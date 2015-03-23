@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a6ced46_dc7e2de4",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/NotificationMethodMySqlRepoImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-23T15:53:05Z",
+      "side": 1,
+      "message": "This should be private",
+      "revId": "f227511e3932784bdc1e2d996870bc612cc1216e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a6ced46_3c54a153",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/NotificationMethodMySqlRepoImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-23T15:53:05Z",
+      "side": 1,
+      "message": "Both places this is called from already have a Handle so it should just be passed in rather than allocating a new one",
+      "revId": "f227511e3932784bdc1e2d996870bc612cc1216e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
