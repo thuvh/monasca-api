@@ -16,6 +16,24 @@
       "revId": "4a3d6bbd2c8b095055f27f6aafac85e94c857a74",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a6ced46_8f6441e6",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9MetricDefinitionRepo.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-03-24T17:19:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a6ced46_2b38a29f",
+      "revId": "4a3d6bbd2c8b095055f27f6aafac85e94c857a74",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
