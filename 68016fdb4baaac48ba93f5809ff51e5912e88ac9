@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a6ced46_15eea022",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-24T18:09:14Z",
+      "side": 1,
+      "message": "This is a good explanation of Paging, but it doesn\u0027t talk about the next links",
+      "revId": "68016fdb4baaac48ba93f5809ff51e5912e88ac9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a6ced46_f59ca4c2",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-24T18:09:14Z",
+      "side": 1,
+      "message": "Should you put a limit parameter here as a example?",
+      "revId": "68016fdb4baaac48ba93f5809ff51e5912e88ac9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a6ced46_b54cec71",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-24T18:09:14Z",
+      "side": 1,
+      "message": "trailing space",
+      "revId": "68016fdb4baaac48ba93f5809ff51e5912e88ac9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a6ced46_f5758498",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 620,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-24T18:09:14Z",
+      "side": 1,
+      "message": "We already ran into trouble because ids changed from String to Ints or vice versa. We should just say they are Strings. If we support Vertica, they may be of different types\n\ntrailing space",
+      "revId": "68016fdb4baaac48ba93f5809ff51e5912e88ac9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a6ced46_7542743f",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 644,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-24T18:09:14Z",
+      "side": 1,
+      "message": "Misspelled mechanisms",
+      "revId": "68016fdb4baaac48ba93f5809ff51e5912e88ac9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a6ced46_756994bd",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 649,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-24T18:09:14Z",
+      "side": 1,
+      "message": "trailing space",
+      "revId": "68016fdb4baaac48ba93f5809ff51e5912e88ac9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a6ced46_d5b5e831",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 652,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-24T18:09:14Z",
+      "side": 1,
+      "message": "trailing space",
+      "revId": "68016fdb4baaac48ba93f5809ff51e5912e88ac9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a6ced46_55cf38b0",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 691,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-24T18:09:14Z",
+      "side": 1,
+      "message": "It also has a links section.",
+      "revId": "68016fdb4baaac48ba93f5809ff51e5912e88ac9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a6ced46_754c3443",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 1002,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-24T18:09:14Z",
+      "side": 1,
+      "message": "trailing space",
+      "revId": "68016fdb4baaac48ba93f5809ff51e5912e88ac9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
