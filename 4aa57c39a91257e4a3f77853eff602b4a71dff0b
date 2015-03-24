@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a6ced46_deb50532",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2015-03-24T20:07:03Z",
+      "side": 1,
+      "message": "Is limit supposed to be in there twice?",
+      "revId": "4aa57c39a91257e4a3f77853eff602b4a71dff0b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a6ced46_492241a5",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2015-03-24T20:07:03Z",
+      "side": 1,
+      "message": "Is there still a next link if we have no limit set and just use the server specified limit?",
+      "revId": "4aa57c39a91257e4a3f77853eff602b4a71dff0b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a6ced46_c9ae3185",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 642,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2015-03-24T20:07:03Z",
+      "side": 1,
+      "message": "Further down you specify the \"types\" of offsets available for certain data.  Is there any spec for valid offset configuration for those?  For instance right now a timestamp offset can meet ISO-8601 format.  Are there any other valid formats for it?",
+      "revId": "4aa57c39a91257e4a3f77853eff602b4a71dff0b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
