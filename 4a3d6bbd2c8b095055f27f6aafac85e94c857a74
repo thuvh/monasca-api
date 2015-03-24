@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a6ced46_2b38a29f",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9MetricDefinitionRepo.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-03-24T17:02:37Z",
+      "side": 1,
+      "message": "can we put the \u0027where...\u0027 part on a new line? it\u0027s kind of a convention that the rest of the code follows.",
+      "revId": "4a3d6bbd2c8b095055f27f6aafac85e94c857a74",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
