@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a6ced46_862195a1",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 636,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-24T15:00:20Z",
+      "side": 1,
+      "message": "It also has a links object. Somewhere in this document it should explain what the next link is.",
+      "revId": "8a469043078adfa0c9f4e9ed293fb8e0a12cb67b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
