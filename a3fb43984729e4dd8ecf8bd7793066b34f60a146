@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a6ced46_d7817a90",
+        "filename": "java/src/main/java/monasca/api/domain/model/metric/MetricName.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-03-24T14:51:48Z",
+      "side": 1,
+      "message": "2015",
+      "revId": "a3fb43984729e4dd8ecf8bd7793066b34f60a146",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a6ced46_b2bfacfb",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9MetricDefinitionRepo.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-03-24T14:51:48Z",
+      "side": 1,
+      "message": "Just wondering why the extra line here",
+      "revId": "a3fb43984729e4dd8ecf8bd7793066b34f60a146",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
