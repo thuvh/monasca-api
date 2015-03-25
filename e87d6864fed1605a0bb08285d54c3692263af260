@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1a6ced46_07d39f60",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 1970,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-03-25T22:36:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a6ced46_443bfed0",
+      "revId": "e87d6864fed1605a0bb08285d54c3692263af260",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a6ced46_95bac3df",
         "filename": "docs/monasca-api-spec.md",
         "patchSetId": 6
@@ -30,6 +48,24 @@
       "writtenOn": "2015-03-23T18:31:22Z",
       "side": 1,
       "message": "Need to add state_updated_at here",
+      "revId": "e87d6864fed1605a0bb08285d54c3692263af260",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a6ced46_0f877162",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 1994,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-03-25T22:36:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a6ced46_95bac3df",
       "revId": "e87d6864fed1605a0bb08285d54c3692263af260",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "1a6ced46_cbf46ed1",
+        "filename": "java/src/main/java/monasca/api/domain/model/alarm/Alarm.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-03-25T22:36:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a6ced46_d5fefb6a",
+      "revId": "e87d6864fed1605a0bb08285d54c3692263af260",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a6ced46_a48cb280",
         "filename": "java/src/main/java/monasca/api/domain/model/alarm/Alarm.java",
         "patchSetId": 6
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "1a6ced46_a74acb23",
+        "filename": "java/src/main/java/monasca/api/domain/model/alarm/Alarm.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-03-25T22:36:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a6ced46_a48cb280",
+      "revId": "e87d6864fed1605a0bb08285d54c3692263af260",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a6ced46_f59e9755",
         "filename": "java/src/main/java/monasca/api/domain/model/alarm/Alarm.java",
         "patchSetId": 6
@@ -81,6 +153,24 @@
       "writtenOn": "2015-03-23T18:31:22Z",
       "side": 1,
       "message": "How come you aren\u0027t using createdAt?",
+      "revId": "e87d6864fed1605a0bb08285d54c3692263af260",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a6ced46_0bff66ab",
+        "filename": "java/src/main/java/monasca/api/domain/model/alarm/Alarm.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-03-25T22:36:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a6ced46_f59e9755",
       "revId": "e87d6864fed1605a0bb08285d54c3692263af260",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -121,6 +211,24 @@
     },
     {
       "key": {
+        "uuid": "1a6ced46_4b307e9e",
+        "filename": "java/src/main/java/monasca/api/domain/model/alarm/Alarm.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-03-25T22:36:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a6ced46_75aaa771",
+      "revId": "e87d6864fed1605a0bb08285d54c3692263af260",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a6ced46_754b87b0",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmMySqlRepoImpl.java",
         "patchSetId": 6
@@ -138,6 +246,24 @@
     },
     {
       "key": {
+        "uuid": "1a6ced46_6b59bafd",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmMySqlRepoImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-03-25T22:36:37Z",
+      "side": 1,
+      "message": "Probably auto-formatted it by mistake. Reverted.",
+      "parentUuid": "1a6ced46_754b87b0",
+      "revId": "e87d6864fed1605a0bb08285d54c3692263af260",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a6ced46_249e0257",
         "filename": "java/src/main/resources/api-config.yml",
         "patchSetId": 6
@@ -149,6 +275,24 @@
       "writtenOn": "2015-03-25T02:49:58Z",
       "side": 1,
       "message": "Not sure this is doing anything.\n\nIsn\u0027t the default 10,000 in the code? Wondering why uncommenting.",
+      "revId": "e87d6864fed1605a0bb08285d54c3692263af260",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a6ced46_7d2780ca",
+        "filename": "java/src/main/resources/api-config.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-03-25T22:36:37Z",
+      "side": 1,
+      "message": "Recommented",
+      "parentUuid": "1a6ced46_249e0257",
       "revId": "e87d6864fed1605a0bb08285d54c3692263af260",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -190,6 +334,24 @@
     },
     {
       "key": {
+        "uuid": "1a6ced46_82285de3",
+        "filename": "java/src/main/resources/api-config.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-03-25T22:36:37Z",
+      "side": 1,
+      "message": "The \"useLegacyDatetimeCode\u003dfalse\" is the only setting we need. Without it, timestamps from mysql are assumed to be in local time, which can cause errors.",
+      "parentUuid": "1a6ced46_84dc1614",
+      "revId": "e87d6864fed1605a0bb08285d54c3692263af260",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a6ced46_5926c5b8",
         "filename": "java/src/test/java/monasca/api/infrastructure/persistence/mysql/AlarmMySqlRepositoryImplTest.java",
         "patchSetId": 6
@@ -207,6 +369,24 @@
     },
     {
       "key": {
+        "uuid": "1a6ced46_07d63f28",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/mysql/AlarmMySqlRepositoryImplTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-03-25T22:36:37Z",
+      "side": 1,
+      "message": "I added three tests, one with no results, one with partial results, one with all results.",
+      "parentUuid": "1a6ced46_5926c5b8",
+      "revId": "e87d6864fed1605a0bb08285d54c3692263af260",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a6ced46_79af01e4",
         "filename": "java/src/test/java/monasca/api/resource/LinksTest.java",
         "patchSetId": 6
@@ -218,6 +398,24 @@
       "writtenOn": "2015-03-23T18:31:22Z",
       "side": 1,
       "message": "I\u0027d rather see real values put in here instead of null",
+      "revId": "e87d6864fed1605a0bb08285d54c3692263af260",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a6ced46_27c25b59",
+        "filename": "java/src/test/java/monasca/api/resource/LinksTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-03-25T22:36:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a6ced46_79af01e4",
       "revId": "e87d6864fed1605a0bb08285d54c3692263af260",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
