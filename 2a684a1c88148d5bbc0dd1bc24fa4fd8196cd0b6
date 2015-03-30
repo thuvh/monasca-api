@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da9b358b_5cd89053",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9MetricDefinitionRepo.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-03-30T14:54:09Z",
+      "side": 1,
+      "message": "Should you just remove any tag that starts with \u0027_\u0027?",
+      "revId": "2a684a1c88148d5bbc0dd1bc24fa4fd8196cd0b6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
