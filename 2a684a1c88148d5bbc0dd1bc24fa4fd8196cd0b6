@@ -16,6 +16,24 @@
       "revId": "2a684a1c88148d5bbc0dd1bc24fa4fd8196cd0b6",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da9b358b_5a41b00a",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9MetricDefinitionRepo.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-03-30T15:27:37Z",
+      "side": 1,
+      "message": "Let\u0027s leave it this way for now. It clearly documents what we store as \u0027private\u0027 tags.",
+      "parentUuid": "da9b358b_5cd89053",
+      "revId": "2a684a1c88148d5bbc0dd1bc24fa4fd8196cd0b6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
