@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_ce829652",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/MultipleMetricsException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-04-02T18:57:41Z",
+      "side": 1,
+      "message": "It seems like this should be in the monasca.api.domain.exception package because that is where MultipleMetricsExceptionMapper is. But it is only thrown by influxdb.\n\nAre we going to enforce this same restriction for Vertica?",
+      "revId": "896c82e3cef64cf488082ca8862a5ba3fb37052e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_8eb48ef2",
+        "filename": "java/src/main/java/monasca/api/resource/exception/MultipleMetricsExceptionMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-04-02T18:57:41Z",
+      "side": 1,
+      "message": "This used to return a 400 and now it is a 409. Not clear to me that 409 is correct but I\u0027m open to the discussion",
+      "revId": "896c82e3cef64cf488082ca8862a5ba3fb37052e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
