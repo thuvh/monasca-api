@@ -51,6 +51,24 @@
       "revId": "896c82e3cef64cf488082ca8862a5ba3fb37052e",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_24e5a108",
+        "filename": "java/src/main/java/monasca/api/resource/exception/MultipleMetricsExceptionMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-04-02T19:49:02Z",
+      "side": 1,
+      "message": "Roland will adjudicate.",
+      "parentUuid": "baa041b7_8eb48ef2",
+      "revId": "896c82e3cef64cf488082ca8862a5ba3fb37052e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
