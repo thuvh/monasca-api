@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9aa53dc9_a015b440",
+        "filename": "java/src/main/java/monasca/api/app/validation/DimensionValidation.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-04-09T20:22:07Z",
+      "side": 1,
+      "message": "Let\u0027s disallow underbar from the beginning of the string as we discussed.",
+      "revId": "a86fde65571d65e8af46da858d5e2e192d404ea4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
