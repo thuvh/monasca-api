@@ -14,6 +14,7 @@
 package monasca.api.app.validation;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
@@ -147,6 +148,24 @@ public final class DimensionValidation {
           throw Exceptions.unprocessableEntity("%s is not a valid dimension value for service %s",
               value, service);
       }
+    }
+  }
+
+  /**
+   * Validates a list of dimension names for the alarm definition match_by field
+   * @param names
+   */
+
+  public static void validateMatchBy(List<String> names) {
+    for( String name : names) {
+      if (Strings.isNullOrEmpty(name))
+        throw Exceptions.unprocessableEntity("Dimension name cannot be empty");
+      if (name.length() > 255)
+        throw Exceptions.unprocessableEntity("Dimension name '%s' must be 255 characters or less",
+                                             name);
+      if (!VALID_DIMENSION_NAME.matcher(name).matches())
+        throw Exceptions.unprocessableEntity(
+            "Dimension name '%s' may only contain: a-z A-Z 0-9 _ - .", name);
     }
   }
 }
