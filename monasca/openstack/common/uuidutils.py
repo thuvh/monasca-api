@@ -21,7 +21,7 @@ import uuid
 
 
 def generate_uuid():
-    return str(uuid.uuid4())
+    return str(uuid.uuid1())
 
 
 def is_uuid_like(val):
