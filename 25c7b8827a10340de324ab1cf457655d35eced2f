@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ab451fb_f52096f9",
+        "filename": "monasca/v2/common/schemas/stream_definition_request_body_schema.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-04-17T17:50:56Z",
+      "side": 1,
+      "message": "Should this be \"select_by\" or just \"select\"",
+      "revId": "25c7b8827a10340de324ab1cf457655d35eced2f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ab451fb_55118aab",
+        "filename": "monasca/v2/common/schemas/stream_definition_request_body_schema.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-04-17T17:50:56Z",
+      "side": 1,
+      "message": "Not sure we need a fire_pipeline and expire_pipeline. The only pipelines we are enabling are for invoking notification methods.",
+      "revId": "25c7b8827a10340de324ab1cf457655d35eced2f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ab451fb_e7790d31",
+        "filename": "monasca/v2/reference/stream_definitions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-04-17T17:50:56Z",
+      "side": 1,
+      "message": "Should we call this something like \"agent_authorized\" roles now that we support more than just metrics?",
+      "revId": "25c7b8827a10340de324ab1cf457655d35eced2f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ab451fb_e7f58d83",
+        "filename": "monasca/v2/reference/stream_definitions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-04-17T17:50:56Z",
+      "side": 1,
+      "message": "Seem my comments in the API about fire_pipeline and expire_pipeline.",
+      "revId": "25c7b8827a10340de324ab1cf457655d35eced2f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ab451fb_872c894b",
+        "filename": "monasca/v2/reference/stream_definitions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-04-17T17:50:56Z",
+      "side": 1,
+      "message": "Should this be LOG.exception(ex) or LOG.debug(ex)? \n\nSeems like LOG.exception(ex) is more appropriate.\n\nNote, this occurs in several spots.",
+      "revId": "25c7b8827a10340de324ab1cf457655d35eced2f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
