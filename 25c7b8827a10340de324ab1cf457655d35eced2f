@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "3ab451fb_71eed323",
+        "filename": "monasca/v2/common/schemas/stream_definition_request_body_schema.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 12133
+      },
+      "writtenOn": "2015-04-17T20:05:07Z",
+      "side": 1,
+      "message": "I guess you were going for a more SQL similar term, so I can see changing that to select and keeping group_by.",
+      "parentUuid": "3ab451fb_9605d5c3",
+      "revId": "25c7b8827a10340de324ab1cf457655d35eced2f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3ab451fb_55118aab",
         "filename": "monasca/v2/common/schemas/stream_definition_request_body_schema.py",
         "patchSetId": 2
