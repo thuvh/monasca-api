@@ -30,10 +30,6 @@ import monasca.api.domain.model.metric.MetricDefinitionRepo;
 import monasca.api.domain.model.notificationmethod.NotificationMethodRepo;
 import monasca.api.domain.model.statistic.StatisticRepo;
 import monasca.api.infrastructure.persistence.PersistUtils;
-import monasca.api.infrastructure.persistence.influxdb.InfluxV8AlarmStateHistoryRepo;
-import monasca.api.infrastructure.persistence.influxdb.InfluxV8MeasurementRepo;
-import monasca.api.infrastructure.persistence.influxdb.InfluxV8MetricDefinitionRepo;
-import monasca.api.infrastructure.persistence.influxdb.InfluxV8StatisticRepo;
 import monasca.api.infrastructure.persistence.influxdb.InfluxV9AlarmStateHistoryRepo;
 import monasca.api.infrastructure.persistence.influxdb.InfluxV9MeasurementRepo;
 import monasca.api.infrastructure.persistence.influxdb.InfluxV9MetricDefinitionRepo;
@@ -83,18 +79,6 @@ public class InfrastructureModule extends AbstractModule {
 
     } else if (config.databaseConfiguration.getDatabaseType().trim().equalsIgnoreCase(INFLUXDB)) {
 
-      // Check for null to not break existing configs. If no version, default to V8.
-      if (config.influxDB.getVersion() == null
-          || config.influxDB.getVersion().trim().equalsIgnoreCase(INFLUXDB_V8)) {
-
-        bind(AlarmStateHistoryRepo.class).to(InfluxV8AlarmStateHistoryRepo.class)
-            .in(Singleton.class);
-        bind(MetricDefinitionRepo.class).to(InfluxV8MetricDefinitionRepo.class).in(Singleton.class);
-        bind(MeasurementRepo.class).to(InfluxV8MeasurementRepo.class).in(Singleton.class);
-        bind(StatisticRepo.class).to(InfluxV8StatisticRepo.class).in(Singleton.class);
-
-      } else if (config.influxDB.getVersion().trim().equalsIgnoreCase(INFLUXDB_V9)) {
-
         bind(PersistUtils.class).in(Singleton.class);
         bind(InfluxV9Utils.class).in(Singleton.class);
         bind(InfluxV9RepoReader.class).in(Singleton.class);
@@ -104,14 +88,6 @@ public class InfrastructureModule extends AbstractModule {
         bind(MetricDefinitionRepo.class).to(InfluxV9MetricDefinitionRepo.class).in(Singleton.class);
         bind(MeasurementRepo.class).to(InfluxV9MeasurementRepo.class).in(Singleton.class);
         bind(StatisticRepo.class).to(InfluxV9StatisticRepo.class).in(Singleton.class);
-
-      } else {
-
-        throw new ProvisionException(
-            "Found unknown Influxdb version: " + config.influxDB.getVersion() + "."
-            + " Supported Influxdb versions are 'v8' and 'v9'. Please check your config file");
-
-      }
 
     } else {
       throw new ProvisionException("Failed to detect supported database. Supported databases are "
