@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dac4157f_c1e7113f",
+        "filename": "java/src/main/java/monasca/api/app/validation/MetricNameValidation.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-04-20T17:08:20Z",
+      "side": 1,
+      "message": "should these patterns be in only one place? DNYR?",
+      "revId": "2f4588856e7a3f9a67ddb61c7266c8e8a84eb500",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dac4157f_01c5098d",
+        "filename": "java/src/main/java/monasca/api/app/validation/MetricNameValidation.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-04-20T17:08:20Z",
+      "side": 1,
+      "message": "DNRY?",
+      "revId": "2f4588856e7a3f9a67ddb61c7266c8e8a84eb500",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
