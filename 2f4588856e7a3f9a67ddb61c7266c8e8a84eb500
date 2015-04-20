@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "dac4157f_d7ad9332",
+        "filename": "java/src/main/java/monasca/api/app/validation/MetricNameValidation.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-04-20T18:01:17Z",
+      "side": 1,
+      "message": "I was thinking most of the validation could be moved to monasca-common",
+      "parentUuid": "dac4157f_c1e7113f",
+      "revId": "2f4588856e7a3f9a67ddb61c7266c8e8a84eb500",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dac4157f_01c5098d",
         "filename": "java/src/main/java/monasca/api/app/validation/MetricNameValidation.java",
         "patchSetId": 2
