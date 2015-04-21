@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "dac4157f_98c6fe47",
+        "filename": "monasca/common/repositories/mysql/streams_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 12133
+      },
+      "writtenOn": "2015-04-21T16:32:12Z",
+      "side": 1,
+      "message": "i will make tenant_id and name a unique key, and catch the exception.",
+      "parentUuid": "dac4157f_b2f688f7",
+      "revId": "001540f90c1362ff0c6baed16748db4f40e5912d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dac4157f_d258dcfc",
         "filename": "monasca/common/repositories/mysql/streams_repository.py",
         "patchSetId": 4
@@ -47,6 +65,24 @@
       "writtenOn": "2015-04-21T14:32:22Z",
       "side": 1,
       "message": "Why did this change? This is copied from the OpenStack Oslo project?",
+      "revId": "001540f90c1362ff0c6baed16748db4f40e5912d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dac4157f_58baa60b",
+        "filename": "monasca/openstack/common/uuidutils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 12133
+      },
+      "writtenOn": "2015-04-21T16:32:12Z",
+      "side": 1,
+      "message": "I will change this back to uuid4.  The pagination logic in the python code seems to need an incrementing uuid to work.  We can open a separate Jira that pagination is not working.",
+      "parentUuid": "dac4157f_32eef8b4",
       "revId": "001540f90c1362ff0c6baed16748db4f40e5912d",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
