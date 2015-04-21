@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dac4157f_b2f688f7",
+        "filename": "monasca/common/repositories/mysql/streams_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-04-21T14:32:22Z",
+      "side": 1,
+      "message": "On thing that occurred to me here is that there is still a possiblity for getting a duplicate as the check and the insert are separate.\n\nIs is possible to combine the two sql statements into a single one so it it an atomic op?",
+      "revId": "001540f90c1362ff0c6baed16748db4f40e5912d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dac4157f_d258dcfc",
+        "filename": "monasca/common/repositories/mysql/streams_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-04-21T14:32:22Z",
+      "side": 1,
+      "message": "Not that we haven\u0027t done this in other parts of the code, but is this a place where we should be using the oslo time utils?",
+      "revId": "001540f90c1362ff0c6baed16748db4f40e5912d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dac4157f_32eef8b4",
+        "filename": "monasca/openstack/common/uuidutils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-04-21T14:32:22Z",
+      "side": 1,
+      "message": "Why did this change? This is copied from the OpenStack Oslo project?",
+      "revId": "001540f90c1362ff0c6baed16748db4f40e5912d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
