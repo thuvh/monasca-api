@@ -17,8 +17,7 @@ import monasca.api.domain.model.alarmstatehistory.AlarmStateHistory;
 import monasca.api.domain.model.alarmstatehistory.AlarmStateHistoryRepo;
 import monasca.api.infrastructure.persistence.DimensionQueries;
 import monasca.api.infrastructure.persistence.PersistUtils;
-import monasca.api.infrastructure.persistence.mysql.MySQLUtils;
-import monasca.common.model.alarm.AlarmState;
+import monasca.api.infrastructure.persistence.Utils;
 import monasca.common.model.alarm.AlarmTransitionSubAlarm;
 import monasca.common.model.metric.MetricDefinition;
 
@@ -26,20 +25,18 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 
+import monasca.common.persistence.BeanMapper;
+import org.apache.commons.collections4.CollectionUtils;
 import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
 import org.skife.jdbi.v2.DBI;
 import org.skife.jdbi.v2.Handle;
 import org.skife.jdbi.v2.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.sql.Timestamp;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -80,17 +77,17 @@ public class AlarmStateHistoryVerticaRepoImpl implements AlarmStateHistoryRepo {
       new TypeReference<List<AlarmTransitionSubAlarm>>() {};
 
   private final DBI vertica;
-  private final MySQLUtils mySQLUtils;
+  private final Utils utils;
   private final PersistUtils persistUtils;
 
   @Inject
   public AlarmStateHistoryVerticaRepoImpl(
       @Named("vertica") DBI vertica,
-      MySQLUtils mySQLUtils,
+      Utils utils,
       PersistUtils persistUtils) {
 
     this.vertica = vertica;
-    this.mySQLUtils = mySQLUtils;
+    this.utils = utils;
     this.persistUtils = persistUtils;
   }
 
@@ -113,7 +110,7 @@ public class AlarmStateHistoryVerticaRepoImpl implements AlarmStateHistoryRepo {
 
     logger.debug("vertica sql: {}", sql);
 
-    List<AlarmStateHistory> alarmStateHistoryList = new ArrayList<>();
+    List<AlarmStateHistory> alarmStateHistoryList;
 
     try (Handle h = vertica.open()) {
 
@@ -129,11 +126,7 @@ public class AlarmStateHistoryVerticaRepoImpl implements AlarmStateHistoryRepo {
 
       }
 
-      for (Map<String, Object> row : verticaQuery.list()) {
-
-        alarmStateHistoryList.add(getAlarmStateHistory(row));
-
-      }
+      alarmStateHistoryList = verticaQuery.map(new BeanMapper<>(AlarmStateHistory.class)).list();
 
     }
 
@@ -150,9 +143,9 @@ public class AlarmStateHistoryVerticaRepoImpl implements AlarmStateHistoryRepo {
       @Nullable String offset,
       int limit) {
 
-    List<String> alarmIds = this.mySQLUtils.findAlarmIds(tenantId, dimensions);
+    List<String> alarmIds = this.utils.findAlarmIds(tenantId, dimensions);
 
-    if (alarmIds == null || alarmIds.isEmpty()) {
+    if (CollectionUtils.isEmpty(alarmIds)) {
 
       logger.debug("list of alarm ids is empty");
 
@@ -233,75 +226,12 @@ public class AlarmStateHistoryVerticaRepoImpl implements AlarmStateHistoryRepo {
       }
 
       DimensionQueries.bindDimensionsToQuery(verticaQuery, dimensions);
-
-      for (Map<String, Object> row : verticaQuery.list()) {
-
-        alarmStateHistoryList.add(getAlarmStateHistory(row));
-
-      }
+      alarmStateHistoryList = verticaQuery.map(new BeanMapper<>(AlarmStateHistory.class)).list();
 
     }
 
     return alarmStateHistoryList;
 
-  }
-
-  private AlarmStateHistory getAlarmStateHistory(Map<String, Object> row) {
-
-    AlarmStateHistory alarmStateHistory = new AlarmStateHistory();
-
-    Date date;
-
-    try {
-
-      date = this.persistUtils.parseTimestamp(row.get("timestamp").toString() + "Z");
-
-    } catch (ParseException e) {
-
-      logger.error("Failed to parse time", e);
-
-      return null;
-    }
-
-    DateTime dateTime = new DateTime(date.getTime(), DateTimeZone.UTC);
-    alarmStateHistory.setTimestamp(dateTime);
-
-    alarmStateHistory.setAlarmId((String) row.get("alarm_id"));
-
-    List<MetricDefinition> metricDefinitionList;
-    try {
-
-      metricDefinitionList = this.objectMapper.readValue((String) row.get("metrics"), METRICS_TYPE);
-
-    } catch (IOException e) {
-
-      logger.error("Failed to parse metrics", e);
-
-      metricDefinitionList = new ArrayList<>();
-    }
-
-    alarmStateHistory.setMetrics(metricDefinitionList);
-
-    alarmStateHistory.setOldState(AlarmState.valueOf((String) row.get("old_state")));
-    alarmStateHistory.setNewState(AlarmState.valueOf((String) row.get("new_state")));
-    alarmStateHistory.setReason((String) row.get("reason"));
-    alarmStateHistory.setReasonData((String) row.get("reason_data"));
-
-    List<AlarmTransitionSubAlarm> subAlarmList;
-    try {
-
-      subAlarmList = this.objectMapper.readValue((String) row.get("sub_alarms"), SUB_ALARMS_TYPE);
-
-    } catch (IOException e) {
-
-      logger.error("Failed to parse sub-alarms", e);
-
-      subAlarmList = new ArrayList<>();
-    }
-
-    alarmStateHistory.setSubAlarms(subAlarmList);
-
-    return alarmStateHistory;
   }
 
 }
