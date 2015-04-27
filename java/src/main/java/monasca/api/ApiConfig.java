@@ -13,19 +13,21 @@
  */
 package monasca.api;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import monasca.common.messaging.kafka.KafkaConfiguration;
-import monasca.api.infrastructure.middleware.MiddlewareConfiguration;
-import monasca.common.configuration.DatabaseConfiguration;
-
-import monasca.common.configuration.InfluxDbConfiguration;
 import io.dropwizard.Configuration;
 import io.dropwizard.db.DataSourceFactory;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+
+import monasca.api.infrastructure.middleware.MiddlewareConfiguration;
+import monasca.common.configuration.DatabaseConfiguration;
+import monasca.common.configuration.InfluxDbConfiguration;
+import monasca.common.hibernate.configuration.HibernateDbConfiguration;
+import monasca.common.messaging.kafka.KafkaConfiguration;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 public class ApiConfig extends Configuration {
@@ -59,5 +61,7 @@ public class ApiConfig extends Configuration {
   @Valid
   @JsonProperty
   public DatabaseConfiguration databaseConfiguration;
-
+  @Valid
+  @NotNull
+  public HibernateDbConfiguration hibernate;
 }

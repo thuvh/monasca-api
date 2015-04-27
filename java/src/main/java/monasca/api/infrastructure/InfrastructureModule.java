@@ -13,9 +13,6 @@
  */
 package monasca.api.infrastructure;
 
-import com.google.inject.AbstractModule;
-import com.google.inject.ProvisionException;
-
 import javax.inject.Singleton;
 
 import monasca.api.ApiConfig;
@@ -27,6 +24,7 @@ import monasca.api.domain.model.metric.MetricDefinitionRepo;
 import monasca.api.domain.model.notificationmethod.NotificationMethodRepo;
 import monasca.api.domain.model.statistic.StatisticRepo;
 import monasca.api.infrastructure.persistence.PersistUtils;
+import monasca.api.infrastructure.persistence.influxdb.InfluxV9AlarmStateHistoryHibernateRepo;
 import monasca.api.infrastructure.persistence.influxdb.InfluxV9AlarmStateHistoryRepo;
 import monasca.api.infrastructure.persistence.influxdb.InfluxV9MeasurementRepo;
 import monasca.api.infrastructure.persistence.influxdb.InfluxV9MetricDefinitionRepo;
@@ -35,12 +33,19 @@ import monasca.api.infrastructure.persistence.influxdb.InfluxV9StatisticRepo;
 import monasca.api.infrastructure.persistence.influxdb.InfluxV9Utils;
 import monasca.api.infrastructure.persistence.mysql.AlarmDefinitionMySqlRepoImpl;
 import monasca.api.infrastructure.persistence.mysql.AlarmMySqlRepoImpl;
-import monasca.api.infrastructure.persistence.mysql.NotificationMethodMySqlRepoImpl;
 import monasca.api.infrastructure.persistence.mysql.MySQLUtils;
+import monasca.api.infrastructure.persistence.mysql.NotificationMethodMySqlRepoImpl;
+import monasca.api.infrastructure.persistence.sql.AlarmDefinitionSqlRepoImpl;
+import monasca.api.infrastructure.persistence.sql.AlarmSqlRepoImpl;
+import monasca.api.infrastructure.persistence.sql.NotificationMethodSqlRepoImpl;
+import monasca.api.infrastructure.persistence.vertica.AlarmStateHistoryVerticaRepoHibernateImpl;
 import monasca.api.infrastructure.persistence.vertica.AlarmStateHistoryVerticaRepoImpl;
 import monasca.api.infrastructure.persistence.vertica.MeasurementVerticaRepoImpl;
 import monasca.api.infrastructure.persistence.vertica.MetricDefinitionVerticaRepoImpl;
 import monasca.api.infrastructure.persistence.vertica.StatisticVerticaRepoImpl;
+
+import com.google.inject.AbstractModule;
+import com.google.inject.ProvisionException;
 
 /**
  * Infrastructure layer bindings.
@@ -61,25 +66,34 @@ public class InfrastructureModule extends AbstractModule {
   protected void configure() {
 
     // Bind repositories
-    bind(AlarmRepo.class).to(AlarmMySqlRepoImpl.class).in(Singleton.class);
-    bind(AlarmDefinitionRepo.class).to(AlarmDefinitionMySqlRepoImpl.class).in(Singleton.class);
 
-    bind(MySQLUtils.class);
-
-    bind(PersistUtils.class).in(Singleton.class);
+    if (config.hibernate.getSupportEnabled()) {
+      bind(AlarmRepo.class).to(AlarmSqlRepoImpl.class).in(Singleton.class);
+      bind(AlarmDefinitionRepo.class).to(AlarmDefinitionSqlRepoImpl.class).in(Singleton.class);
+      bind(NotificationMethodRepo.class).to(NotificationMethodSqlRepoImpl.class).in(Singleton.class);
+    } else {
+      bind(AlarmRepo.class).to(AlarmMySqlRepoImpl.class).in(Singleton.class);
+      bind(AlarmDefinitionRepo.class).to(AlarmDefinitionMySqlRepoImpl.class).in(Singleton.class);
+      bind(NotificationMethodRepo.class).to(NotificationMethodMySqlRepoImpl.class).in(Singleton.class);
+      bind(MySQLUtils.class);
+      bind(PersistUtils.class).in(Singleton.class);
+    }
 
     if (config.databaseConfiguration.getDatabaseType().trim().equalsIgnoreCase(VERTICA)) {
 
-      bind(AlarmStateHistoryRepo.class).to(AlarmStateHistoryVerticaRepoImpl.class)
-          .in(Singleton.class);
+      if (config.hibernate.getSupportEnabled()) {
+        bind(AlarmStateHistoryRepo.class).to(AlarmStateHistoryVerticaRepoHibernateImpl.class).in(Singleton.class);
+      } else {
+        bind(AlarmStateHistoryRepo.class).to(AlarmStateHistoryVerticaRepoImpl.class).in(Singleton.class);
+      }
+
       bind(MetricDefinitionRepo.class).to(MetricDefinitionVerticaRepoImpl.class).in(Singleton.class);
       bind(MeasurementRepo.class).to(MeasurementVerticaRepoImpl.class).in(Singleton.class);
       bind(StatisticRepo.class).to(StatisticVerticaRepoImpl.class).in(Singleton.class);
 
     } else if (config.databaseConfiguration.getDatabaseType().trim().equalsIgnoreCase(INFLUXDB)) {
 
-      if (config.influxDB.getVersion() != null && !config.influxDB.getVersion()
-          .equalsIgnoreCase(INFLUXDB_V9)) {
+      if (config.influxDB.getVersion() != null && !config.influxDB.getVersion().equalsIgnoreCase(INFLUXDB_V9)) {
 
         System.err.println("Found unsupported Influxdb version: " + config.influxDB.getVersion());
         System.err.println("Supported Influxdb versions are 'v9'");
@@ -90,17 +104,19 @@ public class InfrastructureModule extends AbstractModule {
 
       bind(InfluxV9Utils.class).in(Singleton.class);
       bind(InfluxV9RepoReader.class).in(Singleton.class);
-
-      bind(AlarmStateHistoryRepo.class).to(InfluxV9AlarmStateHistoryRepo.class).in(Singleton.class);
+      if (config.hibernate.getSupportEnabled()) {
+        bind(AlarmStateHistoryRepo.class).to(InfluxV9AlarmStateHistoryHibernateRepo.class).in(Singleton.class);
+      } else {
+        bind(AlarmStateHistoryRepo.class).to(InfluxV9AlarmStateHistoryRepo.class).in(Singleton.class);
+      }
       bind(MetricDefinitionRepo.class).to(InfluxV9MetricDefinitionRepo.class).in(Singleton.class);
       bind(MeasurementRepo.class).to(InfluxV9MeasurementRepo.class).in(Singleton.class);
       bind(StatisticRepo.class).to(InfluxV9StatisticRepo.class).in(Singleton.class);
 
     } else {
 
-      throw new ProvisionException("Failed to detect supported database. Supported databases are " + "'vertica' and 'influxdb'. Check your config file.");
+      throw new ProvisionException("Failed to detect supported database. Supported databases are "
+          + "'vertica' and 'influxdb'. Check your config file.");
     }
-
-    bind(NotificationMethodRepo.class).to(NotificationMethodMySqlRepoImpl.class).in(Singleton.class);
   }
 }
