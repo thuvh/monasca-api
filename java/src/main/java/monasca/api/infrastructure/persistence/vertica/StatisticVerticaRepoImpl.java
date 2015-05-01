@@ -30,6 +30,8 @@ import org.joda.time.format.ISODateTimeFormat;
 import org.skife.jdbi.v2.DBI;
 import org.skife.jdbi.v2.Handle;
 import org.skife.jdbi.v2.Query;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import monasca.api.domain.model.statistic.StatisticRepo;
 import monasca.api.domain.model.statistic.Statistics;
@@ -39,25 +41,43 @@ import monasca.api.infrastructure.persistence.DimensionQueries;
  * Vertica statistic repository implementation.
  */
 public class StatisticVerticaRepoImpl implements StatisticRepo {
-  public static final DateTimeFormatter DATETIME_FORMATTER = ISODateTimeFormat.dateTimeNoMillis()
-      .withZoneUTC();
+
+  private static final Logger logger =
+      LoggerFactory.getLogger(StatisticVerticaRepoImpl.class);
+
+  public static final DateTimeFormatter DATETIME_FORMATTER =
+      ISODateTimeFormat.dateTimeNoMillis().withZoneUTC();
+
   private static final String FIND_BY_METRIC_DEF_SQL =
       "select dd.id, def.name, d.name as dname, d.value as dvalue "
-          + "from MonMetrics.Definitions def, MonMetrics.DefinitionDimensions dd "
-          + "left outer join MonMetrics.Dimensions d on d.dimension_set_id = dd.dimension_set_id%s "
-          + "where def.id = dd.definition_id and def.tenant_id = :tenantId%s order by dd.id";
+      + "from MonMetrics.Definitions def, MonMetrics.DefinitionDimensions dd "
+      + "left outer join MonMetrics.Dimensions d on d.dimension_set_id = dd.dimension_set_id "
+      + "%s "
+      + "where def.id = dd.definition_id and def.tenant_id = :tenantId "
+      + "%s "
+      + "order by dd.id ASC";
 
   private final DBI db;
 
   @Inject
   public StatisticVerticaRepoImpl(@Named("vertica") DBI db) {
+
     this.db = db;
+
   }
 
   @Override
-  public List<Statistics> find(String tenantId, String name, Map<String, String> dimensions,
-                               DateTime startTime, DateTime endTime, List<String> statistics,
-                               int period, String offset, int limit, Boolean mergeMetricsFlag) {
+  public List<Statistics> find(
+      String tenantId,
+      String name,
+      Map<String, String> dimensions,
+      DateTime startTime,
+      DateTime endTime,
+      List<String> statistics,
+      int period,
+      String offset,
+      int limit,
+      Boolean mergeMetricsFlag) {
 
     // Todo. Use mergeMetricsFlag.
 
@@ -67,19 +87,21 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
     List<String> copyStatistics = createColumns(statistics);
 
     try (Handle h = db.open()) {
+
       Map<byte[], Statistics> byteMap =
-          findDefIds(h, tenantId, name, dimensions, startTime, endTime);
+          findDefIds(h, tenantId, name, dimensions);
 
       for (byte[] bufferId : byteMap.keySet()) {
 
         Query<Map<String, Object>> query =
-            h.createQuery(createQuery(period, startTime, endTime, statistics))
-                .bind("definition_id", bufferId).bind("start_time", startTime)
+            h.createQuery(
+                createQuery(period, startTime, endTime, statistics))
+                .bind("definition_id", bufferId)
+                .bind("start_time", startTime)
                 .bind("end_time", endTime);
 
-        // Execute
         List<Map<String, Object>> rows = query.list();
-        List<Object> statisticsRow = new ArrayList<Object>();
+        List<Object> statisticsRow = new ArrayList<>();
 
         for (Map<String, Object> row : rows) {
           Double sum = (Double) row.get("sum");
@@ -119,58 +141,79 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
     return listStats;
   }
 
-  private Map<byte[], Statistics> findDefIds(Handle h, String tenantId, String name,
-      Map<String, String> dimensions, DateTime startTime, DateTime endTime) {
+  private Map<byte[], Statistics> findDefIds(
+      Handle h,
+      String tenantId,
+      String name,
+      Map<String, String> dimensions) {
+
     List<byte[]> bytes = new ArrayList<>();
 
-    // Build query
-    StringBuilder sbWhere = new StringBuilder();
+    StringBuilder sb = new StringBuilder();
 
-    if (name != null)
-      sbWhere.append(" and def.name = :name");
+    if (name != null && !name.isEmpty()) {
+
+      sb.append(" and def.name = :name");
+
+    }
 
     String sql =
         String
-            .format(FIND_BY_METRIC_DEF_SQL, MetricQueries.buildJoinClauseFor(dimensions), sbWhere);
+            .format(FIND_BY_METRIC_DEF_SQL, MetricQueries.buildJoinClauseFor(dimensions), sb);
 
     Query<Map<String, Object>> query =
-        h.createQuery(sql).bind("tenantId", tenantId).bind("startTime", startTime);
+        h.createQuery(sql)
+            .bind("tenantId", tenantId);
 
-    if (name != null) {
+    if (name != null && !name.isEmpty()) {
+
+      logger.debug("binding name: {}", name);
+
       query.bind("name", name);
-    }
 
-    if (endTime != null) {
-      query.bind("endTime", new Timestamp(endTime.getMillis()));
     }
 
     DimensionQueries.bindDimensionsToQuery(query, dimensions);
 
-    // Execute
     List<Map<String, Object>> rows = query.list();
 
     Map<byte[], Statistics> byteIdMap = new HashMap<>();
 
-    // Build results
     byte[] currentId = null;
+
     Map<String, String> dims = null;
+
     for (Map<String, Object> row : rows) {
+
       byte[] defId = (byte[]) row.get("id");
+
       String defName = (String) row.get("name");
+
       String demName = (String) row.get("dname");
+
       String demValue = (String) row.get("dvalue");
 
       if (defId == null || !Arrays.equals(currentId, defId)) {
+
         currentId = defId;
+
         dims = new HashMap<>();
+
         dims.put(demName, demValue);
 
         Statistics statistics = new Statistics();
+
         statistics.setName(defName);
+
         statistics.setDimensions(dims);
+
         byteIdMap.put(currentId, statistics);
-      } else
+
+      } else {
+
         dims.put(demName, demValue);
+
+      }
     }
 
     bytes.add(currentId);
@@ -189,54 +232,68 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
     return copy;
   }
 
-  private String createQuery(int period, DateTime startTime, DateTime endTime,
+  private String createQuery(
+      int period,
+      DateTime startTime,
+      DateTime endTime,
       List<String> statistics) {
-    StringBuilder builder = new StringBuilder();
 
-    builder.append("SELECT " + getColumns(statistics));
+    StringBuilder sb = new StringBuilder();
 
-    if (period >= 1) {
-      builder.append(",MIN(time_stamp) as time_interval ");
-      builder.append(" FROM (Select FLOOR((EXTRACT('epoch' from time_stamp) - ");
-      builder.append(createOffset(period, startTime, endTime));
-      builder.append(" AS time_slice, time_stamp, value ");
-    }
-
-    builder.append(" FROM MonMetrics.Measurements ");
-    builder.append("WHERE definition_dimensions_id = :definition_id ");
-    builder.append(createWhereClause(startTime, endTime));
+    sb.append("SELECT " + getColumns(statistics));
 
     if (period >= 1) {
-      builder.append(") as TimeSlices group by time_slice order by time_slice");
+      sb.append(",MIN(time_stamp) as time_interval ");
+      sb.append(" FROM (Select FLOOR((EXTRACT('epoch' from time_stamp) - ");
+      sb.append(createOffset(period, startTime, endTime));
+      sb.append(" AS time_slice, time_stamp, value ");
     }
-    return builder.toString();
+
+    sb.append(" FROM MonMetrics.Measurements ");
+    sb.append("WHERE definition_dimensions_id = :definition_id ");
+    sb.append(createWhereClause(startTime, endTime));
+
+    if (period >= 1) {
+      sb.append(") as TimeSlices group by time_slice order by time_slice");
+    }
+    return sb.toString();
   }
 
-  private String createWhereClause(DateTime startTime, DateTime endTime) {
+  private String createWhereClause(
+      DateTime startTime,
+      DateTime endTime) {
+
     String clause = "";
+
     if (startTime != null && endTime != null) {
       clause = "AND time_stamp >= :start_time AND time_stamp <= :end_time ";
     } else if (startTime != null) {
       clause = "AND time_stamp >= :start_time ";
     }
+
     return clause;
   }
 
-  private String createOffset(int period, DateTime startTime, DateTime endTime) {
+  private String createOffset(
+      int period,
+      DateTime startTime,
+      DateTime endTime) {
 
-    StringBuilder offset = new StringBuilder();
-    offset
-        .append("(select mod((select extract('epoch' from time_stamp)  from MonMetrics.Measurements ");
-    offset.append("WHERE definition_dimensions_id = :definition_id ");
-    offset.append(createWhereClause(startTime, endTime));
-    offset.append("order by time_stamp limit 1");
-    offset.append("),");
-    offset.append(period + ")))/" + period + ")");
+    StringBuilder sb = new StringBuilder();
+    sb
+        .append(
+            "(select mod((select extract('epoch' from time_stamp)  from MonMetrics.Measurements ");
+    sb.append("WHERE definition_dimensions_id = :definition_id ");
+    sb.append(createWhereClause(startTime, endTime));
+    sb.append("order by time_stamp limit 1");
+    sb.append("),");
+    sb.append(period + ")))/" + period + ")");
 
-    return offset.toString();
+    return sb.toString();
   }
 
   private String getColumns(List<String> statistics) {
+
     StringBuilder buildColumns = new StringBuilder();
 
     int size = statistics.size();

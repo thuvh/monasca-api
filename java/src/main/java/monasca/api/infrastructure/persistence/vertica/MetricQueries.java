@@ -27,20 +27,38 @@ final class MetricQueries {
   private MetricQueries() {}
 
   static String buildJoinClauseFor(Map<String, String> dimensions) {
+
     StringBuilder sbJoin = null;
+
     if (dimensions != null) {
+
       sbJoin = new StringBuilder();
-      for (int i = 0; i < dimensions.size(); i++)
-        sbJoin.append(" inner join MonMetrics.Dimensions d").append(i).append(" on d").append(i)
-            .append(".name = :dname").append(i).append(" and d").append(i)
-            .append(".value = " + ":dvalue").append(i).append(" and dd.dimension_set_id = d")
-            .append(i).append("" + ".dimension_set_id");
+
+      for (int i = 0; i < dimensions.size(); i++) {
+
+        sbJoin
+            .append(" inner join MonMetrics.Dimensions dim")
+            .append(i)
+            .append(" on dim")
+            .append(i)
+            .append(".name = :dname")
+            .append(i)
+            .append(" and dim")
+            .append(i)
+            .append(".value = " + ":dvalue")
+            .append(i)
+            .append(" and defdim.dimension_set_id = dim")
+            .append(i)
+            .append(".dimension_set_id");
+      }
     }
 
     return sbJoin == null ? "" : sbJoin.toString();
+
   }
 
   static Map<String, String> dimensionsFor(Handle handle, byte[] dimensionSetId) {
+
     return SqlQueries.keyValuesFor(handle, "select name, value from MonMetrics.Dimensions "
         + "where" + " dimension_set_id = ?", dimensionSetId);
   }

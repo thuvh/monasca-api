@@ -26,9 +26,13 @@ import org.skife.jdbi.v2.Query;
  * This class has issues with testing with mockito because bind method on Query class is final.
  */
 public final class DimensionQueries {
+
   private DimensionQueries() {}
 
-  public static void bindDimensionsToQuery(Query<?> query, Map<String, String> dimensions) {
+  public static void bindDimensionsToQuery(
+      Query<?> query,
+      Map<String, String> dimensions) {
+
     if (dimensions != null) {
       int i = 0;
       for (Iterator<Map.Entry<String, String>> it = dimensions.entrySet().iterator(); it.hasNext(); i++) {
@@ -40,6 +44,7 @@ public final class DimensionQueries {
   }
 
   public static Map<String, String> dimensionsFor(String dimensionSet) {
+
     Map<String, String> dimensions = Collections.emptyMap();
 
     if (dimensionSet != null) {
