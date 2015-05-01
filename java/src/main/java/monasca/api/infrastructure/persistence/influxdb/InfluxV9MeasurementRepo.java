@@ -37,7 +37,6 @@ import monasca.api.domain.model.measurement.Measurements;
 
 public class InfluxV9MeasurementRepo implements MeasurementRepo {
 
-
   private static final Logger logger = LoggerFactory
       .getLogger(InfluxV9MeasurementRepo.class);
 
@@ -102,7 +101,6 @@ public class InfluxV9MeasurementRepo implements MeasurementRepo {
                         this.influxV9Utils.endTimePart(endTime),
                         this.influxV9Utils.timeOffsetPart(offset),
                         this.influxV9Utils.limitPart(limit));
-
 
     } else {
 
