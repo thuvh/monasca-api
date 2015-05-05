@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3acd31a7_a8d367d4",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9Utils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-05-05T16:24:33Z",
+      "side": 1,
+      "message": "why double quotes and not single quotes?",
+      "revId": "da59521c6a838910fea9edac26640e9a5ad5b6a8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
