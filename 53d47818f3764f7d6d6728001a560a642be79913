@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3acd31a7_bc9ba565",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/MySQLUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-05-05T19:03:20Z",
+      "side": 1,
+      "message": "You need your copyright",
+      "revId": "53d47818f3764f7d6d6728001a560a642be79913",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3acd31a7_7cdaade9",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/AlarmStateHistoryVerticaRepoImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-05-05T19:03:20Z",
+      "side": 1,
+      "message": "I\u0027m betting if I give a nonnumeric offset on the url, I can get a 500",
+      "revId": "53d47818f3764f7d6d6728001a560a642be79913",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3acd31a7_7c886dc5",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/AlarmStateHistoryVerticaRepoImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-05-05T19:03:20Z",
+      "side": 1,
+      "message": "See above",
+      "revId": "53d47818f3764f7d6d6728001a560a642be79913",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3acd31a7_bc460579",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MeasurementVerticaRepoImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-05-05T19:03:20Z",
+      "side": 1,
+      "message": "Need to validate offset or catch the Exception if it is bad",
+      "revId": "53d47818f3764f7d6d6728001a560a642be79913",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3acd31a7_172dd2fd",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/vertica/MetricQueriesTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-05-05T19:03:20Z",
+      "side": 1,
+      "message": "Should be using assertEquals",
+      "revId": "53d47818f3764f7d6d6728001a560a642be79913",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
