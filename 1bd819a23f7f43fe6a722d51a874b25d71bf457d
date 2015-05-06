@@ -16,6 +16,24 @@
       "revId": "1bd819a23f7f43fe6a722d51a874b25d71bf457d",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aca2d91_e988b324",
+        "filename": "java/src/main/java/monasca/api/app/validation/AlarmValidation.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-05-06T22:37:08Z",
+      "side": 1,
+      "message": "Fixed",
+      "parentUuid": "1aca2d91_aa03ce0e",
+      "revId": "1bd819a23f7f43fe6a722d51a874b25d71bf457d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
