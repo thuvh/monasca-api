@@ -273,6 +273,8 @@ public class AlarmDefinitionService {
                 : enabled;
         matchBy = matchBy == null ? oldAlarmDefinition.getMatchBy() : matchBy;
 
+        DimensionValidation.validateNames(matchBy);
+
         final SubExpressions subExpressions = subExpressionsFor(
                 repo.findSubExpressions(alarmDefId), alarmExpression);
         validateChangesAllowed(matchBy, oldAlarmDefinition, subExpressions);
