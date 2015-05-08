@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1aca2d91_1fe190fe",
+        "filename": "java/src/main/java/monasca/api/app/command/PatchAlarmCommand.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-05-08T17:44:22Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be PatchAlarmCommand? Is this a duplication of CreateAlarmDefinitionCommand other than the name change? Maybe there is a way to reuse it then?",
+      "revId": "68bad76844c2cc999de8edd079f0c8e34c50d534",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
