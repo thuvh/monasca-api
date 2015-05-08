@@ -306,7 +306,6 @@ public class AlarmDefinitionService {
                     subExpressions.changedSubExpressions,
                     subExpressions.newAlarmSubExpressions, alarmActions,
                     okActions, undeterminedActions);
-
             // Notify interested parties of updated alarm
             String event = Serialization
                     .toJson(new AlarmDefinitionUpdatedEvent(tenantId,
@@ -318,7 +317,8 @@ public class AlarmDefinitionService {
                             subExpressions.newAlarmSubExpressions));
             producer.send(new KeyedMessage<>(config.eventsTopic, String
                     .valueOf(eventCount++), event));
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             throw Exceptions.uncheck(e,
                     "Error updating alarm definition for project / tenant %s",
                     tenantId);

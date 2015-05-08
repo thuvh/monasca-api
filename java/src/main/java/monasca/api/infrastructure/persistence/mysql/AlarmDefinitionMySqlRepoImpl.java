@@ -21,6 +21,8 @@ import java.util.Map;
 import java.util.ArrayList;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -277,7 +279,6 @@ public class AlarmDefinitionMySqlRepoImpl implements AlarmDefinitionRepo {
       Map<String, AlarmSubExpression> newSubAlarms, List<String> alarmActions,
       List<String> okActions, List<String> undeterminedActions) {
     Handle h = db.open();
-
     try {
       h.begin();
       h.insert(
