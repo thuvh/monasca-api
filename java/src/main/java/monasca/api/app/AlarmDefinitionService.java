@@ -198,11 +198,16 @@ public class AlarmDefinitionService {
       }
       validateChangesAllowed(command.matchBy, oldAlarmDefinition,
               subExpressions);
+      try {
       updateInternal(tenantId, alarmDefId, false, command.name,
               command.description, command.expression, command.matchBy,
               command.severity, alarmExpression, command.actionsEnabled,
               command.alarmActions, command.okActions,
               command.undeterminedActions, subExpressions);
+      }
+      catch(EntityNotFoundException e) {
+        throw e;
+      }
       return new AlarmDefinition(alarmDefId, command.name,
               command.description, command.severity, command.expression,
               command.matchBy, command.actionsEnabled, command.alarmActions,
@@ -276,9 +281,14 @@ public class AlarmDefinitionService {
         final SubExpressions subExpressions = subExpressionsFor(
                 repo.findSubExpressions(alarmDefId), alarmExpression);
         validateChangesAllowed(matchBy, oldAlarmDefinition, subExpressions);
+        try{
         updateInternal(tenantId, alarmDefId, true, name, description,
                 expression, matchBy, severity, alarmExpression, enabled,
                 alarmActions, okActions, undeterminedActions, subExpressions);
+        }
+        catch(EntityNotFoundException e) {
+          throw e;
+        }
 
         return new AlarmDefinition(alarmDefId, name, description, severity,
                 expression, matchBy, enabled,
@@ -296,7 +306,6 @@ public class AlarmDefinitionService {
             AlarmExpression alarmExpression, Boolean enabled,
             List<String> alarmActions, List<String> okActions,
             List<String> undeterminedActions, SubExpressions subExpressions) {
-
         try {
             LOG.debug("Updating alarm definition {} for tenant {}", name,
                     tenantId);
@@ -306,7 +315,6 @@ public class AlarmDefinitionService {
                     subExpressions.changedSubExpressions,
                     subExpressions.newAlarmSubExpressions, alarmActions,
                     okActions, undeterminedActions);
-
             // Notify interested parties of updated alarm
             String event = Serialization
                     .toJson(new AlarmDefinitionUpdatedEvent(tenantId,
@@ -318,7 +326,11 @@ public class AlarmDefinitionService {
                             subExpressions.newAlarmSubExpressions));
             producer.send(new KeyedMessage<>(config.eventsTopic, String
                     .valueOf(eventCount++), event));
-        } catch (Exception e) {
+        }
+        catch(EntityNotFoundException e){
+          throw e;
+        }
+        catch (Exception e) {
             throw Exceptions.uncheck(e,
                     "Error updating alarm definition for project / tenant %s",
                     tenantId);

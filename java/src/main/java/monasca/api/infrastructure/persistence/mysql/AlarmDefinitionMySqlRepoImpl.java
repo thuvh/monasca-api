@@ -21,6 +21,8 @@ import java.util.Map;
 import java.util.ArrayList;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -277,7 +279,9 @@ public class AlarmDefinitionMySqlRepoImpl implements AlarmDefinitionRepo {
       Map<String, AlarmSubExpression> newSubAlarms, List<String> alarmActions,
       List<String> okActions, List<String> undeterminedActions) {
     Handle h = db.open();
-
+    if(checkForDuplicateAlarmActions(alarmActions)){
+      throw new EntityNotFoundException("Alarm Definition cannot have duplicate Notification Methods");
+    }
     try {
       h.begin();
       h.insert(
@@ -322,6 +326,18 @@ public class AlarmDefinitionMySqlRepoImpl implements AlarmDefinitionRepo {
     } finally {
       h.close();
     }
+  }
+  /**
+   * Method checks for duplicate alarm actions
+   */
+  @SuppressWarnings("unchecked")
+  private boolean checkForDuplicateAlarmActions(List<String> alarmActions) {
+      @SuppressWarnings("rawtypes")
+      Set inputSet = new HashSet(alarmActions);
+      if(inputSet.size()< alarmActions.size()){
+          return true;
+      }
+      return false;
   }
 
   private void deleteActions(Handle handle, String id, AlarmState alarmState, List<String> actions) {
