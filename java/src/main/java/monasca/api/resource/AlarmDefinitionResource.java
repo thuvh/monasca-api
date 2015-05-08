@@ -14,7 +14,6 @@
 package monasca.api.resource;
 
 import com.google.common.base.Strings;
-
 import com.codahale.metrics.annotation.Timed;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
@@ -168,4 +167,5 @@ public class AlarmDefinitionResource {
       @PathParam("alarm_definition_id") String alarmDefinitionId) {
     service.delete(tenantId, alarmDefinitionId);
   }
+
 }

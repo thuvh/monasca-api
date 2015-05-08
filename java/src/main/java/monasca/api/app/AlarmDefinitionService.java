@@ -198,11 +198,16 @@ public class AlarmDefinitionService {
       }
       validateChangesAllowed(command.matchBy, oldAlarmDefinition,
               subExpressions);
+      try {
       updateInternal(tenantId, alarmDefId, false, command.name,
               command.description, command.expression, command.matchBy,
               command.severity, alarmExpression, command.actionsEnabled,
               command.alarmActions, command.okActions,
               command.undeterminedActions, subExpressions);
+      }
+      catch(EntityNotFoundException e) {
+        throw e;
+      }
       return new AlarmDefinition(alarmDefId, command.name,
               command.description, command.severity, command.expression,
               command.matchBy, command.actionsEnabled, command.alarmActions,
@@ -306,7 +311,6 @@ public class AlarmDefinitionService {
                     subExpressions.changedSubExpressions,
                     subExpressions.newAlarmSubExpressions, alarmActions,
                     okActions, undeterminedActions);
-
             // Notify interested parties of updated alarm
             String event = Serialization
                     .toJson(new AlarmDefinitionUpdatedEvent(tenantId,
@@ -318,7 +322,8 @@ public class AlarmDefinitionService {
                             subExpressions.newAlarmSubExpressions));
             producer.send(new KeyedMessage<>(config.eventsTopic, String
                     .valueOf(eventCount++), event));
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             throw Exceptions.uncheck(e,
                     "Error updating alarm definition for project / tenant %s",
                     tenantId);

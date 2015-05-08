@@ -14,7 +14,9 @@
 package monasca.api.app.validation;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.ws.rs.WebApplicationException;
 
@@ -44,11 +46,14 @@ public final class AlarmValidation {
     if (description != null && description.length() > 255)
       throw Exceptions.unprocessableEntity("Description %s must be 255 characters or less",
           description);
-    if (alarmActions != null)
+    if (alarmActions != null) {
       for (String action : alarmActions)
         if (action.length() > 50)
           throw Exceptions.unprocessableEntity("Alarm action %s must be 50 characters or less",
               action);
+      if(checkForDuplicateAlarmActions(alarmActions))
+        throw Exceptions.unprocessableEntity("Alarm definition cannot have Duplicate notification methods");
+    }
     if (okActions != null)
       for (String action : okActions)
         if (action.length() > 50)
@@ -113,5 +118,18 @@ public final class AlarmValidation {
     }
 
     return alarmExpression;
+  }
+
+  /**
+   * Method checks for duplicate alarm actions
+   */
+  @SuppressWarnings("unchecked")
+  private static boolean checkForDuplicateAlarmActions(List<String> alarmActions) {
+      @SuppressWarnings("rawtypes")
+      Set inputSet = new HashSet(alarmActions);
+      if(inputSet.size()< alarmActions.size()){
+          return true;
+      }
+      return false;
   }
 }
