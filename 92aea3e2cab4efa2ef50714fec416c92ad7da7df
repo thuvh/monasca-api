@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1aca2d91_5479462e",
+        "filename": "java/src/main/java/monasca/api/app/AlarmDefinitionService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-05-08T04:03:44Z",
+      "side": 1,
+      "message": "This does nothing",
+      "revId": "92aea3e2cab4efa2ef50714fec416c92ad7da7df",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aca2d91_1473ce4e",
+        "filename": "java/src/main/java/monasca/api/app/AlarmDefinitionService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-05-08T04:03:44Z",
+      "side": 1,
+      "message": "Don\u0027t delete blank lines",
+      "revId": "92aea3e2cab4efa2ef50714fec416c92ad7da7df",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aca2d91_b49ada61",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMySqlRepoImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-05-08T04:03:44Z",
+      "side": 1,
+      "message": "EntityNotFoundException is incorrect. This should also be done at the AlarmDefinitionResource level\n\nPlease learn the formatting guidelines and follow them when you move this",
+      "revId": "92aea3e2cab4efa2ef50714fec416c92ad7da7df",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
