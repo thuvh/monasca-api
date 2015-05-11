@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7ad8896b_97ce0eb3",
+        "filename": "java/src/main/java/monasca/api/app/AlarmDefinitionService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-05-11T17:17:46Z",
+      "side": 1,
+      "message": "You aren\u0027t making any real changes to this file so don\u0027t reformat. Remove it from the change set",
+      "revId": "d9ffb5528dc1465de4d89ef9361d7c67996acbc7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7ad8896b_d73b769b",
+        "filename": "java/src/main/java/monasca/api/app/validation/AlarmValidation.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-05-11T17:17:46Z",
+      "side": 1,
+      "message": "Follow the formatting guidelines",
+      "revId": "d9ffb5528dc1465de4d89ef9361d7c67996acbc7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7ad8896b_f72b1232",
+        "filename": "java/src/main/java/monasca/api/app/validation/AlarmValidation.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-05-11T17:17:46Z",
+      "side": 1,
+      "message": "This check needs to be made for okActions and undeterminedActions",
+      "revId": "d9ffb5528dc1465de4d89ef9361d7c67996acbc7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7ad8896b_b740ea08",
+        "filename": "java/src/main/java/monasca/api/app/validation/AlarmValidation.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-05-11T17:17:46Z",
+      "side": 1,
+      "message": "Remove trailing white space",
+      "revId": "d9ffb5528dc1465de4d89ef9361d7c67996acbc7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7ad8896b_5748a62d",
+        "filename": "java/src/main/java/monasca/api/app/validation/AlarmValidation.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-05-11T17:17:46Z",
+      "side": 1,
+      "message": "Formatting",
+      "revId": "d9ffb5528dc1465de4d89ef9361d7c67996acbc7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7ad8896b_17521ede",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMySqlRepoImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-05-11T17:17:46Z",
+      "side": 1,
+      "message": "These two imports are unused. Remove them and this file from the change set",
+      "revId": "d9ffb5528dc1465de4d89ef9361d7c67996acbc7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7ad8896b_b757cac9",
+        "filename": "java/src/main/java/monasca/api/resource/AlarmDefinitionResource.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-05-11T17:17:46Z",
+      "side": 1,
+      "message": "No real changes to this file either",
+      "revId": "d9ffb5528dc1465de4d89ef9361d7c67996acbc7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
