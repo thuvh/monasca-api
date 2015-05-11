@@ -16,6 +16,23 @@
       "revId": "26a1f231cd741ca1da7e6abdfe74eea08675c59b",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7ad8896b_c2fdf26f",
+        "filename": "java/src/main/java/monasca/api/app/validation/AlarmValidation.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-05-11T18:07:13Z",
+      "side": 1,
+      "message": "Nit: Could rename this, since it is used for more than just alarm actions",
+      "revId": "26a1f231cd741ca1da7e6abdfe74eea08675c59b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
