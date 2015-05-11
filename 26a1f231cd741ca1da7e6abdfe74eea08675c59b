@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7ad8896b_c2e612e8",
+        "filename": "java/src/main/java/monasca/api/app/validation/AlarmValidation.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-05-11T18:04:31Z",
+      "side": 1,
+      "message": "None of these Error messages for duplicate notification methods specifies which set of methods has the problem. Not how the check above tells you which one has too many.\n\nPut the {  and } on. Follow the formatting guidelines regardless of whether the person before you did",
+      "revId": "26a1f231cd741ca1da7e6abdfe74eea08675c59b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
