@@ -19,6 +19,7 @@ import com.google.common.collect.Iterables;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
 
+import org.apache.commons.validator.routines.UrlValidator;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
@@ -181,6 +182,24 @@ public final class Validation {
     } else {
 
       return Boolean.parseBoolean(mergeMetricsFlag);
+    }
+  }
+
+  public static void validateLifecycleState(String lifecycleState) {
+    if (lifecycleState != null) {
+      if (lifecycleState.length() > 50) {
+        throw Exceptions
+            .unprocessableEntity("Lifecycle state '%s' must be 50 characters or less",
+                                 lifecycleState);
+      }
+    }
+  }
+
+  public static void validateLink(String link) {
+    if (link != null) {
+      if (link.length() > 512) {
+        throw Exceptions.unprocessableEntity("Link '%s' must be 512 characters or less", link);
+      }
     }
   }
 }
