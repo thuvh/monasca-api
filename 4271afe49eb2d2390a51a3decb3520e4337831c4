@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7a016987_3eea0bdc",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 2583,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-05-19T21:42:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a016987_78fc1b72",
+      "revId": "4271afe49eb2d2390a51a3decb3520e4337831c4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a016987_580f1f88",
         "filename": "java/src/main/java/monasca/api/app/AlarmService.java",
         "patchSetId": 5
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "7a016987_fe747336",
+        "filename": "java/src/main/java/monasca/api/app/AlarmService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-05-19T21:42:34Z",
+      "side": 1,
+      "message": "This event was always sent regardless of whether the state changed, though perhaps it could include the new fields",
+      "parentUuid": "7a016987_580f1f88",
+      "revId": "4271afe49eb2d2390a51a3decb3520e4337831c4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a016987_58383f3d",
         "filename": "java/src/main/java/monasca/api/domain/model/alarm/Alarm.java",
         "patchSetId": 5
@@ -47,6 +83,24 @@
       "writtenOn": "2015-05-19T19:29:06Z",
       "side": 1,
       "message": "What if other.updatedTimestamp is not null but this.updatedTimestamp is null?",
+      "revId": "4271afe49eb2d2390a51a3decb3520e4337831c4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_deed37b8",
+        "filename": "java/src/main/java/monasca/api/domain/model/alarm/Alarm.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-05-19T21:42:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a016987_58383f3d",
       "revId": "4271afe49eb2d2390a51a3decb3520e4337831c4",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
