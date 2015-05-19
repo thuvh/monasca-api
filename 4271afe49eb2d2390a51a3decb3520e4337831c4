@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a016987_78fc1b72",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 2583,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-05-19T19:29:06Z",
+      "side": 1,
+      "message": "Need a comma after this line",
+      "revId": "4271afe49eb2d2390a51a3decb3520e4337831c4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_580f1f88",
+        "filename": "java/src/main/java/monasca/api/app/AlarmService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-05-19T19:29:06Z",
+      "side": 1,
+      "message": "This event is still being sent even if state hasn\u0027t changed",
+      "revId": "4271afe49eb2d2390a51a3decb3520e4337831c4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_58383f3d",
+        "filename": "java/src/main/java/monasca/api/domain/model/alarm/Alarm.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-05-19T19:29:06Z",
+      "side": 1,
+      "message": "What if other.updatedTimestamp is not null but this.updatedTimestamp is null?",
+      "revId": "4271afe49eb2d2390a51a3decb3520e4337831c4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
