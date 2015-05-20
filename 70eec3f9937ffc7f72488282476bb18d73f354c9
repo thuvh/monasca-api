@@ -16,6 +16,24 @@
       "revId": "70eec3f9937ffc7f72488282476bb18d73f354c9",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_35b9f315",
+        "filename": "java/src/main/java/monasca/api/app/AlarmService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-05-20T17:39:53Z",
+      "side": 1,
+      "message": "The other check didn\u0027t handle if both strings were null.\n\nWhile fixing this, I wasn\u0027t sure if the updated timestamp should change if we are reapplying the same values. At the moment, PUT will change that timestamp, even if the values are the same, so I changed PATCH to match that behavior.\n\nThis is different behavior from the state_updated_timestamp, which is only changed when the state transitions.",
+      "parentUuid": "7a016987_ba3832ef",
+      "revId": "70eec3f9937ffc7f72488282476bb18d73f354c9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
