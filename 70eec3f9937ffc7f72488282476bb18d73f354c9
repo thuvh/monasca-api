@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a016987_ba3832ef",
+        "filename": "java/src/main/java/monasca/api/app/AlarmService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-05-20T17:25:08Z",
+      "side": 1,
+      "message": "This is not really the same check as the one you removed. This one says if the user didn\u0027t give any fields return. The other says if the user didn\u0027t give any field or if there were no changes in the fields, return\n\nI\u0027m trying to understand why you made this change. It doesn\u0027t address my concern in updateInternal() and I saw no other comments about it",
+      "revId": "70eec3f9937ffc7f72488282476bb18d73f354c9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
