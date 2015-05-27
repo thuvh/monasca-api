@@ -25,15 +25,17 @@ class MetricsRepository(object):
 
     @abc.abstractmethod
     def measurement_list(self, tenant_id, region, name, dimensions,
-                         start_timestamp, end_timestamp, offset):
+                         start_timestamp, end_timestamp, offset, limit,
+                         merge_metrics_flag):
         pass
 
     @abc.abstractmethod
     def metrics_statistics(self, tenant_id, region, name, dimensions,
-                           start_timestamp, end_timestamp, statistics, period):
+                           start_timestamp, end_timestamp, statistics,
+                           period, offset, limit, merge_metrics_flag):
         pass
 
     @abc.abstractmethod
     def alarm_history(self, tenant_id, alarm_id_list,
-                      offset, start_timestamp, end_timestamp):
+                      offset, limit, start_timestamp, end_timestamp):
         pass
