@@ -37,5 +37,5 @@ peewee>=2.4.7
 pyparsing>=2.0.3
 voluptuous>=0.8.7
 MySQL-python>=1.2.3
-influxdb>=0.2.0
+influxdb>=1.0.0
 eventlet
