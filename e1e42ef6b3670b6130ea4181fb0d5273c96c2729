@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a016987_083ece8a",
+        "filename": "monasca/common/repositories/mysql/alarms_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-05-29T23:32:38Z",
+      "side": 1,
+      "message": "Need to add the new lifecycle fields or the CLI fails",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
