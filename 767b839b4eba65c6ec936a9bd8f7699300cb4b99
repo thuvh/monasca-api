@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a016987_b2384bd4",
+        "filename": "monasca/v2/reference/version.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-05-29T22:01:35Z",
+      "side": 1,
+      "message": "Need to return information only for version id which we have (eg if they ask for v1.3, don\u0027t return v2.0 info)",
+      "revId": "767b839b4eba65c6ec936a9bd8f7699300cb4b99",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
