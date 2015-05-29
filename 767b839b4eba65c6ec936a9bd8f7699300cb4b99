@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "7a016987_52ea3710",
+        "filename": "monasca/v2/reference/version.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-05-29T22:04:57Z",
+      "side": 1,
+      "message": "The Java API uses the time the API process started. I\u0027m not sure that is correct, but it would be good to come up with a standard way of getting this date between the two. keystone uses: \"2013-03-06T00:00:00Z\" which I assume is a release date",
+      "revId": "767b839b4eba65c6ec936a9bd8f7699300cb4b99",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a016987_b2384bd4",
         "filename": "monasca/v2/reference/version.py",
         "patchSetId": 4
