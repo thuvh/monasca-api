@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7a016987_efa70dba",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-05-29T13:47:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a016987_11cd19b7",
+      "revId": "75d0f4e2e01188457303536cb717b959a71940fa",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a016987_7137adb0",
         "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "7a016987_cfac51a1",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-05-29T13:47:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a016987_7137adb0",
+      "revId": "75d0f4e2e01188457303536cb717b959a71940fa",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a016987_2cf31a0c",
         "filename": "monasca/v2/reference/alarms.py",
         "patchSetId": 2
@@ -47,6 +83,24 @@
       "writtenOn": "2015-05-28T15:34:28Z",
       "side": 1,
       "message": "get_alarms expects another parameter",
+      "revId": "75d0f4e2e01188457303536cb717b959a71940fa",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_6fc55d5a",
+        "filename": "monasca/v2/reference/alarms.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-05-29T13:47:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a016987_2cf31a0c",
       "revId": "75d0f4e2e01188457303536cb717b959a71940fa",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
