@@ -24,6 +24,7 @@ from stevedore import named
 
 from monasca.common import resource_api
 from monasca.openstack.common import log
+from monasca.v2.reference import version
 
 DISPATCHER_NAMESPACE = 'monasca.dispatcher'
 
@@ -61,6 +62,7 @@ def api_app(conf):
     # each dispatcher
     for driver in dispatcher_manager:
         app.add_route(None, driver.obj)
+    app.add_route(None, version.Version())
 
     LOG.debug('Dispatcher drivers have been added to the routes!')
     return app
