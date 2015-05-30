@@ -36,6 +36,23 @@
     },
     {
       "key": {
+        "uuid": "7a016987_39de7e11",
+        "filename": "monasca/v2/reference/version.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 15209
+      },
+      "writtenOn": "2015-05-30T03:31:13Z",
+      "side": 1,
+      "message": "Why not just using get_version, instead of using do_get_version?",
+      "revId": "767b839b4eba65c6ec936a9bd8f7699300cb4b99",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a016987_52ea3710",
         "filename": "monasca/v2/reference/version.py",
         "patchSetId": 4
