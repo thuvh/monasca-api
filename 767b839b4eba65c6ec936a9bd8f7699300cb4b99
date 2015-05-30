@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "7a016987_be5ff43f",
+        "filename": "monasca/api/server.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-05-30T02:30:46Z",
+      "side": 1,
+      "message": "This isn\u0027t the way to do this. We should use the same method that we are using for all the other resources.",
+      "revId": "767b839b4eba65c6ec936a9bd8f7699300cb4b99",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_3e4b0489",
+        "filename": "monasca/v2/reference/version.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-05-30T02:30:46Z",
+      "side": 1,
+      "message": "Probably should be do_get_versions, plural",
+      "revId": "767b839b4eba65c6ec936a9bd8f7699300cb4b99",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a016987_52ea3710",
         "filename": "monasca/v2/reference/version.py",
         "patchSetId": 4
@@ -30,6 +64,23 @@
       "writtenOn": "2015-05-29T22:01:35Z",
       "side": 1,
       "message": "Need to return information only for version id which we have (eg if they ask for v1.3, don\u0027t return v2.0 info)",
+      "revId": "767b839b4eba65c6ec936a9bd8f7699300cb4b99",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_1e504831",
+        "filename": "monasca/v2/reference/version.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-05-30T02:30:46Z",
+      "side": 1,
+      "message": "This should be called do_get_version, singular.",
       "revId": "767b839b4eba65c6ec936a9bd8f7699300cb4b99",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
