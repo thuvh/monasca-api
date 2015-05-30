@@ -2,6 +2,193 @@
   "comments": [
     {
       "key": {
+        "uuid": "7a016987_de275061",
+        "filename": "monasca/common/repositories/constants.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-05-30T02:11:50Z",
+      "side": 1,
+      "message": "Shouldn\u0027t these constants be declared in the API, not in the repository. Seems like this is an application constraint, and the repository should just do what it is told.",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_feefac1a",
+        "filename": "monasca/common/repositories/fake/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-05-30T02:11:50Z",
+      "side": 1,
+      "message": "Should this have a offset and limit parameter added?\n\nI know, I know, if this were Java the compiler would have told you that:-)",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_1ed96857",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-05-30T02:11:50Z",
+      "side": 1,
+      "message": "Would this be better declared above/outside of this class and/or even made static.",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_2fe3d4da",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-05-30T02:11:50Z",
+      "side": 1,
+      "message": "It might make more sense to assign the period up in the API layer, rather than implementing this constraint here.\n\nIt might also make sense to have a method get_period in the API layer that just returns the default of 300.",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_deacf0a0",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-05-30T02:11:50Z",
+      "side": 1,
+      "message": "I\u0027m seeing some duplicate code when evaluating the offset and appending it to the query. \n\nMaybe a method for evaluating the limit_clause() would clean-up a little.",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_deb190e1",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-05-30T02:11:50Z",
+      "side": 1,
+      "message": "Do you want to log an error here?",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_fe7e8c19",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-05-30T02:11:50Z",
+      "side": 1,
+      "message": "Should this raise a exceptions.Repository?",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_9ec8b856",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-05-30T02:11:50Z",
+      "side": 1,
+      "message": "Do you want to log an error here?",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_4fbdf066",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-05-30T02:11:50Z",
+      "side": 1,
+      "message": "Would it be better to use create and use a specific exceptions.RepositoryException?",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_9ea1d896",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-05-30T02:11:50Z",
+      "side": 1,
+      "message": "This statistics parsing block looks very similar to the measurements parsing block up above. Is there a way to avoid the duplicate code?",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_1e0ba8d7",
+        "filename": "monasca/common/repositories/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-05-30T02:11:50Z",
+      "side": 1,
+      "message": "Should this be pass, return or raise NotImplementedError?",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a016987_083ece8a",
         "filename": "monasca/common/repositories/mysql/alarms_repository.py",
         "patchSetId": 4
@@ -13,6 +200,159 @@
       "writtenOn": "2015-05-29T23:32:38Z",
       "side": 1,
       "message": "Need to add the new lifecycle fields or the CLI fails",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_3ede6411",
+        "filename": "monasca/common/repositories/mysql/events_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-05-30T02:11:50Z",
+      "side": 1,
+      "message": "This file can be removed as events are in monasca-events-api",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_4364a720",
+        "filename": "monasca/common/repositories/mysql/model.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-05-30T02:11:50Z",
+      "side": 1,
+      "message": "I thought we got the pee out???",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_637b23bf",
+        "filename": "monasca/common/repositories/mysql/streams_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-05-30T02:11:50Z",
+      "side": 1,
+      "message": "All this code can be removed. The Streams repo is part of the monasca-events-api.",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_c35f773f",
+        "filename": "monasca/common/repositories/notifications_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-05-30T02:11:50Z",
+      "side": 1,
+      "message": "In the metrics_repository.py we use \"pass\", but here we use \"return\".  Should we be using return or pass? Is there a recommended way with six? Or, possibly raise NotImplemented().",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_3eeae40f",
+        "filename": "monasca/v2/reference/events.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-05-30T02:11:50Z",
+      "side": 1,
+      "message": "This file can be removed as this is now in monasca-events-api.",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_7e485c5c",
+        "filename": "monasca/v2/reference/metrics.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-05-30T02:11:50Z",
+      "side": 1,
+      "message": "Do you want to add a helpers.get_offset, since you have a very nice helpers.get_limit?",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_beb01444",
+        "filename": "monasca/v2/reference/metrics.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-05-30T02:11:50Z",
+      "side": 1,
+      "message": "It probably would be cleaner to add a helpers.get_merge_metrics_flag that does all this in one line so it is consistent with other gets, is a one-liner, and doesn\u0027t duplicate the same code as above\n\nActually, it might be better to have this a a private method in this class, rather than the helper class, as this is just about metrics.",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_fe056c0f",
+        "filename": "monasca/v2/reference/stream_definitions.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-05-30T02:11:50Z",
+      "side": 1,
+      "message": "This file can be removed, as it is in monasca-events-api. There are probably others that can be removed too.",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_6300c302",
+        "filename": "requirements.txt",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-05-30T02:11:50Z",
+      "side": 1,
+      "message": "We need to get the pee out!",
       "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
