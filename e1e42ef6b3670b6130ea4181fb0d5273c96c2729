@@ -274,6 +274,24 @@
     },
     {
       "key": {
+        "uuid": "7a016987_07bd9401",
+        "filename": "monasca/common/repositories/notifications_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2015-05-30T15:41:33Z",
+      "side": 1,
+      "message": "The abstractmethod decorator should raise TypeError when a child class is constructed and decorated functions aren\u0027t reimplemented.  It doesn\u0027t seem to matter whether we use pass or return.",
+      "parentUuid": "7a016987_c35f773f",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a016987_3eeae40f",
         "filename": "monasca/v2/reference/events.py",
         "patchSetId": 4
