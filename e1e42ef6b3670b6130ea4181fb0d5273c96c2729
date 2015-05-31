@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7a016987_0871200c",
+        "filename": "monasca/common/repositories/constants.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-05-31T15:53:08Z",
+      "side": 1,
+      "message": "Not clear to me what you mean here.",
+      "parentUuid": "7a016987_de275061",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a016987_feefac1a",
         "filename": "monasca/common/repositories/fake/metrics_repository.py",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2015-05-30T02:11:50Z",
       "side": 1,
       "message": "Should this have a offset and limit parameter added?\n\nI know, I know, if this were Java the compiler would have told you that:-)",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_a858cc8a",
+        "filename": "monasca/common/repositories/fake/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-05-31T15:53:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a016987_feefac1a",
       "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "7a016987_e8c92427",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-05-31T15:53:08Z",
+      "side": 1,
+      "message": "This is how \u0027static\u0027 variables are declared in Python.",
+      "parentUuid": "7a016987_1ed96857",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a016987_18197522",
         "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
         "patchSetId": 4
@@ -64,6 +118,24 @@
       "writtenOn": "2015-05-31T04:09:58Z",
       "side": 1,
       "message": "This should take ex as an argument",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_48d958f2",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-05-31T15:53:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a016987_18197522",
       "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "7a016987_08dfe0d6",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-05-31T15:53:08Z",
+      "side": 1,
+      "message": "It always exists with the python persister.",
+      "parentUuid": "7a016987_b87ee1e1",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a016987_2fe3d4da",
         "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
         "patchSetId": 4
@@ -98,6 +188,24 @@
       "writtenOn": "2015-05-30T02:11:50Z",
       "side": 1,
       "message": "It might make more sense to assign the period up in the API layer, rather than implementing this constraint here.\n\nIt might also make sense to have a method get_period in the API layer that just returns the default of 300.",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_c8f30872",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-05-31T15:53:08Z",
+      "side": 1,
+      "message": "That\u0027d be great. We can +2 this and then submit a Jira for an enhancement.",
+      "parentUuid": "7a016987_2fe3d4da",
       "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "7a016987_88e99081",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-05-31T15:53:08Z",
+      "side": 1,
+      "message": "Yes. That\u0027s what I did in the Java API. I had to fiddle with the order to get it to work. The Influxdb docs say that limit is supposed to go at the end, but that is not how it works.\n\nDone.",
+      "parentUuid": "7a016987_18f17595",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a016987_deacf0a0",
         "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
         "patchSetId": 4
@@ -132,6 +258,24 @@
       "writtenOn": "2015-05-30T02:11:50Z",
       "side": 1,
       "message": "I\u0027m seeing some duplicate code when evaluating the offset and appending it to the query. \n\nMaybe a method for evaluating the limit_clause() would clean-up a little.",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_48003834",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-05-31T15:53:08Z",
+      "side": 1,
+      "message": "That\u0027d be great. We can +2 this and then submit a Jira for an enhancement.",
+      "parentUuid": "7a016987_deacf0a0",
       "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -155,6 +299,24 @@
     },
     {
       "key": {
+        "uuid": "7a016987_c89ae813",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-05-31T15:53:08Z",
+      "side": 1,
+      "message": "No. This is not an error condition.",
+      "parentUuid": "7a016987_deb190e1",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a016987_fe7e8c19",
         "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
         "patchSetId": 4
@@ -166,6 +328,24 @@
       "writtenOn": "2015-05-30T02:11:50Z",
       "side": 1,
       "message": "Should this raise a exceptions.Repository?",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_a86b2cf0",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-05-31T15:53:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a016987_fe7e8c19",
       "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -189,6 +369,24 @@
     },
     {
       "key": {
+        "uuid": "7a016987_e84c849f",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-05-31T15:53:08Z",
+      "side": 1,
+      "message": "There are always, time, value, value_meta. So, the code is correct.",
+      "parentUuid": "7a016987_f819f9d1",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a016987_9ec8b856",
         "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
         "patchSetId": 4
@@ -200,6 +398,24 @@
       "writtenOn": "2015-05-30T02:11:50Z",
       "side": 1,
       "message": "Do you want to log an error here?",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_a8420c66",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-05-31T15:53:08Z",
+      "side": 1,
+      "message": "No. This is not an error condition.",
+      "parentUuid": "7a016987_9ec8b856",
       "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -223,6 +439,24 @@
     },
     {
       "key": {
+        "uuid": "7a016987_485cb84a",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-05-31T15:53:08Z",
+      "side": 1,
+      "message": "Changed to exceptions.RepositoryException. Adding a new type of exception would not add any value.",
+      "parentUuid": "7a016987_4fbdf066",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a016987_9ea1d896",
         "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
         "patchSetId": 4
@@ -234,6 +468,24 @@
       "writtenOn": "2015-05-30T02:11:50Z",
       "side": 1,
       "message": "This statistics parsing block looks very similar to the measurements parsing block up above. Is there a way to avoid the duplicate code?",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_08524035",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-05-31T15:53:08Z",
+      "side": 1,
+      "message": "It is not worth it.",
+      "parentUuid": "7a016987_9ea1d896",
       "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -274,6 +526,24 @@
     },
     {
       "key": {
+        "uuid": "7a016987_482398bd",
+        "filename": "monasca/common/repositories/mysql/alarms_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-05-31T15:53:08Z",
+      "side": 1,
+      "message": "OK. I\u0027ll look into that on Monday.",
+      "parentUuid": "7a016987_083ece8a",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a016987_3ede6411",
         "filename": "monasca/common/repositories/mysql/events_repository.py",
         "patchSetId": 4
@@ -285,6 +555,24 @@
       "writtenOn": "2015-05-30T02:11:50Z",
       "side": 1,
       "message": "This file can be removed as events are in monasca-events-api",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_0829209b",
+        "filename": "monasca/common/repositories/mysql/events_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-05-31T15:53:08Z",
+      "side": 1,
+      "message": "Can we do that after we +2 this as a different change?",
+      "parentUuid": "7a016987_3ede6411",
       "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -319,6 +607,24 @@
       "writtenOn": "2015-05-30T02:11:50Z",
       "side": 1,
       "message": "All this code can be removed. The Streams repo is part of the monasca-events-api.",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_e81a447c",
+        "filename": "monasca/common/repositories/mysql/streams_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-05-31T15:53:08Z",
+      "side": 1,
+      "message": "Let\u0027s do that as a different change.",
+      "parentUuid": "7a016987_637b23bf",
       "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -360,6 +666,24 @@
     },
     {
       "key": {
+        "uuid": "7a016987_2805fc12",
+        "filename": "monasca/common/repositories/notifications_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-05-31T15:53:08Z",
+      "side": 1,
+      "message": "I think I\u0027ve seen examples of both return and pass. i chose pass because it was in some tutorial or example i saw. it doesn\u0027t matter except for consistency. The code works as is and we can come up with a convention later.",
+      "parentUuid": "7a016987_c35f773f",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a016987_3eeae40f",
         "filename": "monasca/v2/reference/events.py",
         "patchSetId": 4
@@ -371,6 +695,24 @@
       "writtenOn": "2015-05-30T02:11:50Z",
       "side": 1,
       "message": "This file can be removed as this is now in monasca-events-api.",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_08000001",
+        "filename": "monasca/v2/reference/events.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-05-31T15:53:08Z",
+      "side": 1,
+      "message": "Let\u0027s do that in a different change set.",
+      "parentUuid": "7a016987_3eeae40f",
       "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -394,6 +736,24 @@
     },
     {
       "key": {
+        "uuid": "7a016987_9b079c17",
+        "filename": "monasca/v2/reference/metrics.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-05-31T15:53:08Z",
+      "side": 1,
+      "message": "No. get_query_param is more general. I only did get_limit because it has specific processing in it to calculate the limit.",
+      "parentUuid": "7a016987_7e485c5c",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a016987_beb01444",
         "filename": "monasca/v2/reference/metrics.py",
         "patchSetId": 4
@@ -405,6 +765,24 @@
       "writtenOn": "2015-05-30T02:11:50Z",
       "side": 1,
       "message": "It probably would be cleaner to add a helpers.get_merge_metrics_flag that does all this in one line so it is consistent with other gets, is a one-liner, and doesn\u0027t duplicate the same code as above\n\nActually, it might be better to have this a a private method in this class, rather than the helper class, as this is just about metrics.",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_5b16c44c",
+        "filename": "monasca/v2/reference/metrics.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-05-31T15:53:08Z",
+      "side": 1,
+      "message": "We\u0027re getting into the realm of bikeshedding here. I\u0027d rather focus on getting the functionality to work properly.",
+      "parentUuid": "7a016987_beb01444",
       "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -428,6 +806,24 @@
     },
     {
       "key": {
+        "uuid": "7a016987_3b11c852",
+        "filename": "monasca/v2/reference/stream_definitions.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-05-31T15:53:08Z",
+      "side": 1,
+      "message": "Let\u0027s do that in a different change set because it is unrelated to the Influxdb 9 and pagination changes.",
+      "parentUuid": "7a016987_fe056c0f",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a016987_6300c302",
         "filename": "requirements.txt",
         "patchSetId": 4
@@ -445,6 +841,24 @@
     },
     {
       "key": {
+        "uuid": "7a016987_db287488",
+        "filename": "requirements.txt",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-05-31T15:53:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a016987_6300c302",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a016987_e75b9820",
         "filename": "requirements.txt",
         "patchSetId": 4
@@ -456,6 +870,24 @@
       "writtenOn": "2015-05-30T15:25:13Z",
       "side": 1,
       "message": "Need to add kafka-python",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a016987_fb169047",
+        "filename": "requirements.txt",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-05-31T15:53:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a016987_e75b9820",
       "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
