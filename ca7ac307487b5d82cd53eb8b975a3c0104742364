@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5afe65bd_f44c2678",
+        "filename": "monasca/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-06-01T17:23:35Z",
+      "side": 1,
+      "message": "statistics should be an array of points",
+      "revId": "ca7ac307487b5d82cd53eb8b975a3c0104742364",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
