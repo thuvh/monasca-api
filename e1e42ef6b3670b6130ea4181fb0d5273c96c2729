@@ -614,6 +614,24 @@
     },
     {
       "key": {
+        "uuid": "5afe65bd_4810ff4e",
+        "filename": "monasca/common/repositories/mysql/model.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-06-01T15:55:16Z",
+      "side": 1,
+      "message": "TransformsRepository is still using it. Not sure if we need it.",
+      "parentUuid": "7a016987_4364a720",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a016987_637b23bf",
         "filename": "monasca/common/repositories/mysql/streams_repository.py",
         "patchSetId": 4
@@ -871,6 +889,24 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "7a016987_6300c302",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5afe65bd_88a957e2",
+        "filename": "requirements.txt",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-06-01T15:55:16Z",
+      "side": 1,
+      "message": "Added it back because of the Transform stuff still using it.",
+      "parentUuid": "7a016987_db287488",
       "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
