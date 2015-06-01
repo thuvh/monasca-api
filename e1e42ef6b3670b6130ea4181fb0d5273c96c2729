@@ -544,6 +544,24 @@
     },
     {
       "key": {
+        "uuid": "7a016987_78a610c2",
+        "filename": "monasca/common/repositories/mysql/alarms_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-06-01T14:56:01Z",
+      "side": 1,
+      "message": "Ryan\u0027s https://review.openstack.org/#/c/187216/ takes care of that.",
+      "parentUuid": "7a016987_083ece8a",
+      "revId": "e1e42ef6b3670b6130ea4181fb0d5273c96c2729",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a016987_3ede6411",
         "filename": "monasca/common/repositories/mysql/events_repository.py",
         "patchSetId": 4
