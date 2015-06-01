@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5afe65bd_9f806b48",
+        "filename": "monasca/common/repositories/mysql/alarms_repository.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-06-01T20:39:51Z",
+      "side": 1,
+      "message": "This is intentional, if an alarm patch request contains no values, we still want to update the timestamp.",
+      "parentUuid": "5afe65bd_0befa1b1",
+      "revId": "0047c5e6e8098a0573e0658a00fd9afbd00fdc32",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5afe65bd_88ecb790",
         "filename": "monasca/common/repositories/mysql/alarms_repository.py",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2015-06-01T16:28:52Z",
       "side": 1,
       "message": "Why not have this above the update_query so that we can do the format immediately rather than deferring it until the execute?",
+      "revId": "0047c5e6e8098a0573e0658a00fd9afbd00fdc32",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5afe65bd_c7e735ab",
+        "filename": "monasca/common/repositories/mysql/alarms_repository.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-06-01T20:39:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5afe65bd_88ecb790",
       "revId": "0047c5e6e8098a0573e0658a00fd9afbd00fdc32",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -135,6 +171,24 @@
       "writtenOn": "2015-06-01T16:28:52Z",
       "side": 1,
       "message": "It looks like state is required on all put calls.  Why not detect the lack of state in the validation of the input rather than down here in a get method?",
+      "revId": "0047c5e6e8098a0573e0658a00fd9afbd00fdc32",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5afe65bd_a7ec3990",
+        "filename": "monasca/v2/reference/alarms.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-06-01T20:39:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5afe65bd_0bbb2110",
       "revId": "0047c5e6e8098a0573e0658a00fd9afbd00fdc32",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
