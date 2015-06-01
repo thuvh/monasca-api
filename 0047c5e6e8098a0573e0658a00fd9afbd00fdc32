@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5afe65bd_0befa1b1",
+        "filename": "monasca/common/repositories/mysql/alarms_repository.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2015-06-01T16:28:52Z",
+      "side": 1,
+      "message": "It looks like it\u0027s possible for state, lifecycle_state, and link to be None here.  Is that a problem for the query?",
+      "revId": "0047c5e6e8098a0573e0658a00fd9afbd00fdc32",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5afe65bd_88ecb790",
+        "filename": "monasca/common/repositories/mysql/alarms_repository.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2015-06-01T16:28:52Z",
+      "side": 1,
+      "message": "Why not have this above the update_query so that we can do the format immediately rather than deferring it until the execute?",
+      "revId": "0047c5e6e8098a0573e0658a00fd9afbd00fdc32",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5afe65bd_abdc0d47",
+        "filename": "monasca/v2/reference/alarms.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2015-06-01T16:28:52Z",
+      "side": 1,
+      "message": "Do we need any input validation here?",
+      "revId": "0047c5e6e8098a0573e0658a00fd9afbd00fdc32",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5afe65bd_6be73513",
+        "filename": "monasca/v2/reference/alarms.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2015-06-01T16:28:52Z",
+      "side": 1,
+      "message": "Do we need any input validation here?",
+      "revId": "0047c5e6e8098a0573e0658a00fd9afbd00fdc32",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5afe65bd_0bbb2110",
+        "filename": "monasca/v2/reference/alarms.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2015-06-01T16:28:52Z",
+      "side": 1,
+      "message": "It looks like state is required on all put calls.  Why not detect the lack of state in the validation of the input rather than down here in a get method?",
+      "revId": "0047c5e6e8098a0573e0658a00fd9afbd00fdc32",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
