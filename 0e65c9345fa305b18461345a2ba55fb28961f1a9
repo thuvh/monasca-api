@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5afe65bd_a43f97d5",
+        "filename": "monasca/common/repositories/constants.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-06-01T20:28:47Z",
+      "side": 1,
+      "message": "The point in my earlier comment was that this really seems like more of an application/API layer constant, that something that should live in the repository.",
+      "revId": "0e65c9345fa305b18461345a2ba55fb28961f1a9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
