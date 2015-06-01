@@ -53,6 +53,24 @@
     },
     {
       "key": {
+        "uuid": "5afe65bd_71516362",
+        "filename": "monasca/v2/reference/alarms.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-06-01T19:31:12Z",
+      "side": 1,
+      "message": "The validation should be done at the resource level that calls this level",
+      "parentUuid": "5afe65bd_abdc0d47",
+      "revId": "0047c5e6e8098a0573e0658a00fd9afbd00fdc32",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5afe65bd_6be73513",
         "filename": "monasca/v2/reference/alarms.py",
         "patchSetId": 2
@@ -64,6 +82,24 @@
       "writtenOn": "2015-06-01T16:28:52Z",
       "side": 1,
       "message": "Do we need any input validation here?",
+      "revId": "0047c5e6e8098a0573e0658a00fd9afbd00fdc32",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5afe65bd_ae989b6b",
+        "filename": "monasca/v2/reference/alarms.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-06-01T19:31:12Z",
+      "side": 1,
+      "message": "See above",
+      "parentUuid": "5afe65bd_6be73513",
       "revId": "0047c5e6e8098a0573e0658a00fd9afbd00fdc32",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
