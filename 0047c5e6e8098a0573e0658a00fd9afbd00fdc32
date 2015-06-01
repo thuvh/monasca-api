@@ -71,6 +71,24 @@
     },
     {
       "key": {
+        "uuid": "5afe65bd_e72fd1f4",
+        "filename": "monasca/v2/reference/alarms.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2015-06-01T20:34:04Z",
+      "side": 1,
+      "message": "After we get through the authentication filter I was under the impression that this is the first time the request is really seen by our code.  The other parts of the API that deal with input do the validation at this point.",
+      "parentUuid": "5afe65bd_71516362",
+      "revId": "0047c5e6e8098a0573e0658a00fd9afbd00fdc32",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5afe65bd_6be73513",
         "filename": "monasca/v2/reference/alarms.py",
         "patchSetId": 2
