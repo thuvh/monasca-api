@@ -33,7 +33,7 @@ public final class DimensionValidation {
   private static final Map<String, DimensionValidator> VALIDATORS;
   private static final Pattern UUID_PATTERN = Pattern
       .compile("\\w{8}-\\w{4}-\\w{4}-\\w{4}-\\w{12}");
-  private static final Pattern VALID_DIMENSION_NAME = Pattern.compile("[^><={}(), '\"\\\\;&]+$");
+  private static final Pattern VALID_DIMENSION_KEY_VALUE = Pattern.compile("[^><={}(), '\"\\\\;&]+$");
   private static final String INVALID_CHAR_STRING = "> < = { } ( ) ' \" \\ , ; &";
 
   private DimensionValidation() {}
@@ -133,9 +133,12 @@ public final class DimensionValidation {
         throw Exceptions.unprocessableEntity("Dimension name cannot start with underscore (_)",
                                              name);
       }
-      if (!VALID_DIMENSION_NAME.matcher(name).matches())
+      if (!VALID_DIMENSION_KEY_VALUE.matcher(name).matches())
         throw Exceptions.unprocessableEntity(
             "Dimension name %s may not contain: %s", name, INVALID_CHAR_STRING);
+      if (!VALID_DIMENSION_KEY_VALUE.matcher(value).matches())
+        throw Exceptions.unprocessableEntity(
+            "Dimension value %s may not contain: %s", value, INVALID_CHAR_STRING);
     }
   }
 
@@ -159,7 +162,7 @@ public final class DimensionValidation {
           throw Exceptions.unprocessableEntity("Dimension name '%s' cannot start with underscore (_)",
                                                name);
         }
-        if (!VALID_DIMENSION_NAME.matcher(name).matches())
+        if (!VALID_DIMENSION_KEY_VALUE.matcher(name).matches())
           throw Exceptions.unprocessableEntity(
               "Dimension name '%s' may not contain: %s", name, INVALID_CHAR_STRING);
       }
