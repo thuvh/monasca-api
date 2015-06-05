@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3afb71cf_0482eb52",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/PersistUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-06-05T01:19:27Z",
+      "side": 1,
+      "message": "This really seems like the kind of method that should have a unit test. Especially since there seems to be odd behavior with the parsing that the simpleDateFormatSpace one can handle two or three digit milis but not one.",
+      "revId": "b43e8c090cf26abcbbc84ad882a4b881371f4c50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3afb71cf_243167ed",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9AlarmStateHistoryRepo.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-06-05T01:19:27Z",
+      "side": 1,
+      "message": "These go at the end of the imports, not the beginning",
+      "revId": "b43e8c090cf26abcbbc84ad882a4b881371f4c50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
