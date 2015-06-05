@@ -16,6 +16,24 @@
       "revId": "bb0c571ab977062f4191aed9c05a4a39c386c583",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3afb71cf_f95e3444",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-06-05T20:23:19Z",
+      "side": 1,
+      "message": "Yeah, it should always exit now. This is a temp work-around. Ryan is going to apply his fixes after I get my review completely merged. If I ever get through flake8?",
+      "parentUuid": "3afb71cf_b20339b8",
+      "revId": "bb0c571ab977062f4191aed9c05a4a39c386c583",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
