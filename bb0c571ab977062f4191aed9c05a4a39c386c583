@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3afb71cf_b20339b8",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2015-06-05T17:26:58Z",
+      "side": 1,
+      "message": "Should point[2] always exist now?  Do we want to log something here even if it\u0027s just a debug?",
+      "revId": "bb0c571ab977062f4191aed9c05a4a39c386c583",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
