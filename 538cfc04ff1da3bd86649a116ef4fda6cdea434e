@@ -34,6 +34,24 @@
       "revId": "538cfc04ff1da3bd86649a116ef4fda6cdea434e",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3afb71cf_8fab6b89",
+        "filename": "monasca_api/v2/reference/metrics.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2015-06-06T04:58:10Z",
+      "side": 1,
+      "message": "I don\u0027t think you changed anything.  The diff view here threw me off, I thought this was new code.  The explanation makes sense as well though it does make it read strangely.",
+      "parentUuid": "3afb71cf_efee5feb",
+      "revId": "538cfc04ff1da3bd86649a116ef4fda6cdea434e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
