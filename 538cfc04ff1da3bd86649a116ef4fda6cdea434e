@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3afb71cf_8f580bfc",
+        "filename": "monasca_api/v2/reference/metrics.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2015-06-06T04:37:43Z",
+      "side": 1,
+      "message": "You\u0027re doing str to bool here but the if above is looks like it\u0027s assuming merge_metrics_flag is already bool.  Is this just a python thing or is there a mismatch here?",
+      "revId": "538cfc04ff1da3bd86649a116ef4fda6cdea434e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
