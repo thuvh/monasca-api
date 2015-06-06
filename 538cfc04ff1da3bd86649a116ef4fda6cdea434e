@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "3afb71cf_3a42703f",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-06-06T17:04:27Z",
+      "side": 1,
+      "message": "i\u0027m not sure why this is necessary. we should have an empty string at the least for value_meta. I did not see a problem parsing the value_meta when i was developing. have you seen problems with value_meta?",
+      "revId": "538cfc04ff1da3bd86649a116ef4fda6cdea434e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3afb71cf_8f580bfc",
         "filename": "monasca_api/v2/reference/metrics.py",
         "patchSetId": 15
@@ -49,6 +66,24 @@
       "side": 1,
       "message": "I don\u0027t think you changed anything.  The diff view here threw me off, I thought this was new code.  The explanation makes sense as well though it does make it read strangely.",
       "parentUuid": "3afb71cf_efee5feb",
+      "revId": "538cfc04ff1da3bd86649a116ef4fda6cdea434e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3afb71cf_5a73ecb1",
+        "filename": "monasca_api/v2/reference/metrics.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-06-06T17:04:27Z",
+      "side": 1,
+      "message": "if merge_metrics flag is not False (boolean) then it is either True (boolean) or some string. That string then needs to be interpreted as either True (boolean) or False (boolean). in this case, anything other than \"true\" ignoring case, is considered False. Some comments here could make this more clear.",
+      "parentUuid": "3afb71cf_8f580bfc",
       "revId": "538cfc04ff1da3bd86649a116ef4fda6cdea434e",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
