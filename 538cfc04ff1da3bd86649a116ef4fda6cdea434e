@@ -16,6 +16,24 @@
       "revId": "538cfc04ff1da3bd86649a116ef4fda6cdea434e",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3afb71cf_efee5feb",
+        "filename": "monasca_api/v2/reference/metrics.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-06-06T04:54:00Z",
+      "side": 1,
+      "message": "Hopefully, I re-factored the code correctly by just removing some duplicated code. Did I change the overall result somehow to what was there previously?\n\nAnyway, the way I read this is that\n\n1. We\u0027re going to try and get the optional \"merge_metrics\" query parameter from the http request.\n2. If it is not supplied, then helpers.get_query_param returns a default value of False.\n3. If it is supplied, then helpers.get_query_parm returns a string which then needs to be converted to a boolean.\n\nYes, that is a bit ugly, but I think I just copied what was there and removed the duplicate code in two spots.\n\nThe problem is that merge_metrics_flag is either False or a string, which must then be converted to True or False.",
+      "parentUuid": "3afb71cf_8f580bfc",
+      "revId": "538cfc04ff1da3bd86649a116ef4fda6cdea434e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
