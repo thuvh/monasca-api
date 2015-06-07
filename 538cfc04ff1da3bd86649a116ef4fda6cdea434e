@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "3afb71cf_f576293d",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-06-07T03:21:23Z",
+      "side": 1,
+      "message": "I thought we discussed this the other day. Yes, we are hitting problems. point[2] is an empty string and json.loads throws an exception on an empty string.\n\nRyan has another potential fix in the works or will remove this code completely in a subsequent commit, by checking for an empty string, rather than catching an exception.",
+      "parentUuid": "3afb71cf_3a42703f",
+      "revId": "538cfc04ff1da3bd86649a116ef4fda6cdea434e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3afb71cf_8f580bfc",
         "filename": "monasca_api/v2/reference/metrics.py",
         "patchSetId": 15
@@ -84,6 +102,24 @@
       "side": 1,
       "message": "if merge_metrics flag is not False (boolean) then it is either True (boolean) or some string. That string then needs to be interpreted as either True (boolean) or False (boolean). in this case, anything other than \"true\" ignoring case, is considered False. Some comments here could make this more clear.",
       "parentUuid": "3afb71cf_8f580bfc",
+      "revId": "538cfc04ff1da3bd86649a116ef4fda6cdea434e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3afb71cf_2b26a4ce",
+        "filename": "monasca_api/v2/reference/metrics.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-06-07T03:21:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3afb71cf_5a73ecb1",
       "revId": "538cfc04ff1da3bd86649a116ef4fda6cdea434e",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
