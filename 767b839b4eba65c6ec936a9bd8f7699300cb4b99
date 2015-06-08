@@ -53,6 +53,42 @@
     },
     {
       "key": {
+        "uuid": "5afe65bd_0569d28b",
+        "filename": "monasca/v2/reference/version.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 16557
+      },
+      "writtenOn": "2015-06-08T14:45:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a016987_39de7e11",
+      "revId": "767b839b4eba65c6ec936a9bd8f7699300cb4b99",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5afe65bd_256cce9b",
+        "filename": "monasca/v2/reference/version.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 16557
+      },
+      "writtenOn": "2015-06-08T14:45:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a016987_3e4b0489",
+      "revId": "767b839b4eba65c6ec936a9bd8f7699300cb4b99",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a016987_52ea3710",
         "filename": "monasca/v2/reference/version.py",
         "patchSetId": 4
@@ -64,6 +100,24 @@
       "writtenOn": "2015-05-29T22:04:57Z",
       "side": 1,
       "message": "The Java API uses the time the API process started. I\u0027m not sure that is correct, but it would be good to come up with a standard way of getting this date between the two. keystone uses: \"2013-03-06T00:00:00Z\" which I assume is a release date",
+      "revId": "767b839b4eba65c6ec936a9bd8f7699300cb4b99",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5afe65bd_c5097adf",
+        "filename": "monasca/v2/reference/version.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 16557
+      },
+      "writtenOn": "2015-06-08T14:45:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a016987_52ea3710",
       "revId": "767b839b4eba65c6ec936a9bd8f7699300cb4b99",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -87,6 +141,24 @@
     },
     {
       "key": {
+        "uuid": "5afe65bd_8513820d",
+        "filename": "monasca/v2/reference/version.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 16557
+      },
+      "writtenOn": "2015-06-08T14:45:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a016987_b2384bd4",
+      "revId": "767b839b4eba65c6ec936a9bd8f7699300cb4b99",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a016987_1e504831",
         "filename": "monasca/v2/reference/version.py",
         "patchSetId": 4
@@ -98,6 +170,24 @@
       "writtenOn": "2015-05-30T02:30:46Z",
       "side": 1,
       "message": "This should be called do_get_version, singular.",
+      "revId": "767b839b4eba65c6ec936a9bd8f7699300cb4b99",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5afe65bd_45f6aad8",
+        "filename": "monasca/v2/reference/version.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 16557
+      },
+      "writtenOn": "2015-06-08T14:45:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a016987_1e504831",
       "revId": "767b839b4eba65c6ec936a9bd8f7699300cb4b99",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
