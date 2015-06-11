@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1af86dd1_6c262f18",
+        "filename": "monasca_api/v2/reference/versions.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-06-11T22:58:52Z",
+      "side": 1,
+      "message": "Returning a single version doesn\u0027t have an \u0027elements\u0027 field. Check the api specification for the correct format",
+      "revId": "dcf02d9c379dc6f7db6e55fd0ebfc766ae732d6d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
