@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3afb71cf_7deda6ee",
+        "filename": "monasca_api/v2/reference/versions.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-06-11T20:58:15Z",
+      "side": 1,
+      "message": "In helpers.py there is a method, add_links_to_resource, which I\u0027m wondering if it can be used here and avoid some duplicate code.",
+      "revId": "17c0c528a4160c252205f21f4ff6b291a5a73d0a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
