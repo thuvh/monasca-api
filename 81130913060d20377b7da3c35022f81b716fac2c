@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1af86dd1_639063ed",
+        "filename": "monasca_api/v2/reference/versions.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-06-12T15:34:34Z",
+      "side": 1,
+      "message": "Unnecessary import",
+      "revId": "81130913060d20377b7da3c35022f81b716fac2c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1af86dd1_e737bee1",
+        "filename": "monasca_api/v2/reference/versions.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-06-12T15:34:34Z",
+      "side": 1,
+      "message": "Could just declare the links directly in the list above instead of appending here",
+      "revId": "81130913060d20377b7da3c35022f81b716fac2c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
