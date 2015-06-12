@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1af86dd1_6dc5f259",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmMySqlRepoImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-06-12T14:23:17Z",
+      "side": 1,
+      "message": "Since you moved the try to below, the indentation is off on this section",
+      "revId": "f6158fc7b8dd1877f6612ab43e4506e39a8e68ed",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
