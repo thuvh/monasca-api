@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa32b979_77ca9251",
+        "filename": "monasca_api/expression_parser/alarm_expr_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-06-13T04:27:43Z",
+      "side": 1,
+      "message": "might be clearer if written follows:\n\nif not tokens._func:",
+      "revId": "7319577ddef2e803264c1a03d9e539281b643438",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
