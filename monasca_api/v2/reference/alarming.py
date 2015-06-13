@@ -13,15 +13,14 @@
 # under the License.
 
 import falcon
+from oslo_log import log
+from oslo_config import cfg
 import simport
 
 from monasca_api.common.messaging import (
     exceptions as message_queue_exceptions)
 import monasca_api.expression_parser.alarm_expr_parser
-from monasca_api.openstack.common import log
 from monasca_api.v2.reference import helpers
-
-from oslo.config import cfg
 
 LOG = log.getLogger(__name__)
 
@@ -106,7 +105,7 @@ class Alarming(object):
                         self._build_sub_alarm_event_msg(sub_alarm_dict,
                                                         prev_alarm_id))
                     alarm_event_msg[event_type][
-                        u'subAlarms': sub_alarms_event_msg]
+                    u'subAlarms': sub_alarms_event_msg]
                     self.send_event(self.events_message_queue,
                                     alarm_event_msg)
 
@@ -145,7 +144,7 @@ class Alarming(object):
             # There's only one expr in a sub alarm, so just take the first.
             sub_expr = (
                 monasca_api.expression_parser.alarm_expr_parser.
-                AlarmExprParser(sub_alarm['expression']).sub_expr_list[0])
+                    AlarmExprParser(sub_alarm['expression']).sub_expr_list[0])
             dimensions = {}
             sub_alarms_event_msg[sub_alarm['sub_alarm_id']] = {
                 u'function': sub_expr.normalized_func,
