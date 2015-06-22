@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa32b979_5c78792b",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9MetricDefinitionRepo.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-06-22T21:33:10Z",
+      "side": 1,
+      "message": "Could you put in here that Influxdb adds _key?",
+      "revId": "a8b39e745d40944c3b822b864c68aae9e5c5f9ca",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
