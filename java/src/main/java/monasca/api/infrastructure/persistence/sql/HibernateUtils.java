@@ -39,7 +39,7 @@ public class HibernateUtils {
   public List<String> findAlarmIds(String tenantId, Map<String, String> dimensions) {
 
     final String FIND_ALARM_IDS_SQL =
-        "select distinct a.id " + "from alarm as a " + "join alarm_definition as ad on a.alarm_definition_id = ad.id " + "%s "
+        "select distinct a.id, ad.created_at " + "from alarm as a " + "join alarm_definition as ad on a.alarm_definition_id = ad.id " + "%s "
             + "where ad.tenant_id = :tenantId and ad.deleted_at is NULL " + "order by ad.created_at";
 
     List<String> alarmIdList = new ArrayList<String>();
