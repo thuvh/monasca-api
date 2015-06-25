@@ -836,7 +836,7 @@ Returns a JSON version object with details about the specified version.
 ___
 
 # Metrics
-The metrics resource allows metrics to be created and queried. The `X-Auth-Token` is used to derive the tenant that submits metrics. Metrics are stored and scoped to the tenant that submits them, or if the `tenant_id` query parameter is specified and the tenant has the `monitoring-delegate` role, the metrics are stored using the specified tenant ID.
+The metrics resource allows metrics to be created and queried. The `X-Auth-Token` is used to derive the tenant that submits metrics. Metrics are stored and scoped to the tenant that submits them, or if the `tenant_id` query parameter is specified and the tenant has the `monitoring-delegate` role, the metrics are stored using the specified tenant ID.  Note that several of the GET methods also support the tenant_id query parameter, but the monasca admin role is required to get cross-tenant metrics, statistics, etc..
 
 ## Create Metric
 Create metrics.
@@ -969,6 +969,7 @@ Get metrics
 None.
 
 #### Query Parameters
+* tenant_id (string, optional, restricted) - Tenant ID to from which to get metrics. This parameter can be used to get metrics from a tenant other than the tenant the request auth token is scoped to. Usage of this query parameter requires the monasca admin role, as defined in the monasca api configuration file, which defaults to 'monasca-admin'.
 * name (string(255), optional) - A metric name to filter metrics by.
 * dimensions (string, optional) - A dictionary to filter metrics by specified as a comma separated array of (key, value) pairs as `key1:value1,key2:value2, ...`
 * offset (integer (InfluxDB) or hexadecimal string (Vertica), optional)
@@ -1049,6 +1050,7 @@ If users do not wish to see measurements for a single metric, but would prefer t
 None.
 
 #### Query Parameters
+* tenant_id (string, optional, restricted) - Tenant ID from which to get measurements from. This parameter can be used to get metrics from a tenant other than the tenant the request auth token is scoped to. Usage of this query parameter requires the monasca admin role, as defined in the monasca api configuration file, which defaults to 'monasca-admin'.
 * name (string(255), required) - A metric name to filter metrics by.
 * dimensions (string, optional) - A dictionary to filter metrics by specified as a comma separated array of (key, value) pairs as `key1:value1,key2:value2, ...`
 * start_time (string, required) - The start time in ISO 8601 combined date and time format in UTC.
@@ -1150,6 +1152,7 @@ Get names for metrics.
 None.
 
 #### Query Parameters
+* tenant_id (string, optional, restricted) - Tenant ID from which to get metric names. This parameter can be used to get metric names from a tenant other than the tenant the request auth token is scoped to. Usage of this query parameter requires the monasca admin role, as defined in the monasca api configuration file, which defaults to 'monasca-admin'.
 * dimensions (string, optional) - A dictionary to filter metrics by specified as a comma separated array of (key, value) pairs as `key1:value1,key2:value2, ...`
 * offset (integer, optional)
 * limit (integer, optional)
@@ -1220,6 +1223,7 @@ Get statistics for metrics.
 None.
 
 #### Query Parameters
+* tenant_id (string, optional, restricted) - Tenant ID from which to get statistics. This parameter can be used to get statistics from a tenant other than the tenant the request auth token is scoped to. Usage of this query parameter requires the monasca admin role, as defined in the monasca api configuration file, which defaults to 'monasca-admin'.
 * name (string(255), required) - A metric name to filter metrics by.
 * dimensions (string, optional) - A dictionary to filter metrics by specified as a comma separated array of (key, value) pairs as `key1:value1,key2:value2, ...`
 * statistics (string, required) - A comma separate array of statistics to evaluate. Valid statistics are avg, min, max, sum and count.
