@@ -198,4 +198,36 @@ public final class Validation {
       }
     }
   }
+
+  /**
+   * Convenience method for checking cross project access
+   */
+  public static String getQueryProject(String roles,
+                                       String crossTenantId,
+                                       String tenantId,
+                                       String admin_role) throws Exception
+  {
+    String queryTenantId = tenantId;
+
+    boolean isAdmin = !Strings.isNullOrEmpty(roles) &&
+                      COMMA_SPLITTER.splitToList(roles).contains(admin_role);
+
+    if (isCrossProjectRequest(crossTenantId, tenantId)) {
+      if (isAdmin) {
+        queryTenantId = crossTenantId;
+      } else {
+        throw Exceptions.forbidden("Only users with %s role can GET cross tenant metrics",
+                                   admin_role);
+      }
+    }
+
+    return queryTenantId;
+  }
+
+  /**
+   * Convenience method for determining if request is across projects.
+   */
+  public static boolean isCrossProjectRequest(String crossTenantId, String tenantId) {
+    return !Strings.isNullOrEmpty(crossTenantId) && !crossTenantId.equals(tenantId);
+  }
 }

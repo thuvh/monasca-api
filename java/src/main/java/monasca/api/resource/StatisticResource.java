@@ -34,6 +34,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
 
+import monasca.api.ApiConfig;
 import monasca.api.app.validation.Validation;
 import monasca.api.domain.model.statistic.StatisticRepo;
 import monasca.api.infrastructure.persistence.PersistUtils;
@@ -46,12 +47,14 @@ import monasca.api.infrastructure.persistence.PersistUtils;
 @Path("/v2.0/metrics/statistics")
 public class StatisticResource {
   private static final Splitter COMMA_SPLITTER = Splitter.on(',').omitEmptyStrings().trimResults();
-
+  private final String admin_role;
   private final StatisticRepo repo;
   private final PersistUtils persistUtils;
 
   @Inject
-  public StatisticResource(StatisticRepo repo, PersistUtils persistUtils) {
+  public StatisticResource(ApiConfig config, StatisticRepo repo, PersistUtils persistUtils) {
+    this.admin_role = (config.middleware == null || config.middleware.adminRole == null)
+                      ? "monasca-admin" : config.middleware.adminRole;
     this.repo = repo;
     this.persistUtils = persistUtils;
   }
@@ -63,6 +66,7 @@ public class StatisticResource {
   public Object get(
       @Context UriInfo uriInfo,
       @HeaderParam("X-Tenant-Id") String tenantId,
+      @HeaderParam("X-Roles") String roles,
       @QueryParam("name") String name,
       @QueryParam("dimensions") String dimensionsStr,
       @QueryParam("start_time") String startTimeStr,
@@ -71,6 +75,7 @@ public class StatisticResource {
       @DefaultValue("300") @QueryParam("period") String periodStr,
       @QueryParam("offset") String offset,
       @QueryParam("limit") String limit,
+      @QueryParam("tenant_id") String crossTenantId,
       @QueryParam("merge_metrics") String mergeMetricsFlag) throws Exception {
 
     // Validate query parameters
@@ -87,8 +92,10 @@ public class StatisticResource {
             name, dimensionsStr, true);
     Boolean mergeMetricsFlagBool = Validation.validateAndParseMergeMetricsFlag(mergeMetricsFlag);
 
+    String queryTenantId = Validation.getQueryProject(roles, crossTenantId, tenantId, admin_role);
+
     return Links.paginateStatistics(this.persistUtils.getLimit(limit),
-                                    repo.find(tenantId, name, dimensions, startTime, endTime,
+                                    repo.find(queryTenantId, name, dimensions, startTime, endTime,
                                               statistics, period, offset,
                                               this.persistUtils.getLimit(limit),
                                               mergeMetricsFlagBool),
