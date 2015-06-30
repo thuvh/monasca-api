@@ -111,6 +111,14 @@ public class NotificationMethodSqlRepositoryImplTest {
   }
 
   @Test(groups = "orm")
+  public void shouldUpdateReturnValue() {
+    NotificationMethod nm = repo.update("444", "123", "Foo", NotificationMethodType.EMAIL, "abc");
+
+    NotificationMethod foundNotificationMethod = repo.findById("444", "123");
+    assertEquals(nm, foundNotificationMethod);
+  }
+
+  @Test(groups = "orm")
   public void shouldDeleteById() {
     repo.deleteById("444", "123");
 

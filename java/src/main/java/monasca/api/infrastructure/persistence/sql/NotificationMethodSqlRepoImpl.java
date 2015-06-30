@@ -13,13 +13,6 @@
  */
 package monasca.api.infrastructure.persistence.sql;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
-import javax.inject.Inject;
-import javax.inject.Named;
-
 import monasca.api.domain.exception.EntityExistsException;
 import monasca.api.domain.exception.EntityNotFoundException;
 import monasca.api.domain.model.notificationmethod.NotificationMethod;
@@ -27,7 +20,6 @@ import monasca.api.domain.model.notificationmethod.NotificationMethodRepo;
 import monasca.api.domain.model.notificationmethod.NotificationMethodType;
 import monasca.common.hibernate.db.NotificationMethodDb;
 import monasca.common.model.alarm.AlarmNotificationMethodType;
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -35,6 +27,12 @@ import org.hibernate.Transaction;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.inject.Inject;
+import javax.inject.Named;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 /**
  * Notification method repository implementation.
@@ -57,29 +55,31 @@ public class NotificationMethodSqlRepoImpl implements NotificationMethodRepo {
       session = sessionFactory.openSession();
       tx = session.beginTransaction();
 
-      if (getNotificationIdForTenantIdAndName(session, tenantId, name) != null)
+      if (getNotificationIdForTenantIdAndName(session, tenantId, name) != null) {
         throw new EntityExistsException("Notification method %s \"%s\" already exists.", tenantId,
             name);
+      }
 
-      String id = UUID.randomUUID().toString();
-
-      NotificationMethodDb notificationMethodDb =
-          new NotificationMethodDb(id, tenantId, name, AlarmNotificationMethodType.valueOf(type.name()) , address, new DateTime(),
-              new DateTime());
-      session.save(notificationMethodDb);
+      final String id = UUID.randomUUID().toString();
+      final DateTime now = DateTime.now();
+      final NotificationMethodDb db = new NotificationMethodDb(
+          id,
+          tenantId,
+          name,
+          AlarmNotificationMethodType.valueOf(type.name()),
+          address,
+          now,
+          now
+      );
+      session.save(db);
 
       LOG.debug("Creating notification method {} for {}", name, tenantId);
       tx.commit();
-      return new NotificationMethod(id, name, type, address);
+      tx = null;
 
-    } catch (RuntimeException e) {
-      try {
-        tx.rollback();
-      } catch (RuntimeException rbe) {
-        LOG.error("Couldn’t roll back transaction", rbe);
-      }
-      throw e;
+      return this.convertToNotificationMethod(db);
     } finally {
+      this.rollbackIfNotNull(tx);
       if (session != null) {
         session.close();
       }
@@ -89,18 +89,23 @@ public class NotificationMethodSqlRepoImpl implements NotificationMethodRepo {
   @Override
   public void deleteById(String tenantId, String notificationMethodId) {
     Session session = null;
+    Transaction tx = null;
     try {
       if (!exists(tenantId, notificationMethodId)) {
         throw new EntityNotFoundException("No notification exists for %s", notificationMethodId);
       }
       session = sessionFactory.openSession();
-      session.beginTransaction();
+      tx = session.beginTransaction();
+
       // delete notification
       session.createQuery("delete from NotificationMethodDb where id = :id")
-          .setString("id", notificationMethodId).executeUpdate();
+          .setString("id", notificationMethodId)
+          .executeUpdate();
 
-      session.getTransaction().commit();
+      tx.commit();
+      tx = null;
     } finally {
+      this.rollbackIfNotNull(tx);
       if (session != null) {
         session.close();
       }
@@ -112,23 +117,21 @@ public class NotificationMethodSqlRepoImpl implements NotificationMethodRepo {
     Session session = null;
     try {
       session = sessionFactory.openSession();
+
       NotificationMethodDb result =
           (NotificationMethodDb) session
               .createQuery(
                   "from NotificationMethodDb where tenant_id = :tenantId and id = :notificationMethodId")
               .setString("tenantId", tenantId)
-              .setString("notificationMethodId", notificationMethodId).uniqueResult();
+              .setString("notificationMethodId", notificationMethodId)
+              .uniqueResult();
 
-      if (result != null) {
-        return true;
-      }
-
+      return result != null;
     } finally {
       if (session != null) {
         session.close();
       }
     }
-    return false;
   }
 
   @Override
@@ -136,21 +139,21 @@ public class NotificationMethodSqlRepoImpl implements NotificationMethodRepo {
     Session session = null;
     try {
       session = sessionFactory.openSession();
+
       NotificationMethodDb result =
           (NotificationMethodDb) session
               .createQuery(
                   "from NotificationMethodDb where tenant_id = :tenantId and id = :notificationMethodId")
               .setString("tenantId", tenantId)
-              .setString("notificationMethodId", notificationMethodId).uniqueResult();
+              .setString("notificationMethodId", notificationMethodId)
+              .uniqueResult();
 
       if (result == null) {
         throw new EntityNotFoundException("No notification method exists for %s",
             notificationMethodId);
       }
 
-      return new NotificationMethod(result.getId(), result.getName(), NotificationMethodType.valueOf(result.getType().name()),
-          result.getAddress());
-
+      return this.convertToNotificationMethod(result);
     } finally {
       if (session != null) {
         session.close();
@@ -162,8 +165,8 @@ public class NotificationMethodSqlRepoImpl implements NotificationMethodRepo {
   public NotificationMethod update(String tenantId, String notificationMethodId, String name,
       NotificationMethodType type, String address) {
     Session session = null;
+    Transaction tx = null;
     try {
-
       session = sessionFactory.openSession();
       NotificationMethodDb result =
           (NotificationMethodDb) session
@@ -175,29 +178,37 @@ public class NotificationMethodSqlRepoImpl implements NotificationMethodRepo {
             name);
       }
 
-      session.beginTransaction();
+      tx = session.beginTransaction();
 
-      NotificationMethodDb db =
-          (NotificationMethodDb) session.get(NotificationMethodDb.class, notificationMethodId);
+      NotificationMethodDb db;
+      if ((db = (NotificationMethodDb) session.get(NotificationMethodDb.class, notificationMethodId)) == null) {
+        throw new EntityNotFoundException("No notification method exists for %s",
+            notificationMethodId);
+      }
       db.setName(name);
       db.setType(AlarmNotificationMethodType.valueOf(type.name()));
       db.setAddress(address);
 
       session.save(db);
-      session.getTransaction().commit();
+      tx.commit();
+      tx = null;
+
+      return this.convertToNotificationMethod(db);
+
     } finally {
+      this.rollbackIfNotNull(tx);
       if (session != null) {
         session.close();
       }
     }
-    return null;
   }
 
   @Override
+  @SuppressWarnings("unchecked")
   public List<NotificationMethod> find(String tenantId, String offset, int limit) {
     Session session = null;
-    List<NotificationMethodDb> resultList = null;
-    List<NotificationMethod> notificationList = new ArrayList<NotificationMethod>();
+    List<NotificationMethodDb> resultList;
+    List<NotificationMethod> notificationList = new ArrayList<>();
     final String rawQuery =
         "from NotificationMethodDb where tenant_id = :tenantId %1$s order by id";
     try {
@@ -222,8 +233,7 @@ public class NotificationMethodSqlRepoImpl implements NotificationMethodRepo {
       }
 
       for (NotificationMethodDb item : resultList) {
-        notificationList.add(new NotificationMethod(item.getId(), item.getName(), NotificationMethodType.valueOf(item.getType().name()),
-            item.getAddress()));
+        notificationList.add(this.convertToNotificationMethod(item));
       }
 
       return notificationList;
@@ -235,11 +245,35 @@ public class NotificationMethodSqlRepoImpl implements NotificationMethodRepo {
     }
   }
 
-  private NotificationMethodDb getNotificationIdForTenantIdAndName(Session session,
-      String tenantId, String name) {
-
+  protected NotificationMethodDb getNotificationIdForTenantIdAndName(final Session session,
+                                                                     final String tenantId,
+                                                                     final String name) {
     return (NotificationMethodDb) session
         .createQuery("from NotificationMethodDb where tenant_id = :tenantId and name = :name")
-        .setString("tenantId", tenantId).setString("name", name).uniqueResult();
+        .setString("tenantId", tenantId)
+        .setString("name", name)
+        .uniqueResult();
+  }
+
+  protected void rollbackIfNotNull(final Transaction tx) {
+    if (tx != null) {
+      try {
+        tx.rollback();
+      } catch (RuntimeException rbe) {
+        LOG.error("Couldn’t roll back transaction", rbe);
+      }
+    }
+  }
+
+  protected NotificationMethod convertToNotificationMethod(final NotificationMethodDb db) {
+    if (db == null) {
+      return null;
+    }
+    return new NotificationMethod(
+        db.getId(),
+        db.getName(),
+        NotificationMethodType.valueOf(db.getType().name()),
+        db.getAddress()
+    );
   }
 }
