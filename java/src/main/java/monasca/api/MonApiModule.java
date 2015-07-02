@@ -154,6 +154,8 @@ public class MonApiModule extends AbstractModule {
     properties.put("hibernate.hikari.dataSource.initialConnections", config.hibernate.getInitialConnections());
     properties.put("hibernate.hikari.dataSource.maxConnections", config.hibernate.getMaxConnections());
     properties.put("hibernate.hikari.connectionTestQuery", "SELECT 1");
+    properties.put("hibernate.hikari.connectionTimeout", "5000");
+    properties.put("hibernate.hikari.initializationFailFast", "false");
     return properties;
   }
 }
