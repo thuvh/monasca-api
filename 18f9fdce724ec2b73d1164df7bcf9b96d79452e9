@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba3cc151_ac458c6f",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-07-08T17:21:22Z",
+      "side": 1,
+      "message": "need to remove added spaces.",
+      "revId": "18f9fdce724ec2b73d1164df7bcf9b96d79452e9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba3cc151_cc31f00c",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 972,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-07-08T17:21:22Z",
+      "side": 1,
+      "message": "how do we explain what \u0027restricted\u0027 means.",
+      "revId": "18f9fdce724ec2b73d1164df7bcf9b96d79452e9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
