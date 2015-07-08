@@ -23,6 +23,7 @@ import simport
 from monasca_api.api import alarm_definitions_api_v2
 from monasca_api.common.repositories import exceptions
 import monasca_api.expression_parser.alarm_expr_parser
+from monasca_api.v2.common import validation
 from monasca_api.v2.common.schemas import (
     alarm_definition_request_body_schema as schema_alarms)
 from monasca_api.v2.common.schemas import exceptions as schemas_exceptions
@@ -316,7 +317,11 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
 
         try:
             schema_alarms.validate(alarm_definition)
-        except schemas_exceptions.ValidationException as ex:
+            if 'match_by' in alarm_definition:
+                for name in alarm_definition['match_by']:
+                    validation.validate_dimension_key(name)
+
+        except Exception as ex:
             LOG.debug(ex)
             raise falcon.HTTPBadRequest('Bad request', ex.message)
 
