@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9a41bdd9_23024d70",
+        "filename": "monasca_api/v2/common/validation.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-07-13T17:47:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a41bdd9_dd027a3e",
+      "revId": "2a8c6ac7f9516505179ea6eeb8b254a4bfc5198d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a41bdd9_78e9fc19",
         "filename": "monasca_api/v2/common/validation.py",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2015-07-13T04:57:22Z",
       "side": 1,
       "message": "If we\u0027re already inside the validation file do we need to preface everything in here with validate_?  When we import this we\u0027re using it as validation.validate_metric_name.  Could we use something like validation.metric_name or validate.metric_name instead?",
+      "revId": "2a8c6ac7f9516505179ea6eeb8b254a4bfc5198d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a41bdd9_a3ee5db2",
+        "filename": "monasca_api/v2/common/validation.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-07-13T17:47:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a41bdd9_78e9fc19",
       "revId": "2a8c6ac7f9516505179ea6eeb8b254a4bfc5198d",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "9a41bdd9_e3222501",
+        "filename": "monasca_api/v2/common/validation.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-07-13T17:47:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a41bdd9_7d9a4e16",
+      "revId": "2a8c6ac7f9516505179ea6eeb8b254a4bfc5198d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a41bdd9_1d6d4204",
         "filename": "monasca_api/v2/common/validation.py",
         "patchSetId": 4
@@ -64,6 +118,24 @@
       "writtenOn": "2015-07-13T04:41:01Z",
       "side": 1,
       "message": "The assertion this is replacing and the voluptuous schema that was there before only allowed dimension values to be str or unicode.  Are they supposed to allow int and floats as well?",
+      "revId": "2a8c6ac7f9516505179ea6eeb8b254a4bfc5198d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a41bdd9_764a51c7",
+        "filename": "monasca_api/v2/common/validation.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-07-13T17:47:02Z",
+      "side": 1,
+      "message": "As far as I know, numbers are valid dimension values. Without allowing this (or converting to strings before calling validation), we are currently rejecting metrics which the java API accepts.",
+      "parentUuid": "9a41bdd9_1d6d4204",
       "revId": "2a8c6ac7f9516505179ea6eeb8b254a4bfc5198d",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
