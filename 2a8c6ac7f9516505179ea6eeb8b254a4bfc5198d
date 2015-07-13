@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a41bdd9_dd027a3e",
+        "filename": "monasca_api/v2/common/validation.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2015-07-13T04:41:01Z",
+      "side": 1,
+      "message": "That expression is overly broad.  There\u0027s no need to use .* on either end of the invalid_chars set when we should be able to use re.search with just the invalid_chars.  I put together a small test for it and it looks like using re.search vs re.match with your expression is about twice as fast.",
+      "revId": "2a8c6ac7f9516505179ea6eeb8b254a4bfc5198d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a41bdd9_7d9a4e16",
+        "filename": "monasca_api/v2/common/validation.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2015-07-13T04:41:01Z",
+      "side": 1,
+      "message": "Is name supposed to be 255 or 64 characters?",
+      "revId": "2a8c6ac7f9516505179ea6eeb8b254a4bfc5198d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a41bdd9_1d6d4204",
+        "filename": "monasca_api/v2/common/validation.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2015-07-13T04:41:01Z",
+      "side": 1,
+      "message": "The assertion this is replacing and the voluptuous schema that was there before only allowed dimension values to be str or unicode.  Are they supposed to allow int and floats as well?",
+      "revId": "2a8c6ac7f9516505179ea6eeb8b254a4bfc5198d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a41bdd9_7d36ce04",
+        "filename": "monasca_api/v2/reference/metrics.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2015-07-13T04:41:01Z",
+      "side": 1,
+      "message": "We need to check and see how much of a performance hit we\u0027re going to be taking here, if any at all, with the extra stack frames we\u0027re introducing.",
+      "revId": "2a8c6ac7f9516505179ea6eeb8b254a4bfc5198d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
