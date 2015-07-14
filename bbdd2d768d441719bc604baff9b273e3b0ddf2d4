@@ -69,6 +69,24 @@
       "revId": "bbdd2d768d441719bc604baff9b273e3b0ddf2d4",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a41bdd9_9e56d128",
+        "filename": "monasca_api/v2/reference/metrics.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2015-07-14T15:18:53Z",
+      "side": 1,
+      "message": "Any other part that cares about the type should also be converting it to str as well, right?  We don\u0027t want some part of the API accepting non-string values and other parts rejecting it.",
+      "parentUuid": "9a41bdd9_8fa8e521",
+      "revId": "bbdd2d768d441719bc604baff9b273e3b0ddf2d4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
