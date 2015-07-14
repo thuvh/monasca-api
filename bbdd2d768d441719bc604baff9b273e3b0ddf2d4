@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9a41bdd9_32233ea9",
+        "filename": "monasca_api/v2/reference/metrics.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-07-14T14:05:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a41bdd9_c8d11f59",
+      "revId": "bbdd2d768d441719bc604baff9b273e3b0ddf2d4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a41bdd9_285f6b0f",
         "filename": "monasca_api/v2/reference/metrics.py",
         "patchSetId": 7
@@ -30,6 +48,24 @@
       "writtenOn": "2015-07-14T02:47:18Z",
       "side": 1,
       "message": "This will probably do the right thing with dimension_value given how Python uses object references but it might be a good idea to explicitly set metric[\u0027dimensions\u0027][dimension_key] back to dimension_value after the cast.\n\nAlong with that we can remove the type check in validation.dimension_value since we\u0027re manually casting to a string here.",
+      "revId": "bbdd2d768d441719bc604baff9b273e3b0ddf2d4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a41bdd9_8fa8e521",
+        "filename": "monasca_api/v2/reference/metrics.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-07-14T14:05:00Z",
+      "side": 1,
+      "message": "First part, done, but the type check in validation.dimension_value may be used by other components.",
+      "parentUuid": "9a41bdd9_285f6b0f",
       "revId": "bbdd2d768d441719bc604baff9b273e3b0ddf2d4",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
