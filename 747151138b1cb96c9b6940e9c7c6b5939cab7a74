@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a41bdd9_6341e337",
+        "filename": "java/src/main/java/monasca/api/ApiConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-07-15T04:26:31Z",
+      "side": 1,
+      "message": "Was just wondering why the order of imports changed here.",
+      "revId": "747151138b1cb96c9b6940e9c7c6b5939cab7a74",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
