@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a50d1a3_8f459018",
+        "filename": "monasca_api/tests/test_versions.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2015-07-24T19:41:35Z",
+      "side": 1,
+      "message": "I see this base url used in the tests but why does it point to falconframework.org?  Is that required for the falcon testing library?",
+      "revId": "7c1f71964fe36c807ebe79b4263430800d725453",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a50d1a3_efe69443",
+        "filename": "tox.ini",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2015-07-24T19:41:35Z",
+      "side": 1,
+      "message": "If we\u0027re going to set it to 50 do we really want to set it at all?  We have a couple functions in the api that hit 12, one function that hits 15, and one that hits 26.  All of those are already very complex functions.  A value of 50 would be unmaintainable.",
+      "revId": "7c1f71964fe36c807ebe79b4263430800d725453",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
