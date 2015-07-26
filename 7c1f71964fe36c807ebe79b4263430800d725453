@@ -104,6 +104,24 @@
       "revId": "7c1f71964fe36c807ebe79b4263430800d725453",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a50d1a3_a943936b",
+        "filename": "tox.ini",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2015-07-26T17:22:17Z",
+      "side": 1,
+      "message": "I tend to use 10 or 15 when I\u0027m checking the code for real.  Right now we only have one function worse than those measures and it\u0027s probably worth looking at that function anyway.  It\u0027d be nice if we could get to the point where 15 is a viable upper limit and start dialing that down over time when we can.\n\nThe value of complexity measurements is a bit contentious though so it\u0027d be worth getting the opinion of everyone else on the team too.",
+      "parentUuid": "3a50d1a3_dbfd8c3c",
+      "revId": "7c1f71964fe36c807ebe79b4263430800d725453",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
