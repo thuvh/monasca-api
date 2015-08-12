@@ -18,6 +18,7 @@ from oslo_log import log
 import simport
 
 from monasca_api.api import notifications_api_v2
+from monasca_api.common.repositories import exceptions
 from monasca_api.v2.common.schemas import (
     notifications_request_body_schema as schemas_notifications)
 from monasca_api.v2.common.schemas import exceptions as schemas_exceptions
@@ -56,6 +57,12 @@ class Notifications(notifications_api_v2.NotificationsV2API):
         name = notification['name'].decode('utf8')
         notification_type = notification['type'].upper().decode('utf8')
         address = notification['address'].decode('utf8')
+
+        existing_notif = self._notifications_repo.find_notification_by_name(tenant_id, name)
+        if existing_notif:
+            raise exceptions.AlreadyExistsException(
+                "A notification method with the name {} already exists".format(name))
+
         notification_id = self._notifications_repo.create_notification(
             tenant_id,
             name,
@@ -74,6 +81,12 @@ class Notifications(notifications_api_v2.NotificationsV2API):
         name = notification['name'].decode('utf8')
         notification_type = notification['type'].upper().decode('utf8')
         address = notification['address'].decode('utf8')
+
+        existing_notif = self._notifications_repo.find_notification_by_name(tenant_id, name)
+        if existing_notif:
+            raise exceptions.AlreadyExistsException(
+                "A notification method with the name {} already exists".format(name))
+
         self._notifications_repo.update_notification(id, tenant_id, name,
                                                      notification_type,
                                                      address)

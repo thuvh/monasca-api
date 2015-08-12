@@ -353,6 +353,15 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
         else:
             sub_expr_list = None
 
+        definitions = self._alarm_definitions_repo.get_alarm_definitions(tenant_id=tenant_id,
+                                                                         name=name,
+                                                                         dimensions=None,
+                                                                         offset=None,
+                                                                         limit=0)
+        if definitions:
+            LOG.warn("Found existing definition for {} with tenant_id {}".format(name, tenant_id))
+            raise exceptions.AlreadyExistsException("An alarm definition with the name {} already exists".format(name))
+
         alarm_def_row, sub_alarm_def_dicts = (
             self._alarm_definitions_repo.update_or_patch_alarm_definition(
                 tenant_id,
@@ -453,6 +462,15 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
             msg = "parser failed on expression '{}' at column {}".format(
                 expression.encode('utf8'), str(ex.column).encode('utf8'))
             raise falcon.HTTPBadRequest(title, msg)
+
+        definitions = self._alarm_definitions_repo.get_alarm_definitions(tenant_id=tenant_id,
+                                                                         name=name,
+                                                                         dimensions=None,
+                                                                         offset=None,
+                                                                         limit=0)
+        if definitions:
+            LOG.warn("Found existing definition for {} with tenant_id {}".format(name, tenant_id))
+            raise exceptions.AlreadyExistsException("An alarm definition with the name {} already exists".format(name))
 
         alarm_definition_id = (
             self._alarm_definitions_repo.
