@@ -18,6 +18,7 @@ from oslo_log import log
 import simport
 
 from monasca_api.api import notifications_api_v2
+from monasca_api.common.repositories import exceptions
 from monasca_api.v2.common.schemas import (
     notifications_request_body_schema as schemas_notifications)
 from monasca_api.v2.common.schemas import exceptions as schemas_exceptions
@@ -50,12 +51,32 @@ class Notifications(notifications_api_v2.NotificationsV2API):
             LOG.debug(ex)
             raise falcon.HTTPBadRequest('Bad request', ex.message)
 
+    def _validate_name_not_conflicting(self, tenant_id, name, expected_id=None):
+        notification = self._notifications_repo.find_notification_by_name(tenant_id, name)
+
+        if expected_id:
+            if notification['id'] != expected_id:
+                LOG.warn("Found existing notification method for {} with tenant_id {} with unexpected id {}"
+                         .format(name, tenant_id, notification['id']))
+                raise exceptions.AlreadyExistsException(
+                    "A notification method with name {} already exists with id {}"
+                    .format(name, notification['id']))
+            return
+
+        if notification:
+            LOG.warn("Found existing notification method for {} with tenant_id {}".format(name, tenant_id))
+            raise exceptions.AlreadyExistsException(
+                "A notification method with the name {} already exists".format(name))
+
     @resource.resource_try_catch_block
     def _create_notification(self, tenant_id, notification, uri):
 
         name = notification['name']
         notification_type = notification['type'].upper()
         address = notification['address']
+
+        self._validate_name_not_conflicting(tenant_id, name)
+
         notification_id = self._notifications_repo.create_notification(
             tenant_id,
             name,
@@ -69,16 +90,19 @@ class Notifications(notifications_api_v2.NotificationsV2API):
                                                   uri)
 
     @resource.resource_try_catch_block
-    def _update_notification(self, id, tenant_id, notification, uri):
+    def _update_notification(self, notification_id, tenant_id, notification, uri):
 
         name = notification['name']
         notification_type = notification['type'].upper()
         address = notification['address']
-        self._notifications_repo.update_notification(id, tenant_id, name,
+
+        self._validate_name_not_conflicting(tenant_id, name, expected_id=notification_id)
+
+        self._notifications_repo.update_notification(notification_id, tenant_id, name,
                                                      notification_type,
                                                      address)
 
-        return self._create_notification_response(id,
+        return self._create_notification_response(notification_id,
                                                   name,
                                                   notification_type,
                                                   address,
