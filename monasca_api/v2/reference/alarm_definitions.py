@@ -454,6 +454,15 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
                 expression.encode('utf8'), str(ex.column).encode('utf8'))
             raise falcon.HTTPBadRequest(title, msg)
 
+        definitions = self._alarm_definitions_repo.get_alarm_definitions(tenant_id=tenant_id,
+                                                                         name=name,
+                                                                         dimensions=None,
+                                                                         offset=None,
+                                                                         limit=0)
+        if definitions:
+            LOG.warn("Found existing definition for {} with tenant_id {}".format(name, tenant_id))
+            raise exceptions.AlreadyExistsException("An alarm definition with the name {} already exists".format(name))
+
         alarm_definition_id = (
             self._alarm_definitions_repo.
             create_alarm_definition(tenant_id,
