@@ -2,6 +2,74 @@
   "comments": [
     {
       "key": {
+        "uuid": "1a4dcd0f_5de2b702",
+        "filename": "java/src/main/java/monasca/api/ApiConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-08-16T22:29:40Z",
+      "side": 1,
+      "message": "This would break backwards compatibility since it is requiring a Hibernate config",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a4dcd0f_ddbc87dd",
+        "filename": "java/src/main/java/monasca/api/MonApiModule.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-08-16T22:29:40Z",
+      "side": 1,
+      "message": "The monasca imports should be the last set of imports and separated from the previous set by a blank line",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a4dcd0f_5dc95778",
+        "filename": "java/src/main/java/monasca/api/MonApiModule.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-08-16T22:29:40Z",
+      "side": 1,
+      "message": "Need to check if config.hibernate is null?",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a4dcd0f_1dc3cf58",
+        "filename": "java/src/main/java/monasca/api/MonApiModule.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-08-16T22:29:40Z",
+      "side": 1,
+      "message": "You should probably throw an exception if it is not one of the above values for dataSourceClassName in case the user did something simple like misspell the name. Otherwise it will be difficult for the user to find errors like that",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a4dcd0f_3cbb4877",
         "filename": "java/src/main/java/monasca/api/domain/model/alarm/Alarm.java",
         "patchSetId": 4
@@ -31,6 +99,193 @@
       "side": 1,
       "message": "Hmm...that would be great indeed.",
       "parentUuid": "1a4dcd0f_3cbb4877",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a4dcd0f_fd9e2362",
+        "filename": "java/src/main/java/monasca/api/infrastructure/InfrastructureModule.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-08-16T22:29:40Z",
+      "side": 1,
+      "message": "Once again check if config.hibernate is null",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a4dcd0f_fdace38d",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9AlarmStateHistoryRepo.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-08-16T22:29:40Z",
+      "side": 1,
+      "message": "Put the monasca imports at the bottom of the imports",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a4dcd0f_3dca4b50",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/sql/AlarmDefinitionSqlRepoImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-08-16T22:29:40Z",
+      "side": 1,
+      "message": "Why are alarmActions treated differently than okActions? There don\u0027t have to be any alarmActions",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a4dcd0f_1dd66ff1",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/sql/AlarmDefinitionSqlRepoImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-08-16T22:29:40Z",
+      "side": 1,
+      "message": "I don\u0027t think that this exception should be swallowed. It should be rethrown so the caller knows the query failed. It will result in a 500 from the API but that is better than silently failing",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a4dcd0f_1ded0fb7",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/sql/AlarmDefinitionSqlRepoImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-08-16T22:29:40Z",
+      "side": 1,
+      "message": "EntityNotFoundException should only be thrown if alarmDefinitionDb is null.  There are other reasons that could occur like the connection to the database failing and once again this would be misleading data passed back to the caller",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a4dcd0f_bd117bb1",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/sql/AlarmDefinitionSqlRepoImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-08-16T22:29:40Z",
+      "side": 1,
+      "message": "The method should be called updateChangedSubAlarms",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a4dcd0f_7d59b38d",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/sql/AlarmSqlRepoImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-08-16T22:29:40Z",
+      "side": 1,
+      "message": "Monasca imports should be at the bottom of the imports",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a4dcd0f_dd97a7e9",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/sql/ClobAwareSQLResultTransformer.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-08-16T22:29:40Z",
+      "side": 1,
+      "message": "I\u0027m not familiar with this method, but it seems that ascii would not be correct. Some of the data like description should be able to be internationalized characters. Ascii wouldn\u0027t cover that.",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a4dcd0f_7db5337c",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/sql/HibernateUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-08-16T22:29:40Z",
+      "side": 1,
+      "message": "This looks like AlarmUtils not HibernateUtils",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a4dcd0f_9da11f49",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/sql/HibernateUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-08-16T22:29:40Z",
+      "side": 1,
+      "message": "Why do you use a StringBuilder instead of just +? This seems more complicated than needed for a final static String",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a4dcd0f_1d2aef90",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/AlarmStateHistoryVerticaRepoImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-08-16T22:29:40Z",
+      "side": 1,
+      "message": "Have you actually tried this with Vertica? The SubAlarms and Metrics are stored as a JSON String and this doesn\u0027t look like it would handle that",
       "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
