@@ -16,6 +16,24 @@
       "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a4dcd0f_738809c7",
+        "filename": "java/src/main/java/monasca/api/domain/model/alarm/Alarm.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2015-08-16T16:22:28Z",
+      "side": 1,
+      "message": "Hmm...that would be great indeed.",
+      "parentUuid": "1a4dcd0f_3cbb4877",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
