@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "fa1b9901_cf5bbd2d",
+        "filename": "java/src/main/java/monasca/api/ApiConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2015-08-17T12:53:40Z",
+      "side": 1,
+      "message": "Correct, it\u0027ll be fixed.",
+      "parentUuid": "1a4dcd0f_5de2b702",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a4dcd0f_ddbc87dd",
         "filename": "java/src/main/java/monasca/api/MonApiModule.java",
         "patchSetId": 4
@@ -64,6 +82,24 @@
       "writtenOn": "2015-08-16T22:29:40Z",
       "side": 1,
       "message": "You should probably throw an exception if it is not one of the above values for dataSourceClassName in case the user did something simple like misspell the name. Otherwise it will be difficult for the user to find errors like that",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa1b9901_0f79b593",
+        "filename": "java/src/main/java/monasca/api/MonApiModule.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2015-08-17T12:53:40Z",
+      "side": 1,
+      "message": "Good point, I did not think about that. I am just not sure if that would be difficult to find in logs in case of any error. I think I will try to reproduce the possibility you described and see how errors looks like. Perhaps here, in particular, that would be doing check that is already done somewhere else.",
+      "parentUuid": "1a4dcd0f_1dc3cf58",
       "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -156,6 +192,24 @@
     },
     {
       "key": {
+        "uuid": "fa1b9901_7495a83e",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/sql/AlarmDefinitionSqlRepoImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2015-08-17T12:53:40Z",
+      "side": 1,
+      "message": "It looks that we just missed that part of the code, it will be taken care of in the next patch set. I think that we should be consistent in this piece of code.",
+      "parentUuid": "1a4dcd0f_3dca4b50",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a4dcd0f_1dd66ff1",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/sql/AlarmDefinitionSqlRepoImpl.java",
         "patchSetId": 4
@@ -167,6 +221,24 @@
       "writtenOn": "2015-08-16T22:29:40Z",
       "side": 1,
       "message": "I don\u0027t think that this exception should be swallowed. It should be rethrown so the caller knows the query failed. It will result in a 500 from the API but that is better than silently failing",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa1b9901_148d4c31",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/sql/AlarmDefinitionSqlRepoImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2015-08-17T12:53:40Z",
+      "side": 1,
+      "message": "I agree with that, we will fix that asap.",
+      "parentUuid": "1a4dcd0f_1dd66ff1",
       "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -190,6 +262,24 @@
     },
     {
       "key": {
+        "uuid": "fa1b9901_5473c44d",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/sql/AlarmDefinitionSqlRepoImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2015-08-17T12:53:40Z",
+      "side": 1,
+      "message": "I agree with that, we will fix that asap.",
+      "parentUuid": "1a4dcd0f_1ded0fb7",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a4dcd0f_bd117bb1",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/sql/AlarmDefinitionSqlRepoImpl.java",
         "patchSetId": 4
@@ -201,6 +291,24 @@
       "writtenOn": "2015-08-16T22:29:40Z",
       "side": 1,
       "message": "The method should be called updateChangedSubAlarms",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa1b9901_94a07c92",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/sql/AlarmDefinitionSqlRepoImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2015-08-17T12:53:40Z",
+      "side": 1,
+      "message": "I agree with that, we will fix that asap.",
+      "parentUuid": "1a4dcd0f_bd117bb1",
       "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -241,6 +349,24 @@
     },
     {
       "key": {
+        "uuid": "fa1b9901_94f5dc84",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/sql/ClobAwareSQLResultTransformer.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2015-08-17T12:53:40Z",
+      "side": 1,
+      "message": "We will check if it is needed at all. Perhaps we may skip it and let Hibernate do the work but I won\u0027t say it for sure. If it\u0027s be needed then we will have to give it a closer look.",
+      "parentUuid": "1a4dcd0f_dd97a7e9",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a4dcd0f_7db5337c",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/sql/HibernateUtils.java",
         "patchSetId": 4
@@ -252,6 +378,24 @@
       "writtenOn": "2015-08-16T22:29:40Z",
       "side": 1,
       "message": "This looks like AlarmUtils not HibernateUtils",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa1b9901_d4a914e1",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/sql/HibernateUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2015-08-17T12:53:40Z",
+      "side": 1,
+      "message": "The name comes rather from the data source being used here, not from it actually does., so I am quite sure how to proceed with that. We can of course change it if you want.",
+      "parentUuid": "1a4dcd0f_7db5337c",
       "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -275,6 +419,24 @@
     },
     {
       "key": {
+        "uuid": "fa1b9901_14046c13",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/sql/HibernateUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2015-08-17T12:53:40Z",
+      "side": 1,
+      "message": "StringBuilder is faster then ordinary string concatenation. As far as I aware, concatenation that should be replaced with StringBuilder on compiler, so I guess that I used StringBuilder here just because I did not want to rely on compiler to do that for me. Another reason is that I simply don\u0027t like using \u0027+\u0027 when it comes to String.",
+      "parentUuid": "1a4dcd0f_9da11f49",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a4dcd0f_1d2aef90",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/AlarmStateHistoryVerticaRepoImpl.java",
         "patchSetId": 4
@@ -286,6 +448,24 @@
       "writtenOn": "2015-08-16T22:29:40Z",
       "side": 1,
       "message": "Have you actually tried this with Vertica? The SubAlarms and Metrics are stored as a JSON String and this doesn\u0027t look like it would handle that",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa1b9901_ef2561ae",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/AlarmStateHistoryVerticaRepoImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2015-08-17T12:53:40Z",
+      "side": 1,
+      "message": "Actually not, but that shouldn\u0027t be here if I can be honest. We did change that part of code, some sort of...too quick. Some time after we realized that we are unable to say \u0027This code is 100% ok\u0027 and it was removed. \n\nI am afraid that fact we are now talking about it comes from the amount of changes we\u0027ve made in more than one repository and it simply got lost somewhere. All I can say is that this part will reverted to the state it used to be in.",
+      "parentUuid": "1a4dcd0f_1d2aef90",
       "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
