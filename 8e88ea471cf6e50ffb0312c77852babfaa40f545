@@ -54,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "fa1b9901_e709de96",
+        "filename": "java/src/main/java/monasca/api/MonApiModule.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2015-08-18T09:03:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a4dcd0f_ddbc87dd",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a4dcd0f_5dc95778",
         "filename": "java/src/main/java/monasca/api/MonApiModule.java",
         "patchSetId": 4
@@ -65,6 +83,24 @@
       "writtenOn": "2015-08-16T22:29:40Z",
       "side": 1,
       "message": "Need to check if config.hibernate is null?",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa1b9901_e7a3219d",
+        "filename": "java/src/main/java/monasca/api/MonApiModule.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2015-08-18T09:03:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a4dcd0f_5dc95778",
       "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -175,6 +211,24 @@
     },
     {
       "key": {
+        "uuid": "fa1b9901_a7a44657",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9AlarmStateHistoryRepo.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2015-08-18T09:03:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a4dcd0f_fdace38d",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a4dcd0f_3dca4b50",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/sql/AlarmDefinitionSqlRepoImpl.java",
         "patchSetId": 4
@@ -204,6 +258,24 @@
       "side": 1,
       "message": "It looks that we just missed that part of the code, it will be taken care of in the next patch set. I think that we should be consistent in this piece of code.",
       "parentUuid": "1a4dcd0f_3dca4b50",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa1b9901_e74f9e90",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/sql/AlarmDefinitionSqlRepoImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2015-08-18T09:03:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa1b9901_7495a83e",
       "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -315,6 +387,24 @@
     },
     {
       "key": {
+        "uuid": "fa1b9901_0ddc3311",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/sql/AlarmDefinitionSqlRepoImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2015-08-18T09:03:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa1b9901_94a07c92",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a4dcd0f_7d59b38d",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/sql/AlarmSqlRepoImpl.java",
         "patchSetId": 4
@@ -326,6 +416,24 @@
       "writtenOn": "2015-08-16T22:29:40Z",
       "side": 1,
       "message": "Monasca imports should be at the bottom of the imports",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa1b9901_2d47b7bc",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/sql/AlarmSqlRepoImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2015-08-18T09:03:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a4dcd0f_7d59b38d",
       "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -431,6 +539,24 @@
       "side": 1,
       "message": "StringBuilder is faster then ordinary string concatenation. As far as I aware, concatenation that should be replaced with StringBuilder on compiler, so I guess that I used StringBuilder here just because I did not want to rely on compiler to do that for me. Another reason is that I simply don\u0027t like using \u0027+\u0027 when it comes to String.",
       "parentUuid": "1a4dcd0f_9da11f49",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa1b9901_4d26abcf",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/sql/HibernateUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2015-08-18T09:03:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa1b9901_14046c13",
       "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
