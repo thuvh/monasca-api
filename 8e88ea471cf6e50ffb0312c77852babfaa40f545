@@ -475,6 +475,24 @@
     },
     {
       "key": {
+        "uuid": "fa1b9901_4b521069",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/sql/ClobAwareSQLResultTransformer.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2015-08-18T10:39:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa1b9901_94f5dc84",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a4dcd0f_7db5337c",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/sql/HibernateUtils.java",
         "patchSetId": 4
@@ -504,6 +522,24 @@
       "side": 1,
       "message": "The name comes rather from the data source being used here, not from it actually does., so I am quite sure how to proceed with that. We can of course change it if you want.",
       "parentUuid": "1a4dcd0f_7db5337c",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa1b9901_eb93e4f8",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/sql/HibernateUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2015-08-18T10:39:08Z",
+      "side": 1,
+      "message": "Should be \u0027I am not quite sure...\u0027",
+      "parentUuid": "fa1b9901_d4a914e1",
       "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
