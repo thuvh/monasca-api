@@ -142,6 +142,24 @@
     },
     {
       "key": {
+        "uuid": "fa1b9901_d4352df7",
+        "filename": "java/src/main/java/monasca/api/MonApiModule.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2015-08-19T09:19:22Z",
+      "side": 1,
+      "message": "Craig, I checked how error looks like if the data source entry in configuration file would be invalid. It says: {data source class name as defined in api-config.yml} unsupported data source. Do you think it is acceptable ?",
+      "parentUuid": "fa1b9901_0f79b593",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a4dcd0f_3cbb4877",
         "filename": "java/src/main/java/monasca/api/domain/model/alarm/Alarm.java",
         "patchSetId": 4
