@@ -178,6 +178,24 @@
     },
     {
       "key": {
+        "uuid": "fa1b9901_8c2457c5",
+        "filename": "java/src/main/java/monasca/api/MonApiModule.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2015-08-20T06:21:40Z",
+      "side": 1,
+      "message": "Done.\n\nPlease check newest patch sets. Your comments were implemented there.",
+      "parentUuid": "fa1b9901_829f65b3",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a4dcd0f_3cbb4877",
         "filename": "java/src/main/java/monasca/api/domain/model/alarm/Alarm.java",
         "patchSetId": 4
@@ -594,6 +612,24 @@
       "side": 1,
       "message": "Maybe AlarmHibernateUtils? It just seems like there could be an equivalent class for AlarmDefintions, etc.",
       "parentUuid": "fa1b9901_eb93e4f8",
+      "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa1b9901_cf7ec169",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/sql/HibernateUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2015-08-20T06:21:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa1b9901_42eb8db0",
       "revId": "8e88ea471cf6e50ffb0312c77852babfaa40f545",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
