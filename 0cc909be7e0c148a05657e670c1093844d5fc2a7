@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa1b9901_82fc773f",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/StatisticVerticaRepoImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-08-24T15:42:00Z",
+      "side": 1,
+      "message": "This space needs to be removed.",
+      "revId": "0cc909be7e0c148a05657e670c1093844d5fc2a7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa1b9901_4295ffe1",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/StatisticVerticaRepoImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-08-24T15:42:00Z",
+      "side": 1,
+      "message": "Remove space.",
+      "revId": "0cc909be7e0c148a05657e670c1093844d5fc2a7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa1b9901_029f0704",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/StatisticVerticaRepoImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-08-24T15:42:00Z",
+      "side": 1,
+      "message": "Remove space.",
+      "revId": "0cc909be7e0c148a05657e670c1093844d5fc2a7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa1b9901_fdf3989d",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/StatisticVerticaRepoImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-08-24T15:42:00Z",
+      "side": 1,
+      "message": "This supposes that the period is the same between successive requests. What if the period on the first request is 300 and the period on the next request is 600. Some measurements will be skipped on the second request.\n\nThe offset needs to be independent of the period.",
+      "revId": "0cc909be7e0c148a05657e670c1093844d5fc2a7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
