@@ -170,6 +170,25 @@ public class NotificationMethodResourceTest extends AbstractMonApiResourceTest {
     ErrorMessages.assertThat(response.getEntity(String.class)).matches("unprocessable_entity", 422,
         "[name size must be between 1 and 250");
   }
+  
+  public void should422OnTooLongMultibyteCharName() {
+    String notificationName = "非常に長い通知名非常に長い通知名非常に長い通知名非常に長い通知名非常に長い通知名" 
+        + "非常に長い通知名非常に長い通知名非常に長い通知名非常に長い通知名非常に長い通知名"
+        + "非常に長い通知名非常に長い通知名非常に長い通知名非常に長い通知名非常に長い通知名" 
+        + "非常に長い通知名非常に長い通知名非常に長い通知名非常に長い通知名非常に長い通知名";
+    ClientResponse response =
+        client()
+            .resource("/v2.0/notification-methods")
+            .header("X-Tenant-Id", "abc")
+            .header("Content-Type", MediaType.APPLICATION_JSON)
+            .post(
+                ClientResponse.class,
+                new CreateNotificationMethodCommand( notificationName, NotificationMethodType.EMAIL, 
+                    "a@b"));
+
+    ErrorMessages.assertThat(response.getEntity(String.class)).matches("unprocessable_entity", 422,
+        String.format("Name %s must be %d bytes or less", notificationName, 250));
+  }
 
   public void should422OnTooLongAddress() {
     ClientResponse response =
