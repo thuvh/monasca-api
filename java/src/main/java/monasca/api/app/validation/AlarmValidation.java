@@ -13,6 +13,7 @@
  */
 package monasca.api.app.validation;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -32,6 +33,9 @@ public final class AlarmValidation {
 
   private static final List<String> VALID_ALARM_SERVERITY = Arrays.asList("low", "medium", "high",
       "critical");
+  private static final int MAX_NAME_LENGTH = 255;
+  private static final int MAX_DESCRIPTION_LENGTH = 255;
+  private static final int MAX_ACTION_LENGTH = 50;
 
   private AlarmValidation() {}
 
@@ -40,43 +44,31 @@ public final class AlarmValidation {
    */
   public static void validate(String name, String description, String severity,
       List<String> alarmActions, List<String> okActions, List<String> undeterminedActions) {
-    if (name != null && name.length() > 255)
-      throw Exceptions.unprocessableEntity("Name %s must be 255 characters or less", name);
-    if (description != null && description.length() > 255)
-      throw Exceptions.unprocessableEntity("Description %s must be 255 characters or less",
-          description);
-    if (alarmActions != null) {
-      for (String action : alarmActions)
-        if (action.length() > 50)
-          throw Exceptions.unprocessableEntity("Alarm action %s must be 50 characters or less",
-              action);
-      if (checkForDuplicateNotificationMethodsInAlarmDef(alarmActions)) {
-        throw Exceptions
-            .unprocessableEntity("Alarm definition cannot have Duplicate alarm notification methods");
-      }
-    }
-    if (okActions != null)
-      for (String action : okActions) {
-        if (action.length() > 50)
-          throw Exceptions
-              .unprocessableEntity("Ok action %s must be 50 characters or less", action);
-        if (checkForDuplicateNotificationMethodsInAlarmDef(okActions)) {
-          throw Exceptions
-              .unprocessableEntity("Alarm definition cannot have Duplicate OK notification methods");
-        }
-      }
-    if (undeterminedActions != null) {
-      for (String action : undeterminedActions)
-        if (action.length() > 50)
-          throw Exceptions.unprocessableEntity(
-              "Undetermined action %s must be 50 characters or less", action);
-      if (checkForDuplicateNotificationMethodsInAlarmDef(undeterminedActions)) {
-        throw Exceptions
-            .unprocessableEntity("Alarm definition cannot have Duplicate Undetermined notification methods");
-      }
-    }
+    if (name != null && name.getBytes(StandardCharsets.UTF_8).length > MAX_NAME_LENGTH)
+      throw Exceptions.unprocessableEntity("Name %s must be %d bytes or less", name,
+          MAX_NAME_LENGTH);
+    if (description != null &&
+        description.getBytes(StandardCharsets.UTF_8).length > MAX_DESCRIPTION_LENGTH)
+      throw Exceptions.unprocessableEntity("Description %s must be %d bytes or less", description,
+          MAX_DESCRIPTION_LENGTH);
+    validateActionsList(alarmActions, "Alarm");
+    validateActionsList(okActions, "OK");
+    validateActionsList(undeterminedActions, "Undetermined");
     if (severity != null && !VALID_ALARM_SERVERITY.contains(severity.toLowerCase())) {
       throw Exceptions.unprocessableEntity("%s is not a valid severity", severity);
+    }
+  }
+
+  private static void validateActionsList(List<String> actions, String actionType) {
+    if (actions != null) {
+      for (String action : actions)
+        if (action.getBytes(StandardCharsets.UTF_8).length > MAX_ACTION_LENGTH)
+          throw Exceptions.unprocessableEntity("%s action %s must be %d bytes or less", actionType,
+              action, MAX_ACTION_LENGTH);
+      if (checkForDuplicateNotificationMethodsInAlarmDef(actions)) {
+        throw Exceptions.unprocessableEntity(
+            "Alarm definition cannot have Duplicate %s notification methods", actionType);
+      }
     }
   }
 

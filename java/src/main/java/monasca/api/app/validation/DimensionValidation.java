@@ -13,6 +13,7 @@
  */
 package monasca.api.app.validation;
 
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +24,7 @@ import javax.ws.rs.WebApplicationException;
 import com.google.common.base.CharMatcher;
 import com.google.common.base.Strings;
 import com.google.common.primitives.Ints;
+
 import monasca.common.model.Services;
 import monasca.api.resource.exception.Exceptions;
 
@@ -30,6 +32,8 @@ import monasca.api.resource.exception.Exceptions;
  * Utilities for validating dimensions.
  */
 public final class DimensionValidation {
+  private static final int MAX_VALUE_LENGTH = 255;
+  private static final int MAX_NAME_LENGTH = 255;
   private static final Map<String, DimensionValidator> VALIDATORS;
   private static final Pattern UUID_PATTERN = Pattern
       .compile("\\w{8}-\\w{4}-\\w{4}-\\w{4}-\\w{12}");
@@ -122,12 +126,12 @@ public final class DimensionValidation {
         throw Exceptions.unprocessableEntity("Dimension name cannot be empty");
       if (Strings.isNullOrEmpty(value))
         throw Exceptions.unprocessableEntity("Dimension %s cannot have an empty value", name);
-      if (name.length() > 255)
-        throw Exceptions.unprocessableEntity("Dimension name %s must be 255 characters or less",
-            name);
-      if (value.length() > 255)
-        throw Exceptions.unprocessableEntity("Dimension value %s must be 255 characters or less",
-            value);
+      if (name.getBytes(StandardCharsets.UTF_8).length > MAX_NAME_LENGTH)
+        throw Exceptions.unprocessableEntity("Dimension name %s must be %d bytes or less",
+            name, MAX_NAME_LENGTH);
+      if (value.getBytes(StandardCharsets.UTF_8).length > MAX_VALUE_LENGTH)
+        throw Exceptions.unprocessableEntity("Dimension value %s must be %d bytes or less",
+            value, MAX_VALUE_LENGTH);
       // Dimension names that start with underscores are reserved for internal use only.
       if (name.startsWith("_")) {
         throw Exceptions.unprocessableEntity("Dimension name cannot start with underscore (_)",
@@ -153,9 +157,9 @@ public final class DimensionValidation {
         if (Strings.isNullOrEmpty(name)) {
           throw Exceptions.unprocessableEntity("Dimension name cannot be empty");
         }
-        if (name.length() > 255) {
-          throw Exceptions.unprocessableEntity("Dimension name '%s' must be 255 characters or less",
-                                               name);
+        if (name.getBytes(StandardCharsets.UTF_8).length > MAX_NAME_LENGTH) {
+          throw Exceptions.unprocessableEntity("Dimension name '%s' must be %d bytes or less",
+                                               name, MAX_NAME_LENGTH);
         }
         // Dimension names that start with underscores are reserved for internal use only.
         if (name.startsWith("_")) {

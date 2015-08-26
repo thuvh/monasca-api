@@ -18,6 +18,7 @@ import com.google.common.base.Strings;
 
 import monasca.api.resource.exception.Exceptions;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -81,12 +82,12 @@ public final class ValueMetaValidation {
       if (Strings.isNullOrEmpty(name)) {
         throw Exceptions.unprocessableEntity("valueMeta name cannot be empty");
       }
-      if (name.length() > VALUE_META_NAME_MAX_LENGTH) {
-        throw Exceptions.unprocessableEntity("valueMeta name %s must be %d characters or less",
+      if (name.getBytes(StandardCharsets.UTF_8).length > VALUE_META_NAME_MAX_LENGTH) {
+        throw Exceptions.unprocessableEntity("valueMeta name %s must be %d bytes or less",
             name, VALUE_META_NAME_MAX_LENGTH);
       }
-      if (value.length() > VALUE_META_VALUE_MAX_LENGTH) {
-        throw Exceptions.unprocessableEntity("valueMeta value %s must be %d characters or less",
+      if (value.getBytes(StandardCharsets.UTF_8).length > VALUE_META_VALUE_MAX_LENGTH) {
+        throw Exceptions.unprocessableEntity("valueMeta value %s must be %d bytes or less",
             value, VALUE_META_VALUE_MAX_LENGTH);
       }
     }

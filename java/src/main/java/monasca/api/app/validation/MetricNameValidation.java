@@ -13,12 +13,15 @@
  */
 package monasca.api.app.validation;
 
+import java.nio.charset.StandardCharsets;
 import java.util.regex.Pattern;
 
 import com.google.common.base.CharMatcher;
 import com.google.common.base.Strings;
+
 import monasca.api.app.command.CreateMetricCommand;
 import monasca.api.resource.exception.Exceptions;
+
 import com.sun.jersey.spi.container.WebApplication;
 
 /**
@@ -53,9 +56,9 @@ public class MetricNameValidation {
       }
     }
 
-    if (metricName.length() > CreateMetricCommand.MAX_NAME_LENGTH)
-      throw Exceptions.unprocessableEntity("Metric name %s must be %d characters or less",
-        metricName, CreateMetricCommand.MAX_NAME_LENGTH);
+    if (metricName.getBytes(StandardCharsets.UTF_8).length > CreateMetricCommand.MAX_NAME_LENGTH)
+      throw Exceptions.unprocessableEntity("Metric name %s must be %d bytes or less",
+          metricName, CreateMetricCommand.MAX_NAME_LENGTH);
     if (!VALID_METRIC_NAME.matcher(metricName).matches())
       throw Exceptions.unprocessableEntity("Metric name %s may not contain: > < = { } ( ) ' \" \\ , ; &",
         metricName);

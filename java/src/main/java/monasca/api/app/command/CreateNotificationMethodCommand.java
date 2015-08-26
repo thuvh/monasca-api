@@ -13,8 +13,11 @@
  */
 package monasca.api.app.command;
 
+import java.nio.charset.StandardCharsets;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
 import org.apache.commons.validator.routines.EmailValidator;
 import org.apache.commons.validator.routines.UrlValidator;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -23,13 +26,16 @@ import monasca.api.domain.model.notificationmethod.NotificationMethodType;
 import monasca.api.resource.exception.Exceptions;
 
 public class CreateNotificationMethodCommand {
+  public static final int MAX_ADDRESS_LENGTH = 512;
+  public static final int MAX_NAME_LENGTH = 250;
+
   @NotEmpty
-  @Size(min = 1, max = 250)
+  @Size(min = 1, max = MAX_NAME_LENGTH)
   public String name;
   @NotNull
   public NotificationMethodType type;
   @NotEmpty
-  @Size(min = 1, max = 512)
+  @Size(min = 1, max = MAX_ADDRESS_LENGTH)
   public String address;
 
   public CreateNotificationMethodCommand() {}
@@ -65,8 +71,14 @@ public class CreateNotificationMethodCommand {
   }
 
   public void validate() {
+    if (name.getBytes(StandardCharsets.UTF_8).length > MAX_NAME_LENGTH)
+      throw Exceptions.unprocessableEntity("Name %s must be %d bytes or less", name,
+          MAX_NAME_LENGTH);
     switch (type) {
-      case EMAIL : {
+      case EMAIL: {
+        if (address.getBytes(StandardCharsets.UTF_8).length > MAX_ADDRESS_LENGTH)
+          throw Exceptions.unprocessableEntity("Address %s cannot be longer than %d bytes", address,
+              MAX_ADDRESS_LENGTH);
         if (!EmailValidator.getInstance(true).isValid(address))
           throw Exceptions.unprocessableEntity("Address %s is not of correct format", address);
       }; break;
