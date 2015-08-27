@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da20952f_5363c91a",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-08-27T02:00:42Z",
+      "side": 1,
+      "message": "Sometimes you have blank lines after the try and sometimes you don\u0027t. Should be consistent. I would prefer no blank lines personally. I realize these are stubs so you don\u0027t have to fix this now",
+      "revId": "7f73997aee084329d6c5bfaf8f84e6b7a49a8aba",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
