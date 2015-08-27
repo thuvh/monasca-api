@@ -41,6 +41,8 @@ public class PersistUtils {
 
   @Inject
   public PersistUtils(ApiConfig config) {
+
+    // maxQueryLimit will be set to 0 if there is no config entry for maxQueryLimit.
     this.maxQueryLimit = config.maxQueryLimit;
   }
 
@@ -80,15 +82,23 @@ public class PersistUtils {
       throw new IllegalArgumentException(String.format("Found invalid Limit: '%1$s'. Limit must be a positive integer.", limit));
     }
 
-    if (limitInt <= this.maxQueryLimit) {
+    // maxQueryLimit set to 0 is interpreted as no upper bound on user specified limit.
+    if (this.maxQueryLimit > 0) {
 
-      return limitInt;
+      if (limitInt <= this.maxQueryLimit) {
+
+        return limitInt;
+
+      } else {
+
+        return this.maxQueryLimit;
+      }
 
     } else {
 
-      return this.maxQueryLimit;
-    }
+      return limitInt;
 
+    }
   }
 
   public Date parseTimestamp(String timestampString) throws ParseException {
