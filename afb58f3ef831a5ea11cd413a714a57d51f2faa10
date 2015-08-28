@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da20952f_8fc6a966",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/PersistUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-08-28T17:39:01Z",
+      "side": 1,
+      "message": "If you are trying to tell them to how to fix this, then it should be something like:\n\n\"Please set a valid value for maxQueryLimit in your config file\"",
+      "revId": "afb58f3ef831a5ea11cd413a714a57d51f2faa10",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
