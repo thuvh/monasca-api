@@ -31,19 +31,17 @@ class TestRepoMetricsInfluxDB(unittest.TestCase):
     def test_summat(self, influxdb_client_mock):
         mock_client = influxdb_client_mock.return_value
         mock_client.query.return_value.raw = {
-            "results": [{
-                "series": [
-                    {
-                        "name": "dummy.series",
-                        "values": [
-                            [1, 2, None],
-                            [2, 2.5, ''],
-                            [3, 4.0, '{}'],
-                            [4, 4, '{"key": "value"}']
-                        ]
-                    }
-                ]
-            }]
+            "series": [
+                {
+                    "name": "dummy.series",
+                    "values": [
+                        [1, 2, None],
+                        [2, 2.5, ''],
+                        [3, 4.0, '{}'],
+                        [4, 4, '{"key": "value"}']
+                    ]
+                }
+            ]
         }
 
         repo = influxdb_repo.MetricsRepository()

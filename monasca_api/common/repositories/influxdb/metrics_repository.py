@@ -173,11 +173,11 @@ class MetricsRepository(metrics_repository.MetricsRepository):
         if not series_names:
             return json_metric_list
 
-        if 'series' in series_names.raw['results'][0]:
+        if 'series' in series_names.raw:
 
             id = 0
 
-            for series in series_names.raw['results'][0]['series']:
+            for series in series_names.raw['series']:
 
                 for tag_values in series[u'values']:
 
@@ -205,11 +205,11 @@ class MetricsRepository(metrics_repository.MetricsRepository):
         if not series_names:
             return json_metric_list
 
-        if 'series' in series_names.raw['results'][0]:
+        if 'series' in series_names.raw:
 
             id = 0
 
-            for series in series_names.raw['results'][0]['series']:
+            for series in series_names.raw['series']:
                 id += 1
 
                 name = {u'id': str(id),
@@ -251,12 +251,7 @@ class MetricsRepository(metrics_repository.MetricsRepository):
             if not result:
                 return json_measurement_list
 
-            if 'error' in result.raw['results'][0]:
-                if (result.raw['results'][0]['error'].startswith(
-                        "measurement not found")):
-                    return json_measurement_list
-
-            for serie in result.raw['results'][0]['series']:
+            for serie in result.raw['series']:
 
                 if 'values' in serie:
 
@@ -279,8 +274,16 @@ class MetricsRepository(metrics_repository.MetricsRepository):
             return json_measurement_list
 
         except Exception as ex:
-            LOG.exception(ex)
-            raise exceptions.RepositoryException(ex)
+
+            if (ex.message.message.startswith("measurement not found")):
+
+                return json_measurement_list
+
+            else:
+
+                LOG.exception(ex)
+
+                raise exceptions.RepositoryException(ex)
 
     def list_metric_names(self, tenant_id, region, dimensions, offset, limit):
 
@@ -335,17 +338,11 @@ class MetricsRepository(metrics_repository.MetricsRepository):
             if not result:
                 return json_statistics_list
 
-            if 'error' in result.raw['results'][0]:
-                if (result.raw['results'][0]['error'].startswith(
-                        "measurement not found")):
-                    return json_statistics_list
-
-            for serie in result.raw['results'][0]['series']:
+            for serie in result.raw['series']:
 
                 if 'values' in serie:
                     columns = ([column.replace('mean', 'avg') for column in
-                                result.raw['results'][0]['series'][0][
-                                    'columns']])
+                                serie['columns']])
 
                     stats_list = []
                     for stats in serie['values']:
@@ -363,8 +360,16 @@ class MetricsRepository(metrics_repository.MetricsRepository):
             return json_statistics_list
 
         except Exception as ex:
-            LOG.exception(ex)
-            raise exceptions.RepositoryException(ex)
+
+            if (ex.message.message.startswith("measurement not found")):
+
+                return json_statistics_list
+
+            else:
+
+                LOG.exception(ex)
+
+                raise exceptions.RepositoryException(ex)
 
     def _build_offset_clause(self, offset, limit):
 
@@ -426,17 +431,12 @@ class MetricsRepository(metrics_repository.MetricsRepository):
 
             result = self.influxdb_client.query(query)
 
-            if 'error' in result.raw['results'][0]:
-                if (result.raw['results'][0]['error'].startswith(
-                        "measurement not found")):
-                    return json_alarm_history_list
-
             if not result:
                 return json_alarm_history_list
 
-            if 'values' in result.raw['results'][0]['series'][0]:
+            if 'values' in result.raw['series'][0]:
 
-                for point in result.raw['results'][0]['series'][0]['values']:
+                for point in result.raw['series'][0]['values']:
                     alarm_point = {u'timestamp': point[0],
                                    u'alarm_id': point[1],
                                    u'metrics': json.loads(point[2]),
@@ -461,5 +461,13 @@ class MetricsRepository(metrics_repository.MetricsRepository):
             return json_alarm_history_list
 
         except Exception as ex:
-            LOG.exception(ex)
-            raise exceptions.RepositoryException(ex)
+
+            if (ex.message.startswith("measurement not found")):
+
+                return json_alarm_history_list
+
+            else:
+
+                LOG.exception(ex)
+
+                raise exceptions.RepositoryException(ex)
