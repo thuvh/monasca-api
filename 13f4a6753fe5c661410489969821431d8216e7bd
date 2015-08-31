@@ -420,6 +420,24 @@
     },
     {
       "key": {
+        "uuid": "da20952f_f57ee168",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/sql/AlarmSqlRepoImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 16170
+      },
+      "writtenOn": "2015-08-31T10:07:08Z",
+      "side": 1,
+      "message": "It was fix for fetching with limit.\nThere was a bug a some time ago. The problem occurs when monasca-ui send request for list alarms with specified limit.\nThere was functionality which merged records what caused that list had less elemnts than limit. For example in db was 53 matching records, limit was set to 20, after merging we received 16 what caused that pagination in monasca-ui wasn\u0027t working properly.",
+      "parentUuid": "da20952f_9bac26ef",
+      "revId": "13f4a6753fe5c661410489969821431d8216e7bd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da20952f_fbcf62b1",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/sql/AlarmSqlRepoImpl.java",
         "patchSetId": 7
