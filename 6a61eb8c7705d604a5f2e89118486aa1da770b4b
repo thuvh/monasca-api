@@ -70,6 +70,24 @@
       "revId": "6a61eb8c7705d604a5f2e89118486aa1da770b4b",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da20952f_17e6d914",
+        "filename": "requirements.txt",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-08-31T22:20:23Z",
+      "side": 1,
+      "message": "Roland, I just worry about certain other environments having 1.5.0 or 1.7.0 or something like that.",
+      "parentUuid": "da20952f_de52be34",
+      "revId": "6a61eb8c7705d604a5f2e89118486aa1da770b4b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
