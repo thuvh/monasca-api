@@ -34,6 +34,24 @@
       "revId": "6a61eb8c7705d604a5f2e89118486aa1da770b4b",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da20952f_de52be34",
+        "filename": "requirements.txt",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-08-31T21:15:51Z",
+      "side": 1,
+      "message": "I think the right question is why is almost everything else \u003e\u003d? I think we\u0027ve discussed by \u003e\u003d is basically a time-bomb that is just waiting to go off at any random time and we\u0027ve been bitten by it occasionally. Personally, I think we should pin everything down with \u003d\u003d. \n\nThen when we want to move, explicitly bump the version and re-test right away.\n\nSo, pbr 1.6.0 is the latest version and it works.\n\nCraig, are you suggesting that we pin this to something earlier that 1.6.0, or use \u003e\u003d 1.6.0?",
+      "parentUuid": "da20952f_48b5947b",
+      "revId": "6a61eb8c7705d604a5f2e89118486aa1da770b4b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
