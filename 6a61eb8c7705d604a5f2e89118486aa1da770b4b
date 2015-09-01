@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "da20952f_db3935f4",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-09-01T20:09:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da20952f_60b89b2a",
+      "revId": "6a61eb8c7705d604a5f2e89118486aa1da770b4b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da20952f_a099d3c5",
         "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
         "patchSetId": 8
@@ -30,6 +48,24 @@
       "writtenOn": "2015-09-01T07:56:33Z",
       "side": 1,
       "message": "As above; this could raise AttributeError.",
+      "revId": "6a61eb8c7705d604a5f2e89118486aa1da770b4b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da20952f_fb3e79d9",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-09-01T20:09:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da20952f_a099d3c5",
       "revId": "6a61eb8c7705d604a5f2e89118486aa1da770b4b",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -137,6 +173,24 @@
       "side": 1,
       "message": "From http://specs.openstack.org/openstack/openstack-specs/specs/requirements-management.html I gather that the idea is that the requirements are sychronised with the openstack/requirements project (https://github.com/openstack/requirements). In this case, that would mean the pbr requirement would be\npbr\u003e\u003d1.6,\u003c2.0",
       "parentUuid": "da20952f_01a777aa",
+      "revId": "6a61eb8c7705d604a5f2e89118486aa1da770b4b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da20952f_bb5a414f",
+        "filename": "requirements.txt",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-09-01T20:09:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da20952f_a0447349",
       "revId": "6a61eb8c7705d604a5f2e89118486aa1da770b4b",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
