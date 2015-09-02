@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da20952f_c3037075",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 15799
+      },
+      "writtenOn": "2015-09-02T09:28:22Z",
+      "side": 1,
+      "message": "Minor syntax nitpick; the brackets around the if clause are superfluous. (Also line 397)",
+      "revId": "4bcdce9768595b201acea74004d5526aa7376a2e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
