@@ -65,7 +65,7 @@ public class NotificationMethodSqlRepoImpl
       }
 
       final String id = UUID.randomUUID().toString();
-      final DateTime now = DateTime.now();
+      final DateTime now = this.getUTCNow();
       final NotificationMethodDb db = new NotificationMethodDb(
           id,
           tenantId,
