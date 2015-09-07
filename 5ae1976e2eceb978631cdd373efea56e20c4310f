@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da20952f_fea542a1",
+        "filename": "java/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2015-09-07T07:44:24Z",
+      "side": 1,
+      "message": "Was it intended to update mysql as well?",
+      "revId": "5ae1976e2eceb978631cdd373efea56e20c4310f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
