@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -55,6 +56,18 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
       + "%s "
       + "where def.id = defdims.definition_id and def.tenant_id = :tenantId "
       + "%s "
+      + "order by defdims.id ASC";
+
+  private static final String FIND_DEFDIM_IDS_WITH_DIMENSIONS =
+      "select defdims.id, def.name "
+      + "from MonMetrics.Definitions def, MonMetrics.DefinitionDimensions defdims "
+      + "where def.id = defdims.definition_id and def.tenant_id = :tenantId "
+      + "%s "                     // metric name here
+      + "and defdims.dimension_set_id in  "
+      + " (select dimension_set_id from MonMetrics.Dimensions "
+      + " where %s "              // dimension list here
+      + " group by dimension_set_id "
+      + " having count(*) = %s) " // num dimensions here
       + "order by defdims.id ASC";
 
   private static final String TABLE_TO_JOIN_DIMENSIONS_ON = "defdims";
@@ -88,7 +101,13 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
 
     try (Handle h = db.open()) {
 
-      Map<byte[], Statistics> byteMap = findDefIds(h, tenantId, name, dimensions);
+      Map<byte[], Statistics> byteMap = null;
+
+      if (dimensions != null && dimensions.size() > 0) {
+          byteMap = findDefIdsWithDims(h, tenantId, name, dimensions);
+      } else {
+          byteMap = findDefIds(h, tenantId, name, dimensions);
+      }
 
       if (byteMap.isEmpty()) {
 
@@ -187,6 +206,86 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
     }
     return statisticsRow;
 
+  }
+
+  private Map<byte[], Statistics> findDefIdsWithDims(
+      Handle h,
+      String tenantId,
+      String name,
+      Map<String, String> dimensions) {
+
+    List<byte[]> bytes = new ArrayList<>();
+
+    StringBuilder nameSb = new StringBuilder();
+
+    if (name != null && !name.isEmpty()) {
+      nameSb.append(" and def.name = :name");
+    }
+
+    StringBuilder dimSb = new StringBuilder();
+    int numDims = dimensions.size();
+    for (int i = 0; i < numDims; i++) {
+      dimSb.append("name = :dname")
+           .append(i)
+           .append(" and value = :dvalue")
+           .append(i);
+      if (i != (numDims - 1)) {
+         dimSb.append(" or ");
+      }
+    }
+
+    String sql =
+        String
+            .format(FIND_DEFDIM_IDS_WITH_DIMENSIONS,
+                    nameSb,
+                    dimSb,
+                    numDims);
+
+    Query<Map<String, Object>> query =
+        h.createQuery(sql)
+            .bind("tenantId", tenantId);
+
+    if (name != null && !name.isEmpty()) {
+      logger.debug("binding name: {}", name);
+      query.bind("name", name);
+    }
+
+    DimensionQueries.bindDimensionsToQuery(query, dimensions);
+
+    List<Map<String, Object>> rows = query.list();
+
+    Map<byte[], Statistics> byteIdMap = new HashMap<>();
+    byte[] currentDefDimId = null;
+    Map<String, String> dims = null;
+
+    for (Map<String, Object> row : rows) {
+
+      byte[] defDimId = (byte[]) row.get("id");
+      String defName = (String) row.get("name");
+
+      if (defDimId == null || !Arrays.equals(currentDefDimId, defDimId)) {
+        currentDefDimId = defDimId;
+        dims = new HashMap<>();
+        Statistics statistics = new Statistics();
+        statistics.setName(defName);
+        statistics.setDimensions(dims);
+        byteIdMap.put(currentDefDimId, statistics);
+
+        //
+        // Load all the dimensions used in the above query in the
+        // resulting statistics object, since all of the dimensions
+        // were accounted for in the query (and the query doesn't
+        // return the dimension name/value (only id).
+        //
+        for (Iterator<Map.Entry<String, String>> it = dimensions.entrySet().iterator(); it.hasNext(); ) {
+          Map.Entry<String, String> entry = it.next();
+          dims.put(entry.getKey(), entry.getValue());
+        }
+      }
+    }
+
+    bytes.add(currentDefDimId);
+    return byteIdMap;
   }
 
   private Map<byte[], Statistics> findDefIds(
