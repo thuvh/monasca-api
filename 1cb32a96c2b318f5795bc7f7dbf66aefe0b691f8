@@ -16,6 +16,24 @@
       "revId": "1cb32a96c2b318f5795bc7f7dbf66aefe0b691f8",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da20952f_d510e602",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmMySqlRepoImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-09-09T21:11:42Z",
+      "side": 1,
+      "message": "I don\u0027t know. This is existing code and I don\u0027t want to make lots of changes that are not related to fixing this bug.",
+      "parentUuid": "da20952f_d5f466f2",
+      "revId": "1cb32a96c2b318f5795bc7f7dbf66aefe0b691f8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
