@@ -16,6 +16,24 @@
       "revId": "5ae1976e2eceb978631cdd373efea56e20c4310f",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da20952f_41a3cab1",
+        "filename": "java/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2015-09-09T14:15:33Z",
+      "side": 1,
+      "message": "it was since we were going through and adding the drizzle driver we decided to upgrade the mysql driver as well. I did a local deploy with it and everything was working correctly",
+      "parentUuid": "da20952f_fea542a1",
+      "revId": "5ae1976e2eceb978631cdd373efea56e20c4310f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
