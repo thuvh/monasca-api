@@ -1,0 +1,9 @@
+Verified+2: Jenkins
+Code-Review+2: Roland Hochmuth <roland.hochmuth@hp.com>
+Workflow+1: Roland Hochmuth <roland.hochmuth@hp.com>
+Code-Review+1: Michael Hoppal <michael.jam.hoppal@hp.com>
+Submitted-by: Jenkins
+Submitted-at: Mon, 14 Sep 2015 22:36:27 +0000
+Reviewed-on: https://review.openstack.org/221943
+Project: stackforge/monasca-api
+Branch: refs/heads/master
