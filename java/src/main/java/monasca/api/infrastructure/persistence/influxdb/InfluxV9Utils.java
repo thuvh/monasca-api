@@ -84,12 +84,6 @@ public class InfluxV9Utils {
     return sb.toString();
   }
 
-  public String groupByPart() {
-
-    return " group by *";
-
-  }
-
   public String namePart(String name, boolean isRequired) {
 
     if (isRequired) {
