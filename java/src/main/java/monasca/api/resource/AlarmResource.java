@@ -135,9 +135,10 @@ public class AlarmResource {
         Strings.isNullOrEmpty(dimensionsStr) ? null : Validation
             .parseAndValidateDimensions(dimensionsStr);
 
-    return Links.paginate(this.persistUtils.getLimit(limit),
+    final int numericLimit = this.persistUtils.getLimit(limit);
+    return Links.paginate(numericLimit,
                           stateHistoryRepo.find(tenantId, dimensions, startTime,
-                                                endTime, offset, this.persistUtils.getLimit(limit)), uriInfo);
+                                                endTime, offset, numericLimit), uriInfo);
   }
 
   @GET
