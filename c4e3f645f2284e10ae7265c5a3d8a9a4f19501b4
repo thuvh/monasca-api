@@ -16,6 +16,24 @@
       "revId": "c4e3f645f2284e10ae7265c5a3d8a9a4f19501b4",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba15a1d1_1aec00f2",
+        "filename": "devstack/vars/zookeeper",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-09-23T14:24:59Z",
+      "side": 1,
+      "message": "Yea, that was a mistake. This entire file has now been deleted.",
+      "parentUuid": "ba15a1d1_574a5127",
+      "revId": "c4e3f645f2284e10ae7265c5a3d8a9a4f19501b4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
