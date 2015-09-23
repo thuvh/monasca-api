@@ -49,7 +49,7 @@ class TestAlarmsStateHistory(base.BaseMonascaTest):
             elements = response_body['elements']
             if len(elements) >= NUM_ALARM_DEFINITIONS:
                 break
-            time.sleep(1)
+            time.sleep(5)
 
     @test.attr(type="gate")
     def test_list_alarms_state_history(self):
@@ -140,10 +140,11 @@ class TestAlarmsStateHistory(base.BaseMonascaTest):
         elements = response_body['elements']
         number_of_alarms = len(elements)
         if number_of_alarms >= NUM_ALARM_DEFINITIONS:
-            first_element = elements[0]
-            last_element = elements[-1]
+            orig_elements = elements[:]
+            first_element = orig_elements[0]
+            second_element = orig_elements[1]
             first_element_id = first_element['id']
-            last_element_id = last_element['id']
+            second_element_id = second_element['id']
 
             for limit in xrange(1, NUM_ALARM_DEFINITIONS + 1):
                 query_parms = '?limit=' + str(limit) + \
@@ -153,10 +154,19 @@ class TestAlarmsStateHistory(base.BaseMonascaTest):
                 elements = response_body['elements']
                 element_new = elements[0]
                 self.assertEqual(200, resp.status)
-                self.assertEqual(element_new, first_element)
-                self.assertEqual(limit, len(elements))
-                id_new = element_new['id']
-                self.assertEqual(id_new, first_element_id)
+
+                # first_element is actually member of "previous" page
+                self.assertNotEqual(element_new, first_element)
+                self.assertEqual(element_new, second_element)
+                # limit as always > because first elements is excluded
+                # due to offset condition in API
+                self.assertTrue(limit >= len(elements))
+                if len(elements) > 0:
+                    print 'DDDDDDD'
+                    # check only limit allowed some elements to be returned
+                    id_new = element_new['id']
+                    self.assertNotEqual(id_new, first_element_id)
+                    self.assertEqual(id_new, second_element_id)
         else:
                 error_msg = ("Failed "
                              "test_list_alarms_state_history_with_offset "
@@ -207,22 +217,78 @@ class TestAlarmsStateHistory(base.BaseMonascaTest):
         if elements:
             element = elements[0]
             alarm_id = element['alarm_id']
-            query_parms = '?limit=1'
-            resp, response_body = self.monasca_client.\
-                list_alarm_state_history(alarm_id, query_parms)
+            query_params = '?limit=1'
+            resp, response_body = (self.monasca_client
+                                   .list_alarm_state_history(alarm_id,
+                                                             query_params))
             elements = response_body['elements']
             self.assertEqual(200, resp.status)
             self.assertEqual(1, len(elements))
+            self.assertEqual(element, elements[0])
 
-            id = element['id']
-            query_parms = '?limit=1&offset=' + str(id)
-            resp, response_body = self.monasca_client.\
-                list_alarm_state_history(alarm_id, query_parms)
+            element_id = element['id']
+            query_params = '?limit=1&offset=' + str(element_id)
+            resp, response_body = (self.monasca_client
+                                   .list_alarm_state_history(alarm_id,
+                                                             query_params))
             elements_new = response_body['elements']
             self.assertEqual(200, resp.status)
-            self.assertEqual(1, len(elements_new))
-            self.assertEqual(element, elements_new[0])
+            self.assertEqual(0, len(elements_new))
         else:
             error_msg = "Failed test_list_alarm_state_history_with_offset" \
                         "_limit: at least one alarms state history is needed."
+            self.fail(error_msg)
+
+    @test.attr(type="gate")
+    def test_alarm_state_history_paging(self):
+        resp, response_body = self.monasca_client.list_alarms_state_history()
+        self.assertEqual(200, resp.status)
+        elements = response_body['elements']
+        if elements:
+            first_element = elements[0]
+            first_element_id = first_element['id']
+            len_of_elements = len(elements)
+            limit = len_of_elements + 1
+
+            # verify if the same result with limit as without
+            params = '?limit=%s' % str(limit)
+            resp, response_body = (self.monasca_client
+                                   .list_alarms_state_history(params))
+            elements = response_body['elements']
+            self.assertEqual(200, resp.status)
+            self.assertEqual(len_of_elements, len(elements))
+
+            # verify paging for all ids with next limits
+            el_ids = [tmp['id'] for tmp in elements]  # collects ids for paging
+            for el_id in el_ids:
+                for limit in xrange(1, len_of_elements + 1):
+                    # test goes through each el_id with each limit to check
+                    # if paging works correctly
+
+                    params = '?limit=%s&offset=%s' % (str(limit), str(el_id))
+                    resp, response_body = (self.monasca_client
+                                           .list_alarms_state_history(params))
+                    elements = response_body['elements']
+                    self.assertEqual(200, resp.status)
+
+                    # only check if element is not penultimate
+                    if el_ids.index(el_id) != len(el_ids) - 1:
+                        # should have elements, less than limit
+                        self.assertTrue(limit >= len(elements))
+
+                        first_element = elements[0]
+                        first_element_id = first_element['id']
+                        e_first_element_id = el_ids[el_ids.index(el_id) + 1]
+                        # element in limit should be missing
+                        # i.e. it is the last element on previous page
+                        self.assertNotEqual(el_id, first_element['id'])
+                        self.assertEqual(e_first_element_id,
+                                         first_element_id)
+                    else:
+                        # should be empty page for last el_id
+                        self.assertTrue(len(elements) == 0)
+
+        else:
+            error_msg = "Failed test_alarm_state_history_paging" \
+                        ", at least one alarms state history is needed."
             self.fail(error_msg)
