@@ -68,7 +68,7 @@ class TestAlarmsStateHistory(base.BaseMonascaTest):
             elements = response_body['elements']
             if len(elements) >= 3:
                 break
-            time.sleep(1)
+            time.sleep(5)
 
     @test.attr(type="gate")
     def test_list_alarms_state_history(self):
@@ -160,7 +160,7 @@ class TestAlarmsStateHistory(base.BaseMonascaTest):
         number_of_alarms = len(elements)
         if number_of_alarms >= 3:
             first_element = elements[0]
-            last_element = elements[2]
+            last_element = elements[-1]
             first_element_id = first_element['id']
             last_element_id = last_element['id']
 
