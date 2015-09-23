@@ -51,6 +51,8 @@ function install_monasca {
 
     install_kafka
 
+    install_influxdb
+
 }
 
 function post_config_monasca {
@@ -62,14 +64,23 @@ function extra_monasca {
 }
 
 function unstack_monasca {
-:
+
+    sudo stop kafka
+
+    sudo stop zookeeper
+
+    sudo /etc/init.d/influxdb stop
 }
 
 function clean_monasca {
 
+    unstack_monasca
+
     clean_kafka
 
     clean_zookeeper
+
+    clean_influxdb
 
 }
 
@@ -96,8 +107,6 @@ function install_zookeeper {
 
 function clean_zookeeper {
 
-    sudo stop zookeeper
-
     clean_openjdk-7
 
     sudo apt-get -y purge zookeeperd
@@ -116,8 +125,6 @@ function install_openjdk-7 {
 function clean_openjdk-7 {
 
     sudo apt-get -y purge openjdk-7-jre-headless
-
-    sudo apt-get -y autoremove
 
 }
 
@@ -177,8 +184,6 @@ function install_kafka {
 
 function clean_kafka {
 
-    sudo stop kafka
-
     sudo rm -rf /var/kafka
 
     sudo rm -rf /var/log/kafka
@@ -201,16 +206,46 @@ function clean_kafka {
 
 }
 
+function install_influxdb {
+
+    sudo mkdir -p /opt/monasca_download_dir
+
+    sudo curl http://s3.amazonaws.com/influxdb/influxdb_0.9.1_amd64.deb -o /opt/monasca_download_dir/influxdb_0.9.1_amd64.deb
+
+    sudo dpkg --skip-same-version -i /opt/monasca_download_dir/influxdb_0.9.1_amd64.deb
+
+    sudo cp -f /opt/stack/monasca/devstack/files/influxdb/influxdb.conf /etc/opt/influxdb/influxdb.conf
+
+    sudo cp -f /opt/stack/monasca/devstack/files/influxdb/influxdb /etc/default/influxdb
+
+    sudo /etc/init.d/influxdb start
+}
+
+function clean_influxdb {
+
+    sudo rm -f /etc/default/influxdb
+
+    sudo rm -f /etc/opt/influxdb/influxdb.conf
+
+    sudo dpkg --purge influxdb
+
+    sudo rm -rf /opt/influxdb
+
+    sudo rm -f  /opt/monasca_download_dir/influxdb_0.9.1_amd64.deb
+
+    sudo rm -rf /opt/monasca_download_dir
+}
+
 # Allows this script to be called directly outside of
-# the devstack infrastructure code.
-if [[ $(type -t) != 'function' ]]; then
-
-    function is_service_enabled {
-
-        return 0;
-
-     }
-fi
+# the devstack infrastructure code. Uncomment to use.
+#if [[ $(type -t) != 'function' ]]; then
+#
+#    function is_service_enabled {
+#
+#        return 0;
+#
+#     }
+#fi
 
 # check for service enabled
 if is_service_enabled monasca; then
