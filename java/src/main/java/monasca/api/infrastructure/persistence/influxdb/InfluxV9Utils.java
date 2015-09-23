@@ -13,9 +13,7 @@
  */
 package monasca.api.infrastructure.persistence.influxdb;
 
-import com.google.inject.Inject;
 
-import org.apache.commons.lang.StringUtils;
 import org.joda.time.DateTime;
 import org.joda.time.format.ISODateTimeFormat;
 
@@ -25,19 +23,14 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import monasca.api.infrastructure.persistence.PersistUtils;
+import org.apache.commons.lang3.StringUtils;
+
+import monasca.common.util.Conversions;
 
 public class InfluxV9Utils {
-
-  private final PersistUtils persistUtils;
-
   private static final Pattern sqlUnsafePattern = Pattern.compile("^.*('|;|\")+.*$");
 
-  @Inject
-  public InfluxV9Utils(PersistUtils persistUtils) {
-
-    this.persistUtils = persistUtils;
-
+  public InfluxV9Utils() {
   }
 
   public String sanitize(final String taintedString) {
@@ -140,8 +133,18 @@ public class InfluxV9Utils {
 
   public String timeOffsetPart(String offset) {
 
-    if (offset == null || offset.isEmpty()) {
-      return "";
+    if (StringUtils.isEmpty(offset)) {
+      return StringUtils.EMPTY;
+    }
+    if(!"0".equals(offset)){
+      Object convertible;
+      try {
+        convertible = Long.valueOf(offset);
+      } catch (IllegalArgumentException exp) {
+        // not a numeric value
+        convertible = offset;
+      }
+      offset = Conversions.variantToDateTime(convertible).toString(ISODateTimeFormat.dateTime());
     }
 
     return String.format(" and time > '%1$s'", offset);
