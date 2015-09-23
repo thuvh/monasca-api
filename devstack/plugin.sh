@@ -51,6 +51,8 @@ function install_monasca {
 
     install_kafka
 
+    install_influxdb
+
 }
 
 function post_config_monasca {
@@ -70,6 +72,8 @@ function clean_monasca {
     clean_kafka
 
     clean_zookeeper
+
+    clean_influxdb
 
 }
 
@@ -199,6 +203,38 @@ function clean_kafka {
 
     clean_openjdk-7
 
+}
+
+function install_influxdb {
+
+    sudo mkdir -p /opt/monasca_download_dir
+
+    sudo curl http://s3.amazonaws.com/influxdb/influxdb_0.9.1_amd64.deb -o /opt/monasca_download_dir/influxdb_0.9.1_amd64.deb
+
+    sudo dpkg --skip-same-version -i /opt/monasca_download_dir/influxdb_0.9.1_amd64.deb
+
+    sudo cp -f /opt/stack/monasca/devstack/files/influxdb/influxdb.conf /etc/opt/influxdb/influxdb.conf
+
+    sudo cp -f /opt/stack/monasca/devstack/files/influxdb/influxdb /etc/default/influxdb
+
+    sudo /etc/init.d/influxdb start
+}
+
+function clean_influxdb {
+
+    sudo /etc/init.d/influxdb stop
+
+    sudo rm -f /etc/default/influxdb
+
+    sudo rm -f /etc/opt/influxdb/influxdb.conf
+
+    sudo dpkg --purge influxdb
+
+    sudo rm -rf /opt/influxdb
+
+    sudo rm -f  /opt/monasca_download_dir/influxdb_0.9.1_amd64.deb
+
+    sudo rm -rf /opt/monasca_download_dir
 }
 
 # Allows this script to be called directly outside of
