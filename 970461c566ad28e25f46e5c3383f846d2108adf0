@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a1a9d01_3099556f",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/hibernate/AlarmSqlRepositoryImplTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2015-09-25T14:02:15Z",
+      "side": 0,
+      "message": "Why did you remove these?",
+      "revId": "970461c566ad28e25f46e5c3383f846d2108adf0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
