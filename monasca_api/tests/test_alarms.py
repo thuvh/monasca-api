@@ -19,6 +19,7 @@ import json
 import falcon.testing
 import fixtures
 
+from monasca_api.v2.reference import alarm_definitions
 from monasca_api.v2.reference import alarms
 
 import oslo_config
@@ -26,6 +27,8 @@ import oslo_config.fixture
 import oslotest.base as oslotest
 
 CONF = oslo_config.cfg.CONF
+
+TENANT_ID = u"fedcba9876543210fedcba9876543210"
 
 ALARM_HISTORY = OrderedDict((
     # Only present in data returned from InfluxDB:
@@ -63,7 +66,7 @@ ALARM_HISTORY = OrderedDict((
         u"sub_alarm_state": u"ALARM",
         u"current_values": [50.1],
     }]),
-    (u"tenant_id", u"fedcba9876543210fedcba9876543210"),
+    (u"tenant_id", TENANT_ID),
 ))
 
 
@@ -82,6 +85,10 @@ class MonascaApiConfigFixture(oslo_config.fixture.Config):
         self.conf.set_override(
             'alarms_driver',
             'monasca_api.common.repositories.mysql.alarms_repository:AlarmsRepository',
+            group='repositories')
+        self.conf.set_override(
+            'alarm_definitions_driver',
+            'monasca_api.common.repositories.alarm_definitions_repository:AlarmDefinitionsRepository',
             group='repositories')
         self.conf.set_override(
             'metrics_driver',
@@ -114,18 +121,22 @@ class InfluxClientAlarmHistoryResponseFixture(fixtures.MockPatch):
         }
 
 
-class TestAlarmsStateHistory(falcon.testing.TestBase, oslotest.BaseTestCase):
+class AlarmTestBase(falcon.testing.TestBase, oslotest.BaseTestCase):
 
-    def __init__(self, *args, **kwargs):
-        super(TestAlarmsStateHistory, self).__init__(*args, **kwargs)
+    def setUp(self):
+        super(AlarmTestBase, self).setUp()
+
+        self.useFixture(fixtures.MockPatch(
+            'monasca_api.common.messaging.kafka_publisher.KafkaPublisher'))
+
+        self.CONF = self.useFixture(MonascaApiConfigFixture(CONF)).conf
+
+
+class TestAlarmsStateHistory(AlarmTestBase):
 
     def setUp(self):
         super(TestAlarmsStateHistory, self).setUp()
 
-        self.CONF = self.useFixture(MonascaApiConfigFixture(CONF)).conf
-
-        self.useFixture(fixtures.MockPatch(
-            'monasca_api.common.messaging.kafka_publisher.KafkaPublisher'))
         self.useFixture(InfluxClientAlarmHistoryResponseFixture(
             'monasca_api.common.repositories.influxdb.metrics_repository.client.InfluxDBClient'))
         self.useFixture(fixtures.MockPatch(
@@ -154,3 +165,62 @@ class TestAlarmsStateHistory(falcon.testing.TestBase, oslotest.BaseTestCase):
         response_data = json.loads(response[0])
         response_elements = response_data["elements"]
         self.assertEqual(response_elements, [expected_elements])
+
+
+class TestAlarmDefinitionList(AlarmTestBase):
+    def setUp(self):
+        super(TestAlarmDefinitionList, self).setUp()
+
+        self.alarm_def_repo_mock = self.useFixture(fixtures.MockPatch(
+            'monasca_api.common.repositories.alarm_definitions_repository.AlarmDefinitionsRepository'
+        )).mock
+
+        self.alarm_definition_resource = alarm_definitions.AlarmDefinitions()
+
+        self.api.add_route("/v2.0/alarm-definitions/{alarm_definition_id}",
+                           self.alarm_definition_resource)
+
+    def test_alarm_description_none(self):
+
+        self.alarm_def_repo_mock.return_value.get_alarm_definition.return_value = {
+            'alarm_actions': None,
+            'ok_actions': None,
+            'description': None,
+            'match_by': u'hostname',
+            'name': u'Test Alarm',
+            'actions_enabled': 1,
+            'undetermined_actions': None,
+            'expression': u'max(test.metric{hostname=host}) gte 1',
+            'id': u'00000001-0001-0001-0001-000000000001',
+            'severity': u'LOW'
+        }
+
+        expected_data = {
+            u'alarm_actions': [],
+            u'ok_actions': [],
+            u'description': None,
+            u'match_by': [u'hostname'],
+            u'name': u'Test Alarm',
+            u'actions_enabled': True,
+            u'undetermined_actions': [],
+            u'expression': u'max(test.metric{hostname=host}) gte 1',
+            u'id': u'00000001-0001-0001-0001-000000000001',
+            u'severity': u'LOW',
+        }
+
+        response = self.simulate_request(
+            '/v2.0/alarm-definitions/0100',
+            headers={
+                'X-Roles': 'admin',
+                'X-Tenant-Id': TENANT_ID,
+            })
+
+        self.assertEqual(self.srmock.status, falcon.HTTP_200)
+
+        self.assertEqual(len(response), 1)
+
+        response_data = json.loads(response[0])
+
+        del response_data[u"links"]
+
+        self.assertEqual(response_data, expected_data)
