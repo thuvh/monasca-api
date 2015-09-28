@@ -105,6 +105,24 @@
     },
     {
       "key": {
+        "uuid": "9a1a9d01_53dce511",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/hibernate/AlarmDefinitionSqlRepositoryImplTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2015-09-28T07:22:21Z",
+      "side": 1,
+      "message": "It was my original idea. But when I look again at it, it would not make the code cleaner. Leave it as it is.",
+      "parentUuid": "9a1a9d01_cd6940c0",
+      "revId": "4ccdad474385539d4553e484f229e708ff53f3d3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a1a9d01_d0b6d93c",
         "filename": "java/src/test/java/monasca/api/infrastructure/persistence/hibernate/AlarmDefinitionSqlRepositoryImplTest.java",
         "patchSetId": 4
