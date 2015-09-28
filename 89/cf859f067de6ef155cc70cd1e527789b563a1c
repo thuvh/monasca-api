@@ -1,0 +1,8 @@
+Verified+2: Jenkins
+Code-Review+2: Witold Bedyk <witold.bedyk@est.fujitsu.com>
+Workflow+1: Witold Bedyk <witold.bedyk@est.fujitsu.com>
+Submitted-by: Jenkins
+Submitted-at: Mon, 28 Sep 2015 13:54:44 +0000
+Reviewed-on: https://review.openstack.org/221164
+Project: stackforge/monasca-api
+Branch: refs/heads/master
