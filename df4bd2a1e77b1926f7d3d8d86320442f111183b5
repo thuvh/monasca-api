@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a1a9d01_6a924359",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/hibernate/AlarmHibernateUtilsTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2015-09-28T11:26:46Z",
+      "side": 1,
+      "message": "protected",
+      "revId": "df4bd2a1e77b1926f7d3d8d86320442f111183b5",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a1a9d01_aa861b11",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/hibernate/AlarmSqlRepositoryImplTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2015-09-28T11:26:46Z",
+      "side": 1,
+      "message": "protected",
+      "revId": "df4bd2a1e77b1926f7d3d8d86320442f111183b5",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a1a9d01_6a79e32e",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/hibernate/NotificationMethodSqlRepositoryImplTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2015-09-28T11:26:46Z",
+      "side": 1,
+      "message": "protected",
+      "revId": "df4bd2a1e77b1926f7d3d8d86320442f111183b5",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
