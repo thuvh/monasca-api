@@ -40,6 +40,9 @@
 XTRACE=$(set +o | grep xtrace)
 set -o xtrace
 
+ERREXIT=$(set +o | grep errexit)
+set +e
+
 
 function pre_install_monasca {
 :
@@ -67,6 +70,10 @@ function install_monasca {
 
     install_monasca_api
 
+    install_monasca_persister
+
+    install_monasca_notification
+
 }
 
 function post_config_monasca {
@@ -79,18 +86,26 @@ function extra_monasca {
 
 function unstack_monasca {
 
-    sudo stop monasca-api
+    sudo stop monasca-notification || true
 
-    sudo stop kafka
+    sudo stop monasca-persister || true
 
-    sudo stop zookeeper
+    sudo stop monasca-api || true
 
-    sudo /etc/init.d/influxdb stop
+    sudo stop kafka || true
+
+    sudo stop zookeeper || true
+
+    sudo /etc/init.d/influxdb stop || true
 }
 
 function clean_monasca {
 
     unstack_monasca
+
+    clean_monasca_notification
+
+    clean_monasca_persister
 
     clean_monasca_api
 
@@ -109,6 +124,8 @@ function clean_monasca {
     clean_zookeeper
 
     clean_openjdk_7_jdk
+
+    sudo rm -rf /opt/monasca
 
 
 }
@@ -129,7 +146,7 @@ function install_zookeeper {
 
     sudo cp /opt/stack/monasca/devstack/files/zookeeper/log4j.properties /etc/zookeeper/conf/log4j.properties
 
-    sudo restart zookeeper
+    sudo start zookeeper || sudo restart zookeeper
 
 }
 
@@ -151,9 +168,9 @@ function install_kafka {
 
     sudo curl http://apache.mirrors.tds.net/kafka/0.8.1.1/kafka_2.9.2-0.8.1.1.tgz -o /root/kafka_2.9.2-0.8.1.1.tgz
 
-    sudo groupadd --system kafka
+    sudo groupadd --system kafka || true
 
-    sudo useradd --system -g kafka kafka
+    sudo useradd --system -g kafka kafka || true
 
     sudo tar -xzf /root/kafka_2.9.2-0.8.1.1.tgz -C /opt
 
@@ -195,7 +212,7 @@ function install_kafka {
 
     sudo chmod 644 /etc/kafka/server.properties
 
-    sudo start kafka
+    sudo start kafka || sudo restart kafka
 
 }
 
@@ -233,7 +250,7 @@ function install_influxdb {
 
     sudo cp -f /opt/stack/monasca/devstack/files/influxdb/influxdb /etc/default/influxdb
 
-    sudo /etc/init.d/influxdb start
+    sudo /etc/init.d/influxdb start || sudo /etc/init.d/influxdb restart
 
     echo "sleep for 5 seconds to let influxdb elect a leader"
 
@@ -371,7 +388,11 @@ function install_git {
 
 function install_monasca_common {
 
-    sudo git clone https://github.com/stackforge/monasca-common.git /opt/stack/monasca-common
+    if [[ ! -d /opt/stack/monasca-common ]]; then
+
+        sudo git clone https://github.com/stackforge/monasca-common.git /opt/stack/monasca-common
+
+    fi
 
     (cd /opt/stack/monasca-common ; sudo mvn clean install -DskipTests)
 
@@ -391,11 +412,15 @@ function install_monasca_api {
 
     sudo cp -f /opt/stack/monasca/java/target/monasca-api-1.1.0-SNAPSHOT-shaded.jar /opt/monasca/monasca-api.jar
 
-    sudo groupadd --system monasca
+    sudo groupadd --system monasca || true
 
-    sudo useradd --system -g monasca mon-api
+    sudo useradd --system -g monasca mon-api || true
 
     sudo cp -f /opt/stack/monasca/devstack/files/monasca-api/monasca-api.conf /etc/init/monasca-api.conf
+
+    sudo chown root:root /etc/init/monasca-api.conf
+
+    sudo chmod 0744 /etc/init/monasca-api.conf
 
     sudo mkdir -p /var/log/monasca
 
@@ -413,9 +438,15 @@ function install_monasca_api {
 
     sudo chown root:monasca /etc/monasca
 
+    sudo chmod 0775 /etc/monasca
+
     sudo cp -f /opt/stack/monasca/devstack/files/monasca-api/api-config.yml /etc/monasca/api-config.yml
 
-    sudo start monasca-api
+    sudo chown mon-api:root /etc/monasca/api-config.yml
+
+    sudo chmod 0640 /etc/monasca/api-config.yml
+
+    sudo start monasca-api || sudo restart monasca-api
 
 }
 
@@ -430,18 +461,145 @@ function clean_monasca_api {
     sudo rm /etc/init/monasca-api.conf
 
     sudo rm /opt/monasca/monasca-api.jar
+
+    sudo userdel mon-api
 }
 
 function install_monasca_persister {
-:
+
+    sudo mkdir -p /opt/monasca
+
+    if [[ ! -d /opt/stack/monasca-persister ]]; then
+
+        sudo git clone https://github.com/stackforge/monasca-persister /opt/stack/monasca-persister
+
+    fi
+
+    (cd /opt/stack/monasca-persister/java ; sudo mvn clean package -DskipTests)
+
+    sudo cp -f /opt/stack/monasca-persister/java/target/monasca-persister-1.1.0-SNAPSHOT-shaded.jar /opt/monasca/monasca-persister.jar
+
+    sudo groupadd --system monasca || true
+
+    sudo useradd --system -g monasca mon-persister || true
+
+    sudo mkdir -p /var/log/monasca
+
+    sudo chown root:monasca /var/log/monasca
+
+    sudo chmod 0755 /var/log/monasca
+
+    sudo mkdir -p /var/log/monasca/persister
+
+    sudo chown root:monasca /var/log/monasca/persister
+
+    sudo chmod 0755 /var/log/monasca/persister
+
+    sudo mkdir -p /etc/monasca
+
+    sudo chown root:monasca /etc/monasca
+
+    sudo cp -f /opt/stack/monasca/devstack/files/monasca-persister/persister-config.yml /etc/monasca/persister-config.yml
+
+    sudo chown mon-persister:monasca /etc/monasca/persister-config.yml
+
+    sudo chmod 0640 /etc/monasca/persister-config.yml
+
+    sudo cp -f /opt/stack/monasca/devstack/files/monasca-persister/monasca-persister.conf /etc/init/monasca-persister.conf
+
+    sudo chown root:root /etc/init/monasca-persister.conf
+
+    sudo chmod 0744 /etc/init/monasca-persister.conf
+
+    sudo start monasca-persister || sudo restart monasca-persister
 
 }
 
 function clean_monasca_persister {
-:
+
+    (cd /opt/stack/monasca-persister ; sudo mvn clean)
+
+    sudo rm /etc/init/monasca-persister.conf
+
+    sudo rm /etc/monasca/persister-config.yml
+
+    sudo rm -rf /var/log/monasca/persister
+
+    sudo rm /opt/monasca/monasca-persister.jar
+
+    sudo userdel mon-persister
 }
 
+function install_monasca_notification {
+
+    sudo apt-get -y install python-dev
+    sudo apt-get -y install build-essential
+    sudo apt-get -y install python-mysqldb
+    sudo apt-get -y install libmysqlclient-dev
+
+    (cd /opt/monasca ; sudo virtualenv .)
+
+    if [[ ! -d /opt/stack/monasca-notification ]]; then
+
+        sudo git clone https://github.com/stackforge/monasca-notification /opt/stack/monasca-notification
+
+    fi
+
+    (cd /opt/stack/monasca-notification ; sudo python setup.py sdist)
+
+    (cd /opt/monasca ; sudo -H ./bin/pip  install --pre --allow-all-external --allow-unverified simport /opt/stack/monasca-notification/dist/monasca-notification-1.2.8.dev4.tar.gz)
+
+    sudo groupadd --system monasca || true
+
+    sudo useradd --system -g monasca mon-notification || true
+
+    sudo mkdir -p /var/log/monasca/notification
+
+    sudo chown root:monasca /var/log/monasca/notification
+
+    sudo mkdir -p /etc/monasca
+
+    sudo chown root:monasca /etc/monasca
+
+    sudo chmod 0775 /etc/monasca
+
+    sudo cp -f /opt/stack/monasca/devstack/files/monasca-notification/notification.yaml /opt/monasca/notification.yaml
+
+    sudo chown mon-notification:monasca /opt/monasca/notification.yaml
+
+    sudo chmod 0640 /opt/monasca/notification.yaml
+
+    sudo cp -f /opt/stack/monasca/devstack/files/monasca-notification/monasca-notification.conf /etc/init/monasca-notification.conf
+
+    sudo chown root:root /etc/init/monasca-notification.conf
+
+    sudo chmod 0644 /etc/init/monasca-notification.conf
+
+    sudo start monasca-notification || restart monasca-notification
+
+}
+
+function clean_monasca_notification {
+
+    sudo rm /etc/init/monasca-notification.conf
+
+    sudo rm /opt/monasca/notification.yaml
+
+    sudo rm -rf /var/log/monasca/notification
+
+    sudo userdel mon-notification
+
+    sudo rm -rf /opt/monasca/monasca-notification
+
+    sudo apt-get -y purge libmysqlclient-dev
+    sudo apt-get -y purge python-mysqldb
+    sudo apt-get -y purge build-essential
+    sudo apt-get -y purge python-dev
+
+
+}
 # Allows this script to be called directly outside of
+
 # the devstack infrastructure code. Uncomment to use.
 #if [[ $(type -t) != 'function' ]]; then
 #
@@ -494,3 +652,6 @@ fi
 
 # Restore xtrace
 $XTRACE
+
+#Restore errexit
+$ERREXIT
