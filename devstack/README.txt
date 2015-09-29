@@ -15,21 +15,17 @@
 # limitations under the License.
 #
 
-description "Kafka"
+Add the following to the DevStack local.conf
 
-start on runlevel [2345]
-stop on runlevel [!2345]
+[[local|localrc]]
+ADMIN_PASSWORD=password
+DATABASE_PASSWORD=$ADMIN_PASSWORD
+RABBIT_PASSWORD=$ADMIN_PASSWORD
+SERVICE_PASSWORD=$ADMIN_PASSWORD
+SERVICE_TOKEN=$ADMIN_PASSWORD
 
-respawn
+LOGFILE=$DEST/logs/stack.sh.log
+LOGDIR=$DEST/logs
+LOG_COLOR=False
 
-limit nofile 32768 32768
-
-# If zookeeper is running on this box also give it time to start up properly
-pre-start script
-    if [ -e /etc/init.d/zookeeper ]; then
-        /etc/init.d/zookeeper start
-    fi
-end script
-
-# Rather than using setuid/setgid sudo is used because the pre-start task must run as root
-exec sudo -Hu kafka -g kafka KAFKA_HEAP_OPTS="-Xmx128m" /opt/kafka/bin/kafka-server-start.sh /etc/kafka/server.properties
+enable_plugin monasca git://git.openstack.org/stackforge/monasca-api
