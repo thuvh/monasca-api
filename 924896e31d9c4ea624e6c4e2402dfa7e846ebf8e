@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9a1a9d01_2ff7218c",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9Utils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2015-09-30T06:05:37Z",
+      "side": 1,
+      "message": "It looks like sorting with offset understood as timestamp does not work with InfluxDB 0.9.1. However if such value is transformed to ISO (as presented here) format sorting starts to work. I confirmed that behavior from Influx console hence this change + paging in alarm history started to work.",
+      "parentUuid": "9a1a9d01_a6b13c03",
+      "revId": "924896e31d9c4ea624e6c4e2402dfa7e846ebf8e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a1a9d01_867bd827",
         "filename": "java/src/main/java/monasca/api/resource/AlarmResource.java",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2015-09-29T14:15:32Z",
       "side": 1,
       "message": "If we do this in this resource, then all the resources should be changed to be consistent.",
+      "revId": "924896e31d9c4ea624e6c4e2402dfa7e846ebf8e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a1a9d01_cf1f85b5",
+        "filename": "java/src/main/java/monasca/api/resource/AlarmResource.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2015-09-30T06:05:37Z",
+      "side": 1,
+      "message": "No problem, but I think that\u0027s whole different story and it\u0027d be better to take care of that in another change, wouldn\u0027t it ? For sake of such change, if we agree for that, I can revert it here and take care of that later. What do you think ?",
+      "parentUuid": "9a1a9d01_867bd827",
       "revId": "924896e31d9c4ea624e6c4e2402dfa7e846ebf8e",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
