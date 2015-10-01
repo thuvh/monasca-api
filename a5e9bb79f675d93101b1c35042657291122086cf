@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a1a9d01_4676ce06",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2015-10-01T05:35:10Z",
+      "side": 1,
+      "message": "Perhaps it would be good to also remove the monasca group during cleaning ?",
+      "revId": "a5e9bb79f675d93101b1c35042657291122086cf",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a1a9d01_0615369a",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 512,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2015-10-01T05:35:10Z",
+      "side": 1,
+      "message": "I am just thinking about that, about other permission you set.\nYML files have 640 while conf files have 744 ? What is the reason for such difference while one side we have YML files that cannot be read by others and conf can ? After all these are both configuration files, so perhaps I am not aware of something.",
+      "revId": "a5e9bb79f675d93101b1c35042657291122086cf",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
