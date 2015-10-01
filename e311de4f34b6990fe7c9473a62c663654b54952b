@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a1a9d01_c6cf3e27",
+        "filename": "monasca_api/v2/reference/alarm_definitions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2015-10-01T05:41:46Z",
+      "side": 1,
+      "message": "Looks like this part and other change here are the same and are used to verify something, I\u0027d see that embedded in a module level function.",
+      "revId": "e311de4f34b6990fe7c9473a62c663654b54952b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
