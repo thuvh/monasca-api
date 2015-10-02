@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a1a9d01_ebc5143d",
+        "filename": "java/src/main/java/monasca/api/app/validation/ValueMetaValidation.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-10-02T20:16:20Z",
+      "side": 1,
+      "message": "Actually, I believe this calculation should be VALUE_META_VALUE_MAX_LENGTH -2 /* for curly brackets */ - 4 * valueMetas.size /* to handle double quotes */\n\nBut, since it will add backslashes before any embedded double quotes, even that is not sufficient. Maybe, it should just convert it to json and see if that will fit in 2048",
+      "revId": "279a7addd863fc97868f02ea7ad1129a105d6d10",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
