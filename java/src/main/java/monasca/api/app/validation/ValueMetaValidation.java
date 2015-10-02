@@ -29,8 +29,15 @@ import javax.ws.rs.WebApplicationException;
  */
 public final class ValueMetaValidation {
   private static final int VALUE_META_MAX_NUMBER = 16;
-  private static final int VALUE_META_VALUE_MAX_LENGTH = 2048;
   private static final int VALUE_META_NAME_MAX_LENGTH = 255;
+  //
+  // value_meta name/value stored in the same field for vertica, plus 7 add'l
+  // characters:
+  // {"name":"value"}
+  // ^^    ^^^     ^^    <-- extra chars
+  //
+  private static final int VALUE_META_EXTRA_CHARS = 7;
+  private static final int VALUE_META_VALUE_MAX_LENGTH = 2048 - (VALUE_META_NAME_MAX_LENGTH + VALUE_META_EXTRA_CHARS);
   private static final Map<String, String> EMPTY_VALUE_META = Collections
       .unmodifiableMap(new HashMap<String, String>());
 
@@ -60,7 +67,7 @@ public final class ValueMetaValidation {
    */
   public static void validate(Map<String, String> valueMetas) {
     if (valueMetas.size() > VALUE_META_MAX_NUMBER) {
-      throw Exceptions.unprocessableEntity("Maximum number of valueMeta key/value parirs is %d",
+      throw Exceptions.unprocessableEntity("Maximum number of valueMeta key/value pairs is %d",
           VALUE_META_MAX_NUMBER);
     }
 

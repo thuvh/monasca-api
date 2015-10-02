@@ -53,7 +53,7 @@ public class ValueMetaValidationTest {
   public void maxOk() {
     final Map<String, String> valueMeta = new HashMap<String, String>();
     for (int i = 0; i < 16; i++) {
-      valueMeta.put(makeString(i, 255), makeString(i, 2048));
+      valueMeta.put(makeString(i, 255), makeString(i, (2048 - (255+7))));
     }
     ValueMetaValidation.validate(valueMeta);
   }
