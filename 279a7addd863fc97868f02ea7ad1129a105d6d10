@@ -16,6 +16,24 @@
       "revId": "279a7addd863fc97868f02ea7ad1129a105d6d10",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a2fa921_eba0f1a7",
+        "filename": "java/src/main/java/monasca/api/app/validation/ValueMetaValidation.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 8126
+      },
+      "writtenOn": "2015-10-05T16:25:29Z",
+      "side": 1,
+      "message": "That\u0027s a great suggestion craig -- thanks for the review -- will try the json conversion pre-length check...",
+      "parentUuid": "9a1a9d01_ebc5143d",
+      "revId": "279a7addd863fc97868f02ea7ad1129a105d6d10",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
