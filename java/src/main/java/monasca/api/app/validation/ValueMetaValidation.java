@@ -32,7 +32,12 @@ import javax.ws.rs.WebApplicationException;
  */
 public final class ValueMetaValidation {
   private static final int VALUE_META_MAX_NUMBER = 16;
-  private static final int VALUE_META_VALUE_MAX_LENGTH = 2048;
+  //
+  // Per http://my.vertica.com/docs/6.1.x/HTML/index.htm#13631.htm --
+  // jdbc driver uses UTF-16 encoding (2 bytes per char), so we'll
+  // set string length to 2048/2.
+  //
+  private static final int VALUE_META_VALUE_MAX_LENGTH = 1024;
   private static final int VALUE_META_NAME_MAX_LENGTH = 255;
   private static final Map<String, String> EMPTY_VALUE_META = Collections
       .unmodifiableMap(new HashMap<String, String>());
@@ -90,23 +95,21 @@ public final class ValueMetaValidation {
         throw Exceptions.unprocessableEntity("valueMeta name %s must be %d characters or less",
             name, VALUE_META_NAME_MAX_LENGTH);
       }
-      verifyValueMetaStringLength(name, value);
     }
+    verifyValueMetaStringLength(valueMetas);
   }
 
-  private static void verifyValueMetaStringLength(String name, String value) {
+  private static void verifyValueMetaStringLength(Map<String, String> valueMetas) {
 
-    Map<String, String> tmpMap = new HashMap<String, String>();
-    tmpMap.put(name, value);
     try {
-      String valueMetaString = objectMapper.writeValueAsString(tmpMap);
+      String valueMetaString = objectMapper.writeValueAsString(valueMetas);
 
       if (valueMetaString.length() > VALUE_META_VALUE_MAX_LENGTH) {
-        throw Exceptions.unprocessableEntity("valueMeta name value combination %s must be %d characters or less",
+        throw Exceptions.unprocessableEntity("valueMeta name value combinations %s must be %d characters or less",
           valueMetaString, VALUE_META_VALUE_MAX_LENGTH);
        }
     } catch (JsonProcessingException e) {
-      throw Exceptions.unprocessableEntity("Failed to serialize valueMeta %s", tmpMap);
+      throw Exceptions.unprocessableEntity("Failed to serialize valueMeta combinations %s", valueMetas);
     }
   }
 }
