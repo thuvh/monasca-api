@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a2fa921_99efed86",
+        "filename": "java/src/main/java/monasca/api/app/validation/ValueMetaValidation.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-10-07T17:24:37Z",
+      "side": 1,
+      "message": "So, the length of the string in Java is in characters, not bytes. Those are not the same thing. The actual number of bytes is dependent on the encoding and the actual characters used in that encoding.\n\nIn the Vertica schema we have a hard-coded limit on the number of bytes, which in the SQL is encoded as\n\n    value_meta VARCHAR(2048)\n\nYou are taking the length of the entire meta value map converted to a string, and comparing it against VALUE_META_VALUE_MAX_LENGTH, which happens to be 2048.\n\nYou need to actually take the string, valueMetaString, and get the length in bytes. I\u0027m not sure how Java Strings are converted to strings in Vertical. It is probably a utf8 encoding and would be done by the JDBC connector.",
+      "revId": "c10278ea4bb35b4ce1a0671713908deb5cf35bfe",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
