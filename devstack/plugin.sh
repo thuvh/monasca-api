@@ -36,6 +36,12 @@
 #
 # EXAMPLE VARS HERE
 
+#MONASCA_API_IMPLEMENTATION_LANG=${MONASCA_API_IMPLEMENTATION_LANG:-java}
+MONASCA_API_IMPLEMENTATION_LANG=${MONASCA_API_IMPLEMENTATION_LANG:-python}
+
+#MONASCA_PERSISTER_IMPLEMENTAION_LANG=${MONASCA_PERSISTER_IMPLEMENTAION_LANG:-java}
+MONASCA_PERSISTER_IMPLEMENTAION_LANG=${MONASCA_PERSISTER_IMPLEMENTAION_LANG:-python}
+
 # Save trace setting
 XTRACE=$(set +o | grep xtrace)
 set -o xtrace
@@ -67,9 +73,37 @@ function install_monasca {
 
     install_monasca_common
 
-    install_monasca_api
+    if [[ "${MONASCA_API_IMPLEMENTATION_LANG,,}" == 'java' ]]; then
 
-    install_monasca_persister
+        install_monasca_api_java
+
+    elif [[ "${MONASCA_API_IMPLEMENTATION_LANG,,}" == 'python' ]]; then
+
+        install_monasca_api_python
+
+    else
+
+        echo "Found invalid value for variable MONASCA_API_IMPLEMENTATION_LANG: $MONASCA_API_IMPLEMENTATION_LANG"
+        echo "Valid values for MONASCA_API_IMPLEMENTATION_LANG are 'java' and 'python'"
+        die "Please set MONASCA_API_IMPLEMENTATION_LANG to either 'java' or 'python'"
+
+    fi
+
+    if [[ "${MONASCA_PERSISTER_IMPLEMENTAION_LANG,,}" == 'java' ]]; then
+
+        install_monasca_persister_java
+
+    elif [[ "${MONASCA_PERSISTER_IMPLEMENTAION_LANG,,}" == 'python' ]]; then
+
+        install_monasca_persister_python
+
+    else
+
+        echo "Found invalid value for varible MONASCA_PERSISTER_IMPLEMENTAION_LANG: $MONASCA_PERSISTER_IMPLEMENTAION_LANG"
+        echo "Valid values for MONASCA_PERSISTER_IMPLEMENTAION_LANG are 'java' and 'python'"
+        die "Please set MONASCA_PERSISTER_IMPLEMENTAION_LANG to either 'java' or 'python'"
+
+    fi
 
     install_monasca_notification
 
@@ -138,9 +172,37 @@ function clean_monasca {
 
     clean_monasca_notification
 
-    clean_monasca_persister
+    if [[ "${MONASCA_PERSISTER_IMPLEMENTAION_LANG,,}" == 'java' ]]; then
 
-    clean_monasca_api
+        clean_monasca_persister_java
+
+    elif [[ "${MONASCA_PERSISTER_IMPLEMENTAION_LANG,,}" == 'python' ]]; then
+
+        clean_monasca_persister_python
+
+    else
+
+        echo "Found invalid value for varible MONASCA_PERSISTER_IMPLEMENTAION_LANG: $MONASCA_PERSISTER_IMPLEMENTAION_LANG"
+        echo "Valid values for MONASCA_PERSISTER_IMPLEMENTAION_LANG are 'java' and 'python'"
+        die "Please set MONASCA_PERSISTER_IMPLEMENTAION_LANG to either 'java' or 'python'"
+
+    fi
+
+    if [[ "${MONASCA_API_IMPLEMENTATION_LANG,,}" == 'java' ]]; then
+
+        clean_monasca_api_java
+
+    elif [[ "${MONASCA_API_IMPLEMENTATION_LANG,,}" == 'python' ]]; then
+
+        clean_monasca_api_python
+
+    else
+
+        echo "Found invalid value for variable MONASCA_API_IMPLEMENTATION_LANG: $MONASCA_API_IMPLEMENTATION_LANG"
+        echo "Valid values for MONASCA_API_IMPLEMENTATION_LANG are 'java' and 'python'"
+        die "Please set MONASCA_API_IMPLEMENTATION_LANG to either 'java' or 'python'"
+
+    fi
 
     clean_monasca_common
 
@@ -476,9 +538,9 @@ function clean_monasca_common {
 
 }
 
-function install_monasca_api {
+function install_monasca_api_java {
 
-    echo_summary "Install Monasca monasca_api"
+    echo_summary "Install Monasca monasca_api_java"
 
     sudo mkdir -p /opt/monasca
 
@@ -524,9 +586,70 @@ function install_monasca_api {
 
 }
 
-function clean_monasca_api {
+function install_monasca_api_python {
 
-    echo_summary "Clean Monasca monasca_api"
+    echo_summary "Install Monasca monasca_api_python"
+
+    sudo mkdir -p /opt/monasca
+
+    (cd /opt/monasca ; sudo virtualenv .)
+
+    (cd /opt/stack/monasca ; sudo python setup.py sdist)
+
+    sudo apt-get -y install python-dev
+
+    (cd /opt/monasca ; sudo -H ./bin/pip  install --pre --allow-all-external --allow-unverified simport /opt/stack/monasca/dist/monasca-api-2015.1.1.dev153.tar.gz)
+
+    sudo groupadd --system monasca || true
+
+    sudo useradd --system -g monasca mon-api || true
+
+    sudo cp -f /opt/stack/monasca/devstack/files/monasca-api/python/monasca-api.conf /etc/init/monasca-api.conf
+
+    sudo chown root:root /etc/init/monasca-api.conf
+
+    sudo chmod 0744 /etc/init/monasca-api.conf
+
+    sudo mkdir -p /var/log/monasca
+
+    sudo chown root:monasca /var/log/monasca
+
+    sudo chmod 0755 /var/log/monasca
+
+    sudo mkdir -p /var/log/monasca/api
+
+    sudo chown root:monasca /var/log/monasca/api
+
+    sudo chmod 0775 /var/log/monasca/api
+
+    sudo mkdir -p /etc/monasca
+
+    sudo chown root:monasca /etc/monasca
+
+    sudo chmod 0775 /etc/monasca
+
+    sudo cp -f /opt/stack/monasca/devstack/files/monasca-api/python/api-config.conf /etc/monasca/api-config.conf
+
+    sudo chown mon-api:root /etc/monasca/api-config.conf
+
+    sudo chmod 0640 /etc/monasca/api-config.conf
+
+    sudo ln -s /etc/monasca/api-config.conf /etc/api-config.conf
+
+    sudo cp -f /opt/stack/monasca/devstack/files/monasca-api/python/api-config.ini /etc/monasca/api-config.ini
+
+    sudo chown mon-api:root /etc/monasca/api-config.ini
+
+    sudo chmod 0640 /etc/monasca/api-config.ini
+
+    sudo ln -s /etc/monasca/api-config.ini /etc/api-config.ini
+
+    sudo start monasca-api || sudo restart monasca-api
+}
+
+function clean_monasca_api_java {
+
+    echo_summary "Clean Monasca monasca_api_java"
 
     (cd /opt/stack/monasca ; sudo mvn clean)
 
@@ -541,9 +664,29 @@ function clean_monasca_api {
     sudo userdel mon-api
 }
 
-function install_monasca_persister {
+function clean_monasca_api_python {
 
-    echo_summary "Install Monasca monasca_persister"
+    echo_summary "Clean Monasca monasca_api_python"
+
+    sudo rm /etc/init/monasca-api.conf
+
+    sudo rm /etc/api-config.conf
+
+    sudo rm /etc/monasca/api-config.conf
+
+    sudo rm /etc/api-config.ini
+
+    sudo rm /etc/monasca/api-config.ini
+
+    sudo rm -rf /var/log/monasca/api
+
+    sudo userdel mon-api
+
+}
+
+function install_monasca_persister_java {
+
+    echo_summary "Install Monasca monasca_persister_java"
 
     sudo mkdir -p /opt/monasca
 
@@ -593,9 +736,59 @@ function install_monasca_persister {
 
 }
 
-function clean_monasca_persister {
+function install_monasca_persister_python {
 
-    echo_summary "Clean Monasca monasca_persister"
+    echo_summary "Install Monasca monasca_persister_python"
+
+    sudo mkdir -p /opt/monasca
+
+    if [[ ! -d /opt/stack/monasca-persister ]]; then
+
+        sudo git clone https://github.com/stackforge/monasca-persister /opt/stack/monasca-persister
+
+    fi
+
+    (cd /opt/stack/monasca-persister ; sudo python setup.py sdist)
+
+    (cd /opt/monasca ; sudo -H ./bin/pip  install --pre --allow-all-external --allow-unverified simport /opt/stack/monasca-persister/dist/monasca-persister-0.1.13.dev8.tar.gz)
+
+    sudo useradd --system -g monasca mon-persister || true
+
+    sudo mkdir -p /var/log/monasca
+
+    sudo chown root:monasca /var/log/monasca
+
+    sudo chmod 0755 /var/log/monasca
+
+    sudo mkdir -p /var/log/monasca/persister
+
+    sudo chown root:monasca /var/log/monasca/persister
+
+    sudo chmod 0775 /var/log/monasca/persister
+
+    sudo mkdir -p /etc/monasca
+
+    sudo chown root:monasca /etc/monasca
+
+    sudo cp -f /opt/stack/monasca/devstack/files/monasca-persister/python/persister.conf /etc/monasca/persister.conf
+
+    sudo chown mon-persister:monasca /etc/monasca/persister.conf
+
+    sudo chmod 0640 /etc/monasca/persister.conf
+
+    sudo cp -f /opt/stack/monasca/devstack/files/monasca-persister/python/monasca-persister.conf /etc/init/monasca-persister.conf
+
+    sudo chown root:root /etc/init/monasca-persister.conf
+
+    sudo chmod 0744 /etc/init/monasca-persister.conf
+
+    sudo start monasca-persister || sudo restart monasca-persister
+
+}
+
+function clean_monasca_persister_java {
+
+    echo_summary "Clean Monasca monasca_persister_java"
 
     (cd /opt/stack/monasca-persister ; sudo mvn clean)
 
@@ -608,6 +801,21 @@ function clean_monasca_persister {
     sudo rm /opt/monasca/monasca-persister.jar
 
     sudo userdel mon-persister
+}
+
+function clean_monasca_persister_python {
+
+    echo_summary "Clean Monasca monasca_persister_python"
+
+    sudo rm /etc/init/monasca-persister.conf
+
+    sudo rm /etc/monasca/persister.conf
+
+    sudo rm -rf /var/log/monasca/persister
+
+    sudo userdel mon-persister
+
+    sudo apt-get -y purge python-oslo.config
 }
 
 function install_monasca_notification {
