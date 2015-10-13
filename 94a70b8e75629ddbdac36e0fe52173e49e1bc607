@@ -16,6 +16,23 @@
       "revId": "94a70b8e75629ddbdac36e0fe52173e49e1bc607",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2ca52d_336644ee",
+        "filename": "monasca_tempest_tests/README.md",
+        "patchSetId": 23
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 12133
+      },
+      "writtenOn": "2015-10-13T22:32:28Z",
+      "side": 1,
+      "message": "This step (above)doesn\u0027t work, when trying to test this with testr.\nI\u0027m also not sure that the testr.conf file that is in monasca-api dir is targeted for your tests.",
+      "revId": "94a70b8e75629ddbdac36e0fe52173e49e1bc607",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
