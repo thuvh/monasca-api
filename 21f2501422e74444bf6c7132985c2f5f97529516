@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a2fa921_de2ee0a4",
+        "filename": "monasca_tempest_tests/README.md",
+        "patchSetId": 22
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 15799
+      },
+      "writtenOn": "2015-10-13T09:00:22Z",
+      "side": 1,
+      "message": "From this, I\u0027m guessing that the assumption is that this is all being done in a \"mini-mon\" install (as opposed to Devstack.) It would be helpful to say explicitly what environment these instructions are intended to work with.",
+      "revId": "21f2501422e74444bf6c7132985c2f5f97529516",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
