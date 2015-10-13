@@ -16,6 +16,24 @@
       "revId": "21f2501422e74444bf6c7132985c2f5f97529516",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2ca52d_c4d5e8b9",
+        "filename": "monasca_tempest_tests/README.md",
+        "patchSetId": 22
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-10-13T11:13:40Z",
+      "side": 1,
+      "message": "Good point. We\u0027ll update the docs. Currently, we have been using the monasca-vagrant environment to run the tests. The goal is to have them run against the DevStack environment. We actually create the same account in the Devtack environment, although the endpoint information might need to be set differently. The tests should be able to be run against any environment.\n\nSo the credentials above should work in Devstack and monasca-vagrant, but could be modified for any environment.",
+      "parentUuid": "7a2fa921_de2ee0a4",
+      "revId": "21f2501422e74444bf6c7132985c2f5f97529516",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
