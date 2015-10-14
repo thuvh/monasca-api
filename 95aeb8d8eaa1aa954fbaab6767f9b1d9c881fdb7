@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a2ca52d_36c5c48d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2015-10-14T08:05:33Z",
+      "side": 1,
+      "message": "Please, reformat commit message. Is hard to read when it is in single line.\nThx.",
+      "revId": "95aeb8d8eaa1aa954fbaab6767f9b1d9c881fdb7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
