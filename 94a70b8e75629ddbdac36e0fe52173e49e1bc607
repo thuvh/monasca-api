@@ -33,6 +33,91 @@
       "revId": "94a70b8e75629ddbdac36e0fe52173e49e1bc607",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2ca52d_a945e0b3",
+        "filename": "monasca_tempest_tests/tests/api/test_alarm_definitions.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-10-14T21:41:18Z",
+      "side": 1,
+      "message": "This seems like a copy of the test directly above.",
+      "revId": "94a70b8e75629ddbdac36e0fe52173e49e1bc607",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2ca52d_dc925c9f",
+        "filename": "monasca_tempest_tests/tests/api/test_alarms_state_history.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-10-14T21:41:18Z",
+      "side": 1,
+      "message": "Should probably confirm how many elements were returned when limit is applied",
+      "revId": "94a70b8e75629ddbdac36e0fe52173e49e1bc607",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2ca52d_3cbb50e7",
+        "filename": "monasca_tempest_tests/tests/api/test_alarms_state_history.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-10-14T21:41:18Z",
+      "side": 1,
+      "message": "Should probably confirm how many elements were returned when limit is applied",
+      "revId": "94a70b8e75629ddbdac36e0fe52173e49e1bc607",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2ca52d_5447fc4a",
+        "filename": "monasca_tempest_tests/tests/api/test_metrics_names.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-10-14T21:41:18Z",
+      "side": 1,
+      "message": "Might be worth leaving a comment about why this test is empty",
+      "revId": "94a70b8e75629ddbdac36e0fe52173e49e1bc607",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2ca52d_8569dc27",
+        "filename": "monasca_tempest_tests/tests/api/test_statistics.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-10-14T21:41:18Z",
+      "side": 1,
+      "message": "This test seems the same as test_list_statistics_with_merge_metrics",
+      "revId": "94a70b8e75629ddbdac36e0fe52173e49e1bc607",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
