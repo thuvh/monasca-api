@@ -121,10 +121,8 @@ function extra_monasca {
 
     install_monasca_default_alarms
 
-    echo "Sleep to allow alarms to make it thru the system"
+    install_monasca_horizon_ui
 
-    sleep 40s
-    
     install_monasca_smoke_test
 }
 
@@ -159,6 +157,8 @@ function clean_monasca {
     unstack_monasca
 
     clean_monasca_smoke_test
+
+    clean_monasca_horizon_ui
 
     clean_monasca_default_alarms
 
@@ -1259,6 +1259,28 @@ function install_monasca_default_alarms {
 
 function clean_monasca_default_alarms {
 :
+
+}
+
+function install_monasca_horizon_ui {
+
+    sudo -H pip install monasca-ui
+
+    sudo ln -s /usr/local/lib/python2.7/dist-packages/monitoring/enabled/_50_admin_add_monitoring_panel.py /opt/stack/horizon/openstack_dashboard/local/enabled/_50_admin_add_monitoring_panel.py
+
+    sudo ln -s /usr/local/lib/python2.7/dist-packages/monitoring /opt/stack/horizon/monitoring
+
+    sudo python /opt/stack/horizon/manage.py compress --force
+
+    sudo service apache2 restart
+
+}
+
+function clean_monasca_horizon_ui {
+
+    sudo rm -f /opt/stack/horizon/openstack_dashboard/local/enabled/_50_admin_add_monitoring_panel.py
+
+    sudo rm -f /opt/stack/horizon/monitoring
 
 }
 
