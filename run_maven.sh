@@ -37,7 +37,7 @@ if [ $RUN_BUILD = "true" ]; then
 fi
 
 # Invoke the maven 3 on the real pom.xml
-( cd java; ${MVN} -DgitRevision=`git rev-list HEAD --max-count 1 --abbrev=0 --abbrev-commit` $* ) 
+( cd java; ${MVN} -DgitRevision=`git rev-list HEAD --max-count 1 --abbrev=0 --abbrev-commit` $* )
 
 RC=$?
 
