@@ -1,6 +1,7 @@
 # Introduction
 The Monasca Tempest Tests use the [OpenStack Tempest Plugin Interface](http://docs.openstack.org/developer/tempest/plugin.html). This README describes how to configure and run them using a variety of methods.
-Currently monasca-vagrant is used to run tests. This document will be updated when switch the environment to DevStack.
+Currently the monasca-vagrant environment is needed to run the tests. Instructions on setting up a monasca-vagrant environment can be found here: https://github.com/openstack/monasca-vagrant. This document will be updated when 
+the environment is switched to the DevStack environment.
 
 # Configuring to run the Monasca Tempest Tests
 1. Clone the OpenStack Tempest repo, and cd to it.
@@ -18,7 +19,8 @@ Currently monasca-vagrant is used to run tests. This document will be updated wh
     pip install -r requirements.txt -r test-requirements.txt
     pip install nose
     ```
-4. Create ```etc/tempest.conf``` and ```etc/logging.conf``` in the Tempest root dir. I believe the file ```etc/tempest.conf.sample``` can be copied to ```etc/tempest.conf```. Similarly for ```logging.conf```. Add the following sections to ```tempest.conf``` for testing using the monasca-vagrant environment.
+4. Create ```etc/tempest.conf``` and ```etc/logging.conf``` in the Tempest root dir. I believe the file ```etc/tempest.conf.sample``` can be copied to ```etc/tempest.conf```. Similarly for ```logging.conf```. 
+   Add the following sections to ```tempest.conf``` for testing using the monasca-vagrant environment.
     ```
     [identity]
 
@@ -45,7 +47,7 @@ Currently monasca-vagrant is used to run tests. This document will be updated wh
     ```
 5. Clone the monasca-api repo.
 6. Install the monasca-api in your venv, which will also register
-the Monasca Tempest Plugin as, monasca_tests.
+   the Monasca Tempest Plugin as, monasca_tests.
     ```    
     python setup.py install
     ```
