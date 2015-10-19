@@ -1,6 +1,6 @@
 # Introduction
 The Monasca Tempest Tests use the [OpenStack Tempest Plugin Interface](http://docs.openstack.org/developer/tempest/plugin.html). This README describes how to configure and run them using a variety of methods.
-Currently monasca-vagrant is used to run tests. This document will be updated when switch the environment to DevStack.
+Currently the monasca-vagrant environment is needed to run the tests. Instructions on setting up a monasca-vagrant environment can be found here: https://github.com/openstack/monasca-vagrant. This document will be updated when switch the environment to DevStack.
 
 # Configuring to run the Monasca Tempest Tests
 1. Clone the OpenStack Tempest repo, and cd to it.
