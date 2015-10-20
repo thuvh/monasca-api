@@ -16,6 +16,24 @@
       "revId": "e2ab1e6609c743783111ad358d485f62f16810f6",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a29b11f_bec4005f",
+        "filename": "devstack/Vagrantfile",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-10-20T21:25:59Z",
+      "side": 1,
+      "message": "It doesn\u0027t, but I do performance analysis in this VM, and it is just nice to have it available.",
+      "parentUuid": "3a29b11f_a3786bf3",
+      "revId": "e2ab1e6609c743783111ad358d485f62f16810f6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
