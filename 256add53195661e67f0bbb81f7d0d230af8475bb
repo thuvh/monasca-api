@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a29b11f_92625bac",
+        "filename": "monasca_api/v2/reference/alarm_definitions.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-10-20T19:41:02Z",
+      "side": 1,
+      "message": "The name _find_existing_alarm_definition implies that this method is returning something. Instead, it should be named something like _validate_no_name_conflict",
+      "revId": "256add53195661e67f0bbb81f7d0d230af8475bb",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a29b11f_32aca79f",
+        "filename": "monasca_api/v2/reference/notifications.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-10-20T19:41:02Z",
+      "side": 1,
+      "message": "The name _find_existing_notification for this method implies it is returning something. Instead it is checking for a name conflict. It should be name appropriately to its function",
+      "revId": "256add53195661e67f0bbb81f7d0d230af8475bb",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
