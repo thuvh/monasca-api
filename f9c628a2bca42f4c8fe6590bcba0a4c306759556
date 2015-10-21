@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a29b11f_39547951",
+        "filename": "monasca_api/v2/reference/alarm_definitions.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 15799
+      },
+      "writtenOn": "2015-10-21T09:02:00Z",
+      "side": 1,
+      "message": "Minor nitpick; if this was \u0027elif definitions:\u0027 then you wouldn\u0027t need the \u0027return\u0027, and I think the flow of the method would be clearer...",
+      "revId": "f9c628a2bca42f4c8fe6590bcba0a4c306759556",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a29b11f_99beed63",
+        "filename": "monasca_api/v2/reference/notifications.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 15799
+      },
+      "writtenOn": "2015-10-21T09:02:00Z",
+      "side": 1,
+      "message": "as other note",
+      "revId": "f9c628a2bca42f4c8fe6590bcba0a4c306759556",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
