@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a29b11f_f9f17d96",
+        "filename": "monasca_api/v2/reference/alarm_definitions.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 15799
+      },
+      "writtenOn": "2015-10-26T16:44:53Z",
+      "side": 1,
+      "message": "I don\u0027t think you need the len(definitions) \u003e 0 part - in Python bool([]) \u003d\u003d bool(None) \u003d\u003d False",
+      "revId": "020c72db6a8790769c2b212ee2bb70e616084aff",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
