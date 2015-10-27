@@ -44,15 +44,15 @@ ERREXIT=$(set +o | grep errexit)
 set -o errexit
 
 # Determine if we are running in devstack-gate or devstack.
-if [[ $BASE ]]; then
+if [[ $DEST ]]; then
 
     # We are running in devstack-gate.
-    export MONASCA_BASE="${BASE}/new"
+    export MONASCA_BASE=${MONASCA_BASE:-"${DEST}"}
 
 else
 
     # We are running in devstack.
-    export MONASCA_BASE="/opt/stack"
+    export MONASCA_BASE=${MONASCA_BASE:-"/opt/stack"}
 
 fi
 
