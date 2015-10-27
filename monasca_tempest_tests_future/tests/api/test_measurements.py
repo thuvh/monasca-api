@@ -17,11 +17,11 @@ import time
 from oslo_utils import timeutils
 
 from monasca_tempest_tests.tests.api import base
-from monasca_tempest_tests.tests.api import constants
+# from monasca_tempest_tests.tests.api import constants
 from monasca_tempest_tests.tests.api import helpers
 from tempest.common.utils import data_utils
 from tempest import test
-from tempest_lib import exceptions
+# from tempest_lib import exceptions
 
 NUM_MEASUREMENTS = 100
 WAIT_TIME = 30
@@ -68,22 +68,22 @@ class TestMeasurements(base.BaseMonascaTest):
         self.assertTrue(type(element['columns']) is list)
         self.assertTrue(type(element['measurements']) is list)
 
-    @test.attr(type="gate")
-    @test.attr(type=['negative'])
-    def test_list_measurements_with_no_start_time(self):
-        query_parms = '?name=name-1'
-        self.assertRaises(exceptions.UnprocessableEntity,
-                          self.monasca_client.list_measurements, query_parms)
-
-    @test.attr(type="gate")
-    @test.attr(type=['negative'])
-    def test_list_measurements_with_no_name(self):
-        start_time = timeutils.iso8601_from_timestamp(
-            self._start_timestamp / 1000)
-        query_parms = '?start_time=' + str(start_time)
-        self.assertRaises(exceptions.UnprocessableEntity,
-                          self.monasca_client.list_measurements, query_parms)
-
+#     @test.attr(type="gate")
+#     @test.attr(type=['negative'])
+#     def test_list_measurements_with_no_start_time(self):
+#         query_parms = '?name=name-1'
+#         self.assertRaises(exceptions.UnprocessableEntity,
+#                           self.monasca_client.list_measurements, query_parms)
+#
+#     @test.attr(type="gate")
+#     @test.attr(type=['negative'])
+#     def test_list_measurements_with_no_name(self):
+#         start_time = timeutils.iso8601_from_timestamp(
+#             self._start_timestamp / 1000)
+#         query_parms = '?start_time=' + str(start_time)
+#         self.assertRaises(exceptions.UnprocessableEntity,
+#                           self.monasca_client.list_measurements, query_parms)
+#
     @test.attr(type="gate")
     def test_list_measurements_with_dimensions(self):
         key1 = data_utils.rand_name('key1')
@@ -106,7 +106,7 @@ class TestMeasurements(base.BaseMonascaTest):
         value_new = response_body['elements'][0]['measurements'][0][1]
         self.assertEqual(200, resp.status)
         self.assertEqual(123, value_new)
-
+#
     @test.attr(type="gate")
     def test_list_measurements_with_endtime(self):
         start_time = timeutils.iso8601_from_timestamp(
@@ -189,7 +189,7 @@ class TestMeasurements(base.BaseMonascaTest):
                 else:
                     self.assertEqual(last_element, next_element)
                     break
-
+#
     @test.attr(type="gate")
     def test_list_measurements_with_merge_metrics(self):
         start_time = timeutils.iso8601_from_timestamp(
@@ -199,23 +199,23 @@ class TestMeasurements(base.BaseMonascaTest):
         resp, response_body = self.monasca_client.list_measurements(
             query_parms)
         self.assertEqual(200, resp.status)
-
-    @test.attr(type="gate")
-    def test_list_measurements_with_name_exceeds_max_length(self):
-        long_name = "x" * (constants.MAX_LIST_MEASUREMENTS_NAME_LENGTH + 1)
-        start_time = timeutils.iso8601_from_timestamp(self._start_timestamp
-                                                      / 1000)
-        query_parms = '?name=' + str(long_name) \
-                      + '&merge_metrics=true&start_time=' + str(start_time)
-        self.assertRaises(exceptions.UnprocessableEntity,
-                          self.monasca_client.list_measurements, query_parms)
-
-    @test.attr(type="gate")
-    @test.attr(type=['negative'])
-    def test_list_measurements_with_no_merge_metrics(self):
-        start_time = timeutils.iso8601_from_timestamp(
-            self._start_timestamp / 1000)
-        query_parms = '?name=name-1&merge_metrics=false&start_time=' + str(
-            start_time)
-        self.assertRaises(exceptions.Conflict,
-                          self.monasca_client.list_measurements, query_parms)
+#
+#     @test.attr(type="gate")
+#     def test_list_measurements_with_name_exceeds_max_length(self):
+#         long_name = "x" * (constants.MAX_LIST_MEASUREMENTS_NAME_LENGTH + 1)
+#         start_time = timeutils.iso8601_from_timestamp(self._start_timestamp
+#                                                       / 1000)
+#         query_parms = '?name=' + str(long_name) \
+#                       + '&merge_metrics=true&start_time=' + str(start_time)
+#         self.assertRaises(exceptions.UnprocessableEntity,
+#                           self.monasca_client.list_measurements, query_parms)
+#
+#     @test.attr(type="gate")
+#     @test.attr(type=['negative'])
+#     def test_list_measurements_with_no_merge_metrics(self):
+#         start_time = timeutils.iso8601_from_timestamp(
+#             self._start_timestamp / 1000)
+#         query_parms = '?name=name-1&merge_metrics=false&start_time=' + str(
+#             start_time)
+#         self.assertRaises(exceptions.Conflict,
+#                           self.monasca_client.list_measurements, query_parms)
