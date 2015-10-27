@@ -33,6 +33,10 @@ class TestMetrics(base.BaseMonascaTest):
     def resource_setup(cls):
         super(TestMetrics, cls).resource_setup()
 
+    @classmethod
+    def resource_cleanup(cls):
+        super(TestMetrics, cls).resource_cleanup()
+
     @test.attr(type='gate')
     def test_create_metric(self):
         metric = helpers.create_metric()
@@ -144,7 +148,7 @@ class TestMetrics(base.BaseMonascaTest):
         self.assertTrue(type(element['dimensions']) is dict)
 
     @test.attr(type='gate')
-    def test_list_metrics_with_name(self):
+    def test_list_metrics_with_dimensions(self):
         name_org = data_utils.rand_name('name')
         key = data_utils.rand_name('key')
         metric = helpers.create_metric(name=name_org,
@@ -161,7 +165,7 @@ class TestMetrics(base.BaseMonascaTest):
         self.assertEqual(name_org, str(name))
 
     @test.attr(type='gate')
-    def test_list_metrics_with_dimensions(self):
+    def test_list_metrics_with_name(self):
         name = data_utils.rand_name('name')
         key = data_utils.rand_name('key')
         value_org = data_utils.rand_name('value')

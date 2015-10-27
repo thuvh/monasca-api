@@ -39,11 +39,13 @@ class TestMeasurements(base.BaseMonascaTest):
 
         for i in xrange(NUM_MEASUREMENTS):
             metric = helpers.create_metric(
-                name="name-1",
+                name="name-100",
                 timestamp=start_timestamp + i)
             metrics.append(metric)
 
         resp, response_body = cls.monasca_client.create_metrics(metrics)
+        time.sleep(WAIT_TIME)
+
         cls._start_timestamp = start_timestamp
         cls._end_timestamp = end_timestamp
         cls._metrics = metrics
@@ -52,8 +54,9 @@ class TestMeasurements(base.BaseMonascaTest):
     def test_list_measurements(self):
         start_time = timeutils.iso8601_from_timestamp(
             self._start_timestamp / 1000)
-        query_parms = '?name=name-1&merge_metrics=true&start_time=' + str(
-            start_time)
+        end_time = timeutils.iso8601_from_timestamp(self._end_timestamp / 1000)
+        query_parms = '?name=name-100&merge_metrics=true&start_time=' + str(
+            start_time) + '&end_time=' + str(end_time)
         resp, response_body = self.monasca_client.list_measurements(
             query_parms)
         self.assertEqual(200, resp.status)
@@ -71,7 +74,7 @@ class TestMeasurements(base.BaseMonascaTest):
     @test.attr(type="gate")
     @test.attr(type=['negative'])
     def test_list_measurements_with_no_start_time(self):
-        query_parms = '?name=name-1'
+        query_parms = '?name=name-100'
         self.assertRaises(exceptions.UnprocessableEntity,
                           self.monasca_client.list_measurements, query_parms)
 
@@ -88,19 +91,20 @@ class TestMeasurements(base.BaseMonascaTest):
     def test_list_measurements_with_dimensions(self):
         key1 = data_utils.rand_name('key1')
         value1 = data_utils.rand_name('value1')
-        start_timestamp = int(time.time() * 1000)
-        name = data_utils.rand_name()
-        metric = [
-            helpers.create_metric(name=name, timestamp=start_timestamp,
+        start_timestamp1 = int(time.time() * 1000)
+        name1 = data_utils.rand_name()
+        metric1 = [
+            helpers.create_metric(name=name1, timestamp=start_timestamp1,
                                   dimensions={key1: value1}, value=123)
         ]
-        resp, response_body = self.monasca_client.create_metrics(metric)
+        resp, response_body = self.monasca_client.create_metrics(metric1)
         time.sleep(WAIT_TIME)
 
-        start_time = timeutils.iso8601_from_timestamp(
-            self._start_timestamp / 1000)
-        query_parms = '?name=' + name + '&start_time=' + str(
-            start_time) + '&dimensions=' + key1 + ':' + value1
+        start_time1 = timeutils.iso8601_from_timestamp(start_timestamp1 / 1000)
+        end_time1 = timeutils.iso8601_from_timestamp(time.time())
+        query_parms = '?name=' + name1 + '&start_time=' + str(start_time1) + \
+                      '&end_time=' + str(end_time1) + '&dimensions=' + key1 + \
+                      ':' + value1
         resp, response_body = self.monasca_client.list_measurements(
             query_parms)
         value_new = response_body['elements'][0]['measurements'][0][1]
@@ -109,12 +113,14 @@ class TestMeasurements(base.BaseMonascaTest):
 
     @test.attr(type="gate")
     def test_list_measurements_with_endtime(self):
+        name = 'name-100'
         start_time = timeutils.iso8601_from_timestamp(
             self._start_timestamp / 1000)
         end_time = timeutils.iso8601_from_timestamp(
             self._end_timestamp / 1000)
-        query_parms = '?name=name-1&merge_metrics=true&true&start_time=' + str(
-            start_time) + '&end_time' + str(end_time)
+        query_parms = '?name=' + str(name) + '&merge_metrics=true' \
+                      '&start_time=' + str(start_time) + \
+                      '&end_time=' + str(end_time)
         resp, body = self.monasca_client.list_measurements(query_parms)
         self.assertEqual(200, resp.status)
         len_measurements = len(body['elements'][0]['measurements'])
@@ -148,8 +154,9 @@ class TestMeasurements(base.BaseMonascaTest):
 
         start_time = timeutils.iso8601_from_timestamp(
             start_timestamp / 1000)
+        end_time = timeutils.iso8601_from_timestamp(time.time())
         query_parms = '?name=' + name + '&merge_metrics=true&start_time=' + \
-                      str(start_time)
+                      str(start_time) + '&end_time=' + end_time
         resp, body = self.monasca_client.list_measurements(query_parms)
         self.assertEqual(200, resp.status)
         elements = body['elements'][0]['measurements']
@@ -157,7 +164,7 @@ class TestMeasurements(base.BaseMonascaTest):
         last_element = elements[3]
 
         query_parms = '?name=' + name + '&merge_metrics=true&start_time=' + \
-                      str(start_time) + '&limit=4'
+                      str(start_time) + '&end_time=' + end_time + '&limit=4'
         resp, response_body = self.monasca_client.list_measurements(
             query_parms)
         self.assertEqual(200, resp.status)
@@ -172,8 +179,8 @@ class TestMeasurements(base.BaseMonascaTest):
             while True:
                 query_parms = '?name=' + name + \
                               '&merge_metrics=true&start_time=' + \
-                              str(start_time) + '&offset=' + \
-                              str(next_element[0]) + '&limit=' + \
+                              str(start_time) + '&end_time=' + end_time + \
+                              '&offset=' + str(next_element[0]) + '&limit=' + \
                               str(limit)
                 resp, response_body = self.monasca_client.list_measurements(
                     query_parms)
@@ -194,28 +201,42 @@ class TestMeasurements(base.BaseMonascaTest):
     def test_list_measurements_with_merge_metrics(self):
         start_time = timeutils.iso8601_from_timestamp(
             self._start_timestamp / 1000)
-        query_parms = '?name=name-1&merge_metrics=true&start_time=' + str(
-            start_time)
+        end_time = timeutils.iso8601_from_timestamp(self._end_timestamp / 1000)
+        query_parms = '?name=name-100&merge_metrics=true&start_time=' + str(
+            start_time) + '&end_time=' + str(end_time)
         resp, response_body = self.monasca_client.list_measurements(
             query_parms)
         self.assertEqual(200, resp.status)
 
     @test.attr(type="gate")
+    @test.attr(type=['negative'])
     def test_list_measurements_with_name_exceeds_max_length(self):
         long_name = "x" * (constants.MAX_LIST_MEASUREMENTS_NAME_LENGTH + 1)
-        start_time = timeutils.iso8601_from_timestamp(self._start_timestamp
-                                                      / 1000)
+        start_time = timeutils.iso8601_from_timestamp(
+            self._start_timestamp / 1000)
+        end_time = timeutils.iso8601_from_timestamp(self._end_timestamp / 1000)
         query_parms = '?name=' + str(long_name) \
-                      + '&merge_metrics=true&start_time=' + str(start_time)
+                      + '&merge_metrics=true&start_time=' + str(start_time) \
+                      + '&end_time=' + str(end_time)
         self.assertRaises(exceptions.UnprocessableEntity,
                           self.monasca_client.list_measurements, query_parms)
 
     @test.attr(type="gate")
     @test.attr(type=['negative'])
     def test_list_measurements_with_no_merge_metrics(self):
+        metric = helpers.create_metric(
+                name="name-100",
+                timestamp=self._start_timestamp + 1,
+                dimensions={'key-1': 'value-1', 'key-3': 'value-3'}
+                )
+        resp, response_body = self.monasca_client.create_metrics(metric)
+        end_timestamp = int(time.time() * 1000)
+
         start_time = timeutils.iso8601_from_timestamp(
             self._start_timestamp / 1000)
-        query_parms = '?name=name-1&merge_metrics=false&start_time=' + str(
-            start_time)
+        end_time = timeutils.iso8601_from_timestamp(end_timestamp / 1000)
+
+        query_parms = '?name=name-100&start_time=' + str(start_time) + \
+                      '&end_time=' + str(end_time) + '&merge_metrics=false'
         self.assertRaises(exceptions.Conflict,
                           self.monasca_client.list_measurements, query_parms)

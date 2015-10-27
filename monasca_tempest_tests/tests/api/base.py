@@ -46,7 +46,23 @@ class BaseMonascaTest(tempest.test.BaseTestCase):
         super(BaseMonascaTest, cls).resource_cleanup()
         resp, response_body = cls.monasca_client.list_alarm_definitions()
         elements = response_body['elements']
-        for definition in elements:
-            id = definition['id']
-            resp, response_body = cls.monasca_client. \
-                delete_alarm_definition(id)
+        if len(elements) != 0:
+            for i in range(0, len(elements)):
+                id = elements[i]['id']
+                resp, response_body = cls.monasca_client. \
+                    delete_alarm_definition(id)
+
+        resp, response_body = cls.monasca_client.list_notification_methods()
+        elements = response_body['elements']
+        if len(elements) != 0:
+            for i in range(0, len(elements)):
+                id = elements[i]['id']
+                resp, response_body = cls.monasca_client.\
+                    delete_notification_method(id)
+
+        resp, response_body = cls.monasca_client.list_alarms()
+        elements = response_body['elements']
+        if len(elements) != 0:
+            for i in range(0, len(elements)):
+                id = elements[i]['id']
+                resp, response_body = cls.monasca_client.delete_alarm(id)
