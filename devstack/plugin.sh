@@ -44,15 +44,15 @@ ERREXIT=$(set +o | grep errexit)
 set -o errexit
 
 # Determine if we are running in devstack-gate or devstack.
-if [[ $BASE ]]; then
+if [[ $DEST ]]; then
 
     # We are running in devstack-gate.
-    export MONASCA_BASE="${BASE}/new"
+    export MONASCA_BASE=${MONASCA_BASE:-"${DEST}"}
 
 else
 
     # We are running in devstack.
-    export MONASCA_BASE="/opt/stack"
+    export MONASCA_BASE=${MONASCA_BASE:-"/opt/stack"}
 
 fi
 
@@ -491,7 +491,7 @@ function install_schema {
 
     sudo chown root:root /opt/monasca/sqls/mon.sql
 
-    sudo mysql -uroot -ppassword < /opt/monasca/sqls/mon.sql || echo "Did the schema change? This process will fail on schema changes."
+    sudo mysql -uroot -psecretmysql < /opt/monasca/sqls/mon.sql || echo "Did the schema change? This process will fail on schema changes."
 
     sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/schema/winchester.sql /opt/monasca/sqls/winchester.sql
 
@@ -499,7 +499,7 @@ function install_schema {
 
     sudo chown root:root /opt/monasca/sqls/winchester.sql
 
-    sudo mysql -uroot -ppassword < /opt/monasca/sqls/winchester.sql || echo "Did the schema change? This process will fail on schema changes."
+    sudo mysql -uroot -psecretmysql < /opt/monasca/sqls/winchester.sql || echo "Did the schema change? This process will fail on schema changes."
 
     sudo mkdir -p /opt/kafka/logs || true
 
