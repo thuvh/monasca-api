@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a26ad4f_99f8a97e",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 711,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-10-27T18:42:17Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this one be monasca-api?",
+      "revId": "2ded925cd34f79247b7799c650a73d55facfc133",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
