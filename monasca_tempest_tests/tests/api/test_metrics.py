@@ -33,6 +33,10 @@ class TestMetrics(base.BaseMonascaTest):
     def resource_setup(cls):
         super(TestMetrics, cls).resource_setup()
 
+    @classmethod
+    def resource_cleanup(cls):
+        super(TestMetrics, cls).resource_cleanup()
+
     @test.attr(type='gate')
     def test_create_metric(self):
         metric = helpers.create_metric()
@@ -144,12 +148,12 @@ class TestMetrics(base.BaseMonascaTest):
         self.assertTrue(type(element['dimensions']) is dict)
 
     @test.attr(type='gate')
-    def test_list_metrics_with_name(self):
+    def test_list_metrics_with_dimensions(self):
         name_org = data_utils.rand_name('name')
         key = data_utils.rand_name('key')
         metric = helpers.create_metric(name=name_org,
                                        dimensions={key: 'value-1'})
-        resp, body = self.monasca_client.create_metrics(metric)
+        self.monasca_client.create_metrics(metric)
         time.sleep(WAIT_TIME)
 
         query_parms = '?dimensions=' + str(key) + ':value-1'
@@ -161,13 +165,13 @@ class TestMetrics(base.BaseMonascaTest):
         self.assertEqual(name_org, str(name))
 
     @test.attr(type='gate')
-    def test_list_metrics_with_dimensions(self):
+    def test_list_metrics_with_name(self):
         name = data_utils.rand_name('name')
         key = data_utils.rand_name('key')
         value_org = data_utils.rand_name('value')
         metric = helpers.create_metric(name=name,
                                        dimensions={key: value_org})
-        resp, body = self.monasca_client.create_metrics(metric)
+        self.monasca_client.create_metrics(metric)
         time.sleep(WAIT_TIME)
 
         query_parms = '?name=' + name
@@ -195,7 +199,7 @@ class TestMetrics(base.BaseMonascaTest):
             helpers.create_metric(name=name, dimensions={
                 key1: 'value-4', key2: 'value-4'})
         ]
-        resp, body = self.monasca_client.create_metrics(metrics)
+        self.monasca_client.create_metrics(metrics)
         time.sleep(WAIT_TIME)
 
         query_parms = '?name=' + name
@@ -228,7 +232,7 @@ class TestMetrics(base.BaseMonascaTest):
                 if len(new_elements) > limit - 1:
                     self.assertEqual(limit, len(new_elements))
                     next_element = new_elements[limit - 1]
-                elif len(new_elements) > 0 and len(new_elements) <= limit - 1:
+                elif 0 < len(new_elements) <= limit - 1:
                     self.assertEqual(last_element, new_elements[0])
                     break
                 else:
