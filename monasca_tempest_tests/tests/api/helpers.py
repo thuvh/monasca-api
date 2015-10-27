@@ -16,6 +16,9 @@ import time
 
 from tempest.common.utils import data_utils
 
+NUM_ALARM_DEFINITIONS = 2
+NUM_MEASUREMENTS = 100
+
 
 def create_metric(name='name-1',
                   dimensions={
@@ -74,4 +77,95 @@ def create_alarm_definition(name=None,
         alarm_definition['ok_actions'] = ok_actions
     if undetermined_actions is not None:
         alarm_definition['undetermined_actions'] = undetermined_actions
+    return alarm_definition
+
+
+def create_alarms_for_test_alarms(self, num):
+    # create an alarm definition
+    expression = "avg(name-1) > 0"
+    name = data_utils.rand_name('name-1')
+    alarm_definition = create_alarm_definition(
+        name=name, expression=expression)
+    resp, response_body = self.monasca_client.create_alarm_definitions(
+        alarm_definition)
+
+    if num > 1:
+        # create more alarm definitions
+        expression = "avg(name-2) > 0"
+        name = data_utils.rand_name('name-2')
+        alarm_definition = create_alarm_definition(
+            name=name, expression=expression)
+        resp, response_body = self.monasca_client.create_alarm_definitions(
+            alarm_definition)
+
+        expression = "avg(name-3) > 0"
+        name = data_utils.rand_name('name-3')
+        alarm_definition = create_alarm_definition(
+            name=name, expression=expression)
+        resp, response_body = self.monasca_client.create_alarm_definitions(
+            alarm_definition)
+
+        expression = "avg(name-4) > 0"
+        name = data_utils.rand_name('name-4')
+        alarm_definition = create_alarm_definition(
+            name=name, expression=expression)
+        resp, response_body = self.monasca_client.create_alarm_definitions(
+            alarm_definition)
+
+    # create some metrics
+    for i in range(0, 60):
+        metric = create_metric()
+        resp, response_body = self.monasca_client.create_metrics(metric)
+        time.sleep(1)
+        resp, response_body = self.monasca_client.list_alarms()
+        elements = response_body['elements']
+        if len(elements) >= num:
+            break
+
+
+def delete_alarm_and_alarm_definitions(self):
+    # Delete Alarm
+    resp, response_body = self.monasca_client.list_alarms()
+    elements = response_body['elements']
+    if len(elements) > 0:
+        for i in range(0, len(elements)):
+            element = elements[i]
+            alarm_id = element['id']
+            resp, response_body = self.monasca_client.delete_alarm(alarm_id)
+            self.assertEqual(204, resp.status)
+
+    # Delete alarm definitions
+    resp, response_body = self.monasca_client.list_alarm_definitions()
+    elements = response_body['elements']
+    if len(elements) > 0:
+        for i in range(0, len(elements)):
+            element = elements[i]
+            alarm_def_id = element['id']
+            resp, response_body = self.monasca_client.\
+                delete_alarm_definition(alarm_def_id)
+            self.assertEqual(204, resp.status)
+
+
+def create_alarm_definitions_with_num(cls, expression):
+    cls.rule = {'expression': 'mem_total_mb > 0'}
+    alarm_def_id = []
+    for i in range(0, NUM_ALARM_DEFINITIONS):
+        alarm_definition = create_alarm_definition(
+            name='alarm-definition-' + str(i),
+            description=data_utils.rand_name('description'),
+            expression=expression)
+        resp, response_body = cls.monasca_client.create_alarm_definitions(
+            alarm_definition)
+        alarm_def_id.append(response_body['id'])
+    return alarm_def_id
+
+
+def create_alarm_definition_for_test_alarm_definition():
+    # Create an alarm definition
+    name = data_utils.rand_name('alarm_definition')
+    expression = "max(cpu.system_perc) > 0"
+    alarm_definition = create_alarm_definition(
+        name=name,
+        description="description",
+        expression=expression)
     return alarm_definition

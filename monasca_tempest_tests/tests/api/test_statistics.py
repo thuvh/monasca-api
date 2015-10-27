@@ -56,8 +56,10 @@ class TestStatistics(base.BaseMonascaTest):
     def test_list_statistics(self):
         start_time = timeutils.iso8601_from_timestamp(self._start_timestamp /
                                                       1000)
+        end_time = timeutils.iso8601_from_timestamp(self._end_timestamp / 1000)
         query_parms = '?name=name-1&merge_metrics=true&statistics=avg' \
-                      '&start_time=' + str(start_time)
+                      '&start_time=' + str(start_time) + '&end_time=' \
+                      + str(end_time)
         resp, response_body = self.monasca_client.list_statistics(
             query_parms)
         self.assertEqual(200, resp.status)
@@ -84,8 +86,9 @@ class TestStatistics(base.BaseMonascaTest):
     def test_list_statistics_with_no_name(self):
         start_time = timeutils.iso8601_from_timestamp(self._start_timestamp /
                                                       1000)
+        end_time = timeutils.iso8601_from_timestamp(self._end_timestamp / 1000)
         query_parms = '?merge_metrics=true&statistics=avg&start_time=' + \
-                      str(start_time)
+                      str(start_time) + '&end_time=' + str(end_time)
         self.assertRaises(exceptions.UnprocessableEntity,
                           self.monasca_client.list_statistics, query_parms)
 
@@ -94,7 +97,9 @@ class TestStatistics(base.BaseMonascaTest):
     def test_list_statistics_with_no_statistics(self):
         start_time = timeutils.iso8601_from_timestamp(self._start_timestamp /
                                                       1000)
-        query_parms = '?name=name-1&start_time=' + str(start_time)
+        end_time = timeutils.iso8601_from_timestamp(self._end_timestamp / 1000)
+        query_parms = '?name=name-1&start_time=' + str(start_time) + \
+                      '&end_time=' + str(end_time)
         self.assertRaises(exceptions.UnprocessableEntity,
                           self.monasca_client.list_statistics, query_parms)
 
@@ -110,8 +115,9 @@ class TestStatistics(base.BaseMonascaTest):
     def test_list_statistics_with_invalid_statistics(self):
         start_time = timeutils.iso8601_from_timestamp(
             self._start_timestamp / 1000)
+        end_time = timeutils.iso8601_from_timestamp(self._end_timestamp / 1000)
         query_parms = '?name=name-1&statistics=abc&start_time=' + str(
-            start_time)
+            start_time) + '&end_time=' + str(end_time)
         self.assertRaises(exceptions.UnprocessableEntity,
                           self.monasca_client.list_statistics, query_parms)
 
@@ -119,9 +125,10 @@ class TestStatistics(base.BaseMonascaTest):
     def test_list_statistics_with_dimensions(self):
         start_time = timeutils.iso8601_from_timestamp(self._start_timestamp
                                                       / 1000)
+        end_time = timeutils.iso8601_from_timestamp(self._end_timestamp / 1000)
         query_parms = '?name=name-1&merge_metrics=true&statistics=avg&' \
-                      'start_time=' + str(start_time) + \
-                      '&dimensions=key1:value1'
+                      'start_time=' + str(start_time) + '&end_time=' + \
+                      str(end_time) + '&dimensions=key1:value1'
         resp, response_body = self.monasca_client.list_statistics(
             query_parms)
         self.assertEqual(200, resp.status)
@@ -249,8 +256,10 @@ class TestStatistics(base.BaseMonascaTest):
     def test_list_statistics_with_merge_metrics(self):
         start_time = timeutils.iso8601_from_timestamp(
             self._start_timestamp / 1000)
+        end_time = timeutils.iso8601_from_timestamp(self._end_timestamp / 1000)
         query_parms = '?name=name-1&merge_metrics=true&statistics=avg&' \
-                      'merge_metrics=true&start_time=' + str(start_time)
+                      'merge_metrics=true&start_time=' + str(start_time) + \
+                      '&end_time=' + str(end_time)
         resp, response_body = self.monasca_client.list_statistics(
             query_parms)
         self.assertEqual(200, resp.status)
@@ -260,8 +269,11 @@ class TestStatistics(base.BaseMonascaTest):
     def test_list_statistics_with_no_merge_metrics(self):
         start_time = timeutils.\
             iso8601_from_timestamp(self._start_timestamp / 1000)
+        end_time = timeutils.\
+            iso8601_from_timestamp(self._end_timestamp / 1000)
         query_parms = '?name=name-1&merge_metrics=false&' \
-                      'statistics=avg,min,max&start_time=' + str(start_time)
+                      'statistics=avg,min,max&start_time=' + str(start_time)\
+                      + '&endtime=' + str(end_time)
         self.assertRaises(exceptions.Conflict,
                           self.monasca_client.list_statistics, query_parms)
 
@@ -271,8 +283,10 @@ class TestStatistics(base.BaseMonascaTest):
         long_name = "x" * (constants.MAX_LIST_STATISTICS_NAME_LENGTH + 1)
         start_time = timeutils.iso8601_from_timestamp(self._start_timestamp
                                                       / 1000)
+        end_time = timeutils.iso8601_from_timestamp(self._end_timestamp / 1000)
         query_parms = '?merge_metrics=true&name=' + str(long_name) + \
-                      '&start_time=' + str(start_time)
+                      '&start_time=' + str(start_time) + '&endtime=' + str(
+                      end_time)
         self.assertRaises(exceptions.UnprocessableEntity,
                           self.monasca_client.list_statistics, query_parms)
 
@@ -280,8 +294,10 @@ class TestStatistics(base.BaseMonascaTest):
     def test_list_statistics_with_more_than_one_statistics(self):
         start_time = timeutils.\
             iso8601_from_timestamp(self._start_timestamp / 1000)
+        end_time = timeutils.iso8601_from_timestamp(self._end_timestamp / 1000)
         query_parms = '?name=name-1&merge_metrics=true&' \
-                      'statistics=avg,min,max&start_time=' + str(start_time)
+                      'statistics=avg,min,max&start_time=' + str(start_time)\
+                      + '&endtime=' + str(end_time)
         resp, response_body = self.monasca_client.list_statistics(
             query_parms)
         self.assertEqual(200, resp.status)
