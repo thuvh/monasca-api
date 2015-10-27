@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a26ad4f_5062edd9",
+        "filename": "devstack/README.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 16237
+      },
+      "writtenOn": "2015-10-27T14:16:47Z",
+      "side": 1,
+      "message": "elaborate CD command.",
+      "revId": "2104603b746ae4da28a1b4425843321153ae29e5",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
