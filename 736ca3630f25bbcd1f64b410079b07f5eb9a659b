@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a26ad4f_6b81378f",
+        "filename": "monasca_tempest_tests/tests/api/base.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-10-27T17:48:46Z",
+      "side": 1,
+      "message": "This is equivalent to:\n\nif elements:\n\nwhich is considered more \"pythonic\"",
+      "revId": "736ca3630f25bbcd1f64b410079b07f5eb9a659b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a26ad4f_4b4f9b92",
+        "filename": "monasca_tempest_tests/tests/api/base.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-10-27T17:48:46Z",
+      "side": 1,
+      "message": "This should just be:\n\nfor element in elements:\n   id \u003d element[\u0027id\u0027]",
+      "revId": "736ca3630f25bbcd1f64b410079b07f5eb9a659b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a26ad4f_ab5e6f43",
+        "filename": "monasca_tempest_tests/tests/api/base.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-10-27T17:48:46Z",
+      "side": 1,
+      "message": "You don\u0027t use reap, response_body so no point in setting them",
+      "revId": "736ca3630f25bbcd1f64b410079b07f5eb9a659b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a26ad4f_0b40c355",
+        "filename": "monasca_tempest_tests/tests/api/base.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-10-27T17:48:46Z",
+      "side": 1,
+      "message": "See above",
+      "revId": "736ca3630f25bbcd1f64b410079b07f5eb9a659b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a26ad4f_ae419d3b",
+        "filename": "monasca_tempest_tests/tests/api/helpers.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-10-27T17:48:46Z",
+      "side": 1,
+      "message": "Deleting the Alarm Definition will delete all of the Alarms for this Alarm Definition. Are you just testing deleting alarms?",
+      "revId": "736ca3630f25bbcd1f64b410079b07f5eb9a659b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a26ad4f_8e1aa16d",
+        "filename": "monasca_tempest_tests/tests/api/helpers.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-10-27T17:48:46Z",
+      "side": 1,
+      "message": "I\u0027d like to see match_by set. That is an important part of Alarm Definitions and Alarms",
+      "revId": "736ca3630f25bbcd1f64b410079b07f5eb9a659b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
