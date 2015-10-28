@@ -104,8 +104,9 @@ You can also use testr to create a list of specific tests for your needs.
 1. In the Tempest root dir:
 
     ```
-    ostestr --regex monasca_tempest_tests
+    ostestr --serial --regex monasca_tempest_tests
     ````
+	```--serial``` option is necessary here. Monasca tempest tests is not available for running in parallel (default option in ostestr) because some tests are depending on the same data.
 
 ## Running/Debugging the Monasca Tempest Tests in PyCharm
 Assuming that you have already created a PyCharm project for the ```monasca-api``` do the following:
