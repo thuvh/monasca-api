@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a26ad4f_e1c45f41",
+        "filename": "monasca_tempest_tests/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2015-10-28T23:39:54Z",
+      "side": 1,
+      "message": "extra quote here doesn\u0027t put the --serial below in the correct format",
+      "revId": "d0c66efe00ca32e7dc545e574eb72c5bf8430955",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
