@@ -1,0 +1,12 @@
+Verified+2: Jenkins
+Code-Review+1: Craig Bryant <craig.bryant@hp.com>
+Code-Review+2: Deklan Dieterly <deklan.dieterly@hp.com>
+Workflow+1: Deklan Dieterly <deklan.dieterly@hp.com>
+Code-Review+1: Ryan Brandt <ryan.brandt@hpe.com>
+Code-Review+1: Ben Motz <bmotz@cray.com>
+Code-Review+1: Kaiyan Sheng <kaiyan.sheng@hp.com>
+Submitted-by: Jenkins
+Submitted-at: Thu, 29 Oct 2015 13:54:46 +0000
+Reviewed-on: https://review.openstack.org/240018
+Project: openstack/monasca-api
+Branch: refs/heads/master
