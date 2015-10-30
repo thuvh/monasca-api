@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a26ad4f_445e4177",
+        "filename": "monasca_tempest_tests/tests/api/test_alarm_definitions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-10-30T19:48:29Z",
+      "side": 1,
+      "message": "You should just reuse the name and description from the original alarm definition since you are testing only match-by",
+      "revId": "27884872505a97199b665fb843db94c3bdab0ba4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a26ad4f_44a3a14f",
+        "filename": "monasca_tempest_tests/tests/api/test_alarms.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-10-30T19:48:29Z",
+      "side": 1,
+      "message": "This for loop is the same as the for loop above (except for the len(element) check, I suggest you make a helper method to reduce duplicated code.",
+      "revId": "27884872505a97199b665fb843db94c3bdab0ba4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a26ad4f_c48fb1ca",
+        "filename": "monasca_tempest_tests/tests/api/test_alarms.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-10-30T19:48:29Z",
+      "side": 1,
+      "message": "Looks like more duplicated code",
+      "revId": "27884872505a97199b665fb843db94c3bdab0ba4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
