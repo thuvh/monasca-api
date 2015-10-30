@@ -492,6 +492,29 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
         helpers.delete_alarm_definitions(self)
 
     @test.attr(type="gate")
+    @test.attr(type=['negative'])
+    def test_update_alarm_definition_with_a_different_match_by(self):
+        alarm_definition = helpers.\
+            create_alarm_definition_for_test_alarm_definition()
+        resp, response_body = self.monasca_client.create_alarm_definitions(
+            alarm_definition)
+        id = response_body['id']
+
+        # Update alarm definition
+        updated_name = data_utils.rand_name('updated_name')
+        updated_description = 'updated description'
+        updated_expression = response_body['expression']
+        updated_match_by = ['hostname']
+        self.assertRaises(exceptions.UnprocessableEntity,
+                          self.monasca_client.update_alarm_definition,
+                          id=id, name=updated_name,
+                          expression=updated_expression,
+                          description=updated_description,
+                          actions_enabled='true',
+                          match_by=updated_match_by)
+        helpers.delete_alarm_definitions(self)
+
+    @test.attr(type="gate")
     def test_update_notification_in_alarm_definition(self):
         notification_name = data_utils.rand_name('notification-')
         notification_type = 'EMAIL'
@@ -562,6 +585,22 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
         # Validate fields updated
         self.assertEqual(patched_name, response_body['name'])
 
+        helpers.delete_alarm_definitions(self)
+
+    @test.attr(type="gate")
+    @test.attr(type=['negative'])
+    def test_patch_alarm_definition_with_a_different_match_by(self):
+        alarm_definition = helpers.\
+            create_alarm_definition_for_test_alarm_definition()
+        resp, response_body = self.monasca_client.create_alarm_definitions(
+            alarm_definition)
+        id = response_body['id']
+
+        # Patch alarm definition
+        patched_match_by = ['hostname']
+        self.assertRaises(exceptions.UnprocessableEntity,
+                          self.monasca_client.patch_alarm_definition,
+                          id=id, match_by=patched_match_by)
         helpers.delete_alarm_definitions(self)
 
     # Delete
