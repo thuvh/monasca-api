@@ -660,7 +660,7 @@ A hexadecimal string offset would look like this:
 
 offset=01ce0acc66131296c8a17294f39aee44ea8963ec
 
-``` 
+```
 
 A timestamp offset would look like this:
 
@@ -821,10 +821,10 @@ Returns a JSON version object with details about the specified version.
 
 #### Response Examples
 ```
-{  
+{
    "id":"v2.0",
-   "links":[  
-      {  
+   "links":[
+      {
          "rel":"self",
          "href":"http://192.168.10.4:8080/v2.0/"
       }
@@ -922,19 +922,19 @@ Content-Type: application/json
 X-Auth-Token: 27feed73a0ce4138934e30d619b415b0
 Cache-Control: no-cache
 
-[  
-   {  
+[
+   {
       "name":"name1",
-      "dimensions":{  
+      "dimensions":{
          "key1":"value1",
          "key2":"value2"
       },
       "timestamp":1405630174123,
       "value":1.0
    },
-   {  
+   {
       "name":"name2",
-      "dimensions":{  
+      "dimensions":{
          "key1":"value1",
          "key2":"value2"
       },
@@ -972,6 +972,8 @@ None.
 * tenant_id (string, optional, restricted) - Tenant ID to from which to get metrics. This parameter can be used to get metrics from a tenant other than the tenant the request auth token is scoped to. Usage of this query parameter is restricted to users with the the monasca admin role, as defined in the monasca api configuration file, which defaults to `monasca-admin`.
 * name (string(255), optional) - A metric name to filter metrics by.
 * dimensions (string, optional) - A dictionary to filter metrics by specified as a comma separated array of (key, value) pairs as `key1:value1,key2:value2, ...`
+* start_time (string, optional) - The start time in ISO 8601 combined date and time format in UTC.  This is useful for only listing metrics that have measurements since the specified start_time.
+* end_time (string, optional) - The end time in ISO 8601 combined date and time format in UTC.  Combined with start_time, this can be useful to only list metrics that have measurements in between the specified start_time and end_time.
 * offset (integer (InfluxDB) or hexadecimal string (Vertica), optional)
 * limit (integer, optional)
 
@@ -1323,7 +1325,7 @@ ___
 Operations for working with notification methods.
 
 ## Create Notification Method
-Creates a notification method through which notifications can be sent to when an alarm state transition occurs. Notification methods can be associated with zero or many alarms. 
+Creates a notification method through which notifications can be sent to when an alarm state transition occurs. Notification methods can be associated with zero or many alarms.
 
 ### POST /v2.0/notification-methods
 
@@ -1351,7 +1353,7 @@ Content-Type: application/json
 X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
 Cache-Control: no-cache
 
-{  
+{
    "name":"Name of notification method",
    "type":"EMAIL",
    "address":"john.doe@hp.com"
@@ -1367,17 +1369,17 @@ Cache-Control: no-cache
 Returns a JSON notification method object with the following fields:
 
 * id (string) - ID of notification method
-* links ([link]) 
+* links ([link])
 * name (string) - Name of notification method
 * type (string) - Type of notification method
 * address (string) - Address of notification method
 
 #### Response Examples
 ```
-{  
+{
    "id":"35cc6f1c-3a29-49fb-a6fc-d9d97d190508",
-   "links":[  
-      {  
+   "links":[
+      {
          "rel":"self",
          "href":"http://192.168.10.4:8080/v2.0/notification-methods/35cc6f1c-3a29-49fb-a6fc-d9d97d190508"
       }
@@ -1426,7 +1428,7 @@ Cache-Control: no-cache
 Returns a JSON object with a 'links' array of links and an 'elements' array of notification method objects with the following fields:
 
 * id (string) - ID of notification method
-* links ([link]) 
+* links ([link])
 * name (string) - Name of notification method
 * type (string) - Type of notification method
 * address (string) - Address of notification method
@@ -1506,17 +1508,17 @@ GET http://192.168.10.4:8080/v2.0/notification-methods/35cc6f1c-3a29-49fb-a6fc-d
 Returns a JSON notification method object with the following fields:
 
 * id (string) - ID of notification method
-* links ([link]) 
+* links ([link])
 * name (string) - Name of notification method
 * type (string) - Type of notification method
 * address (string) - Address of notification method
 
 #### Response Examples
 ```
-{  
+{
    "id":"35cc6f1c-3a29-49fb-a6fc-d9d97d190508",
-   "links":[  
-      {  
+   "links":[
+      {
          "rel":"self",
          "href":"http://192.168.10.4:8080/v2.0/notification-methods/35cc6f1c-3a29-49fb-a6fc-d9d97d190508"
       }
@@ -1557,7 +1559,7 @@ Content-Type: application/json
 X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
 Cache-Control: no-cache
 
-{  
+{
    "name":"New name of notification method",
    "type":"EMAIL",
    "address":"jane.doe@hp.com"
@@ -1573,17 +1575,17 @@ Cache-Control: no-cache
 Returns a JSON notification method object with the following fields:
 
 * id (string) - ID of notification method
-* links ([link]) 
+* links ([link])
 * name (string) - Name of notification method
 * type (string) - Type of notification method
 * address (string) - Address of notification method
 
 #### Response Examples
 ````
-{  
+{
    "id":"35cc6f1c-3a29-49fb-a6fc-d9d97d190508",
-   "links":[  
-      {  
+   "links":[
+      {
          "rel":"self",
          "href":"http://192.168.10.4:8080/v2.0/notification-methods/35cc6f1c-3a29-49fb-a6fc-d9d97d190508"
       }
@@ -1668,7 +1670,7 @@ Content-Type: application/json
 X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
 Cache-Control: no-cache
 
-{  
+{
    "name":"Average CPU percent greater than 10",
    "description":"The average CPU percent is greater than 10",
    "expression":"(avg(cpu,user_perc{hostname=devstack}) > 10)",
@@ -1676,13 +1678,13 @@ Cache-Control: no-cache
      "hostname"
    ],
    "severity":"LOW",
-   "ok_actions":[  
+   "ok_actions":[
      "c60ec47e-5038-4bf1-9f95-4046c6e9a759"
    ],
-   "alarm_actions":[  
+   "alarm_actions":[
      "c60ec47e-5038-4bf1-9f95-4046c6e9a759"
    ],
-   "undetermined_actions":[  
+   "undetermined_actions":[
      "c60ec47e-5038-4bf1-9f95-4046c6e9a759"
    ]
 }
@@ -1710,10 +1712,10 @@ Returns a JSON object of alarm definition objects with the following fields:
 
 #### Response Examples
 ```
-{  
+{
    "id":"b461d659-577b-4d63-9782-a99194d4a472",
-   "links":[  
-      {  
+   "links":[
+      {
          "rel":"self",
          "href":"http://192.168.10.4:8080/v2.0/alarm-definitions/b461d659-577b-4d63-9782-a99194d4a472"
       }
@@ -1721,10 +1723,10 @@ Returns a JSON object of alarm definition objects with the following fields:
    "name":"Average CPU percent greater than 10",
    "description":"The average CPU percent is greater than 10",
    "expression":"(avg(cpu.user_perc{hostname=devstack}) > 10)",
-   "expression_data":{  
+   "expression_data":{
       "function":"AVG",
       "metric_name":"cpu.user_perc",
-      "dimensions":{  
+      "dimensions":{
          "hostname":"devstack"
       },
       "operator":"GT",
@@ -1736,13 +1738,13 @@ Returns a JSON object of alarm definition objects with the following fields:
      "hostname"
    ],
    "severity":"LOW",
-   "alarm_actions":[  
+   "alarm_actions":[
      "c60ec47e-5038-4bf1-9f95-4046c6e9a759"
    ],
-   "ok_actions":[  
+   "ok_actions":[
      "c60ec47e-5038-4bf1-9f95-4046c6e9a759"
    ],
-   "undetermined_actions":[  
+   "undetermined_actions":[
      "c60ec47e-5038-4bf1-9f95-4046c6e9a759"
    ]
 }
@@ -1973,7 +1975,7 @@ X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
 Content-Type: application/json
 Cache-Control: no-cache
 
-{  
+{
    "name":"CPU percent greater than 15",
    "description":"Release the hounds",
    "expression":"(avg(cpu.user_perc{hostname=devstack}) > 15)",
@@ -1981,13 +1983,13 @@ Cache-Control: no-cache
      "hostname"
    ],
    "severity": "LOW",
-   "alarm_actions":[  
+   "alarm_actions":[
       "c60ec47e-5038-4bf1-9f95-4046c6e9a759"
    ],
-   "ok_actions":[  
+   "ok_actions":[
       "c60ec47e-5038-4bf1-9f95-4046c6e9a759"
    ],
-   "undetermined_actions":[  
+   "undetermined_actions":[
       "c60ec47e-5038-4bf1-9f95-4046c6e9a759"
    ],
    "actions_enabled": true
@@ -2093,7 +2095,7 @@ X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
 Content-Type: application/json
 Cache-Control: no-cache
 
-{  
+{
    "name":"CPU percent greater than 15",
    "description":"Release the hounds",
    "expression":"(avg(cpu.user_perc{hostname=devstack}) > 15)",
@@ -2101,13 +2103,13 @@ Cache-Control: no-cache
      "hostname"
    ],
    "severity":"CRITICAL",
-   "alarm_actions":[  
+   "alarm_actions":[
       "c60ec47e-5038-4bf1-9f95-4046c6e9a759"
    ],
-   "ok_actions":[  
+   "ok_actions":[
       "c60ec47e-5038-4bf1-9f95-4046c6e9a759"
    ],
-   "undetermined_actions":[  
+   "undetermined_actions":[
       "c60ec47e-5038-4bf1-9f95-4046c6e9a759"
    ]
 }
@@ -2531,14 +2533,14 @@ Returns a JSON alarm object with the following fields:
 
 #### Response Examples
 ```
-{  
+{
    "id":"f9935bcc-9641-4cbf-8224-0993a947ea83",
-   "links":[  
-      {  
+   "links":[
+      {
          "rel":"self",
          "href":"http://192.168.10.4:8080/v2.0/alarms/f9935bcc-9641-4cbf-8224-0993a947ea83"
       },
-      {  
+      {
          "rel":"state-history",
          "href":"http://192.168.10.4:8080/v2.0/alarms/f9935bcc-9641-4cbf-8224-0993a947ea83/state-history"
       }
@@ -2546,7 +2548,7 @@ Returns a JSON alarm object with the following fields:
    "alarm_definition_id":"ad837fca-5564-4cbf-523-0117f7dac6ad",
    "metrics":[{
       "name":"cpu.system_perc",
-      "dimensions":{  
+      "dimensions":{
          "hostname":"devstack"
       }
    }],
@@ -2591,7 +2593,7 @@ X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
 Content-Type: application/json
 Cache-Control: no-cache
 
-{  
+{
   "state":"OK",
   "lifecycle_state":"OPEN",
   "link":"http://pagerduty.com/"
@@ -2619,14 +2621,14 @@ Returns a JSON alarm object with the following parameters:
 
 #### Response Examples
 ```
-{  
+{
   "id":"f9935bcc-9641-4cbf-8224-0993a947ea83",
-  "links":[  
-     {  
+  "links":[
+     {
         "rel":"self",
         "href":"http://192.168.10.4:8080/v2.0/alarms/f9935bcc-9641-4cbf-8224-0993a947ea83"
      },
-     {  
+     {
         "rel":"state-history",
         "href":"http://192.168.10.4:8080/v2.0/alarms/f9935bcc-9641-4cbf-8224-0993a947ea83/state-history"
      }
@@ -2634,7 +2636,7 @@ Returns a JSON alarm object with the following parameters:
   "alarm_definition_id":"ad837fca-5564-4cbf-523-0117f7dac6ad",
   "metrics":[{
      "name":"cpu.system_perc",
-     "dimensions":{  
+     "dimensions":{
         "hostname":"devstack"
      }
   }],
