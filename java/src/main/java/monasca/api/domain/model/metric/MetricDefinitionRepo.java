@@ -15,6 +15,8 @@ package monasca.api.domain.model.metric;
 
 import monasca.common.model.metric.MetricDefinition;
 
+import org.joda.time.DateTime;
+
 import java.util.List;
 import java.util.Map;
 
@@ -27,7 +29,7 @@ public interface MetricDefinitionRepo {
    * Finds metrics for the given criteria.
    */
   List<MetricDefinition> find(String tenantId, String name, Map<String, String> dimensions,
-                              String offset, int limit)
+                              DateTime startTime, DateTime endTime, String offset, int limit)
       throws Exception;
 
   List<MetricName> findNames(String tenantId, Map<String, String> dimensions, String offset, int limit) throws Exception;
