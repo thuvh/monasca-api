@@ -53,10 +53,12 @@ class MetricsRepository(metrics_repository.MetricsRepository):
             LOG.exception(ex)
             raise exceptions.RepositoryException(ex)
 
-    def _build_show_series_query(self, dimensions, name, tenant_id, region):
+    def _build_show_series_query(self, dimensions, name, tenant_id, region,
+                                 start_timestamp=None, end_timestamp=None):
 
         where_clause = self._build_where_clause(dimensions, name, tenant_id,
-                                                region)
+                                                region, start_timestamp,
+                                                end_timestamp)
 
         query = 'show series ' + where_clause
 
@@ -147,12 +149,13 @@ class MetricsRepository(metrics_repository.MetricsRepository):
         return from_clause
 
     def list_metrics(self, tenant_id, region, name, dimensions, offset,
-                     limit):
+                     limit, start_timestamp=None, end_timestamp=None):
 
         try:
 
             query = self._build_show_series_query(dimensions, name, tenant_id,
-                                                  region)
+                                                  region, start_timestamp,
+                                                  end_timestamp)
 
             query += " limit {}".format(limit + 1)
 

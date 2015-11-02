@@ -17,6 +17,7 @@ import com.google.inject.Inject;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -81,16 +82,20 @@ public class InfluxV9MetricDefinitionRepo implements MetricDefinitionRepo {
   @Override
   public List<MetricDefinition> find(String tenantId, String name,
                                      Map<String, String> dimensions,
+                                     DateTime startTime,
+                                     DateTime endTime,
                                      String offset, int limit) throws Exception {
 
     int startIndex = this.influxV9Utils.startIndex(offset);
 
     String q = String.format("show series %1$s "
-                             + "where %2$s %3$s %4$s %5$s %6$s",
+                             + "where %2$s %3$s %4$s %5$s %6$s %7$s %8$s",
                              this.influxV9Utils.namePart(name, false),
                              this.influxV9Utils.privateTenantIdPart(tenantId),
                              this.influxV9Utils.privateRegionPart(this.region),
+                             this.influxV9Utils.startTimePart(startTime),
                              this.influxV9Utils.dimPart(dimensions),
+                             this.influxV9Utils.endTimePart(endTime),
                              this.influxV9Utils.limitPart(limit),
                              this.influxV9Utils.offsetPart(startIndex));
 

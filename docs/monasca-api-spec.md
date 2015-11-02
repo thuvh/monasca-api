@@ -972,6 +972,8 @@ None.
 * tenant_id (string, optional, restricted) - Tenant ID to from which to get metrics. This parameter can be used to get metrics from a tenant other than the tenant the request auth token is scoped to. Usage of this query parameter is restricted to users with the the monasca admin role, as defined in the monasca api configuration file, which defaults to `monasca-admin`.
 * name (string(255), optional) - A metric name to filter metrics by.
 * dimensions (string, optional) - A dictionary to filter metrics by specified as a comma separated array of (key, value) pairs as `key1:value1,key2:value2, ...`
+* start_time (string, optional) - The start time in ISO 8601 combined date and time format in UTC.  This is useful for only listing metrics that have measurements since the specified start_time.
+* end_time (string, optional) - The end time in ISO 8601 combined date and time format in UTC.  Combined with start_time, this can be useful to only list metrics that have measurements in between the specified start_time and end_time.
 * offset (integer (InfluxDB) or hexadecimal string (Vertica), optional)
 * limit (integer, optional)
 
