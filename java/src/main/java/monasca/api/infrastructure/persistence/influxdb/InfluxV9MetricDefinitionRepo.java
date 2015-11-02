@@ -17,6 +17,7 @@ import com.google.inject.Inject;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -81,6 +82,7 @@ public class InfluxV9MetricDefinitionRepo implements MetricDefinitionRepo {
   @Override
   public List<MetricDefinition> find(String tenantId, String name,
                                      Map<String, String> dimensions,
+                                     DateTime startTime,
                                      String offset, int limit) throws Exception {
 
     int startIndex = this.influxV9Utils.startIndex(offset);

@@ -20,6 +20,8 @@ import com.google.common.base.Strings;
 
 import com.codahale.metrics.annotation.Timed;
 
+import org.joda.time.DateTime;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -121,6 +123,7 @@ public class MetricResource {
                            @QueryParam("dimensions") String dimensionsStr,
                            @QueryParam("offset") String offset,
                            @QueryParam("limit") String limit,
+                           @QueryParam("start_time") String startTimeStr,
                            @QueryParam("tenant_id") String crossTenantId) throws Exception
   {
       Map<String, String>
@@ -129,6 +132,7 @@ public class MetricResource {
               .parseAndValidateDimensions(dimensionsStr);
       MetricNameValidation.validate(name, false);
 
+    DateTime startTime = Validation.parseAndValidateDate(startTimeStr, "start_time", false);
     final String queryTenantId = Validation.getQueryProject(roles, crossTenantId, tenantId,
         admin_role);
     final int paging_limit = this.persistUtils.getLimit(limit);
@@ -136,6 +140,7 @@ public class MetricResource {
         queryTenantId,
         name,
         dimensions,
+        startTime,
         offset,
         paging_limit
     );
