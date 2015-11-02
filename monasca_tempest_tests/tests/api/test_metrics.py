@@ -429,3 +429,39 @@ class TestMetrics(base.BaseMonascaTest):
             time_iso_millis_delta = \
                 time_iso_base + ':' + time_iso_second[0] + millis_delta + 'Z'
         return time_iso_millis_delta
+
+    @test.attr(type='gate')
+    def test_list_metrics_with_time_args(self):
+        name = data_utils.rand_name('name')
+        key = data_utils.rand_name('key')
+        value_org = data_utils.rand_name('value')
+        time_secs = time.time()
+        #
+        # Built start and end time args before and after the measurement.
+        #
+        start_time = time.strftime('%Y-%m-%dT%H:%M:%S', time.localtime(time_secs - 1.0)) + 'Z'
+        end_time = time.strftime('%Y-%m-%dT%H:%M:%S', time.localtime(time_secs + 1.0)) + 'Z'
+        metric = helpers.create_metric(name=name,
+                                       dimensions={key: value_org},
+                                       timestamp=time_secs * 1000)
+
+        self.monasca_client.create_metrics(metric)
+        for timer in xrange(constants.MAX_RETRIES):
+            query_parms = '?name=' + name + '&start_time=' + start_time + '&end_time=' + end_time
+            resp, response_body = self.monasca_client.list_metrics(query_parms)
+            self.assertEqual(200, resp.status)
+            elements = response_body['elements']
+            if elements:
+                dimensions = elements[0]
+                dimension = dimensions['dimensions']
+                value = dimension[unicode(key)]
+                self.assertEqual(value_org, str(value))
+                break
+            else:
+                time.sleep(constants.RETRY_WAIT_SECS)
+                if timer == constants.MAX_RETRIES - 1:
+                    skip_msg = "Skipped test_list_metrics_with_time_args: " \
+                               "timeout on waiting for metrics: at least one " \
+                               "metric is needed. Current number of metrics " \
+                               "= 0"
+                    raise self.skipException(skip_msg)
