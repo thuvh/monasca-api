@@ -1,4 +1,4 @@
-# Copyright 2014 Hewlett-Packard
+# Copyright 2014, 2015 Hewlett-Packard
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -26,4 +26,8 @@ class AlreadyExistsException(RepositoryException):
 
 
 class InvalidUpdateException(RepositoryException):
+    pass
+
+
+class MultipleMetricsException(RepositoryException):
     pass

@@ -1,4 +1,4 @@
-# Copyright 2014 Hewlett-Packard
+# Copyright 2014, 2015 Hewlett-Packard
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -34,6 +34,8 @@ def resource_try_catch_block(fun):
             raise falcon.HTTPNotFound
         except falcon.HTTPBadRequest:
             raise
+        except exceptions.MultipleMetricException as ex:
+            raise falcon.HTTPConflict(ex.__class__.__name__, ex.message)
         except exceptions.AlreadyExistsException as ex:
             raise falcon.HTTPConflict(ex.__class__.__name__, ex.message)
         except exceptions.InvalidUpdateException as ex:
