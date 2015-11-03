@@ -16,6 +16,7 @@ import falcon
 from oslo_log import log
 
 from monasca_api.common.repositories import exceptions
+from monasca_api.common.repositories.influxdb import exceptions as influxdb_exceptions
 
 LOG = log.getLogger(__name__)
 
@@ -33,6 +34,8 @@ def resource_try_catch_block(fun):
             raise falcon.HTTPNotFound
         except falcon.HTTPBadRequest:
             raise
+        except influxdb_exceptions.MultipleSeries as ex:
+            raise falcon.HTTPConflict(ex.__class__.__name__, ex.message)
         except exceptions.AlreadyExistsException as ex:
             raise falcon.HTTPConflict(ex.__class__.__name__, ex.message)
         except exceptions.InvalidUpdateException as ex:
