@@ -21,6 +21,7 @@ from oslo_config import cfg
 from oslo_log import log
 
 from monasca_api.common.repositories import exceptions
+from monasca_api.common.repositories.influxdb import exceptions as influxdb_exceptions
 from monasca_api.common.repositories import metrics_repository
 
 MEASUREMENT_NOT_FOUND_MSG = "measurement not found"
@@ -234,7 +235,7 @@ class MetricsRepository(metrics_repository.MetricsRepository):
                                                  dimensions, None, 2)
 
                 if len(metrics_list) > 1:
-                    raise (exceptions.RepositoryException(
+                    raise (influxdb_exceptions.MultipleSeries(
                         MetricsRepository.MULTIPLE_METRICS_MESSAGE))
 
             query = self._build_select_measurement_query(dimensions, name,
@@ -341,7 +342,7 @@ class MetricsRepository(metrics_repository.MetricsRepository):
                                                  dimensions, None, 2)
 
                 if len(metrics_list) > 1:
-                    raise (exceptions.RepositoryException(
+                    raise (influxdb_exceptions.MultipleSeries(
                         MetricsRepository.MULTIPLE_METRICS_MESSAGE))
 
             query = self._build_statistics_query(dimensions, name, tenant_id,
