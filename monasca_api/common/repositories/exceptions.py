@@ -27,3 +27,7 @@ class AlreadyExistsException(RepositoryException):
 
 class InvalidUpdateException(RepositoryException):
     pass
+
+
+class MultipleMetricsException(RepositoryException):
+    pass

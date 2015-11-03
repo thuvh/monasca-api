@@ -234,7 +234,7 @@ class MetricsRepository(metrics_repository.MetricsRepository):
                                                  dimensions, None, 2)
 
                 if len(metrics_list) > 1:
-                    raise (exceptions.RepositoryException(
+                    raise (exceptions.MultipleMetricsException(
                         MetricsRepository.MULTIPLE_METRICS_MESSAGE))
 
             query = self._build_select_measurement_query(dimensions, name,
@@ -341,7 +341,7 @@ class MetricsRepository(metrics_repository.MetricsRepository):
                                                  dimensions, None, 2)
 
                 if len(metrics_list) > 1:
-                    raise (exceptions.RepositoryException(
+                    raise (exception.MultipleMetricsException(
                         MetricsRepository.MULTIPLE_METRICS_MESSAGE))
 
             query = self._build_statistics_query(dimensions, name, tenant_id,
