@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "fa80f949_8d27bd11",
+        "filename": "monasca_tempest_tests/tests/api/base.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-11-04T16:24:06Z",
+      "side": 1,
+      "message": "So, first  you check to see that you have a valid dict, and then get elements, and then check if you have elements.\n\nIf you are trying to check if elements is in the response body I think you might want to do something like this\n\nif resp \u003d\u003d 200:\n    if \u0027elements\u0027 in response_body:\n        elements \u003d response_body[\u0027elements\u0027]",
+      "revId": "39816528f763f6fc2318910479fde8e44d0f597f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa80f949_8d6edd2d",
+        "filename": "monasca_tempest_tests/tests/api/base.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-11-04T16:24:06Z",
+      "side": 1,
+      "message": "Same comment as above.",
+      "revId": "39816528f763f6fc2318910479fde8e44d0f597f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa80f949_ed0f6986",
         "filename": "monasca_tempest_tests/tests/api/test_measurements.py",
         "patchSetId": 2
@@ -13,6 +47,24 @@
       "writtenOn": "2015-11-04T16:17:22Z",
       "side": 1,
       "message": "Can we get rid of the time.sleep in these tests? We should be able to submit a bunch of metrics all at once and just use them for all the tests.",
+      "revId": "39816528f763f6fc2318910479fde8e44d0f597f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa80f949_4dab151e",
+        "filename": "monasca_tempest_tests/tests/api/test_measurements.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-11-04T16:24:06Z",
+      "side": 1,
+      "message": "A couple of things:\n\n1. The metrics take some time to propogate through the system, so we have to wait. Rather than waiting to whatever WAIT_TIME is set too, we could just query the measurements once a second and guarantee that we\u0027ve received all the  measurements that we\u0027ve set, which should end quicker.\n\n2. Also agree that we should try to set-up the measurements once for all the tests and re-use as much as possible since waiting for the measurements to get in the system takes a while.",
+      "parentUuid": "fa80f949_ed0f6986",
       "revId": "39816528f763f6fc2318910479fde8e44d0f597f",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
