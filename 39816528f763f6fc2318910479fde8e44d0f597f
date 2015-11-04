@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa80f949_ed0f6986",
+        "filename": "monasca_tempest_tests/tests/api/test_measurements.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-04T16:17:22Z",
+      "side": 1,
+      "message": "Can we get rid of the time.sleep in these tests? We should be able to submit a bunch of metrics all at once and just use them for all the tests.",
+      "revId": "39816528f763f6fc2318910479fde8e44d0f597f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
