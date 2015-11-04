@@ -68,6 +68,24 @@
       "revId": "39816528f763f6fc2318910479fde8e44d0f597f",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa80f949_b047781c",
+        "filename": "monasca_tempest_tests/tests/api/test_measurements.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-04T16:29:38Z",
+      "side": 1,
+      "message": "Yes, sorry. I should have been more clear, I meant I would prefer if we only had to wait once for the initial setup, rather than waiting in each test.",
+      "parentUuid": "fa80f949_4dab151e",
+      "revId": "39816528f763f6fc2318910479fde8e44d0f597f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
