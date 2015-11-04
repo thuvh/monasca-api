@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa80f949_78ca4b70",
+        "filename": "monasca_api/v2/reference/alarm_definitions.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-11-04T22:47:40Z",
+      "side": 1,
+      "message": "It really seems like \u0027Unprocessable Entity\u0027 should be a constant. It is used too many times and gives the opportunity for somebody to misspell it",
+      "revId": "f78de1ced8e0d4462509f1fe2eab7e3d495ce7e8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
