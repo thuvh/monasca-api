@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa80f949_107a04f2",
+        "filename": "monasca_api/v2/common/exceptions.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-11-04T16:39:55Z",
+      "side": 1,
+      "message": "You should change this copyright to the new one.",
+      "revId": "9ee0c4c7a5064422591b2bb646a3b483db2b0c22",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
