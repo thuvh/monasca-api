@@ -16,6 +16,24 @@
       "revId": "f78de1ced8e0d4462509f1fe2eab7e3d495ce7e8",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa80f949_18ae9f85",
+        "filename": "monasca_api/v2/reference/alarm_definitions.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-04T22:51:59Z",
+      "side": 1,
+      "message": "This will be replaced with a more precise title in another review, along with testing for the error messages. At the moment we only check the status code.",
+      "parentUuid": "fa80f949_78ca4b70",
+      "revId": "f78de1ced8e0d4462509f1fe2eab7e3d495ce7e8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
