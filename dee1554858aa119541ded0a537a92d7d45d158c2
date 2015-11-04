@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa80f949_95e7df3f",
+        "filename": "monasca_tempest_tests/tests/api/base.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2015-11-04T03:07:52Z",
+      "side": 1,
+      "message": "You don\u0027t actually need the else statement here and in the block below unless you\u0027re planning on filling them out later.",
+      "revId": "dee1554858aa119541ded0a537a92d7d45d158c2",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
