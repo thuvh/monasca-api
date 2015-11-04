@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa80f949_76f25dd4",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-11-04T22:16:59Z",
+      "side": 1,
+      "message": "\"positive integer\"?",
+      "revId": "2145938ac9872e62fcbf455a87c4ceb968ca744e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
