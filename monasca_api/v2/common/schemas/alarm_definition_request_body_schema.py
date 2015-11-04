@@ -22,22 +22,22 @@ LOG = log.getLogger(__name__)
 
 alarm_definition_schema = {
     voluptuous.Required('name'): voluptuous.All(voluptuous.Any(str, unicode),
-                                                voluptuous.Length(max=250)),
+                                                voluptuous.Length(max=255)),
     voluptuous.Required('expression'): voluptuous.All(
-        voluptuous.Any(str, unicode), voluptuous.Length(max=4096)),
+        voluptuous.Any(str, unicode)),
     voluptuous.Optional('description'): voluptuous.All(
-        voluptuous.Any(str, unicode), voluptuous.Length(max=250)),
+        voluptuous.Any(str, unicode), voluptuous.Length(max=255)),
     voluptuous.Optional('severity'): voluptuous.All(
         voluptuous.Any('low', 'medium', 'high', 'critical', 'LOW', "MEDIUM",
                        'HIGH', 'CRITICAL')),
     voluptuous.Optional('match_by'): voluptuous.All(
-        voluptuous.Any([unicode], [str]), voluptuous.Length(max=255)),
+        voluptuous.Any([unicode], [str])),
     voluptuous.Optional('ok_actions'): voluptuous.All(
-        voluptuous.Any([str], [unicode]), voluptuous.Length(max=400)),
+        voluptuous.Any([str], [unicode]), voluptuous.Length(max=50)),
     voluptuous.Optional('alarm_actions'): voluptuous.All(
-        voluptuous.Any([str], [unicode]), voluptuous.Length(max=400)),
+        voluptuous.Any([str], [unicode]), voluptuous.Length(max=50)),
     voluptuous.Optional('undetermined_actions'): voluptuous.All(
-        voluptuous.Any([str], [unicode]), voluptuous.Length(max=400)),
+        voluptuous.Any([str], [unicode]), voluptuous.Length(max=50)),
     voluptuous.Optional('actions_enabled'): bool}
 
 request_body_schema = voluptuous.Schema(alarm_definition_schema, required=True,
