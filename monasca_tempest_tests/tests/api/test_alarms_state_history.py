@@ -30,6 +30,9 @@ class TestAlarmsStateHistory(base.BaseMonascaTest):
         super(TestAlarmsStateHistory, cls).resource_setup()
 
         start_timestamp = int(time.time() * 1000)
+        beginning_timestamp = int(time.time()) - 60
+        cls._beginning_time = timeutils.iso8601_from_timestamp(
+            beginning_timestamp)
         end_timestamp = int(time.time() * 1000) + 1000
 
         # create an alarm definition
@@ -120,7 +123,8 @@ class TestAlarmsStateHistory(base.BaseMonascaTest):
         current_timestamp = int(time.time())
         current_time = timeutils.iso8601_from_timestamp(current_timestamp)
         end_time = timeutils.iso8601_from_timestamp(current_timestamp + 120)
-        query_parms = '?start_time=' + str(current_time) + '&end_time=' + str(end_time)
+        query_parms = '?start_time=' + str(current_time) + '&end_time=' + \
+                      str(end_time)
         resp, response_body = self.monasca_client.list_alarms_state_history(
             query_parms)
         elements = response_body['elements']
@@ -138,9 +142,7 @@ class TestAlarmsStateHistory(base.BaseMonascaTest):
 
     @test.attr(type="gate")
     def test_list_alarms_state_history_with_end_time(self):
-        end_timestamp = self._start_timestamp
-        end_time = timeutils.iso8601_from_timestamp(end_timestamp / 1000)
-        query_parms = '?end_time=' + str(end_time)
+        query_parms = '?end_time=' + str(self._beginning_time)
         resp, response_body = self.monasca_client.list_alarms_state_history(
             query_parms)
         elements = response_body['elements']
