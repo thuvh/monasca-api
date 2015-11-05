@@ -154,15 +154,23 @@ class TestMetrics(base.BaseMonascaTest):
         metric = helpers.create_metric(name=name_org,
                                        dimensions={key: 'value-1'})
         self.monasca_client.create_metrics(metric)
-        time.sleep(WAIT_TIME)
-
-        query_parms = '?dimensions=' + str(key) + ':value-1'
-        resp, response_body = self.monasca_client.list_metrics(query_parms)
-        self.assertEqual(200, resp.status)
-        elements = response_body['elements']
-        dimensions = elements[0]
-        name = dimensions['name']
-        self.assertEqual(name_org, str(name))
+        for timer in xrange(WAIT_TIME):
+            query_parms = '?dimensions=' + str(key) + ':value-1'
+            resp, response_body = self.monasca_client.list_metrics(query_parms)
+            self.assertEqual(200, resp.status)
+            elements = response_body['elements']
+            if elements:
+                dimensions = elements[0]
+                name = dimensions['name']
+                self.assertEqual(name_org, str(name))
+                break
+            else:
+                time.sleep(1)
+        if timer == WAIT_TIME - 1:
+            skip_msg = ("Skipped test_list_metrics_with_dimensions: timeout "
+                        "on waiting for metrics. Number of elements "
+                        "= {}").format(len(elements))
+            raise self.skipException(skip_msg)
 
     @test.attr(type='gate')
     def test_list_metrics_with_name(self):
@@ -172,16 +180,25 @@ class TestMetrics(base.BaseMonascaTest):
         metric = helpers.create_metric(name=name,
                                        dimensions={key: value_org})
         self.monasca_client.create_metrics(metric)
-        time.sleep(WAIT_TIME)
-
-        query_parms = '?name=' + name
-        resp, response_body = self.monasca_client.list_metrics(query_parms)
-        self.assertEqual(200, resp.status)
-        elements = response_body['elements']
-        dimensions = elements[0]
-        dimension = dimensions['dimensions']
-        value = dimension[unicode(key)]
-        self.assertEqual(value_org, str(value))
+        timer = 0
+        for timer in xrange(WAIT_TIME):
+            query_parms = '?name=' + name
+            resp, response_body = self.monasca_client.list_metrics(query_parms)
+            self.assertEqual(200, resp.status)
+            elements = response_body['elements']
+            if elements:
+                dimensions = elements[0]
+                dimension = dimensions['dimensions']
+                value = dimension[unicode(key)]
+                self.assertEqual(value_org, str(value))
+                break
+            else:
+                time.sleep(1)
+        if timer == WAIT_TIME - 1:
+            skip_msg = ("Skipped test_list_metrics_with_name: timeout on "
+                        "waiting for metrics. Number of elements = {}").\
+                format(len(elements))
+            raise self.skipException(skip_msg)
 
     @test.attr(type='gate')
     def test_list_metrics_with_offset_limit(self):
@@ -200,41 +217,55 @@ class TestMetrics(base.BaseMonascaTest):
                 key1: 'value-4', key2: 'value-4'})
         ]
         self.monasca_client.create_metrics(metrics)
-        time.sleep(WAIT_TIME)
-
         query_parms = '?name=' + name
-        resp, response_body = self.monasca_client.list_metrics(query_parms)
-        self.assertEqual(200, resp.status)
+        timer = 0
+        for timer in xrange(WAIT_TIME):
+            resp, response_body = self.monasca_client.list_metrics(query_parms)
+            elements = response_body['elements']
+            if elements:
+                if len(elements) == 4:
+                    break
+                else:
+                    time.sleep(1)
+            else:
+                time.sleep(1)
+        if timer == WAIT_TIME - 1:
+            skip_msg = ("Skipped test_list_metrics_with_offset_limit: "
+                        "timeout on waiting for metrics. Number of elements "
+                        "= {}").format(len(elements))
+            raise self.skipException(skip_msg)
 
-        elements = response_body['elements']
         first_element = elements[0]
         last_element = elements[3]
-
         query_parms = '?name=' + name + '&limit=4'
         resp, response_body = self.monasca_client.list_metrics(query_parms)
         self.assertEqual(200, resp.status)
-
         elements = response_body['elements']
         self.assertEqual(4, len(elements))
-
         self.assertEqual(first_element, elements[0])
+        timeout = time.time() + 60 * 1   # 1 minute timeout
+        if time.time() < timeout:
+            for limit in xrange(1, 5):
+                next_element = elements[limit - 1]
+                while True:
+                    query_parms = '?name=' + name + '&offset=' + \
+                                  str(next_element['id']) + '&limit=' + \
+                                  str(limit)
+                    resp, response_body = self.\
+                        monasca_client.list_metrics(query_parms)
+                    self.assertEqual(200, resp.status)
+                    new_elements = response_body['elements']
 
-        for limit in xrange(1, 5):
-            next_element = elements[limit - 1]
-            while True:
-                query_parms = '?name=' + name + '&offset=' +\
-                              str(next_element['id']) + '&limit=' + str(limit)
-                resp, response_body = self.monasca_client.list_metrics(
-                    query_parms)
-                self.assertEqual(200, resp.status)
-                new_elements = response_body['elements']
-
-                if len(new_elements) > limit - 1:
-                    self.assertEqual(limit, len(new_elements))
-                    next_element = new_elements[limit - 1]
-                elif 0 < len(new_elements) <= limit - 1:
-                    self.assertEqual(last_element, new_elements[0])
-                    break
-                else:
-                    self.assertEqual(last_element, next_element)
-                    break
+                    if len(new_elements) > limit - 1:
+                        self.assertEqual(limit, len(new_elements))
+                        next_element = new_elements[limit - 1]
+                    elif 0 < len(new_elements) <= limit - 1:
+                        self.assertEqual(last_element, new_elements[0])
+                        break
+                    else:
+                        self.assertEqual(last_element, next_element)
+                        break
+        else:
+            msg = "Failed test_list_metrics_with_offset_limit: one " \
+                  "minute timeout on offset limit test loop"
+            raise exceptions.TimeoutException(msg)

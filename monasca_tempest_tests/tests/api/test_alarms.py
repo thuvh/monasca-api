@@ -126,8 +126,9 @@ class TestAlarms(base.BaseMonascaTest):
         number_of_alarms = len(elements)
         if number_of_alarms < 3:
             helpers.delete_alarm_definitions(self)
-            skip_msg = "Skipped test_list_alarms_by_state: " \
-                       "not the correct number of alarms to test"
+            skip_msg = ("Skipped test_list_alarms_by_state: not the correct"
+                        " number of alarms to test. Number of alarms = {"
+                        "}").format(number_of_alarms)
             raise self.skipException(skip_msg)
         else:
             len0 = len(elements)
@@ -379,6 +380,7 @@ class TestAlarms(base.BaseMonascaTest):
 
     @test.attr(type="gate")
     def test_create_alarms_with_sub_expressions_and_match_by(self):
+        helpers.delete_alarm_definitions(self)
         # Create an alarm definition with sub-expressions and match_by
         name = data_utils.rand_name('alarm_definition_1')
         expression = "avg(cpu.idle_perc{service=monitoring}) < 10 or " \
@@ -408,6 +410,7 @@ class TestAlarms(base.BaseMonascaTest):
 
     @test.attr(type="gate")
     def test_create_alarms_with_match_by_list(self):
+        helpers.delete_alarm_definitions(self)
         # Create an alarm definition with match_by as a list
         name = data_utils.rand_name('alarm_definition_1')
         expression = "avg(cpu.idle_perc{service=monitoring}) < 10"
