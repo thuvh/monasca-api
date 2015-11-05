@@ -52,6 +52,24 @@
       "revId": "cb478bcf9b76eb32aa0eca3ab63877cda982a198",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa80f949_22d48545",
+        "filename": "monasca_api/common/repositories/exceptions.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-11-05T05:52:16Z",
+      "side": 1,
+      "message": "The previous copyright should stay as is, with just 2014.\nAs HPE is a new company, I would just add the new copyright below the existing one for 2014.\n\nYes, this is the final definitive answer, as far as I know. We used that copyright everywhere in the Tempest tests.",
+      "parentUuid": "fa80f949_1f7d1ee7",
+      "revId": "cb478bcf9b76eb32aa0eca3ab63877cda982a198",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
