@@ -33,6 +33,23 @@
       "revId": "5ef0642dcc8f7bb35bf7f50d8b0cd248cddd46ff",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa80f949_ed7c33ed",
+        "filename": "monasca_api/common/repositories/influxdb/exceptions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-11-05T04:23:46Z",
+      "side": 1,
+      "message": "I don\u0027t think you should declare this exception that is specific to InfluxDB at this level. I think you should add an exception, one level up in repositories/exceptions.py, that will cover this exception in a more generic way.\n\nThe idea behind the repository interfaces is that it provides not only an interface for invocation, but also for exceptions. So, we shouldn\u0027t be bubbling up database specific exceptions to the higher level code.",
+      "revId": "5ef0642dcc8f7bb35bf7f50d8b0cd248cddd46ff",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
