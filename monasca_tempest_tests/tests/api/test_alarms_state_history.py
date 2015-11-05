@@ -30,6 +30,9 @@ class TestAlarmsStateHistory(base.BaseMonascaTest):
         super(TestAlarmsStateHistory, cls).resource_setup()
 
         start_timestamp = int(time.time() * 1000)
+        beginning_timestamp = int(time.time()) - 60
+        cls._beginning_time = timeutils.iso8601_from_timestamp(
+            beginning_timestamp)
         end_timestamp = int(time.time() * 1000) + 1000
 
         # create an alarm definition
@@ -120,7 +123,8 @@ class TestAlarmsStateHistory(base.BaseMonascaTest):
         current_timestamp = int(time.time())
         current_time = timeutils.iso8601_from_timestamp(current_timestamp)
         end_time = timeutils.iso8601_from_timestamp(current_timestamp + 120)
-        query_parms = '?start_time=' + str(current_time) + '&end_time=' + str(end_time)
+        query_parms = '?start_time=' + str(current_time) + '&end_time=' + \
+                      str(end_time)
         resp, response_body = self.monasca_client.list_alarms_state_history(
             query_parms)
         elements = response_body['elements']
@@ -138,9 +142,7 @@ class TestAlarmsStateHistory(base.BaseMonascaTest):
 
     @test.attr(type="gate")
     def test_list_alarms_state_history_with_end_time(self):
-        end_timestamp = self._start_timestamp
-        end_time = timeutils.iso8601_from_timestamp(end_timestamp / 1000)
-        query_parms = '?end_time=' + str(end_time)
+        query_parms = '?end_time=' + str(self._beginning_time)
         resp, response_body = self.monasca_client.list_alarms_state_history(
             query_parms)
         elements = response_body['elements']
@@ -162,8 +164,10 @@ class TestAlarmsStateHistory(base.BaseMonascaTest):
         elements = response_body['elements']
         number_of_alarms = len(elements)
         if number_of_alarms < 3:
-            skip_msg = "Skipped test_list_alarms_state_history_with_offset_" \
-                       "limit: need three alarms state history to test."
+            skip_msg = ("Skipped test_list_alarms_state_history_with_offset"
+                        "_limit: need three alarms state history to test. "
+                        "Curremtn number of alamrs = {}").\
+                format(number_of_alarms)
             raise self.skipException(skip_msg)
         else:
             first_element = elements[0]
@@ -192,8 +196,8 @@ class TestAlarmsStateHistory(base.BaseMonascaTest):
         elements = response_body['elements']
         number_of_alarms = len(elements)
         if number_of_alarms < 1:
-            skip_msg = "Skipped test_list_alarm_state_history: not the " \
-                       "correct number of alarms state history to test"
+            skip_msg = "Skipped test_list_alarm_state_history: at least one " \
+                       "alarm state history is needed."
             raise self.skipException(skip_msg)
         else:
             element = elements[0]
@@ -227,8 +231,7 @@ class TestAlarmsStateHistory(base.BaseMonascaTest):
         number_of_alarms = len(elements)
         if number_of_alarms < 1:
             skip_msg = "Skipped test_list_alarm_state_history_with_offset" \
-                       "_limit: need at least one alarms state history to " \
-                       "test."
+                       "_limit: at least one alarms state history is needed."
             raise self.skipException(skip_msg)
         else:
             element = elements[0]
