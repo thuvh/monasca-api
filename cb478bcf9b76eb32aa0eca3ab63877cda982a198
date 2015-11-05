@@ -34,6 +34,24 @@
       "revId": "cb478bcf9b76eb32aa0eca3ab63877cda982a198",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa80f949_1f7d1ee7",
+        "filename": "monasca_api/common/repositories/exceptions.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2015-11-05T05:21:47Z",
+      "side": 1,
+      "message": "Also, is that the final definitive version?  I know they changed their minds a couple times and I don\u0027t think we have any of the new notices upstream to check against.",
+      "parentUuid": "fa80f949_ff885a24",
+      "revId": "cb478bcf9b76eb32aa0eca3ab63877cda982a198",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
