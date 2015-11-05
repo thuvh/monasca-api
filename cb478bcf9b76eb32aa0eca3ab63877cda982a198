@@ -16,6 +16,24 @@
       "revId": "cb478bcf9b76eb32aa0eca3ab63877cda982a198",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa80f949_bfe732e3",
+        "filename": "monasca_api/common/repositories/exceptions.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2015-11-05T05:15:09Z",
+      "side": 1,
+      "message": "Do we add 2014 to that as well, even though it\u0027s a different company name, or just specify 2015?  I thought we did both years on the other copyrights we changed.\n\nAre we going to have to go through and update all the copyrights to the new format again?",
+      "parentUuid": "fa80f949_ff885a24",
+      "revId": "cb478bcf9b76eb32aa0eca3ab63877cda982a198",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
