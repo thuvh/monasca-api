@@ -199,11 +199,22 @@ class TestStatistics(base.BaseMonascaTest):
         ]
 
         self.monasca_client.create_metrics(metric)
-        time.sleep(WAIT_TIME)
 
-        query_parms = '?name=' + name
-        resp, response_body = self.monasca_client.list_metrics(query_parms)
-        self.assertEqual(200, resp.status)
+        timer = 0
+        while timer < WAIT_TIME:
+            query_parms = '?name=' + name
+            resp, response_body = self.monasca_client.list_metrics(query_parms)
+            self.assertEqual(200, resp.status)
+            elements = response_body['elements']
+            if elements:
+                break
+            else:
+                time.sleep(1)
+                timer += 1
+        if timer == WAIT_TIME:
+            skip_msg = "Skipped test_list_statistics_with_offset_limit: " \
+                       "timeout on waiting for metrics"
+            raise self.skipException(skip_msg)
 
         start_time = timeutils.iso8601_from_timestamp(
             start_timestamp / 1000)
@@ -227,6 +238,7 @@ class TestStatistics(base.BaseMonascaTest):
         elements = response_body['elements'][0]['statistics']
         self.assertEqual(4, len(elements))
         self.assertEqual(first_element, elements[0])
+        timeout = time.time() + 60 * 1   # 1 minute timeout
 
         for limit in xrange(1, 5):
             next_element = elements[limit - 1]
@@ -245,15 +257,20 @@ class TestStatistics(base.BaseMonascaTest):
                 self.assertEqual(200, resp.status)
                 new_elements = response_body['elements'][0]['statistics']
 
-                if len(new_elements) > limit - 1:
-                    self.assertEqual(limit, len(new_elements))
-                    next_element = new_elements[limit - 1]
-                elif 0 < len(new_elements) <= limit - 1:
-                    self.assertEqual(last_element, new_elements[0])
-                    break
+                if time.time() < timeout:
+                    if len(new_elements) > limit - 1:
+                        self.assertEqual(limit, len(new_elements))
+                        next_element = new_elements[limit - 1]
+                    elif 0 < len(new_elements) <= limit - 1:
+                        self.assertEqual(last_element, new_elements[0])
+                        break
+                    else:
+                        self.assertEqual(last_element, next_element)
+                        break
                 else:
-                    self.assertEqual(last_element, next_element)
-                    break
+                    msg = "Failed test_list_statistics_with_offset_limit: " \
+                          "one minute timeout"
+                    raise exceptions.TimeoutException(msg)
 
     @test.attr(type="gate")
     def test_list_statistics_with_merge_metrics(self):
