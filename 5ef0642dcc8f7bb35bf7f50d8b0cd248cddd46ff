@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa80f949_4d40dfa5",
+        "filename": "monasca_api/common/repositories/influxdb/exceptions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-11-05T04:18:40Z",
+      "side": 1,
+      "message": "Copyright needs to be updated.",
+      "revId": "5ef0642dcc8f7bb35bf7f50d8b0cd248cddd46ff",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa80f949_0d4ad7c5",
+        "filename": "monasca_api/common/repositories/influxdb/exceptions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-11-05T04:18:40Z",
+      "side": 1,
+      "message": "Would like to identify this as an exception or error class by adding the sufiix MultpleSeriesException.\n\nFor example, see the MessageQueueException.",
+      "revId": "5ef0642dcc8f7bb35bf7f50d8b0cd248cddd46ff",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
