@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa80f949_07bee864",
+        "filename": "monasca_tempest_tests/tests/api/test_alarm_definitions.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-06T16:33:37Z",
+      "side": 1,
+      "message": "Why the extra lines here?",
+      "revId": "5ab116a65294ea11ef94045728321f2c6c4a9908",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa80f949_72f77459",
+        "filename": "monasca_tempest_tests/tests/api/test_measurements.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-06T16:33:37Z",
+      "side": 1,
+      "message": "this loop can be simplified to \"for j in range(WAIT_TIME):\"",
+      "revId": "5ab116a65294ea11ef94045728321f2c6c4a9908",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa80f949_0d4fe96b",
+        "filename": "monasca_tempest_tests/tests/api/test_measurements.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-06T16:33:37Z",
+      "side": 1,
+      "message": "Maybe this could be changed to \"if time.time() \u003e timeout:\" and moved to the front of the loop. If we\u0027ve made the request, we should analyze the data.",
+      "revId": "5ab116a65294ea11ef94045728321f2c6c4a9908",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa80f949_2da2edfd",
+        "filename": "monasca_tempest_tests/tests/api/test_metrics.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-06T16:33:37Z",
+      "side": 1,
+      "message": "Same as before, this can be done as \"for j in xrange(WAIT_TIME):\"",
+      "revId": "5ab116a65294ea11ef94045728321f2c6c4a9908",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa80f949_edf5c5ec",
+        "filename": "monasca_tempest_tests/tests/api/test_metrics.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-06T16:33:37Z",
+      "side": 1,
+      "message": "see above about simplifying the loop",
+      "revId": "5ab116a65294ea11ef94045728321f2c6c4a9908",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa80f949_8dc67998",
+        "filename": "monasca_tempest_tests/tests/api/test_metrics.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-06T16:33:37Z",
+      "side": 1,
+      "message": "See above about simplifying the loop",
+      "revId": "5ab116a65294ea11ef94045728321f2c6c4a9908",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa80f949_cd3ec18a",
+        "filename": "monasca_tempest_tests/tests/api/test_metrics.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-06T16:33:37Z",
+      "side": 1,
+      "message": "See previous about moving this to front of loop",
+      "revId": "5ab116a65294ea11ef94045728321f2c6c4a9908",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa80f949_8d4d1940",
+        "filename": "monasca_tempest_tests/tests/api/test_notification_methods.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-06T16:33:37Z",
+      "side": 1,
+      "message": "See previous about moving this to front of loop",
+      "revId": "5ab116a65294ea11ef94045728321f2c6c4a9908",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa80f949_4d53b1e2",
+        "filename": "monasca_tempest_tests/tests/api/test_statistics.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-06T16:33:37Z",
+      "side": 1,
+      "message": "See previous about simplifying the loop",
+      "revId": "5ab116a65294ea11ef94045728321f2c6c4a9908",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
