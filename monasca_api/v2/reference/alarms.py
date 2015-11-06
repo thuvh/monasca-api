@@ -389,7 +389,18 @@ class AlarmsStateHistory(alarms_api_v2.AlarmsStateHistoryV2API,
 
         alarm_rows = self._alarms_repo.get_alarms(tenant_id, new_query_parms,
                                                   None, None)
-        alarm_id_list = [alarm_row['alarm_id'] for alarm_row in alarm_rows]
+
+        # The same alarm_id may appear in multiple rows in the get_alarms
+        # results, for example, with different metric_names. When we extract
+        # only alarm_ids, limit to unique values
+
+        # alarm_id_list = [alarm_row['alarm_id'] for alarm_row in alarm_rows]
+
+        alarm_id_set = set()
+        for alarm_row in alarm_rows:
+            alarm_id_set.add(alarm_row['alarm_id'])
+
+        alarm_id_list = list(alarm_id_set)
 
         result = self._metrics_repo.alarm_history(tenant_id, alarm_id_list,
                                                   offset, limit,
