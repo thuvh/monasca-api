@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da85f559_5741a438",
+        "filename": "monasca_tempest_tests/tests/api/test_alarm_definitions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-06T22:02:41Z",
+      "side": 1,
+      "message": "This will never timeout from outside the loop. It should be inside the \"while true\" loop, at the beginning",
+      "revId": "c1664c4fb1a00884515c6b48fff4fd74ee4719db",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da85f559_375f4010",
+        "filename": "monasca_tempest_tests/tests/api/test_alarms.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-06T22:02:41Z",
+      "side": 1,
+      "message": "Nitpicking here a little, but since we\u0027re reporting the number of alarms we found, could we also report the number we expected?",
+      "revId": "c1664c4fb1a00884515c6b48fff4fd74ee4719db",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da85f559_b72490af",
+        "filename": "monasca_tempest_tests/tests/api/test_measurements.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-06T22:02:41Z",
+      "side": 1,
+      "message": "I think this query should be moved outside \"for i in xrange(3)\", otherwise it will run the same set of queries multiple times",
+      "revId": "c1664c4fb1a00884515c6b48fff4fd74ee4719db",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da85f559_d781144f",
+        "filename": "monasca_tempest_tests/tests/api/test_measurements.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-06T22:02:41Z",
+      "side": 1,
+      "message": "see previous, this will not cause a timeout if the \"while true\" loop goes infinite.",
+      "revId": "c1664c4fb1a00884515c6b48fff4fd74ee4719db",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da85f559_57dd246f",
+        "filename": "monasca_tempest_tests/tests/api/test_notification_methods.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-06T22:02:41Z",
+      "side": 1,
+      "message": "see previous, this will not cause a timeout if the \"while true\" loop goes infinite",
+      "revId": "c1664c4fb1a00884515c6b48fff4fd74ee4719db",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da85f559_f7d45848",
+        "filename": "monasca_tempest_tests/tests/api/test_statistics.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-06T22:02:41Z",
+      "side": 1,
+      "message": "See previous, this will not cause a timeout if the \"while true\" loop goes infinite",
+      "revId": "c1664c4fb1a00884515c6b48fff4fd74ee4719db",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
