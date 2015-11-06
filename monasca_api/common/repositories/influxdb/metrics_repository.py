@@ -29,6 +29,11 @@ LOG = log.getLogger(__name__)
 
 
 class MetricsRepository(metrics_repository.MetricsRepository):
+
+    # TODO(msbielinski): this message is defined now in the base class
+    # TODO(msbielinski): metrics_repository.MetricsRepository. It can be
+    # TODO(msbielinski): removed here.
+
     MULTIPLE_METRICS_MESSAGE = ("Found multiple metrics matching metric name"
                                 + " and dimensions. Please refine your search"
                                 + " criteria using a unique"

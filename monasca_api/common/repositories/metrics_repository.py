@@ -13,12 +13,33 @@
 # under the License.
 
 import abc
-
+from common.repositories import constants
 import six
 
 
 @six.add_metaclass(abc.ABCMeta)
 class MetricsRepository(object):
+
+    MULTIPLE_METRICS_MESSAGE = ("Found multiple metrics matching metric name"
+                                + " and dimensions. Please refine your search"
+                                + " criteria using a unique"
+                                + " metric name or additional dimensions."
+                                + " Alternatively, you may specify"
+                                + " 'merge_metrics=True' as a query"
+                                + " parameter to combine all metrics"
+                                + " matching search criteria into a single"
+                                + " series.")
+
+    TOO_MANY_METRICS_MESSAGE = ("Found too many metrics matching metric name"
+                                " and dimensions. When specifying"
+                                " 'merge_metrics=True' as a query"
+                                " parameter, please refine your search"
+                                " criteria using a unique"
+                                " metric name or additional dimensions"
+                                " so that the number of matching metrics"
+                                " is less than or equal to"
+                                " %d.") % constants.PAGE_LIMIT
+
     @abc.abstractmethod
     def list_metrics(self, tenant_id, region, name, dimensions, offset, limit):
         pass
