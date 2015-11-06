@@ -125,6 +125,14 @@ influxdb_group = cfg.OptGroup(name='influxdb', title='influxdb')
 cfg.CONF.register_group(influxdb_group)
 cfg.CONF.register_opts(influxdb_opts, influxdb_group)
 
+cassandra_opts = [cfg.StrOpt('keyspace_name'),
+                  cfg.StrOpt('contact_points'), cfg.StrOpt('port'),
+                  cfg.StrOpt('user'), cfg.StrOpt('password')]
+
+cassandra_group = cfg.OptGroup(name='cassandra', title='cassandra')
+cfg.CONF.register_group(cassandra_group)
+cfg.CONF.register_opts(cassandra_opts, cassandra_group)
+
 mysql_opts = [cfg.StrOpt('database_name'), cfg.StrOpt('hostname'),
               cfg.StrOpt('username'), cfg.StrOpt('password')]
 

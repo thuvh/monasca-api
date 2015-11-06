@@ -164,6 +164,13 @@ def get_query_dimensions(req):
     try:
         params = falcon.uri.parse_query_string(req.query_string)
         dimensions = {}
+
+        # TODO(msbielinski): bielinski code conflict - integrate or toss
+        # if 'dimensions' in params:
+        #     dimensions_str_array = params['dimensions']
+        #     if isinstance(dimensions_str_array, six.string_types):
+        #         dimensions_str_array = dimensions_str_array.split(',')
+
         if 'dimensions' in params:
             dimensions_param = params['dimensions']
 
@@ -295,11 +302,17 @@ def paginate(resource, uri, limit):
 
     if resource and len(resource) > limit:
 
-        if 'timestamp' in resource[limit - 1]:
-            new_offset = resource[limit - 1]['timestamp']
+        new_offset = None
 
-        if 'id' in resource[limit - 1]:
+        if '_offset' in resource[limit - 1]:
+            new_offset = resource[limit - 1]['_offset']
+            del resource[limit - 1]['_offset']
+
+        elif 'id' in resource[limit - 1]:
             new_offset = resource[limit - 1]['id']
+
+        elif 'timestamp' in resource[limit - 1]:
+            new_offset = resource[limit - 1]['timestamp']
 
         next_link = build_base_uri(parsed_uri)
 
@@ -366,6 +379,33 @@ def paginate_measurement(measurement, uri, limit):
                                  u'href': next_link.decode('utf8')}]),
                     u'elements': truncated_measurement}
 
+    elif (measurement
+          and measurement[0]
+          and '_offset' in measurement[0]):
+
+        # if a custom offset has been embedded in the first
+        # metric, then grab and delete it. Otherwise, derive
+        # the offset from the last measurement of metric[0]
+
+        new_offset = measurement[0]['_offset']
+        del measurement[0]['_offset']
+
+        next_link = build_base_uri(parsed_uri)
+
+        new_query_params = [u'offset' + '=' + urllib.quote(
+            new_offset.encode('utf8'), safe='')]
+
+        _get_old_query_params_except_offset(new_query_params, parsed_uri)
+
+        if new_query_params:
+            next_link += '?' + '&'.join(new_query_params)
+
+        resource = {u'links': ([{u'rel': u'self',
+                                 u'href': self_link.decode('utf8')},
+                                {u'rel': u'next',
+                                 u'href': next_link.decode('utf8')}]),
+                    u'elements': measurement}
+
     else:
 
         resource = {u'links': ([{u'rel': u'self',
@@ -381,7 +421,7 @@ def _get_old_query_params(parsed_uri):
     if parsed_uri.query:
 
         for query_param in parsed_uri.query.split('&'):
-            query_param_name, query_param_val = query_param.split('=')
+            query_param_name, query_param_val = query_param.split('=', 1)
 
             old_query_params.append(urllib.quote(
                 query_param_name.encode('utf8'), safe='')
@@ -395,7 +435,7 @@ def _get_old_query_params_except_offset(new_query_params, parsed_uri):
     if parsed_uri.query:
 
         for query_param in parsed_uri.query.split('&'):
-            query_param_name, query_param_val = query_param.split('=')
+            query_param_name, query_param_val = query_param.split('=', 1)
             if query_param_name.lower() != 'offset':
                 new_query_params.append(urllib.quote(
                     query_param_name.encode(
