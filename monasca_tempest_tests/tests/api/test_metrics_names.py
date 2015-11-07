@@ -12,7 +12,14 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+import time
+
+from oslo_utils import timeutils
+
 from monasca_tempest_tests.tests.api import base
+from monasca_tempest_tests.tests.api import constants
+from monasca_tempest_tests.tests.api import helpers
+from tempest.common.utils import data_utils
 from tempest import test
 
 
@@ -21,6 +28,28 @@ class TestMetricsNames(base.BaseMonascaTest):
     @classmethod
     def resource_setup(cls):
         super(TestMetricsNames, cls).resource_setup()
+        name = data_utils.rand_name()
+        key = data_utils.rand_name()
+        value = data_utils.rand_name()
+        cls._param = key + ':' + value
+        metric = helpers.create_metric(name=name,
+                                       dimensions={key: value})
+        cls._test_metric = metric
+        cls.monasca_client.create_metrics(metric)
+
+        start_time = str(timeutils.iso8601_from_timestamp(
+                         metric['timestamp'] / 1000))
+        query_params = '?name=' + str(cls._test_metric['name']) +\
+                       '&start_time=' + start_time
+
+        for i in xrange(constants.MAX_RETRIES):
+            resp, response_body = cls.monasca_client.list_measurements(
+                query_params)
+            elements = response_body['elements']
+            for element in elements:
+                if str(element['name']) == cls._test_metric['name']:
+                    return
+            time.sleep(constants.RETRY_TIMEOUT_SECS)
 
     @classmethod
     def resource_cleanup(cls):
@@ -28,19 +57,27 @@ class TestMetricsNames(base.BaseMonascaTest):
 
     @test.attr(type='gate')
     def test_list_metrics_names(self):
-        resp, response_body = self.monasca_client.list_metrics_names()
-        self.assertEqual(200, resp.status)
-        self.assertTrue(set(['links', 'elements']) == set(response_body))
-        elements = response_body['elements']
-        element = elements[0]
-        self.assertTrue(set(['id', 'name']) == set(element))
+        for i in xrange(constants.MAX_RETRIES):
+            resp, response_body = self.monasca_client.list_metrics_names()
+            self.assertEqual(200, resp.status)
+            self.assertTrue(set(['links', 'elements']) == set(response_body))
+            if self._is_name_in_list(response_body):
+                return
+            time.sleep(constants.RETRY_TIMEOUT_SECS)
+        self.fail('Metric name not found')
 
     @test.attr(type='gate')
     def test_list_metrics_names_with_dimensions(self):
-        query_parms = '?dimensions=key1:value1'
-        resp, response_body = self.monasca_client.list_metrics_names(
-            query_parms)
-        self.assertEqual(200, resp.status)
+        query_params = '?dimensions=' + self._param
+        for i in xrange(constants.MAX_RETRIES):
+            resp, response_body = self.monasca_client.list_metrics_names(
+                query_params)
+            self.assertEqual(200, resp.status)
+            self.assertTrue(set(['links', 'elements']) == set(response_body))
+            if self._is_name_in_list(response_body):
+                return
+            time.sleep(constants.RETRY_TIMEOUT_SECS)
+        self.fail('Metric name not found')
 
     @test.attr(type='gate')
     def test_list_metrics_names_with_limit_offset(self):
@@ -49,3 +86,11 @@ class TestMetricsNames(base.BaseMonascaTest):
         # duplicates. But the limit and offset are using the original list
         # with duplicates as reference.
         return
+
+    def _is_name_in_list(self, response_body):
+        elements = response_body['elements']
+        for element in elements:
+            self.assertTrue(set(['id', 'name']) == set(element))
+            if str(element['name']) == self._test_metric['name']:
+                return True
+        return False
