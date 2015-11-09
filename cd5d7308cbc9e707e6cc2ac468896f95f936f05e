@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da85f559_ec38cb3f",
+        "filename": "monasca_tempest_tests/tests/api/test_measurements.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-09T21:05:55Z",
+      "side": 1,
+      "message": "Not a required fix, but this loop will always wait the full 30 seconds",
+      "revId": "cd5d7308cbc9e707e6cc2ac468896f95f936f05e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da85f559_86779339",
+        "filename": "monasca_tempest_tests/tests/api/test_measurements.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-09T21:05:55Z",
+      "side": 1,
+      "message": "If you aren\u0027t testing for existence in between, you could do these two operations on one line \"measurements \u003d elements[0][\u0027measurements\u0027]\" with the same effect",
+      "revId": "cd5d7308cbc9e707e6cc2ac468896f95f936f05e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da85f559_c6f91b82",
+        "filename": "monasca_tempest_tests/tests/api/test_measurements.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-09T21:05:55Z",
+      "side": 1,
+      "message": "It seems a little more readable to me if you were to check for time.time() \u003e timeout and print the error message right below this",
+      "revId": "cd5d7308cbc9e707e6cc2ac468896f95f936f05e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da85f559_e63bff36",
+        "filename": "monasca_tempest_tests/tests/api/test_metrics.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-09T21:05:55Z",
+      "side": 1,
+      "message": "You don\u0027t set timer \u003d 0 before this loop, but use it elsewhere.",
+      "revId": "cd5d7308cbc9e707e6cc2ac468896f95f936f05e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
