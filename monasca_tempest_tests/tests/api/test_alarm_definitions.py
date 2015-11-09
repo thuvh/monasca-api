@@ -66,9 +66,9 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
         alarm_definition = helpers.create_alarm_definition(
             name=alarm_def_name,
             expression=expression,
-            alarm_actions=notification_id,
-            ok_actions=notification_id,
-            undetermined_actions=notification_id,
+            alarm_actions=[notification_id],
+            ok_actions=[notification_id],
+            undetermined_actions=[notification_id],
             severity="LOW")
         resp, body = self.monasca_client.create_alarm_definitions(
             alarm_definition)
@@ -151,8 +151,8 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
         alarm_definition = helpers.create_alarm_definition(
             name=alarm_def_name,
             expression="avg(mem_total_mb{url=https://www.google.com}) gt 0",
-            alarm_actions=notification_id,
-            ok_actions=notification_id,
+            alarm_actions=[notification_id],
+            ok_actions=[notification_id],
             severity="LOW")
         resp, body = self.monasca_client.create_alarm_definitions(
             alarm_definition)
@@ -187,8 +187,8 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
             name=alarm_def_name,
             expression="avg(mem_total_mb{dev=\usr\local\bin}) "
                        "gt 0",
-            alarm_actions=notification_id,
-            ok_actions=notification_id,
+            alarm_actions=[notification_id],
+            ok_actions=[notification_id],
             severity="LOW")
         self.assertRaises(exceptions.UnprocessableEntity,
                           self.monasca_client.create_alarm_definitions,
@@ -245,7 +245,7 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
             name=name,
             description="description",
             expression=expression,
-            alarm_actions=alarm_actions)
+            alarm_actions=[alarm_actions])
         self.assertRaises(exceptions.UnprocessableEntity,
                           self.monasca_client.create_alarm_definitions,
                           alarm_definition)
@@ -261,7 +261,7 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
             name=name,
             description="description",
             expression=expression,
-            ok_actions=ok_actions)
+            ok_actions=[ok_actions])
         self.assertRaises(exceptions.UnprocessableEntity,
                           self.monasca_client.create_alarm_definitions,
                           alarm_definition)
@@ -279,7 +279,7 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
             name=name,
             description="description",
             expression=expression,
-            undetermined_actions=undetermined_actions)
+            undetermined_actions=[undetermined_actions])
         self.assertRaises(exceptions.UnprocessableEntity,
                           self.monasca_client.create_alarm_definitions,
                           alarm_definition)
