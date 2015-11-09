@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da85f559_5c8c1c35",
+        "filename": "monasca_tempest_tests/tests/api/test_alarm_definitions.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-11-09T21:48:02Z",
+      "side": 1,
+      "message": "This is already an array. So is the next 2",
+      "revId": "a9380dad0ac2f9dc1a1c4ef486ec652186240838",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
