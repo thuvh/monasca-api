@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da85f559_3dc28886",
+        "filename": "monasca_tempest_tests/tests/api/test_metrics_names.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2015-11-09T15:52:46Z",
+      "side": 1,
+      "message": "There is one extra line here.",
+      "revId": "94474081ff91f1bf98e28889c80d491ebf83b222",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
