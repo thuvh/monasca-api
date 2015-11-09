@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da85f559_5df9757f",
+        "filename": "monasca_tempest_tests/tests/api/test_alarm_definitions.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-11-09T23:39:16Z",
+      "side": 1,
+      "message": "This is update, not patch",
+      "revId": "a0336e8a8d3d2dc000f8cc4161550b3ac736f2a3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da85f559_3dd7d1ee",
+        "filename": "monasca_tempest_tests/tests/api/test_alarm_definitions.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 645,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-11-09T23:39:16Z",
+      "side": 1,
+      "message": "You should also verify the actions as well here. It is always possible the API told you they were updated on the patch, but they really weren\u0027t in the database",
+      "revId": "a0336e8a8d3d2dc000f8cc4161550b3ac736f2a3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
