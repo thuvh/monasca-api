@@ -589,6 +589,8 @@ function install_monasca_common {
 
     echo_summary "Install Monasca monasca_common"
 
+    sudo apt-get install libmysqlclient-dev
+
     if [[ ! -d "${MONASCA_BASE}"/monasca-common ]]; then
 
         sudo git clone https://git.openstack.org/openstack/monasca-common.git "${MONASCA_BASE}"/monasca-common
