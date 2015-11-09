@@ -656,6 +656,8 @@ function install_monasca_api_python {
     echo_summary "Install Monasca monasca_api_python"
 
     sudo apt-get -y install python-dev
+    sudo apt-get -y install python-mysqldb
+    sudo apt-get install libmysqlclient-dev
 
     (cd /opt/monasca; sudo -H ./bin/pip install gunicorn)
 
@@ -664,6 +666,8 @@ function install_monasca_api_python {
     MONASCA_API_SRC_DIST=$(ls -td "${MONASCA_BASE}"/monasca-api/dist/monasca-api-*.tar.gz)
 
     (cd /opt/monasca ; sudo -H ./bin/pip  install --pre --allow-all-external --allow-unverified simport $MONASCA_API_SRC_DIST)
+
+    (cd /opt/monasca ; sudo -H ./bin/pip install mysql-python)
 
     sudo useradd --system -g monasca mon-api || true
 
