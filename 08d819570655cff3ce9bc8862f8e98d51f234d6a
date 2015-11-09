@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da85f559_4b09b4dc",
+        "filename": "monasca_tempest_tests/tests/api/constants.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-11-09T20:41:36Z",
+      "side": 1,
+      "message": "This is more like a SLEEP_BETWEEN_RETRY_SECS",
+      "revId": "08d819570655cff3ce9bc8862f8e98d51f234d6a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da85f559_8bed5cf1",
+        "filename": "monasca_tempest_tests/tests/api/test_metrics_names.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-11-09T20:41:36Z",
+      "side": 1,
+      "message": "Technically the start_time should be set before the create_metrics() call. Just in case everything happens incredibly quickly",
+      "revId": "08d819570655cff3ce9bc8862f8e98d51f234d6a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da85f559_8b8c7c80",
+        "filename": "monasca_tempest_tests/tests/api/test_metrics_names.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-11-09T20:41:36Z",
+      "side": 1,
+      "message": "I was expecting some failure after the loop since the measurements were never received",
+      "revId": "08d819570655cff3ce9bc8862f8e98d51f234d6a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
