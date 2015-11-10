@@ -649,6 +649,12 @@ function install_monasca_api_java {
 
     sudo chmod 0640 /etc/monasca/api-config.yml
 
+    if [[ ${SERVICE_HOST} ]]; then
+
+        sudo sed -i "s/bindHost: 127\.0\.0\.1/bindHost: ${SERVICE_HOST}/g" /etc/monasca/api-config.yml
+
+    fi
+
     sudo start monasca-api || sudo restart monasca-api
 
 }
@@ -792,6 +798,12 @@ function install_monasca_persister_java {
     sudo chown mon-persister:monasca /etc/monasca/persister-config.yml
 
     sudo chmod 0640 /etc/monasca/persister-config.yml
+
+    if [[ ${SERVICE_HOST} ]]; then
+
+        sudo sed -i "s/bindHost: 127\.0\.0\.1/bindHost: ${SERVICE_HOST}/g" /etc/monasca/persister-config.yml
+
+    fi
 
     sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/monasca-persister/monasca-persister.conf /etc/init/monasca-persister.conf
 
