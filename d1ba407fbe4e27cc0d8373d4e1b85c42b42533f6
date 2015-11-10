@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da85f559_8a9c3f10",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 1957,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-11-10T19:20:03Z",
+      "side": 1,
+      "message": "If it is required, now can it be omitted?",
+      "revId": "d1ba407fbe4e27cc0d8373d4e1b85c42b42533f6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da85f559_355578f9",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 1959,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-11-10T19:20:03Z",
+      "side": 1,
+      "message": "I think you should take out \"If specified\" since is now required.",
+      "revId": "d1ba407fbe4e27cc0d8373d4e1b85c42b42533f6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
