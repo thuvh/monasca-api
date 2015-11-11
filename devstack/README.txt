@@ -67,10 +67,18 @@ To run Monasca in DevStack, do the following three steps.
 3.   Run './stack.sh' from the root of the devstack directory.
 
 
+﻿If you want to run Monasca with the bare mininum of OpenStack components
+you can add the following two lines to the local.conf file.
+
+  ﻿disable_all_services
+  enable_service rabbit mysql key tempest
+
+
 Using Vagrant:
 
 Vagrant can be used to deploy a VM with Devstack and Monasca running in it
 using the Vagrantfile. After installing Vagrant, just "vagrant up".
+
 
 Known Issues:
 
