@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da85f559_58351a44",
+        "filename": "etc/api-config.conf",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-11-11T21:25:22Z",
+      "side": 1,
+      "message": "Probably don\u0027t want to change the default until this is completely up and running. Although leaving this there and commented out seems like a good idea.",
+      "revId": "89c21858b7faaac580d9301f045e9bf67e93df12",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da85f559_b8652646",
+        "filename": "monasca_api/common/repositories/cassandra/data_queries_base.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-11-11T21:25:22Z",
+      "side": 1,
+      "message": "Need to change to 2015.",
+      "revId": "89c21858b7faaac580d9301f045e9bf67e93df12",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da85f559_b3878960",
+        "filename": "monasca_api/common/repositories/cassandra/data_queries_base.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-11-11T21:25:22Z",
+      "side": 1,
+      "message": "I\u0027m assuming that this ordering will fail. See, http://docs.openstack.org/developer/hacking/, for more details on ordering of imports.",
+      "revId": "89c21858b7faaac580d9301f045e9bf67e93df12",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da85f559_f5a5eb03",
+        "filename": "monasca_api/common/repositories/cassandra/data_queries_base.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-11-11T21:25:22Z",
+      "side": 1,
+      "message": "Just as a style recommendation it might be good to declare the private variables with a leading underscore \"_\".\n\nUnless they are supposed to be protected.",
+      "revId": "89c21858b7faaac580d9301f045e9bf67e93df12",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da85f559_75ba5b25",
+        "filename": "monasca_api/common/repositories/cassandra/data_queries_base.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-11-11T21:25:22Z",
+      "side": 1,
+      "message": "Should super be declared first in __init__?",
+      "revId": "89c21858b7faaac580d9301f045e9bf67e93df12",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da85f559_d5e30704",
+        "filename": "monasca_api/common/repositories/cassandra/data_queries_base.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-11-11T21:25:22Z",
+      "side": 1,
+      "message": "probably should be declared private, as in _build, with a more descriptive name to identify what you are building. \n\ndef _build_foo_bar",
+      "revId": "89c21858b7faaac580d9301f045e9bf67e93df12",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
