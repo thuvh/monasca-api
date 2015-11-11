@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da85f559_98f6cbf7",
+        "filename": "monasca_tempest_tests/tests/api/constants.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-11-11T03:59:01Z",
+      "side": 1,
+      "message": "Can you change the name to RETRY_WAIT_SECS. I was going to do this in the review I have up, but didn\u0027t change yet.\n\nRETRY_TIMEOUT_SECS is just a little misleading as Craig points out in my review, although I don\u0027t particularly like the verbose name that he used either. I think this is a nice compromise.\n\nSorry, this was my fault.",
+      "revId": "c3d747eb4dd0e5e219e0aed27af1c327a00a4aa3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da85f559_783f6787",
+        "filename": "monasca_tempest_tests/tests/api/helpers.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-11-11T03:59:01Z",
+      "side": 1,
+      "message": "Might consider shortening name to timestamp_to_iso as you are going to use this in a lot of places and this is just a bit long.",
+      "revId": "c3d747eb4dd0e5e219e0aed27af1c327a00a4aa3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da85f559_b88aaf19",
+        "filename": "monasca_tempest_tests/tests/api/helpers.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-11-11T03:59:01Z",
+      "side": 1,
+      "message": "I was just wondering if 1000. is clear or Pythonic enough. I don\u0027t know the correct answer, but I\u0027m wondering if that . cloud get lost as some point. It is a bit difficult to see. could do float(1000) or 1000.0. Just an idea.",
+      "revId": "c3d747eb4dd0e5e219e0aed27af1c327a00a4aa3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da85f559_f85357e0",
+        "filename": "monasca_tempest_tests/tests/api/helpers.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-11-11T03:59:01Z",
+      "side": 1,
+      "message": "You could turn this into a one-liner by\n\nreturn timeutils.iso8601...",
+      "revId": "c3d747eb4dd0e5e219e0aed27af1c327a00a4aa3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da85f559_b8394fa6",
+        "filename": "monasca_tempest_tests/tests/api/helpers.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-11-11T03:59:01Z",
+      "side": 1,
+      "message": "Might shorten name to timestamp_to_iso_millis",
+      "revId": "c3d747eb4dd0e5e219e0aed27af1c327a00a4aa3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da85f559_98cd6bb9",
+        "filename": "monasca_tempest_tests/tests/api/helpers.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-11-11T03:59:01Z",
+      "side": 1,
+      "message": "I think there is a better way to do this conversion.",
+      "revId": "c3d747eb4dd0e5e219e0aed27af1c327a00a4aa3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da85f559_f80117b0",
+        "filename": "monasca_tempest_tests/tests/api/test_metrics.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-11-11T03:59:01Z",
+      "side": 1,
+      "message": "Something to consider here is to add the prefix _test, as in _test_metric and _test_name, or something else to identify that this is the subject of your tests.",
+      "revId": "c3d747eb4dd0e5e219e0aed27af1c327a00a4aa3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
