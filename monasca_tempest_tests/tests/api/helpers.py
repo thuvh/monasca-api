@@ -14,6 +14,7 @@
 
 import time
 
+from oslo_utils import timeutils
 from tempest.common.utils import data_utils
 
 NUM_ALARM_DEFINITIONS = 2
@@ -26,7 +27,12 @@ def create_metric(name='name-1',
                       'key-2': 'value-2'
                   },
                   timestamp=time.time() * 1000,
-                  value=0.0):
+                  value=0.0,
+                  value_meta={
+                      'key-1': 'value-1',
+                      'key-2': 'value-2'
+                  },
+                  ):
     metric = {}
     if name is not None:
         metric['name'] = name
@@ -36,6 +42,8 @@ def create_metric(name='name-1',
         metric['timestamp'] = timestamp
     if value is not None:
         metric['value'] = value
+    if value_meta is not None:
+        metric['value_meta'] = value_meta
     return metric
 
 
@@ -195,3 +203,20 @@ def create_metrics_for_test_alarms_match_by(cls, num, sub_expressions, list):
             elements = response_body['elements']
             if len(elements) >= num:
                 break
+
+
+def timestamp_to_time_iso(timestamp, microsecond=True):
+    time_iso = timeutils.iso8601_from_timestamp(timestamp / 1000., microsecond)
+    return time_iso
+
+
+def timestamp_to_time_iso_millisecond(timestamp, microsecond=True):
+    time_iso = timeutils.iso8601_from_timestamp(timestamp / 1000., microsecond)
+    time_iso, time_iso_decimal = time_iso.split(".", 1)
+    date_hour, minute, second = time_iso.split(":", 2)
+    second1 = second[0]
+    second2 = second[1]
+    millisecond = str(int(second2) + float('.' + time_iso_decimal[0:3]))
+    time_iso_new = date_hour + ':' + minute + ':' + second1 + millisecond
+    time_iso_millisecond = time_iso_new + 'Z'
+    return time_iso_millisecond
