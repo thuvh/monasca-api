@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da85f559_5353346b",
+        "filename": "monasca_tempest_tests/tests/api/test_metrics.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-11-12T00:23:49Z",
+      "side": 1,
+      "message": "This is really value_meta, not meta_value. There is metadata about the metric while the value_meta is really about just this one measurement.",
+      "revId": "1264da2e204a1e9af729236cc7ca3afcc12926a7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da85f559_2ee1632d",
+        "filename": "monasca_tempest_tests/tests/api/test_metrics.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-11-12T00:23:49Z",
+      "side": 1,
+      "message": "All of the above are only used in test_create_metric() so they should be in that test. The only reason to have them in resource_setup is if they are used in multiple tests",
+      "revId": "1264da2e204a1e9af729236cc7ca3afcc12926a7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da85f559_ced6974e",
+        "filename": "monasca_tempest_tests/tests/api/test_metrics.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-11-12T00:23:49Z",
+      "side": 1,
+      "message": "See above, but test_create_metrics",
+      "revId": "1264da2e204a1e9af729236cc7ca3afcc12926a7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da85f559_93a19c48",
+        "filename": "monasca_tempest_tests/tests/api/test_metrics.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-11-12T00:23:49Z",
+      "side": 1,
+      "message": "The first two self.assertEqual statements are true for every measurement returned. They should be pulled into a helper function instead of duplicated across the tests. That way if a new column is added, the tests can all be fixed by changing one place",
+      "revId": "1264da2e204a1e9af729236cc7ca3afcc12926a7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da85f559_6e40cb07",
+        "filename": "monasca_tempest_tests/tests/api/test_metrics.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-11-12T00:23:49Z",
+      "side": 1,
+      "message": "These assertEquals should be moved to a helper function and then measurement and self._metric could be passed to it. Then it could be reused in the next test.",
+      "revId": "1264da2e204a1e9af729236cc7ca3afcc12926a7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
