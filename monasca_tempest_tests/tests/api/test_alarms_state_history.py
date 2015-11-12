@@ -119,41 +119,39 @@ class TestAlarmsStateHistory(base.BaseMonascaTest):
 
     @test.attr(type="gate")
     def test_list_alarms_state_history_with_start_time(self):
-        current_timestamp = int(time.time())
-        current_time = timeutils.iso8601_from_timestamp(current_timestamp)
-        end_time = timeutils.iso8601_from_timestamp(current_timestamp + 120)
-        query_parms = '?start_time=' + str(current_time) + '&end_time=' + \
-                      str(end_time)
-        resp, response_body = self.monasca_client.list_alarms_state_history(
-            query_parms)
-        elements = response_body['elements']
-        self.assertEqual(0, len(elements))
-        return
+        #1, get all histories
         resp, response_body = self.monasca_client.list_alarms_state_history()
         elements = response_body['elements']
-        timestamp = elements[1]['timestamp']
-        query_parms = '?start_time=' + str(timestamp)
-        resp, response_body = self.monasca_client.list_alarms_state_history(
-            query_parms)
-        elements = response_body['elements']
-        self.assertEqual(2, len(elements))
+
+        #2, query min(timestamp) < x < max(timestamp)
+        min_timestamp, max_timestamp = self._min_max_timestamp_from_elements(elements)
+        start_time = min_timestamp.replace(tzinfo=None).isoformat()
+        end_time = max_timestamp.replace(tzinfo=None).isoformat()
+        query_params = '?start_time=' + str(start_time) + '&end_time=' + \
+                      str(end_time)
+        resp2, response_body2 = self.monasca_client.list_alarms_state_history(
+            query_params)
+        elements2 = response_body2['elements']
+
+        #3. compare #1 and #2 ( #2 is two elements less than #1 )
+        self.assertEqual(len(elements) - 2, len(elements2))
 
     @test.attr(type="gate")
     def test_list_alarms_state_history_with_end_time(self):
-        query_parms = '?end_time=' + str(self._beginning_time)
-        resp, response_body = self.monasca_client.list_alarms_state_history(
-            query_parms)
-        elements = response_body['elements']
-        self.assertEqual(0, len(elements))
-        return
+        #1, get all histories
         resp, response_body = self.monasca_client.list_alarms_state_history()
         elements = response_body['elements']
-        timestamp = elements[2]['timestamp']
-        query_parms = '?end_time=' + str(timestamp)
-        resp, response_body = self.monasca_client.list_alarms_state_history(
-            query_parms)
-        elements = response_body['elements']
-        self.assertEqual(1, len(elements))
+
+        #2, query x < max(timestamp)
+        min_timestamp, max_timestamp = self._min_max_timestamp_from_elements(elements)
+        end_time = max_timestamp.replace(tzinfo=None).isoformat()
+        query_params = '?end_time=' + str(end_time)
+        resp2, response_body2 = self.monasca_client.list_alarms_state_history(
+            query_params)
+        elements2 = response_body2['elements']
+
+        #3. compare #1 and #2 ( #2 is one element less than #1 )
+        self.assertEqual(len(elements) - 1, len(elements2))
 
     @test.attr(type="gate")
     def test_list_alarms_state_history_with_offset_limit(self):
@@ -247,3 +245,18 @@ class TestAlarmsStateHistory(base.BaseMonascaTest):
             error_msg = "Failed test_list_alarm_state_history_with_offset" \
                         "_limit: at least one alarms state history is needed."
             self.fail(error_msg)
+
+    def _min_max_timestamp_from_elements(self, elements):
+        min_timestamp = None
+        max_timestamp = None
+        for e in elements:
+            tmp_timestamp = timeutils.parse_isotime(e['timestamp'])
+            if not min_timestamp:
+                min_timestamp = tmp_timestamp
+            elif min_timestamp > tmp_timestamp:
+                min_timestamp = tmp_timestamp
+            if not max_timestamp:
+                max_timestamp = tmp_timestamp
+            elif max_timestamp < tmp_timestamp:
+                max_timestamp = tmp_timestamp
+        return min_timestamp, max_timestamp
