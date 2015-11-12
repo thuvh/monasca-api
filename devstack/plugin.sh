@@ -149,7 +149,9 @@ function extra_monasca {
     install_monasca_default_alarms
 
     if is_service_enabled horizon; then
+
         install_monasca_horizon_ui
+
     fi
 
     install_monasca_smoke_test
@@ -187,7 +189,11 @@ function clean_monasca {
 
     clean_monasca_smoke_test
 
-    clean_monasca_horizon_ui
+    if is_service_enabled horizon; then
+
+        clean_monasca_horizon_ui
+
+    fi
 
     clean_monasca_default_alarms
 
@@ -288,6 +294,12 @@ function install_zookeeper {
 
     sudo cp "${MONASCA_BASE}"/monasca-api/devstack/files/zookeeper/zoo.cfg /etc/zookeeper/conf/zoo.cfg
 
+    if [[ ${SERVICE_HOST} ]]; then
+
+        sudo sed -i "s/server\.0=127\.0\.0\.1/server.0=${SERVICE_HOST}/g" /etc/zookeeper/conf/zoo.cfg
+
+    fi
+
     sudo cp "${MONASCA_BASE}"/monasca-api/devstack/files/zookeeper/myid /etc/zookeeper/conf/myid
 
     sudo cp "${MONASCA_BASE}"/monasca-api/devstack/files/zookeeper/environment /etc/zookeeper/conf/environment
@@ -368,6 +380,13 @@ function install_kafka {
 
     sudo chmod 644 /etc/kafka/server.properties
 
+    if [[ ${SERVICE_HOST} ]]; then
+
+        sudo sed -i "s/host\.name=127\.0\.0\.1/host.name=${SERVICE_HOST}/g" /etc/kafka/server.properties
+        sudo sed -i "s/zookeeper\.connect=127\.0\.0\.1:2181/zookeeper.connect=${SERVICE_HOST}/g" /etc/kafka/server.properties
+
+    fi
+
     sudo start kafka || sudo restart kafka
 
 }
@@ -407,6 +426,13 @@ function install_influxdb {
     sudo dpkg --skip-same-version -i /opt/monasca_download_dir/influxdb_0.9.4.2_amd64.deb
 
     sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/influxdb/influxdb.conf /etc/opt/influxdb/influxdb.conf
+
+    if [[ ${SERVICE_HOST} ]]; then
+
+        # set influxdb server listening ip address
+        sudo sed -i "s/hostname = \"127\.0\.0\.1\"/hostname = \"${SERVICE_HOST}\"/g" /etc/opt/influxdb/influxdb.conf
+
+    fi
 
     sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/influxdb/influxdb /etc/default/influxdb
 
@@ -651,6 +677,13 @@ function install_monasca_api_java {
 
     if [[ ${SERVICE_HOST} ]]; then
 
+        # set influxdb ip address
+        sudo sed -i "s/url: \"http://127\.0\.0\.1:8086\"/url: \"http://${SERVICE_HOST}:8086\"/g" /etc/monasca/api-config.yml
+        # set kafka ip address
+        sudo sed -i "s/127\.0\.0\.1:9092/${SERVICE_HOST}:9092/g" /etc/monasca/api-config.yml
+        # set zookeeper ip address
+        sudo sed -i "s/127\.0\.0\.1:2181/${SERVICE_HOST}:2181/g" /etc/monasca/api-config.yml
+        # set monasca api server listening ip address
         sudo sed -i "s/bindHost: 127\.0\.0\.1/bindHost: ${SERVICE_HOST}/g" /etc/monasca/api-config.yml
 
     fi
@@ -707,6 +740,15 @@ function install_monasca_api_python {
 
     sudo chmod 0660 /etc/monasca/api-config.conf
 
+    if [[ ${SERVICE_HOST} ]]; then
+
+        # set influxdb ip address
+        sudo sed -i "s/ip_address = 127\.0\.0\.1/ip_address = ${SERVICE_HOST}/g" /etc/monasca/api-config.conf
+        # set kafka ip address
+        sudo sed -i "s/127\.0\.0\.1:9092/${SERVICE_HOST}:9092/g" /etc/monasca/api-config.conf
+
+    fi
+
     sudo ln -s /etc/monasca/api-config.conf /etc/api-config.conf
 
     sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/monasca-api/python/api-config.ini /etc/monasca/api-config.ini
@@ -717,6 +759,7 @@ function install_monasca_api_python {
 
     if [[ ${SERVICE_HOST} ]]; then
 
+        # set monasca api server listening ip address
         sudo sed -i "s/host = 127\.0\.0\.1/host = ${SERVICE_HOST}/g"  /etc/monasca/api-config.ini
 
     fi
@@ -807,6 +850,11 @@ function install_monasca_persister_java {
 
     if [[ ${SERVICE_HOST} ]]; then
 
+        # set zookeeper ip address
+        sudo sed -i "s/zookeeperConnect: \"127\.0\.0\.1:2181\"/zookeeperConnect: \"${SERVICE_HOST}:2181\"/g" /etc/monasca/persister-config.yml
+        # set influxdb ip address
+        sudo sed -i "s/url: \"http:\/\/127\.0\.0\.1:8086\"/url: \"http:\/\/${SERVICE_HOST}:8086\"/g" /etc/monasca/persister-config.yml
+        # set monasca persister server listening ip address
         sudo sed -i "s/bindHost: 127\.0\.0\.1/bindHost: ${SERVICE_HOST}/g" /etc/monasca/persister-config.yml
 
     fi
@@ -865,17 +913,40 @@ function install_monasca_persister_python {
 
     sudo chmod 0640 /etc/monasca/persister.conf
 
+    if [[ ${SERVICE_HOST} ]]; then
+
+        # set zookeeper ip address
+        sudo sed -i "s/uri = 127\.0\.0\.1:2181/uri = ${SERVICE_HOST}:2181/g" /etc/monasca/persister.conf
+        # set kafka ip address
+        sudo sed -i "s/uri = 127\.0\.0\.1:9092/uri = ${SERVICE_HOST}:9092/g" /etc/monasca/persister.conf
+        # set influxdb ip address
+        sudo sed -i "s/ip_address = 127\.0\.0\.1/ip_address = ${SERVICE_HOST}/g" /etc/monasca/persister.conf
+
+    fi
+
+    # /etc/monasca/persister-config.yml is needed for the Monasca Agent configuration.
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/monasca-persister/persister-config.yml /etc/monasca/persister-config.yml
+
+    sudo chown mon-persister:monasca /etc/monasca/persister-config.yml
+
+    sudo chmod 0640 /etc/monasca/persister-config.yml
+
+    if [[ ${SERVICE_HOST} ]]; then
+
+        # set zookeeper ip address
+        sudo sed -i "s/zookeeperConnect: \"127\.0\.0\.1:2181\"/zookeeperConnect: \"${SERVICE_HOST}:2181\"/g" /etc/monasca/persister-config.yml
+        # set influxdb ip address
+        sudo sed -i "s/url: \"http:\/\/127\.0\.0\.1:8086\"/url: \"http:\/\/${SERVICE_HOST}:8086\"/g" /etc/monasca/persister-config.yml
+        # set monasca persister server listening ip address
+        sudo sed -i "s/bindHost: 127\.0\.0\.1/bindHost: ${SERVICE_HOST}/g" /etc/monasca/persister-config.yml
+
+    fi
+
     sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/monasca-persister/python/monasca-persister.conf /etc/init/monasca-persister.conf
 
     sudo chown root:root /etc/init/monasca-persister.conf
 
     sudo chmod 0744 /etc/init/monasca-persister.conf
-
-    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/monasca-persister/persister-config.yml /etc/monasca/persister-config.yml
-
-    sudo chown mon-persister:monasca /etc/monasca/persister-config.yml
-
-    sudo chmod 0660 /etc/monasca/persister-config.yml
 
     sudo start monasca-persister || sudo restart monasca-persister
 
@@ -961,6 +1032,15 @@ function install_monasca_notification {
     sudo chown mon-notification:monasca /etc/monasca/notification.yaml
 
     sudo chmod 0660 /etc/monasca/notification.yaml
+
+     if [[ ${SERVICE_HOST} ]]; then
+
+        # set kafka ip address
+        sudo sed -i "s/url: \"127\.0\.0\.1:9092\"/url: \"${SERVICE_HOST}:9092\"/g" /etc/monasca/notification.yaml
+        # set zookeeper ip address
+        sudo sed -i "s/url: \"127\.0\.0\.1:2181\"/url: \"${SERVICE_HOST}:2181\"/g" /etc/monasca/notification.yaml
+
+    fi
 
     sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/monasca-notification/monasca-notification.conf /etc/init/monasca-notification.conf
 
@@ -1124,6 +1204,15 @@ function install_monasca_thresh {
     sudo chown root:monasca /etc/monasca/thresh-config.yml
 
     sudo chmod 0640 /etc/monasca/thresh-config.yml
+
+    if [[ ${SERVICE_HOST} ]]; then
+
+        # set kafka ip address
+        sudo sed -i "s/metadataBrokerList: \"127\.0\.0\.1:9092\"/metadataBrokerList: \"${SERVICE_HOST}:9092\"/g" /etc/monasca/thresh-config.yml
+        # set zookeeper ip address
+        sudo sed -i "s/zookeeperConnect: \"127\.0\.0\.1:2181\"/zookeeperConnect: \"${SERVICE_HOST}:2181\"/g" /etc/monasca/thresh-config.yml
+
+    fi
 
     sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/monasca-thresh/monasca-thresh /etc/init.d/monasca-thresh
 
@@ -1296,8 +1385,18 @@ function install_monasca_smoke_test {
 
     HPCLOUD_MON_MONASCA_CI_DIR=$(ls -td /opt/monasca/hpcloud-mon-monasca-ci-* | head -1)
 
-    sudo sed -i s/192\.168\.10\.4/127\.0\.0\.1/g ${HPCLOUD_MON_MONASCA_CI_DIR}/tests/smoke/utils.py
-    sudo sed -i s/192\.168\.10\.5/127\.0\.0\.1/g ${HPCLOUD_MON_MONASCA_CI_DIR}/tests/smoke/utils.py
+    if [[ ${SERVICE_HOST} ]]; then
+
+        sudo sed -i s/192\.168\.10\.4/${SERVICE_HOST}/g ${HPCLOUD_MON_MONASCA_CI_DIR}/tests/smoke/utils.py
+        sudo sed -i s/192\.168\.10\.5/${SERVICE_HOST}/g ${HPCLOUD_MON_MONASCA_CI_DIR}/tests/smoke/utils.py
+
+    else
+
+        sudo sed -i s/192\.168\.10\.4/127\.0\.0\.1/g ${HPCLOUD_MON_MONASCA_CI_DIR}/tests/smoke/utils.py
+        sudo sed -i s/192\.168\.10\.5/127\.0\.0\.1/g ${HPCLOUD_MON_MONASCA_CI_DIR}/tests/smoke/utils.py
+
+    fi
+
     sudo sed -i "s/'hostname', '-f'/'hostname'/g" ${HPCLOUD_MON_MONASCA_CI_DIR}/tests/smoke/smoke_configs.py
 
     (cd /opt/monasca ; sudo -H ./bin/pip install influxdb)
@@ -1306,11 +1405,11 @@ function install_monasca_smoke_test {
 
     if [[ ${SERVICE_HOST} ]]; then
 
-        sudo /opt/monasca/bin/python ${HPCLOUD_MON_MONASCA_CI_DIR}/tests/smoke/smoke2.py --monapi ${SERVICE_HOST} || true
+        sudo /opt/monasca/bin/python ${HPCLOUD_MON_MONASCA_CI_DIR}/tests/smoke/smoke2.py --monapi ${SERVICE_HOST} --kafka ${SERVICE_HOST} --zoo ${SERVICE_HOST} || true
 
     else
 
-        sudo /opt/monasca/bin/python ${HPCLOUD_MON_MONASCA_CI_DIR}/tests/smoke/smoke2.py --monapi "127.0.0.1" || true
+        sudo /opt/monasca/bin/python ${HPCLOUD_MON_MONASCA_CI_DIR}/tests/smoke/smoke2.py --monapi "127.0.0.1" --kafka "127.0.0.1" --zoo "127.0.0.1" || true
 
     fi
 
