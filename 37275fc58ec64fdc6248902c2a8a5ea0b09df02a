@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da85f559_a2019e3b",
+        "filename": "monasca_tempest_tests/tests/api/helpers.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-11-13T03:41:10Z",
+      "side": 1,
+      "message": "This comment applies to several functions. If these functions are specific to test_alarms, then I think they should be moved to test_alarms.py.\n\nAlso, I think I would prefer passing in the \"monasca_client\" rather than \"cls\". Or possibly, the first parameter shoudl be \"self\" and these methods should be methods in the class TestAlarms.\n\nhelpers.py is usually for functions that are common across a number of tests. So, if the function that you are writing is specific to one set of tests, such as TestAlarms, then it probably belongs there.",
+      "revId": "37275fc58ec64fdc6248902c2a8a5ea0b09df02a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
