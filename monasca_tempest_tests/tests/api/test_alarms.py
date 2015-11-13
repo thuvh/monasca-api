@@ -34,8 +34,10 @@ class TestAlarms(base.BaseMonascaTest):
 
     @test.attr(type="gate")
     def test_list_alarms(self):
-        helpers.create_alarms_for_test_alarms(self, num=1)
-        resp, response_body = self.monasca_client.list_alarms()
+        alarm_definition_ids = helpers.create_alarms_for_test_alarms(
+            self, num=1)
+        query_param = '?alarm_definition_id=' + str(alarm_definition_ids[0])
+        resp, response_body = self.monasca_client.list_alarms(query_param)
         self.assertEqual(200, resp.status)
         self.assertTrue(set(['links', 'elements']) ==
                         set(response_body))
@@ -58,7 +60,6 @@ class TestAlarms(base.BaseMonascaTest):
                 self.assertEqual(target_metric['name'], metric['name'])
                 self.assertEqual(target_metric['dimensions'],
                                  metric['dimensions'])
-            helpers.delete_alarm_definitions(self)
         else:
             error_msg = "Failed test_list_alarms: at least one alarm is " \
                         "needed."
@@ -66,18 +67,17 @@ class TestAlarms(base.BaseMonascaTest):
 
     @test.attr(type="gate")
     def test_list_alarms_by_alarm_definition_id(self):
-        helpers.create_alarms_for_test_alarms(self, num=1)
-        resp, response_body = self.monasca_client.list_alarms()
+        alarm_definition_ids = helpers.create_alarms_for_test_alarms(
+            self, num=1)
+        query_param = '?alarm_definition_id=' + str(alarm_definition_ids[0])
+        resp, response_body = self.monasca_client.list_alarms(query_param)
         elements = response_body['elements']
         if elements:
             element = elements[0]
-            alarm_definition_id = element['alarm_definition']['id']
-            query_parms = '?alarm_definition_id=' + str(alarm_definition_id)
-            resp, response_body = self.monasca_client.list_alarms(query_parms)
+            resp, response_body = self.monasca_client.list_alarms(query_param)
             self.assertEqual(200, resp.status)
             first_element = response_body['elements'][0]
             self.assertEqual(first_element, element)
-            helpers.delete_alarm_definitions(self)
         else:
             error_msg = "Failed test_list_alarms_by_alarm_definition_id: " \
                         "at least one alarm is needed."
@@ -85,18 +85,20 @@ class TestAlarms(base.BaseMonascaTest):
 
     @test.attr(type="gate")
     def test_list_alarms_by_metric_name(self):
-        helpers.create_alarms_for_test_alarms(self, num=1)
-        resp, response_body = self.monasca_client.list_alarms()
+        alarm_definition_ids = helpers.create_alarms_for_test_alarms(
+            self, num=1)
+        query_param = '?alarm_definition_id=' + str(alarm_definition_ids[0])
+        resp, response_body = self.monasca_client.list_alarms(query_param)
         elements = response_body['elements']
         if elements:
             element = elements[0]
             metric_name = element['metrics'][0]['name']
-            query_parms = '?metric_name=' + str(metric_name)
+            query_parms = '?alarm_definition_id=' + str(
+                alarm_definition_ids[0]) + '&metric_name=' + str(metric_name)
             resp, response_body = self.monasca_client.list_alarms(query_parms)
             self.assertEqual(200, resp.status)
             first_element = response_body['elements'][0]
             self.assertEqual(first_element, element)
-            helpers.delete_alarm_definitions(self)
         else:
             error_msg = "Failed test_list_alarms_by_metric_name: at least " \
                         "one alarm is needed."
@@ -104,15 +106,18 @@ class TestAlarms(base.BaseMonascaTest):
 
     @test.attr(type="gate")
     def test_list_alarms_by_metric_dimensions(self):
-        helpers.create_alarms_for_test_alarms(self, num=1)
-        resp, response_body = self.monasca_client.list_alarms()
+        alarm_definition_ids = helpers.create_alarms_for_test_alarms(
+            self, num=1)
+        query_param = '?alarm_definition_id=' + str(alarm_definition_ids[0])
+        resp, response_body = self.monasca_client.list_alarms(query_param)
         elements = response_body['elements']
         if elements:
-            query_parms = '?metric_dimensions=key-2:value-2,key-1:value-1'
+            query_parms = '?alarm_definition_id=' + str(
+                alarm_definition_ids[0]) + \
+                          '&metric_dimensions=key-2:value-2,key-1:value-1'
             resp, response_body = self.monasca_client.\
                 list_alarms(query_parms)
             self.assertEqual(200, resp.status)
-            helpers.delete_alarm_definitions(self)
         else:
             error_msg = "Failed test_list_alarms_by_metric_dimensions: at " \
                         "least one alarm is needed."
@@ -120,12 +125,12 @@ class TestAlarms(base.BaseMonascaTest):
 
     @test.attr(type="gate")
     def test_list_alarms_by_state(self):
+        helpers.delete_alarm_definitions(self)
         helpers.create_alarms_for_test_alarms(self, num=3)
         resp, response_body = self.monasca_client.list_alarms()
         elements = response_body['elements']
         number_of_alarms = len(elements)
         if number_of_alarms < 3:
-            helpers.delete_alarm_definitions(self)
             error_msg = ("Failed test_list_alarms_by_state: not the correct"
                          " number of alarms to test. 3 alarms are "
                          "needed. Current number of alarms = {}").\
@@ -146,18 +151,19 @@ class TestAlarms(base.BaseMonascaTest):
             len3 = len(response_body3['elements'])
             self.assertEqual(200, resp.status)
             self.assertEqual(len0, len1 + len2 + len3)
-            helpers.delete_alarm_definitions(self)
 
     @test.attr(type="gate")
     def test_list_alarms_by_lifecycle_state(self):
-        helpers.create_alarms_for_test_alarms(self, num=1)
-        resp, response_body = self.monasca_client.list_alarms()
+        alarm_definition_ids = helpers.create_alarms_for_test_alarms(
+            self, num=1)
+        query_param = '?alarm_definition_id=' + str(alarm_definition_ids[0])
+        resp, response_body = self.monasca_client.list_alarms(query_param)
         elements = response_body['elements']
         if elements:
-            query_parms = '?lifecycle_state=None'
+            query_parms = '?alarm_definition_id=' + str(
+                alarm_definition_ids[0]) + '&lifecycle_state=None'
             resp, response_body = self.monasca_client.list_alarms(query_parms)
             self.assertEqual(200, resp.status)
-            helpers.delete_alarm_definitions(self)
         else:
             error_msg = "Failed test_list_alarms_by_lifecycle_state: at " \
                         "least one alarm is needed."
@@ -165,14 +171,15 @@ class TestAlarms(base.BaseMonascaTest):
 
     @test.attr(type="gate")
     def test_list_alarms_by_link(self):
-        helpers.create_alarms_for_test_alarms(self, num=1)
-        resp, response_body = self.monasca_client.list_alarms()
+        alarm_definition_ids = helpers.create_alarms_for_test_alarms(
+            self, num=1)
+        query_param = '?alarm_definition_id=' + str(alarm_definition_ids[0])
+        resp, response_body = self.monasca_client.list_alarms(query_param)
         elements = response_body['elements']
         if elements:
             query_parms = '?link=None'
             resp, response_body = self.monasca_client.list_alarms(query_parms)
             self.assertEqual(200, resp.status)
-            helpers.delete_alarm_definitions(self)
         else:
             error_msg = "Failed test_list_alarms_by_link: at least one " \
                         "alarm is needed."
@@ -180,8 +187,10 @@ class TestAlarms(base.BaseMonascaTest):
 
     @test.attr(type="gate")
     def test_list_alarms_by_state_updated_start_time(self):
-        helpers.create_alarms_for_test_alarms(self, num=1)
-        resp, response_body = self.monasca_client.list_alarms()
+        alarm_definition_ids = helpers.create_alarms_for_test_alarms(
+            self, num=1)
+        query_param = '?alarm_definition_id=' + str(alarm_definition_ids[0])
+        resp, response_body = self.monasca_client.list_alarms(query_param)
         elements = response_body['elements']
         if elements:
             resp, response_body = self.monasca_client.list_alarms()
@@ -194,7 +203,6 @@ class TestAlarms(base.BaseMonascaTest):
             self.assertEqual(200, resp.status)
             first_element = response_body['elements'][0]
             self.assertEqual(element, first_element)
-            helpers.delete_alarm_definitions(self)
         else:
             error_msg = "Failed " \
                         "test_list_alarms_by_state_updated_start_time: at " \
@@ -203,12 +211,12 @@ class TestAlarms(base.BaseMonascaTest):
 
     @test.attr(type="gate")
     def test_list_alarms_by_offset_limit(self):
+        helpers.delete_alarm_definitions(self)
         helpers.create_alarms_for_test_alarms(self, num=2)
         resp, response_body = self.monasca_client.list_alarms()
         elements = response_body['elements']
         number_of_alarms = len(elements)
         if number_of_alarms < 2:
-            helpers.delete_alarm_definitions(self)
             error_msg = ("Failed test_list_alarms_by_offset_limit: 2 alarms "
                          "are needed. Current number of alarms = {}").\
                 format(number_of_alarms)
@@ -223,12 +231,13 @@ class TestAlarms(base.BaseMonascaTest):
             self.assertEqual(1, len(elements))
             self.assertEqual(elements[0]['id'], next_element['id'])
             self.assertEqual(elements[0], next_element)
-            helpers.delete_alarm_definitions(self)
 
     @test.attr(type="gate")
     def test_get_alarm(self):
-        helpers.create_alarms_for_test_alarms(self, num=1)
-        resp, response_body = self.monasca_client.list_alarms()
+        alarm_definition_ids = helpers.create_alarms_for_test_alarms(
+            self, num=1)
+        query_param = '?alarm_definition_id=' + str(alarm_definition_ids[0])
+        resp, response_body = self.monasca_client.list_alarms(query_param)
         self.assertEqual(200, resp.status)
         elements = response_body['elements']
         if elements:
@@ -252,7 +261,6 @@ class TestAlarms(base.BaseMonascaTest):
                 self.assertEqual(target_metric['name'], metric['name'])
                 self.assertEqual(target_metric['dimensions'],
                                  metric['dimensions'])
-            helpers.delete_alarm_definitions(self)
         else:
             error_msg = "Failed test_get_alarm: at least one alarm is needed."
             self.fail(error_msg)
@@ -266,8 +274,10 @@ class TestAlarms(base.BaseMonascaTest):
 
     @test.attr(type="gate")
     def test_update_alarm(self):
-        helpers.create_alarms_for_test_alarms(self, num=1)
-        resp, response_body = self.monasca_client.list_alarms()
+        alarm_definition_ids = helpers.create_alarms_for_test_alarms(
+            self, num=1)
+        query_param = '?alarm_definition_id=' + str(alarm_definition_ids[0])
+        resp, response_body = self.monasca_client.list_alarms(query_param)
         self.assertEqual(200, resp.status)
         elements = response_body['elements']
         if elements:
@@ -297,7 +307,6 @@ class TestAlarms(base.BaseMonascaTest):
                 'lifecycle_state'])
             self.assertEqual(updated_link, response_body[
                 'link'])
-            helpers.delete_alarm_definitions(self)
         else:
             error_msg = "Failed test_list_alarms_by_offset_limit: at least " \
                         "one alarm is needed."
@@ -305,8 +314,10 @@ class TestAlarms(base.BaseMonascaTest):
 
     @test.attr(type="gate")
     def test_patch_alarm(self):
-        helpers.create_alarms_for_test_alarms(self, num=1)
-        resp, response_body = self.monasca_client.list_alarms()
+        alarm_definition_ids = helpers.create_alarms_for_test_alarms(
+            self, num=1)
+        query_param = '?alarm_definition_id=' + str(alarm_definition_ids[0])
+        resp, response_body = self.monasca_client.list_alarms(query_param)
         self.assertEqual(200, resp.status)
         elements = response_body['elements']
         if elements:
@@ -328,9 +339,29 @@ class TestAlarms(base.BaseMonascaTest):
                             set(response_body))
             # Validate the field patched
             self.assertEqual(updated_state, response_body['state'])
-            helpers.delete_alarm_definitions(self)
         else:
             error_msg = "Failed test_patch_alarm: at least one alarm is " \
+                        "needed."
+            self.fail(error_msg)
+
+    @test.attr(type="gate")
+    def test_delete_alarm(self):
+        alarm_definition_ids = helpers.create_alarms_for_test_alarms(
+            self, num=1)
+        query_param = '?alarm_definition_id=' + str(alarm_definition_ids[0])
+        resp, response_body = self.monasca_client.list_alarms(query_param)
+        self.assertEqual(200, resp.status)
+        elements = response_body['elements']
+        if elements:
+            id = elements[0]['id']
+            resp, response_body = self.monasca_client.delete_alarm(id)
+            self.assertEqual(204, resp.status)
+            resp, response_body = self.monasca_client.list_alarms(query_param)
+            self.assertEqual(200, resp.status)
+            self.assertEqual(len(response_body['elements']), 0)
+            return
+        else:
+            error_msg = "Failed test_delete_alarm: at least one alarm is " \
                         "needed."
             self.fail(error_msg)
 
@@ -348,16 +379,19 @@ class TestAlarms(base.BaseMonascaTest):
         expression = "avg(cpu.idle_perc{service=monitoring}) < 20"
         alarm_definition = helpers.create_alarm_definition(
             name=name, description="description", expression=expression)
-        self.monasca_client.create_alarm_definitions(alarm_definition)
+        resp, response_body = self.monasca_client.create_alarm_definitions(
+            alarm_definition)
+        alarm_definition_id = response_body['id']
         helpers.create_metrics_for_test_alarms_match_by(self, num=1,
+                                                        id=alarm_definition_id,
                                                         sub_expressions=False,
                                                         list=False)
-        resp, response_body = self.monasca_client.list_alarms()
+        query_param = '?alarm_definition_id=' + str(alarm_definition_id)
+        resp, response_body = self.monasca_client.list_alarms(query_param)
         elements = response_body['elements']
         metrics = elements[0]['metrics']
         self.assertEqual(len(metrics), 2)
         self.assertNotEqual(metrics[0], metrics[1])
-        helpers.delete_alarm_definitions(self)
 
         # Create an alarm definition with match_by
         name = data_utils.rand_name('alarm_definition_1')
@@ -366,22 +400,24 @@ class TestAlarms(base.BaseMonascaTest):
         alarm_definition = helpers.create_alarm_definition(
             name=name, description="description", expression=expression,
             match_by=match_by)
-        self.monasca_client.create_alarm_definitions(alarm_definition)
+        resp, response_body = self.monasca_client.create_alarm_definitions(
+            alarm_definition)
+        alarm_definition_id = response_body['id']
         # create some metrics
         helpers.create_metrics_for_test_alarms_match_by(self, num=2,
+                                                        id=alarm_definition_id,
                                                         sub_expressions=False,
                                                         list=False)
-        resp, response_body = self.monasca_client.list_alarms()
+        query_param = '?alarm_definition_id=' + str(alarm_definition_id)
+        resp, response_body = self.monasca_client.list_alarms(query_param)
         elements = response_body['elements']
         self.assertEqual(len(elements), 2)
         self.assertEqual(len(elements[0]['metrics']), 1)
         self.assertEqual(len(elements[1]['metrics']), 1)
         self.assertNotEqual(elements[0]['metrics'], elements[1]['metrics'])
-        helpers.delete_alarm_definitions(self)
 
     @test.attr(type="gate")
     def test_create_alarms_with_sub_expressions_and_match_by(self):
-        helpers.delete_alarm_definitions(self)
         # Create an alarm definition with sub-expressions and match_by
         name = data_utils.rand_name('alarm_definition_1')
         expression = "avg(cpu.idle_perc{service=monitoring}) < 10 or " \
@@ -390,12 +426,15 @@ class TestAlarms(base.BaseMonascaTest):
         alarm_definition = helpers.create_alarm_definition(
             name=name, description="description", expression=expression,
             match_by=match_by)
-        self.monasca_client.create_alarm_definitions(alarm_definition)
-
+        resp, response_body = self.monasca_client.create_alarm_definitions(
+            alarm_definition)
+        alarm_definition_id = response_body['id']
         helpers.create_metrics_for_test_alarms_match_by(self, num=2,
+                                                        id=alarm_definition_id,
                                                         sub_expressions=True,
                                                         list=False)
-        resp, response_body = self.monasca_client.list_alarms()
+        query_param = '?alarm_definition_id=' + str(alarm_definition_id)
+        resp, response_body = self.monasca_client.list_alarms(query_param)
         elements = response_body['elements']
         self.assertEqual(len(elements), 2)
         self.assertEqual(len(elements[0]['metrics']), 2)
@@ -407,11 +446,9 @@ class TestAlarms(base.BaseMonascaTest):
         self.assertEqual(hostname_1, hostname_2)
         self.assertEqual(hostname_3, hostname_4)
         self.assertNotEqual(hostname_1, hostname_3)
-        helpers.delete_alarm_definitions(self)
 
     @test.attr(type="gate")
     def test_create_alarms_with_match_by_list(self):
-        helpers.delete_alarm_definitions(self)
         # Create an alarm definition with match_by as a list
         name = data_utils.rand_name('alarm_definition_1')
         expression = "avg(cpu.idle_perc{service=monitoring}) < 10"
@@ -419,12 +456,16 @@ class TestAlarms(base.BaseMonascaTest):
         alarm_definition = helpers.create_alarm_definition(
             name=name, description="description", expression=expression,
             match_by=match_by)
-        self.monasca_client.create_alarm_definitions(alarm_definition)
+        resp, response_body = self.monasca_client.create_alarm_definitions(
+            alarm_definition)
+        alarm_definition_id = response_body['id']
+        query_param = '?alarm_definition_id=' + str(alarm_definition_id)
         # create some metrics
         helpers.create_metrics_for_test_alarms_match_by(self, num=4,
+                                                        id=alarm_definition_id,
                                                         sub_expressions=True,
                                                         list=True)
-        resp, response_body = self.monasca_client.list_alarms()
+        resp, response_body = self.monasca_client.list_alarms(query_param)
         elements = response_body['elements']
         self.assertEqual(len(elements), 4)
         self.assertEqual(len(elements[0]['metrics']), 1)
@@ -441,4 +482,3 @@ class TestAlarms(base.BaseMonascaTest):
         self.assertNotEqual(dimensions_2, dimensions_3)
         self.assertNotEqual(dimensions_2, dimensions_4)
         self.assertNotEqual(dimensions_3, dimensions_4)
-        helpers.delete_alarm_definitions(self)

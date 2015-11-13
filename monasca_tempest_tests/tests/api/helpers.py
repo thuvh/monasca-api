@@ -80,35 +80,41 @@ def create_alarm_definition(name=None,
     return alarm_definition
 
 
-def create_alarms_for_test_alarms(self, num):
-    for num in xrange(num):
+def create_alarms_for_test_alarms(cls, num):
+    alarm_definition_ids = []
+    for i in xrange(num):
         # create an alarm definition
         expression = "avg(name-1) > 0"
         name = data_utils.rand_name('name-1')
         alarm_definition = create_alarm_definition(
             name=name, expression=expression)
-        self.monasca_client.create_alarm_definitions(
+        resp, response_body = cls.monasca_client.create_alarm_definitions(
             alarm_definition)
+        alarm_definition_ids.append(response_body['id'])
 
     # create some metrics
-    for i in xrange(180):
-        metric = create_metric(name='name-1')
-        self.monasca_client.create_metrics(metric)
-        time.sleep(1)
-        resp, response_body = self.monasca_client.list_alarms()
-        elements = response_body['elements']
-        if len(elements) >= num:
-            break
+    for j in xrange(num):
+        for i in xrange(60):
+            metric = create_metric(name='name-1')
+            cls.monasca_client.create_metrics(metric)
+            time.sleep(1)
+            query_param = '?alarm_definition_id=' + \
+                          str(alarm_definition_ids[j])
+            resp, response_body = cls.monasca_client.list_alarms(query_param)
+            elements = response_body['elements']
+            if len(elements) >= 1:
+                break
+    return alarm_definition_ids
 
 
-def delete_alarm_definitions(self):
+def delete_alarm_definitions(cls):
     # Delete alarm definitions
-    resp, response_body = self.monasca_client.list_alarm_definitions()
+    resp, response_body = cls.monasca_client.list_alarm_definitions()
     elements = response_body['elements']
     if elements:
         for element in elements:
             alarm_def_id = element['id']
-            self.monasca_client.delete_alarm_definition(alarm_def_id)
+            cls.monasca_client.delete_alarm_definition(alarm_def_id)
 
 
 def create_alarm_definitions_with_num(cls, expression):
@@ -136,11 +142,13 @@ def create_alarm_definition_for_test_alarm_definition():
     return alarm_definition
 
 
-def create_metrics_for_test_alarms_match_by(cls, num, sub_expressions, list):
+def create_metrics_for_test_alarms_match_by(cls, num, id, sub_expressions,
+                                            list):
     # list=True when match_by is a set
     # sub_expressions=True when expression of the alarm has multiple
     # sub expressions
     # create some metrics
+    query_param = '?alarm_definition_id=' + str(id)
     for i in xrange(180):
         if list:
             metric1 = create_metric(
@@ -164,7 +172,7 @@ def create_metrics_for_test_alarms_match_by(cls, num, sub_expressions, list):
             cls.monasca_client.create_metrics(metric3)
             cls.monasca_client.create_metrics(metric4)
             time.sleep(1)
-            resp, response_body = cls.monasca_client.list_alarms()
+            resp, response_body = cls.monasca_client.list_alarms(query_param)
             elements = response_body['elements']
             if len(elements) >= num:
                 break
@@ -191,7 +199,7 @@ def create_metrics_for_test_alarms_match_by(cls, num, sub_expressions, list):
             else:
                 pass
             time.sleep(1)
-            resp, response_body = cls.monasca_client.list_alarms()
+            resp, response_body = cls.monasca_client.list_alarms(query_param)
             elements = response_body['elements']
             if len(elements) >= num:
                 break
