@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da85f559_bac0bee1",
+        "filename": "monasca_tempest_tests/tests/api/test_alarms_state_history.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-13T20:07:19Z",
+      "side": 1,
+      "message": "Should this test be using an end timestamp? I would expect a separate test for using both together since they are both optional.",
+      "revId": "976506eea90bbad75c8bd23b780b1f1c30fbaa96",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da85f559_ba1c3e78",
+        "filename": "monasca_tempest_tests/tests/api/test_alarms_state_history.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-13T20:07:19Z",
+      "side": 1,
+      "message": "I\u0027d prefer more descriptive variable names for the two sets of elements. Same in the test below",
+      "revId": "976506eea90bbad75c8bd23b780b1f1c30fbaa96",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
