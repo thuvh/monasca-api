@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da85f559_a203c80c",
+        "filename": "monasca_tempest_tests/tests/api/helpers.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 15799
+      },
+      "writtenOn": "2015-11-13T13:15:40Z",
+      "side": 1,
+      "message": "This will raise a ValueError if timestamp is for an integer number of seconds (as time_iso does not format with microseconds on the end in that case)",
+      "revId": "fec31aa07f65df4a28e1f9a8404e58d9bb6fed52",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da85f559_8736d6b2",
+        "filename": "monasca_tempest_tests/tests/api/helpers.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 15799
+      },
+      "writtenOn": "2015-11-13T13:15:40Z",
+      "side": 1,
+      "message": "Again, this will raise a ValueError if timestamp is for an integer number of seconds (as time_iso does not format with microseconds on the end in that case)",
+      "revId": "fec31aa07f65df4a28e1f9a8404e58d9bb6fed52",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da85f559_67a3b250",
+        "filename": "monasca_tempest_tests/tests/api/helpers.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 15799
+      },
+      "writtenOn": "2015-11-13T13:15:40Z",
+      "side": 1,
+      "message": "Couldn\u0027t you simplify this entire method to something like\n\n    time_utc \u003d datetime.datetime.utcfromtimestamp(timestamp / 1000.0)\n    time_iso_base \u003d time_utc.strftime(\"%Y-%m-%dT%H:%M:%S\")\n    milliseconds \u003d time_utc.microseconds\n    return \"%s.%03dZ\" % (time_iso_base, time_utc.microsecond / 1000)\n\n?",
+      "revId": "fec31aa07f65df4a28e1f9a8404e58d9bb6fed52",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
