@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "da85f559_d5d47a48",
+        "filename": "monasca_tempest_tests/tests/api/helpers.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2015-11-13T17:52:32Z",
+      "side": 1,
+      "message": "Thank you for pointing this out! Yes, if microsecond \u003d 000000, the isoformat output will not have the microsecond part which will definitely lead to an error when I try to use split.",
+      "parentUuid": "da85f559_a203c80c",
+      "revId": "fec31aa07f65df4a28e1f9a8404e58d9bb6fed52",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da85f559_8736d6b2",
         "filename": "monasca_tempest_tests/tests/api/helpers.py",
         "patchSetId": 4
@@ -47,6 +65,24 @@
       "writtenOn": "2015-11-13T13:15:40Z",
       "side": 1,
       "message": "Couldn\u0027t you simplify this entire method to something like\n\n    time_utc \u003d datetime.datetime.utcfromtimestamp(timestamp / 1000.0)\n    time_iso_base \u003d time_utc.strftime(\"%Y-%m-%dT%H:%M:%S\")\n    milliseconds \u003d time_utc.microseconds\n    return \"%s.%03dZ\" % (time_iso_base, time_utc.microsecond / 1000)\n\n?",
+      "revId": "fec31aa07f65df4a28e1f9a8404e58d9bb6fed52",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da85f559_3595c63f",
+        "filename": "monasca_tempest_tests/tests/api/helpers.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2015-11-13T17:52:32Z",
+      "side": 1,
+      "message": "I agree with you but since java api will drop the last 0 in microsecond, %03 will cause some error. For example, when time_iso \u003d \u00272015-11-13T15:59:31.820000\u0027, the output we want is \u00272015-11-13T15:59:31.82Z\u0027 instead of \u00272015-11-13T15:59:31.820Z\u0027.",
+      "parentUuid": "da85f559_67a3b250",
       "revId": "fec31aa07f65df4a28e1f9a8404e58d9bb6fed52",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
