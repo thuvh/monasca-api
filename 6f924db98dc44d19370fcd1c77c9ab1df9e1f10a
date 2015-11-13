@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da85f559_69460d51",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-11-13T22:07:38Z",
+      "side": 1,
+      "message": "There are a couple of places where the falcon behavior makes sense, for example on dimension arguments for a measurement-list:\n\nmeasurement-list?dimension\u003dservice:monitoring\u0026dimension\u003dhostname:mini-mon\n\nInstead we make them specify it this way:\n\nmeasurement-list?dimension\u003dservice:monitoring,hostname:mini-mon\n\nThe Falcon behavior implies that a significant number of people believe the first is a legitimate form",
+      "revId": "6f924db98dc44d19370fcd1c77c9ab1df9e1f10a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
