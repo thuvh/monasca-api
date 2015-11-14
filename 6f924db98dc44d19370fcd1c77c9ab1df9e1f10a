@@ -16,6 +16,24 @@
       "revId": "6f924db98dc44d19370fcd1c77c9ab1df9e1f10a",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da85f559_5d2f43a1",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-11-14T03:24:02Z",
+      "side": 1,
+      "message": "It seems strange to have a query parameter that can be specified multiple time. Functions/methods in programming languages don\u0027t allow this. However, this isn\u0027t a function/method. Is it normal in a http query parameter list to specify multiple values (an array), each separately. \n\nI\u0027m not sure that Falcon was doing this because they thought it was a legitimate parameter list. It could have just been an oversight on their part, or just left it as an unspecified policy/limit.\n\nOur API doesn\u0027t expressly state that query parameters must be unique, but I\u0027m wondering if we should go back and add that.\n\nAdditionally, in the above, you have \"dimension\u003dservice\", but the query parameter is \"dimensions\", plural, so it seems to me like specifying the \"dimensions\" query parameter once is what we want.\n\nWe could update the API spec to state that query parameters can only be specified once.",
+      "parentUuid": "da85f559_69460d51",
+      "revId": "6f924db98dc44d19370fcd1c77c9ab1df9e1f10a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
