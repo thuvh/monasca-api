@@ -52,6 +52,24 @@
       "revId": "6f924db98dc44d19370fcd1c77c9ab1df9e1f10a",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da85f559_d8e7c1aa",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-11-14T05:23:14Z",
+      "side": 1,
+      "message": "so much for the oversight argument :-)",
+      "parentUuid": "da85f559_98aff9e2",
+      "revId": "6f924db98dc44d19370fcd1c77c9ab1df9e1f10a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
