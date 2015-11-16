@@ -228,6 +228,15 @@ class MetricsRepository(metrics_repository.MetricsRepository):
 
         return json_metric_list
 
+    def _validate_multiple_metrics(self, tenant_id, region, name, dimensions, merge_metrics_flag):
+        if not merge_metrics_flag:
+            metrics_list = self.list_metrics(tenant_id, region, name,
+                                         dimensions, None, 2)
+
+            if len(metrics_list) > 1:
+                raise (exceptions.MultipleMetricsException(
+                    MetricsRepository.MULTIPLE_METRICS_MESSAGE))
+
     def measurement_list(self, tenant_id, region, name, dimensions,
                          start_timestamp, end_timestamp, offset,
                          limit, merge_metrics_flag):
@@ -235,15 +244,7 @@ class MetricsRepository(metrics_repository.MetricsRepository):
         json_measurement_list = []
 
         try:
-
-            if not merge_metrics_flag:
-
-                metrics_list = self.list_metrics(tenant_id, region, name,
-                                                 dimensions, None, 2)
-
-                if len(metrics_list) > 1:
-                    raise (exceptions.MultipleMetricsException(
-                        MetricsRepository.MULTIPLE_METRICS_MESSAGE))
+            self._validate_multiple_metrics(tenant_id, region, name, dimensions, merge_metrics_flag)
 
             query = self._build_select_measurement_query(dimensions, name,
                                                          tenant_id,
@@ -346,14 +347,7 @@ class MetricsRepository(metrics_repository.MetricsRepository):
         json_statistics_list = []
 
         try:
-
-            if not merge_metrics_flag:
-                metrics_list = self.list_metrics(tenant_id, region, name,
-                                                 dimensions, None, 2)
-
-                if len(metrics_list) > 1:
-                    raise (exception.MultipleMetricsException(
-                        MetricsRepository.MULTIPLE_METRICS_MESSAGE))
+            self._validate_multiple_metrics(tenant_id, region, name, dimensions, merge_metrics_flag)
 
             query = self._build_statistics_query(dimensions, name, tenant_id,
                                                  region,
