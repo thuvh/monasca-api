@@ -1,0 +1,8 @@
+Verified+2: Jenkins
+Code-Review+2: Ryan Brandt <ryan.brandt@hpe.com>
+Workflow+1: Ryan Brandt <ryan.brandt@hpe.com>
+Submitted-by: Jenkins
+Submitted-at: Mon, 16 Nov 2015 23:48:06 +0000
+Reviewed-on: https://review.openstack.org/246031
+Project: openstack/monasca-api
+Branch: refs/heads/master
