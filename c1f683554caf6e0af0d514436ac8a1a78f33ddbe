@@ -16,6 +16,24 @@
       "revId": "c1f683554caf6e0af0d514436ac8a1a78f33ddbe",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba8a016a_1410a9a7",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 8126
+      },
+      "writtenOn": "2015-11-17T14:27:09Z",
+      "side": 1,
+      "message": "Ben,\n\nThanks for the comment.  I thought about this -- and set limit to one so we\u0027ll only retrieve one measurement back from the db, and that allowed me to reuse the measurement_list method.  I\u0027ll add a comment to this effect -- are you OK with that?\n\nThe fact is, if a caller chooses to pass time parms to metric list, it\u0027s gonna take a bit longer than not, with the benefit of saving much more time later not getting full measurement/statistics calls for metric definitions that are stale.\n\nThanks!\nBrad",
+      "parentUuid": "ba8a016a_e8299b38",
+      "revId": "c1f683554caf6e0af0d514436ac8a1a78f33ddbe",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
