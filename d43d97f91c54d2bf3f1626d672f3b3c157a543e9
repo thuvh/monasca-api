@@ -50,6 +50,24 @@
       "revId": "d43d97f91c54d2bf3f1626d672f3b3c157a543e9",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba8a016a_b3bd1e6a",
+        "filename": "monasca_tempest_tests/tests/api/test_statistics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-17T20:57:01Z",
+      "side": 1,
+      "message": "My mistake, this is an error in the python API",
+      "parentUuid": "ba8a016a_73101602",
+      "revId": "d43d97f91c54d2bf3f1626d672f3b3c157a543e9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
