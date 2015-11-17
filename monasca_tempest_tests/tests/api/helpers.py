@@ -15,6 +15,7 @@
 import datetime
 import time
 
+from monasca_tempest_tests.tests.api import constants
 from tempest.common.utils import data_utils
 
 NUM_ALARM_DEFINITIONS = 2
