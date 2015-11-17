@@ -67,7 +67,7 @@ ALARM_HISTORY = OrderedDict((
         u"sub_alarm_state": u"ALARM",
         u"current_values": [50.1],
     }]),
-    (u"tenant_id", TENANT_ID),
+    (u"id", u"1420070400000"),
 ))
 
 
@@ -183,10 +183,16 @@ class TestAlarmsStateHistory(AlarmTestBase):
             u'/v2.0/alarms/%s/state-history/' % ALARM_HISTORY[u"alarm_id"],
             headers={
                 'X-Roles': 'admin',
-                'X-Tenant-Id': ALARM_HISTORY[u"tenant_id"],
+                'X-Tenant-Id': TENANT_ID,
             })
 
         self.assertEqual(self.srmock.status, falcon.HTTP_200)
+
+        expected_id = expected_elements[u"elements"][0][u"id"]
+        observed_id = json.loads(response[0])[u"elements"][0][u"id"]
+        self.assertEqual(len(expected_id), len(observed_id))
+
+        expected_elements[u"elements"][0][u"id"] = observed_id
         self.assertThat(response, RESTResponseEquals(expected_elements))
 
 
