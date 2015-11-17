@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba8a016a_e8299b38",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 15799
+      },
+      "writtenOn": "2015-11-17T10:30:57Z",
+      "side": 1,
+      "message": "This is going to result in a lot of work for the DB and the python code, as self.measurement_list does a full select of all the data, parses and reformats the data etc. - all of which is discarded.\n\nWouldt it be possible to do a SELECT COUNT(value) (or equivalent) instead? (Having just tried it, it\u0027s a lot faster to just do the SELECT COUNT() and not transfer and parse what could be many MB of JSON)",
+      "revId": "c1f683554caf6e0af0d514436ac8a1a78f33ddbe",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
