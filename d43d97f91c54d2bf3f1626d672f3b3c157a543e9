@@ -33,6 +33,23 @@
       "revId": "d43d97f91c54d2bf3f1626d672f3b3c157a543e9",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba8a016a_73101602",
+        "filename": "monasca_tempest_tests/tests/api/test_statistics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-17T20:45:38Z",
+      "side": 1,
+      "message": "influx returns this field as \u0027time\u0027 not \u0027timestamp\u0027",
+      "revId": "d43d97f91c54d2bf3f1626d672f3b3c157a543e9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
