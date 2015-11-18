@@ -52,6 +52,24 @@
       "revId": "2cf77a1c2722db242d5a09f072a2a7e8f1075ad8",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba8a016a_50161656",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2015-11-18T05:35:25Z",
+      "side": 1,
+      "message": "I had missed porting from java to python. Thank you for making me realize!",
+      "parentUuid": "ba8a016a_b00422c0",
+      "revId": "2cf77a1c2722db242d5a09f072a2a7e8f1075ad8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
