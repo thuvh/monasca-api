@@ -1144,7 +1144,7 @@ function install_storm {
     if [[ ${SERVICE_HOST} ]]; then
 
         # set zookeeper ip address
-        sudo sed -i "s/127\.0\.0\.1\/${SERVICE_HOST}/g" /opt/storm/apache-storm-0.9.6/conf/storm.yaml
+        sudo sed -i "s/127\.0\.0\.1/${SERVICE_HOST}/g" /opt/storm/apache-storm-0.9.6/conf/storm.yaml
 
     fi
 
