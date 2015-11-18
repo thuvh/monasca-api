@@ -2,6 +2,74 @@
   "comments": [
     {
       "key": {
+        "uuid": "ba8a016a_b27083dd",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 663,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-11-18T17:52:18Z",
+      "side": 1,
+      "message": "Need to remove that pesky space.",
+      "revId": "33304a3cd10b8d8ec75ecc7c89571c0770ffe5df",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba8a016a_92421f67",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 827,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-11-18T17:52:18Z",
+      "side": 1,
+      "message": "And these spaces.",
+      "revId": "33304a3cd10b8d8ec75ecc7c89571c0770ffe5df",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba8a016a_725e9b45",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 937,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-11-18T17:52:18Z",
+      "side": 1,
+      "message": "And these spaces.",
+      "revId": "33304a3cd10b8d8ec75ecc7c89571c0770ffe5df",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba8a016a_4d4e5c3c",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MetricDefinitionVerticaRepoImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-11-18T17:52:18Z",
+      "side": 1,
+      "message": "Could this be simplified to \n\nif (startTime !\u003d null) {\n\n  bind...\n}\n\nif (enTime !\u003d null) {\n\n  bind...\n}",
+      "revId": "33304a3cd10b8d8ec75ecc7c89571c0770ffe5df",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba8a016a_1da0cd9e",
         "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
         "patchSetId": 11
