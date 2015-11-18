@@ -16,6 +16,24 @@
       "revId": "d92bc021f92ab0ebd584e0a393d5b269d3415b7f",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba8a016a_c84f9a69",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-18T18:03:18Z",
+      "side": 1,
+      "message": "Not the same here. We want to know if there is More than 1, not just if any exist",
+      "parentUuid": "ba8a016a_cddfac0b",
+      "revId": "d92bc021f92ab0ebd584e0a393d5b269d3415b7f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
