@@ -16,6 +16,24 @@
       "revId": "2cf77a1c2722db242d5a09f072a2a7e8f1075ad8",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba8a016a_bcfde33b",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2015-11-18T02:48:34Z",
+      "side": 1,
+      "message": "I ported from Java source.\nI think id should not change whenever it is queried too.\nI will fix with timestamp you mentioned.\nThank you.",
+      "parentUuid": "ba8a016a_dc16a7f0",
+      "revId": "2cf77a1c2722db242d5a09f072a2a7e8f1075ad8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
