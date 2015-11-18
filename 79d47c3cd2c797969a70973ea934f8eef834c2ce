@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba8a016a_7a14499f",
+        "filename": "monasca_api/tests/test_alarms.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 15799
+      },
+      "writtenOn": "2015-11-18T12:07:16Z",
+      "side": 1,
+      "message": "By putting this entry in here, the mock data returned by the InfluxDB mock in InfluxClientAlarmHistoryResponseFixture will now include an \"id\" field.\n\nOne fix would be to amend the _setUp metod to add \"delete mock_data[u\u0027id\u0027]\"",
+      "revId": "79d47c3cd2c797969a70973ea934f8eef834c2ce",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
