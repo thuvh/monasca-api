@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba8a016a_dc16a7f0",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-11-18T02:32:15Z",
+      "side": 1,
+      "message": "utcnow() is not a good value to use as an id. If you do a query twice that includes a specific alarm history, it will have two different ids which will be very confusing. The timestamp would be better.",
+      "revId": "2cf77a1c2722db242d5a09f072a2a7e8f1075ad8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
