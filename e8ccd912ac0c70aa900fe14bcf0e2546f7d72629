@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba8a016a_72f8db7b",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9Utils.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-11-18T17:39:24Z",
+      "side": 1,
+      "message": "Why \u0027\u003e\u003d\u0027? I thought we wanted strictly \u0027\u003e\u0027. If we use greater than or equal, then we can repeat the same results in the next page.",
+      "revId": "e8ccd912ac0c70aa900fe14bcf0e2546f7d72629",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
