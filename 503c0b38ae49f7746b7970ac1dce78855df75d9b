@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba8a016a_08a92224",
+        "filename": "monasca_tempest_tests/tests/api/helpers.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-11-18T18:17:39Z",
+      "side": 1,
+      "message": "I think you should pass \"monasca_client\" as a parameter into this function, not cls.",
+      "revId": "503c0b38ae49f7746b7970ac1dce78855df75d9b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba8a016a_033343f7",
+        "filename": "monasca_tempest_tests/tests/api/test_alarms.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-11-18T18:17:39Z",
+      "side": 1,
+      "message": "You should probably just pass the monasca_client into the helper function.\n\nThe helpers are supposed to be working on many classes. If you are passing in self, then your helper is dependent on whatever class is being passed in having a variable called \"monasca_client\" in it. \n\nAdditionally, the helper methods don\u0027t require anything else in the class.",
+      "revId": "503c0b38ae49f7746b7970ac1dce78855df75d9b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
