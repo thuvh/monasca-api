@@ -48,7 +48,7 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
         self.assertEqual(name, response_body['name'])
         self.assertEqual(expression, response_body['expression'])
 
-        helpers.delete_alarm_definitions(self)
+        helpers.delete_alarm_definitions(self.monasca_client)
 
     @test.attr(type="gate")
     def test_create_alarm_definition_with_notification(self):
@@ -81,7 +81,7 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
         self.assertEqual(notification_id, body['alarm_actions'][0])
         self.assertEqual(notification_id, body['undetermined_actions'][0])
 
-        helpers.delete_alarm_definitions(self)
+        helpers.delete_alarm_definitions(self.monasca_client)
 
         # Delete notification
         resp, body = self.monasca_client.delete_notification_method(
@@ -124,7 +124,7 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
         self.assertEqual(alarm_def_name, body['name'])
         self.assertEqual("mem_total_mb > 0", body['expression'])
 
-        helpers.delete_alarm_definitions(self)
+        helpers.delete_alarm_definitions(self.monasca_client)
 
         # Delete notification 1
         resp, body = self.monasca_client.delete_notification_method(
@@ -163,7 +163,7 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
         self.assertEqual("avg(mem_total_mb{url=https://www.google.com}) gt 0",
                          body['expression'])
 
-        helpers.delete_alarm_definitions(self)
+        helpers.delete_alarm_definitions(self.monasca_client)
 
         # Delete notification
         resp, body = self.monasca_client.delete_notification_method(
@@ -318,7 +318,7 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
                                  'alarm_actions',
                                  'undetermined_actions']) ==
                             set(definition))
-        helpers.delete_alarm_definitions(self)
+        helpers.delete_alarm_definitions(self.monasca_client)
 
     @test.attr(type="gate")
     def test_list_alarm_definitions_with_name(self):
@@ -342,7 +342,7 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
         expression_new = response_body['elements'][0]['expression']
         self.assertEqual(expression, expression_new)
 
-        helpers.delete_alarm_definitions(self)
+        helpers.delete_alarm_definitions(self.monasca_client)
 
     @test.attr(type="gate")
     def test_list_alarm_definitions_with_dimensions(self):
@@ -367,7 +367,7 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
         self.assertEqual(1, len(elements))
         self.assertEqual(name, str(name_new))
 
-        helpers.delete_alarm_definitions(self)
+        helpers.delete_alarm_definitions(self.monasca_client)
 
     @test.attr(type="gate")
     def test_list_alarm_definitions_with_offset_limit(self):
@@ -414,7 +414,7 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
                           "one minute timeout"
                     raise exceptions.TimeoutException(msg)
 
-        helpers.delete_alarm_definitions(self)
+        helpers.delete_alarm_definitions(self.monasca_client)
 
     # Get
 
@@ -444,7 +444,7 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
                         set(link))
         self.assertEqual(link['rel'], u'self')
 
-        helpers.delete_alarm_definitions(self)
+        helpers.delete_alarm_definitions(self.monasca_client)
 
     # Update
 
@@ -497,7 +497,7 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
                         set(link))
         self.assertEqual(link['rel'], u'self')
 
-        helpers.delete_alarm_definitions(self)
+        helpers.delete_alarm_definitions(self.monasca_client)
 
     @test.attr(type="gate")
     @test.attr(type=['negative'])
@@ -516,7 +516,7 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
                           id=id, name=name, expression=expression,
                           description=description, actions_enabled='true',
                           match_by=updated_match_by)
-        helpers.delete_alarm_definitions(self)
+        helpers.delete_alarm_definitions(self.monasca_client)
 
     @test.attr(type="gate")
     def test_update_notification_in_alarm_definition(self):
@@ -561,7 +561,7 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
         self.assertEqual(alarm_def_name, body['name'])
         self.assertEqual(expression, body['expression'])
 
-        helpers.delete_alarm_definitions(self)
+        helpers.delete_alarm_definitions(self.monasca_client)
 
         # Delete notification
         resp, body = self.monasca_client.delete_notification_method(
@@ -589,7 +589,7 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
         # Validate fields updated
         self.assertEqual(patched_name, response_body['name'])
 
-        helpers.delete_alarm_definitions(self)
+        helpers.delete_alarm_definitions(self.monasca_client)
 
     @test.attr(type="gate")
     @test.attr(type=['negative'])
@@ -605,7 +605,7 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
         self.assertRaises(exceptions.UnprocessableEntity,
                           self.monasca_client.patch_alarm_definition,
                           id=id, match_by=patched_match_by)
-        helpers.delete_alarm_definitions(self)
+        helpers.delete_alarm_definitions(self.monasca_client)
 
     @test.attr(type="gate")
     def test_patch_actions_in_alarm_definition(self):
@@ -655,7 +655,7 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
         self.assertEqual(notification_id, body['ok_actions'][0])
         self.assertEqual(notification_id, body['undetermined_actions'][0])
 
-        helpers.delete_alarm_definitions(self)
+        helpers.delete_alarm_definitions(self.monasca_client)
 
         # Delete notification
         resp, body = self.monasca_client.delete_notification_method(
