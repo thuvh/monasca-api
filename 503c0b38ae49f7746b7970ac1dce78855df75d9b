@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "ba8a016a_7c4ae227",
+        "filename": "monasca_tempest_tests/tests/api/test_alarms.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2015-11-19T00:14:41Z",
+      "side": 1,
+      "message": "I just wanted to make sure I get the specific alarm which just created before actually test anything. I think it\u0027s duplicated since there is a test_list_alarms_by_alarm_definition_id to do this job.",
+      "parentUuid": "ba8a016a_cda32cb1",
+      "revId": "503c0b38ae49f7746b7970ac1dce78855df75d9b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba8a016a_ad9ca85d",
         "filename": "monasca_tempest_tests/tests/api/test_alarms.py",
         "patchSetId": 5
@@ -64,6 +82,24 @@
       "writtenOn": "2015-11-18T18:17:39Z",
       "side": 1,
       "message": "You should probably just pass the monasca_client into the helper function.\n\nThe helpers are supposed to be working on many classes. If you are passing in self, then your helper is dependent on whatever class is being passed in having a variable called \"monasca_client\" in it. \n\nAdditionally, the helper methods don\u0027t require anything else in the class.",
+      "revId": "503c0b38ae49f7746b7970ac1dce78855df75d9b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba8a016a_9c0c66ed",
+        "filename": "monasca_tempest_tests/tests/api/test_alarms.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2015-11-19T00:14:41Z",
+      "side": 1,
+      "message": "Yes thank you!",
+      "parentUuid": "ba8a016a_033343f7",
       "revId": "503c0b38ae49f7746b7970ac1dce78855df75d9b",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -104,6 +140,24 @@
     },
     {
       "key": {
+        "uuid": "ba8a016a_26568b2a",
+        "filename": "monasca_tempest_tests/tests/api/test_alarms.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2015-11-19T00:14:41Z",
+      "side": 1,
+      "message": "That\u0027s a great point! Thanks. I will do that on test_update_alarm too.",
+      "parentUuid": "ba8a016a_1e687886",
+      "revId": "503c0b38ae49f7746b7970ac1dce78855df75d9b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba8a016a_2de1989a",
         "filename": "monasca_tempest_tests/tests/api/test_alarms.py",
         "patchSetId": 5
@@ -115,6 +169,24 @@
       "writtenOn": "2015-11-18T18:41:09Z",
       "side": 1,
       "message": "Does metric vary within the loops? If not, it should be created out of the loops. Also, if it doesn\u0027t, you could return it instead of metric_name, key, value which would be more succinct and then you could pass the metric as expected_metric to self._verify_metric_in_alarm() which would also be more succinct",
+      "revId": "503c0b38ae49f7746b7970ac1dce78855df75d9b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba8a016a_26752bf9",
+        "filename": "monasca_tempest_tests/tests/api/test_alarms.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2015-11-19T00:14:41Z",
+      "side": 1,
+      "message": "metrics vary on time stamp but since we are not testing it, your way is absolutely better!",
+      "parentUuid": "ba8a016a_2de1989a",
       "revId": "503c0b38ae49f7746b7970ac1dce78855df75d9b",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
