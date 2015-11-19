@@ -171,7 +171,7 @@ class Alarms(alarms_api_v2.AlarmsV2API,
                                                     alarm_definition_row,
                                                     alarm_metric_rows,
                                                     old_state, new_state,
-                                                    time_ms)
+                                                    sub_alarm_rows, time_ms)
 
     @resource.resource_try_catch_block
     def _alarm_patch(self, tenant_id, alarm_id, new_state, lifecycle_state,
@@ -207,7 +207,7 @@ class Alarms(alarms_api_v2.AlarmsV2API,
                                                     alarm_definition_row,
                                                     alarm_metric_rows,
                                                     old_state, new_state,
-                                                    time_ms)
+                                                    sub_alarm_rows, time_ms)
 
     @resource.resource_try_catch_block
     def _alarm_delete(self, tenant_id, id):
