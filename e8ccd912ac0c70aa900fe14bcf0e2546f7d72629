@@ -16,6 +16,24 @@
       "revId": "e8ccd912ac0c70aa900fe14bcf0e2546f7d72629",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba8a016a_28e93fb7",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9Utils.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2015-11-19T20:48:42Z",
+      "side": 1,
+      "message": "That made tests to pass, I was too happy about that to look in the UI, However that makes it somehow interesting...I need to go to UI to see what\u0027s going on there. Will do that tomorrow morning.",
+      "parentUuid": "ba8a016a_72f8db7b",
+      "revId": "e8ccd912ac0c70aa900fe14bcf0e2546f7d72629",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
