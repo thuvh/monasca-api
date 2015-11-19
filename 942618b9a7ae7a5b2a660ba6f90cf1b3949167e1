@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba8a016a_81adc89c",
+        "filename": "monasca_api/tests/test_alarms.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 15799
+      },
+      "writtenOn": "2015-11-19T11:54:38Z",
+      "side": 1,
+      "message": "Why not just leave the original code, which had  (u\"tenant_id\", TENANT_ID) in ALARM_HISTORY? (Which would also make the change on line 188 unnecessary)",
+      "revId": "942618b9a7ae7a5b2a660ba6f90cf1b3949167e1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
