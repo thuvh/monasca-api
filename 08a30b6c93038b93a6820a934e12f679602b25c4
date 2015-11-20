@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba8a016a_d6aee280",
+        "filename": "monasca_tempest_tests/tests/api/test_alarms_state_history.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-20T16:47:00Z",
+      "side": 1,
+      "message": "I assume this is meant to be \"need 2 or more\" instead of \"need 2 and more\"?",
+      "revId": "08a30b6c93038b93a6820a934e12f679602b25c4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba8a016a_f18690da",
+        "filename": "monasca_tempest_tests/tests/api/test_alarms_state_history.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-20T16:47:00Z",
+      "side": 1,
+      "message": "maybe this test could be reduced to one check by creating the list of expected elements and then checking equality with the list of received elements.",
+      "revId": "08a30b6c93038b93a6820a934e12f679602b25c4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba8a016a_d1aeec80",
+        "filename": "monasca_tempest_tests/tests/api/test_alarms_state_history.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-20T16:47:00Z",
+      "side": 1,
+      "message": "same comment as above, this can be reduced to one check",
+      "revId": "08a30b6c93038b93a6820a934e12f679602b25c4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba8a016a_f101b06b",
+        "filename": "monasca_tempest_tests/tests/api/test_alarms_state_history.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-20T16:47:00Z",
+      "side": 1,
+      "message": "I assume this is meant to be \"need 3 or more\" instead of \"need 3 and more\"",
+      "revId": "08a30b6c93038b93a6820a934e12f679602b25c4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba8a016a_91d064f9",
+        "filename": "monasca_tempest_tests/tests/api/test_alarms_state_history.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-20T16:47:00Z",
+      "side": 1,
+      "message": "same comment as above, this can be reduced to one check",
+      "revId": "08a30b6c93038b93a6820a934e12f679602b25c4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba8a016a_364e4e97",
+        "filename": "monasca_tempest_tests/tests/api/test_alarms_state_history.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-20T16:47:00Z",
+      "side": 1,
+      "message": "I think there is probably an easier way to accomplish this, such as sorting the list based on a key in each dictionary\n\nhttp://stackoverflow.com/questions/72899/how-do-i-sort-a-list-of-dictionaries-by-values-of-the-dictionary-in-python",
+      "revId": "08a30b6c93038b93a6820a934e12f679602b25c4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
