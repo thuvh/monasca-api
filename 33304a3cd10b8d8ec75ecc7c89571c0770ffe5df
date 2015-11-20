@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "ba8a016a_4cec9b8f",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 827,
+      "author": {
+        "id": 8126
+      },
+      "writtenOn": "2015-11-20T20:48:14Z",
+      "side": 1,
+      "message": "good catch -- PS13 should have these cleaned up for the whole file",
+      "parentUuid": "ba8a016a_92421f67",
+      "revId": "33304a3cd10b8d8ec75ecc7c89571c0770ffe5df",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba8a016a_725e9b45",
         "filename": "docs/monasca-api-spec.md",
         "patchSetId": 11
@@ -47,6 +65,24 @@
       "writtenOn": "2015-11-18T17:52:18Z",
       "side": 1,
       "message": "And these spaces.",
+      "revId": "33304a3cd10b8d8ec75ecc7c89571c0770ffe5df",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba8a016a_0cff7335",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 937,
+      "author": {
+        "id": 8126
+      },
+      "writtenOn": "2015-11-20T20:48:14Z",
+      "side": 1,
+      "message": "ditto",
+      "parentUuid": "ba8a016a_725e9b45",
       "revId": "33304a3cd10b8d8ec75ecc7c89571c0770ffe5df",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
