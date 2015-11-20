@@ -34,6 +34,24 @@
       "revId": "9fc3a74c433d231cae328b8904163ecbcc8747e3",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba8a016a_6ee63646",
+        "filename": "monasca_api/tests/test_alarms.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-11-20T20:05:07Z",
+      "side": 1,
+      "message": "Ohhh, now I get it. Thanks for the clarification.",
+      "parentUuid": "ba8a016a_e86b09f0",
+      "revId": "9fc3a74c433d231cae328b8904163ecbcc8747e3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
