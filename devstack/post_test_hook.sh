@@ -29,4 +29,5 @@ sudo cp $BASE/new/tempest/etc/logging.conf.sample $BASE/new/tempest/etc/logging.
 (cd $BASE/new/monasca-api/; sudo pip install -r requirements.txt -r test-requirements.txt)
 (cd $BASE/new/monasca-api/; sudo python setup.py install)
 
-(cd $BASE/new/tempest/; sudo ostestr --serial --regex monasca_tempest_tests)
+(cd $BASE/new/tempest/; sudo testr list-tests monasca_tempest_tests | grep gate > monasca_tempest_tests_gate)
+(cd $BASE/new/tempest/; sudo testr run --subunit --load-list=monasca_tempest_tests_gate | subunit-trace --fails)
