@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba8a016a_7041f338",
+        "filename": "monasca_tempest_tests/tests/api/test_metrics.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-23T15:50:06Z",
+      "side": 1,
+      "message": "This test failed the tempest run because WAIT_TIME isn\u0027t defined",
+      "revId": "0e42ca100e4f404c189ae6772285e094f4fca3e7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
