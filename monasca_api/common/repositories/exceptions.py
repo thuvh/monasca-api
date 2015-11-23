@@ -13,22 +13,24 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+from monasca_common.repositories import exceptions
 
-class RepositoryException(Exception):
+
+class RepositoryException(exceptions.RepositoryException):
     pass
 
 
-class DoesNotExistException(RepositoryException):
+class DoesNotExistException(exceptions.DoesNotExistException):
     pass
 
 
-class AlreadyExistsException(RepositoryException):
+class AlreadyExistsException(exceptions.AlreadyExistsException):
     pass
 
 
-class InvalidUpdateException(RepositoryException):
+class InvalidUpdateException(exceptions.InvalidUpdateException):
     pass
 
 
-class MultipleMetricsException(RepositoryException):
+class MultipleMetricsException(exceptions.RepositoryException):
     pass
