@@ -131,14 +131,14 @@ def main(argv):
 
   url = 'http://127.0.0.1:35357/v2.0'
 
-  token = '111222333444'
+  token = None
 
   cacert = None
 
   if not token:
-    username = None
-    password = None
-    tenant_name = None
+    username = 'admin'
+    password = 'secretadmin'
+    tenant_name = 'admin'
     token = get_token(url, cacert, username, password, tenant_name)
 
   key = client.Client(token=token, endpoint=url, cacert=cacert)
