@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a8ffd7b_de1d9210",
+        "filename": "monasca_tempest_tests/tests/api/test_measurements.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-24T18:27:28Z",
+      "side": 1,
+      "message": "These loops should be swapped, otherwise it could wait up to the full timeout two times.",
+      "revId": "dd16450cd3aef84153ba751b2882d509ed540e67",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
