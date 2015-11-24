@@ -228,6 +228,10 @@ class MetricsStatistics(metrics_api_v2.MetricsStatisticsV2API):
         limit = helpers.get_limit(req)
         merge_metrics_flag = get_merge_metrics_flag(req)
 
+        if start_timestamp >= end_timestamp:
+            raise falcon.HTTPBadRequest("Bad Request",
+                                        "End time must be later than start time")
+
         result = self._metric_statistics(tenant_id, name, dimensions,
                                          start_timestamp, end_timestamp,
                                          statistics, period, req.uri,

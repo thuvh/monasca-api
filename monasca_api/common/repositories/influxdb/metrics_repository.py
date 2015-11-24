@@ -236,8 +236,7 @@ class MetricsRepository(metrics_repository.MetricsRepository):
                                          dimensions, None, 2)
 
         if len(metrics_list) > 1:
-            raise (exceptions.MultipleMetricsException(
-                MetricsRepository.MULTIPLE_METRICS_MESSAGE))
+            raise exceptions.MultipleMetricsException(self.MULTIPLE_METRICS_MESSAGE)
 
         if not metrics_list:
             return {}
@@ -289,7 +288,7 @@ class MetricsRepository(metrics_repository.MetricsRepository):
 
             return json_measurement_list
 
-        except exceptions.MultipleMetricsException as ex:
+        except exceptions.MultipleMetricsException:
             raise
 
         except exceptions.RepositoryException as ex:
@@ -388,6 +387,9 @@ class MetricsRepository(metrics_repository.MetricsRepository):
                     json_statistics_list.append(statistic)
 
             return json_statistics_list
+
+        except exceptions.MultipleMetricsException:
+            raise
 
         except exceptions.RepositoryException as ex:
 
