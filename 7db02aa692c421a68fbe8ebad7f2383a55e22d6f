@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a8ffd7b_c2e80b13",
+        "filename": "monasca_tempest_tests/tests/api/test_metrics.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-25T22:37:51Z",
+      "side": 1,
+      "message": "I think it might be better to return one value from _timestamp_to_iso_millis and instead call it once for each timestamp you want.\nThis would also be a good spot to note why it is being compared to a range of timestamps",
+      "revId": "7db02aa692c421a68fbe8ebad7f2383a55e22d6f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
