@@ -14,7 +14,7 @@
 
 # TODO(RMH): Check if ' should be added in the list of INVALID_CHARS.
 # TODO(RMH): test_create_metric_no_value, should return 422 if value not sent
-
+import datetime
 import time
 
 from monasca_tempest_tests.tests.api import base
@@ -40,7 +40,7 @@ class TestMetrics(base.BaseMonascaTest):
         name = data_utils.rand_name('name')
         key = data_utils.rand_name('key')
         value = data_utils.rand_name('value')
-        timestamp = int(time.time() * 1000)
+        timestamp = int(round(time.time() * 1000))
         time_iso = helpers.timestamp_to_iso(timestamp)
         value_meta_key = data_utils.rand_name('value_meta_key')
         value_meta_value = data_utils.rand_name('value_meta_value')
@@ -79,7 +79,7 @@ class TestMetrics(base.BaseMonascaTest):
         name = data_utils.rand_name('name')
         key = data_utils.rand_name('key')
         value = data_utils.rand_name('value')
-        timestamp = int(time.time() * 1000)
+        timestamp = int(round(time.time() * 1000))
         time_iso = helpers.timestamp_to_iso(timestamp)
         value_meta_key1 = data_utils.rand_name('meta_key')
         value_meta_value1 = data_utils.rand_name('meta_value')
@@ -141,7 +141,7 @@ class TestMetrics(base.BaseMonascaTest):
     @test.attr(type='gate')
     def test_create_metric_with_no_dimensions(self):
         name = data_utils.rand_name('name')
-        timestamp = int(time.time() * 1000)
+        timestamp = int(round(time.time() * 1000))
         time_iso = helpers.timestamp_to_iso(timestamp)
         value_meta_key = data_utils.rand_name('value_meta_key')
         value_meta_value = data_utils.rand_name('value_meta_value')
@@ -186,7 +186,7 @@ class TestMetrics(base.BaseMonascaTest):
     @test.attr(type='gate')
     @test.attr(type=['negative'])
     def test_create_metric_no_value(self):
-        timestamp = time.time() * 1000
+        timestamp = int(round(time.time() * 1000))
         metric = helpers.create_metric(timestamp=timestamp,
                                        value=None)
         self.assertRaises(exceptions.UnprocessableEntity,
