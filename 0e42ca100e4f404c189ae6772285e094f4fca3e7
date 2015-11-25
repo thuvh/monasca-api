@@ -16,6 +16,24 @@
       "revId": "0e42ca100e4f404c189ae6772285e094f4fca3e7",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a8ffd7b_daf56ccb",
+        "filename": "monasca_tempest_tests/tests/api/test_metrics.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 8126
+      },
+      "writtenOn": "2015-11-25T14:15:04Z",
+      "side": 1,
+      "message": "Thanks Ryan for the comment, I think some things got refactored in my last rebase, will fix...",
+      "parentUuid": "ba8a016a_7041f338",
+      "revId": "0e42ca100e4f404c189ae6772285e094f4fca3e7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
