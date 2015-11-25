@@ -14,7 +14,7 @@
 
 # TODO(RMH): Check if ' should be added in the list of INVALID_CHARS.
 # TODO(RMH): test_create_metric_no_value, should return 422 if value not sent
-
+import datetime
 import time
 
 from monasca_tempest_tests.tests.api import base
@@ -40,7 +40,7 @@ class TestMetrics(base.BaseMonascaTest):
         name = data_utils.rand_name('name')
         key = data_utils.rand_name('key')
         value = data_utils.rand_name('value')
-        timestamp = int(time.time() * 1000)
+        timestamp = int(round(time.time() * 1000))
         time_iso = helpers.timestamp_to_iso(timestamp)
         value_meta_key = data_utils.rand_name('value_meta_key')
         value_meta_value = data_utils.rand_name('value_meta_value')
@@ -79,7 +79,7 @@ class TestMetrics(base.BaseMonascaTest):
         name = data_utils.rand_name('name')
         key = data_utils.rand_name('key')
         value = data_utils.rand_name('value')
-        timestamp = int(time.time() * 1000)
+        timestamp = int(round(time.time() * 1000))
         time_iso = helpers.timestamp_to_iso(timestamp)
         value_meta_key1 = data_utils.rand_name('meta_key')
         value_meta_value1 = data_utils.rand_name('meta_value')
@@ -141,7 +141,7 @@ class TestMetrics(base.BaseMonascaTest):
     @test.attr(type='gate')
     def test_create_metric_with_no_dimensions(self):
         name = data_utils.rand_name('name')
-        timestamp = int(time.time() * 1000)
+        timestamp = int(round(time.time() * 1000))
         time_iso = helpers.timestamp_to_iso(timestamp)
         value_meta_key = data_utils.rand_name('value_meta_key')
         value_meta_value = data_utils.rand_name('value_meta_value')
@@ -186,7 +186,7 @@ class TestMetrics(base.BaseMonascaTest):
     @test.attr(type='gate')
     @test.attr(type=['negative'])
     def test_create_metric_no_value(self):
-        timestamp = time.time() * 1000
+        timestamp = int(round(time.time() * 1000))
         metric = helpers.create_metric(timestamp=timestamp,
                                        value=None)
         self.assertRaises(exceptions.UnprocessableEntity,
@@ -379,9 +379,22 @@ class TestMetrics(base.BaseMonascaTest):
     def _verify_list_measurements_measurement(self, measurement,
                                               test_metric, test_vm_key,
                                               test_vm_value):
-        time_iso_millisecond = helpers.timestamp_to_iso_millis(
-            test_metric['timestamp'])
-        self.assertEqual(str(measurement[0]), time_iso_millisecond)
+        # Timestamps stored in influx sometimes are 1 millisecond different to
+        # the value stored by the persister. Check if the timestamps are
+        # equal in one millisecond range to pass the test.
+        time_iso_millis = \
+            self._timestamp_to_iso_millis(test_metric['timestamp'])
+        time_iso_millis_plus = \
+            self._timestamp_to_iso_millis_plus_one(test_metric['timestamp'])
+        time_iso_millis_minus = \
+            self._timestamp_to_iso_millis_minus_one(test_metric['timestamp'])
+        if str(measurement[0]) != time_iso_millis and str(measurement[0]) != \
+                time_iso_millis_plus and str(measurement[0]) != \
+                time_iso_millis_minus:
+            error_msg = ("Mismatch Error: None of {}, {}, {} matches {}").\
+                format(time_iso_millis, time_iso_millis_plus,
+                       time_iso_millis_minus, str(measurement[0]))
+            self.fail(error_msg)
         self.assertEqual(measurement[1], test_metric['value'])
         if test_vm_key is not None and test_vm_value is not None:
             self.assertEqual(str(measurement[2][test_vm_key]), test_vm_value)
@@ -397,3 +410,50 @@ class TestMetrics(base.BaseMonascaTest):
             self.assertEqual(str(element['dimensions'][test_key]), test_value)
         if test_name is not None:
             self.assertEqual(str(element['name']), test_name)
+
+    def _timestamp_to_iso_millis(self, timestamp):
+        time_utc = datetime.datetime.utcfromtimestamp(timestamp / 1000.0)
+        time_iso_base = time_utc.strftime("%Y-%m-%dT%H:%M")
+        time_iso_microsecond = time_utc.strftime(".%f")
+        time_iso_second = time_utc.strftime("%S")
+        if float(time_iso_microsecond[0:4]) == 0.0:
+            time_iso_millis = time_utc.strftime("%Y-%m-%dT%H:%M:%S") + 'Z'
+        else:
+            millis = str(int(time_iso_second[1]) + float(
+                time_iso_microsecond[0:4]))
+            time_iso_millis = \
+                time_iso_base + ':' + time_iso_second[0] + millis + 'Z'
+        return time_iso_millis
+
+    def _timestamp_to_iso_millis_plus_one(self, timestamp):
+        time_utc = datetime.datetime.utcfromtimestamp(timestamp / 1000.0)
+        time_iso_base = time_utc.strftime("%Y-%m-%dT%H:%M")
+        time_iso_microsecond = time_utc.strftime(".%f")
+        time_iso_second = time_utc.strftime("%S")
+        if float(time_iso_microsecond[0:4]) == 0.0:
+            time_iso_millisecond = time_utc.strftime("%Y-%m-%dT%H:%M:%S") + 'Z'
+            time_iso_millis_plus = time_iso_millisecond + '.001' + 'Z'
+        else:
+            millis_plus_one = str(int(time_iso_second[1]) + float(
+                time_iso_microsecond[0:4]) + 0.001)
+            time_iso_millis_plus = \
+                time_iso_base + ':' + time_iso_second[0] + millis_plus_one\
+                + 'Z'
+        return time_iso_millis_plus
+
+    def _timestamp_to_iso_millis_minus_one(self, timestamp):
+        time_utc = datetime.datetime.utcfromtimestamp(timestamp / 1000.0)
+        time_iso_base = time_utc.strftime("%Y-%m-%dT%H:%M")
+        time_iso_microsecond = time_utc.strftime(".%f")
+        time_iso_second = time_utc.strftime("%S")
+        if float(time_iso_microsecond[0:4]) == 0.0:
+            time_iso_millis_minus = \
+                time_iso_base + str(int(time_iso_second) - 0.001) + 'Z'
+        else:
+
+            millis_minus_one = str(int(time_iso_second[1]) + float(
+                time_iso_microsecond[0:4]) - 0.001)
+            time_iso_millis_minus = \
+                time_iso_base + ':' + time_iso_second[0] + millis_minus_one \
+                + 'Z'
+        return time_iso_millis_minus
