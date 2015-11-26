@@ -274,7 +274,14 @@ class MetricsRepository(metrics_repository.MetricsRepository):
                     measurements_list = []
                     for point in serie['values']:
                         value_meta = json.loads(point[2]) if point[2] else {}
-                        measurements_list.append([point[0],
+                        # Ensure three decimal places in timestamp
+                        # 2015-12-11T14:15:01.13Z
+                        split_time = point[0].split(':')
+                        # 2015-12-11T14, 15, 01.13Z
+                        split_time[-1] = '{:06.3f}'.format(float(split_time[-1][:-1]))
+                        # 2015-12-11T14, 15, 01.130
+                        timestamp = ':'.join(split_time) + 'Z'
+                        measurements_list.append([timestamp,
                                                   point[1],
                                                   value_meta])
 
