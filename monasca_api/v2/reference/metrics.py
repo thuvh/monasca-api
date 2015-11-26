@@ -222,6 +222,7 @@ class MetricsStatistics(metrics_api_v2.MetricsStatisticsV2API):
         helpers.validate_query_dimensions(dimensions)
         start_timestamp = helpers.get_query_starttime_timestamp(req)
         end_timestamp = helpers.get_query_endtime_timestamp(req, False)
+        helpers.validate_timestamps(start_timestamp, end_timestamp)
         statistics = helpers.get_query_statistics(req)
         period = helpers.get_query_period(req)
         offset = helpers.get_query_param(req, 'offset')
