@@ -244,6 +244,20 @@ class MetricsRepository(metrics_repository.MetricsRepository):
 
         return metrics_list[0]['dimensions']
 
+    def _format_timestamp_decimal(self, original):
+        '''Ensure three decimal places in timestamp'''
+        try:
+            # 2015-12-11T14:15:01.13Z
+            split_time = original.split(':')
+            # 2015-12-11T14, 15, 01.13Z
+            split_time[-1] = '{:06.3f}'.format(float(split_time[-1][:-1]))
+            # 2015-12-11T14, 15, 01.130
+            timestamp = ':'.join(split_time) + 'Z'
+            return timestamp
+        except Exception as ex:
+            raise exceptions.RepositoryException(
+                "Unable to parse timestamp '{}'. Error was: {}".format(original, ex))
+
     def measurement_list(self, tenant_id, region, name, dimensions,
                          start_timestamp, end_timestamp, offset,
                          limit, merge_metrics_flag):
@@ -274,7 +288,9 @@ class MetricsRepository(metrics_repository.MetricsRepository):
                     measurements_list = []
                     for point in serie['values']:
                         value_meta = json.loads(point[2]) if point[2] else {}
-                        measurements_list.append([point[0],
+                        timestamp = self._format_timestamp_decimal(point[0])
+
+                        measurements_list.append([timestamp,
                                                   point[1],
                                                   value_meta])
 
