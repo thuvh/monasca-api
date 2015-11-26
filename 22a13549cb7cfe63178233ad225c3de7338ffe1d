@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a8ffd7b_0a6ffd92",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2015-11-26T06:20:48Z",
+      "side": 1,
+      "message": "I\u0027d propose getting this transformation to own method. Code on the left looks much more cleaner. With external method you could have call for it in a place of\n\n point[0]\n\nIdeally I would see assignment to variable for timestamp and this point[1]. Now it is a puzzle, at least for me. What does the point[1] mean ?\n\nOtherwise looks good, I additionally checked this part of code in IPython and seems that everything is in order.",
+      "revId": "22a13549cb7cfe63178233ad225c3de7338ffe1d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
