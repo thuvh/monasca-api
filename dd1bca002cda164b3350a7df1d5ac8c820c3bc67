@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a8ffd7b_af1b631a",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2015-11-26T06:09:10Z",
+      "side": 1,
+      "message": "MultipleMetricsException is subclass of RepositoryException.\nSo I think this except sentence could be skipped.\nI committed solution for same problem before I had found your commitment.\nI\u0027m happy if you review my commitment.\nhttps://review.openstack.org/#/c/250148/",
+      "revId": "dd1bca002cda164b3350a7df1d5ac8c820c3bc67",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a8ffd7b_2fd213d3",
+        "filename": "monasca_api/v2/reference/metrics.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2015-11-26T06:09:10Z",
+      "side": 1,
+      "message": "I think it is preferred that validation is written in helpers.py because other validation methods are in it.\nI committed solution for same problem before I had found your commitment.\nI\u0027m happy if you review my commitment.\nhttps://review.openstack.org/#/c/250109/",
+      "revId": "dd1bca002cda164b3350a7df1d5ac8c820c3bc67",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
