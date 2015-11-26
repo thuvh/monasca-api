@@ -16,6 +16,24 @@
       "revId": "22a13549cb7cfe63178233ad225c3de7338ffe1d",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a8ffd7b_aa2111fd",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2015-11-26T06:30:20Z",
+      "side": 1,
+      "message": "Just couple more things.\n\n1. Did you think about error control here ? For instance, this parsing goes wrong and I\u0027d expect some verbose exception here instead of IndexError or something ?",
+      "parentUuid": "9a8ffd7b_0a6ffd92",
+      "revId": "22a13549cb7cfe63178233ad225c3de7338ffe1d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
