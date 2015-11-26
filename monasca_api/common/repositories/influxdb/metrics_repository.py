@@ -400,7 +400,7 @@ class MetricsRepository(metrics_repository.MetricsRepository):
 
                 LOG.exception(ex)
 
-                raise exceptions.RepositoryException(ex)
+                raise ex
 
         except InfluxDBClientError as ex:
 
