@@ -221,6 +221,16 @@ class TestMeasurements(base.BaseMonascaTest):
             self.fail(error_msg)
 
     @test.attr(type="gate")
+    @test.attr(type=['negative'])
+    def test_list_measurements_with_endtime_equals_starttime(self):
+        query_parms = '?name=' + str(self._name) + '&merge_metrics=true' \
+                      '&start_time=' + str(self._start_time) + \
+                      '&end_time=' + str(self._start_time) + \
+                      '&dimensions=' + 'key-1:value-1,key-2:value-2'
+        self.assertRaises(exceptions.BadRequest,
+                          self.monasca_client.list_measurements, query_parms)
+
+    @test.attr(type="gate")
     def test_list_measurements_with_offset_limit(self):
         query_parms = '?name=' + str(self._name2)
         resp, response_body = self.monasca_client.list_metrics(query_parms)
