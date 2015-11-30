@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9a8ffd7b_bec9ae5c",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-11-30T21:53:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da85f559_667bd42a",
+      "revId": "cac3714f71af0c854c24397158baaa8c6dc270b6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da85f559_a6977c39",
         "filename": "docs/monasca-api-spec.md",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2015-11-12T22:09:28Z",
       "side": 1,
       "message": "\"the a\" \u003d\u003e \"a\"",
+      "revId": "cac3714f71af0c854c24397158baaa8c6dc270b6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a8ffd7b_3edcde17",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-11-30T21:53:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da85f559_a6977c39",
       "revId": "cac3714f71af0c854c24397158baaa8c6dc270b6",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "9a8ffd7b_fefc1674",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-11-30T21:53:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a8ffd7b_22cb7320",
+      "revId": "cac3714f71af0c854c24397158baaa8c6dc270b6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a8ffd7b_e2b9eb7a",
         "filename": "docs/monasca-api-spec.md",
         "patchSetId": 1
@@ -64,6 +118,24 @@
       "writtenOn": "2015-11-30T16:32:21Z",
       "side": 1,
       "message": "has been received \u003d\u003e have been received\n\na least \u003d\u003e at least",
+      "revId": "cac3714f71af0c854c24397158baaa8c6dc270b6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a8ffd7b_de3b5237",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-11-30T21:53:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a8ffd7b_e2b9eb7a",
       "revId": "cac3714f71af0c854c24397158baaa8c6dc270b6",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -98,6 +170,42 @@
       "writtenOn": "2015-11-30T16:38:16Z",
       "side": 1,
       "message": "More to the point: why mention \"notification\" here -- this is an *alarm\" expression",
+      "parentUuid": "9a8ffd7b_c242a768",
+      "revId": "cac3714f71af0c854c24397158baaa8c6dc270b6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a8ffd7b_392b9835",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-11-30T21:53:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a8ffd7b_ddae0698",
+      "revId": "cac3714f71af0c854c24397158baaa8c6dc270b6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a8ffd7b_d9f5accb",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-11-30T21:53:20Z",
+      "side": 1,
+      "message": "Changed the sentence to remove the which",
       "parentUuid": "9a8ffd7b_c242a768",
       "revId": "cac3714f71af0c854c24397158baaa8c6dc270b6",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
