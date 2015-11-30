@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a8ffd7b_4eeee6b5",
+        "filename": "monasca_tempest_tests/tests/api/test_alarm_definitions.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-11-30T15:42:07Z",
+      "side": 1,
+      "message": "This is missing something like _verify_list_alarm_definitions_elements(). I don\u0027t see anything that verifies the name, expression, etc. matches what it should be.",
+      "revId": "df09e90dd5a29ad2b9bfa31d317e850e383e3c69",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a8ffd7b_8e85aeae",
+        "filename": "monasca_tempest_tests/tests/api/test_alarm_definitions.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-11-30T15:42:07Z",
+      "side": 1,
+      "message": "You also need to verify response_body has the fields set correctly.",
+      "revId": "df09e90dd5a29ad2b9bfa31d317e850e383e3c69",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a8ffd7b_8eacce36",
+        "filename": "monasca_tempest_tests/tests/api/test_alarm_definitions.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-11-30T15:42:07Z",
+      "side": 1,
+      "message": "You also need to verify response_body has the fields set correctly.",
+      "revId": "df09e90dd5a29ad2b9bfa31d317e850e383e3c69",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a8ffd7b_2e80428b",
+        "filename": "monasca_tempest_tests/tests/api/test_alarm_definitions.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-11-30T15:42:07Z",
+      "side": 1,
+      "message": "You also need to verify response_body has the fields set correctly.",
+      "revId": "df09e90dd5a29ad2b9bfa31d317e850e383e3c69",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a8ffd7b_6e0baa2c",
+        "filename": "monasca_tempest_tests/tests/api/test_alarm_definitions.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-11-30T15:42:07Z",
+      "side": 1,
+      "message": "You also need to verify body has the fields set correctly.",
+      "revId": "df09e90dd5a29ad2b9bfa31d317e850e383e3c69",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a8ffd7b_b11ed35d",
+        "filename": "monasca_tempest_tests/tests/api/test_alarm_definitions.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-11-30T15:42:07Z",
+      "side": 1,
+      "message": "It would be best here to assert that at least Alarm Definition is returned, if none are returned, the test succeeds but isn\u0027t doing what you think it is",
+      "revId": "df09e90dd5a29ad2b9bfa31d317e850e383e3c69",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a8ffd7b_d1cd97b8",
+        "filename": "monasca_tempest_tests/tests/api/test_alarm_definitions.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-11-30T15:42:07Z",
+      "side": 1,
+      "message": "Do you need to check the else cases on these? What should the value of description be in the response if it was not set on create? Ditto for the other fields",
+      "revId": "df09e90dd5a29ad2b9bfa31d317e850e383e3c69",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
