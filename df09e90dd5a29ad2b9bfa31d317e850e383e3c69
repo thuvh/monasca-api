@@ -54,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "9a8ffd7b_70193c79",
+        "filename": "monasca_tempest_tests/tests/api/test_alarm_definitions.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-11-30T18:28:09Z",
+      "side": 1,
+      "message": "You need to check both. I have seen bugs where patch returned the correct values but didn\u0027t actually save the values in the database. That is why you do the get check, but the patch should also return the correct values so you need to validate that as well.",
+      "parentUuid": "9a8ffd7b_2487fe13",
+      "revId": "df09e90dd5a29ad2b9bfa31d317e850e383e3c69",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a8ffd7b_8eacce36",
         "filename": "monasca_tempest_tests/tests/api/test_alarm_definitions.py",
         "patchSetId": 5
