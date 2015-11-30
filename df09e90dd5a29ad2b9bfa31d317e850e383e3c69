@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "9a8ffd7b_2487fe13",
+        "filename": "monasca_tempest_tests/tests/api/test_alarm_definitions.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2015-11-30T17:35:20Z",
+      "side": 1,
+      "message": "Yes but instead of checking the response body here I checked it after \"get_alarm_definition\" (Ln 410) to make sure the updated information  got actually saved. Do you think it\u0027s necessary to check twice here?",
+      "parentUuid": "9a8ffd7b_8e85aeae",
+      "revId": "df09e90dd5a29ad2b9bfa31d317e850e383e3c69",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a8ffd7b_8eacce36",
         "filename": "monasca_tempest_tests/tests/api/test_alarm_definitions.py",
         "patchSetId": 5
@@ -115,6 +133,24 @@
       "writtenOn": "2015-11-30T15:42:07Z",
       "side": 1,
       "message": "Do you need to check the else cases on these? What should the value of description be in the response if it was not set on create? Ditto for the other fields",
+      "revId": "df09e90dd5a29ad2b9bfa31d317e850e383e3c69",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a8ffd7b_877d8cb3",
+        "filename": "monasca_tempest_tests/tests/api/test_alarm_definitions.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2015-11-30T17:35:20Z",
+      "side": 1,
+      "message": "Great point! Yes I do need else cases to check the default values for these fields.",
+      "parentUuid": "9a8ffd7b_d1cd97b8",
       "revId": "df09e90dd5a29ad2b9bfa31d317e850e383e3c69",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
