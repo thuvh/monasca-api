@@ -16,6 +16,24 @@
       "revId": "67b7a208403e41b7075460243698abe6cfdbe0c8",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a8ffd7b_becd2e88",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-11-30T21:24:37Z",
+      "side": 1,
+      "message": "Done. I also actually changed the version to 0.9.5 like the commit message says",
+      "parentUuid": "9a8ffd7b_3df072c9",
+      "revId": "67b7a208403e41b7075460243698abe6cfdbe0c8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
