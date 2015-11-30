@@ -33,6 +33,57 @@
       "revId": "cac3714f71af0c854c24397158baaa8c6dc270b6",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a8ffd7b_22cb7320",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-30T16:32:21Z",
+      "side": 1,
+      "message": "Seems like \"measurements are seen for metrics that match\" would be easier to read.",
+      "revId": "cac3714f71af0c854c24397158baaa8c6dc270b6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a8ffd7b_e2b9eb7a",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-30T16:32:21Z",
+      "side": 1,
+      "message": "has been received \u003d\u003e have been received\n\na least \u003d\u003e at least",
+      "revId": "cac3714f71af0c854c24397158baaa8c6dc270b6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a8ffd7b_c242a768",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-11-30T16:32:21Z",
+      "side": 1,
+      "message": "should be a comma after \"which\"",
+      "revId": "cac3714f71af0c854c24397158baaa8c6dc270b6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
