@@ -84,6 +84,24 @@
       "revId": "cac3714f71af0c854c24397158baaa8c6dc270b6",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a8ffd7b_ddae0698",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 860
+      },
+      "writtenOn": "2015-11-30T16:38:16Z",
+      "side": 1,
+      "message": "More to the point: why mention \"notification\" here -- this is an *alarm\" expression",
+      "parentUuid": "9a8ffd7b_c242a768",
+      "revId": "cac3714f71af0c854c24397158baaa8c6dc270b6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
