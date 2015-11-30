@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a8ffd7b_3df072c9",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2015-11-30T16:37:27Z",
+      "side": 1,
+      "message": "I like that this is a variable. Could we put this in the settings file and give the ability to override it? That way, it becomes more visible and people have the option to experiment with newer versions when they become available.",
+      "revId": "67b7a208403e41b7075460243698abe6cfdbe0c8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
