@@ -88,6 +88,24 @@
       "revId": "3c5133d09ff9ac86d5f939c4bc874ffe990f230e",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a8ffd7b_712579c0",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-12-01T20:17:38Z",
+      "side": 1,
+      "message": "I can bring it down to 5-6% increase (~215ms)",
+      "parentUuid": "9a8ffd7b_b8dc2647",
+      "revId": "3c5133d09ff9ac86d5f939c4bc874ffe990f230e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
