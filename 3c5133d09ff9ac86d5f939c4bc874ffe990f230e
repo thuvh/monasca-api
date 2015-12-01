@@ -70,6 +70,24 @@
       "revId": "3c5133d09ff9ac86d5f939c4bc874ffe990f230e",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a8ffd7b_b8dc2647",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2015-12-01T18:58:22Z",
+      "side": 1,
+      "message": "The tempest tests are fine with the old timestamp format. If theres an alternate way, that would be great.",
+      "parentUuid": "9a8ffd7b_f8738eb2",
+      "revId": "3c5133d09ff9ac86d5f939c4bc874ffe990f230e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
