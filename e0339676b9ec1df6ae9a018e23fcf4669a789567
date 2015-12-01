@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a8ffd7b_65488e88",
+        "filename": "monasca_api/v2/reference/metrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-12-01T03:25:31Z",
+      "side": 1,
+      "message": "Would prefer calling this validate_start_end_timetamps.",
+      "revId": "e0339676b9ec1df6ae9a018e23fcf4669a789567",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
