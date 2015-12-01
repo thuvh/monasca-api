@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a8ffd7b_807800fa",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-12-01T03:43:30Z",
+      "side": 1,
+      "message": "Looking at this code I\u0027m assuming that there is a performance penalty with enforcing this.\n\nCould you write a quick Python test to look at the performance difference on doing this conversion.\n\nFrom what I\u0027ve seen so far, one of the biggest performance hits is just in re-formatting data, so it would be nice to know what this cost us.",
+      "revId": "3c5133d09ff9ac86d5f939c4bc874ffe990f230e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
