@@ -16,6 +16,24 @@
       "revId": "3c5133d09ff9ac86d5f939c4bc874ffe990f230e",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a8ffd7b_e2ad219c",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-12-01T18:24:41Z",
+      "side": 1,
+      "message": "Looks like this costs us about 10-15% more time\n\n~204ms before\n~228ms after\n(avg time across 100 requests for 10,000 measurements)",
+      "parentUuid": "9a8ffd7b_807800fa",
+      "revId": "3c5133d09ff9ac86d5f939c4bc874ffe990f230e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
