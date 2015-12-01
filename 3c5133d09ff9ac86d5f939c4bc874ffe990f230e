@@ -34,6 +34,24 @@
       "revId": "3c5133d09ff9ac86d5f939c4bc874ffe990f230e",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a8ffd7b_254d7399",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-12-01T18:49:42Z",
+      "side": 1,
+      "message": "Thanks for looking at this.\n\n10%-15% won\u0027t kill us, but to be honest, that is a relatively large percent for just getting some data formatted better.\n\nDo you still think we need to go through with this?",
+      "parentUuid": "9a8ffd7b_e2ad219c",
+      "revId": "3c5133d09ff9ac86d5f939c4bc874ffe990f230e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
