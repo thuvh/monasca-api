@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a8ffd7b_6e635dde",
+        "filename": "devstack/post_test_hook.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2015-12-01T18:00:09Z",
+      "side": 1,
+      "message": "If you want to be able to use this directory as the normal user you don\u0027t want sudo here.  Just do the mkdir as the normal user.",
+      "revId": "357ffe4cbf8c67470a7f457fdf45e6d5aa9214ba",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
