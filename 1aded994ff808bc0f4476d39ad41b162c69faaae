@@ -16,6 +16,24 @@
       "revId": "1aded994ff808bc0f4476d39ad41b162c69faaae",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a8ffd7b_513f50d6",
+        "filename": "devstack/settings",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-12-01T00:56:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a8ffd7b_5e2f62f6",
+      "revId": "1aded994ff808bc0f4476d39ad41b162c69faaae",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
