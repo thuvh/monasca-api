@@ -438,12 +438,12 @@ function install_influxdb {
 
     sudo dpkg --skip-same-version -i /opt/monasca_download_dir/influxdb_${INFLUXDB_VERSION}_amd64.deb
 
-    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/influxdb/influxdb.conf /etc/opt/influxdb/influxdb.conf
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/influxdb/influxdb.conf /etc/influxdb/influxdb.conf
 
     if [[ ${SERVICE_HOST} ]]; then
 
         # set influxdb server listening ip address
-        sudo sed -i "s/hostname = \"127\.0\.0\.1\"/hostname = \"${SERVICE_HOST}\"/g" /etc/opt/influxdb/influxdb.conf
+        sudo sed -i "s/hostname = \"127\.0\.0\.1\"/hostname = \"${SERVICE_HOST}\"/g" /etc/influxdb/influxdb.conf
 
     fi
 
@@ -463,7 +463,7 @@ function clean_influxdb {
 
     sudo rm -f /etc/default/influxdb
 
-    sudo rm -f /etc/opt/influxdb/influxdb.conf
+    sudo rm -f /etc/influxdb/influxdb.conf
 
     sudo dpkg --purge influxdb
 
@@ -479,9 +479,7 @@ function clean_influxdb {
 
     sudo rm -rf /opt/staging/influxdb/influxdb-package
 
-    sudo rm -rf /etc/opt/influxdb/influxdb.conf
-
-    sudo rm -rf /etc/opt/influxdb
+    sudo rm -rf /etc/influxdb
 
     sudo rm -rf /tmp/bootstrap*
 
@@ -524,13 +522,13 @@ function install_schema {
 
     sudo chmod 0755 /opt/monasca/sqls
 
-    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/schema/influxdb_setup.py /opt/influxdb/influxdb_setup.py
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/schema/influxdb_setup.py /opt/monasca/influxdb_setup.py
 
-    sudo chmod 0750 /opt/influxdb/influxdb_setup.py
+    sudo chmod 0750 /opt/monasca/influxdb_setup.py
 
-    sudo chown root:root /opt/influxdb/influxdb_setup.py
+    sudo chown root:root /opt/monasca/influxdb_setup.py
 
-    sudo /opt/influxdb/influxdb_setup.py
+    sudo /opt/monasca/influxdb_setup.py
 
     sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/schema/mon_mysql.sql /opt/monasca/sqls/mon.sql
 
@@ -581,7 +579,7 @@ function clean_schema {
 
     sudo rm -f /opt/monasca/sqls/mon.sql
 
-    sudo rm -f /opt/influxdb/influxdb_setup.py
+    sudo rm -f /opt/monasca/influxdb_setup.py
 
     sudo rm -rf /opt/monasca/sqls
 
