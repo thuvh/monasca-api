@@ -12,8 +12,9 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-from oslo_log import log
 import sys
+
+from oslo_log import log
 from validate_email import validate_email
 import voluptuous
 
