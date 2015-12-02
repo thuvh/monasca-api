@@ -716,6 +716,7 @@ function install_monasca_api_python {
     (cd /opt/monasca-api; sudo virtualenv .)
 
     (cd /opt/monasca-api; sudo -H ./bin/pip install gunicorn)
+    (cd /opt/monasca-api; sudo -H ./bin/pip install MySQL-python)
 
     (cd "${MONASCA_BASE}"/monasca-api ; sudo python setup.py sdist)
 
