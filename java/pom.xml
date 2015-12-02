@@ -55,6 +55,11 @@
             <artifactId>monasca-common-influxdb</artifactId>
             <version>${mon.common.version}</version>
         </dependency>
+	<dependency>
+            <groupId>monasca-common</groupId>
+            <artifactId>monasca-common-jooq</artifactId>
+            <version>${mon.common.version}</version>
+        </dependency>
         <dependency>
             <groupId>monasca-common</groupId>
             <artifactId>monasca-common-model</artifactId>
@@ -68,11 +73,6 @@
         <dependency>
             <groupId>monasca-common</groupId>
             <artifactId>monasca-common-util</artifactId>
-            <version>${mon.common.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>monasca-common</groupId>
-            <artifactId>monasca-common-hibernate</artifactId>
             <version>${mon.common.version}</version>
         </dependency>
         <dependency>
@@ -230,6 +230,22 @@
             <artifactId>httpclient</artifactId>
             <version>4.4</version>
         </dependency>
+	<dependency>
+	  <groupId>org.jooq</groupId>
+	  <artifactId>jooq</artifactId>
+	  <version>3.6.2</version>
+	</dependency>
+	<dependency>
+	  <groupId>org.jooq</groupId>
+	  <artifactId>jooq-meta</artifactId>
+	  <version>3.6.2</version>
+	</dependency>
+	<dependency>
+	  <groupId>com.zaxxer</groupId>
+	  <artifactId>HikariCP</artifactId>
+	  <version>2.4.0</version>
+	  <scope>compile</scope>
+	</dependency>
     </dependencies>
 
     <build>
