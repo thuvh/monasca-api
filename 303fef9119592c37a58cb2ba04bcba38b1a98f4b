@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a8ffd7b_81b08a44",
+        "filename": "devstack/post_test_hook.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2015-12-02T19:51:47Z",
+      "side": 1,
+      "message": "Try \"sudo sh -c \u0027testr list-tests monasca_tempest_tests \u003e monasca_temptest_tests\u0027\"",
+      "revId": "303fef9119592c37a58cb2ba04bcba38b1a98f4b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
