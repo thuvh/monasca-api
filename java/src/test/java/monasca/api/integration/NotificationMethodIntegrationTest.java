@@ -20,7 +20,7 @@ import static org.testng.Assert.assertNull;
 import static org.testng.Assert.fail;
 
 import java.nio.charset.Charset;
-
+import javax.sql.DataSource;
 import javax.ws.rs.core.MediaType;
 
 import org.skife.jdbi.v2.DBI;
@@ -30,7 +30,9 @@ import org.testng.annotations.Test;
 
 import com.google.common.io.Resources;
 import com.google.inject.Guice;
+import com.google.inject.Key;
 import com.google.inject.Injector;
+import com.google.inject.name.Names;
 import monasca.api.ApiConfig;
 import monasca.api.MonApiModule;
 import monasca.api.app.command.CreateNotificationMethodCommand;
@@ -39,9 +41,11 @@ import monasca.api.domain.model.notificationmethod.NotificationMethod;
 import monasca.api.domain.model.notificationmethod.NotificationMethodRepo;
 import monasca.api.domain.model.notificationmethod.NotificationMethodType;
 import monasca.api.infrastructure.persistence.PersistUtils;
-import monasca.api.infrastructure.persistence.mysql.NotificationMethodMySqlRepoImpl;
+import monasca.api.infrastructure.persistence.jooq.NotificationMethodJooqRepoImpl;
 import monasca.api.resource.AbstractMonApiResourceTest;
 import monasca.api.resource.NotificationMethodResource;
+import org.jooq.SQLDialect;
+import org.jooq.conf.Settings;
 import com.sun.jersey.api.client.ClientResponse;
 
 @Test(groups = "integration")
@@ -50,17 +54,21 @@ public class NotificationMethodIntegrationTest extends AbstractMonApiResourceTes
   private DBI db;
   private NotificationMethod notificationMethod;
   private NotificationMethodRepo repo;
+  private SQLDialect dialect;
+  private Settings settings;
+  private DataSource ds;
 
   @Override
   protected void setupResources() throws Exception {
     super.setupResources();
+
     Handle handle = db.open();
     handle.execute("truncate table notification_method");
     handle
         .execute("insert into notification_method (id, tenant_id, name, type, address, created_at, updated_at) values ('29387234', 'notification-method-test', 'MyEmaila', 'EMAIL', 'a@b', NOW(), NOW())");
     db.close(handle);
 
-    repo = new NotificationMethodMySqlRepoImpl(db, new PersistUtils());
+    repo = new NotificationMethodJooqRepoImpl(ds, dialect, new PersistUtils());
     addResources(new NotificationMethodResource(repo, new PersistUtils()));
   }
 
@@ -68,10 +76,12 @@ public class NotificationMethodIntegrationTest extends AbstractMonApiResourceTes
   protected void beforeTest() throws Exception {
     ApiConfig config = getConfiguration("config-test.yml", ApiConfig.class);
     Injector injector = Guice.createInjector(new MonApiModule(environment, config));
-    db = injector.getInstance(DBI.class);
+    ds = injector.getInstance(Key.get(DataSource.class, Names.named("datasource")));
+    dialect = injector.getInstance(Key.get(SQLDialect.class, Names.named("dialect")));
+    db = new DBI(ds);
     Handle handle = db.open();
     handle.execute(Resources.toString(
-        NotificationMethodMySqlRepoImpl.class.getResource("notification_method.sql"),
+        NotificationMethodJooqRepoImpl.class.getResource("alarm.sql"),
         Charset.defaultCharset()));
     handle.close();
 
