@@ -91,7 +91,7 @@ class MonascaApiConfigFixture(oslo_config.fixture.Config):
         # [repositories]
         self.conf.set_override(
             'alarms_driver',
-            'monasca_api.common.repositories.mysql.alarms_repository:AlarmsRepository',
+            'monasca_api.common.repositories.sql.alarms_repository:AlarmsRepository',
             group='repositories', enforce_type=True)
         self.conf.set_override(
             'alarm_definitions_driver',
@@ -175,7 +175,7 @@ class TestAlarmsStateHistory(AlarmTestBase):
         self.useFixture(InfluxClientAlarmHistoryResponseFixture(
             'monasca_api.common.repositories.influxdb.metrics_repository.client.InfluxDBClient'))
         self.useFixture(fixtures.MockPatch(
-            'monasca_api.common.repositories.mysql.alarms_repository.AlarmsRepository'))
+            'monasca_api.common.repositories.sql.alarms_repository.AlarmsRepository'))
 
         self.alarms_resource = alarms.AlarmsStateHistory()
         self.api.add_route(
@@ -214,9 +214,9 @@ class TestAlarmDefinition(AlarmTestBase):
                            self.alarm_definition_resource)
 
     def test_alarm_definition_create(self):
-        self.alarm_def_repo_mock.return_value.get_alarm_definitions.return_value = []
-        self.alarm_def_repo_mock.return_value.create_alarm_definition.return_value = \
-            u"00000001-0001-0001-0001-000000000001"
+        return_value = self.alarm_def_repo_mock.return_value
+        return_value.get_alarm_definitions.return_value = []
+        return_value.create_alarm_definition.return_value = u"00000001-0001-0001-0001-000000000001"
 
         alarm_def = {
             "name": "Test Definition",
@@ -245,9 +245,9 @@ class TestAlarmDefinition(AlarmTestBase):
         self.assertThat(response, RESTResponseEquals(expected_data))
 
     def test_alarm_definition_create_with_valid_expressions(self):
-        self.alarm_def_repo_mock.return_value.get_alarm_definitions.return_value = []
-        self.alarm_def_repo_mock.return_value.create_alarm_definition.return_value = \
-            u"00000001-0001-0001-0001-000000000001"
+        return_value = self.alarm_def_repo_mock.return_value
+        return_value.get_alarm_definitions.return_value = []
+        return_value.create_alarm_definition.return_value = u"00000001-0001-0001-0001-000000000001"
 
         valid_expressions = [
             "max(-_.千幸福的笑脸{घोड़ा=馬,  "
