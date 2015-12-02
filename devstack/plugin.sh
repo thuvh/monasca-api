@@ -726,6 +726,7 @@ function install_monasca_api_python {
     PIP_VIRTUAL_ENV=/opt/monasca-api
 
     pip_install gunicorn
+    pip_install MySQL-python
 
     (cd "${MONASCA_BASE}"/monasca-api ; sudo python setup.py sdist)
 

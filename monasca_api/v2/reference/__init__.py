@@ -131,5 +131,12 @@ mysql_opts = [cfg.StrOpt('database_name'), cfg.StrOpt('hostname'),
               cfg.StrOpt('username'), cfg.StrOpt('password')]
 
 mysql_group = cfg.OptGroup(name='mysql', title='mysql')
+
 cfg.CONF.register_group(mysql_group)
 cfg.CONF.register_opts(mysql_opts, mysql_group)
+
+sql_opts = [cfg.StrOpt('url')]
+sql_group = cfg.OptGroup(name='database', title='sql')
+
+cfg.CONF.register_group(sql_group)
+cfg.CONF.register_opts(sql_opts, sql_group)
