@@ -1,22 +1,21 @@
 /*
  * Copyright (c) 2014 Hewlett-Packard Development Company, L.P.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software distributed under the License
  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
+
 package monasca.api.infrastructure;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.ProvisionException;
-
-import javax.inject.Singleton;
 
 import monasca.api.ApiConfig;
 import monasca.api.domain.model.alarm.AlarmRepo;
@@ -34,18 +33,16 @@ import monasca.api.infrastructure.persistence.influxdb.InfluxV9MetricDefinitionR
 import monasca.api.infrastructure.persistence.influxdb.InfluxV9RepoReader;
 import monasca.api.infrastructure.persistence.influxdb.InfluxV9StatisticRepo;
 import monasca.api.infrastructure.persistence.influxdb.InfluxV9Utils;
-import monasca.api.infrastructure.persistence.mysql.AlarmDefinitionMySqlRepoImpl;
-import monasca.api.infrastructure.persistence.mysql.AlarmMySqlRepoImpl;
-import monasca.api.infrastructure.persistence.mysql.MySQLUtils;
-import monasca.api.infrastructure.persistence.mysql.NotificationMethodMySqlRepoImpl;
-import monasca.api.infrastructure.persistence.hibernate.AlarmDefinitionSqlRepoImpl;
-import monasca.api.infrastructure.persistence.hibernate.AlarmSqlRepoImpl;
-import monasca.api.infrastructure.persistence.hibernate.NotificationMethodSqlRepoImpl;
-import monasca.api.infrastructure.persistence.hibernate.AlarmHibernateUtils;
+import monasca.api.infrastructure.persistence.jooq.AlarmDefinitionJooqRepoImpl;
+import monasca.api.infrastructure.persistence.jooq.AlarmJooqRepoImpl;
+import monasca.api.infrastructure.persistence.jooq.JooqUtils;
+import monasca.api.infrastructure.persistence.jooq.NotificationMethodJooqRepoImpl;
 import monasca.api.infrastructure.persistence.vertica.AlarmStateHistoryVerticaRepoImpl;
 import monasca.api.infrastructure.persistence.vertica.MeasurementVerticaRepoImpl;
 import monasca.api.infrastructure.persistence.vertica.MetricDefinitionVerticaRepoImpl;
 import monasca.api.infrastructure.persistence.vertica.StatisticVerticaRepoImpl;
+
+import javax.inject.Singleton;
 
 /**
  * Infrastructure layer bindings.
@@ -64,29 +61,23 @@ public class InfrastructureModule extends AbstractModule {
 
   @Override
   protected void configure() {
-    final boolean hibernateEnabled = this.isHibernateEnabled();
-
-    this.bindUtils(hibernateEnabled);
-
     // Bind repositories
-
-    if (hibernateEnabled) {
-      this.bind(AlarmRepo.class).to(AlarmSqlRepoImpl.class).in(Singleton.class);
-      this.bind(AlarmDefinitionRepo.class).to(AlarmDefinitionSqlRepoImpl.class).in(Singleton.class);
-      this.bind(NotificationMethodRepo.class).to(NotificationMethodSqlRepoImpl.class).in(Singleton.class);
-    } else {
-      bind(AlarmRepo.class).to(AlarmMySqlRepoImpl.class).in(Singleton.class);
-      bind(AlarmDefinitionRepo.class).to(AlarmDefinitionMySqlRepoImpl.class).in(Singleton.class);
-      bind(NotificationMethodRepo.class).to(NotificationMethodMySqlRepoImpl.class).in(Singleton.class);
-      bind(PersistUtils.class).in(Singleton.class);
-    }
+    bind(AlarmRepo.class).to(AlarmJooqRepoImpl.class).in(Singleton.class);
+    bind(AlarmDefinitionRepo.class).to(AlarmDefinitionJooqRepoImpl.class).in(Singleton.class);
+    bind(NotificationMethodRepo.class).to(NotificationMethodJooqRepoImpl.class).in(Singleton.class);
+    bind(PersistUtils.class).in(Singleton.class);
+    bind(Utils.class).to(JooqUtils.class).in(Singleton.class);
 
     if (config.databaseConfiguration.getDatabaseType().trim().equalsIgnoreCase(VERTICA)) {
 
-      bind(AlarmStateHistoryRepo.class).to(AlarmStateHistoryVerticaRepoImpl.class).in(Singleton.class);
-      bind(MetricDefinitionRepo.class).to(MetricDefinitionVerticaRepoImpl.class).in(Singleton.class);
-      bind(MeasurementRepo.class).to(MeasurementVerticaRepoImpl.class).in(Singleton.class);
-      bind(StatisticRepo.class).to(StatisticVerticaRepoImpl.class).in(Singleton.class);
+      bind(AlarmStateHistoryRepo.class)
+          .to(AlarmStateHistoryVerticaRepoImpl.class).in(Singleton.class);
+      bind(MetricDefinitionRepo.class)
+          .to(MetricDefinitionVerticaRepoImpl.class).in(Singleton.class);
+      bind(MeasurementRepo.class)
+          .to(MeasurementVerticaRepoImpl.class).in(Singleton.class);
+      bind(StatisticRepo.class)
+          .to(StatisticVerticaRepoImpl.class).in(Singleton.class);
 
     } else if (config.databaseConfiguration.getDatabaseType().trim().equalsIgnoreCase(INFLUXDB)) {
 
@@ -97,7 +88,6 @@ public class InfrastructureModule extends AbstractModule {
         System.err.println("Supported Influxdb versions are 'v9'");
         System.err.println("Check your config file");
         System.exit(1);
-
       }
 
       bind(InfluxV9Utils.class).in(Singleton.class);
@@ -113,14 +103,4 @@ public class InfrastructureModule extends AbstractModule {
           + "'vertica' and 'influxdb'. Check your config file.");
     }
   }
-
-  private boolean isHibernateEnabled() {
-    return this.config.hibernate != null && this.config.hibernate.getSupportEnabled();
-  }
-
-  private void bindUtils(final boolean hibernateEnabled) {
-    final Class<? extends Utils> implementation = hibernateEnabled ? AlarmHibernateUtils.class : MySQLUtils.class;
-    this.bind(Utils.class).to(implementation).in(Singleton.class);
-  }
-
 }

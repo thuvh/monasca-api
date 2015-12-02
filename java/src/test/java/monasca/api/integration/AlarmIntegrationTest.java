@@ -1,11 +1,11 @@
 /*
  * Copyright (c) 2014 Hewlett-Packard Development Company, L.P.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software distributed under the License
  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
  * or implied. See the License for the specific language governing permissions and limitations under
@@ -25,7 +25,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import javax.sql.DataSource;
 import javax.ws.rs.core.MediaType;
 
 import kafka.javaapi.producer.Producer;
@@ -51,11 +51,13 @@ import monasca.api.domain.model.alarmdefinition.AlarmDefinition;
 import monasca.api.domain.model.alarmdefinition.AlarmDefinitionRepo;
 import monasca.api.domain.model.alarmstatehistory.AlarmStateHistoryRepo;
 import monasca.api.infrastructure.persistence.PersistUtils;
-import monasca.api.infrastructure.persistence.mysql.AlarmDefinitionMySqlRepoImpl;
-import monasca.api.infrastructure.persistence.mysql.AlarmMySqlRepoImpl;
-import monasca.api.infrastructure.persistence.mysql.NotificationMethodMySqlRepoImpl;
+import monasca.api.infrastructure.persistence.jooq.AlarmDefinitionJooqRepoImpl;
+import monasca.api.infrastructure.persistence.jooq.AlarmJooqRepoImpl;
+import monasca.api.infrastructure.persistence.jooq.NotificationMethodJooqRepoImpl;
 import monasca.api.resource.AbstractMonApiResourceTest;
 import monasca.api.resource.AlarmDefinitionResource;
+import org.jooq.SQLDialect;
+import org.jooq.conf.Settings;
 import com.sun.jersey.api.client.ClientResponse;
 
 @Test(groups = "integration", enabled = false)
@@ -70,6 +72,10 @@ public class AlarmIntegrationTest extends AbstractMonApiResourceTest {
   AlarmStateHistoryRepo stateHistoryRepo;
   private Map<String, String> dimensions;
   private List<String> alarmActions;
+  private SQLDialect dialect;
+  private Settings settings;
+  private DataSource ds;
+
 
   @Override
   protected void setupResources() throws Exception {
@@ -84,10 +90,10 @@ public class AlarmIntegrationTest extends AbstractMonApiResourceTest {
         .execute("insert into notification_method (id, tenant_id, name, type, address, created_at, updated_at) values ('77778687', 'alarm-test', 'MyEmail', 'EMAIL', 'a@b', NOW(), NOW())");
     mysqlDb.close(handle);
 
-    repo = new AlarmDefinitionMySqlRepoImpl(mysqlDb, new PersistUtils());
+    repo = new AlarmDefinitionJooqRepoImpl(ds, dialect, new PersistUtils());
     service =
-        new AlarmDefinitionService(config, producer, repo, new AlarmMySqlRepoImpl(mysqlDb, new PersistUtils()),
-            new NotificationMethodMySqlRepoImpl(mysqlDb, new PersistUtils()));
+      new AlarmDefinitionService(config, producer, repo, new AlarmJooqRepoImpl(ds, dialect, new PersistUtils()),
+                                 new NotificationMethodJooqRepoImpl(ds, dialect, new PersistUtils()));
     addResources(new AlarmDefinitionResource(service, repo, new PersistUtils()));
   }
 
@@ -96,13 +102,13 @@ public class AlarmIntegrationTest extends AbstractMonApiResourceTest {
     config = getConfiguration("config-test.yml", ApiConfig.class);
     Injector injector = Guice.createInjector(new MonApiModule(environment, config));
     producer = injector.getInstance(Key.get(new TypeLiteral<Producer<String, String>>() {}));
-    mysqlDb = injector.getInstance(Key.get(DBI.class, Names.named("mysql")));
+    ds = injector.getInstance(Key.get(DataSource.class, Names.named("datasource")));
+    dialect = injector.getInstance(Key.get(SQLDialect.class, Names.named("dialect")));
+    mysqlDb = new DBI(ds);
+
     Handle handle = mysqlDb.open();
     handle.execute(Resources.toString(
-        NotificationMethodMySqlRepoImpl.class.getResource("alarm.sql"),
-        Charset.defaultCharset()));
-    handle.execute(Resources.toString(
-        NotificationMethodMySqlRepoImpl.class.getResource("notification_method.sql"),
+        NotificationMethodJooqRepoImpl.class.getResource("alarm.sql"),
         Charset.defaultCharset()));
     handle.close();
 
