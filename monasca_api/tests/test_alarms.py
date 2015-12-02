@@ -88,7 +88,7 @@ class MonascaApiConfigFixture(oslo_config.fixture.Config):
         # [repositories]
         self.conf.set_override(
             'alarms_driver',
-            'monasca_api.common.repositories.mysql.alarms_repository:AlarmsRepository',
+            'monasca_api.common.repositories.sql.alarms_repository:AlarmsRepository',
             group='repositories', enforce_type=True)
         self.conf.set_override(
             'alarm_definitions_driver',
@@ -172,7 +172,7 @@ class TestAlarmsStateHistory(AlarmTestBase):
         self.useFixture(InfluxClientAlarmHistoryResponseFixture(
             'monasca_api.common.repositories.influxdb.metrics_repository.client.InfluxDBClient'))
         self.useFixture(fixtures.MockPatch(
-            'monasca_api.common.repositories.mysql.alarms_repository.AlarmsRepository'))
+            'monasca_api.common.repositories.sql.alarms_repository.AlarmsRepository'))
 
         self.alarms_resource = alarms.AlarmsStateHistory()
         self.api.add_route(
