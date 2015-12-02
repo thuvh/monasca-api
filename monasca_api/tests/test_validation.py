@@ -15,6 +15,7 @@
 # under the License.
 
 import falcon
+
 import monasca_api.v2.common.schemas.exceptions as schemas_exceptions
 import monasca_api.v2.common.schemas.notifications_request_body_schema as schemas_notifications
 import monasca_api.v2.common.validation as validation
