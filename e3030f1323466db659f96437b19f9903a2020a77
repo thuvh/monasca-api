@@ -16,6 +16,24 @@
       "revId": "e3030f1323466db659f96437b19f9903a2020a77",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a740942_ae10b7a9",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 2530,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2015-12-03T15:04:48Z",
+      "side": 1,
+      "message": "Yes good point! So can I say \"alarm_definition(JSON object) - Summary of alarm definition\"",
+      "parentUuid": "9a8ffd7b_fc780780",
+      "revId": "e3030f1323466db659f96437b19f9903a2020a77",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
