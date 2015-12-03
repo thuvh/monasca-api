@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a8ffd7b_fc780780",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 2530,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-12-03T04:03:26Z",
+      "side": 1,
+      "message": "It is not a complete alarm definition, just a summary. Compare the fields in the get of an alarm definition and the fields that are returned below",
+      "revId": "e3030f1323466db659f96437b19f9903a2020a77",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
