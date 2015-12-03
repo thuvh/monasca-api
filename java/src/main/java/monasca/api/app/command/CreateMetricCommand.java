@@ -39,6 +39,7 @@ public class CreateMetricCommand {
   @Size(min = 1, max = MAX_NAME_LENGTH)
   public String name;
   public Map<String, String> dimensions;
+  @NotNull
   public long timestamp;
   @NotNull
   public Double value;
@@ -47,10 +48,10 @@ public class CreateMetricCommand {
   public CreateMetricCommand() {}
 
   public CreateMetricCommand(String name, @Nullable Map<String, String> dimensions,
-      @Nullable Long timestamp, double value, @Nullable Map<String, String> valueMeta) {
+      Long timestamp, double value, @Nullable Map<String, String> valueMeta) {
     setName(name);
     setDimensions(dimensions);
-    setTimestamp(timestamp);
+    this.timestamp = timestamp;
     setValueMeta(valueMeta);
     this.value = value;
   }
@@ -115,13 +116,6 @@ public class CreateMetricCommand {
   @JsonProperty
   public void setName(String name) {
     this.name = MetricNameValidation.normalize(name);
-  }
-
-  @JsonProperty
-  public void setTimestamp(Long timestamp) {
-    this.timestamp =
-        timestamp == null || timestamp.longValue() == 0L ? System.currentTimeMillis()
-            : timestamp.longValue();
   }
 
   public Metric toMetric() {

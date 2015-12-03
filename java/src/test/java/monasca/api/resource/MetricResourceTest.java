@@ -83,8 +83,7 @@ public class MetricResourceTest extends AbstractMonApiResourceTest {
     CreateMetricCommand[] metrics = fromJson(json, CreateMetricCommand[].class);
     ClientResponse response = createResponseFor(metrics);
 
-    assertEquals(response.getStatus(), 204);
-    verify(service).create(any(List.class), eq("abc"), anyString());
+    assertEquals(response.getStatus(), 422);
   }
 
   @SuppressWarnings("unchecked")
@@ -106,8 +105,7 @@ public class MetricResourceTest extends AbstractMonApiResourceTest {
     CreateMetricCommand metric = fromJson(json, CreateMetricCommand.class);
     ClientResponse response = createResponseFor(metric);
 
-    assertEquals(response.getStatus(), 204);
-    verify(service).create(any(List.class), eq("abc"), anyString());
+    assertEquals(response.getStatus(), 422);
   }
 
   @SuppressWarnings("unchecked")
@@ -146,8 +144,7 @@ public class MetricResourceTest extends AbstractMonApiResourceTest {
         createResponseFor(new CreateMetricCommand("test_metrictype", dimensions, 0L, 0.0,
             valueMeta));
 
-    assertEquals(response.getStatus(), 204);
-    verify(service).create(any(List.class), eq("abc"), anyString());
+    assertEquals(response.getStatus(), 422);
   }
 
   public void shouldErrorOnPostWithCrossTenant() {
