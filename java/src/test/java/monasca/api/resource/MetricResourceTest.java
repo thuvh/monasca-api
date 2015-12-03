@@ -19,9 +19,7 @@ import static monasca.common.dropwizard.JsonHelpers.jsonFixture;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 import static org.testng.Assert.assertEquals;
 
 import java.util.HashMap;
@@ -81,6 +79,8 @@ public class MetricResourceTest extends AbstractMonApiResourceTest {
   public void shouldCreateSet() throws Exception {
     String json = jsonFixture("fixtures/metricSet.json");
     CreateMetricCommand[] metrics = fromJson(json, CreateMetricCommand[].class);
+    metrics[0].timestamp = timestamp;
+    metrics[1].timestamp = timestamp;
     ClientResponse response = createResponseFor(metrics);
 
     assertEquals(response.getStatus(), 204);
@@ -101,13 +101,13 @@ public class MetricResourceTest extends AbstractMonApiResourceTest {
   }
 
   @SuppressWarnings("unchecked")
-  public void shouldCreateWithoutTimestamp() throws Exception {
+  public void shouldErrorOnCreateWithoutTimestamp() throws Exception {
     String json = jsonFixture("fixtures/metricWithoutTimestamp.json");
     CreateMetricCommand metric = fromJson(json, CreateMetricCommand.class);
     ClientResponse response = createResponseFor(metric);
 
-    assertEquals(response.getStatus(), 204);
-    verify(service).create(any(List.class), eq("abc"), anyString());
+    ErrorMessages.assertThat(response.getEntity(String.class)).matches("unprocessable_entity", 422,
+            String.format("Timestamp %s is out of legal range", metric.timestamp));
   }
 
   @SuppressWarnings("unchecked")
@@ -141,13 +141,13 @@ public class MetricResourceTest extends AbstractMonApiResourceTest {
   }
 
   @SuppressWarnings("unchecked")
-  public void shouldCreateWithZeroTimestamp() {
+  public void shouldErrorOnCreateWithZeroTimestamp() {
     ClientResponse response =
         createResponseFor(new CreateMetricCommand("test_metrictype", dimensions, 0L, 0.0,
             valueMeta));
 
-    assertEquals(response.getStatus(), 204);
-    verify(service).create(any(List.class), eq("abc"), anyString());
+    ErrorMessages.assertThat(response.getEntity(String.class)).matches("unprocessable_entity", 422,
+            String.format("Timestamp %s is out of legal range", 0L));
   }
 
   public void shouldErrorOnPostWithCrossTenant() {
