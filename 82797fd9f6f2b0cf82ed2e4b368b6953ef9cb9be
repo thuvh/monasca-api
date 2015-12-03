@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a8ffd7b_e9185086",
+        "filename": "monasca_api/tests/test_alarms.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2015-12-03T01:24:20Z",
+      "side": 1,
+      "message": "One thousand happy faces.",
+      "revId": "82797fd9f6f2b0cf82ed2e4b368b6953ef9cb9be",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
