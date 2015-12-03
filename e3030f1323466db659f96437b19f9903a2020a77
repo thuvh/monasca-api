@@ -34,6 +34,24 @@
       "revId": "e3030f1323466db659f96437b19f9903a2020a77",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a740942_55c19b2d",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 2530,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-12-03T16:40:35Z",
+      "side": 1,
+      "message": "Sounds good to me",
+      "parentUuid": "7a740942_ae10b7a9",
+      "revId": "e3030f1323466db659f96437b19f9903a2020a77",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
