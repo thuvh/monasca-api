@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a8ffd7b_852e3b8a",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2015-12-03T08:09:01Z",
+      "side": 1,
+      "message": "It is some kind of magic. Looks nice. I can only give +1, I don\u0027t have a setup with python monasca-api.",
+      "revId": "5c7b4abe1bf40fe4162477b5eaf8acb237c0d0d6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
