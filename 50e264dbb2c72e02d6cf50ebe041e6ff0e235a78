@@ -70,6 +70,24 @@
       "revId": "50e264dbb2c72e02d6cf50ebe041e6ff0e235a78",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a740942_fae079fc",
+        "filename": "monasca_tempest_tests/tests/api/test_measurements.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-12-04T16:12:56Z",
+      "side": 1,
+      "message": "\"self.start_timestamp1\" also doesn\u0027t exist, it should be \"self.start_timestamp\"",
+      "parentUuid": "7a740942_da7c9d74",
+      "revId": "50e264dbb2c72e02d6cf50ebe041e6ff0e235a78",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
