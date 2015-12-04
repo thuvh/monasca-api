@@ -34,6 +34,24 @@
       "revId": "50e264dbb2c72e02d6cf50ebe041e6ff0e235a78",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a740942_7a5ec913",
+        "filename": "monasca_tempest_tests/tests/api/test_measurements.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2015-12-04T16:10:29Z",
+      "side": 1,
+      "message": "Sorry, I should have investigated a bit further. It was used, but it has been removed in favor of a method in the helpers file. If you rebase onto the latest from master, it should disappear from this file",
+      "parentUuid": "7a740942_8f27b511",
+      "revId": "50e264dbb2c72e02d6cf50ebe041e6ff0e235a78",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
