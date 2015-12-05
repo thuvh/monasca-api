@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7a740942_aed4e1bc",
+        "filename": "java/src/test/java/monasca/api/resource/MetricResourceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2015-12-05T01:26:19Z",
+      "side": 1,
+      "message": "Thanks Craig! I didn\u0027t actually check the error message because it doesn\u0027t have one in the CreateMetricCommand. I will add the error message as well as the check here in next patch. \nAlso I\u0027m having issue checking if timestamp is null. Timestamp seems always filled in as zero when it suppose to be null if I define timestamp to be a long kind. If I change it to be Long instead of long, it returns server_error instead of unprocurable_entity. Do you have any good way to solve that? Sorry I\u0027m not very familiar with Java... I want to make \"Timestamp may not be empty\" and \"Timestamp is out of legal range\" to be two different error messages.",
+      "parentUuid": "7a740942_d4c78610",
+      "revId": "169bcaf560a890cfb428033d17de5dc45a9a77a8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a740942_b4d43abd",
         "filename": "java/src/test/java/monasca/api/resource/MetricResourceTest.java",
         "patchSetId": 2
