@@ -36,6 +36,8 @@ dispatcher_opts = [cfg.StrOpt('versions', default=None,
                               help='Alarm definitions'),
                    cfg.StrOpt('alarms', default=None,
                               help='Alarms'),
+                   cfg.StrOpt('alarms_count', default=None,
+                              help='Alarms Count'),
                    cfg.StrOpt('alarms_state_history', default=None,
                               help='Alarms state history'),
                    cfg.StrOpt('notification_methods', default=None,
@@ -83,6 +85,9 @@ def launch(conf, config_file="/etc/monasca/api-config.conf"):
     alarms = simport.load(cfg.CONF.dispatcher.alarms)()
     app.add_route("/v2.0/alarms", alarms)
     app.add_route("/v2.0/alarms/{alarm_id}", alarms)
+
+    alarm_count = simport.load(cfg.CONF.dispatcher.alarms_count)()
+    app.add_route("/v2.0/alarms/count/", alarm_count)
 
     alarms_state_history = simport.load(
         cfg.CONF.dispatcher.alarms_state_history)()
