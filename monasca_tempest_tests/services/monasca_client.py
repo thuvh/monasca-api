@@ -260,6 +260,13 @@ class MonascaClient(rest_client.RestClient):
         resp, response_body = self.patch(uri, json.dumps(request_body))
         return resp, json.loads(response_body)
 
+    def count_alarms(self, query_params=None):
+        uri = 'alarms/count'
+        if query_params is not None:
+            uri += query_params
+        resp, response_body = self.get(uri)
+        return resp, json.loads(response_body)
+
     def list_alarms_state_history(self, query_params=None):
         uri = 'alarms/state-history'
         if query_params is not None:

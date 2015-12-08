@@ -2328,6 +2328,78 @@ Returns a JSON object with a 'links' array of links and an 'elements' array of a
 ```
 ___
 
+##Get Alarm Counts
+Get the number of alarms that match the criteria.
+
+###GET /v2.0/alarms/count
+
+####Headers
+* X-Auth-Token (string, required) - Keystone auth token
+* Content-Type (string, required) - application/json
+* Accept (string) - application/json
+
+####Path Parameters
+None
+
+####Query Parameters
+* alarm_definition_id (string, optional) - Alarm definition ID to filter by.
+* metric_name (string(255), optional) - Name of metric to filter by.
+* metric_dimensions ({string(255): string(255)}, optional) - Dimensions of metrics to filter by specified as a comma separated array of (key, value) pairs as key1:value1,key1:value1, ...
+* state (string, optional) - State of alarm to filter by, either OK, ALARM or UNDETERMINED.
+* lifecycle_state (string(50), optional) - Lifecycle state to filter by.
+* link (string(512), optional) - Link to filter by.
+* state_updated_start_time (string, optional) - The start time in ISO 8601 combined date and time format in UTC.
+* offset (integer, optional)
+* limit (integer, optional)
+* group_by (string, optional) – a list of fields to group the results by as ```field1,field2,…```
+The group_by field is limited to 'alarm_definition_id', 'name', 'state', 'severity', 'link', 'lifecycle_state', 'metric_name', 'dimension_name', 'dimension_value'.
+If of the fields metric_name, dimension_name, or dimension_value are specified, the sum of the resulting counts is not guaranteed to equal the total number of alarms in the system. Alarms with multiple metrics may be included in multiple counts when grouped by any of these three fields.
+
+####Request Body
+None
+
+####Request Examples
+```
+GET /v2.0/alarms/count?metric_name=cpu.system_perc&metric_dimensions=hostname:devstack&group_by=state,lifecycle_state
+HTTP/1.1 Host: 192.168.10.4:8080
+Content-Type: application/json
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Cache-Control: no-cache
+```
+
+###Response
+####Status Code
+* 200 OK
+
+####Response Body
+Returns a JSON object containing the following fields:
+* links ([link]) - Links to alarms count resource
+* columns ([string]) - List of the column names, in the order they were returned
+* counts ([array[]]) - A two dimensional array of the counts returned
+
+####Response Example
+```
+{
+       "links": [
+           {
+               "rel": "self",
+               "href": "http://192.168.10.4:8080/v2.0/alarms?name=cpu.system_perc&dimensions=hostname%3Adevstack&group_by=state,lifecycle_state"
+           }
+       ],
+       "columns": ["count", "state", "lifecycle_state"],
+       "counts": [
+           [124, "ALARM", "ACKNOWLEDGED"],
+           [12, "ALARM", "RESOLVED"],
+           [235, "OK", "OPEN"],
+           [61, "OK", "RESOLVED"],
+           [13, "UNDETERMINED", "ACKNOWLEDGED"],
+           [1, "UNDETERMINED", "OPEN"],
+           [2, "UNDETERMINED", "RESOLVED"],
+       ]
+   }
+```
+___
+
 ## List Alarms State History
 List alarm state history for alarms.
 
