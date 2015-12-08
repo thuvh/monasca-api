@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a740942_29e5fa36",
+        "filename": "java/src/main/java/monasca/api/app/validation/Validation.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-12-08T01:27:51Z",
+      "side": 1,
+      "message": "The definition of isBefore correctly handles endTime \u003d\u003d null, see the javadoc below. What problem are you seeing?\n\nboolean org.joda.time.base.AbstractInstant.isBefore(ReadableInstant instant)\n\nIs this instant before the instant passed in comparing solely by millisecond.\n\nSpecified by: isBefore(...) in ReadableInstant\nParameters:\ninstant an instant to check against, null means now\nReturns:\ntrue if the instant is before the instant passed in",
+      "revId": "716dbfcae354ebfa371cef0f202fd9d078783774",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
