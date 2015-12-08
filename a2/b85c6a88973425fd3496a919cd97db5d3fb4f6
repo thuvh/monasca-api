@@ -1,0 +1,9 @@
+Verified+2: Jenkins
+Code-Review+2: Fabio Giannetti <fgiannet@cisco.com>
+Workflow+1: Fabio Giannetti <fgiannet@cisco.com>
+Code-Review+1: Zi Lian Ji <jizilian@cn.ibm.com>
+Submitted-by: Jenkins
+Submitted-at: Tue, 08 Dec 2015 05:47:29 +0000
+Reviewed-on: https://review.openstack.org/254374
+Project: openstack/monasca-api
+Branch: refs/heads/master
