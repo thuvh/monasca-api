@@ -16,6 +16,24 @@
       "revId": "716dbfcae354ebfa371cef0f202fd9d078783774",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a740942_ace498df",
+        "filename": "java/src/main/java/monasca/api/app/validation/Validation.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2015-12-08T02:16:57Z",
+      "side": 1,
+      "message": "Hi Craig. Some tempest tests(written in launchpad) have failed my develop environment.\n\nI think my api server\u0027s system time was a little earlier than my tempest test machine\u0027s. It was in one minute perhaps.\nWhen endTime is null, it means now. So startTime is compared to system time. If api server\u0027s system time is earlier than monasca-client it has potential to raise exception.",
+      "parentUuid": "7a740942_29e5fa36",
+      "revId": "716dbfcae354ebfa371cef0f202fd9d078783774",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
