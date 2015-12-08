@@ -70,6 +70,24 @@
       "revId": "716dbfcae354ebfa371cef0f202fd9d078783774",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a740942_18ce462e",
+        "filename": "java/src/main/java/monasca/api/app/validation/Validation.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-12-08T04:23:17Z",
+      "side": 1,
+      "message": "Hi Shinya, actually after your explanation and thinking about it some more, I like your change. I just wanted a comment explaining why this is a good change",
+      "parentUuid": "7a740942_a257bf58",
+      "revId": "716dbfcae354ebfa371cef0f202fd9d078783774",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
