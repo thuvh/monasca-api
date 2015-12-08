@@ -106,6 +106,24 @@
       "revId": "716dbfcae354ebfa371cef0f202fd9d078783774",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a740942_b3e5d3a4",
+        "filename": "java/src/main/java/monasca/api/app/validation/Validation.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-12-08T05:06:20Z",
+      "side": 1,
+      "message": "Hi Shinya, I\u0027m not sure I agree. The previous check was:\n1. If endTime is given, then startTime must be \u003c endTime\n2. If endTime is not given, then startTime must be \u003c current system time\n\nYour change removed #2 but left #1. Removing #1 avoids errors in the case where the user doesn\u0027t specify an endTime but their clock is skewed enough that startTime is later than the current system time. I\u0027m not sure that the error is really helpful in that case, but maybe it is.\n\nLet\u0027s see what other people think",
+      "parentUuid": "7a740942_73e9abe5",
+      "revId": "716dbfcae354ebfa371cef0f202fd9d078783774",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
