@@ -35,6 +35,14 @@ class AlarmsV2API(object):
         res.status = '501 Not Implemented'
 
 
+class AlarmsCountV2API(object):
+    def __init__(self):
+        super(AlarmsCountV2API, self).__init__()
+
+    def on_get(self, req, res):
+        res.status = "501 Not Implemented"
+
+
 class AlarmsStateHistoryV2API(object):
     def __init__(self):
         super(AlarmsStateHistoryV2API, self).__init__()
