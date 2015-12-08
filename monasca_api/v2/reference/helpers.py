@@ -466,6 +466,21 @@ def paginate_statistics(statistic, uri, limit):
     return resource
 
 
+def create_alarms_count_next_link(uri, offset, limit):
+    if offset is None:
+            offset = 0
+    parsed_url = urlparse.urlparse(uri)
+    base_url = build_base_uri(parsed_url)
+    new_query_params = [u'offset=' + urllib.quote(str(offset + limit))]
+    _get_old_query_params_except_offset(new_query_params, parsed_url)
+
+    next_link = base_url
+    if new_query_params:
+        next_link += '?' + '&'.join(new_query_params)
+
+    return next_link
+
+
 def build_base_uri(parsed_uri):
     return parsed_uri.scheme + '://' + parsed_uri.netloc + parsed_uri.path
 

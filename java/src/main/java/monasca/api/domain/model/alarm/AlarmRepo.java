@@ -55,4 +55,13 @@ public interface AlarmRepo {
    * Alarm Definition Id
    */
   Map<String, Map<String, AlarmSubExpression>> findAlarmSubExpressionsForAlarmDefinition(String alarmDefinitionId);
+
+  /**
+   * Gets the count(s) of the alarms matching the parameters
+   * @return 2 dimensional list of the counts with their group tags
+   */
+  AlarmCount getAlarmsCount(String tenantId, String alarmDefId, String metricName,
+                            Map<String, String> metricDimensions, AlarmState state,
+                            String lifecycleState, String link, DateTime stateUpdatedStart,
+                            List<String> groupBy, String offset, int limit);
 }
