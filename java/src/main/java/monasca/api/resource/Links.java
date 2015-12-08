@@ -23,6 +23,7 @@ import javax.ws.rs.core.UriInfo;
 import com.google.common.base.Preconditions;
 
 import monasca.api.ApiConfig;
+import monasca.api.domain.model.alarm.AlarmCount;
 import monasca.api.domain.model.common.Paged;
 import monasca.api.domain.model.measurement.Measurements;
 import monasca.api.domain.model.statistic.Statistics;
@@ -346,6 +347,19 @@ public final class Links {
     }
 
     return nextLink;
+  }
+
+  public static void paginateAlarmCount(AlarmCount alarmCount, int limit, UriInfo uriInfo)
+      throws UnsupportedEncodingException {
+    List<Link> links = new ArrayList<>();
+    links.add(getSelfLink(uriInfo));
+    if (alarmCount.getCounts().size() > limit) {
+      alarmCount.getCounts().remove(alarmCount.getColumns().size()-1);
+      String offset = String.valueOf(limit);
+      links.add(getNextLink(offset, uriInfo));
+    }
+
+    alarmCount.setLinks(links);
   }
 
 }

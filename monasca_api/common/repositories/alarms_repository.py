@@ -47,3 +47,7 @@ class AlarmsRepository(object):
     @abc.abstractmethod
     def get_alarms(self, tenant_id, query_parms, offset, limit):
         pass
+
+    @abc.abstractmethod
+    def get_alarms_count(self, tenant_id, query_parms, offset, limit):
+        pass
