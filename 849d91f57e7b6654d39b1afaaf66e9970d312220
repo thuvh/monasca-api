@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7a740942_b101563a",
+        "filename": "monasca_tempest_tests/tests/api/test_metrics.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2015-12-08T00:11:29Z",
+      "side": 1,
+      "message": "Yes it should be! Also we won\u0027t need this end timestamp after the other change: https://review.openstack.org/#/c/254021/ get merged.",
+      "parentUuid": "7a740942_8ab77cd7",
+      "revId": "849d91f57e7b6654d39b1afaaf66e9970d312220",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a740942_6a9d7058",
         "filename": "monasca_tempest_tests/tests/api/test_metrics.py",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2015-12-08T00:06:15Z",
       "side": 1,
       "message": "Why is this needed? Are you having a problem with clocks out of sync?",
+      "revId": "849d91f57e7b6654d39b1afaaf66e9970d312220",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a740942_71f76e59",
+        "filename": "monasca_tempest_tests/tests/api/test_metrics.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2015-12-08T00:11:29Z",
+      "side": 1,
+      "message": "https://review.openstack.org/#/c/254021/ will fix this issue",
+      "parentUuid": "7a740942_6a9d7058",
       "revId": "849d91f57e7b6654d39b1afaaf66e9970d312220",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
