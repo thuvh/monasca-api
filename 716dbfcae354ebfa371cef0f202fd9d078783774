@@ -52,6 +52,24 @@
       "revId": "716dbfcae354ebfa371cef0f202fd9d078783774",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a740942_a257bf58",
+        "filename": "java/src/main/java/monasca/api/app/validation/Validation.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2015-12-08T03:06:21Z",
+      "side": 1,
+      "message": "Craig. I just wanted to fix tempest test failing. And I didn\u0027t accurately know why tempest test was failed in writing patch. I understood Monasca time policy so I\u0027m going to drop my proposal.",
+      "parentUuid": "7a740942_ff8ec42c",
+      "revId": "716dbfcae354ebfa371cef0f202fd9d078783774",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
