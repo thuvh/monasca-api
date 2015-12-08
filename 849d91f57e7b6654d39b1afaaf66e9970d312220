@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a740942_8ab77cd7",
+        "filename": "monasca_tempest_tests/tests/api/test_metrics.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-12-08T00:06:15Z",
+      "side": 1,
+      "message": "This one has a round, the next one doesn\u0027t. round seems overkill in this situation, but either way, it should be consistent",
+      "revId": "849d91f57e7b6654d39b1afaaf66e9970d312220",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a740942_6a9d7058",
+        "filename": "monasca_tempest_tests/tests/api/test_metrics.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-12-08T00:06:15Z",
+      "side": 1,
+      "message": "Why is this needed? Are you having a problem with clocks out of sync?",
+      "revId": "849d91f57e7b6654d39b1afaaf66e9970d312220",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
