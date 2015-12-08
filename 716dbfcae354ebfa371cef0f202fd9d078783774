@@ -88,6 +88,24 @@
       "revId": "716dbfcae354ebfa371cef0f202fd9d078783774",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a740942_73e9abe5",
+        "filename": "java/src/main/java/monasca/api/app/validation/Validation.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2015-12-08T04:49:51Z",
+      "side": 1,
+      "message": "Hi Craig. Sorry, my English ability is poor and I may have caused you a misunderstanding.\n\nThis validation has two factors. First is startTime before endTime. Second is startTime before system time. But I think second is insufficient. If startTime and endTime supplied and both are little older than system time, these are not checked.\nSo I think this validation should have First only. I think this reason makes sense.",
+      "parentUuid": "7a740942_18ce462e",
+      "revId": "716dbfcae354ebfa371cef0f202fd9d078783774",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
