@@ -34,6 +34,24 @@
       "revId": "716dbfcae354ebfa371cef0f202fd9d078783774",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a740942_ff8ec42c",
+        "filename": "java/src/main/java/monasca/api/app/validation/Validation.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-12-08T02:32:18Z",
+      "side": 1,
+      "message": "Hi Shinya, Monasca does not like out of sync clocks. That causes issues because measurements can actually be rejected for being too new or too old. Or it messes up the Threshold Engine. That being said, what this change really means is: just give me newer measurements than what my start_time, ignoring the server\u0027s time. Which allows a small discrepancy without causing the exception so that makes sense. Can you add a comment explaining the reasoning here?",
+      "parentUuid": "7a740942_ace498df",
+      "revId": "716dbfcae354ebfa371cef0f202fd9d078783774",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
