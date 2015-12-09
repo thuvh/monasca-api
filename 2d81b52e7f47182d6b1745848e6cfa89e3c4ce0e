@@ -16,6 +16,24 @@
       "revId": "2d81b52e7f47182d6b1745848e6cfa89e3c4ce0e",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a740942_2685df58",
+        "filename": "java/src/main/java/monasca/api/app/command/CreateMetricCommand.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2015-12-09T04:03:53Z",
+      "side": 1,
+      "message": "Yes you are absolutely right! I forgot to delete it... and same as \"import monasca.common.model.Services;\". Thank you for catching that!",
+      "parentUuid": "7a740942_756153d2",
+      "revId": "2d81b52e7f47182d6b1745848e6cfa89e3c4ce0e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
