@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a740942_86005303",
+        "filename": "java/src/test/java/monasca/api/resource/MetricResourceTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-12-09T04:36:40Z",
+      "side": 1,
+      "message": "In all of these it would be better to change the json files in fixtures rather than patching the metrics up afterwards",
+      "revId": "1641013270d56a4cd52facf2e800d92df862fc25",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a740942_484a7956",
+        "filename": "java/src/test/java/monasca/api/resource/MetricResourceTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-12-09T04:36:40Z",
+      "side": 1,
+      "message": "Thanks for adding this missing test",
+      "revId": "1641013270d56a4cd52facf2e800d92df862fc25",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a740942_282ccd97",
+        "filename": "java/src/test/java/monasca/api/resource/MetricResourceTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-12-09T04:36:40Z",
+      "side": 1,
+      "message": "You already have a timestamp in fixtures/metricWithoutValue.json",
+      "revId": "1641013270d56a4cd52facf2e800d92df862fc25",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
