@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a740942_756153d2",
+        "filename": "java/src/main/java/monasca/api/app/command/CreateMetricCommand.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2015-12-09T02:09:44Z",
+      "side": 1,
+      "message": "Hi Kaiyan, maybe this import is never used.",
+      "revId": "2d81b52e7f47182d6b1745848e6cfa89e3c4ce0e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
