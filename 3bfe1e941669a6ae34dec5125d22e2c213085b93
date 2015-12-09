@@ -16,6 +16,24 @@
       "revId": "3bfe1e941669a6ae34dec5125d22e2c213085b93",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a740942_7ab3824d",
+        "filename": "java/src/test/java/monasca/api/resource/MetricResourceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2015-12-09T01:37:20Z",
+      "side": 1,
+      "message": "Thank you Shinya! I\u0027m changing it back on the next patch!",
+      "parentUuid": "7a740942_97de47db",
+      "revId": "3bfe1e941669a6ae34dec5125d22e2c213085b93",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
