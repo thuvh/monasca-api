@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a740942_97de47db",
+        "filename": "java/src/test/java/monasca/api/resource/MetricResourceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2015-12-09T01:26:13Z",
+      "side": 1,
+      "message": "According to Google Java Style, wildcard import is not recommended.\n\nhttps://google.github.io/styleguide/javaguide.html#s3.3.1-wildcard-imports",
+      "revId": "3bfe1e941669a6ae34dec5125d22e2c213085b93",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
