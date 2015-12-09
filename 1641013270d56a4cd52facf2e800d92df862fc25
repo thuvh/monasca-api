@@ -50,6 +50,24 @@
       "revId": "1641013270d56a4cd52facf2e800d92df862fc25",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a740942_88a621ac",
+        "filename": "java/src/test/java/monasca/api/resource/MetricResourceTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2015-12-09T04:53:40Z",
+      "side": 1,
+      "message": "Thank you Craig! Yes but I want it to be the current timestamp when this test runs every time. Because there is a validate timestamp function in CreateMetricCommand.java and it checks if the timestamp is in 2 weeks range. This is also the reason why I added metrics[0].timestamp \u003d timestamp and metrics[1].timestamp \u003d timestamp earlier.",
+      "parentUuid": "7a740942_282ccd97",
+      "revId": "1641013270d56a4cd52facf2e800d92df862fc25",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
