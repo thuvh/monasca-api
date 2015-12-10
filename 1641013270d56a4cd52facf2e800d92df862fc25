@@ -68,6 +68,24 @@
       "revId": "1641013270d56a4cd52facf2e800d92df862fc25",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a740942_1b08d6d8",
+        "filename": "java/src/test/java/monasca/api/resource/MetricResourceTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-12-10T17:04:34Z",
+      "side": 1,
+      "message": "Yes, of course. Makes sense",
+      "parentUuid": "7a740942_88a621ac",
+      "revId": "1641013270d56a4cd52facf2e800d92df862fc25",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
