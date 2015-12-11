@@ -329,6 +329,11 @@ class TestAlarms(base.BaseMonascaTest):
 
     @test.attr(type="gate")
     def test_create_alarms_with_sub_expressions_and_match_by(self):
+        skip_flag = True
+        if skip_flag:
+            msg = 'Skip test_create_alarms_with_sub_expressions_and_match_' \
+                  'by till bug is resolved'
+            raise self.skipException(msg)
         # Create an alarm definition with sub-expressions and match_by
         name = data_utils.rand_name('alarm_definition_3')
         expression = "avg(cpu.idle_perc{service=monitoring}) < 10 or " \
@@ -360,6 +365,11 @@ class TestAlarms(base.BaseMonascaTest):
 
     @test.attr(type="gate")
     def test_create_alarms_with_match_by_list(self):
+        skip_flag = True
+        if skip_flag:
+            msg = 'Skip test_create_alarms_with_match_by_list till bug is ' \
+                  'resolved'
+            raise self.skipException(msg)
         # Create an alarm definition with match_by as a list
         name = data_utils.rand_name('alarm_definition')
         expression = "avg(cpu.idle_perc{service=monitoring}) < 10"
