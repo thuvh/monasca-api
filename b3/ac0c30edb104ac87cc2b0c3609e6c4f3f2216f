@@ -1,0 +1,9 @@
+Verified+2: Jenkins
+Code-Review+2: Craig Bryant <craig.bryant@hpe.com>
+Workflow+1: Craig Bryant <craig.bryant@hpe.com>
+Code-Review+1: Ryan Brandt <ryan.brandt@hpe.com>
+Submitted-by: Jenkins
+Submitted-at: Fri, 11 Dec 2015 20:13:09 +0000
+Reviewed-on: https://review.openstack.org/253158
+Project: openstack/monasca-api
+Branch: refs/heads/master
