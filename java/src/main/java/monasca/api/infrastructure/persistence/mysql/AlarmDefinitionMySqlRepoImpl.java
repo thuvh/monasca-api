@@ -139,7 +139,7 @@ public class AlarmDefinitionMySqlRepoImpl implements AlarmDefinitionRepo {
   @SuppressWarnings("unchecked")
   @Override
   public List<AlarmDefinition> find(String tenantId, String name,
-      Map<String, String> dimensions, String offset, int limit) {
+      Map<String, String> dimensions, List<String> sortBy, String offset, int limit) {
 
 
     try (Handle h = db.open()) {
@@ -155,10 +155,9 @@ public class AlarmDefinitionMySqlRepoImpl implements AlarmDefinitionRepo {
           + "      FROM alarm_definition AS ad "
           + "      LEFT OUTER JOIN sub_alarm_definition AS sad ON ad.id = sad.alarm_definition_id "
           + "      LEFT OUTER JOIN sub_alarm_definition_dimension AS dim ON sad.id = dim.sub_alarm_definition_id %1$s "
-          + "      WHERE ad.tenant_id = :tenantId AND ad.deleted_at IS NULL %2$s %3$s) AS t "
+          + "      WHERE ad.tenant_id = :tenantId AND ad.deleted_at IS NULL %2$s) AS t "
           + "LEFT OUTER JOIN alarm_action AS aa ON t.id = aa.alarm_definition_id "
-          + "GROUP BY t.id ORDER BY t.id, t.created_at";
-
+          + "GROUP BY t.id %3$s %4$s %5$s";
 
       StringBuilder sbWhere = new StringBuilder();
 
@@ -166,8 +165,14 @@ public class AlarmDefinitionMySqlRepoImpl implements AlarmDefinitionRepo {
         sbWhere.append(" and ad.name = :name");
       }
 
-      if (offset != null) {
-        sbWhere.append(" and ad.id > :offset");
+      String orderByPart = "";
+      if (sortBy != null && !sortBy.isEmpty()) {
+        orderByPart = " order by " + COMMA_JOINER.join(sortBy);
+        if (!sortBy.contains("id")) {
+          orderByPart = orderByPart + ",id";
+        }
+      } else {
+        orderByPart = " order by id ";
       }
 
       String limitPart = "";
@@ -175,8 +180,14 @@ public class AlarmDefinitionMySqlRepoImpl implements AlarmDefinitionRepo {
         limitPart = " limit :limit";
       }
 
+      String offsetPart = "";
+      if (offset != null) {
+        offsetPart = " offset " + offset + ' ';
+      }
+
       String sql = String.format(query,
-          SubAlarmDefinitionQueries.buildJoinClauseFor(dimensions), sbWhere, limitPart);
+          SubAlarmDefinitionQueries.buildJoinClauseFor(dimensions), sbWhere, orderByPart,
+          limitPart, offsetPart);
 
       Query<?> q = h.createQuery(sql);
 
@@ -184,10 +195,6 @@ public class AlarmDefinitionMySqlRepoImpl implements AlarmDefinitionRepo {
 
       if (name != null) {
         q.bind("name", name);
-      }
-
-      if (offset != null) {
-        q.bind("offset", offset);
       }
 
       if (limit > 0) {
