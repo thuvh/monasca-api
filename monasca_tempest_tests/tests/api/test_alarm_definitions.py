@@ -326,6 +326,48 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
         links = response_body['links']
         self._verify_list_alarm_definitions_links(links)
 
+    @test.attr(type='gate')
+    def test_list_alarm_definitions_sort_by(self):
+        alarm_definitions = []
+        alarm_definitions.append(helpers.create_alarm_definition(
+            name='alarm def sort by 01',
+            expression='test_metric_01 > 1',
+            severity='HIGH'
+        ))
+        alarm_definitions.append(helpers.create_alarm_definition(
+            name='alarm def sort by 04',
+            expression='test_metric_04 > 1',
+            severity='LOW'
+        ))
+        alarm_definitions.append(helpers.create_alarm_definition(
+            name='alarm def sort by 02',
+            expression='test_metric_02 > 1',
+            severity='CRITICAL'
+        ))
+        alarm_definitions.append(helpers.create_alarm_definition(
+            name='alarm def sort by 03',
+            expression='test_metric_03 > 1',
+            severity='MEDIUM'
+        ))
+        for definition in alarm_definitions:
+            self.monasca_client.create_alarm_definitions(definition)
+
+        resp, response_body = self.monasca_client.list_alarm_definitions('?sort_by=severity')
+        self.assertEqual(200, resp.status)
+
+        prev_severity = 'CRITICAL'
+        for alarm_definition in response_body['elements']:
+            assert prev_severity <= alarm_definition['severity'],\
+                "Severity {} came after {}".format(alarm_definition['severity'], prev_severity)
+            prev_severity = alarm_definition['severity']
+
+    @test.attr(type='gate')
+    @test.attr(type=['negative'])
+    def test_list_alarm_definitions_invalid_sort_by(self):
+        query_parms = '?sort_by=random'
+        self.assertRaises(exceptions.UnprocessableEntity,
+                          self.monasca_client.list_alarm_definitions, query_parms)
+
     @test.attr(type="gate")
     def test_list_alarm_definitions_with_offset_limit(self):
         helpers.delete_alarm_definitions(self.monasca_client)

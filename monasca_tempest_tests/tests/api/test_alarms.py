@@ -187,12 +187,35 @@ class TestAlarms(base.BaseMonascaTest):
         first_element = elements[0]
         next_element = elements[1]
         id_first_element = first_element['id']
-        query_parms = '?offset=' + str(id_first_element) + '&limit=1'
+        query_parms = '?offset=1&limit=1'
         resp, response_body1 = self.monasca_client.list_alarms(query_parms)
         elements = response_body1['elements']
         self.assertEqual(1, len(elements))
         self.assertEqual(elements[0]['id'], next_element['id'])
         self.assertEqual(elements[0], next_element)
+
+    @test.attr(type="gate")
+    def test_list_alarms_sort_by(self):
+        helpers.delete_alarm_definitions(self.monasca_client)
+        self._create_alarms_for_test_alarms(num=3)
+        resp, response_body = self.monasca_client.list_alarms()
+        self._verify_list_alarms_elements(resp, response_body,
+                                          expect_num_elements=3)
+
+        resp, response_body = self.monasca_client.list_alarms("?sort_by=state")
+        self._verify_list_alarms_elements(resp, response_body,
+                                          expect_num_elements=3)
+
+        elements = response_body['elements']
+        last_state = "ALARM"
+        for element in elements:
+            assert element['state'] >= last_state, "States are not in sorted order"
+
+    @test.attr(type="gate")
+    def test_list_alarms_invalid_sort_by(self):
+        query_parms = '?sort_by=not_valid_field'
+        self.assertRaises(exceptions.UnprocessableEntity,
+                          self.monasca_client.list_alarms, query_parms)
 
     @test.attr(type="gate")
     def test_get_alarm(self):

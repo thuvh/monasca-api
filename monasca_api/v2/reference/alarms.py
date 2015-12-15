@@ -116,12 +116,31 @@ class Alarms(alarms_api_v2.AlarmsV2API,
 
         if alarm_id is None:
             query_parms = falcon.uri.parse_query_string(req.query_string)
+            if 'sort_by' in query_parms:
+                if isinstance(query_parms['sort_by'], basestring):
+                    query_parms['sort_by'] = [query_parms['sort_by']]
+
+                allowed_sort_by = {'alarm_id', 'alarm_definition_id', 'state', 'severity', 'lifecycle_state', 'link',
+                                   'state_updated_timestamp', 'updated_timestamp', 'created_timestamp'}
+                if not set(query_parms['sort_by']).issubset(allowed_sort_by):
+                    raise HTTPUnprocessableEntityError("Unprocessable Entity",
+                                                       "One or more of sort_by values [{}] were not in [{}]".format(
+                                                           ','.join(query_parms['sort_by']),
+                                                           ','.join(list(allowed_sort_by))
+                                                       ))
 
             # ensure metric_dimensions is a list
             if 'metric_dimensions' in query_parms and isinstance(query_parms['metric_dimensions'], str):
                 query_parms['metric_dimensions'] = query_parms['metric_dimensions'].split(',')
 
             offset = helpers.get_query_param(req, 'offset')
+            if offset is not None and not isinstance(offset, int):
+                try:
+                    offset = int(offset)
+                except Exception as ex:
+                    LOG.exception(ex)
+                    raise HTTPUnprocessableEntityError("Unprocessable Entity",
+                                                       "Offset value {} must be an integer".format(offset))
 
             limit = helpers.get_limit(req)
 
