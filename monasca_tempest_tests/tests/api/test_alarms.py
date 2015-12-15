@@ -208,6 +208,29 @@ class TestAlarms(base.BaseMonascaTest):
     #     self._verify_metric_in_alarm(metric, expected_metric)
 
     @test.attr(type="gate")
+    def test_list_alarms_sort_by(self):
+        helpers.delete_alarm_definitions(self.monasca_client)
+        self._create_alarms_for_test_alarms(num=3)
+        resp, response_body = self.monasca_client.list_alarms()
+        self._verify_list_alarms_elements(resp, response_body,
+                                          expect_num_elements=3)
+
+        resp, response_body = self.monasca_client.list_alarms("?sort_by=state")
+        self._verify_list_alarms_elements(resp, response_body,
+                                          expect_num_elements=3)
+
+        elements = response_body['elements']
+        last_state = "ALARM"
+        for element in elements:
+            assert element['state'] >= last_state, "States are not in sorted order"
+
+    @test.attr(type="gate")
+    def test_list_alarms_invalid_sort_by(self):
+        query_parms = '?sort_by=not_valid_field'
+        self.assertRaises(exceptions.UnprocessableEntity,
+                          self.monasca_client.list_alarms, query_parms)
+
+    @test.attr(type="gate")
     @test.attr(type=['negative'])
     def test_get_alarm_with_invalid_id(self):
         alarm_id = data_utils.rand_name()
