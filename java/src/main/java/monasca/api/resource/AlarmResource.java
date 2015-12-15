@@ -13,7 +13,10 @@
  */
 package monasca.api.resource;
 
+import com.google.common.base.Joiner;
+import com.google.common.base.Splitter;
 import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
 
 import com.codahale.metrics.annotation.Timed;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -21,6 +24,8 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.joda.time.DateTime;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -49,6 +54,7 @@ import monasca.api.domain.model.alarmstatehistory.AlarmStateHistory;
 import monasca.api.domain.model.alarmstatehistory.AlarmStateHistoryRepo;
 import monasca.api.infrastructure.persistence.PersistUtils;
 import monasca.api.resource.annotation.PATCH;
+import monasca.api.resource.exception.Exceptions;
 import monasca.common.model.alarm.AlarmState;
 
 /**
@@ -60,6 +66,11 @@ public class AlarmResource {
   private final AlarmRepo repo;
   private final PersistUtils persistUtils;
   private final AlarmStateHistoryRepo stateHistoryRepo;
+
+  private final static List<String> ALLOWED_SORT_BY = Arrays.asList("alarm_id", "alarm_definition_id", "state",
+                                                                    "severity", "lifecycle_state", "link",
+                                                                    "state_updated_timestamp", "updated_timestamp",
+                                                                    "created_timestamp");
 
   @Inject
   public AlarmResource(AlarmService service, AlarmRepo repo,
@@ -142,11 +153,11 @@ public class AlarmResource {
 
     final int paging_limit = this.persistUtils.getLimit(limit);
     final List<AlarmStateHistory> resources = stateHistoryRepo.find(tenantId,
-        dimensions,
-        startTime,
-        endTime,
-        offset,
-        paging_limit
+                                                                    dimensions,
+                                                                    startTime,
+                                                                    endTime,
+                                                                    offset,
+                                                                    paging_limit
     );
     return Links.paginate(paging_limit, resources, uriInfo);
   }
@@ -162,6 +173,7 @@ public class AlarmResource {
       @QueryParam("lifecycle_state") String lifecycleState,
       @QueryParam("link") String link,
       @QueryParam("state_updated_start_time") String stateUpdatedStartStr,
+      @QueryParam("sort_by") String sortBy,
       @QueryParam("offset") String offset,
       @QueryParam("limit") String limit)
       throws Exception {
@@ -174,9 +186,14 @@ public class AlarmResource {
         Validation.parseAndValidateDate(stateUpdatedStartStr,
                                         "state_updated_start_time", false);
 
+    List<String> sortByList = parseAndValidateSortBy(sortBy);
+    if (!Strings.isNullOrEmpty(offset)) {
+      Validation.parseAndValidateNumber(offset, "offset");
+    }
+
     final int paging_limit = this.persistUtils.getLimit(limit);
     final List<Alarm> alarms = repo.find(tenantId, alarmDefId, metricName, metricDimensions, state,
-                                         lifecycleState, link, stateUpdatedStart,
+                                         lifecycleState, link, stateUpdatedStart, sortByList,
                                          offset, paging_limit, true);
     for (final Alarm alarm : alarms) {
       Links.hydrate(
@@ -185,7 +202,31 @@ public class AlarmResource {
           AlarmDefinitionResource.ALARM_DEFINITIONS_PATH
       );
     }
-    return Links.paginate(paging_limit, Links.hydrate(alarms, uriInfo), uriInfo);
+    return Links.paginateAlarming(paging_limit, Links.hydrate(alarms, uriInfo), uriInfo);
+  }
+
+  private List<String> parseAndValidateSortBy(String sortBy) {
+    List<String> sortByList = new ArrayList<>();
+    if (sortBy != null && !sortBy.isEmpty()) {
+      List<String> fieldList = Lists.newArrayList(Splitter.on(',').omitEmptyStrings().trimResults().split(sortBy));
+      for (String sortByField: fieldList) {
+        List<String> field = Lists.newArrayList(Splitter.on(' ').omitEmptyStrings().trimResults().split(sortByField));
+        if (field.size() > 2) {
+          throw Exceptions.unprocessableEntity(String.format("Invalid sort_by %s", sortByField));
+        }
+        if (!ALLOWED_SORT_BY.contains(field.get(0))) {
+          throw Exceptions.unprocessableEntity(String.format("Sort_by field %s not in %s", field.get(0), ALLOWED_SORT_BY));
+        }
+        if (field.size() < 2 ) {
+          field.add("asc");
+        }
+        else if (!field.get(1).equals("desc") && !field.get(1).equals("asc")) {
+          throw Exceptions.unprocessableEntity(String.format("Sort_by value %s must be 'asc' or 'desc'", field.get(1)));
+        }
+        sortByList.add(Joiner.on(' ').join(field));
+      }
+    }
+    return sortByList;
   }
 
   @PATCH

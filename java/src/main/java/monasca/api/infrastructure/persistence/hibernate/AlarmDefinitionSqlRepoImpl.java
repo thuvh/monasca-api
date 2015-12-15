@@ -225,7 +225,7 @@ public class AlarmDefinitionSqlRepoImpl
 
   @Override
   @SuppressWarnings("unchecked")
-  public List<AlarmDefinition> find(String tenantId, String name, Map<String, String> dimensions, String offset, int limit) {
+  public List<AlarmDefinition> find(String tenantId, String name, Map<String, String> dimensions, List<String> sortBy, String offset, int limit) {
     logger.trace(ORM_LOG_MARKER, "find(...) entering...");
 
     Session session = null;

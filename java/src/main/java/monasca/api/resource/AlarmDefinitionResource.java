@@ -13,13 +13,18 @@
  */
 package monasca.api.resource;
 
+import com.google.common.base.Joiner;
+import com.google.common.base.Splitter;
 import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
 
 import com.codahale.metrics.annotation.Timed;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -50,6 +55,7 @@ import monasca.api.domain.model.alarmdefinition.AlarmDefinition;
 import monasca.api.domain.model.alarmdefinition.AlarmDefinitionRepo;
 import monasca.api.infrastructure.persistence.PersistUtils;
 import monasca.api.resource.annotation.PATCH;
+import monasca.api.resource.exception.Exceptions;
 import monasca.common.model.alarm.AlarmExpression;
 
 /**
@@ -62,6 +68,8 @@ public class AlarmDefinitionResource {
   private final PersistUtils persistUtils;
   public final static String ALARM_DEFINITIONS = "alarm-definitions";
   public final static String ALARM_DEFINITIONS_PATH = "/v2.0/" + ALARM_DEFINITIONS;
+  private final static List<String> ALLOWED_SORT_BY = Arrays.asList("id", "name", "severity",
+                                                                    "updated_at", "created_at");
 
   @Inject
   public AlarmDefinitionResource(AlarmDefinitionService service,
@@ -93,20 +101,51 @@ public class AlarmDefinitionResource {
   public Object list(@Context UriInfo uriInfo,
       @HeaderParam("X-Tenant-Id") String tenantId, @QueryParam("name") String name,
       @QueryParam("dimensions") String dimensionsStr,
+      @QueryParam("sort_by") String sortByStr,
       @QueryParam("offset") String offset,
       @QueryParam("limit") String limit) throws UnsupportedEncodingException {
     Map<String, String> dimensions =
         Strings.isNullOrEmpty(dimensionsStr) ? null : Validation
             .parseAndValidateDimensions(dimensionsStr);
 
+    List<String> sortByList = parseAndValidateSortBy(sortByStr);
+    if (!Strings.isNullOrEmpty(offset)) {
+      Validation.parseAndValidateNumber(offset, "offset");
+    }
+
     final int paging_limit = this.persistUtils.getLimit(limit);
     final List<AlarmDefinition> resources = repo.find(tenantId,
-        name,
-        dimensions,
-        offset,
-        paging_limit
+                                                      name,
+                                                      dimensions,
+                                                      sortByList,
+                                                      offset,
+                                                      paging_limit
     );
-    return Links.paginate(paging_limit, Links.hydrate(resources, uriInfo), uriInfo);
+    return Links.paginateAlarming(paging_limit, Links.hydrate(resources, uriInfo), uriInfo);
+  }
+
+  private List<String> parseAndValidateSortBy(String sortBy) {
+    List<String> sortByList = new ArrayList<>();
+    if (sortBy != null && !sortBy.isEmpty()) {
+      List<String> fieldList = Lists.newArrayList(Splitter.on(',').omitEmptyStrings().trimResults().split(sortBy));
+      for (String sortByField: fieldList) {
+        List<String> field = Lists.newArrayList(Splitter.on(' ').omitEmptyStrings().trimResults().split(sortByField));
+        if (field.size() > 2) {
+          throw Exceptions.unprocessableEntity(String.format("Invalid sort_by %s", sortByField));
+        }
+        if (!ALLOWED_SORT_BY.contains(field.get(0))) {
+          throw Exceptions.unprocessableEntity(String.format("Sort_by field %s not in %s", field.get(0), ALLOWED_SORT_BY));
+        }
+        if (field.size() < 2 ) {
+          field.add("asc");
+        }
+        else if (!field.get(1).equals("desc") && !field.get(1).equals("asc")) {
+          throw Exceptions.unprocessableEntity(String.format("Sort_by value %s must be 'asc' or 'desc'", field.get(1)));
+        }
+        sortByList.add(Joiner.on(' ').join(field));
+      }
+    }
+    return sortByList;
   }
 
   @GET
