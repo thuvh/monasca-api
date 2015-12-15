@@ -1773,8 +1773,10 @@ None.
 #### Query Parameters
 * name (string(255), optional) - Name of alarm to filter by.
 * dimensions (string, optional) - Dimensions of metrics to filter by specified as a comma separated array of (key, value) pairs as `key1:value1,key1:value1, ...`
-* offset (string, optional)
+* offset (integer, optional)
 * limit (integer, optional)
+* sort_by (string, optional) - Comma separated list of fields to sort by, defaults to 'id', 'created_at'
+Allowed fields for sort_by are: 'id', 'name', 'severity', 'updated_at', 'created_at'
 
 #### Request Body
 None.
@@ -2238,8 +2240,10 @@ None.
 * lifecycle_state (string(50), optional) - Lifecycle state to filter by.
 * link (string(512), optional) - Link to filter by.
 * state_updated_start_time (string, optional) - The start time in ISO 8601 combined date and time format in UTC.
-* offset (string, optional)
+* offset (integer, optional)
 * limit (integer, optional)
+* sort_by (string, optional) - Comma separated list of fields to sort by, defaults to 'alarm_id'
+Allowed fields for sort_by are: 'alarm_id', 'alarm_definition_id', 'state', 'severity', 'lifecycle_state', 'link', 'state_updated_timestamp', 'updated_timestamp', 'created_timestamp'
 
 #### Request Body
 None.
