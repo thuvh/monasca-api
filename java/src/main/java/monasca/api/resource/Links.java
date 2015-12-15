@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 Hewlett-Packard Development Company, L.P.
+ * Copyright (c) 2014,2016 Hewlett Packard Enterprise Development Company, L.P.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -177,6 +177,44 @@ public final class Links {
       if (elements.size() > limit) {
 
         String offset = elements.get(limit - 1).getId();
+
+        paged.links.add(getNextLink(offset, uriInfo));
+
+        // Truncate the list. Normally this will just truncate one extra element.
+        elements = elements.subList(0, limit);
+      }
+
+      paged.elements = elements;
+
+    } else {
+
+      paged.elements = new ArrayList<>();
+
+    }
+
+    return paged;
+
+  }
+
+  public static Object paginateAlarming(int limit, List<? extends AbstractEntity> elements, UriInfo uriInfo)
+      throws UnsupportedEncodingException {
+
+    // Check for paging turned off. Happens if maxQueryLimit is not set or is set to zero.
+    if (limit == 0) {
+      Paged paged = new Paged();
+      paged.elements = elements != null ? elements : new ArrayList<>();
+      return paged;
+    }
+
+    Paged paged = new Paged();
+
+    paged.links.add(getSelfLink(uriInfo));
+
+    if (elements != null) {
+
+      if (elements.size() > limit) {
+
+        String offset = String.valueOf(limit);
 
         paged.links.add(getNextLink(offset, uriInfo));
 
