@@ -50,6 +50,7 @@ import monasca.api.domain.exception.EntityNotFoundException;
 import monasca.api.domain.model.alarmdefinition.AlarmDefinition;
 import monasca.api.domain.model.alarmdefinition.AlarmDefinitionRepo;
 import monasca.api.infrastructure.persistence.SubAlarmDefinitionQueries;
+import monasca.api.resource.exception.Exceptions;
 import monasca.common.hibernate.db.AlarmActionDb;
 import monasca.common.hibernate.db.AlarmDb;
 import monasca.common.hibernate.db.AlarmDefinitionDb;
@@ -225,8 +226,11 @@ public class AlarmDefinitionSqlRepoImpl
 
   @Override
   @SuppressWarnings("unchecked")
-  public List<AlarmDefinition> find(String tenantId, String name, Map<String, String> dimensions, String offset, int limit) {
+  public List<AlarmDefinition> find(String tenantId, String name, Map<String, String> dimensions, List<String> sortBy, String offset, int limit) {
     logger.trace(ORM_LOG_MARKER, "find(...) entering...");
+    if (sortBy != null && !sortBy.isEmpty()) {
+      throw Exceptions.unprocessableEntity("Sort_by is not implemented for the hibernate database type");
+    }
 
     Session session = null;
     List<AlarmDefinition> resultSet = Lists.newArrayList();

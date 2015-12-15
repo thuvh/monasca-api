@@ -39,6 +39,7 @@ import org.slf4j.LoggerFactory;
 import monasca.api.domain.exception.EntityNotFoundException;
 import monasca.api.domain.model.alarm.Alarm;
 import monasca.api.domain.model.alarm.AlarmRepo;
+import monasca.api.resource.exception.Exceptions;
 import monasca.common.hibernate.db.AlarmDb;
 import monasca.common.hibernate.db.SubAlarmDb;
 import monasca.common.hibernate.type.BinaryId;
@@ -148,8 +149,12 @@ public class AlarmSqlRepoImpl
   public List<Alarm> find(String tenantId, String alarmDefId, String metricName,
                           Map<String, String> metricDimensions, AlarmState state,
                           String lifecycleState, String link, DateTime stateUpdatedStart,
+                          List<String> sortBy,
                           String offset, int limit, boolean enforceLimit) {
     logger.trace(ORM_LOG_MARKER, "find(...) entering");
+    if (sortBy != null && !sortBy.isEmpty()) {
+      throw Exceptions.unprocessableEntity("Sort_by is not implemented for the hibernate database type");
+    }
 
     List<Alarm> alarms = this.findInternal(tenantId, alarmDefId, metricName, metricDimensions, state,
         lifecycleState, link, stateUpdatedStart, offset, (3 * limit / 2), enforceLimit);
