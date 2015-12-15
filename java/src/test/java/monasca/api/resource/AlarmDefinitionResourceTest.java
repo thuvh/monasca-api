@@ -14,8 +14,11 @@
 
 package monasca.api.resource;
 
+import com.google.common.collect.Lists;
+
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
+import static org.mockito.Matchers.anyList;
 import static org.mockito.Matchers.anyMap;
 import static org.mockito.Matchers.anyObject;
 import static org.mockito.Matchers.anyString;
@@ -85,7 +88,8 @@ public class AlarmDefinitionResourceTest extends AbstractMonApiResourceTest {
 
     repo = mock(AlarmDefinitionRepo.class);
     when(repo.findById(eq("abc"), eq("123"))).thenReturn(alarm);
-    when(repo.find(anyString(), anyString(), (Map<String, String>) anyMap(), anyString(), anyInt())).thenReturn(
+    when(repo.find(anyString(), anyString(), (Map<String, String>) anyMap(), (List<String>) anyList(),
+                   anyString(), anyInt())).thenReturn(
         Arrays.asList(alarmItem));
 
     addResources(new AlarmDefinitionResource(service, repo, new PersistUtils()));
@@ -275,7 +279,8 @@ public class AlarmDefinitionResourceTest extends AbstractMonApiResourceTest {
 
     assertEquals(alarms, Arrays.asList(alarmItem));
 
-    verify(repo).find(eq("abc"), anyString(), (Map<String, String>) anyMap(), anyString(), anyInt());
+    verify(repo).find(eq("abc"), anyString(), (Map<String, String>) anyMap(), (List<String>) anyList(),
+                      anyString(), anyInt());
   }
 
   @SuppressWarnings("unchecked")
@@ -306,8 +311,8 @@ public class AlarmDefinitionResourceTest extends AbstractMonApiResourceTest {
     List<AlarmDefinition> alarms = Arrays.asList(ad);
 
     assertEquals(alarms, Arrays.asList(alarmItem));
-    verify(repo).find(eq("abc"), eq("foo bar baz"), (Map<String, String>) anyMap(), anyString(),
-                      anyInt());
+    verify(repo).find(eq("abc"), eq("foo bar baz"), (Map<String, String>) anyMap(), (List<String>) anyList(),
+                      anyString(), anyInt());
   }
 
   public void shouldGet() {
@@ -352,13 +357,13 @@ public class AlarmDefinitionResourceTest extends AbstractMonApiResourceTest {
   public void should500OnInternalException() {
     doThrow(new RuntimeException("")).when(repo).find(anyString(), anyString(),
 
-        (Map<String, String>) anyObject(), anyString(), anyInt());
+        (Map<String, String>) anyObject(), (List<String>) anyList(), anyString(), anyInt());
 
     try {
       client().resource("/v2.0/alarm-definitions").header("X-Tenant-Id", "abc").get(List.class);
       fail();
     } catch (Exception e) {
-      assertTrue(e.getMessage().contains("500"));
+      assertTrue(e.getMessage().contains("500"), e.getMessage());
     }
   }
 

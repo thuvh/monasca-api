@@ -85,11 +85,30 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
             tenant_id = helpers.get_tenant_id(req)
             name = helpers.get_query_name(req)
             dimensions = helpers.get_query_dimensions(req)
+            sort_by = helpers.get_query_param(req, 'sort_by', default_val=None)
+            if sort_by is not None:
+                if isinstance(sort_by, basestring):
+                    sort_by = [sort_by]
+
+                allowed_sort_by = {'id', 'name', 'severity',
+                                   'updated_at', 'created_at'}
+                if not set(sort_by).issubset(allowed_sort_by):
+                    raise HTTPUnprocessableEntityError("Unprocessable Entity",
+                                                       "One or more of sort_by values [{}] were not in [{}]".format(
+                                                           ','.join(sort_by),
+                                                           ','.join(list(allowed_sort_by))
+                                                       ))
             offset = helpers.get_query_param(req, 'offset')
+            if offset is not None and not isinstance(offset, int):
+                try:
+                    offset = int(offset)
+                except Exception:
+                    raise HTTPUnprocessableEntityError('Unprocessable Entity',
+                                                       'Offset value {} must be an integer'.format(offset))
             limit = helpers.get_limit(req)
 
             result = self._alarm_definition_list(tenant_id, name, dimensions,
-                                                 req.uri, offset, limit)
+                                                 req.uri, sort_by, offset, limit)
 
             res.body = helpers.dumpit_utf8(result)
             res.status = falcon.HTTP_200
@@ -203,6 +222,7 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
         definitions = self._alarm_definitions_repo.get_alarm_definitions(tenant_id=tenant_id,
                                                                          name=name,
                                                                          dimensions=None,
+                                                                         sort_by=None,
                                                                          offset=None,
                                                                          limit=0)
         if definitions:
@@ -280,12 +300,12 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
                                alarm_metric_rows, sub_alarm_rows)
 
     @resource.resource_try_catch_block
-    def _alarm_definition_list(self, tenant_id, name, dimensions, req_uri,
+    def _alarm_definition_list(self, tenant_id, name, dimensions, req_uri, sort_by,
                                offset, limit):
 
         alarm_definition_rows = (
             self._alarm_definitions_repo.get_alarm_definitions(tenant_id, name,
-                                                               dimensions,
+                                                               dimensions, sort_by,
                                                                offset, limit))
 
         result = []

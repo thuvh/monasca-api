@@ -245,36 +245,36 @@ public class AlarmDefinitionMySqlRepositoryImplTest {
   }
 
   public void shouldFind() {
-    assertEquals(Arrays.asList(alarmDef_123, alarmDef_234), repo.find("bob", null, null, null, 1));
+    assertEquals(Arrays.asList(alarmDef_123, alarmDef_234), repo.find("bob", null, null, null, null, 1));
 
     // Make sure it still finds AlarmDefinitions with no notifications
     handle.execute("delete from alarm_action");
     alarmDef_123.setAlarmActions(new ArrayList<String>(0));
     alarmDef_234.setAlarmActions(new ArrayList<String>(0));
-    assertEquals(Arrays.asList(alarmDef_123, alarmDef_234), repo.find("bob", null, null, null, 1));
+    assertEquals(Arrays.asList(alarmDef_123, alarmDef_234), repo.find("bob", null, null, null, null, 1));
 
-    assertEquals(0, repo.find("bill", null, null, null, 1).size());
+    assertEquals(0, repo.find("bill", null, null, null, null, 1).size());
   }
 
   public void shouldFindByDimension() {
     final Map<String, String> dimensions = new HashMap<>();
     dimensions.put("image_id", "888");
     assertEquals(Arrays.asList(alarmDef_123, alarmDef_234),
-        repo.find("bob", null, dimensions, null, 1));
+        repo.find("bob", null, dimensions, null, null, 1));
 
     dimensions.clear();
     dimensions.put("device", "1");
-    assertEquals(Arrays.asList(alarmDef_123), repo.find("bob", null, dimensions, null, 1));
+    assertEquals(Arrays.asList(alarmDef_123), repo.find("bob", null, dimensions, null, null, 1));
 
     dimensions.clear();
     dimensions.put("Not real", "AA");
-    assertEquals(0, repo.find("bob", null, dimensions, null, 1).size());
+    assertEquals(0, repo.find("bob", null, dimensions, null, null, 1).size());
   }
 
   public void shouldFindByName() {
-    assertEquals(Arrays.asList(alarmDef_123), repo.find("bob", "90% CPU", null, null, 1));
+    assertEquals(Arrays.asList(alarmDef_123), repo.find("bob", "90% CPU", null, null, null, 1));
 
-    assertEquals(0, repo.find("bob", "Does not exist", null, null, 1).size());
+    assertEquals(0, repo.find("bob", "Does not exist", null, null, null, 1).size());
   }
 
   public void shouldDeleteById() {
@@ -285,6 +285,6 @@ public class AlarmDefinitionMySqlRepositoryImplTest {
       fail();
     } catch (EntityNotFoundException expected) {
     }
-    assertEquals(Arrays.asList(alarmDef_234), repo.find("bob", null, null, null, 1));
+    assertEquals(Arrays.asList(alarmDef_234), repo.find("bob", null, null, null, null, 1));
   }
 }
