@@ -13,6 +13,8 @@
  */
 package monasca.api.infrastructure.persistence.mysql;
 
+import com.google.common.base.Joiner;
+
 import monasca.api.domain.exception.EntityNotFoundException;
 import monasca.api.domain.model.alarm.Alarm;
 import monasca.api.domain.model.alarm.AlarmRepo;
@@ -46,6 +48,7 @@ import javax.inject.Named;
  */
 public class AlarmMySqlRepoImpl implements AlarmRepo {
 
+  private static final Joiner COMMA_JOINER = Joiner.on(',');
   private static final Logger logger = LoggerFactory.getLogger(AlarmMySqlRepoImpl.class);
 
   private final DBI db;
@@ -66,7 +69,7 @@ public class AlarmMySqlRepoImpl implements AlarmRepo {
 
   private static final String FIND_ALARMS_SQL =
       "select ad.id as alarm_definition_id, ad.severity, ad.name as alarm_definition_name, "
-      + "a.id, a.state, a.lifecycle_state, a.link, a.state_updated_at as state_updated_timestamp, "
+      + "a.id as alarm_id, a.state, a.lifecycle_state, a.link, a.state_updated_at as state_updated_timestamp, "
       + "a.updated_at as updated_timestamp, a.created_at as created_timestamp, "
       + "md.name as metric_name, group_concat(mdim.name, '=', mdim.value order by mdim.name) as metric_dimensions "
       + "from alarm as a "
@@ -116,8 +119,8 @@ public class AlarmMySqlRepoImpl implements AlarmRepo {
   @Override
   public List<Alarm> find(String tenantId, String alarmDefId, String metricName,
                           Map<String, String> metricDimensions, AlarmState state,
-                          String lifecycleState, String link, DateTime stateUpdatedStart, String offset,
-                          int limit, boolean enforceLimit) {
+                          String lifecycleState, String link, DateTime stateUpdatedStart,
+                          List<String> sort_by, String offset, int limit, boolean enforceLimit) {
 
     StringBuilder
         sbWhere =
@@ -174,14 +177,25 @@ public class AlarmMySqlRepoImpl implements AlarmRepo {
       sbWhere.append(" and a.state_updated_at >= :stateUpdatedStart");
     }
 
-    if (offset != null) {
-      sbWhere.append(" and a.id > :offset");
+    if (sort_by != null && !sort_by.isEmpty()) {
+      sbWhere.append(" order by ");
+      sbWhere.append(COMMA_JOINER.join(sort_by));
+      if (!sort_by.contains("alarm_id")) {
+        sbWhere.append(",alarm_id");
+      }
+      sbWhere.append(' ');
+    } else {
+      sbWhere.append(" order by a.id ASC ");
     }
-
-    sbWhere.append(" order by a.id ASC ");
 
     if (enforceLimit && limit > 0) {
       sbWhere.append(" limit :limit");
+    }
+
+    if (offset != null) {
+      sbWhere.append(" offset ");
+      sbWhere.append(offset);
+      sbWhere.append(' ');
     }
 
     sbWhere.append(")");
@@ -214,10 +228,6 @@ public class AlarmMySqlRepoImpl implements AlarmRepo {
 
       if (stateUpdatedStart != null) {
         q.bind("stateUpdatedStart", stateUpdatedStart.toString());
-      }
-
-      if (offset != null) {
-        q.bind("offset", offset);
       }
 
       if (enforceLimit && limit > 0) {

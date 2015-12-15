@@ -13,7 +13,9 @@
  */
 package monasca.api.resource;
 
+import com.google.common.base.Splitter;
 import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
 
 import com.codahale.metrics.annotation.Timed;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -21,6 +23,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.joda.time.DateTime;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -49,6 +52,7 @@ import monasca.api.domain.model.alarmstatehistory.AlarmStateHistory;
 import monasca.api.domain.model.alarmstatehistory.AlarmStateHistoryRepo;
 import monasca.api.infrastructure.persistence.PersistUtils;
 import monasca.api.resource.annotation.PATCH;
+import monasca.api.resource.exception.Exceptions;
 import monasca.common.model.alarm.AlarmState;
 
 /**
@@ -60,6 +64,11 @@ public class AlarmResource {
   private final AlarmRepo repo;
   private final PersistUtils persistUtils;
   private final AlarmStateHistoryRepo stateHistoryRepo;
+
+  private final static List<String> ALLOWED_SORT_BY = Arrays.asList("alarm_id", "alarm_definition_id", "state",
+                                                                    "severity", "lifecycle_state", "link",
+                                                                    "state_updated_timestamp", "updated_timestamp",
+                                                                    "created_timestamp");
 
   @Inject
   public AlarmResource(AlarmService service, AlarmRepo repo,
@@ -162,6 +171,7 @@ public class AlarmResource {
       @QueryParam("lifecycle_state") String lifecycleState,
       @QueryParam("link") String link,
       @QueryParam("state_updated_start_time") String stateUpdatedStartStr,
+      @QueryParam("sort_by") String sortBy,
       @QueryParam("offset") String offset,
       @QueryParam("limit") String limit)
       throws Exception {
@@ -174,9 +184,14 @@ public class AlarmResource {
         Validation.parseAndValidateDate(stateUpdatedStartStr,
                                         "state_updated_start_time", false);
 
+    List<String> sortByList = parseAndValidateSortBy(sortBy);
+    if (!Strings.isNullOrEmpty(offset)) {
+      Validation.parseAndValidateNumber(offset, "offset");
+    }
+
     final int paging_limit = this.persistUtils.getLimit(limit);
     final List<Alarm> alarms = repo.find(tenantId, alarmDefId, metricName, metricDimensions, state,
-                                         lifecycleState, link, stateUpdatedStart,
+                                         lifecycleState, link, stateUpdatedStart, sortByList,
                                          offset, paging_limit, true);
     for (final Alarm alarm : alarms) {
       Links.hydrate(
@@ -186,6 +201,17 @@ public class AlarmResource {
       );
     }
     return Links.paginate(paging_limit, Links.hydrate(alarms, uriInfo), uriInfo);
+  }
+
+  private List<String> parseAndValidateSortBy(String sortBy) {
+    List<String> sortByList = null;
+    if (sortBy != null && !sortBy.isEmpty()) {
+      sortByList = Lists.newArrayList(Splitter.on(" , ").omitEmptyStrings().trimResults().split(sortBy));
+      if (!ALLOWED_SORT_BY.containsAll(sortByList)) {
+        throw Exceptions.unprocessableEntity("Invalid sort_by field");
+      }
+    }
+    return sortByList;
   }
 
   @PATCH
