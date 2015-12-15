@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a8ffd7b_3177f103",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-12-15T19:17:11Z",
+      "side": 1,
+      "message": "You shouldn\u0027t need the backslash on the first argument",
+      "revId": "67c5fca94682bb42af81f323c25a7baea5d51d73",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
