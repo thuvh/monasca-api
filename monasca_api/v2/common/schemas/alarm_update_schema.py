@@ -21,11 +21,11 @@ from monasca_api.v2.common.schemas import exceptions
 LOG = log.getLogger(__name__)
 
 alarm_update_schema = {
-    voluptuous.Optional('state'): voluptuous.All(
+    voluptuous.Required('state'): voluptuous.All(
         voluptuous.Any('OK', 'ALARM', 'UNDETERMINED')),
-    voluptuous.Optional('lifecycle_state'): voluptuous.All(
+    voluptuous.Required('lifecycle_state'): voluptuous.All(
         voluptuous.Any(str, unicode), voluptuous.Length(max=50)),
-    voluptuous.Optional('link'): voluptuous.All(
+    voluptuous.Required('link'): voluptuous.All(
         voluptuous.Any(str, unicode), voluptuous.Length(max=512))
 }
 
