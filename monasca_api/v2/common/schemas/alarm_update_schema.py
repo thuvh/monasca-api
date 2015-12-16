@@ -26,7 +26,7 @@ alarm_update_schema = {
     voluptuous.Optional('lifecycle_state'): voluptuous.All(
         voluptuous.Any(str, unicode), voluptuous.Length(max=50)),
     voluptuous.Optional('link'): voluptuous.All(
-        voluptuous.Any(str, unicode), voluptuous.Length(max=512))
+        voluptuous.Any(str, unicode, None), voluptuous.Length(max=512))
 }
 
 
