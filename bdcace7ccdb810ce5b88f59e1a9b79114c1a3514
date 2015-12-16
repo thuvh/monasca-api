@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a710552_8d3b2beb",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9MeasurementRepo.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-12-16T00:24:47Z",
+      "side": 1,
+      "message": "In Java, you should always declare the variable right where you use it. So, just declare and set at the same time:\n\nint length \u003d values[0].length();\n\nand if you are me :), you do it this way:\n\nfinal int length \u003d values[0].length();",
+      "revId": "bdcace7ccdb810ce5b88f59e1a9b79114c1a3514",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
