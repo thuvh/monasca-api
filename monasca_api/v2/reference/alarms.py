@@ -137,7 +137,7 @@ class Alarms(alarms_api_v2.AlarmsV2API,
             res.body = helpers.dumpit_utf8(result)
             res.status = falcon.HTTP_200
 
-    @resource.resource_try_catch_block
+    @resource.HTTPUnprocessableEntityError
     def _alarm_update(self, tenant_id, alarm_id, new_state, lifecycle_state,
                       link):
 

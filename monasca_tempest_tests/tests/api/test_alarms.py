@@ -520,3 +520,22 @@ class TestAlarms(base.BaseMonascaTest):
     def _verify_metric_in_alarm(self, metric, expected_metric):
         self.assertEqual(metric['dimensions'], expected_metric['dimensions'])
         self.assertEqual(metric['name'], expected_metric['name'])
+
+    @test.attr(type="gate")
+    @test.attr(type=['negative'])
+    def test_update_alarm_with_link_none(self):
+        alarm_definition_ids, expected_metric \
+            = self._create_alarms_for_test_alarms(num=1)
+        query_param = '?alarm_definition_id=' + str(alarm_definition_ids[0])
+        resp, response_body = self.monasca_client.list_alarms(query_param)
+        self.assertEqual(200, resp.status)
+        element = response_body['elements'][0]
+        alarm_id = element['id']
+        updated_state = "ALARM"
+        updated_lifecycle_state = "OPEN"
+        updated_link = None
+        self.assertRaises(exceptions.UnprocessableEntity,
+                          self.monasca_client.update_alarm, id=alarm_id,
+                          state=updated_state,
+                          lifecycle_state=updated_lifecycle_state,
+                          link=updated_link)
