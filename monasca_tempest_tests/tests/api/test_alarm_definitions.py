@@ -403,7 +403,12 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
             name=updated_name,
             expression=updated_expression,
             description=updated_description,
-            actions_enabled='true'
+            actions_enabled=True,
+            match_by=response_body_list[0]['match_by'],
+            alarm_actions=[],
+            ok_actions=[],
+            undetermined_actions=[],
+            severity='LOW'
         )
         self.assertEqual(200, resp.status)
         self._verify_update_patch_alarm_definition(response_body, updated_name,
@@ -431,7 +436,7 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
                           self.monasca_client.update_alarm_definition,
                           id=response_body_list[0]['id'], name=name,
                           expression=expression,
-                          description=description, actions_enabled='true',
+                          description=description, actions_enabled=True,
                           match_by=updated_match_by)
 
     @test.attr(type="gate")
@@ -456,10 +461,13 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
             response_body_list[0]['id'],
             name=update_alarm_def_name,
             expression=expression,
-            actions_enabled='true',
+            actions_enabled=True,
             alarm_actions=[notification_id],
             ok_actions=[notification_id],
-            undetermined_actions=[notification_id])
+            undetermined_actions=[notification_id],
+            description='updated_description',
+            match_by=response_body_list[0]['match_by'],
+            severity='LOW')
         self.assertEqual(200, resp.status)
         self._verify_update_patch_alarm_definition(response_body,
                                                    update_alarm_def_name,
@@ -525,7 +533,7 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
             response_body_list[0]['id'],
             name=patch_alarm_def_name,
             expression=response_body_list[0]['expression'],
-            actions_enabled='true',
+            actions_enabled=True,
             alarm_actions=[notification_id],
             ok_actions=[notification_id],
             undetermined_actions=[notification_id]
