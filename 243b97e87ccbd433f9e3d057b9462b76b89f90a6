@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a710552_a60f21e0",
+        "filename": "monasca_tempest_tests/tests/api/test_alarms.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2015-12-16T04:45:21Z",
+      "side": 1,
+      "message": "should be until, also is there a reason you have this conditional in? It always evaluates to true? Seems to me that you should just raise the exception without this conditional unless you plan to leave this in here",
+      "revId": "243b97e87ccbd433f9e3d057b9462b76b89f90a6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
