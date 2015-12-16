@@ -66,8 +66,9 @@ class Alarms(alarms_api_v2.AlarmsV2API,
             raise HTTPUnprocessableEntityError('Unprocessable Entity',
                                                "Field 'link' is required")
 
-        self._alarm_update(tenant_id, alarm_id, alarm['state'],
-                           alarm['lifecycle_state'], alarm['link'])
+        self._alarm_update_patch(tenant_id, alarm_id, alarm['state'],
+                                 alarm['lifecycle_state'], alarm['link'],
+                                 u'alarm-updated')
 
         result = self._alarm_show(req.uri, tenant_id, alarm_id)
 
@@ -93,8 +94,9 @@ class Alarms(alarms_api_v2.AlarmsV2API,
         if 'link' not in alarm or alarm['link'] is None:
             alarm['link'] = old_alarm['link']
 
-        self._alarm_patch(tenant_id, alarm_id, alarm['state'],
-                          alarm['lifecycle_state'], alarm['link'])
+        self._alarm_update_patch(tenant_id, alarm_id, alarm['state'],
+                                 alarm['lifecycle_state'], alarm['link'],
+                                 u'alarm-patch')
 
         result = self._alarm_show(req.uri, tenant_id, alarm_id)
 
@@ -175,9 +177,8 @@ class Alarms(alarms_api_v2.AlarmsV2API,
             raise HTTPUnprocessableEntityError("Unprocessable Entity", e.message)
 
     @resource.resource_try_catch_block
-    def _alarm_update(self, tenant_id, alarm_id, new_state, lifecycle_state,
-                      link):
-
+    def _alarm_update_patch(self, tenant_id, alarm_id, new_state,
+                            lifecycle_state, link, event_type):
         alarm_metric_rows = self._alarms_repo.get_alarm_metrics(alarm_id)
         sub_alarm_rows = self._alarms_repo.get_sub_alarms(tenant_id, alarm_id)
 
@@ -190,9 +191,9 @@ class Alarms(alarms_api_v2.AlarmsV2API,
 
         state_info = {u'alarmState': new_state, u'oldAlarmState': old_state}
 
-        self._send_alarm_event(u'alarm-updated', tenant_id,
-                               alarm_definition_id, alarm_metric_rows,
-                               sub_alarm_rows, state_info)
+        self._send_alarm_event(event_type, tenant_id, alarm_definition_id,
+                               alarm_metric_rows, sub_alarm_rows, link,
+                               lifecycle_state, state_info)
 
         if old_state != new_state:
             try:
@@ -208,43 +209,6 @@ class Alarms(alarms_api_v2.AlarmsV2API,
                                                     alarm_definition_row,
                                                     alarm_metric_rows,
                                                     old_state, new_state,
-                                                    time_ms)
-
-    @resource.resource_try_catch_block
-    def _alarm_patch(self, tenant_id, alarm_id, new_state, lifecycle_state,
-                     link):
-
-        alarm_metric_rows = self._alarms_repo.get_alarm_metrics(alarm_id)
-        sub_alarm_rows = self._alarms_repo.get_sub_alarms(tenant_id, alarm_id)
-
-        old_alarm, time_ms = self._alarms_repo.update_alarm(tenant_id, alarm_id,
-                                                            new_state,
-                                                            lifecycle_state, link)
-
-        # alarm_definition_id is the same for all rows.
-        alarm_definition_id = sub_alarm_rows[0]['alarm_definition_id']
-
-        state_info = {u'alarmState': new_state, u'oldAlarmState': old_alarm['state']}
-
-        self._send_alarm_event(u'alarm-updated', tenant_id,
-                               alarm_definition_id, alarm_metric_rows,
-                               sub_alarm_rows, link, lifecycle_state, state_info)
-
-        if old_alarm['state'] != new_state:
-            try:
-                alarm_definition_row = self._alarms_repo.get_alarm_definition(
-                    tenant_id, alarm_id)
-            except exceptions.DoesNotExistException:
-                # Alarm definition does not exist. May have been deleted
-                # in another transaction. In that case, all associated
-                # alarms were also deleted, so don't send transition events.
-                pass
-            else:
-                self._send_alarm_transitioned_event(tenant_id, alarm_id,
-                                                    alarm_definition_row,
-                                                    alarm_metric_rows,
-                                                    old_alarm['state'], new_state,
-                                                    link, lifecycle_state,
                                                     time_ms)
 
     @resource.resource_try_catch_block
