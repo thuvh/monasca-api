@@ -48,10 +48,4 @@ def resource_try_catch_block(fun):
             raise falcon.HTTPInternalServerError('The repository was unable '
                                                  'to process your request',
                                                  msg)
-
-        except Exception as ex:
-            LOG.exception(ex)
-            raise falcon.HTTPInternalServerError('Service unavailable',
-                                                 ex.message)
-
     return try_it
