@@ -192,7 +192,8 @@ class Alarms(alarms_api_v2.AlarmsV2API,
 
         self._send_alarm_event(u'alarm-updated', tenant_id,
                                alarm_definition_id, alarm_metric_rows,
-                               sub_alarm_rows, state_info)
+                               sub_alarm_rows, link, lifecycle_state,
+                               state_info)
 
         if old_state != new_state:
             try:
