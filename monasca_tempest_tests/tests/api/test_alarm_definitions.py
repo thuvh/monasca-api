@@ -403,7 +403,12 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
             name=updated_name,
             expression=updated_expression,
             description=updated_description,
-            actions_enabled='true'
+            actions_enabled='true',
+            match_by=response_body_list[0]['match_by'],
+            alarm_actions=[],
+            ok_actions=[],
+            undetermined_actions=[],
+            severity='LOW'
         )
         self.assertEqual(200, resp.status)
         self._verify_update_patch_alarm_definition(response_body, updated_name,
@@ -459,7 +464,10 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
             actions_enabled='true',
             alarm_actions=[notification_id],
             ok_actions=[notification_id],
-            undetermined_actions=[notification_id])
+            undetermined_actions=[notification_id],
+            description='updated_description',
+            match_by=response_body_list[0]['match_by'],
+            severity='LOW')
         self.assertEqual(200, resp.status)
         self._verify_update_patch_alarm_definition(response_body,
                                                    update_alarm_def_name,
