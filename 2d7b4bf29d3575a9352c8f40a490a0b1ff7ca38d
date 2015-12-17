@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a7e1126_f69a0dc5",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9MeasurementRepo.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-12-17T00:56:00Z",
+      "side": 1,
+      "message": "You should define timestamp right here. And you can use:\nfinal String timestamp;\n\nThen you know it is only assigned only once.",
+      "range": {
+        "startLine": 145,
+        "startChar": 20,
+        "endLine": 145,
+        "endChar": 26
+      },
+      "revId": "2d7b4bf29d3575a9352c8f40a490a0b1ff7ca38d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a7e1126_f65d2ded",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9MeasurementRepo.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2015-12-17T00:56:00Z",
+      "side": 1,
+      "message": "Given that we both missed this problem, now would be a good time to add a unit test for this code. Make it a method in InfluxV9Utils.java and then add tests for all of the cases.",
+      "range": {
+        "startLine": 147,
+        "startChar": 12,
+        "endLine": 147,
+        "endChar": 21
+      },
+      "revId": "2d7b4bf29d3575a9352c8f40a490a0b1ff7ca38d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
