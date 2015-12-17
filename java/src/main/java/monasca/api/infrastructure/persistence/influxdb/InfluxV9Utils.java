@@ -15,6 +15,7 @@ package monasca.api.infrastructure.persistence.influxdb;
 
 import com.google.inject.Inject;
 
+import org.apache.commons.lang.StringUtils;
 import org.joda.time.DateTime;
 import org.joda.time.format.ISODateTimeFormat;
 
@@ -257,5 +258,18 @@ public class InfluxV9Utils {
     filteredMap.remove("_region");
 
     return filteredMap;
+  }
+
+  public String threeDigitMillisTimestamp(String[] values) {
+    final int length = values[0].length();
+    final String timestamp;
+    if (length == 20) {
+      timestamp = values[0].substring(0, 19) + ".000Z";
+    } else {
+      final String millisecond = values[0].substring(20, length - 1);
+      final String millisecond_3d = StringUtils.rightPad(millisecond, 3, '0');
+      timestamp = values[0].substring(0, 19) + '.' + millisecond_3d + 'Z';
+    }
+    return timestamp;
   }
 }
