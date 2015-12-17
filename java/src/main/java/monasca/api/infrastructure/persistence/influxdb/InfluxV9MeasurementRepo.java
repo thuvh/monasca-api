@@ -18,10 +18,10 @@ import com.google.inject.Inject;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.apache.commons.lang.StringUtils;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.apache.commons.lang.StringUtils;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -142,9 +142,14 @@ public class InfluxV9MeasurementRepo implements MeasurementRepo {
 
         for (String[] values : serie.getValues()) {
           final int length = values[0].length();
-          final String millisecond = values[0].substring(20, length-1);
-          final String millisecond_3d = StringUtils.rightPad(millisecond, 3, '0');
-          final String timestamp = values[0].substring(0, 19) + '.' + millisecond_3d + 'Z';
+          final String timestamp;
+          if (length == 20) {
+            timestamp = values[0].substring(0, 19) + ".000Z";}
+          else {
+            final String millisecond = values[0].substring(20, length-1);
+            final String millisecond_3d = StringUtils.rightPad(millisecond, 3, '0');
+            timestamp = values[0].substring(0, 19) + '.' + millisecond_3d + 'Z';
+          }
 
           measurements.addMeasurement(
               new Object[]{timestamp, Double.parseDouble(values[1]), getValueMeta(values)});
