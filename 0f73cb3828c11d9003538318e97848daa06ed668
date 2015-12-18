@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a7e1126_e2baeebf",
+        "filename": "monasca_tempest_tests/tests/api/test_alarms_state_history.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2015-12-18T00:45:07Z",
+      "side": 1,
+      "message": "Hi Tomasz, I tried this earlier and seems like using \"timestamp\" for offset instead of \"id\" gives better results.",
+      "range": {
+        "startLine": 310,
+        "startChar": 70,
+        "endLine": 310,
+        "endChar": 75
+      },
+      "revId": "0f73cb3828c11d9003538318e97848daa06ed668",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
