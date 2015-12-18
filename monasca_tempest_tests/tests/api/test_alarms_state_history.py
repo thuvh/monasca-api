@@ -17,13 +17,15 @@
 import time
 
 from monasca_tempest_tests.tests.api import base
+from monasca_tempest_tests.tests.api import constants
 from monasca_tempest_tests.tests.api import helpers
 from oslo_utils import timeutils
 from tempest.common.utils import data_utils
 from tempest import test
 
-NUM_ALARM_DEFINITIONS = 9
+NUM_ALARM_DEFINITIONS = 3
 MIN_HISTORY = 3
+
 
 class TestAlarmsStateHistory(base.BaseMonascaTest):
 
@@ -37,16 +39,28 @@ class TestAlarmsStateHistory(base.BaseMonascaTest):
                 expression="min(name-1) < " + str(i))
             cls.monasca_client.create_alarm_definitions(alarm_definition)
 
-        # create some metrics to prime the system and create three alarms
-        for i in xrange(60):
+        for timer in xrange(constants.MAX_RETRIES):
+            # create some metrics to prime the system and create three alarms
             metric = helpers.create_metric()
             cls.monasca_client.create_metrics(metric)
             resp, response_body = cls.monasca_client.\
                 list_alarms_state_history()
             elements = response_body['elements']
             if len(elements) >= MIN_HISTORY:
-                break
-            time.sleep(1)
+                element_ids = [element['id'] for element in elements]
+                element_ids_no_duplicate = list(set(element_ids))
+                if len(element_ids) == len(element_ids_no_duplicate):
+                    break
+                else:
+                    helpers.delete_alarm_definitions(cls.monasca_client)
+                    for i in xrange(1, NUM_ALARM_DEFINITIONS + 1):
+                        alarm_definition = helpers.create_alarm_definition(
+                            name=data_utils.rand_name('alarm_state_history' +
+                                                      str(i)),
+                            expression="min(name-1) < " + str(i))
+                        cls.monasca_client.create_alarm_definitions(
+                            alarm_definition)
+            time.sleep(constants.RETRY_WAIT_SECS)
 
     @test.attr(type="gate")
     def test_list_alarms_state_history(self):
@@ -184,27 +198,32 @@ class TestAlarmsStateHistory(base.BaseMonascaTest):
         number_of_alarms = len(elements)
         if number_of_alarms >= MIN_HISTORY:
             first_element = elements[0]
-            first_element_id = first_element['id']
+            elements_length = len(elements)
+            query_parms = '?limit=' + str(elements_length)
+            resp, response_body = self.monasca_client.\
+                list_alarms_state_history(query_parms)
+            self.assertEqual(200, resp.status)
+            elements = response_body['elements']
+            self.assertEqual(elements_length, len(elements))
+            self.assertEqual(first_element, elements[0])
 
-            for limit in xrange(1, MIN_HISTORY):
-                query_parms = '?limit=' + str(limit) + \
-                              '&offset=' + str(first_element_id)
-                resp, response_body = self.monasca_client.\
-                    list_alarms_state_history(query_parms)
-                elements = response_body['elements']
-                element_new = elements[0]
+        for index in xrange(elements_length - 1):
+            alarm_history = elements[index]
+            max_limit = elements_length - index
+            for limit in xrange(1, max_limit):
+                first_index = index + 1
+                last_index = first_index + limit
+                expected_elements = elements[first_index:last_index]
+
+                query_parms = '?offset=' + str(alarm_history['timestamp'])\
+                              + '&limit=' + str(limit)
+                resp, response_body = self.\
+                    monasca_client.list_alarms_state_history(query_parms)
                 self.assertEqual(200, resp.status)
-                self.assertEqual(element_new, first_element)
-                self.assertEqual(limit, len(elements))
-                id_new = element_new['id']
-                self.assertEqual(id_new, first_element_id)
-        else:
-                error_msg = ("Failed "
-                             "test_list_alarms_state_history_with_offset "
-                             "limit: need three alarms state history to "
-                             "test. Current number of alarms = {}").\
-                    format(number_of_alarms)
-                self.fail(error_msg)
+                new_elements = response_body['elements']
+                self.assertEqual(limit, len(new_elements))
+                for i in xrange(len(expected_elements)):
+                    self.assertEqual(expected_elements[i], new_elements[i])
 
     @test.attr(type="gate")
     def test_list_alarm_state_history(self):
