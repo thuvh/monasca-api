@@ -1467,15 +1467,11 @@ function install_monasca_horizon_ui {
 
     echo_summary "Install Monasca Horizon UI"
 
-    sudo mkdir -p /opt/monasca-horizon-ui || true
+    sudo -H pip install monasca-ui
 
-    (cd /opt/monasca-horizon-ui ; sudo virtualenv .)
+    sudo ln -s /usr/local/lib/python2.7/dist-packages/monitoring/enabled/_50_admin_add_monitoring_panel.py "${MONASCA_BASE}"/horizon/openstack_dashboard/local/enabled/_50_admin_add_monitoring_panel.py
 
-    (cd /opt/monasca-horizon-ui ; sudo -H ./bin/pip install monasca-ui)
-
-    sudo ln -sf /opt/monasca-horizon-ui/lib/python2.7/site-packages/monitoring/enabled/_50_admin_add_monitoring_panel.py "${MONASCA_BASE}"/horizon/openstack_dashboard/local/enabled/_50_admin_add_monitoring_panel.py
-
-    sudo ln -sf /opt/monasca-horizon-ui/lib/python2.7/site-packages/monitoring/static/monitoring "${MONASCA_BASE}"/horizon/monitoring
+    sudo ln -s /usr/local/lib/python2.7/dist-packages/monitoring/static/monitoring "${MONASCA_BASE}"/horizon/monitoring
 
     sudo python "${MONASCA_BASE}"/horizon/manage.py compress --force
 
@@ -1491,7 +1487,7 @@ function clean_monasca_horizon_ui {
 
     sudo rm -f "${MONASCA_BASE}"/horizon/monitoring
 
-    sudo rm -rf /opt/monasca-horizon-ui
+    sudo -H pip uninstall monasca-ui
 
 }
 
