@@ -22,6 +22,30 @@
       "revId": "9baa9e7e3a1e86868c38d607f1a2f1ff4e93edc8",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a7e1126_beaeb37e",
+        "filename": "monasca_tempest_tests/tests/api/test_alarms_state_history.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2015-12-22T09:01:52Z",
+      "side": 1,
+      "message": "Hmm...test was failing locally, but perhaps it was just local issue as many others I think I am experiencing with tempests.",
+      "parentUuid": "3a7e1126_9063bf41",
+      "range": {
+        "startLine": 264,
+        "startChar": 29,
+        "endLine": 264,
+        "endChar": 30
+      },
+      "revId": "9baa9e7e3a1e86868c38d607f1a2f1ff4e93edc8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
