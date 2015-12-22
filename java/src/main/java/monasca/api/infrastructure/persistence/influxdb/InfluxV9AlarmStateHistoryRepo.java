@@ -78,7 +78,7 @@ public class InfluxV9AlarmStateHistoryRepo implements AlarmStateHistoryRepo {
   }
 
   @Override
-  public List<AlarmStateHistory> findById(String tenantId, String alarmId, String offset,
+  public List<AlarmStateHistory> findById(String tenantId, String alarmId, DateTime offset,
                                           int limit)
       throws Exception {
 
@@ -107,7 +107,7 @@ public class InfluxV9AlarmStateHistoryRepo implements AlarmStateHistoryRepo {
   @Override
   public List<AlarmStateHistory> find(String tenantId, Map<String, String> dimensions,
                                       DateTime startTime, @Nullable DateTime endTime,
-                                      @Nullable String offset, int limit) throws Exception {
+                                      @Nullable DateTime offset, int limit) throws Exception {
 
     List<String> alarmIdList = this.utils.findAlarmIds(tenantId, dimensions);
 

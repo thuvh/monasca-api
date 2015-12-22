@@ -77,7 +77,7 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
       DateTime endTime,
       List<String> statisticsCols,
       int period,
-      String offset,
+      DateTime offset,
       int limit,
       Boolean mergeMetricsFlag) throws MultipleMetricsException {
 
@@ -115,9 +115,9 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
               .bind("end_time", endTime)
               .bind("limit", limit + 1);
 
-      if (offset != null && !offset.isEmpty()) {
+      if (offset != null) {
         logger.debug("binding offset: {}", offset);
-        query.bind("offset", new Timestamp(DateTime.parse(offset).getMillis()));
+        query.bind("offset", new Timestamp(offset.getMillis()));
       }
 
       List<Map<String, Object>> rows = query.list();
@@ -289,7 +289,7 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
       int period,
       DateTime startTime,
       DateTime endTime,
-      String offset,
+      DateTime offset,
       List<String> statistics) {
 
     StringBuilder sb = new StringBuilder();
@@ -319,7 +319,7 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
   private String createWhereClause(
       DateTime startTime,
       DateTime endTime,
-      String offset) {
+      DateTime offset) {
 
     String s = "";
 
@@ -329,7 +329,7 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
       s = "AND time_stamp >= :start_time ";
     }
 
-    if (offset != null && !offset.isEmpty()) {
+    if (offset != null) {
 
       s += " and time_stamp > :offset ";
 

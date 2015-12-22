@@ -148,7 +148,7 @@ public class AlarmSqlRepoImpl
   public List<Alarm> find(String tenantId, String alarmDefId, String metricName,
                           Map<String, String> metricDimensions, AlarmState state,
                           String lifecycleState, String link, DateTime stateUpdatedStart,
-                          String offset, int limit, boolean enforceLimit) {
+                          DateTime offset, int limit, boolean enforceLimit) {
     logger.trace(ORM_LOG_MARKER, "find(...) entering");
 
     List<Alarm> alarms = this.findInternal(tenantId, alarmDefId, metricName, metricDimensions, state,
@@ -165,7 +165,7 @@ public class AlarmSqlRepoImpl
       while (alarms.size() < limit) {
         List<Alarm> alarms2;
         int diff = limit - alarms.size();
-        String offset2 = alarms.get(alarms.size() - 1).getId();
+        DateTime offset2 = alarms.get(alarms.size() - 1).getUpdatedTimestamp();
         alarms2 = this.findInternal(tenantId, alarmDefId, metricName, metricDimensions, state,
             lifecycleState, link, stateUpdatedStart, offset2, (2 * diff), enforceLimit);
         if (alarms2.size() == 0)
@@ -181,7 +181,7 @@ public class AlarmSqlRepoImpl
   private List<Alarm> findInternal(String tenantId, String alarmDefId, String metricName,
                                    Map<String, String> metricDimensions, AlarmState state,
                                    String lifecycleState, String link, DateTime stateUpdatedStart,
-                                   String offset, int limit, boolean enforceLimit) {
+                                   DateTime offset, int limit, boolean enforceLimit) {
     Session session = null;
 
     List<Alarm> alarms = new LinkedList<>();
@@ -245,7 +245,7 @@ public class AlarmSqlRepoImpl
       }
 
       if (offset != null) {
-        query.setString("offset", offset);
+        query.setString("offset", offset.toString());
       }
 
       if (metricName != null) {

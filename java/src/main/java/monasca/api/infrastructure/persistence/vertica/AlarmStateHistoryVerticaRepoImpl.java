@@ -106,12 +106,12 @@ public class AlarmStateHistoryVerticaRepoImpl implements AlarmStateHistoryRepo {
   public List<AlarmStateHistory> findById(
       String tenantId,
       String alarmId,
-      String offset,
+      DateTime offset,
       int limit) {
 
     String offsetPart = "";
 
-    if (offset != null && !offset.isEmpty()) {
+    if (offset != null) {
 
       offsetPart = (" and time_stamp > :offset");
 
@@ -131,10 +131,10 @@ public class AlarmStateHistoryVerticaRepoImpl implements AlarmStateHistoryRepo {
               .bind("alarmId", alarmId)
               .bind("limit", limit + 1);
 
-      if (offset != null && !offset.isEmpty()) {
+      if (offset != null) {
 
         // Timestamp will not work in this query for some unknown reason.
-        verticaQuery.bind("offset", simpleDateFormat.format(new Date(Long.valueOf(offset))));
+        verticaQuery.bind("offset", simpleDateFormat.format(new Date(offset.getMillis())));
 
       }
 
@@ -155,7 +155,7 @@ public class AlarmStateHistoryVerticaRepoImpl implements AlarmStateHistoryRepo {
       Map<String, String> dimensions,
       DateTime startTime,
       @Nullable DateTime endTime,
-      @Nullable String offset,
+      @Nullable DateTime offset,
       int limit) {
 
     List<String> alarmIds = this.utils.findAlarmIds(tenantId, dimensions);
@@ -197,7 +197,7 @@ public class AlarmStateHistoryVerticaRepoImpl implements AlarmStateHistoryRepo {
 
     }
 
-    if (offset != null && !offset.isEmpty()) {
+    if (offset != null) {
 
       sb.append(" and time_stamp > :offset");
 
@@ -234,14 +234,14 @@ public class AlarmStateHistoryVerticaRepoImpl implements AlarmStateHistoryRepo {
 
       }
 
-      if (offset != null && !offset.isEmpty()) {
+      if (offset != null) {
 
         logger.debug("binding offset: {}", offset);
 
         // Timestamp will not work in this query for some unknown reason.
-        String timeStamp = simpleDateFormat.format(new Date(Long.valueOf(offset)));
+        //String timeStamp = simpleDateFormat.format(new Date(Long.valueOf(offset)));
 
-        verticaQuery.bind("offset", timeStamp);
+        verticaQuery.bind("offset", simpleDateFormat.format(new Date(offset.getMillis())));
 
       }
 

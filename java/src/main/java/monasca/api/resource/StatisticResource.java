@@ -22,6 +22,7 @@ import com.codahale.metrics.annotation.Timed;
 
 import org.joda.time.DateTime;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -76,7 +77,7 @@ public class StatisticResource {
       @QueryParam("end_time") String endTimeStr,
       @QueryParam("statistics") String statisticsStr,
       @DefaultValue("300") @QueryParam("period") String periodStr,
-      @QueryParam("offset") String offset,
+      @QueryParam("off_set") String offsetStr,
       @QueryParam("limit") String limit,
       @QueryParam("tenant_id") String crossTenantId,
       @QueryParam("merge_metrics") String mergeMetricsFlag) throws Exception {
@@ -85,6 +86,7 @@ public class StatisticResource {
     Validation.validateNotNullOrEmpty(name, "name");
     DateTime startTime = Validation.parseAndValidateDate(startTimeStr, "start_time", true);
     DateTime endTime = Validation.parseAndValidateDate(endTimeStr, "end_time", false);
+    DateTime offset = Validation.parseAndValidateDate(offsetStr, "off_set", false);
     Validation.validateTimes(startTime, endTime);
     Validation.validateNotNullOrEmpty(statisticsStr, "statistics");
     int period = Validation.parseAndValidateNumber(periodStr, "period");

@@ -116,7 +116,7 @@ public class AlarmMySqlRepoImpl implements AlarmRepo {
   @Override
   public List<Alarm> find(String tenantId, String alarmDefId, String metricName,
                           Map<String, String> metricDimensions, AlarmState state,
-                          String lifecycleState, String link, DateTime stateUpdatedStart, String offset,
+                          String lifecycleState, String link, DateTime stateUpdatedStart, DateTime offset,
                           int limit, boolean enforceLimit) {
 
     StringBuilder

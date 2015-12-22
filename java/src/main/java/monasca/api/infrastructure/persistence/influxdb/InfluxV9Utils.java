@@ -138,13 +138,12 @@ public class InfluxV9Utils {
   }
 
 
-  public String timeOffsetPart(String offset) {
+  public String timeOffsetPart(DateTime offset) {
 
-    if (offset == null || offset.isEmpty()) {
+    if (offset == null) {
       return "";
     }
-
-    return String.format(" and time > '%1$s'", offset);
+    return " and time > " + "'" + ISODateTimeFormat.dateTime().print(offset) + "'";
   }
 
   public String privateRegionPart(String region) {

@@ -70,7 +70,7 @@ public class MeasurementResource {
       @QueryParam("dimensions") String dimensionsStr,
       @QueryParam("start_time") String startTimeStr,
       @QueryParam("end_time") String endTimeStr,
-      @QueryParam("offset") String offset,
+      @QueryParam("offset") DateTime offset,
       @QueryParam("limit") String limit,
       @QueryParam("tenant_id") String crossTenantId,
       @QueryParam("merge_metrics") String mergeMetricsFlag) throws Exception {

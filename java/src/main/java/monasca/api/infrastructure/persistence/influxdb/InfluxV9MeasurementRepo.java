@@ -65,7 +65,7 @@ public class InfluxV9MeasurementRepo implements MeasurementRepo {
   @Override
   public List<Measurements> find(String tenantId, String name, Map<String, String> dimensions,
                                  DateTime startTime, @Nullable DateTime endTime,
-                                 @Nullable String offset, int limit, Boolean mergeMetricsFlag)
+                                 @Nullable DateTime offset, int limit, Boolean mergeMetricsFlag)
       throws Exception {
 
     String q = buildQuery(tenantId, name, dimensions, startTime, endTime,
@@ -84,7 +84,7 @@ public class InfluxV9MeasurementRepo implements MeasurementRepo {
   }
 
   private String buildQuery(String tenantId, String name, Map<String, String> dimensions,
-                            DateTime startTime, DateTime endTime, String offset, int limit,
+                            DateTime startTime, DateTime endTime, DateTime offset, int limit,
                             Boolean mergeMetricsFlag) throws Exception {
 
     String q;

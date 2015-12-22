@@ -21,11 +21,7 @@ import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.annotation.Nullable;
 
@@ -66,7 +62,7 @@ public class InfluxV9StatisticRepo implements StatisticRepo {
   @Override
   public List<Statistics> find(String tenantId, String name, Map<String, String> dimensions,
                                DateTime startTime, @Nullable DateTime endTime,
-                               List<String> statistics, int period, String offset, int limit,
+                               List<String> statistics, int period, DateTime offset, int limit,
                                Boolean mergeMetricsFlag) throws Exception {
 
     String q = buildQuery(tenantId, name, dimensions, startTime, endTime,
@@ -86,7 +82,7 @@ public class InfluxV9StatisticRepo implements StatisticRepo {
 
   private String buildQuery(String tenantId, String name, Map<String, String> dimensions,
                             DateTime startTime, DateTime endTime, List<String> statistics,
-                            int period, String offset, int limit, Boolean mergeMetricsFlag)
+                            int period, DateTime offset, int limit, Boolean mergeMetricsFlag)
       throws Exception {
 
     String q;

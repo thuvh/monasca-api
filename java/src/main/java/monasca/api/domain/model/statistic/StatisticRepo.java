@@ -30,6 +30,6 @@ public interface StatisticRepo {
    */
   List<Statistics> find(String tenantId, String name, Map<String, String> dimensions,
                         DateTime startTime, @Nullable DateTime endTime, List<String> statistics,
-                        int period, String offset, int limit, Boolean mergeMetricsFlag)
+                        int period, DateTime offset, int limit, Boolean mergeMetricsFlag)
       throws Exception;
 }

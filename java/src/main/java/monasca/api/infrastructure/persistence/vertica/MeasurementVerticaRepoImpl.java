@@ -24,11 +24,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.annotation.Nullable;
 import javax.inject.Inject;
@@ -86,7 +82,7 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
       Map<String, String> dimensions,
       DateTime startTime,
       @Nullable DateTime endTime,
-      @Nullable String offset,
+      @Nullable DateTime offset,
       int limit,
       Boolean mergeMetricsFlag) throws MultipleMetricsException {
 
@@ -106,7 +102,7 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
 
       }
 
-      if (offset != null && !offset.isEmpty()) {
+      if (offset != null) {
 
         sb.append(" and time_stamp > :offset");
 
@@ -139,11 +135,11 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
 
       }
 
-      if (offset != null && !offset.isEmpty()) {
+      if (offset != null) {
 
         logger.debug("binding offset: {}", offset);
 
-        query.bind("offset", new Timestamp(DateTime.parse(offset).getMillis()));
+        query.bind("offset", new Timestamp(offset.getMillis()));
 
       }
 

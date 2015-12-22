@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.joda.time.DateTime;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -101,7 +102,7 @@ public class AlarmResource {
   @Produces(MediaType.APPLICATION_JSON)
   public Object getStateHistory(@Context UriInfo uriInfo,
       @HeaderParam("X-Tenant-Id") String tenantId, @PathParam("alarm_id") String alarmId,
-      @QueryParam("offset") String offset,
+      @QueryParam("offset") DateTime offset,
       @QueryParam("limit") String limit)
       throws Exception {
     final int paging_limit = this.persistUtils.getLimit(limit);
@@ -123,7 +124,7 @@ public class AlarmResource {
       @QueryParam("dimensions") String dimensionsStr,
       @QueryParam("start_time") String startTimeStr,
       @QueryParam("end_time") String endTimeStr,
-      @QueryParam("offset") String offset,
+      @QueryParam("offset") DateTime offset,
       @QueryParam("limit") String limit)
       throws Exception {
 
@@ -162,7 +163,7 @@ public class AlarmResource {
       @QueryParam("lifecycle_state") String lifecycleState,
       @QueryParam("link") String link,
       @QueryParam("state_updated_start_time") String stateUpdatedStartStr,
-      @QueryParam("offset") String offset,
+      @QueryParam("offset") DateTime offset,
       @QueryParam("limit") String limit)
       throws Exception {
 
