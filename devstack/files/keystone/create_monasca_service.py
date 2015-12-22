@@ -129,16 +129,21 @@ def main(argv):
   """ Get token if needed and then call methods to add tenants, users and roles """
   users = [{'username': 'mini-mon', 'project': 'mini-mon', 'password': 'password', 'role': 'monasca-user'}, {'username': 'monasca-agent', 'project': 'mini-mon', 'password': 'password', 'role': 'monasca-agent'}]
 
-  url = 'http://127.0.0.1:35357/v2.0'
+  """ argv[0]=SERVICE_HOST argv[1]=OS_USERNAME argv[2]=OS_PASSWORD """
+  """ argv[3]=OS_PROJECT_NAME argv[4]=SERVICE_TOKEN """
 
-  token = '111222333444'
+  service_host = argv[0]
+  url = 'http://' + service_host + ':35357/v2.0'
+
+  """ if set SERVICE_TOKEN in local.conf then token=SERVICE_TOKEN else token=None """
+  token = argv[4]
 
   cacert = None
 
   if not token:
-    username = None
-    password = None
-    tenant_name = None
+    username = argv[1]
+    password = argv[2]
+    tenant_name = argv[3]
     token = get_token(url, cacert, username, password, tenant_name)
 
   key = client.Client(token=token, endpoint=url, cacert=cacert)
@@ -163,7 +168,6 @@ def main(argv):
   if not add_user_roles(key, demo_user):
     return 1
 
-  service_host = argv[0]
   monasca_url = 'http://' + service_host + ':8070/v2.0'
 
   if not add_service_endpoint(key, 'monasca', 'Monasca monitoring service', 'monitoring', monasca_url, 'RegionOne'):
