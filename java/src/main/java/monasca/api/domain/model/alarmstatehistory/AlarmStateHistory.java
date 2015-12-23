@@ -44,7 +44,7 @@ public class AlarmStateHistory  extends AbstractEntity {
       String reasonData,
       DateTime timestamp) {
 
-    id = new Long(timestamp.getMillis()).toString();
+    id = timestamp.toString();
     this.alarmId = alarmId;
     this.setMetrics(metrics);
     this.oldState = oldState;
@@ -183,7 +183,7 @@ public class AlarmStateHistory  extends AbstractEntity {
   public void setTimestamp(DateTime timestamp) {
     this.timestamp = timestamp;
     // Set the id in the AbstractEntity class.
-    id = new Long(timestamp.getMillis()).toString();
+    id = timestamp.toString();
   }
 
   @Override
