@@ -264,7 +264,7 @@ class TestAlarmsStateHistory(base.BaseMonascaTest):
             self.assertEqual(200, resp.status)
             self.assertEqual(1, len(elements))
 
-            query_parms = '?limit=1&offset=' + str(element['id'])
+            query_parms = '?limit=1&offset=1'
             resp, response_body = self.monasca_client.\
                 list_alarm_state_history(alarm_id, query_parms)
             elements_new = response_body['elements']
