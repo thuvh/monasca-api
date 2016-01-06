@@ -22,8 +22,14 @@ source $BASE/new/tempest/.venv/bin/activate
 sudo pip install nose
 sudo pip install numpy
 
-(cd $BASE/new/tempest/; oslo-config-generator --config-file  etc/config-generator.tempest.conf  --output-file etc/tempest.conf)
-sudo cat $BASE/new/monasca-api/devstack/files/tempest/tempest.conf >> $BASE/new/tempest/etc/tempest.conf
+(cd $BASE/new/tempest/; sudo oslo-config-generator --config-file  etc/config-generator.tempest.conf  --output-file etc/tempest.conf)
+(cd $BASE/new/tempest/; sudo sh -c 'cat $HOME/new/monasca-api/devstack/files/tempest/tempest.conf >> etc/tempest.conf')
+
+base_directory = $BASE
+echo "base_directory"
+
+home_directory = $HOME
+echo "home_directory"
 
 sudo cp $BASE/new/tempest/etc/logging.conf.sample $BASE/new/tempest/etc/logging.conf
 
