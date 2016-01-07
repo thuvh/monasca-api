@@ -22,6 +22,30 @@
       "revId": "2c3c8cc41609bd1601bfb8299d6b798670f1bcdd",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa69d971_0c50fe30",
+        "filename": "monasca_api/tests/test_validation.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-01-07T08:03:33Z",
+      "side": 1,
+      "message": "Hi Joe, thank you for advice.\nI will fix as your suggestion.",
+      "parentUuid": "fa69d971_e1cb36a2",
+      "range": {
+        "startLine": 251,
+        "startChar": 23,
+        "endLine": 251,
+        "endChar": 24
+      },
+      "revId": "2c3c8cc41609bd1601bfb8299d6b798670f1bcdd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
