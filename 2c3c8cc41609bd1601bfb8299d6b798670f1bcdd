@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa69d971_e1cb36a2",
+        "filename": "monasca_api/tests/test_validation.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2016-01-07T05:35:28Z",
+      "side": 1,
+      "message": "It might be more clear here to say name \u003d \"A\" * 250",
+      "range": {
+        "startLine": 251,
+        "startChar": 23,
+        "endLine": 251,
+        "endChar": 24
+      },
+      "revId": "2c3c8cc41609bd1601bfb8299d6b798670f1bcdd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
