@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa69d971_bbc6b547",
+        "filename": "java/src/main/java/monasca/api/domain/model/alarmstatehistory/AlarmStateHistory.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-01-07T16:24:44Z",
+      "side": 1,
+      "message": "timestamp is already a DateTime object, there is no need to create a new one here.",
+      "range": {
+        "startLine": 47,
+        "startChar": 13,
+        "endLine": 47,
+        "endChar": 21
+      },
+      "revId": "5da3717adf311cd39137fab3bb35d1439dd2c610",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa69d971_fbeaedab",
+        "filename": "java/src/main/java/monasca/api/domain/model/alarmstatehistory/AlarmStateHistory.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-01-07T16:24:44Z",
+      "side": 1,
+      "message": "Same as above, its already a DateTime object",
+      "range": {
+        "startLine": 186,
+        "startChar": 13,
+        "endLine": 186,
+        "endChar": 21
+      },
+      "revId": "5da3717adf311cd39137fab3bb35d1439dd2c610",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
