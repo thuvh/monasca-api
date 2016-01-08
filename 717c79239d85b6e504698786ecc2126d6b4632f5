@@ -16,6 +16,24 @@
       "revId": "717c79239d85b6e504698786ecc2126d6b4632f5",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa69d971_3938263d",
+        "filename": "monasca_api/tests/test_alarms.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-01-08T21:48:54Z",
+      "side": 1,
+      "message": "Not sure why the expected data section is there, because the call should return the original values, but I will add a check for that.",
+      "parentUuid": "fa69d971_19576203",
+      "revId": "717c79239d85b6e504698786ecc2126d6b4632f5",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
