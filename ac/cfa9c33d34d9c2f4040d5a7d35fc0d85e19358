@@ -1,0 +1,10 @@
+Code-Review+2: Fabio Giannetti <fgiannet@cisco.com>
+Code-Review+2: Roland Hochmuth <roland.hochmuth@hp.com>
+Workflow+1: Roland Hochmuth <roland.hochmuth@hp.com>
+Code-Review+1: melissaml <ma.lei@99cloud.net>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Fri, 08 Jan 2016 02:57:46 +0000
+Reviewed-on: https://review.openstack.org/259146
+Project: openstack/monasca-api
+Branch: refs/heads/master
