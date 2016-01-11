@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa69d971_22cc5069",
+        "filename": "monasca_tempest_tests/tests/api/test_versions.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-01-11T06:01:40Z",
+      "side": 1,
+      "message": "Looks like this should be self.assertIsInstance(",
+      "range": {
+        "startLine": 35,
+        "startChar": 8,
+        "endLine": 35,
+        "endChar": 24
+      },
+      "revId": "5741c4872beb9a742a5d0e2f7baf9271010b6751",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
