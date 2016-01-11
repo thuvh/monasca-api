@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa69d971_8ec2e651",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9UtilsTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-01-11T17:29:17Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be \u0027.470Z\u0027 ?",
+      "range": {
+        "startLine": 74,
+        "startChar": 96,
+        "endLine": 74,
+        "endChar": 100
+      },
+      "revId": "00520447243ae6faad4b009dc04a02cf6c44e762",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa69d971_0ead969a",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9UtilsTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-01-11T17:29:17Z",
+      "side": 1,
+      "message": "same as above, should be \u0027.400Z\u0027",
+      "range": {
+        "startLine": 76,
+        "startChar": 96,
+        "endLine": 76,
+        "endChar": 100
+      },
+      "revId": "00520447243ae6faad4b009dc04a02cf6c44e762",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa69d971_4e95ce30",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9UtilsTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-01-11T17:29:17Z",
+      "side": 1,
+      "message": "same as above, should be \u0027.400Z\u0027",
+      "range": {
+        "startLine": 82,
+        "startChar": 94,
+        "endLine": 82,
+        "endChar": 98
+      },
+      "revId": "00520447243ae6faad4b009dc04a02cf6c44e762",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
