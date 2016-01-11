@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fa69d971_d69aac13",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9UtilsTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-01-11T21:53:43Z",
+      "side": 1,
+      "message": "Yes you are right :-) Thanks!!",
+      "parentUuid": "fa69d971_8ec2e651",
+      "range": {
+        "startLine": 74,
+        "startChar": 96,
+        "endLine": 74,
+        "endChar": 100
+      },
+      "revId": "00520447243ae6faad4b009dc04a02cf6c44e762",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa69d971_0ead969a",
         "filename": "java/src/test/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9UtilsTest.java",
         "patchSetId": 1
