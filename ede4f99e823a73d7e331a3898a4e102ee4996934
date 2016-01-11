@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa69d971_61ef83b1",
+        "filename": "devstack/post_test_hook.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2016-01-11T17:49:12Z",
+      "side": 1,
+      "message": "The \u0027\u003e\u003e\u0027 will append if the file already exists. Are you sure you want to do that? Would \u0027\u003e\u0027 (overwrite if already exists) work better?",
+      "range": {
+        "startLine": 26,
+        "startChar": 80,
+        "endLine": 26,
+        "endChar": 82
+      },
+      "revId": "ede4f99e823a73d7e331a3898a4e102ee4996934",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
