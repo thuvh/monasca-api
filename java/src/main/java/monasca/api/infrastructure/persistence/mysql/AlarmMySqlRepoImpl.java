@@ -13,6 +13,8 @@
  */
 package monasca.api.infrastructure.persistence.mysql;
 
+import com.google.common.base.Strings;
+
 import monasca.api.domain.exception.EntityNotFoundException;
 import monasca.api.domain.model.alarm.Alarm;
 import monasca.api.domain.model.alarm.AlarmRepo;
@@ -90,15 +92,19 @@ public class AlarmMySqlRepoImpl implements AlarmRepo {
     if (dimensions == null) {
       return;
     }
-
-    for (int i = 0; i < dimensions.size(); i++) {
+    int i = 0;
+    for (String dimension_key : dimensions.keySet()) {
       final String indexStr = String.valueOf(i);
       sbJoin.append(" inner join metric_dimension md").append(indexStr).append(" on md")
           .append(indexStr)
-          .append(".name = :dname").append(indexStr).append(" and md").append(indexStr)
-          .append(".value = :dvalue").append(indexStr)
-          .append(" and mdd.metric_dimension_set_id = md")
+          .append(".name = :dname").append(indexStr);
+      if (!Strings.isNullOrEmpty(dimensions.get(dimension_key))) {
+        sbJoin.append(" and md").append(indexStr)
+            .append(".value = :dvalue").append(indexStr);
+      }
+      sbJoin.append(" and mdd.metric_dimension_set_id = md")
           .append(indexStr).append(".dimension_set_id");
+      i++;
     }
   }
 

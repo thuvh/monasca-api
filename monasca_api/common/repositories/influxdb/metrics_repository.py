@@ -135,11 +135,16 @@ class MetricsRepository(metrics_repository.MetricsRepository):
                     sorted(dimensions.iteritems())):
                 # replace ' with \' to make query parsable
                 clean_dimension_name = dimension_name.replace("\'", "\\'")
-                clean_dimension_value = dimension_value.replace("\'", "\\'")
+                if dimension_value == "":
+                    where_clause += " and \"{}\" =~ /.*/ ".format(
+                        clean_dimension_name)
+                else:
+                    # replace ' with \' to make query parsable
+                    clean_dimension_value = dimension_value.replace("\'", "\\'")
 
-                where_clause += " and \"{}\" = '{}'".format(
-                    clean_dimension_name.encode('utf8'),
-                    clean_dimension_value.encode('utf8'))
+                    where_clause += " and \"{}\" = '{}'".format(
+                        clean_dimension_name.encode('utf8'),
+                        clean_dimension_value.encode('utf8'))
 
         if start_timestamp is not None:
             where_clause += " and time > " + str(int(start_timestamp *

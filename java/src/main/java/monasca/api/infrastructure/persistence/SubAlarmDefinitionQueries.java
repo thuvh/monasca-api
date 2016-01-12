@@ -13,6 +13,8 @@
  */
 package monasca.api.infrastructure.persistence;
 
+import com.google.common.base.Strings;
+
 import java.util.Map;
 
 /**
@@ -29,11 +31,18 @@ public final class SubAlarmDefinitionQueries {
 
       sbJoin = new StringBuilder();
 
-      for (int i = 0; i < dimensions.size(); i++) {
-        sbJoin.append(" inner join sub_alarm_definition_dimension d").append(i).append(" on d").append(i)
-            .append(".dimension_name = :dname").append(i).append(" and d").append(i)
-            .append(".value = :dvalue").append(i).append(" and dim.sub_alarm_definition_id = d")
+      int i = 0;
+      for (String dimension_key : dimensions.keySet()) {
+        sbJoin.append(" inner join sub_alarm_definition_dimension d").append(i).append(" on d")
+            .append(i)
+            .append(".dimension_name = :dname").append(i);
+        if (!Strings.isNullOrEmpty(dimensions.get(dimension_key))) {
+          sbJoin.append(" and d").append(i)
+              .append(".value = :dvalue").append(i);
+        }
+        sbJoin.append(" and dim.sub_alarm_definition_id = d")
             .append(i).append(".sub_alarm_definition_id");
+        i++;
       }
     }
 

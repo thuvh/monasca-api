@@ -13,6 +13,8 @@
  */
 package monasca.api.infrastructure.persistence;
 
+import com.google.common.base.Strings;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -38,7 +40,9 @@ public final class DimensionQueries {
       for (Iterator<Map.Entry<String, String>> it = dimensions.entrySet().iterator(); it.hasNext(); i++) {
         Map.Entry<String, String> entry = it.next();
         query.bind("dname" + i, entry.getKey());
-        query.bind("dvalue" + i, entry.getValue());
+        if (!Strings.isNullOrEmpty(entry.getValue())) {
+          query.bind("dvalue" + i, entry.getValue());
+        }
       }
     }
   }
