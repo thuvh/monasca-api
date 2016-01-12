@@ -291,6 +291,74 @@ class TestMetrics(base.BaseMonascaTest):
                 self.fail(error_msg)
 
     @test.attr(type='gate')
+    def test_list_metrics_dimension_query_multi_value(self):
+        name = data_utils.rand_name('name')
+        key_service = "service"
+        value_1 = data_utils.rand_name('value')
+        value_2 = data_utils.rand_name('value')
+        metric_1 = helpers.create_metric(name, {key_service: value_1})
+        metric_2 = helpers.create_metric(name, {key_service: value_2})
+        metric_3 = helpers.create_metric(name)
+        metrics = [metric_1, metric_2, metric_3]
+        resp, response_body = self.monasca_client.create_metrics(metrics)
+        self.assertEqual(204, resp.status)
+        query_param = '?name=' + name + '&dimensions=service:' + value_1 + '|' + value_2
+        for i in xrange(constants.MAX_RETRIES):
+            resp, response_body = self.monasca_client.list_metrics(query_param)
+            self.assertEqual(200, resp.status)
+            elements = response_body['elements']
+            if len(elements) == 2:
+                dimension_sets = []
+                for element in elements:
+                    self.assertEqual(name, element['name'])
+                    dimension_sets.append(element['dimensions'])
+                self.assertIn(metric_1['dimensions'], dimension_sets)
+                self.assertIn(metric_2['dimensions'], dimension_sets)
+                self.assertNotIn(metric_3['dimensions'], dimension_sets)
+                return
+
+            time.sleep(constants.RETRY_WAIT_SECS)
+            if i == constants.MAX_RETRIES - 1:
+                error_msg = "Timeout on waiting for metrics: at least " \
+                            "2 metrics are needed. Current number of " \
+                            "metrics = 0"
+                self.fail(error_msg)
+
+    @test.attr(type='gate')
+    def test_list_metrics_dimension_query_no_value(self):
+        name = data_utils.rand_name('name')
+        key_service = "service"
+        value_1 = data_utils.rand_name('value')
+        value_2 = data_utils.rand_name('value')
+        metric_1 = helpers.create_metric(name, {key_service: value_1})
+        metric_2 = helpers.create_metric(name, {key_service: value_2})
+        metric_3 = helpers.create_metric(name)
+        metrics = [metric_1, metric_2, metric_3]
+        resp, response_body = self.monasca_client.create_metrics(metrics)
+        self.assertEqual(204, resp.status)
+        query_param = '?name=' + name + '&dimensions=service'
+        for i in xrange(constants.MAX_RETRIES):
+            resp, response_body = self.monasca_client.list_metrics(query_param)
+            self.assertEqual(200, resp.status)
+            elements = response_body['elements']
+            if len(elements) == 2:
+                dimension_sets = []
+                for element in elements:
+                    self.assertEqual(name, element['name'])
+                    dimension_sets.append(element['dimensions'])
+                self.assertIn(metric_1['dimensions'], dimension_sets)
+                self.assertIn(metric_2['dimensions'], dimension_sets)
+                self.assertNotIn(metric_3['dimensions'], dimension_sets)
+                return
+
+            time.sleep(constants.RETRY_WAIT_SECS)
+            if i == constants.MAX_RETRIES - 1:
+                error_msg = "Timeout on waiting for metrics: at least " \
+                            "2 metrics are needed. Current number of " \
+                            "metrics = 0"
+                self.fail(error_msg)
+
+    @test.attr(type='gate')
     def test_list_metrics_with_name(self):
         name = data_utils.rand_name('name')
         key = data_utils.rand_name('key')

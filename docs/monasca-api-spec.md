@@ -981,7 +981,7 @@ None.
 #### Query Parameters
 * tenant_id (string, optional, restricted) - Tenant ID to from which to get metrics. This parameter can be used to get metrics from a tenant other than the tenant the request auth token is scoped to. Usage of this query parameter is restricted to users with the the monasca admin role, as defined in the monasca api configuration file, which defaults to `monasca-admin`.
 * name (string(255), optional) - A metric name to filter metrics by.
-* dimensions (string, optional) - A dictionary to filter metrics by specified as a comma separated array of (key, value) pairs as `key1:value1,key2:value2, ...`
+* dimensions (string, optional) - A dictionary to filter metrics by specified as a comma separated array of (key, value) pairs as `key1:value1,key2:value2, ...`, leaving the value empty `key1,key2:value2` will return all values for that key, multiple values for a key may be specified as `key1:value1|value2|...,key2:value4,...`
 * start_time (string, optional) - The start time in ISO 8601 combined date and time format in UTC.  This is useful for only listing metrics that have measurements since the specified start_time.
 * end_time (string, optional) - The end time in ISO 8601 combined date and time format in UTC.  Combined with start_time, this can be useful to only list metrics that have measurements in between the specified start_time and end_time.
 * offset (integer (InfluxDB) or hexadecimal string (Vertica), optional)
@@ -1774,7 +1774,7 @@ None.
 
 #### Query Parameters
 * name (string(255), optional) - Name of alarm to filter by.
-* dimensions (string, optional) - Dimensions of metrics to filter by specified as a comma separated array of (key, value) pairs as `key1:value1,key1:value1, ...`
+* dimensions (string, optional) - Dimensions of metrics to filter by specified as a comma separated array of (key, value) pairs as `key1:value1,key1:value1, ...`, leaving the value empty `key1,key2:value2` will return all values for that key, multiple values for a key may be specified as `key1:value1|value2|...,key2:value4,...`
 * offset (string, optional)
 * limit (integer, optional)
 
@@ -2238,7 +2238,7 @@ None.
 
 * alarm_definition_id (string, optional) - Alarm definition ID to filter by.
 * metric_name (string(255), optional) - Name of metric to filter by.
-* metric_dimensions ({string(255): string(255)}, optional) - Dimensions of metrics to filter by specified as a comma separated array of (key, value) pairs as `key1:value1,key1:value1, ...`
+* metric_dimensions ({string(255): string(255)}, optional) - Dimensions of metrics to filter by specified as a comma separated array of (key, value) pairs as `key1:value1,key1:value1, ...`, leaving the value empty `key1,key2:value2` will return all values for that key, multiple values for a key may be specified as `key1:value1|value2|...,key2:value4,...`
 * state (string, optional) - State of alarm to filter by, either `OK`, `ALARM` or `UNDETERMINED`.
 * lifecycle_state (string(50), optional) - Lifecycle state to filter by.
 * link (string(512), optional) - Link to filter by.
