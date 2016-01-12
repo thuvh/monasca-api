@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 Hewlett-Packard Development Company, L.P.
+ * Copyright (c) 2014,2016 Hewlett Packard Enterprise Development Company, L.P.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -93,9 +93,11 @@ public final class Validation {
       String[] dimensionArr = Iterables.toArray(COLON_SPLITTER.split(dimensionStr), String.class);
       if (dimensionArr.length == 2)
         dimensions.put(dimensionArr[0], dimensionArr[1]);
+      if (dimensionArr.length == 1)
+        dimensions.put(dimensionArr[0], "");
     }
 
-    DimensionValidation.validate(dimensions);
+    //DimensionValidation.validate(dimensions);
     return dimensions;
   }
 

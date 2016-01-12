@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 Hewlett-Packard Development Company, L.P.
+ * Copyright (c) 2014,2016 Hewlett Packard Enterprise Development Company, L.P.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -12,6 +12,9 @@
  * the License.
  */
 package monasca.api.infrastructure.persistence.mysql;
+
+import com.google.common.base.Splitter;
+import com.google.common.base.Strings;
 
 import monasca.api.domain.exception.EntityNotFoundException;
 import monasca.api.domain.model.alarm.Alarm;
@@ -90,15 +93,28 @@ public class AlarmMySqlRepoImpl implements AlarmRepo {
     if (dimensions == null) {
       return;
     }
-
-    for (int i = 0; i < dimensions.size(); i++) {
+    int i = 0;
+    for (String dimension_key : dimensions.keySet()) {
       final String indexStr = String.valueOf(i);
       sbJoin.append(" inner join metric_dimension md").append(indexStr).append(" on md")
           .append(indexStr)
-          .append(".name = :dname").append(indexStr).append(" and md").append(indexStr)
-          .append(".value = :dvalue").append(indexStr)
-          .append(" and mdd.metric_dimension_set_id = md")
+          .append(".name = :dname").append(indexStr);
+      String dim_value = dimensions.get(dimension_key);
+      if (!Strings.isNullOrEmpty(dim_value)) {
+        sbJoin.append(" and (");
+        List<String> values = Splitter.on('|').splitToList(dim_value);
+        for (int j = 0; j < values.size(); j++) {
+          sbJoin.append(" md").append(indexStr)
+              .append(".value = :dvalue").append(indexStr).append('_').append(j);
+          if (j < values.size() - 1) {
+            sbJoin.append(" or");
+          }
+        }
+        sbJoin.append(")");
+      }
+      sbJoin.append(" and mdd.metric_dimension_set_id = md")
           .append(indexStr).append(".dimension_set_id");
+      i++;
     }
   }
 

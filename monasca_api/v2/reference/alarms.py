@@ -1,4 +1,4 @@
-# Copyright 2014 Hewlett-Packard
+# Copyright 2014,2016 Hewlett Packard Enterprise Development Company, L.P.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -23,6 +23,7 @@ from monasca_api.api import alarms_api_v2
 from monasca_api.common.repositories import exceptions
 from monasca_api.v2.common.exceptions import HTTPUnprocessableEntityError
 from monasca_api.v2.common.schemas import alarm_update_schema as schema_alarm
+import monasca_api.v2.common.validation as validation
 from monasca_api.v2.reference import alarming
 from monasca_api.v2.reference import helpers
 from monasca_api.v2.reference import resource
@@ -120,6 +121,7 @@ class Alarms(alarms_api_v2.AlarmsV2API,
             # ensure metric_dimensions is a list
             if 'metric_dimensions' in query_parms and isinstance(query_parms['metric_dimensions'], str):
                 query_parms['metric_dimensions'] = query_parms['metric_dimensions'].split(',')
+                self._validate_dimensions(query_parms['metric_dimensions'])
 
             offset = helpers.get_query_param(req, 'offset')
 
@@ -136,6 +138,20 @@ class Alarms(alarms_api_v2.AlarmsV2API,
 
             res.body = helpers.dumpit_utf8(result)
             res.status = falcon.HTTP_200
+
+    @staticmethod
+    def _validate_dimensions(dimensions):
+        try:
+            assert isinstance(dimensions, list)
+            for dimension in dimensions:
+                name_value = dimension.split('=')
+                validation.dimension_key(name_value[0])
+                if len(name_value) > 1 and '|' in name_value[1]:
+                    values = name_value[1].split('|')
+                    for value in values:
+                        validation.dimension_value(value)
+        except Exception as e:
+            raise HTTPUnprocessableEntityError("Unprocessable Entity", e.message)
 
     @resource.resource_try_catch_block
     def _alarm_update(self, tenant_id, alarm_id, new_state, lifecycle_state,
