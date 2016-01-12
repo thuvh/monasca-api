@@ -77,12 +77,19 @@ class TestGetQueryDimension(unittest.TestCase):
                      "Dimension-2": "Value-2",
                      "Dimension-3": "Value-3"})
 
-    def test_malformed_dimension_no_value(self):
+    def test_dimension_no_value(self):
         req = Mock()
-        req.query_string = ("foo=bar&dimensions=no_value")
+        req.query_string = ("foo=bar&dimensions=Dimension_no_value")
 
-        self.assertRaises(
-            HTTPUnprocessableEntityError, helpers.get_query_dimensions, req)
+        result = helpers.get_query_dimensions(req)
+        self.assertEqual(result, {"Dimension_no_value": ""})
+
+    def test_dimension_multi_value(self):
+        req = Mock()
+        req.query_string = ("foo=bar&dimensions=Dimension_multi_value:one|two|three")
+
+        result = helpers.get_query_dimensions(req)
+        self.assertEqual(result, {"Dimension_multi_value": "one|two|three"})
 
     def test_malformed_dimension_extra_colons(self):
         req = Mock()

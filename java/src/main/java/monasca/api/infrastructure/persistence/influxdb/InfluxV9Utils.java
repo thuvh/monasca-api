@@ -13,6 +13,8 @@
  */
 package monasca.api.infrastructure.persistence.influxdb;
 
+import com.google.common.base.Splitter;
+import com.google.common.base.Strings;
 
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
@@ -166,8 +168,15 @@ public class InfluxV9Utils {
     if (dims != null && !dims.isEmpty()) {
       for (String k : dims.keySet()) {
         String v = dims.get(k);
-        if (k != null && !k.isEmpty() && v != null && !v.isEmpty()) {
-          sb.append(" and \"" + sanitize(k) + "\"=" + "'" + sanitize(v) + "'");
+        if (k != null && !k.isEmpty()) {
+          sb.append(" and \"" + sanitize(k) + "\"");
+          if (Strings.isNullOrEmpty(v)) {
+            sb.append("=~ /.*/");
+          } else if (v.contains("|")) {
+            sb.append("=~ " + "/^" + sanitize(v) + "$/");
+          } else {
+            sb.append("= " + "'" + sanitize(v) + "'");
+          }
         }
       }
     }

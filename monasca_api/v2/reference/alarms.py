@@ -120,6 +120,7 @@ class Alarms(alarms_api_v2.AlarmsV2API,
             # ensure metric_dimensions is a list
             if 'metric_dimensions' in query_parms and isinstance(query_parms['metric_dimensions'], str):
                 query_parms['metric_dimensions'] = query_parms['metric_dimensions'].split(',')
+                self._validate_dimensions(query_parms['metric_dimensions'])
 
             offset = helpers.get_query_param(req, 'offset')
 
@@ -136,6 +137,15 @@ class Alarms(alarms_api_v2.AlarmsV2API,
 
             res.body = helpers.dumpit_utf8(result)
             res.status = falcon.HTTP_200
+
+    @staticmethod
+    def _validate_dimensions(dimensions):
+        try:
+            assert isinstance(dimensions, list)
+            for dimension in dimensions:
+                name_value = dimension.split('=')
+        except Exception as e:
+            raise HTTPUnprocessableEntityError("Unprocessable Entity", e.message)
 
     @resource.resource_try_catch_block
     def _alarm_update(self, tenant_id, alarm_id, new_state, lifecycle_state,
