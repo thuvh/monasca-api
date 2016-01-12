@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da6ed579_c69e3307",
+        "filename": "monasca_api/tests/test_alarms.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-01-12T05:33:36Z",
+      "side": 1,
+      "message": "The problem with doing the test this way is you don\u0027t catch if result_def has extra entries in it. Probably makes more sense to just have \u0027id\u0027: def_id in expected_def and doing a simple assertEqual",
+      "range": {
+        "startLine": 396,
+        "startChar": 8,
+        "endLine": 396,
+        "endChar": 42
+      },
+      "revId": "becf9803d183f215326d463989ec0859a78e31df",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
