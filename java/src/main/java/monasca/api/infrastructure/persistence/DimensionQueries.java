@@ -13,9 +13,13 @@
  */
 package monasca.api.infrastructure.persistence;
 
+import com.google.common.base.Splitter;
+import com.google.common.base.Strings;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.skife.jdbi.v2.Query;
@@ -38,7 +42,14 @@ public final class DimensionQueries {
       for (Iterator<Map.Entry<String, String>> it = dimensions.entrySet().iterator(); it.hasNext(); i++) {
         Map.Entry<String, String> entry = it.next();
         query.bind("dname" + i, entry.getKey());
-        query.bind("dvalue" + i, entry.getValue());
+        if (!Strings.isNullOrEmpty(entry.getValue())) {
+          List<String> values = Splitter.on('|').splitToList(entry.getValue());
+          int j = 0;
+          for (String value : values) {
+            query.bind("dvalue" + i + '_' + j, value);
+            j++;
+          }
+        }
       }
     }
   }
