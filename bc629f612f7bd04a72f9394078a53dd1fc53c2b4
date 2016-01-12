@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da6ed579_c8eba2af",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9MetricDefinitionRepo.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-01-12T04:55:48Z",
+      "side": 1,
+      "message": "This should be limit, not slimit. See https://github.com/influxdata/influxdb/issues/4232. You are only interested in whether there is at least one result and there is no point in getting all of the possible points. Also, you might as well not retrieve value_meta. You don\u0027t need it and it just adds influxdb processing time if it exists.",
+      "range": {
+        "startLine": 274,
+        "startChar": 63,
+        "endLine": 274,
+        "endChar": 69
+      },
+      "revId": "bc629f612f7bd04a72f9394078a53dd1fc53c2b4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6ed579_48e252a1",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MetricDefinitionVerticaRepoImpl.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-01-12T04:55:48Z",
+      "side": 1,
+      "message": "Did you try to do this all as one query instead of two? It seems like it would be possible but I haven\u0027t tried",
+      "range": {
+        "startLine": 355,
+        "startChar": 48,
+        "endLine": 355,
+        "endChar": 59
+      },
+      "revId": "bc629f612f7bd04a72f9394078a53dd1fc53c2b4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6ed579_e89466e9",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MetricDefinitionVerticaRepoImpl.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-01-12T04:55:48Z",
+      "side": 1,
+      "message": "Have you tried this with tens of thousands of metrics? Seems like this might cause problems if there were that many metrics.\n\nNote that the previous use of createInClause.createInClause() was limited by always having a metric name so it couldn\u0027t have as large a defDimIdSet.",
+      "range": {
+        "startLine": 367,
+        "startChar": 18,
+        "endLine": 367,
+        "endChar": 21
+      },
+      "revId": "bc629f612f7bd04a72f9394078a53dd1fc53c2b4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6ed579_cb24fcb0",
+        "filename": "java/src/main/java/monasca/api/resource/MetricResource.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-01-12T04:55:48Z",
+      "side": 1,
+      "message": "The query code ignores endTime if startTime is null. But, your validation and API doc allow endTime to be set with a null startTime",
+      "range": {
+        "startLine": 139,
+        "startChar": 4,
+        "endLine": 139,
+        "endChar": 51
+      },
+      "revId": "bc629f612f7bd04a72f9394078a53dd1fc53c2b4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6ed579_2bf2789b",
+        "filename": "monasca_api/v2/reference/metrics.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-01-12T04:55:48Z",
+      "side": 1,
+      "message": "same problem as in Java implementation",
+      "range": {
+        "startLine": 141,
+        "startChar": 16,
+        "endLine": 141,
+        "endChar": 45
+      },
+      "revId": "bc629f612f7bd04a72f9394078a53dd1fc53c2b4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6ed579_8b236405",
+        "filename": "monasca_tempest_tests/tests/api/test_metrics.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-01-12T04:55:48Z",
+      "side": 1,
+      "message": "Under what circumstances is this valid? The test should run always and not be skipped if there is a problem. That allows bugs to slip in",
+      "range": {
+        "startLine": 462,
+        "startChar": 31,
+        "endLine": 462,
+        "endChar": 44
+      },
+      "revId": "bc629f612f7bd04a72f9394078a53dd1fc53c2b4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
