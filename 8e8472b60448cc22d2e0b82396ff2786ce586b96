@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da6ed579_d249e3d1",
+        "filename": "monasca_tempest_tests/tests/api/test_alarms_state_history.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-01-12T19:25:50Z",
+      "side": 1,
+      "message": "Why do this query again? With the limit set to the length of the elements, it is the same as the first query at the top of the test.",
+      "range": {
+        "startLine": 195,
+        "startChar": 12,
+        "endLine": 199,
+        "endChar": 46
+      },
+      "revId": "8e8472b60448cc22d2e0b82396ff2786ce586b96",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
