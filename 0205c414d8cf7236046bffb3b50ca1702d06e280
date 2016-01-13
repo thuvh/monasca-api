@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da6ed579_3d801046",
+        "filename": "monasca_tempest_tests/tests/api/test_alarms_state_history.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-01-13T20:09:38Z",
+      "side": 1,
+      "message": "This is really waiting for the alarms to be created and then for them to change state so an Alarm State History is created",
+      "revId": "0205c414d8cf7236046bffb3b50ca1702d06e280",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6ed579_9da01ca1",
+        "filename": "monasca_tempest_tests/tests/api/test_alarms_state_history.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-01-13T20:09:38Z",
+      "side": 1,
+      "message": "elements_length is the same as number_of_alarms. Remove elements_length",
+      "range": {
+        "startLine": 194,
+        "startChar": 12,
+        "endLine": 194,
+        "endChar": 27
+      },
+      "revId": "0205c414d8cf7236046bffb3b50ca1702d06e280",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6ed579_9dc9fc7a",
+        "filename": "monasca_tempest_tests/tests/api/test_alarms_state_history.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-01-13T20:09:38Z",
+      "side": 1,
+      "message": "This should probably be number_of_alarms since the below test will fail if number_of_alarms is \u003e MIN_HISTORY and your test allows for that case",
+      "range": {
+        "startLine": 195,
+        "startChar": 42,
+        "endLine": 195,
+        "endChar": 53
+      },
+      "revId": "0205c414d8cf7236046bffb3b50ca1702d06e280",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6ed579_53d4d51e",
+        "filename": "monasca_tempest_tests/tests/api/test_alarms_state_history.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-01-13T20:09:38Z",
+      "side": 1,
+      "message": "This inner loop is probably overkill. It really doesn\u0027t test cases that wouldn\u0027t be covered by having just one loop",
+      "range": {
+        "startLine": 206,
+        "startChar": 0,
+        "endLine": 206,
+        "endChar": 50
+      },
+      "revId": "0205c414d8cf7236046bffb3b50ca1702d06e280",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
