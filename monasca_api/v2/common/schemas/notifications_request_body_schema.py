@@ -13,11 +13,29 @@
 # under the License.
 
 from oslo_log import log
+import re
+import sys
 import voluptuous
 
 from monasca_api.v2.common.schemas import exceptions
 
+if sys.version_info >= (3,):
+    import urllib.parse as urlparse
+else:
+    import urlparse
+
 LOG = log.getLogger(__name__)
+ADDRESS_ERR_MESSAGE = "Address {} is not of correct format"
+
+local_regex = re.compile(
+    r"\A[\w!#$%&'*+/=?`{|}~^-]+(?:\.[\w!#$%&'*+/=?`{|}~^-]+)*\Z",
+    re.IGNORECASE)
+domain_regex = re.compile(
+    r"\A(?:[A-Z0-9-]+\.)+[A-Z]{2,6}\Z",
+    re.IGNORECASE)
+domain_whitelist = ['localhost']
+schemes = ['http', 'https']
+
 
 notification_schema = {
     voluptuous.Required('name'): voluptuous.Schema(
@@ -39,3 +57,35 @@ def validate(msg):
     except Exception as ex:
         LOG.debug(ex)
         raise exceptions.ValidationException(str(ex))
+
+    notification_type = str(msg['type']).upper()
+    if notification_type == 'EMAIL':
+        _validate_email(msg['address'])
+    elif notification_type == 'WEBHOOK':
+        _validate_url(msg['address'])
+
+
+def _validate_email(address):
+    if not address or '@' not in address:
+        raise exceptions.ValidationException(ADDRESS_ERR_MESSAGE.format(address))
+
+    local_part, domain_part = address.split('@')
+
+    if not local_regex.match(local_part):
+        raise exceptions.ValidationException(ADDRESS_ERR_MESSAGE.format(address))
+
+    if domain_part not in domain_whitelist:
+        if not domain_regex.match(domain_part):
+            raise exceptions.ValidationException(ADDRESS_ERR_MESSAGE.format(address))
+
+
+def _validate_url(address):
+    try:
+        parsed = urlparse.urlparse(address)
+    except:
+        raise exceptions.ValidationException(ADDRESS_ERR_MESSAGE.format(address))
+
+    if not parsed.scheme or not parsed.netloc:
+        raise exceptions.ValidationException(ADDRESS_ERR_MESSAGE.format(address))
+    if parsed.scheme not in schemes:
+        raise exceptions.ValidationException(ADDRESS_ERR_MESSAGE.format(address))
