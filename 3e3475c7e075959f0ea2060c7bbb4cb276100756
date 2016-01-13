@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa69d971_2dcd3cb7",
+        "filename": "java/src/main/java/monasca/api/domain/model/alarm/AlarmCount.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-01-13T22:10:58Z",
+      "side": 1,
+      "message": "Might want to remove this comment",
+      "range": {
+        "startLine": 12,
+        "startChar": 1,
+        "endLine": 12,
+        "endChar": 3
+      },
+      "revId": "3e3475c7e075959f0ea2060c7bbb4cb276100756",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa69d971_cd4b402a",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/hibernate/AlarmSqlRepoImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-01-13T22:10:58Z",
+      "side": 1,
+      "message": "indenting too far",
+      "range": {
+        "startLine": 533,
+        "startChar": 52,
+        "endLine": 533,
+        "endChar": 53
+      },
+      "revId": "3e3475c7e075959f0ea2060c7bbb4cb276100756",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6ed579_df2763c8",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmMySqlRepoImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-01-13T22:10:58Z",
+      "side": 1,
+      "message": "Possibly a more descriptive method name. getLong seems a bit ambiguous.",
+      "range": {
+        "startLine": 311,
+        "startChar": 15,
+        "endLine": 311,
+        "endChar": 22
+      },
+      "revId": "3e3475c7e075959f0ea2060c7bbb4cb276100756",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa69d971_2d5bfcf7",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmMySqlRepoImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-01-13T22:10:58Z",
+      "side": 1,
+      "message": "indenting too far",
+      "range": {
+        "startLine": 418,
+        "startChar": 46,
+        "endLine": 418,
+        "endChar": 52
+      },
+      "revId": "3e3475c7e075959f0ea2060c7bbb4cb276100756",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa69d971_6d2fb43e",
+        "filename": "java/src/main/java/monasca/api/resource/AlarmResource.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-01-13T22:10:58Z",
+      "side": 1,
+      "message": "Need to update Copyright to 2014-2016 and should probably remove the errant spaces below that are showing up after the asterisk.\n\nNote, this comment applies to a number of files.",
+      "range": {
+        "startLine": 2,
+        "startChar": 12,
+        "endLine": 2,
+        "endChar": 13
+      },
+      "revId": "3e3475c7e075959f0ea2060c7bbb4cb276100756",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
