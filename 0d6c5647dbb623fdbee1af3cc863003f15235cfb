@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "da6ed579_e50cdfed",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMySqlRepoImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-01-14T19:15:52Z",
+      "side": 1,
+      "message": "It does not, fixed.",
+      "parentUuid": "da6ed579_1b418638",
+      "range": {
+        "startLine": 171,
+        "startChar": 8,
+        "endLine": 171,
+        "endChar": 37
+      },
+      "revId": "0d6c5647dbb623fdbee1af3cc863003f15235cfb",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da6ed579_f8c6f898",
         "filename": "java/src/main/java/monasca/api/resource/AlarmResource.java",
         "patchSetId": 16
@@ -36,6 +60,30 @@
       "writtenOn": "2016-01-14T01:47:08Z",
       "side": 1,
       "message": "This practically the same code as in AlarmDefinitionResource.java. You should move it into a utility class",
+      "range": {
+        "startLine": 208,
+        "startChar": 23,
+        "endLine": 208,
+        "endChar": 45
+      },
+      "revId": "0d6c5647dbb623fdbee1af3cc863003f15235cfb",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6ed579_252e7743",
+        "filename": "java/src/main/java/monasca/api/resource/AlarmResource.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-01-14T19:15:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da6ed579_f8c6f898",
       "range": {
         "startLine": 208,
         "startChar": 23,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "da6ed579_25d5171b",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/hibernate/AlarmDefinitionSqlRepositoryImplTest.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-01-14T19:15:52Z",
+      "side": 1,
+      "message": "sort_by is not implemented with hibernate",
+      "parentUuid": "da6ed579_58e064fa",
+      "range": {
+        "startLine": 55,
+        "startChar": 13,
+        "endLine": 55,
+        "endChar": 49
+      },
+      "revId": "0d6c5647dbb623fdbee1af3cc863003f15235cfb",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da6ed579_b8ef20e8",
         "filename": "java/src/test/java/monasca/api/infrastructure/persistence/hibernate/AlarmSqlRepositoryImplTest.java",
         "patchSetId": 16
@@ -82,6 +154,30 @@
       "writtenOn": "2016-01-14T01:47:08Z",
       "side": 1,
       "message": "I don\u0027t see any tests of the new sort_by functionality",
+      "range": {
+        "startLine": 66,
+        "startChar": 13,
+        "endLine": 66,
+        "endChar": 39
+      },
+      "revId": "0d6c5647dbb623fdbee1af3cc863003f15235cfb",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6ed579_05e013f9",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/hibernate/AlarmSqlRepositoryImplTest.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-01-14T19:15:52Z",
+      "side": 1,
+      "message": "sort_by is not implemented for hibernate",
+      "parentUuid": "da6ed579_b8ef20e8",
       "range": {
         "startLine": 66,
         "startChar": 13,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "da6ed579_65ef8fe9",
+        "filename": "java/src/test/java/monasca/api/resource/AlarmDefinitionResourceTest.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-01-14T19:15:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da6ed579_d8e0d498",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 39
+      },
+      "revId": "0d6c5647dbb623fdbee1af3cc863003f15235cfb",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da6ed579_3b07aa19",
         "filename": "monasca_api/v2/common/validation.py",
         "patchSetId": 16
@@ -128,6 +248,30 @@
       "writtenOn": "2016-01-14T01:47:08Z",
       "side": 1,
       "message": "I don\u0027t believe this modifies the values stored in sort_by_list. If not, there is  not point to this line",
+      "range": {
+        "startLine": 53,
+        "startChar": 12,
+        "endLine": 53,
+        "endChar": 35
+      },
+      "revId": "0d6c5647dbb623fdbee1af3cc863003f15235cfb",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6ed579_05b7b3f5",
+        "filename": "monasca_api/v2/common/validation.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-01-14T19:15:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da6ed579_3b07aa19",
       "range": {
         "startLine": 53,
         "startChar": 12,
