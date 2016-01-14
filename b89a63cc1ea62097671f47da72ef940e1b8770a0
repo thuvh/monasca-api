@@ -22,6 +22,30 @@
       "revId": "b89a63cc1ea62097671f47da72ef940e1b8770a0",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6ed579_e753b137",
+        "filename": "monasca_api/v2/common/schemas/notifications_request_body_schema.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-01-14T04:43:45Z",
+      "side": 1,
+      "message": "\u003e Why are we attempting to validate email addresses with a regular expression? Doesn\u0027t python have libraries for this?\n\nI\u0027m not familiar with python library. So I was given advice that regular expression is also OK in this case at January 6 irc meeting.\n\n\u003e Where did you get the expression?\n\nI refered expression from O\u0027Reilly Regular Expressions Cookbook.\n\n\u003e It\u0027s going to need some explanation about what it is matching and more tests to show what it allows and what it rejects.\n\nOK. I will try to explain in detail and I will add more tests. Thanks.",
+      "parentUuid": "da6ed579_b8e3a0a3",
+      "range": {
+        "startLine": 68,
+        "startChar": 4,
+        "endLine": 68,
+        "endChar": 19
+      },
+      "revId": "b89a63cc1ea62097671f47da72ef940e1b8770a0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
