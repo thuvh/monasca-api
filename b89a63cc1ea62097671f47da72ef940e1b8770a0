@@ -70,6 +70,30 @@
       "revId": "b89a63cc1ea62097671f47da72ef940e1b8770a0",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6ed579_edb70f38",
+        "filename": "monasca_api/v2/common/schemas/notifications_request_body_schema.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-01-14T06:08:40Z",
+      "side": 1,
+      "message": "Thanks, I understand risk of email validation. I have searched email validator in PyPi.\nBut I had no idea which validator is suitable about license.\nDoes below validator which has CC0 license and popularity than others accept for Monasca?\n---\nhttps://pypi.python.org/pypi/email_validator",
+      "parentUuid": "da6ed579_c73eac8b",
+      "range": {
+        "startLine": 68,
+        "startChar": 4,
+        "endLine": 68,
+        "endChar": 19
+      },
+      "revId": "b89a63cc1ea62097671f47da72ef940e1b8770a0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
