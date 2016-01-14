@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da6ed579_b8e3a0a3",
+        "filename": "monasca_api/v2/common/schemas/notifications_request_body_schema.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2016-01-14T01:39:23Z",
+      "side": 1,
+      "message": "Why are we attempting to validate email addresses with a regular expression?  Doesn\u0027t python have libraries for this?  Where did you get the expression?  It\u0027s going to need some explanation about what it is matching and more tests to show what it allows and what it rejects.",
+      "range": {
+        "startLine": 68,
+        "startChar": 4,
+        "endLine": 68,
+        "endChar": 19
+      },
+      "revId": "b89a63cc1ea62097671f47da72ef940e1b8770a0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
