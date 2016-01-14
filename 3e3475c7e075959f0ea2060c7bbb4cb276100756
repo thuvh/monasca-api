@@ -2,6 +2,98 @@
   "comments": [
     {
       "key": {
+        "uuid": "da6ed579_214210af",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 2359,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-01-14T10:15:26Z",
+      "side": 1,
+      "message": "missing back quote",
+      "range": {
+        "startLine": 2359,
+        "startChar": 158,
+        "endLine": 2359,
+        "endChar": 186
+      },
+      "revId": "3e3475c7e075959f0ea2060c7bbb4cb276100756",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6ed579_c1e454e2",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 2360,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-01-14T10:15:26Z",
+      "side": 1,
+      "message": "missing back quote. ALARM and UNDETERMINED are same.",
+      "range": {
+        "startLine": 2360,
+        "startChar": 65,
+        "endLine": 2360,
+        "endChar": 67
+      },
+      "revId": "3e3475c7e075959f0ea2060c7bbb4cb276100756",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6ed579_813e5cd8",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 2368,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-01-14T10:15:26Z",
+      "side": 1,
+      "message": "missing any?",
+      "range": {
+        "startLine": 2368,
+        "startChar": 0,
+        "endLine": 2368,
+        "endChar": 5
+      },
+      "revId": "3e3475c7e075959f0ea2060c7bbb4cb276100756",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6ed579_bc8f0729",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 2398,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-01-14T10:15:26Z",
+      "side": 1,
+      "message": "* \"alarms?\" may be \"alarms/count?\"\n* \"name\" and \"dimensions\" maybe have prefix of \"metric_\"",
+      "range": {
+        "startLine": 2398,
+        "startChar": 54,
+        "endLine": 2398,
+        "endChar": 101
+      },
+      "revId": "3e3475c7e075959f0ea2060c7bbb4cb276100756",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa69d971_2dcd3cb7",
         "filename": "java/src/main/java/monasca/api/domain/model/alarm/AlarmCount.java",
         "patchSetId": 6
