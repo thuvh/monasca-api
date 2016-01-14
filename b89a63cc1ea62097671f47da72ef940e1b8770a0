@@ -46,6 +46,30 @@
       "revId": "b89a63cc1ea62097671f47da72ef940e1b8770a0",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6ed579_c73eac8b",
+        "filename": "monasca_api/v2/common/schemas/notifications_request_body_schema.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2016-01-14T04:55:15Z",
+      "side": 1,
+      "message": "I did some quick tests with it and at the moment it allows some email addresses that it shouldn\u0027t and rejects some that it should allow.  To do email validation with regular expressions can be quite hard, and fragile, if you want it to match the spec which is why I suggested a library instead.  Python has several libraries which will verify that the email address is valid and also give the ability to see that the email is actually usable though that\u0027s more risky.",
+      "parentUuid": "da6ed579_e753b137",
+      "range": {
+        "startLine": 68,
+        "startChar": 4,
+        "endLine": 68,
+        "endChar": 19
+      },
+      "revId": "b89a63cc1ea62097671f47da72ef940e1b8770a0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
