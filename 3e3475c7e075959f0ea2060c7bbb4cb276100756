@@ -190,6 +190,30 @@
     },
     {
       "key": {
+        "uuid": "da6ed579_d98bb61d",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 2398,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-01-15T02:04:00Z",
+      "side": 1,
+      "message": "There are still missing prefix of \"metric_\".",
+      "parentUuid": "da6ed579_bc8f0729",
+      "range": {
+        "startLine": 2398,
+        "startChar": 54,
+        "endLine": 2398,
+        "endChar": 101
+      },
+      "revId": "3e3475c7e075959f0ea2060c7bbb4cb276100756",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa69d971_2dcd3cb7",
         "filename": "java/src/main/java/monasca/api/domain/model/alarm/AlarmCount.java",
         "patchSetId": 6
