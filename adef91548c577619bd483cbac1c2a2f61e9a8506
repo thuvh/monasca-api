@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da6ed579_95914755",
+        "filename": "monasca_api/tests/test_validation.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 13771
+      },
+      "writtenOn": "2016-01-15T23:38:07Z",
+      "side": 1,
+      "message": "this can be removed",
+      "range": {
+        "startLine": 220,
+        "startChar": 8,
+        "endLine": 220,
+        "endChar": 12
+      },
+      "revId": "adef91548c577619bd483cbac1c2a2f61e9a8506",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6ed579_359e5b64",
+        "filename": "monasca_api/tests/test_validation.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 13771
+      },
+      "writtenOn": "2016-01-15T23:38:07Z",
+      "side": 1,
+      "message": "also here",
+      "range": {
+        "startLine": 234,
+        "startChar": 8,
+        "endLine": 234,
+        "endChar": 12
+      },
+      "revId": "adef91548c577619bd483cbac1c2a2f61e9a8506",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
