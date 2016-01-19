@@ -284,9 +284,13 @@ function install_monasca_virtual_env {
 
     sudo mkdir -p /opt/monasca || true
 
-    (cd /opt/monasca ; sudo virtualenv .)
+    sudo chown $STACK_USER:monasca /opt/monasca
 
-    (cd /opt/monasca ; sudo -H ./bin/pip  install --pre --allow-all-external --allow-unverified simport simport)
+    (cd /opt/monasca ; virtualenv .)
+
+    PIP_VIRTUAL_ENV=/opt/monasca
+
+    pip_install --pre --allow-all-external --allow-unverified simport simport
 }
 
 function clean_monasca_virtual_env {
@@ -711,13 +715,14 @@ function install_monasca_api_python {
     sudo apt-get -y install python-mysqldb
     sudo apt-get -y install libmysqlclient-dev
 
-    (cd /opt/monasca; sudo -H ./bin/pip install gunicorn)
+    PIP_VIRTUAL_ENV=/opt/monasca
+    pip_install gunicorn
 
     (cd "${MONASCA_BASE}"/monasca-api ; sudo python setup.py sdist)
 
     MONASCA_API_SRC_DIST=$(ls -td "${MONASCA_BASE}"/monasca-api/dist/monasca-api-*.tar.gz)
 
-    (cd /opt/monasca ; sudo -H ./bin/pip install $MONASCA_API_SRC_DIST)
+    pip_install $MONASCA_API_SRC_DIST
 
     sudo useradd --system -g monasca mon-api || true
 
@@ -900,9 +905,13 @@ function install_monasca_persister_python {
 
     sudo mkdir -p /opt/monasca-persister || true
 
-    (cd /opt/monasca-persister ; sudo virtualenv .)
+    sudo chown $STACK_USER:monasca /opt/monasca-persister
 
-    (cd /opt/monasca-persister ; sudo -H ./bin/pip install $MONASCA_PERSISTER_SRC_DIST)
+    (cd /opt/monasca-persister ; virtualenv .)
+
+    PIP_VIRTUAL_ENV=/opt/monasca-persister
+
+    pip_install $MONASCA_PERSISTER_SRC_DIST
 
     sudo useradd --system -g monasca mon-persister || true
 
@@ -1024,9 +1033,11 @@ function install_monasca_notification {
 
     MONASCA_NOTIFICATION_SRC_DIST=$(ls -td "${MONASCA_BASE}"/monasca-notification/dist/monasca-notification-*.tar.gz | head -1)
 
-    (cd /opt/monasca ; sudo -H ./bin/pip install  --allow-unverified simport $MONASCA_NOTIFICATION_SRC_DIST)
+    PIP_VIRTUAL_ENV=/opt/monasca
 
-    (cd /opt/monasca ; sudo -H ./bin/pip install mysql-python)
+    pip_install --allow-unverified simport $MONASCA_NOTIFICATION_SRC_DIST
+
+    pip_install mysql-python
 
     sudo useradd --system -g monasca mon-notification || true
 
