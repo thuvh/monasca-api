@@ -711,13 +711,17 @@ function install_monasca_api_python {
     sudo apt-get -y install python-mysqldb
     sudo apt-get -y install libmysqlclient-dev
 
-    (cd /opt/monasca; sudo -H ./bin/pip install gunicorn)
+    sudo mkdir -p /opt/monasca-api
+
+    (cd /opt/monasca-api; sudo virtualenv .)
+
+    (cd /opt/monasca-api; sudo -H ./bin/pip install gunicorn)
 
     (cd "${MONASCA_BASE}"/monasca-api ; sudo python setup.py sdist)
 
     MONASCA_API_SRC_DIST=$(ls -td "${MONASCA_BASE}"/monasca-api/dist/monasca-api-*.tar.gz)
 
-    (cd /opt/monasca ; sudo -H ./bin/pip install $MONASCA_API_SRC_DIST)
+    (cd /opt/monasca-api ; sudo -H ./bin/pip install $MONASCA_API_SRC_DIST)
 
     sudo useradd --system -g monasca mon-api || true
 
