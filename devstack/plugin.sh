@@ -1275,17 +1275,7 @@ function install_monasca_keystone_client {
 
     sudo apt-get -y install python-dev
 
-     if [[ ! -d "${MONASCA_BASE}"/python-keystoneclient ]]; then
-
-        sudo git clone https://git.openstack.org/openstack/python-keystoneclient "${MONASCA_BASE}"/python-keystoneclient
-
-    fi
-
-    (cd "${MONASCA_BASE}"/python-keystoneclient ; sudo python setup.py sdist)
-
-    MONASCA_KEYSTONE_SRC_DIST=$(ls -td "${MONASCA_BASE}"/python-keystoneclient/dist/python-keystoneclient-*.tar.gz | head -1)
-
-    (cd /opt/monasca ; sudo -H ./bin/pip install $MONASCA_KEYSTONE_SRC_DIST)
+    (cd /opt/monasca ; sudo -H ./bin/pip install python-keystoneclient==2.1.1)
 
     sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/keystone/create_monasca_service.py /usr/local/bin/create_monasca_service.py
 
