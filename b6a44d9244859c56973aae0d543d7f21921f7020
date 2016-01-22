@@ -22,6 +22,30 @@
       "revId": "b6a44d9244859c56973aae0d543d7f21921f7020",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a68dd71_9ebc77dd",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 1343,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-01-22T18:10:08Z",
+      "side": 1,
+      "message": "If we have it in the requirements file, we should have to do it after. Otherwise I think we will be fine, but its easy enough to change either way.",
+      "parentUuid": "9a68dd71_a3bcc8dc",
+      "range": {
+        "startLine": 1343,
+        "startChar": 20,
+        "endLine": 1343,
+        "endChar": 21
+      },
+      "revId": "b6a44d9244859c56973aae0d543d7f21921f7020",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
