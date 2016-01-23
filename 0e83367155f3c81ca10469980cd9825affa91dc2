@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a68dd71_ad94a542",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 1278,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2016-01-23T01:18:36Z",
+      "side": 1,
+      "message": "This doesn\u0027t appear necessary to get the gate working so is it worth holding off on approving this until we can apply the constraints to this install along with everything else?",
+      "range": {
+        "startLine": 1278,
+        "startChar": 72,
+        "endLine": 1278,
+        "endChar": 77
+      },
+      "revId": "0e83367155f3c81ca10469980cd9825affa91dc2",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
