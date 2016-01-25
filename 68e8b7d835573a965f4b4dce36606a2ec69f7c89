@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a68dd71_8915de9c",
+        "filename": "monasca_api/v2/common/schemas/notifications_request_body_schema.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 15799
+      },
+      "writtenOn": "2016-01-25T15:09:24Z",
+      "side": 1,
+      "message": "Should use import six.moves.urllib, see: http://pythonhosted.org/six/#module-six.moves.urllib.parse",
+      "revId": "68e8b7d835573a965f4b4dce36606a2ec69f7c89",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a68dd71_09580e87",
+        "filename": "monasca_api/v2/common/schemas/notifications_request_body_schema.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 15799
+      },
+      "writtenOn": "2016-01-25T15:09:24Z",
+      "side": 1,
+      "message": "Using a global variable like this to define an exception message is not consistent with the rest of the Monasca-API codebase.",
+      "revId": "68e8b7d835573a965f4b4dce36606a2ec69f7c89",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a68dd71_bfda5015",
+        "filename": "monasca_api/v2/common/schemas/notifications_request_body_schema.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 15799
+      },
+      "writtenOn": "2016-01-25T15:09:24Z",
+      "side": 1,
+      "message": "You shouldn\u0027t use \u0027Catch-all\u0027 exception handling like this, as it can hide system and programming errors (see https://docs.python.org/2/howto/doanddont.html#except). If you must do a general handler like this, you should use \n\n    except Exception:",
+      "revId": "68e8b7d835573a965f4b4dce36606a2ec69f7c89",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a68dd71_df4864b5",
+        "filename": "monasca_api/v2/common/schemas/notifications_request_body_schema.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 15799
+      },
+      "writtenOn": "2016-01-25T15:09:24Z",
+      "side": 1,
+      "message": "If you\u0027re going to raise exceptions in three different places you could give more informative error messages (e.g. \"No URL scheme specified / could not parse network location\" and \"Unknown scheme in URL\", or something else)",
+      "revId": "68e8b7d835573a965f4b4dce36606a2ec69f7c89",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
