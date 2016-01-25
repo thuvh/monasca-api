@@ -1,0 +1,10 @@
+Code-Review+1: Deklan Dieterly <deklan.dieterly@hpe.com>
+Code-Review+1: Kaiyan Sheng <kaiyan.sheng@hp.com>
+Code-Review+2: Roland Hochmuth <roland.hochmuth@hp.com>
+Workflow+1: Roland Hochmuth <roland.hochmuth@hp.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Mon, 25 Jan 2016 23:13:36 +0000
+Reviewed-on: https://review.openstack.org/272184
+Project: openstack/monasca-api
+Branch: refs/heads/master
