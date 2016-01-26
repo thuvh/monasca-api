@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9a68dd71_f0bf765e",
+        "filename": "monasca_api/v2/common/schemas/notifications_request_body_schema.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-01-26T08:21:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a68dd71_8915de9c",
+      "revId": "68e8b7d835573a965f4b4dce36606a2ec69f7c89",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a68dd71_09580e87",
         "filename": "monasca_api/v2/common/schemas/notifications_request_body_schema.py",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2016-01-25T15:09:24Z",
       "side": 1,
       "message": "Using a global variable like this to define an exception message is not consistent with the rest of the Monasca-API codebase.",
+      "revId": "68e8b7d835573a965f4b4dce36606a2ec69f7c89",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a68dd71_90b4fa82",
+        "filename": "monasca_api/v2/common/schemas/notifications_request_body_schema.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-01-26T08:21:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a68dd71_09580e87",
       "revId": "68e8b7d835573a965f4b4dce36606a2ec69f7c89",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "9a68dd71_b0b9fe7b",
+        "filename": "monasca_api/v2/common/schemas/notifications_request_body_schema.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-01-26T08:21:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a68dd71_bfda5015",
+      "revId": "68e8b7d835573a965f4b4dce36606a2ec69f7c89",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a68dd71_df4864b5",
         "filename": "monasca_api/v2/common/schemas/notifications_request_body_schema.py",
         "patchSetId": 3
@@ -64,6 +118,24 @@
       "writtenOn": "2016-01-25T15:09:24Z",
       "side": 1,
       "message": "If you\u0027re going to raise exceptions in three different places you could give more informative error messages (e.g. \"No URL scheme specified / could not parse network location\" and \"Unknown scheme in URL\", or something else)",
+      "revId": "68e8b7d835573a965f4b4dce36606a2ec69f7c89",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a68dd71_50af622b",
+        "filename": "monasca_api/v2/common/schemas/notifications_request_body_schema.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-01-26T08:21:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a68dd71_df4864b5",
       "revId": "68e8b7d835573a965f4b4dce36606a2ec69f7c89",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
