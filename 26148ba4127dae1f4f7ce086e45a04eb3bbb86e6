@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a68dd71_c7785f2e",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 1297,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-01-26T16:06:12Z",
+      "side": 1,
+      "message": "This isn\u0027t used by the script",
+      "range": {
+        "startLine": 1297,
+        "startChar": 145,
+        "endLine": 1297,
+        "endChar": 158
+      },
+      "revId": "26148ba4127dae1f4f7ce086e45a04eb3bbb86e6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a68dd71_87726748",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 1301,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-01-26T16:06:12Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 1301,
+        "startChar": 141,
+        "endLine": 1301,
+        "endChar": 154
+      },
+      "revId": "26148ba4127dae1f4f7ce086e45a04eb3bbb86e6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
