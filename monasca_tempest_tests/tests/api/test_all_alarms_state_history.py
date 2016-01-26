@@ -17,7 +17,6 @@ import time
 from monasca_tempest_tests.tests.api import base
 from monasca_tempest_tests.tests.api import constants
 from monasca_tempest_tests.tests.api import helpers
-from oslo_utils import timeutils
 from tempest.common.utils import data_utils
 from tempest import test
 
@@ -25,11 +24,11 @@ NUM_ALARM_DEFINITIONS = 3
 MIN_HISTORY = 3
 
 
-class TestAlarmsStateHistory(base.BaseMonascaTest):
+class TestAllAlarmsStateHistory(base.BaseMonascaTest):
 
     @classmethod
     def resource_setup(cls):
-        super(TestAlarmsStateHistory, cls).resource_setup()
+        super(TestAllAlarmsStateHistory, cls).resource_setup()
 
         for i in xrange(MIN_HISTORY):
             alarm_definition = helpers.create_alarm_definition(
@@ -61,7 +60,7 @@ class TestAlarmsStateHistory(base.BaseMonascaTest):
 
     @classmethod
     def resource_cleanup(cls):
-        super(TestAlarmsStateHistory, cls).resource_cleanup()
+        super(TestAllAlarmsStateHistory, cls).resource_cleanup()
 
     @test.attr(type="gate")
     def test_list_alarms_state_history(self):
@@ -229,71 +228,3 @@ class TestAlarmsStateHistory(base.BaseMonascaTest):
                          "Current number of alarms = {}").format(
                 number_of_alarms)
             self.fail(error_msg)
-
-    @test.attr(type="gate")
-    def test_list_alarm_state_history(self):
-        # Get the alarm state history for a specific alarm by ID
-        resp, response_body = self.monasca_client.list_alarms_state_history()
-        self.assertEqual(200, resp.status)
-        elements = response_body['elements']
-        if elements:
-            element = elements[0]
-            alarm_id = element['alarm_id']
-            resp, response_body = self.monasca_client.list_alarm_state_history(
-                alarm_id)
-            self.assertEqual(200, resp.status)
-
-            # Test Response Body
-            self.assertTrue(set(['links', 'elements']) ==
-                            set(response_body))
-            elements = response_body['elements']
-            links = response_body['links']
-            self.assertTrue(isinstance(links, list))
-            link = links[0]
-            self.assertTrue(set(['rel', 'href']) ==
-                            set(link))
-            self.assertEqual(link['rel'], u'self')
-            definition = elements[0]
-            self.assertTrue(set(['id', 'alarm_id', 'metrics', 'new_state',
-                                 'old_state', 'reason', 'reason_data',
-                                 'sub_alarms', 'timestamp']) ==
-                            set(definition))
-        else:
-            error_msg = "Failed test_list_alarm_state_history: at least one " \
-                        "alarm state history is needed."
-            self.fail(error_msg)
-
-    @test.attr(type="gate")
-    def test_list_alarm_state_history_with_offset_limit(self):
-        # Get the alarm state history for a specific alarm by ID
-        resp, response_body = self.monasca_client.list_alarms_state_history()
-        self.assertEqual(200, resp.status)
-        elements = response_body['elements']
-        if elements:
-            element = elements[0]
-            alarm_id = element['alarm_id']
-            query_parms = '?limit=1'
-            resp, response_body = self.monasca_client.\
-                list_alarm_state_history(alarm_id, query_parms)
-            elements = response_body['elements']
-            self.assertEqual(200, resp.status)
-            self.assertEqual(1, len(elements))
-
-            query_parms = '?limit=1&offset=' + str(element['id'])
-            resp, response_body = self.monasca_client.\
-                list_alarm_state_history(alarm_id, query_parms)
-            elements_new = response_body['elements']
-            self.assertEqual(200, resp.status)
-            self.assertEqual(1, len(elements_new))
-            self.assertEqual(element, elements_new[0])
-        else:
-            error_msg = "Failed test_list_alarm_state_history_with_offset" \
-                        "_limit: at least one alarm state history is needed."
-            self.fail(error_msg)
-
-    def _get_elements_with_min_max_timestamp(self, elements):
-        sorted_elements = sorted(elements, key=lambda element: timeutils.
-                                 parse_isotime(element['timestamp']))
-        min_element = sorted_elements[0]
-        max_element = sorted_elements[-1]
-        return min_element, max_element
