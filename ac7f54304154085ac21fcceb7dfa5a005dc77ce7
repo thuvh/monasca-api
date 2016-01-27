@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a5de9d1_be20cdf8",
+        "filename": "monasca_api/v2/reference/alarms.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-01-27T20:41:35Z",
+      "side": 1,
+      "message": "Doesn\u0027t this prevent the user from updating to an empty link?",
+      "range": {
+        "startLine": 217,
+        "startChar": 8,
+        "endLine": 217,
+        "endChar": 19
+      },
+      "revId": "ac7f54304154085ac21fcceb7dfa5a005dc77ce7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a5de9d1_7e79f5fb",
+        "filename": "monasca_api/v2/reference/alarms.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-01-27T20:41:35Z",
+      "side": 1,
+      "message": "See above",
+      "range": {
+        "startLine": 219,
+        "startChar": 8,
+        "endLine": 219,
+        "endChar": 31
+      },
+      "revId": "ac7f54304154085ac21fcceb7dfa5a005dc77ce7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
