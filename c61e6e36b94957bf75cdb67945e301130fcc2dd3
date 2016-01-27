@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a5de9d1_3e585dfa",
+        "filename": "java/src/main/java/monasca/api/app/AlarmService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-01-27T20:32:31Z",
+      "side": 1,
+      "message": "This should really be - not ,. Changes were made in 2015 but the Copyright was not updated. Mea culpa",
+      "range": {
+        "startLine": 2,
+        "startChar": 21,
+        "endLine": 2,
+        "endChar": 22
+      },
+      "revId": "c61e6e36b94957bf75cdb67945e301130fcc2dd3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
