@@ -15,6 +15,7 @@ six
 pyparsing
 voluptuous
 influxdb
+cassandra-driver>=2.1.4 # Apache-2.0
 eventlet
 kafka-python>=0.9.5,<1.0.0
 simplejson
