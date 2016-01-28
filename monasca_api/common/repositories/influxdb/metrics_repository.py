@@ -32,15 +32,6 @@ LOG = log.getLogger(__name__)
 
 
 class MetricsRepository(metrics_repository.MetricsRepository):
-    MULTIPLE_METRICS_MESSAGE = ("Found multiple metrics matching metric name"
-                                + " and dimensions. Please refine your search"
-                                + " criteria using a unique"
-                                + " metric name or additional dimensions."
-                                + " Alternatively, you may specify"
-                                + " 'merge_metrics=True' as a query"
-                                + " parameter to combine all metrics"
-                                + " matching search criteria into a single"
-                                + " series.")
 
     def __init__(self):
 
