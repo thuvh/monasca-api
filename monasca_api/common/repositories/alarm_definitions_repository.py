@@ -1,4 +1,4 @@
-# Copyright 2014,2016 Hewlett Packard Enterprise Development Company, L.P.
+# (C) Copyright 2014,2016 Hewlett Packard Enterprise Development Company LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -50,7 +50,7 @@ class AlarmDefinitionsRepository(object):
         pass
 
     @abc.abstractmethod
-    def get_alarm_definitions(self, tenant_id, name, dimensions, sort_by,
+    def get_alarm_definitions(self, tenant_id, name, dimensions, severity, sort_by,
                               offset, limit):
         pass
 
