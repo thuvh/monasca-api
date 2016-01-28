@@ -1,4 +1,5 @@
 # Copyright 2014 IBM Corp.
+# (C) Copyright 2015,2016 Hewlett Packard Enterprise Development Company LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -11,7 +12,6 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
-
 from oslo_config import cfg
 from oslo_config import types
 
@@ -133,3 +133,9 @@ mysql_opts = [cfg.StrOpt('database_name'), cfg.StrOpt('hostname'),
 mysql_group = cfg.OptGroup(name='mysql', title='mysql')
 cfg.CONF.register_group(mysql_group)
 cfg.CONF.register_opts(mysql_opts, mysql_group)
+
+cassandra_opts = [cfg.StrOpt('cluster_ip_addresses'), cfg.StrOpt('keyspace')]
+
+cassandra_group = cfg.OptGroup(name='cassandra', title='cassandra')
+cfg.CONF.register_group(cassandra_group)
+cfg.CONF.register_opts(cassandra_opts, cassandra_group)
