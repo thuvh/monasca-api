@@ -18,6 +18,7 @@ pyparsing
 voluptuous
 MySQL-python
 influxdb
+cassandra-driver==3.0.0
 eventlet
 kafka-python
 simplejson
