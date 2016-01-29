@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7a5de9d1_da37594b",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2016-01-29T23:09:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a5de9d1_90b303e9",
+      "revId": "938b695c978350529e3c52691215b6f18a36f4c5",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a5de9d1_baf05dfe",
         "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
         "patchSetId": 4
@@ -47,6 +65,24 @@
       "writtenOn": "2016-01-29T23:02:49Z",
       "side": 1,
       "message": "+\u003d",
+      "revId": "938b695c978350529e3c52691215b6f18a36f4c5",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a5de9d1_3a478dbd",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2016-01-29T23:09:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a5de9d1_9086a3d9",
       "revId": "938b695c978350529e3c52691215b6f18a36f4c5",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
