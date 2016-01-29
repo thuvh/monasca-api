@@ -22,6 +22,30 @@
       "revId": "83d9cfee92923ce9212ca904f825460788d565a5",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a5de9d1_f5c26933",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-01-29T21:53:55Z",
+      "side": 1,
+      "message": "It wouldn\u0027t hurt at least. I\u0027ll make it explicit",
+      "parentUuid": "7a5de9d1_845509fb",
+      "range": {
+        "startLine": 178,
+        "startChar": 16,
+        "endLine": 178,
+        "endChar": 36
+      },
+      "revId": "83d9cfee92923ce9212ca904f825460788d565a5",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
