@@ -193,32 +193,33 @@ public class AlarmMySqlRepoImpl implements AlarmRepo {
       sbWhere.append(" and a.state_updated_at >= :stateUpdatedStart");
     }
 
-    StringBuilder sortByClause = new StringBuilder();
+    sbWhere.append(")");
+
+    StringBuilder orderLimitOffsetClause = new StringBuilder();
+
     if (sortBy != null && !sortBy.isEmpty()) {
-      sortByClause.append(" order by ");
-      sortByClause.append(COMMA_JOINER.join(sortBy));
+      orderLimitOffsetClause.append(" order by ");
+      orderLimitOffsetClause.append(COMMA_JOINER.join(sortBy));
       // if alarm_id is not in the list, add it
-      if (sortByClause.indexOf("alarm_id") == -1) {
-        sortByClause.append(",alarm_id ASC");
+      if (orderLimitOffsetClause.indexOf("alarm_id") == -1) {
+        orderLimitOffsetClause.append(",alarm_id ASC");
       }
-      sortByClause.append(' ');
+      orderLimitOffsetClause.append(' ');
     } else {
-      sortByClause.append(" order by alarm_id ASC ");
+      orderLimitOffsetClause.append(" order by alarm_id ASC ");
     }
 
     if (enforceLimit && limit > 0) {
-      sbWhere.append(" limit :limit");
+      orderLimitOffsetClause.append(" limit :limit");
     }
 
     if (offset != null) {
-      sbWhere.append(" offset ");
-      sbWhere.append(offset);
-      sbWhere.append(' ');
+      orderLimitOffsetClause.append(" offset ");
+      orderLimitOffsetClause.append(offset);
+      orderLimitOffsetClause.append(' ');
     }
 
-    sbWhere.append(")");
-
-    String sql = String.format(FIND_ALARMS_SQL, sbWhere, sortByClause);
+    String sql = String.format(FIND_ALARMS_SQL, sbWhere, orderLimitOffsetClause);
 
     try (Handle h = db.open()) {
 
