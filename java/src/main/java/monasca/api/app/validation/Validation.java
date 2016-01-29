@@ -241,6 +241,18 @@ public final class Validation {
         if (field.size() > 1 && !field.get(1).equals("desc") && !field.get(1).equals("asc")) {
           throw Exceptions.unprocessableEntity(String.format("Sort_by value %s must be 'asc' or 'desc'", field.get(1)));
         }
+//        // Convert friendly names to column names
+//        String fieldName = field.get(0);
+//        if (fieldName.equals("alarm_id"))
+//          field.set(0, "a.id");
+//        if (fieldName.equals("alarm_definition_id"))
+//          field.set(0, "ad.id");
+//        if (fieldName.equals("created_timestamp"))
+//          field.set(0, "created_at");
+//        if (fieldName.equals("updated_timestamp"))
+//          field.set(0, "updated_at");
+//        if (fieldName.equals("state_updated_timestamp"))
+//          field.set(0, "state_updated_at");
         sortByList.add(Joiner.on(' ').join(field));
       }
     }
