@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a5de9d1_62380b3e",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/MySQLUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-01-29T15:55:30Z",
+      "side": 1,
+      "message": "not correct copyright",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 26
+      },
+      "revId": "776b0811404b35b1e3a9ebcad19c5783f3c1a033",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
