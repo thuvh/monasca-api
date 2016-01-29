@@ -193,18 +193,36 @@ public class AlarmMySqlRepoImpl implements AlarmRepo {
       sbWhere.append(" and a.state_updated_at >= :stateUpdatedStart");
     }
 
-    StringBuilder sortByClause = new StringBuilder();
+    StringBuilder orderClause = new StringBuilder();
+
     if (sortBy != null && !sortBy.isEmpty()) {
-      sortByClause.append(" order by ");
-      sortByClause.append(COMMA_JOINER.join(sortBy));
-      // if alarm_id is not in the list, add it
-      if (sortByClause.indexOf("alarm_id") == -1) {
-        sortByClause.append(",alarm_id ASC");
+      int i = 0;
+      for(String field: sortBy) {
+        // Convert friendly names to column names
+        if (field.contains("alarm_id"))
+          sortBy.set(i, field.replace("alarm_id", "a.id"));
+        else if (field.contains("alarm_definition_id"))
+          sortBy.set(i, field.replace("alarm_definition_id", "ad.id"));
+        else if (field.contains("created_timestamp"))
+          sortBy.set(i, field.replace("created_timestamp", "a.created_at"));
+        else if (field.contains("updated_timestamp"))
+          sortBy.set(i, field.replace("updated_timestamp", "a.updated_at"));
+        else if (field.contains("state_updated_timestamp"))
+          sortBy.set(i, field.replace("state_updated_timestamp", "a.state_updated_at"));
+        i++;
       }
-      sortByClause.append(' ');
+      orderClause.append(" order by ");
+      orderClause.append(COMMA_JOINER.join(sortBy));
+      // if alarm_id is not in the list, add it
+      if (orderClause.indexOf("a.id") == -1) {
+        orderClause.append(",a.id ASC");
+      }
+      orderClause.append(' ');
     } else {
-      sortByClause.append(" order by alarm_id ASC ");
+      orderClause.append(" order by a.id ASC ");
     }
+
+    sbWhere.append(orderClause);
 
     if (enforceLimit && limit > 0) {
       sbWhere.append(" limit :limit");
@@ -218,7 +236,7 @@ public class AlarmMySqlRepoImpl implements AlarmRepo {
 
     sbWhere.append(")");
 
-    String sql = String.format(FIND_ALARMS_SQL, sbWhere, sortByClause);
+    String sql = String.format(FIND_ALARMS_SQL, sbWhere, orderClause);
 
     try (Handle h = db.open()) {
 
