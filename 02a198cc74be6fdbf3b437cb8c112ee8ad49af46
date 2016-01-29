@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a5de9d1_eba290fc",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmMySqlRepoImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-01-29T19:00:17Z",
+      "side": 1,
+      "message": "So, is this the main issue where you are adding a close parenthesis to the where clause.\n\norderLimitOffsetClause is just  a name change from sortByClause.",
+      "range": {
+        "startLine": 196,
+        "startChar": 4,
+        "endLine": 196,
+        "endChar": 11
+      },
+      "revId": "02a198cc74be6fdbf3b437cb8c112ee8ad49af46",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
