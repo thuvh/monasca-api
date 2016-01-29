@@ -22,6 +22,30 @@
       "revId": "02a198cc74be6fdbf3b437cb8c112ee8ad49af46",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a5de9d1_4b42c4af",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmMySqlRepoImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-01-29T19:19:19Z",
+      "side": 1,
+      "message": "Yes, precisely",
+      "parentUuid": "7a5de9d1_eba290fc",
+      "range": {
+        "startLine": 196,
+        "startChar": 4,
+        "endLine": 196,
+        "endChar": 11
+      },
+      "revId": "02a198cc74be6fdbf3b437cb8c112ee8ad49af46",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
