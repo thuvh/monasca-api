@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a5de9d1_bdc7f796",
+        "filename": "monasca_api/common/repositories/metrics_repository.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-01-29T23:29:53Z",
+      "side": 1,
+      "message": "fix copyright",
+      "range": {
+        "startLine": 1,
+        "startChar": 24,
+        "endLine": 1,
+        "endChar": 25
+      },
+      "revId": "1bc09fdbf3a4f1bcb43cccab7bb2baf0ce642f4f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a5de9d1_7dc65f9b",
+        "filename": "monasca_api/v2/reference/__init__.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-01-29T23:29:53Z",
+      "side": 1,
+      "message": "add hp copyright",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 20
+      },
+      "revId": "1bc09fdbf3a4f1bcb43cccab7bb2baf0ce642f4f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
