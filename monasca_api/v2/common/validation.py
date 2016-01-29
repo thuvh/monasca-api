@@ -35,6 +35,7 @@ def dimension_key(dkey):
 def dimension_value(value):
     assert isinstance(value, (str, unicode)), "Dimension value must be a string"
     assert len(value) <= 255, "Dimension value must be 255 characters or less"
+    assert len(value) >= 1, "Dimension value cannot be empty"
     assert not restricted_chars.search(value), "Invalid characters in dimension value " + value
 
 
