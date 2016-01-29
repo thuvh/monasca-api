@@ -241,6 +241,10 @@ class AlarmsRepository(mysql_repository.MySQLRepository,
             parms.append(query_parms['state'].encode('utf8'))
             where_clause += " and a.state = %s "
 
+        if 'severity' in query_parms:
+            parms.append(query_parms['severity'].encode('utf8'))
+            where_clause += " and ad.severity = %s"
+
         if 'lifecycle_state' in query_parms:
             parms.append(query_parms['lifecycle_state'].encode('utf8'))
             where_clause += " and a.lifecycle_state = %s"
