@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a5de9d1_9096bc3d",
+        "filename": "requirements.txt",
+        "patchSetId": 11
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-01-29T13:11:28Z",
+      "side": 1,
+      "message": "Need to get Joe Keen to comment on this change. We just went through a major change on our versioning scheme.",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 7
+      },
+      "revId": "80a0bdf6151bb3b7634129a6858f234595854ead",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
