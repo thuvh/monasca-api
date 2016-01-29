@@ -22,6 +22,30 @@
       "revId": "80a0bdf6151bb3b7634129a6858f234595854ead",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a5de9d1_8b0afc77",
+        "filename": "requirements.txt",
+        "patchSetId": 11
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2016-01-29T19:21:16Z",
+      "side": 1,
+      "message": "We deleted the offending 2015.1.1 package on pypi so that shouldn\u0027t be an issue anymore.  Other than that it should always pick up the most recent monasca-common package.",
+      "parentUuid": "7a5de9d1_9096bc3d",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 7
+      },
+      "revId": "80a0bdf6151bb3b7634129a6858f234595854ead",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
