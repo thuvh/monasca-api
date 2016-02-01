@@ -75,6 +75,8 @@ vertica:
   minSize: 4
   maxSize: 32
   checkConnectionWhileIdle: true
+  # Whether a database hint should be provided for queries
+  provideDbHint: false
 
 middleware:
   enabled: true
