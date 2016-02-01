@@ -29,7 +29,7 @@ public class MetricQueriesTest {
   public void metricQueriesBuildDimensionAndClauseTest1() {
     String expectedResult =
         " and defdims.dimension_set_id in (select dimension_set_id from MonMetrics.Dimensions "
-        + "where name = :dname0 and value = :dvalue0 or name = :dname1 and value = :dvalue1 "
+        + "where name = :dname0 and value = :dvalue0_0 or name = :dname1 and value = :dvalue1_0 "
         + "group by dimension_set_id  having count(*) = 2) ";
 
     Map<String, String> dimsMap = new HashMap<>();

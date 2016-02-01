@@ -43,13 +43,13 @@ final class MetricQueries {
         sb.append("name = :dname")
           .append(i)
           .append(" and value = :dvalue")
-          .append(i);
+          .append(i).append('_').append(0);
         if (i != (numDims - 1)) {
            sb.append(" or ");
         }
       }
       sb.append(" group by dimension_set_id ")
-        .append(" having count(*) = " + numDims +") ");
+          .append(" having count(*) = " + numDims +") ");
     }
 
     return sb == null ? "" : sb.toString();
