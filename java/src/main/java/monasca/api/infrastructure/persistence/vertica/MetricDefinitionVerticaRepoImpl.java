@@ -17,6 +17,7 @@ import monasca.api.domain.model.metric.MetricDefinitionRepo;
 import monasca.api.domain.model.metric.MetricName;
 import monasca.api.infrastructure.persistence.DimensionQueries;
 import monasca.api.resource.exception.Exceptions;
+import monasca.api.ApiConfig;
 import monasca.common.model.metric.MetricDefinition;
 
 import org.apache.commons.codec.DecoderException;
@@ -107,11 +108,13 @@ public class MetricDefinitionVerticaRepoImpl implements MetricDefinitionRepo {
 
   private final DBI db;
 
+  private final String dbHint;
+
   @Inject
-  public MetricDefinitionVerticaRepoImpl(@Named("vertica") DBI db) {
-
+  public MetricDefinitionVerticaRepoImpl(@Named("vertica") DBI db, ApiConfig config)
+  {
     this.db = db;
-
+    this.dbHint = config.provideDbHint ? "/*+KV(01)*/" : "";
   }
 
   @Override
@@ -291,7 +294,6 @@ public class MetricDefinitionVerticaRepoImpl implements MetricDefinitionRepo {
                         namePart, offsetPart, timeInClause, limitPart);
 
       String sql = String.format(FIND_METRIC_DEFS_SQL, defSubSelect);
-
 
       Query<Map<String, Object>> query = h.createQuery(sql).bind("tenantId", tenantId);
 

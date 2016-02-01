@@ -34,6 +34,8 @@ public class ApiConfig extends Configuration {
   public String region;
   @NotNull
   public Boolean accessedViaHttps;
+  @NotNull
+  public Boolean provideDbHint = false;
   @NotEmpty
   public String metricsTopic = "metrics";
   @NotEmpty
