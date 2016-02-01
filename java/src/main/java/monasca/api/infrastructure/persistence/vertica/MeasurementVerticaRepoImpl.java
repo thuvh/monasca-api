@@ -16,6 +16,7 @@ package monasca.api.infrastructure.persistence.vertica;
 import monasca.api.domain.exception.MultipleMetricsException;
 import monasca.api.domain.model.measurement.MeasurementRepo;
 import monasca.api.domain.model.measurement.Measurements;
+import monasca.api.ApiConfig;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -54,7 +55,7 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
       ISODateTimeFormat.dateTime().withZoneUTC();
 
   private static final String FIND_BY_METRIC_DEF_SQL =
-      "select mes.definition_dimensions_id, "
+      "select %s mes.definition_dimensions_id, "
       + "mes.time_stamp, mes.value, mes.value_meta "
       + "from MonMetrics.Measurements mes "
       + "where to_hex(mes.definition_dimensions_id) "
@@ -81,11 +82,14 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
 
   private final static TypeReference VALUE_META_TYPE = new TypeReference<Map<String, String>>() {};
 
+  private final String dbHint;
+
   @Inject
   public MeasurementVerticaRepoImpl(
-      @Named("vertica") DBI db) {
-
+      @Named("vertica") DBI db, ApiConfig config)
+  {
     this.db = db;
+    this.dbHint = config.provideDbHint ? "/*+KV(01)*/" : "";
   }
 
   @Override
@@ -167,7 +171,10 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
         sb.append(" and time_stamp > :offset");
       }
 
-      String sql = String.format(FIND_BY_METRIC_DEF_SQL, defDimInClause, sb);
+      String sql = String.format(FIND_BY_METRIC_DEF_SQL,
+                                 this.dbHint,
+                                 defDimInClause,
+                                 sb);
 
       query = h.createQuery(sql)
               .bind("startTime", new Timestamp(startTime.getMillis()))
