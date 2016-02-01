@@ -14,6 +14,8 @@
 
 package monasca.api.infrastructure.persistence.vertica;
 
+import monasca.api.ApiConfig;
+
 import com.google.common.base.Splitter;
 import com.google.common.base.Strings;
 
@@ -138,5 +140,10 @@ final class MetricQueries {
     sb.append(") ");
 
     return sb.toString();
+  }
+
+  static String getDbHintSetting(ApiConfig config)
+  {
+    return config.vertica.provideDbHint ? "/*+KV(01)*/" : "";
   }
 }
