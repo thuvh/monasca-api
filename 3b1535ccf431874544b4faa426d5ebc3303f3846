@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a5de9d1_96c3b837",
+        "filename": "java/src/main/java/monasca/api/app/validation/Validation.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-02-01T19:04:14Z",
+      "side": 1,
+      "message": "Just delete this code since it is commented out",
+      "range": {
+        "startLine": 244,
+        "startChar": 0,
+        "endLine": 255,
+        "endChar": 45
+      },
+      "revId": "3b1535ccf431874544b4faa426d5ebc3303f3846",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a5de9d1_96dad815",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmMySqlRepoImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-02-01T19:04:14Z",
+      "side": 1,
+      "message": "Should be a space after the for",
+      "revId": "3b1535ccf431874544b4faa426d5ebc3303f3846",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
