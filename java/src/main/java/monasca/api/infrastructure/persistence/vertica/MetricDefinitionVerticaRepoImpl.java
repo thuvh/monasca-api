@@ -17,6 +17,7 @@ import monasca.api.domain.model.metric.MetricDefinitionRepo;
 import monasca.api.domain.model.metric.MetricName;
 import monasca.api.infrastructure.persistence.DimensionQueries;
 import monasca.api.resource.exception.Exceptions;
+import monasca.api.ApiConfig;
 import monasca.common.model.metric.MetricDefinition;
 
 import org.apache.commons.codec.DecoderException;
@@ -47,7 +48,7 @@ public class MetricDefinitionVerticaRepoImpl implements MetricDefinitionRepo {
 
   private static final String
       FIND_METRIC_DEFS_SQL =
-      "SELECT defDims.id as defDimsId, def.name, dims.name as dName, dims.value AS dValue "
+      "SELECT %s defDims.id as defDimsId, def.name, dims.name as dName, dims.value AS dValue "
       + "FROM MonMetrics.Definitions def, MonMetrics.DefinitionDimensions defDims "
       // Outer join needed in case there are no dimensions for a definition.
       + "LEFT OUTER JOIN MonMetrics.Dimensions dims ON dims.dimension_set_id = defDims"
@@ -87,7 +88,7 @@ public class MetricDefinitionVerticaRepoImpl implements MetricDefinitionRepo {
 
   private static final String
       DEFDIM_IDS_SELECT =
-      "SELECT defDims.id "
+      "SELECT %s defDims.id "
       + "FROM MonMetrics.Definitions def, MonMetrics.DefinitionDimensions defDims "
       + "WHERE defDims.definition_id = def.id "
       + "AND def.tenant_id = :tenantId "
@@ -107,11 +108,13 @@ public class MetricDefinitionVerticaRepoImpl implements MetricDefinitionRepo {
 
   private final DBI db;
 
+  private final String dbHint;
+
   @Inject
-  public MetricDefinitionVerticaRepoImpl(@Named("vertica") DBI db) {
-
+  public MetricDefinitionVerticaRepoImpl(@Named("vertica") DBI db, ApiConfig config)
+  {
     this.db = db;
-
+    this.dbHint = config.provideDbHint ? "/*+KV(01)*/" : "";
   }
 
   @Override
@@ -290,8 +293,9 @@ public class MetricDefinitionVerticaRepoImpl implements MetricDefinitionRepo {
                         MetricQueries.buildJoinClauseFor(dimensions, TABLE_TO_JOIN_DIMENSIONS_ON),
                         namePart, offsetPart, timeInClause, limitPart);
 
-      String sql = String.format(FIND_METRIC_DEFS_SQL, defSubSelect);
-
+      String sql = String.format(FIND_METRIC_DEFS_SQL,
+                                 this.dbHint,
+                                 defSubSelect);
 
       Query<Map<String, Object>> query = h.createQuery(sql).bind("tenantId", tenantId);
 
@@ -351,8 +355,11 @@ public class MetricDefinitionVerticaRepoImpl implements MetricDefinitionRepo {
       namePart = "AND def.name = :name ";
     }
 
-    String defDimSql = String.format(DEFDIM_IDS_SELECT, namePart,
-    MetricQueries.buildJoinClauseFor(dimensions, "defDims"));
+    String defDimSql = String.format(
+        DEFDIM_IDS_SELECT,
+        this.dbHint,
+        namePart,
+        MetricQueries.buildJoinClauseFor(dimensions, "defDims"));
 
     Query<Map<String, Object>> query = dbHandle.createQuery(defDimSql).bind("tenantId", tenantId);
 

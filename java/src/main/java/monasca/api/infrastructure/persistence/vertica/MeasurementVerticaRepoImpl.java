@@ -16,6 +16,7 @@ package monasca.api.infrastructure.persistence.vertica;
 import monasca.api.domain.exception.MultipleMetricsException;
 import monasca.api.domain.model.measurement.MeasurementRepo;
 import monasca.api.domain.model.measurement.Measurements;
+import monasca.api.ApiConfig;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -51,7 +52,7 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
       ISODateTimeFormat.dateTime().withZoneUTC();
 
   private static final String FIND_BY_METRIC_DEF_SQL =
-      "select def.name, mes.definition_dimensions_id, defdims.dimension_set_id, defdims.definition_id, "
+      "select %s def.name, mes.definition_dimensions_id, defdims.dimension_set_id, defdims.definition_id, "
       + "mes.time_stamp, mes.value, mes.value_meta "
       + "from MonMetrics.Measurements mes, MonMetrics.Definitions def, MonMetrics.DefinitionDimensions defdims "
       + "%s "
@@ -71,11 +72,14 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
 
   private final static TypeReference VALUE_META_TYPE = new TypeReference<Map<String, String>>() {};
 
+  private final String dbHint;
+
   @Inject
   public MeasurementVerticaRepoImpl(
-      @Named("vertica") DBI db) {
-
+      @Named("vertica") DBI db, ApiConfig config)
+  {
     this.db = db;
+    this.dbHint = config.provideDbHint ? "/*+KV(01)*/" : "";
   }
 
   @Override
@@ -113,6 +117,7 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
 
       String sql =
           String.format(FIND_BY_METRIC_DEF_SQL,
+                        this.dbHint,
                         MetricQueries.buildJoinClauseFor(dimensions, TABLE_TO_JOIN_DIMENSIONS_ON),
                         sb);
 

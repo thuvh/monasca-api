@@ -16,6 +16,7 @@ package monasca.api.infrastructure.persistence.vertica;
 import monasca.api.domain.exception.MultipleMetricsException;
 import monasca.api.domain.model.statistic.StatisticRepo;
 import monasca.api.domain.model.statistic.Statistics;
+import monasca.api.ApiConfig;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
@@ -47,7 +48,7 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
       ISODateTimeFormat.dateTime().withZoneUTC();
 
   private static final String FIND_BY_METRIC_DEF_SQL =
-      "select defdims.id, def.name, d.name as dname, d.value as dvalue "
+      "select %s defdims.id, def.name, d.name as dname, d.value as dvalue "
       + "from MonMetrics.Definitions def, MonMetrics.DefinitionDimensions defdims "
       + "left outer join MonMetrics.Dimensions d on d.dimension_set_id = defdims.dimension_set_id "
       + "%s "
@@ -58,12 +59,14 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
   private static final String TABLE_TO_JOIN_DIMENSIONS_ON = "defdims";
 
   private final DBI db;
+  private final String dbHint;
 
   @Inject
-  public StatisticVerticaRepoImpl(@Named("vertica") DBI db) {
-
+  public StatisticVerticaRepoImpl(@Named("vertica") DBI db,
+                                  ApiConfig config)
+  {
     this.db = db;
-
+    this.dbHint = config.provideDbHint ? "/*+KV(01)*/" : "";
   }
 
   @Override
@@ -206,6 +209,7 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
     String sql =
         String
             .format(FIND_BY_METRIC_DEF_SQL,
+                    this.dbHint,
                     MetricQueries.buildJoinClauseFor(dimensions, TABLE_TO_JOIN_DIMENSIONS_ON),
                     sb);
 
@@ -292,7 +296,7 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
 
     StringBuilder sb = new StringBuilder();
 
-    sb.append("SELECT " + createColumnsStr(statistics));
+    sb.append("SELECT "  + this.dbHint + " " + createColumnsStr(statistics));
 
     if (period >= 1) {
       sb.append("Time_slice(time_stamp, " + period);
