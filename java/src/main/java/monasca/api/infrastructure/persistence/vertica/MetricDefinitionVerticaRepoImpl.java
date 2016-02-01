@@ -52,7 +52,15 @@ public class MetricDefinitionVerticaRepoImpl implements MetricDefinitionRepo {
       // Outer join needed in case there are no dimensions for a definition.
       + "LEFT OUTER JOIN MonMetrics.Dimensions dims ON dims.dimension_set_id = defDims"
       + ".dimension_set_id WHERE def.id = defDims.definition_id "
-      + "and def.tenant_id = :tenantId "
+      + "AND defDims.id IN (%s)" // Sub select goes here
+      + "ORDER BY defDims.id ASC";
+
+  private static final String
+      METRIC_DEFS_SUB_SELECT =
+      "SELECT distinct defDimsSub.id "
+      + "FROM MonMetrics.Definitions defSub, MonMetrics.DefinitionDimensions defDimsSub "
+      + "Where defDimsSub.definition_id = defSub.id "
+      + "AND defSub.tenant_id = :tenant_id "
       + "%s " // Name goes here.
       + "%s " // Offset goes here.
       + "%s " // Dimensions and clause goes here
@@ -273,13 +281,14 @@ public class MetricDefinitionVerticaRepoImpl implements MetricDefinitionRepo {
       // If startTime/endTime is specified, create the 'IN' select statement
       String timeInClause = createTimeInClause(h, startTime, endTime, tenantId, name, dimensions);
 
-      String sql =
-          String.format(FIND_METRIC_DEFS_SQL,
+      String subDefsSelect =
+          String.format(METRIC_DEFS_SUB_SELECT,
                         namePart, offsetPart,
                         MetricQueries.buildDimensionAndClause(dimensions, "defDims"),
                         timeInClause,
                         limitPart);
 
+      String sql = String.format(FIND_METRIC_DEFS_SQL, subDefsSelect);
 
       Query<Map<String, Object>> query = h.createQuery(sql).bind("tenantId", tenantId);
 
