@@ -7,6 +7,9 @@ maxQueryLimit: 10000
 # Whether this server is running on a secure port
 accessedViaHttps: false
 
+# Whether a database hint should be provided for queries
+provideDbHint: false
+
 # Topic for publishing metrics to
 metricsTopic: metrics
 
