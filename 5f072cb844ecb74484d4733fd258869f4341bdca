@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a5ae5dd_e795cc86",
+        "filename": "monasca_tempest_tests/tests/api/test_metrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 552,
+      "author": {
+        "id": 7052
+      },
+      "writtenOn": "2016-02-05T22:28:45Z",
+      "side": 1,
+      "message": "Wouldn\u0027t be better to extent the helpers module to support the generation of multiple metrics? In this way it could be re-used in other tests if needed.",
+      "range": {
+        "startLine": 537,
+        "startChar": 4,
+        "endLine": 552,
+        "endChar": 50
+      },
+      "revId": "5f072cb844ecb74484d4733fd258869f4341bdca",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
