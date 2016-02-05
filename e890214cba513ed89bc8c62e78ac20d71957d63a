@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a5ae5dd_67da3c4e",
+        "filename": "monasca_api/v2/common/validation.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7052
+      },
+      "writtenOn": "2016-02-05T22:37:17Z",
+      "side": 1,
+      "message": "please define these as a static global array so then we don\u0027t need to chase them in the file if we are adding a new state.\nAdd something like:\nALARM_STATUSES \u003d [\u0027ALARM\u0027, \u0027OK\u0027, \u0027UNDETERMINED\u0027]\nat the package level and then\nif state not in ALARM_STATUSES:\n ...",
+      "range": {
+        "startLine": 61,
+        "startChar": 25,
+        "endLine": 61,
+        "endChar": 54
+      },
+      "revId": "e890214cba513ed89bc8c62e78ac20d71957d63a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a5ae5dd_27e0c4f9",
+        "filename": "monasca_api/v2/common/validation.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7052
+      },
+      "writtenOn": "2016-02-05T22:37:17Z",
+      "side": 1,
+      "message": "Same as above",
+      "range": {
+        "startLine": 69,
+        "startChar": 11,
+        "endLine": 69,
+        "endChar": 64
+      },
+      "revId": "e890214cba513ed89bc8c62e78ac20d71957d63a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
