@@ -125,6 +125,12 @@ class Alarms(alarms_api_v2.AlarmsV2API,
                                    'state_updated_timestamp', 'updated_timestamp', 'created_timestamp'}
                 validation.validate_sort_by(query_parms['sort_by'], allowed_sort_by)
 
+            if 'state' in query_parms:
+                validation.validate_state_query(query_parms['state'])
+
+            if 'severity' in query_parms:
+                validation.validate_severity_query(query_parms['severity'])
+
             # ensure metric_dimensions is a list
             if 'metric_dimensions' in query_parms and isinstance(query_parms['metric_dimensions'], str):
                 query_parms['metric_dimensions'] = query_parms['metric_dimensions'].split(',')

@@ -90,8 +90,9 @@ class AlarmDefinitionsRepository(mysql_repository.MySQLRepository,
             parms.append(name.encode('utf8'))
 
         if severity:
-            parms.append(severity.encode('utf8'))
-            where_clause += " and ad.severity = %s "
+            severities = severity.split('|')
+            parms.extend([s.encode('utf8') for s in severities])
+            where_clause += " and (" + " or ".join(["ad.severity = %s" for s in severities])
 
         if sort_by is not None:
             order_by_clause = " order by " + ','.join(sort_by)

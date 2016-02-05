@@ -53,3 +53,20 @@ def validate_sort_by(sort_by_list, allowed_sort_by):
             raise HTTPUnprocessableEntityError("Unprocessable Entity",
                                                "sort_by value {} must be 'asc' or 'desc'".format(
                                                    sort_by_values[1]))
+
+
+def validate_state_query(state_str):
+    states = state_str.split('|')
+    for state in states:
+        if state not in ['ALARM', 'OK', 'UNDETERMINED']:
+            raise HTTPUnprocessableEntityError("Unprocessable Entity",
+                                               "state {} must be one of 'ALARM','OK','UNDETERMINED'".format(state))
+
+
+def validate_severity_query(severity_str):
+    severities = severity_str.split('|')
+    for severity in severities:
+        if severity not in ['CRITICAL', 'HIGH', 'MEDIUM', 'LOW']:
+            raise HTTPUnprocessableEntityError(
+                "Unprocessable Entity",
+                "severity {} must be one of 'CRITICAL','HIGH','MEDIUM','LOW'".format(severity))
