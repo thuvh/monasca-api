@@ -269,8 +269,9 @@ class AlarmsRepository(mysql_repository.MySQLRepository,
             sub_query += " and a.state = %s "
 
         if 'severity' in query_parms:
-            parms.append(query_parms['severity'].encode('utf8'))
-            sub_query += " and ad.severity = %s"
+            severity = query_parms['severity'].split('|')
+            parms.extend([s.encode('utf8') for s in severity])
+            sub_query += " and (" + " or ".join(["ad.severity = %s" for s in severity]) + ")"
 
         if 'lifecycle_state' in query_parms:
             parms.append(query_parms['lifecycle_state'].encode('utf8'))
