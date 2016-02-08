@@ -33,7 +33,7 @@ public interface AlarmRepo {
    * Returns alarms for the given criteria.
    */
   List<Alarm> find(String tenantId, String alarmDefId, String metricName, Map<String,
-      String> metricDimensions, AlarmState state, AlarmSeverity severity, String lifecycleState, String link, DateTime stateUpdatedStart,
+      String> metricDimensions, AlarmState state, List<AlarmSeverity> severity, String lifecycleState, String link, DateTime stateUpdatedStart,
                    List<String> sort_by, String offset, int limit, boolean enforceLimit);
 
   /**

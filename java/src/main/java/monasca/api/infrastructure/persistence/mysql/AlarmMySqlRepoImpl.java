@@ -136,7 +136,7 @@ public class AlarmMySqlRepoImpl implements AlarmRepo {
   @Override
   public List<Alarm> find(String tenantId, String alarmDefId, String metricName,
                           Map<String, String> metricDimensions, AlarmState state,
-                          AlarmSeverity severity, String lifecycleState, String link,
+                          List<AlarmSeverity> severity, String lifecycleState, String link,
                           DateTime stateUpdatedStart, List<String> sortBy,
                           String offset, int limit, boolean enforceLimit) {
 
@@ -183,8 +183,15 @@ public class AlarmMySqlRepoImpl implements AlarmRepo {
       sbWhere.append(" and a.state = :state");
     }
 
-    if (severity != null) {
-      sbWhere.append(" and ad.severity = :severity");
+    if (severity != null && !severity.isEmpty()) {
+      sbWhere.append(" and (");
+      for (int i = 0; i < severity.size(); i++) {
+        sbWhere.append("ad.severity = :severity").append(i);
+        if (i < severity.size() - 1) {
+          sbWhere.append(" or ");
+        }
+      }
+      sbWhere.append(") ");
     }
 
     if (lifecycleState != null) {
@@ -242,8 +249,10 @@ public class AlarmMySqlRepoImpl implements AlarmRepo {
         q.bind("state", state.name());
       }
 
-      if (severity != null) {
-        q.bind("severity", severity.name());
+      if (severity != null && !severity.isEmpty()) {
+        for (int i = 0; i < severity.size(); i++) {
+          q.bind("severity" + String.valueOf(i), severity.get(i).name());
+        }
       }
 
       if (lifecycleState != null) {
