@@ -28,8 +28,10 @@ for ARG in $*; do
    fi
 done
 
+BRANCH=`git rev-parse --abbrev-ref HEAD`
+
 if [ $RUN_BUILD = "true" ]; then
-    ( cd common; ./build_common.sh ${MVN} ${COMMON_VERSION} )
+    ( cd common; ./build_common.sh ${MVN} ${COMMON_VERSION} ${BRANCH} )
     RC=$?
     if [ $RC != 0 ]; then
         exit $RC
