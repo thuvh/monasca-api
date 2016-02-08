@@ -105,3 +105,20 @@ def validate_value_meta(value_meta):
         # value
         assert isinstance(value_meta[name], (str, unicode)), "ValueMeta value must be a string"
         assert len(value_meta[name]) >= 1, "ValueMeta value cannot be empty"
+
+
+def validate_state_query(state_str):
+    states = state_str.split('|')
+    for state in states:
+        if state not in VALID_ALARM_STATES:
+            raise HTTPUnprocessableEntityError("Unprocessable Entity",
+                                               "state {} must be one of 'ALARM','OK','UNDETERMINED'".format(state))
+
+
+def validate_severity_query(severity_str):
+    severities = severity_str.split('|')
+    for severity in severities:
+        if severity not in VALID_ALARM_DEFINITION_SEVERITIES:
+            raise HTTPUnprocessableEntityError(
+                "Unprocessable Entity",
+                "severity {} must be one of 'CRITICAL','HIGH','MEDIUM','LOW'".format(severity))

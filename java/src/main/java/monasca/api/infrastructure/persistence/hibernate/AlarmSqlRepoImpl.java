@@ -152,7 +152,7 @@ public class AlarmSqlRepoImpl
   @Override
   public List<Alarm> find(String tenantId, String alarmDefId, String metricName,
                           Map<String, String> metricDimensions, AlarmState state,
-                          AlarmSeverity severity, String lifecycleState, String link,
+                          List<AlarmSeverity> severity, String lifecycleState, String link,
                           DateTime stateUpdatedStart, List<String> sortBy,
                           String offset, int limit, boolean enforceLimit) {
     logger.trace(ORM_LOG_MARKER, "find(...) entering");
