@@ -341,7 +341,7 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
             name=name,
             description="description",
             expression=expression)
-        resp, res_body_create_alarm_def = self.monasca_client.\
+        resp, res_body_create_alarm_def = self.monasca_client. \
             create_alarm_definitions(alarm_definition)
         self.assertEqual(201, resp.status)
 
@@ -389,6 +389,52 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
         elements = response_body['elements']
         self._verify_list_get_alarm_definitions_elements(
             elements, 1, res_body_create_alarm_def)
+        links = response_body['links']
+        self._verify_list_alarm_definitions_links(links)
+
+    @test.attr(type="gate")
+    def test_list_alarm_definitions_with_multiple_severity(self):
+        name = data_utils.rand_name('alarm_definition')
+        expression = 'avg(cpu_utilization) >= 1000'
+        alarm_definition = helpers.create_alarm_definition(
+            name=name,
+            description="description",
+            expression=expression,
+            severity="LOW")
+        resp, res_body_create_alarm_def_low = self.monasca_client.\
+            create_alarm_definitions(alarm_definition)
+        self.assertEqual(201, resp.status)
+
+        name = data_utils.rand_name('alarm_definition')
+        expression = 'avg(cpu_utilization) >= 1000'
+        alarm_definition = helpers.create_alarm_definition(
+            name=name,
+            description="description",
+            expression=expression,
+            severity="MEDIUM")
+        resp, res_body_create_alarm_def_medium = self.monasca_client.\
+            create_alarm_definitions(alarm_definition)
+        self.assertEqual(201, resp.status)
+
+        name = data_utils.rand_name('alarm_definition')
+        expression = 'avg(cpu_utilization) >= 1000'
+        alarm_definition = helpers.create_alarm_definition(
+            name=name,
+            description="description",
+            expression=expression,
+            severity="HIGH")
+        resp, res_body_create_alarm_def = self.monasca_client.\
+            create_alarm_definitions(alarm_definition)
+        self.assertEqual(201, resp.status)
+
+
+        query_param = '?severity=MEDIUM|LOW'
+        resp, response_body = self.monasca_client.\
+            list_alarm_definitions(query_param)
+        self._verify_list_alarm_definitions_response_body(resp, response_body)
+        elements = response_body['elements']
+        self._verify_list_get_alarm_definitions_elements(
+            elements, 2, [res_body_create_alarm_def_low, res_body_create_alarm_def_medium])
         links = response_body['links']
         self._verify_list_alarm_definitions_links(links)
 
