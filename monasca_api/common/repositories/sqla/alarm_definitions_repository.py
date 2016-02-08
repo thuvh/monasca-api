@@ -1,5 +1,6 @@
 # Copyright 2014 Hewlett-Packard
 # Copyright 2016 FUJITSU LIMITED
+# (C) Copyright 2016 Hewlett Packard Enterprise Development Company LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -25,6 +26,7 @@ from monasca_api.common.repositories.sqla import models
 from monasca_api.common.repositories.sqla import sql_repository
 from sqlalchemy import MetaData, update, delete, insert
 from sqlalchemy import select, text, bindparam, null, literal_column
+from sqlalchemy import or_
 
 
 LOG = log.getLogger(__name__)
@@ -314,8 +316,11 @@ class AlarmDefinitionsRepository(sql_repository.SQLRepository,
                 parms['b_name'] = name.encode('utf8')
 
             if severity:
-                query = query.where(ad.c.severity == bindparam('b_severity'))
-                parms['b_severity'] = severity.encode('utf8')
+                severities = severity.split('|')
+                query = query.where(
+                    or_(ad.c.severity == bindparam('b_severity' + str(i)) for i in xrange(len(severities))))
+                for i, s in enumerate(severities):
+                    parms['b_severity' + str(i)] = s.encode('utf8')
 
             order_columns = []
             if sort_by is not None:
