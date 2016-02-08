@@ -36,6 +36,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Lists;
 import com.google.common.io.Resources;
 
 import monasca.api.infrastructure.persistence.PersistUtils;
@@ -267,7 +268,7 @@ public class AlarmDefinitionMySqlRepositoryImplTest {
     final Map<String, String> dimensions = new HashMap<>();
     dimensions.put("image_id", "888");
     assertEquals(Arrays.asList(alarmDef_123, alarmDef_234),
-        repo.find("bob", null, dimensions, null, null, null, 1));
+                 repo.find("bob", null, dimensions, null, null, null, 1));
 
     dimensions.clear();
     dimensions.put("device", "1");
@@ -285,9 +286,9 @@ public class AlarmDefinitionMySqlRepositoryImplTest {
   }
 
   public void shouldFindBySeverity() {
-    assertEquals(Arrays.asList(alarmDef_234), repo.find("bob", null, null, AlarmSeverity.HIGH, null, null, 1));
+    assertEquals(Arrays.asList(alarmDef_234), repo.find("bob", null, null, Lists.newArrayList(AlarmSeverity.HIGH), null, null, 1));
 
-    assertEquals(0, repo.find("bob", null, null, AlarmSeverity.CRITICAL, null, null, 1).size());
+    assertEquals(0, repo.find("bob", null, null, Lists.newArrayList(AlarmSeverity.CRITICAL), null, null, 1).size());
   }
 
   public void shouldDeleteById() {
