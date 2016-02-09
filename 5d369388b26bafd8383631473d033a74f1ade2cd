@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a5ae5dd_80e79eab",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2016-02-09T16:42:37Z",
+      "side": 1,
+      "message": "If I\u0027m understanding this block correctly it should be functionally equivalent to the previous code other than the addition of the isinstance check.  If that is the case then the previous code should be more efficient.",
+      "range": {
+        "startLine": 180,
+        "startChar": 41,
+        "endLine": 180,
+        "endChar": 47
+      },
+      "revId": "5d369388b26bafd8383631473d033a74f1ade2cd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
