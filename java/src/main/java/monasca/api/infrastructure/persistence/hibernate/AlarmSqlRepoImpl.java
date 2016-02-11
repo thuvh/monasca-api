@@ -534,8 +534,9 @@ public class AlarmSqlRepoImpl
   @Override
   public AlarmCount getAlarmsCount(String tenantId, String alarmDefId, String metricName,
                                    Map<String, String> metricDimensions, AlarmState state,
-                                   String lifecycleState, String link, DateTime stateUpdatedStart,
-                                   List<String> groupBy, String offset, int limit) {
+                                   AlarmSeverity severity, String lifecycleState, String link,
+                                   DateTime stateUpdatedStart, List<String> groupBy,
+                                   String offset, int limit) {
     // Not Implemented
     return null;
   }

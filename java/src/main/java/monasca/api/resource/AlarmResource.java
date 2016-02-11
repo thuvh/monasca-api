@@ -54,6 +54,7 @@ import monasca.api.domain.model.alarmstatehistory.AlarmStateHistoryRepo;
 import monasca.api.infrastructure.persistence.PersistUtils;
 import monasca.api.resource.annotation.PATCH;
 import monasca.api.resource.exception.Exceptions;
+import monasca.common.model.alarm.AlarmSeverity;
 import monasca.common.model.alarm.AlarmState;
 
 /**
@@ -254,6 +255,7 @@ public class AlarmResource {
                          @QueryParam("metric_name") String metricName,
                          @QueryParam("metric_dimensions") String metricDimensionsStr,
                          @QueryParam("state") AlarmState state,
+                         @QueryParam("severity") AlarmSeverity severity,
                          @QueryParam("lifecycle_state") String lifecycleState,
                          @QueryParam("link") String link,
                          @QueryParam("state_updated_start_time") String stateUpdatedStartStr,
@@ -281,6 +283,7 @@ public class AlarmResource {
                                                     metricName,
                                                     metricDimensions,
                                                     state,
+                                                    severity,
                                                     lifecycleState,
                                                     link,
                                                     stateUpdatedStart,

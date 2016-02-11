@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 import monasca.common.model.alarm.AlarmState;
+import monasca.common.model.alarm.AlarmSeverity;
 import monasca.common.model.alarm.AlarmSubExpression;
 import monasca.api.domain.exception.EntityNotFoundException;
 
@@ -63,6 +64,7 @@ public interface AlarmRepo {
    */
   AlarmCount getAlarmsCount(String tenantId, String alarmDefId, String metricName,
                             Map<String, String> metricDimensions, AlarmState state,
-                            String lifecycleState, String link, DateTime stateUpdatedStart,
-                            List<String> groupBy, String offset, int limit);
+                            AlarmSeverity severity, String lifecycleState, String link,
+                            DateTime stateUpdatedStart, List<String> groupBy,
+                            String offset, int limit);
 }
