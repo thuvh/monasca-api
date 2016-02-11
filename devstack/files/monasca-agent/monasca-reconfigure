@@ -11,3 +11,4 @@
      \
      --log_level 'WARN'  \
     --overwrite
+    --system_only
