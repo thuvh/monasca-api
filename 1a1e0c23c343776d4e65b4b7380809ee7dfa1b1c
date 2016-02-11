@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a57f1b5_cea49ea7",
+        "filename": "monasca_api/common/repositories/alarm_definitions_repository.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-02-11T16:23:11Z",
+      "side": 1,
+      "message": "copyright",
+      "range": {
+        "startLine": 1,
+        "startChar": 22,
+        "endLine": 1,
+        "endChar": 29
+      },
+      "revId": "1a1e0c23c343776d4e65b4b7380809ee7dfa1b1c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a57f1b5_eec63a48",
+        "filename": "monasca_api/common/repositories/mysql/alarm_definitions_repository.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-02-11T16:23:11Z",
+      "side": 1,
+      "message": "copyright",
+      "range": {
+        "startLine": 1,
+        "startChar": 38,
+        "endLine": 1,
+        "endChar": 48
+      },
+      "revId": "1a1e0c23c343776d4e65b4b7380809ee7dfa1b1c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a57f1b5_2eebf2b1",
+        "filename": "monasca_api/v2/reference/alarm_definitions.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-02-11T16:23:11Z",
+      "side": 1,
+      "message": "copyright",
+      "range": {
+        "startLine": 1,
+        "startChar": 38,
+        "endLine": 1,
+        "endChar": 48
+      },
+      "revId": "1a1e0c23c343776d4e65b4b7380809ee7dfa1b1c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
