@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a57f1b5_60a807dc",
+        "filename": "monasca_api/common/repositories/mysql/alarm_definitions_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2016-02-11T22:04:48Z",
+      "side": 1,
+      "message": "This needs to include 2015",
+      "range": {
+        "startLine": 1,
+        "startChar": 21,
+        "endLine": 1,
+        "endChar": 25
+      },
+      "revId": "38f65ac8eda897553888b213609863e87b8641a1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a57f1b5_607fa766",
+        "filename": "monasca_api/v2/reference/alarm_definitions.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2016-02-11T22:04:48Z",
+      "side": 1,
+      "message": "2015 here as well.",
+      "range": {
+        "startLine": 1,
+        "startChar": 21,
+        "endLine": 1,
+        "endChar": 25
+      },
+      "revId": "38f65ac8eda897553888b213609863e87b8641a1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
