@@ -16,6 +16,24 @@
       "revId": "6aad61724882fb10f32cd4cff77ae0690057d8b4",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a57f1b5_b6a29797",
+        "filename": "monasca_api/v2/reference/alarms.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-02-12T17:22:44Z",
+      "side": 1,
+      "message": "in this patch, they cannot",
+      "parentUuid": "3a57f1b5_3b80d2bf",
+      "revId": "6aad61724882fb10f32cd4cff77ae0690057d8b4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
