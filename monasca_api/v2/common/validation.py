@@ -19,6 +19,10 @@ import re
 invalid_chars = "<>={}(),\"\\\\|;&"
 restricted_chars = re.compile('[' + invalid_chars + ']')
 
+VALID_ALARM_STATES = ["ALARM", "OK", "UNDETERMINED"]
+
+VALID_ALARM_DEFINITION_SEVERITIES = ["LOW", "MEDIUM", "HIGH", "CRITICAL"]
+
 
 def metric_name(name):
     assert isinstance(name, (str, unicode)), "Metric name must be a string"
@@ -39,6 +43,20 @@ def dimension_value(value):
     assert len(value) <= 255, "Dimension value must be 255 characters or less"
     assert len(value) >= 1, "Dimension value cannot be empty"
     assert not restricted_chars.search(value), "Invalid characters in dimension value " + value
+
+
+def validate_alarm_state(state):
+    if state not in VALID_ALARM_STATES:
+        raise HTTPUnprocessableEntityError("Invalid State",
+                                           "State {} must be one of {}".format(state.encode('utf8'),
+                                                                               VALID_ALARM_STATES))
+
+
+def validate_alarm_definition_severity(severity):
+    if severity not in VALID_ALARM_DEFINITION_SEVERITIES:
+        raise HTTPUnprocessableEntityError("Invalid Severity",
+                                           "Severity {} must be one of {}".format(severity.encode('utf8'),
+                                                                                  VALID_ALARM_DEFINITION_SEVERITIES))
 
 
 def validate_sort_by(sort_by_list, allowed_sort_by):
