@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a57f1b5_3b80d2bf",
+        "filename": "monasca_api/v2/reference/alarms.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 16688
+      },
+      "writtenOn": "2016-02-12T17:10:32Z",
+      "side": 1,
+      "message": "If alarms can be also filtered by severity, could be useful to add \u0027severity\u0027 validation?",
+      "revId": "6aad61724882fb10f32cd4cff77ae0690057d8b4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
