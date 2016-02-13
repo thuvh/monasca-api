@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a54edaf_86436c6c",
+        "filename": "java/src/main/java/monasca/api/domain/model/alarm/AlarmRepo.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-02-13T03:33:26Z",
+      "side": 1,
+      "message": "Duplicate import",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 48
+      },
+      "revId": "fdd4074733e58afe8cef498730f73d86d9f7241e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a54edaf_863a8ce6",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmMySqlRepoImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-02-13T03:33:26Z",
+      "side": 1,
+      "message": "duplicate import",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 48
+      },
+      "revId": "fdd4074733e58afe8cef498730f73d86d9f7241e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a54edaf_e903110c",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/mysql/AlarmMySqlRepositoryImplTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-02-13T03:33:26Z",
+      "side": 1,
+      "message": "You should add a test for finding by severity",
+      "range": {
+        "startLine": 332,
+        "startChar": 0,
+        "endLine": 332,
+        "endChar": 3
+      },
+      "revId": "fdd4074733e58afe8cef498730f73d86d9f7241e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
