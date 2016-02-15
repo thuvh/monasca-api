@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "dae33548_c03cfc31",
+        "filename": "alarm.sql",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16170
+      },
+      "writtenOn": "2016-02-15T12:10:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a57f1b5_b9e4790d",
+      "revId": "0ee6ecf24d29e4a5ed24ed27eca5ac0109718815",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a57f1b5_59c8e574",
         "filename": "alarm.sql",
         "patchSetId": 16
@@ -111,6 +129,30 @@
     },
     {
       "key": {
+        "uuid": "3a57f1b5_8d019bb1",
+        "filename": "devstack/files/monasca-api/python/api-config.conf",
+        "patchSetId": 16
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 16170
+      },
+      "writtenOn": "2016-02-15T12:10:18Z",
+      "side": 1,
+      "message": "I left this because I want to run this code with devstack job.",
+      "parentUuid": "3a57f1b5_79c1212e",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 20
+      },
+      "revId": "0ee6ecf24d29e4a5ed24ed27eca5ac0109718815",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a57f1b5_b9f55984",
         "filename": "devstack/files/monasca-api/python/api-config.conf",
         "patchSetId": 16
@@ -122,6 +164,30 @@
       "writtenOn": "2016-02-10T00:11:41Z",
       "side": 1,
       "message": "From a deployment perspective if a single url preferred over specifying each parameter separately.",
+      "range": {
+        "startLine": 104,
+        "startChar": 6,
+        "endLine": 104,
+        "endChar": 7
+      },
+      "revId": "0ee6ecf24d29e4a5ed24ed27eca5ac0109718815",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a57f1b5_ed1fef05",
+        "filename": "devstack/files/monasca-api/python/api-config.conf",
+        "patchSetId": 16
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 16170
+      },
+      "writtenOn": "2016-02-15T12:10:18Z",
+      "side": 1,
+      "message": "I added also option for giving this parameters separately.",
+      "parentUuid": "3a57f1b5_b9f55984",
       "range": {
         "startLine": 104,
         "startChar": 6,
@@ -157,6 +223,30 @@
     },
     {
       "key": {
+        "uuid": "dae33548_805f9471",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 16
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 16170
+      },
+      "writtenOn": "2016-02-15T12:10:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a57f1b5_d9593590",
+      "range": {
+        "startLine": 729,
+        "startChar": 4,
+        "endLine": 729,
+        "endChar": 15
+      },
+      "revId": "0ee6ecf24d29e4a5ed24ed27eca5ac0109718815",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a57f1b5_d9d055cc",
         "filename": "etc/api-config.conf",
         "patchSetId": 16
@@ -168,6 +258,30 @@
       "writtenOn": "2016-02-10T00:11:41Z",
       "side": 1,
       "message": "Was hoping to keep the default as mysql.",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 20
+      },
+      "revId": "0ee6ecf24d29e4a5ed24ed27eca5ac0109718815",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dae33548_c0ffdc32",
+        "filename": "etc/api-config.conf",
+        "patchSetId": 16
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 16170
+      },
+      "writtenOn": "2016-02-15T12:10:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a57f1b5_d9d055cc",
       "range": {
         "startLine": 51,
         "startChar": 0,
@@ -237,6 +351,30 @@
       "writtenOn": "2016-02-10T00:11:41Z",
       "side": 1,
       "message": "I don\u0027t think you should add an \"_\" here.",
+      "range": {
+        "startLine": 41,
+        "startChar": 34,
+        "endLine": 41,
+        "endChar": 37
+      },
+      "revId": "0ee6ecf24d29e4a5ed24ed27eca5ac0109718815",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dae33548_0091c4f0",
+        "filename": "monasca_api/common/repositories/notifications_repository.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 16170
+      },
+      "writtenOn": "2016-02-15T12:10:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a57f1b5_1f956de3",
       "range": {
         "startLine": 41,
         "startChar": 34,
