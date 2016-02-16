@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dae33548_7e646c21",
+        "filename": "monasca_api/common/repositories/mysql/alarms_repository.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-02-16T16:47:10Z",
+      "side": 1,
+      "message": "\u0027received_columns\u0027 could be replaced with a simple boolean flag",
+      "range": {
+        "startLine": 334,
+        "startChar": 12,
+        "endLine": 334,
+        "endChar": 25
+      },
+      "revId": "583b177e359c33d87f4d6c2d84f4e1202411dd35",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dae33548_c1103904",
+        "filename": "monasca_api/common/repositories/mysql/alarms_repository.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-02-16T16:47:10Z",
+      "side": 1,
+      "message": "I would prefer to see the column replacement code in a separate method for readability.",
+      "range": {
+        "startLine": 324,
+        "startChar": 12,
+        "endLine": 350,
+        "endChar": 44
+      },
+      "revId": "583b177e359c33d87f4d6c2d84f4e1202411dd35",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
