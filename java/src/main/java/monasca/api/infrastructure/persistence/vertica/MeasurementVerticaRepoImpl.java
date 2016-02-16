@@ -147,7 +147,7 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
 
       }
 
-      DimensionQueries.bindDimensionsToQuery(query, dimensions);
+      MetricQueries.bindDimensionsToQuery(query, dimensions);
 
       List<Map<String, Object>> rows = query.list();
 

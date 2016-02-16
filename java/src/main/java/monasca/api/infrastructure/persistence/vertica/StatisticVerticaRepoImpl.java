@@ -223,7 +223,7 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
 
     }
 
-    DimensionQueries.bindDimensionsToQuery(query, dimensions);
+    MetricQueries.bindDimensionsToQuery(query, dimensions);
 
     List<Map<String, Object>> rows = query.list();
 
