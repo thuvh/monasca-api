@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dae33548_074ecd95",
+        "filename": "monasca_api/common/repositories/sqla/sql_repository.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 16688
+      },
+      "writtenOn": "2016-02-16T10:06:51Z",
+      "side": 1,
+      "message": "In conf.database, \"query\" option could be added, because URL function also accept this entry parameter",
+      "revId": "e51feed20046897819d1287e3a8dafdd6349be1c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
