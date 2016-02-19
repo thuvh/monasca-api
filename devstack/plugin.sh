@@ -292,6 +292,7 @@ function install_monasca_virtual_env {
     PIP_VIRTUAL_ENV=/opt/monasca
 
     pip_install --pre --allow-all-external --allow-unverified simport simport
+    (cd "${PIP_VIRTUAL_ENV}" ; bin/pip install -U --force-reinstall kafka-python==0.9.5)
 
     unset PIP_VIRTUAL_ENV
 }
@@ -926,6 +927,7 @@ function install_monasca_persister_python {
     PIP_VIRTUAL_ENV=/opt/monasca-persister
 
     pip_install $MONASCA_PERSISTER_SRC_DIST
+    (cd "${PIP_VIRTUAL_ENV}" ; bin/pip install -U --force-reinstall kafka-python==0.9.5)
 
     unset PIP_VIRTUAL_ENV
 
@@ -1052,6 +1054,7 @@ function install_monasca_notification {
     PIP_VIRTUAL_ENV=/opt/monasca
 
     pip_install --allow-unverified simport $MONASCA_NOTIFICATION_SRC_DIST
+    (cd "${PIP_VIRTUAL_ENV}" ; bin/pip install -U --force-reinstall kafka-python==0.9.5)
 
     pip_install mysql-python
 
@@ -1446,6 +1449,7 @@ function install_monasca_smoke_test {
     PIP_VIRTUAL_ENV=/opt/monasca
 
     pip_install mySQL-python
+    (cd "${PIP_VIRTUAL_ENV}" ; bin/pip install -U --force-reinstall kafka-python==0.9.5)
 
     sudo curl -L https://api.github.com/repos/hpcloud-mon/monasca-ci/tarball/master -o /opt/monasca/monasca-ci.tar.gz
 
