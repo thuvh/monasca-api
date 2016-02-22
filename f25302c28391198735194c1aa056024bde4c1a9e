@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bae84128_5f86a7db",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 2439,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-02-22T21:28:39Z",
+      "side": 1,
+      "message": "I would write this as string instead of timestamp and state that it is an ISO 8601 formatted timestamp in the description",
+      "range": {
+        "startLine": 2439,
+        "startChar": 10,
+        "endLine": 2439,
+        "endChar": 19
+      },
+      "revId": "f25302c28391198735194c1aa056024bde4c1a9e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
