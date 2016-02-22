@@ -46,6 +46,30 @@
       "revId": "f25302c28391198735194c1aa056024bde4c1a9e",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bae84128_ca15d740",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 2439,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-02-22T21:35:36Z",
+      "side": 1,
+      "message": "At the beginning of this documentation in the paging part, it explains \"A timestamp offset would look like this: offset\u003d2104-01-01T00:00:01Z\" and \"A string offset would look like this: offset\u003dc60ec47e-5038-4bf1-9f95-4046c6e9a759\".  That\u0027s why I chose timestamp here. But you are definitely right on specifying it should be an ISO8601 format here. Thanks!",
+      "parentUuid": "bae84128_5f86a7db",
+      "range": {
+        "startLine": 2439,
+        "startChar": 10,
+        "endLine": 2439,
+        "endChar": 19
+      },
+      "revId": "f25302c28391198735194c1aa056024bde4c1a9e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
