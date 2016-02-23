@@ -275,7 +275,8 @@ public class AlarmMySqlRepoImpl implements AlarmRepo {
   private void replaceFieldName(List<String> list, String oldString, String newString) {
     for (int i = 0; i < list.size(); i++) {
       String listElement = list.get(i);
-      if (listElement.contains(oldString)) {
+      String columnName = Splitter.on(' ').splitToList(listElement).get(0);
+      if (columnName.equalsIgnoreCase(oldString)) {
         list.set(i, listElement.replace(oldString, newString));
       }
     }
