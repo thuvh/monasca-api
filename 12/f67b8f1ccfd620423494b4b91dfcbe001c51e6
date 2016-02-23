@@ -1,0 +1,10 @@
+Code-Review+2: Witold Bedyk <witold.bedyk@est.fujitsu.com>
+Code-Review+1: Ryan Brandt <ryan.brandt@hpe.com>
+Code-Review+2: Deklan Dieterly <deklan.dieterly@hpe.com>
+Workflow+1: Deklan Dieterly <deklan.dieterly@hpe.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Tue, 23 Feb 2016 16:53:36 +0000
+Reviewed-on: https://review.openstack.org/280191
+Project: openstack/monasca-api
+Branch: refs/heads/master
