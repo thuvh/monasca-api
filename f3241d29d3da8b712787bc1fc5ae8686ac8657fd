@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bae84128_000e06e5",
+        "filename": "java/src/main/java/monasca/api/app/validation/Validation.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-02-24T17:37:05Z",
+      "side": 1,
+      "message": "The other validation methods allow upper or lower case. For example, see use of VALID_STATISTICS and VALID_ALARM_STATE. I think it is inconsistent to only allow lower case on sortBy. It would be OK to change to lower case here, though.\n\nSame for asc and desc below",
+      "range": {
+        "startLine": 239,
+        "startChar": 8,
+        "endLine": 239,
+        "endChar": 54
+      },
+      "revId": "f3241d29d3da8b712787bc1fc5ae8686ac8657fd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
