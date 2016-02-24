@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bae84128_d636ab4f",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmMySqlRepoImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-02-24T16:36:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bae84128_60fd59b0",
+      "range": {
+        "startLine": 278,
+        "startChar": 26,
+        "endLine": 278,
+        "endChar": 42
+      },
+      "revId": "43b01a53060de00e296d41cabc7c7a7330181bae",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bae84128_00572dca",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmMySqlRepoImpl.java",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2016-02-24T16:07:08Z",
       "side": 1,
       "message": "You do an equalsIgnoreCase but the replace only does case sensitive replace so I\u0027m not sure this works correctly for upper or mixed case.",
+      "range": {
+        "startLine": 280,
+        "startChar": 32,
+        "endLine": 280,
+        "endChar": 39
+      },
+      "revId": "43b01a53060de00e296d41cabc7c7a7330181bae",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bae84128_1624930a",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmMySqlRepoImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-02-24T16:36:52Z",
+      "side": 1,
+      "message": "Looks like the validation will check for everything in lower case",
+      "parentUuid": "bae84128_00572dca",
       "range": {
         "startLine": 280,
         "startChar": 32,
