@@ -46,6 +46,30 @@
       "revId": "5f072cb844ecb74484d4733fd258869f4341bdca",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bae84128_f263e63f",
+        "filename": "monasca_tempest_tests/tests/api/test_metrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 552,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-02-24T22:20:55Z",
+      "side": 1,
+      "message": "With more thoughts on this one, I think I would keep this function here instead of moving to helpers for now. Because here I need to create three very specific metrics with the same or different names and specific different dimensions. I don\u0027t have any other tests need to call this function for now. If there are in the future, I will definitely move this function into the helpers. Thanks.",
+      "parentUuid": "bae84128_f2bda6d8",
+      "range": {
+        "startLine": 537,
+        "startChar": 4,
+        "endLine": 552,
+        "endChar": 50
+      },
+      "revId": "5f072cb844ecb74484d4733fd258869f4341bdca",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
