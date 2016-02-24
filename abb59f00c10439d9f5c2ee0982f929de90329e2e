@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bae84128_808fbd73",
+        "filename": "devstack/files/monasca-api/python/api-config.conf",
+        "patchSetId": 26
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 11515
+      },
+      "writtenOn": "2016-02-24T23:07:45Z",
+      "side": 1,
+      "message": "Consider deleting these lines. You can get what they were using git if needed",
+      "revId": "abb59f00c10439d9f5c2ee0982f929de90329e2e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bae84128_80c33d37",
+        "filename": "etc/api-config.conf",
+        "patchSetId": 26
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 11515
+      },
+      "writtenOn": "2016-02-24T23:07:45Z",
+      "side": 1,
+      "message": "why are these lines commented out? Will devstack or something else modify these lines and/or remove the comments?",
+      "revId": "abb59f00c10439d9f5c2ee0982f929de90329e2e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bae84128_80485dcd",
+        "filename": "monasca_api/common/repositories/mysql/alarms_repository.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 11515
+      },
+      "writtenOn": "2016-02-24T23:07:45Z",
+      "side": 1,
+      "message": "Is this change necessary?",
+      "revId": "abb59f00c10439d9f5c2ee0982f929de90329e2e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bae84128_11c2dd84",
+        "filename": "monasca_api/common/repositories/sqla/notifications_repository.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 11515
+      },
+      "writtenOn": "2016-02-24T23:07:45Z",
+      "side": 1,
+      "message": "nit: wouldn\u0027t \"if row:\" also work here?",
+      "revId": "abb59f00c10439d9f5c2ee0982f929de90329e2e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
