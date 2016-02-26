@@ -16,13 +16,13 @@
 
 import datetime
 import json
+import re
 
 import falcon
 from oslo_log import log
 from oslo_utils import timeutils
 import simplejson
 import six.moves.urllib.parse as urlparse
-
 
 from monasca_api.common.repositories import constants
 from monasca_api.v2.common.exceptions import HTTPUnprocessableEntityError
@@ -325,6 +325,14 @@ def paginate(resource, uri, limit):
 
         if 'id' in resource[limit - 1]:
             new_offset = resource[limit - 1]['id']
+
+        if ((parsed_uri.path.find("alarm-definitions") >= 0) or
+                (re.search("alarms$", parsed_uri.path) is not None)):
+            old_offset = 0
+            for param in old_query_params:
+                if param.find('offset') >= 0:
+                    old_offset = int(param.split('=')[-1])
+            new_offset = str(limit + old_offset)
 
         next_link = build_base_uri(parsed_uri)
 
