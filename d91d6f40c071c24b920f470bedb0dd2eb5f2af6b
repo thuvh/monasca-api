@@ -16,6 +16,24 @@
       "revId": "d91d6f40c071c24b920f470bedb0dd2eb5f2af6b",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9aed3d3a_401bb11b",
+        "filename": "monasca_api/common/repositories/sqla/notifications_repository.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2016-02-26T14:05:34Z",
+      "side": 1,
+      "message": "I agree that it is better to be explicit here. Especially that the result could depend on the DBAPI used. I revert to the previous patch set.",
+      "parentUuid": "9aed3d3a_964a2782",
+      "revId": "d91d6f40c071c24b920f470bedb0dd2eb5f2af6b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
