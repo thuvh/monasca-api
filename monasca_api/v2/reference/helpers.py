@@ -23,7 +23,6 @@ from oslo_utils import timeutils
 import simplejson
 import six.moves.urllib.parse as urlparse
 
-
 from monasca_api.common.repositories import constants
 from monasca_api.v2.common.exceptions import HTTPUnprocessableEntityError
 from monasca_api.v2.common.schemas import dimensions_schema
@@ -318,6 +317,11 @@ def paginate(resource, uri, limit):
     if old_query_params:
         self_link += '?' + '&'.join(old_query_params)
 
+    old_offset = 0
+    for param in old_query_params:
+        if param.find('offset') >= 0:
+            old_offset = int(param.split('=')[-1])
+
     if resource and len(resource) > limit:
 
         if 'timestamp' in resource[limit - 1]:
@@ -325,6 +329,10 @@ def paginate(resource, uri, limit):
 
         if 'id' in resource[limit - 1]:
             new_offset = resource[limit - 1]['id']
+
+        if ((parsed_uri.path.find("alarm-definitions") >= 0) or
+                (parsed_uri.path.find("alarms") >= 0)):
+            new_offset = str(limit + old_offset)
 
         next_link = build_base_uri(parsed_uri)
 
