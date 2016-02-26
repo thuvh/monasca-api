@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "bae84128_5de561a6",
+        "filename": "devstack/files/monasca-api/python/api-config.conf",
+        "patchSetId": 26
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2016-02-26T09:53:00Z",
+      "side": 1,
+      "message": "I think we can remove them in near future.",
+      "parentUuid": "bae84128_808fbd73",
+      "revId": "abb59f00c10439d9f5c2ee0982f929de90329e2e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bae84128_80c33d37",
         "filename": "etc/api-config.conf",
         "patchSetId": 26
@@ -30,6 +48,24 @@
       "writtenOn": "2016-02-24T23:07:45Z",
       "side": 1,
       "message": "why are these lines commented out? Will devstack or something else modify these lines and/or remove the comments?",
+      "revId": "abb59f00c10439d9f5c2ee0982f929de90329e2e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bae84128_1d0c7941",
+        "filename": "etc/api-config.conf",
+        "patchSetId": 26
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2016-02-26T09:53:00Z",
+      "side": 1,
+      "message": "Devstack plugin takes configuration from devstack/files/monasca-api/python/api-config.conf",
+      "parentUuid": "bae84128_80c33d37",
       "revId": "abb59f00c10439d9f5c2ee0982f929de90329e2e",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "bae84128_0809d931",
+        "filename": "monasca_api/common/repositories/mysql/alarms_repository.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2016-02-26T09:53:00Z",
+      "side": 1,
+      "message": "http://docs.openstack.org/developer/hacking/#import-order-template",
+      "parentUuid": "bae84128_80485dcd",
+      "revId": "abb59f00c10439d9f5c2ee0982f929de90329e2e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bae84128_11c2dd84",
         "filename": "monasca_api/common/repositories/sqla/notifications_repository.py",
         "patchSetId": 26
@@ -64,6 +118,24 @@
       "writtenOn": "2016-02-24T23:07:45Z",
       "side": 1,
       "message": "nit: wouldn\u0027t \"if row:\" also work here?",
+      "revId": "abb59f00c10439d9f5c2ee0982f929de90329e2e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9aed3d3a_13a0f39e",
+        "filename": "monasca_api/common/repositories/sqla/notifications_repository.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2016-02-26T09:53:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bae84128_11c2dd84",
       "revId": "abb59f00c10439d9f5c2ee0982f929de90329e2e",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
