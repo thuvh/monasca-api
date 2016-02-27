@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9aed3d3a_5fa522b3",
+        "filename": "devstack/post_test_hook.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 19491
+      },
+      "writtenOn": "2016-02-27T10:23:22Z",
+      "side": 1,
+      "message": "Why did you comment out this tests? I think that better option is adding tempest-lib to test-requirments. This change is not tested by tempest now.",
+      "revId": "9dcc8acdb15049252798410a4c74335f1ee3080f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
