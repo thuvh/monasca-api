@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7af24918_6f3c0b30",
+        "filename": "monasca_tempest_tests/tests/api/test_metrics.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-03-01T14:56:55Z",
+      "side": 1,
+      "message": "Why not just return the metrics here? All the data should already be included in that.",
+      "range": {
+        "startLine": 578,
+        "startChar": 8,
+        "endLine": 578,
+        "endChar": 14
+      },
+      "revId": "4de7c60b285769acc4551d8a2feea39cdeafcdba",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
