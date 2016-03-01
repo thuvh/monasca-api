@@ -22,6 +22,30 @@
       "revId": "4de7c60b285769acc4551d8a2feea39cdeafcdba",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7af24918_1952d567",
+        "filename": "monasca_tempest_tests/tests/api/test_metrics.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-03-01T23:31:16Z",
+      "side": 1,
+      "message": "I think returning four values makes it easier when you try to use these four later separately. Also it will reduce some redundant code because this function has been called four times.",
+      "parentUuid": "7af24918_6f3c0b30",
+      "range": {
+        "startLine": 578,
+        "startChar": 8,
+        "endLine": 578,
+        "endChar": 14
+      },
+      "revId": "4de7c60b285769acc4551d8a2feea39cdeafcdba",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
