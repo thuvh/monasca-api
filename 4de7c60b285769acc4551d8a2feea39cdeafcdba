@@ -46,6 +46,30 @@
       "revId": "4de7c60b285769acc4551d8a2feea39cdeafcdba",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7af24918_85879260",
+        "filename": "monasca_tempest_tests/tests/api/test_metrics.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-03-02T00:54:01Z",
+      "side": 1,
+      "message": "It makes for a long line where its used, but I don\u0027t really feel too strongly about it",
+      "parentUuid": "7af24918_1952d567",
+      "range": {
+        "startLine": 578,
+        "startChar": 8,
+        "endLine": 578,
+        "endChar": 14
+      },
+      "revId": "4de7c60b285769acc4551d8a2feea39cdeafcdba",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
