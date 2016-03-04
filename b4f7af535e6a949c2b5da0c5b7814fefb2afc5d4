@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7af24918_4c7b1d7c",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MetricDefinitionVerticaRepoImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-03-04T23:02:02Z",
+      "side": 1,
+      "message": "looks like this is the culprit of the bad query I posted, should be just \u0027def.id\u0027 i think",
+      "range": {
+        "startLine": 145,
+        "startChar": 25,
+        "endLine": 145,
+        "endChar": 31
+      },
+      "revId": "b4f7af535e6a949c2b5da0c5b7814fefb2afc5d4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
