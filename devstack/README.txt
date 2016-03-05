@@ -79,8 +79,11 @@ Using Vagrant:
 Vagrant can be used to deploy a VM with Devstack and Monasca running in it
 using the Vagrantfile. After installing Vagrant, just "vagrant up".
 
+Enable Vertica as the Metrics DB:
 
-Known Issues:
+1. Download the Vertica Debian installer and put it in your home directory.
 
-1. The Python Monasca API has various bugs.
-2. The RabbitMQ Check Plugin is not configured correctly.
+2. Set the environment variable in local.conf or setting.
+
+    MONASCA_METRICS_DB=${MONASCA_METRICS_DB:-vertica}
+
