@@ -61,7 +61,7 @@ verticaMetricRepoConfig:
 
 databaseConfiguration:
 # vertica | influxdb
-  databaseType: influxdb
+  databaseType: vertica
 
 # Uncomment if databaseType is influxdb
 influxDbConfiguration:
@@ -79,7 +79,7 @@ influxDbConfiguration:
 dataSourceFactory:
   driverClass: com.vertica.jdbc.Driver
   url: "jdbc:vertica://localhost:5433/mon"
-  user: "mon_persister"
+  user: "dbadmin"
   password: "password"
   properties:
       ssl: false

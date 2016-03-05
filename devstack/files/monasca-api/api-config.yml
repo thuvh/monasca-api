@@ -49,7 +49,7 @@ mysql:
   checkConnectionOnBorrow: true
 
 databaseConfiguration:
-  databaseType: "influxdb"
+  databaseType: "vertica"
 
 # Uncomment if databaseType is influxDB
 influxDB:
@@ -68,7 +68,7 @@ influxDB:
 vertica:
   driverClass: com.vertica.jdbc.Driver
   url: "jdbc:vertica://localhost:5433/mon"
-  user: "mon_api"
+  user: "dbadmin"
   password: "password"
   maxWaitForConnection: 1s
   validationQuery: "/* MyService Health Check */ SELECT 1"

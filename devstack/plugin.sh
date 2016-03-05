@@ -48,6 +48,9 @@ set -o errexit
 export MONASCA_API_IMPLEMENTATION_LANG=${MONASCA_API_IMPLEMENTATION_LANG:-python}
 export MONASCA_PERSISTER_IMPLEMENTATION_LANG=${MONASCA_PERSISTER_IMPLEMENTATION_LANG:-python}
 
+# Set default metrics DB to InfluxDB
+export MONASCA_METRICS_DB=${MONASCA_METRICS_DB:-influxdb}
+
 # Determine if we are running in devstack-gate or devstack.
 if [[ $DEST ]]; then
 
@@ -67,6 +70,8 @@ function pre_install_monasca {
 
 function install_monasca {
 
+    install_git
+
     update_maven
 
     install_monasca_virtual_env
@@ -77,15 +82,27 @@ function install_monasca {
 
     install_kafka
 
-    install_influxdb
+    if [[ "${MONASCA_METRICS_DB,,}" == 'influxdb' ]]; then
+
+        install_influxdb
+
+    elif [[ "${MONASCA_METRICS_DB,,}" == 'vertica' ]]; then
+
+        install_vertica
+
+    else
+
+        echo "Found invalid value for variable MONASCA_METRICS_DB: $MONASCA_METRICS_DB"
+        echo "Valid values for MONASCA_METRICS_DB are \"influxdb\" and \"vertica\""
+        die "Please set MONASCA_METRICS_DB to either \"influxdb'' or \"vertica\""
+
+    fi
 
     install_cli_creds
 
     install_schema
 
     install_maven
-
-    install_git
 
     install_monasca_common
 
@@ -464,6 +481,28 @@ function install_influxdb {
 
 }
 
+function install_vertica {
+
+    echo_summary "Install Monasca Vertica"
+
+    sudo apt-get -y install dialog
+
+    sudo dpkg --skip-same-version -i /vagrant_home/vertica_7.2.1-0_amd64.deb
+
+    sudo /opt/vertica/sbin/install_vertica --hosts "127.0.0.1" --deb /vagrant_home/vertica_7.2.1-0_amd64.deb --dba-user-password password --license CE --accept-eula --failure-threshold NONE
+
+    sudo su dbadmin -c '/opt/vertica/bin/admintools -t create_db -s "127.0.0.1" -d mon -p password'
+
+    sudo git clone https://github.com/hpcloud-mon/ansible-monasca-schema.git "${MONASCA_BASE}"/ansible-monasca-schema
+
+    /opt/vertica/bin/vsql -U dbadmin -w password < "${MONASCA_BASE}"/ansible-monasca-schema/files/mon_alarms_schema.sql
+
+    sudo /opt/vertica/bin/vsql -U dbadmin -w password < "${MONASCA_BASE}"/ansible-monasca-schema/files/mon_metrics_schema.sql
+
+    sudo cp /vagrant_home/vertica-jdbc-7.2.1-0.jar /opt/monasca/vertica-jdbc-7.2.1-0.jar
+
+}
+
 function clean_influxdb {
 
     echo_summary "Clean Monasca Influxdb"
@@ -525,13 +564,17 @@ function install_schema {
 
     sudo chmod 0755 /opt/monasca/sqls
 
-    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/schema/influxdb_setup.py /opt/monasca/influxdb_setup.py
+    if [[ "${MONASCA_METRICS_DB,,}" == 'influxdb' ]]; then
 
-    sudo chmod 0750 /opt/monasca/influxdb_setup.py
+        sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/schema/influxdb_setup.py /opt/monasca/influxdb_setup.py
 
-    sudo chown root:root /opt/monasca/influxdb_setup.py
+        sudo chmod 0750 /opt/monasca/influxdb_setup.py
 
-    sudo /opt/monasca/influxdb_setup.py
+        sudo chown root:root /opt/monasca/influxdb_setup.py
+
+        sudo /opt/monasca/influxdb_setup.py
+
+    fi
 
     sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/schema/mon_mysql.sql /opt/monasca/sqls/mon.sql
 
@@ -691,10 +734,19 @@ function install_monasca_api_java {
 
     sudo chmod 0640 /etc/monasca/api-config.yml
 
+    if [[ "${MONASCA_METRICS_DB,,}" == 'influxdb' ]]; then
+
+        if [[ ${SERVICE_HOST} ]]; then
+
+            # set influxdb ip address
+            sudo sed -i "s/url: \"http:\/\/127\.0\.0\.1:8086\"/url: \"http:\/\/${SERVICE_HOST}:8086\"/g" /etc/monasca/api-config.yml
+
+        fi
+
+    fi
+
     if [[ ${SERVICE_HOST} ]]; then
 
-        # set influxdb ip address
-        sudo sed -i "s/url: \"http:\/\/127\.0\.0\.1:8086\"/url: \"http:\/\/${SERVICE_HOST}:8086\"/g" /etc/monasca/api-config.yml
         # set kafka ip address
         sudo sed -i "s/127\.0\.0\.1:9092/${SERVICE_HOST}:9092/g" /etc/monasca/api-config.yml
         # set zookeeper ip address
