@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7af24918_bd78f42c",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2016-03-06T21:35:42Z",
+      "side": 1,
+      "message": "I suggest naming this \u0027install_monasca_vertica\u0027 to avoid any name collisions.",
+      "range": {
+        "startLine": 484,
+        "startChar": 9,
+        "endLine": 484,
+        "endChar": 24
+      },
+      "revId": "43f5cf07c01c5ad412f46341c7a6dc9b14d0b5c0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
