@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5aef4532_91d4c320",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/StatisticVerticaRepoImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 11549
+      },
+      "writtenOn": "2016-03-08T23:20:24Z",
+      "side": 0,
+      "message": "I wonder if you don\u0027t remove this code. This can still help in driving this change with the flag. And only returns the multiple metrics when asked for it. So it will still be parameter driven?\nSo it will like giving additional information to uniquely identify when not possible to do that otherwise",
+      "revId": "b8fe275d54df7f01f27beafd15f6788c5c9e6677",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
