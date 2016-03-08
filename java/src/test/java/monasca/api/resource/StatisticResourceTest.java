@@ -58,7 +58,7 @@ public class StatisticResourceTest extends AbstractMonApiResourceTest {
         .header("X-Tenant-Id", "abc").get(ClientResponse.class);
     verify(statisticRepo).find(anyString(), anyString(), any(Map.class), any(DateTime.class),
         any(DateTime.class), any(List.class), anyInt(), any(String.class), anyInt(),
-        anyBoolean());
+        anyBoolean(), anyString());
   }
 
   public void queryShouldThrowOnInvalidDateFormat() throws Exception {

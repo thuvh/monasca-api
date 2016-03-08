@@ -15,14 +15,12 @@
 package monasca.api.infrastructure.persistence.vertica;
 
 import com.google.common.base.Splitter;
-import com.google.common.base.Strings;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.commons.codec.binary.Hex;
 import org.skife.jdbi.v2.Handle;
 import org.skife.jdbi.v2.Query;
 
@@ -32,6 +30,8 @@ import monasca.common.persistence.SqlQueries;
  * Vertica utilities for building metric queries.
  */
 final class MetricQueries {
+  static final char OFFSET_SEPARATOR = '_';
+
   private MetricQueries() {}
 
   static String buildDimensionAndClause(Map<String, String> dimensions,
@@ -93,14 +93,14 @@ final class MetricQueries {
         + "where" + " dimension_set_id = ?", dimensionSetId);
   }
 
-  static String createDefDimIdInClause(Set<byte[]> defDimIdSet) {
+  static String createDefDimIdInClause(Set<String> defDimIdSet) {
 
     StringBuilder sb = new StringBuilder("IN ");
 
     sb.append("(");
 
     boolean first = true;
-    for (byte[] defDimId : defDimIdSet) {
+    for (String defDimId : defDimIdSet) {
 
       if (first) {
         first = false;
@@ -108,11 +108,15 @@ final class MetricQueries {
         sb.append(",");
       }
 
-      sb.append("'" + Hex.encodeHexString(defDimId) + "'");
+      sb.append("'" + defDimId + "'");
     }
 
     sb.append(") ");
 
     return sb.toString();
+  }
+
+  static List<String> parseMutliValueOffset(String offset) {
+    return Splitter.on(OFFSET_SEPARATOR).omitEmptyStrings().trimResults().splitToList(offset);
   }
 }
