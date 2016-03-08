@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5aef4532_a3a1ecab",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-03-08T00:10:00Z",
+      "side": 1,
+      "message": "This seems like a fragile way to make this decision. The code that calls paginate should specify what to use to create the new_offset. This code uses the uri to determine who is calling it and that makes it harder to add a new resource that uses ints for the offset.\n\nI also believe the same for using id vs timstamp. I know you didn\u0027t code that, but it might be good to fix that at the same time",
+      "range": {
+        "startLine": 329,
+        "startChar": 0,
+        "endLine": 330,
+        "endChar": 69
+      },
+      "revId": "fd39131cade06d7e045210721275c21e83bc33b4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
