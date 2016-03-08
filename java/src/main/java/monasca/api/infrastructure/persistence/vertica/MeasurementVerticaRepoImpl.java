@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 Hewlett-Packard Development Company, L.P.
+ * Copyright (c) 2014, 2016 Hewlett-Packard Development Company, L.P.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -12,6 +12,8 @@
  * the License.
  */
 package monasca.api.infrastructure.persistence.vertica;
+
+import com.google.common.base.Strings;
 
 import monasca.api.domain.exception.MultipleMetricsException;
 import monasca.api.domain.model.measurement.MeasurementRepo;
@@ -87,7 +89,8 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
       @Nullable DateTime endTime,
       @Nullable String offset,
       int limit,
-      Boolean mergeMetricsFlag) throws MultipleMetricsException {
+      Boolean mergeMetricsFlag,
+      String groupBy) throws MultipleMetricsException {
 
     try (Handle h = db.open()) {
 
@@ -217,7 +220,7 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
 
             results.put(defdimsId, measurements);
 
-            if (results.keySet().size() > 1) {
+            if (Strings.isNullOrEmpty(groupBy) && results.keySet().size() > 1) {
 
               throw new MultipleMetricsException(name, dimensions);
 
