@@ -177,6 +177,23 @@ public final class Validation {
     }
   }
 
+  public static Boolean validateAndParseMultipleMetricsFlag(String multipleMetricsFlag) {
+
+    if (multipleMetricsFlag == null) {
+
+      return false;
+
+    } else if (!"true".equalsIgnoreCase(multipleMetricsFlag)
+               && !"false".equalsIgnoreCase(multipleMetricsFlag)) {
+
+      throw Exceptions.badRequest("multiple_metrics must be either 'true' or 'false'");
+
+    } else {
+
+      return Boolean.parseBoolean(multipleMetricsFlag);
+    }
+  }
+
   public static void validateLifecycleState(String lifecycleState) {
     if (lifecycleState != null) {
       if (lifecycleState.length() > 50) {

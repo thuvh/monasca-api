@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 Hewlett-Packard Development Company, L.P.
+ * Copyright (c) 2014, 2016 Hewlett-Packard Development Company, L.P.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -65,11 +65,12 @@ public class InfluxV9MeasurementRepo implements MeasurementRepo {
   @Override
   public List<Measurements> find(String tenantId, String name, Map<String, String> dimensions,
                                  DateTime startTime, @Nullable DateTime endTime,
-                                 @Nullable String offset, int limit, Boolean mergeMetricsFlag)
+                                 @Nullable String offset, int limit, Boolean mergeMetricsFlag,
+                                 Boolean multipleMetricsFlag)
       throws Exception {
 
     String q = buildQuery(tenantId, name, dimensions, startTime, endTime,
-                          offset, limit, mergeMetricsFlag);
+                          offset, limit, mergeMetricsFlag, multipleMetricsFlag);
 
 
     String r = this.influxV9RepoReader.read(q);
@@ -85,7 +86,7 @@ public class InfluxV9MeasurementRepo implements MeasurementRepo {
 
   private String buildQuery(String tenantId, String name, Map<String, String> dimensions,
                             DateTime startTime, DateTime endTime, String offset, int limit,
-                            Boolean mergeMetricsFlag) throws Exception {
+                            Boolean mergeMetricsFlag, Boolean multipleMetricsFlag) throws Exception {
 
     String q;
     if (Boolean.TRUE.equals(mergeMetricsFlag)) {
