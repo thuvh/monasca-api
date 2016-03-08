@@ -217,11 +217,6 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
 
             results.put(defdimsId, measurements);
 
-            if (results.keySet().size() > 1) {
-
-              throw new MultipleMetricsException(name, dimensions);
-
-            }
           }
         }
 
