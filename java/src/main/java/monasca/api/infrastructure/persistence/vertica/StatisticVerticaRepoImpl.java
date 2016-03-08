@@ -13,6 +13,8 @@
  */
 package monasca.api.infrastructure.persistence.vertica;
 
+import com.google.common.base.Strings;
+
 import monasca.api.domain.exception.MultipleMetricsException;
 import monasca.api.domain.model.statistic.StatisticRepo;
 import monasca.api.domain.model.statistic.Statistics;
@@ -31,6 +33,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -77,7 +80,8 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
       int period,
       String offset,
       int limit,
-      Boolean mergeMetricsFlag) throws MultipleMetricsException {
+      Boolean mergeMetricsFlag,
+      String groupBy) throws MultipleMetricsException {
 
     List<Statistics> statisticsList = new ArrayList<>();
 
@@ -94,7 +98,7 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
 
       }
 
-      if (!Boolean.TRUE.equals(mergeMetricsFlag) && byteMap.keySet().size() > 1) {
+      if (Strings.isNullOrEmpty(groupBy) && !Boolean.TRUE.equals(mergeMetricsFlag) && byteMap.keySet().size() > 1) {
 
         throw new MultipleMetricsException(name, dimensions);
 
@@ -128,21 +132,45 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
 
       }
 
-      // Just use the first entry in the byteMap to get the def name and dimensions.
-      Statistics statistics = byteMap.entrySet().iterator().next().getValue();
+      if (!Strings.isNullOrEmpty(groupBy)) {
 
-      statistics.setColumns(statisticsColumns);
+        for (Map.Entry<byte[], Statistics> entry : byteMap.entrySet()) {
 
-      if (Boolean.TRUE.equals(mergeMetricsFlag) && byteMap.keySet().size() > 1) {
+          Statistics statistics = entry.getValue();
 
-        // Wipe out the dimensions.
-        statistics.setDimensions(new HashMap<String, String>());
+          statistics.setColumns(statisticsColumns);
 
+          if (Boolean.TRUE.equals(mergeMetricsFlag) && byteMap.keySet().size() > 1) {
+
+            // Wipe out the dimensions.
+            statistics.setDimensions(new HashMap<String, String>());
+
+          }
+
+          statistics.setStatistics(statisticsListList);
+
+          statisticsList.add(statistics);
+
+        }
+
+      } else {
+
+        // Just use the first entry in the byteMap to get the def name and dimensions.
+        Statistics statistics = byteMap.entrySet().iterator().next().getValue();
+
+        statistics.setColumns(statisticsColumns);
+
+        if (Boolean.TRUE.equals(mergeMetricsFlag) && byteMap.keySet().size() > 1) {
+
+          // Wipe out the dimensions.
+          statistics.setDimensions(new HashMap<String, String>());
+
+        }
+
+        statistics.setStatistics(statisticsListList);
+
+        statisticsList.add(statistics);
       }
-
-      statistics.setStatistics(statisticsListList);
-
-      statisticsList.add(statistics);
 
     }
 
