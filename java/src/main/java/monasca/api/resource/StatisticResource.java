@@ -79,7 +79,8 @@ public class StatisticResource {
       @QueryParam("offset") String offset,
       @QueryParam("limit") String limit,
       @QueryParam("tenant_id") String crossTenantId,
-      @QueryParam("merge_metrics") String mergeMetricsFlag) throws Exception {
+      @QueryParam("merge_metrics") String mergeMetricsFlag,
+      @QueryParam("multiple_metrics") String multipleMetricsFlag) throws Exception {
 
     // Validate query parameters
     Validation.validateNotNullOrEmpty(name, "name");
@@ -95,6 +96,7 @@ public class StatisticResource {
             .parseAndValidateDimensions(dimensionsStr);
     MetricNameValidation.validate(name, true);
     Boolean mergeMetricsFlagBool = Validation.validateAndParseMergeMetricsFlag(mergeMetricsFlag);
+    Boolean multipleMetricsFlagBool = Validation.validateAndParseMultipleMetricsFlag(multipleMetricsFlag);
 
     String queryTenantId = Validation.getQueryProject(roles, crossTenantId, tenantId, admin_role);
 
@@ -102,7 +104,7 @@ public class StatisticResource {
                                     repo.find(queryTenantId, name, dimensions, startTime, endTime,
                                               statistics, period, offset,
                                               this.persistUtils.getLimit(limit),
-                                              mergeMetricsFlagBool),
+                                              mergeMetricsFlagBool, multipleMetricsFlagBool),
                                     uriInfo);
   }
 
