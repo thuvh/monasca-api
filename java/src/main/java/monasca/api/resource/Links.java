@@ -258,37 +258,50 @@ public final class Links {
 
     if (elements != null && !elements.isEmpty()) {
 
-      Measurements m = elements.get(0);
+      int remaining_limit = limit;
 
-      if (m != null) {
+      for (int i = 0; i < elements.size(); i++) {
 
-        List<Object[]> l = m.getMeasurements();
+        Measurements m = elements.get(i);
 
-        if (l.size() > limit) {
+        if (m != null) {
 
-          String offset = (String) l.get(limit - 1)[0];
+          List<Object[]> l = m.getMeasurements();
 
-          m.setId(offset);
+          if (l.size() > remaining_limit) {
 
-          paged.links.add(getNextLink(offset, uriInfo));
+            String offset = m.getId();
 
-          // Truncate the list. Normally this will just truncate one extra element.
-          l = l.subList(0, limit);
-          m.setMeasurements(l);
+            offset += '#' + (String) l.get(remaining_limit - 1)[0];
+
+            //          m.setId(offset);
+
+            paged.links.add(getNextLink(offset, uriInfo));
+
+            // Truncate the list. Normally this will just truncate one extra element.
+            l = l.subList(0, remaining_limit);
+            m.setMeasurements(l);
+
+          } else {
+            remaining_limit -= l.size();
+            if (remaining_limit <= 0) {
+              // Truncate the list
+              elements = elements.subList(0, elements.size() - 1);
+            }
+          }
+
+          // Check if there are any elements.
+          //        if (l.size() > 0) {
+          //          // Set the id to the last date in the list.
+          //          m.setId((String) l.get(l.size() - 1)[0]);
+          //        }
+          paged.elements = elements;
+
+        } else {
+
+          paged.elements = new ArrayList<>();
 
         }
-
-        // Check if there are any elements.
-        if (l.size() > 0) {
-          // Set the id to the last date in the list.
-          m.setId((String) l.get(l.size() - 1)[0]);
-        }
-        paged.elements = elements;
-
-      } else {
-
-        paged.elements = new ArrayList<>();
-
       }
 
     } else {
