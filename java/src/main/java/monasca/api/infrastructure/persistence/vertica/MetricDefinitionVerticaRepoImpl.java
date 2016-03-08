@@ -185,7 +185,7 @@ public class MetricDefinitionVerticaRepoImpl implements MetricDefinitionRepo {
 
       }
 
-      DimensionQueries.bindDimensionsToQuery(query, dimensions);
+      MetricQueries.bindDimensionsToQuery(query, dimensions);
 
       return query.list();
 
