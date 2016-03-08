@@ -93,14 +93,14 @@ final class MetricQueries {
         + "where" + " dimension_set_id = ?", dimensionSetId);
   }
 
-  static String createDefDimIdInClause(Set<byte[]> defDimIdSet) {
+  static String createDefDimIdInClause(Set<String> defDimIdSet) {
 
     StringBuilder sb = new StringBuilder("IN ");
 
     sb.append("(");
 
     boolean first = true;
-    for (byte[] defDimId : defDimIdSet) {
+    for (String defDimId : defDimIdSet) {
 
       if (first) {
         first = false;
@@ -108,7 +108,7 @@ final class MetricQueries {
         sb.append(",");
       }
 
-      sb.append("'" + Hex.encodeHexString(defDimId) + "'");
+      sb.append("'" + defDimId + "'");
     }
 
     sb.append(") ");

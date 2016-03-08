@@ -13,10 +13,14 @@
  */
 package monasca.api.infrastructure.persistence.vertica;
 
+import com.google.common.base.Splitter;
+import com.google.common.base.Strings;
+
 import monasca.api.domain.exception.MultipleMetricsException;
 import monasca.api.domain.model.statistic.StatisticRepo;
 import monasca.api.domain.model.statistic.Statistics;
 
+import org.apache.commons.codec.binary.Hex;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
@@ -26,11 +30,13 @@ import org.skife.jdbi.v2.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.nio.ByteBuffer;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -47,7 +53,7 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
       ISODateTimeFormat.dateTime().withZoneUTC();
 
   private static final String FIND_BY_METRIC_DEF_SQL =
-      "select defdims.id, def.name, d.name as dname, d.value as dvalue "
+      "select to_hex(defdims.id) AS id, def.name, d.name as dname, d.value as dvalue "
       + "from MonMetrics.Definitions def, MonMetrics.DefinitionDimensions defdims "
       + "left outer join MonMetrics.Dimensions d on d.dimension_set_id = defdims.dimension_set_id "
       + "where def.id = defdims.definition_id and def.tenant_id = :tenantId "
@@ -77,7 +83,8 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
       int period,
       String offset,
       int limit,
-      Boolean mergeMetricsFlag) throws MultipleMetricsException {
+      Boolean mergeMetricsFlag,
+      String groupBy) throws MultipleMetricsException {
 
     List<Statistics> statisticsList = new ArrayList<>();
 
@@ -86,7 +93,7 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
 
     try (Handle h = db.open()) {
 
-      Map<byte[], Statistics> byteMap = findDefIds(h, tenantId, name, dimensions);
+      Map<String, Statistics> byteMap = findDefIds(h, tenantId, name, dimensions);
 
       if (byteMap.isEmpty()) {
 
@@ -94,7 +101,7 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
 
       }
 
-      if (!Boolean.TRUE.equals(mergeMetricsFlag) && byteMap.keySet().size() > 1) {
+      if (Strings.isNullOrEmpty(groupBy) && !Boolean.TRUE.equals(mergeMetricsFlag) && byteMap.keySet().size() > 1) {
 
         throw new MultipleMetricsException(name, dimensions);
 
@@ -115,34 +122,68 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
 
       if (offset != null && !offset.isEmpty()) {
         logger.debug("binding offset: {}", offset);
-        query.bind("offset", new Timestamp(DateTime.parse(offset).getMillis()));
+        List<String> offsets = Splitter.on('#').omitEmptyStrings().trimResults().splitToList(offset);
+        query.bind("offset_id", offsets.get(0));
+        query.bind("offset_timestamp", new Timestamp(DateTime.parse(offsets.get(1)).getMillis()));
       }
 
       List<Map<String, Object>> rows = query.list();
 
-      for (Map<String, Object> row : rows) {
+      if (!Strings.isNullOrEmpty(groupBy)) {
 
-        List<Object> statisticsRow = parseRow(row);
+        for (Map<String, Object> row : rows) {
 
-        statisticsListList.add(statisticsRow);
+          List<Object> statisticsRow = parseRow(row);
 
+          String defDimsId = (String) row.get("id");
+
+          byteMap.get(defDimsId).addStatistics(statisticsRow);
+
+        }
+
+        for (Map.Entry<String, Statistics> entry : byteMap.entrySet()) {
+
+          Statistics statistics = entry.getValue();
+
+          statistics.setColumns(statisticsColumns);
+
+          if (Boolean.TRUE.equals(mergeMetricsFlag) && byteMap.keySet().size() > 1) {
+
+            // Wipe out the dimensions.
+            statistics.setDimensions(new HashMap<String, String>());
+
+          }
+
+          statisticsList.add(statistics);
+
+        }
+
+      } else {
+
+        for (Map<String, Object> row : rows) {
+
+          List<Object> statisticsRow = parseRow(row);
+
+          statisticsListList.add(statisticsRow);
+
+        }
+
+        // Just use the first entry in the byteMap to get the def name and dimensions.
+        Statistics statistics = byteMap.entrySet().iterator().next().getValue();
+
+        statistics.setColumns(statisticsColumns);
+
+        if (Boolean.TRUE.equals(mergeMetricsFlag) && byteMap.keySet().size() > 1) {
+
+          // Wipe out the dimensions.
+          statistics.setDimensions(new HashMap<String, String>());
+
+        }
+
+        statistics.setStatistics(statisticsListList);
+
+        statisticsList.add(statistics);
       }
-
-      // Just use the first entry in the byteMap to get the def name and dimensions.
-      Statistics statistics = byteMap.entrySet().iterator().next().getValue();
-
-      statistics.setColumns(statisticsColumns);
-
-      if (Boolean.TRUE.equals(mergeMetricsFlag) && byteMap.keySet().size() > 1) {
-
-        // Wipe out the dimensions.
-        statistics.setDimensions(new HashMap<String, String>());
-
-      }
-
-      statistics.setStatistics(statisticsListList);
-
-      statisticsList.add(statistics);
 
     }
 
@@ -187,13 +228,11 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
 
   }
 
-  private Map<byte[], Statistics> findDefIds(
+  private Map<String, Statistics> findDefIds(
       Handle h,
       String tenantId,
       String name,
       Map<String, String> dimensions) {
-
-    List<byte[]> bytes = new ArrayList<>();
 
     StringBuilder sb = new StringBuilder();
 
@@ -225,15 +264,15 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
 
     List<Map<String, Object>> rows = query.list();
 
-    Map<byte[], Statistics> byteIdMap = new HashMap<>();
+    Map<String, Statistics> byteIdMap = new HashMap<>();
 
-    byte[] currentDefDimId = null;
+    String currentDefDimId = null;
 
     Map<String, String> dims = null;
 
     for (Map<String, Object> row : rows) {
 
-      byte[] defDimId = (byte[]) row.get("id");
+      String defDimId = (String) row.get("id");
 
       String defName = (String) row.get("name");
 
@@ -241,7 +280,7 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
 
       String dimValue = (String) row.get("dvalue");
 
-      if (defDimId == null || !Arrays.equals(currentDefDimId, defDimId)) {
+      if (defDimId == null || !defDimId.equals(currentDefDimId)) {
 
         currentDefDimId = defDimId;
 
@@ -250,6 +289,8 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
         dims.put(dimName, dimValue);
 
         Statistics statistics = new Statistics();
+
+        statistics.setId(defDimId);
 
         statistics.setName(defName);
 
@@ -263,8 +304,6 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
 
       }
     }
-
-    bytes.add(currentDefDimId);
 
     return byteIdMap;
   }
@@ -283,7 +322,7 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
   }
 
   private String createQuery(
-      Set<byte[]> defDimIdSet,
+      Set<String> defDimIdSet,
       int period,
       DateTime startTime,
       DateTime endTime,
@@ -292,7 +331,7 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
 
     StringBuilder sb = new StringBuilder();
 
-    sb.append("SELECT " + createColumnsStr(statistics));
+    sb.append("SELECT to_hex(definition_dimensions_id) AS id, " + createColumnsStr(statistics));
 
     if (period >= 1) {
       sb.append("Time_slice(time_stamp, " + period);
@@ -305,8 +344,9 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
     sb.append(createWhereClause(startTime, endTime, offset));
 
     if (period >= 1) {
-      sb.append("group by Time_slice(time_stamp, " + period);
-      sb.append(", 'SECOND', 'END') order by time_interval");
+      sb.append("group by definition_dimensions_id,time_interval "); //,Time_slice(time_stamp, " + period);
+      sb.append("" //", 'SECOND', 'END') "
+                + "order by to_hex(definition_dimensions_id),time_interval");
     }
 
     sb.append(" limit :limit");
@@ -329,7 +369,8 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
 
     if (offset != null && !offset.isEmpty()) {
 
-      s += " and time_stamp > :offset ";
+      s += " AND (TO_HEX(definition_dimensions_id) > :offset_id "
+           + "OR (TO_HEX(definition_dimensions_id) = :offset_id AND time_stamp > :offset_timestamp)) ";
 
     }
 

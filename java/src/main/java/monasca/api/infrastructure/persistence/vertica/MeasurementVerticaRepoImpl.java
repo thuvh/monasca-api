@@ -1,6 +1,11 @@
 /*
+<<<<<<< HEAD
  * Copyright (c) 2014 Hewlett-Packard Development Company, L.P.
  *
+=======
+ * Copyright (c) 2014, 2016 Hewlett-Packard Development Company, L.P.
+ * 
+>>>>>>> Add support for multiple metrics in measurements and statistics resources
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
  *
@@ -12,6 +17,9 @@
  * the License.
  */
 package monasca.api.infrastructure.persistence.vertica;
+
+import com.google.common.base.Splitter;
+import com.google.common.base.Strings;
 
 import monasca.api.domain.exception.MultipleMetricsException;
 import monasca.api.domain.model.measurement.MeasurementRepo;
@@ -33,6 +41,7 @@ import javax.annotation.Nullable;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.apache.commons.codec.binary.Hex;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
@@ -60,7 +69,7 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
       + "and mes.time_stamp >= :startTime "
       + "%s " // metric name here
       + "%s " // dimension and clause here
-      + "order by mes.time_stamp ASC "
+      + "order by mes.definition_dimensions_id ASC,mes.time_stamp ASC "
       + "limit :limit";
 
   private static final String TABLE_TO_JOIN_DIMENSIONS_ON = "defDims";
@@ -78,6 +87,11 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
     this.db = db;
   }
 
+  private List<String> parseOffsets(String offset) {
+    // <hex id>#<iso8601 timestamp>
+    return Splitter.on('#').omitEmptyStrings().trimResults().splitToList(offset);
+  }
+
   @Override
   public List<Measurements> find(
       String tenantId,
@@ -87,7 +101,8 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
       @Nullable DateTime endTime,
       @Nullable String offset,
       int limit,
-      Boolean mergeMetricsFlag) throws MultipleMetricsException {
+      Boolean mergeMetricsFlag,
+      String groupBy) throws MultipleMetricsException {
 
     try (Handle h = db.open()) {
 
@@ -107,7 +122,9 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
 
       if (offset != null && !offset.isEmpty()) {
 
-        sb.append(" and time_stamp > :offset");
+//        sb.append(" and (TO_HEX(mes.definition_dimensions_id) >= :offset_id and mes.time_stamp > :offset_timestamp) ");
+        sb.append(" and (TO_HEX(mes.definition_dimensions_id) > :offset_id "
+                  + "or (TO_HEX(mes.definition_dimensions_id) = :offset_id and mes.time_stamp > :offset_timestamp)) ");
 
       }
 
@@ -144,7 +161,11 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
 
         logger.debug("binding offset: {}", offset);
 
-        query.bind("offset", new Timestamp(DateTime.parse(offset).getMillis()));
+        List<String> offsets = parseOffsets(offset);
+
+        query.bind("offset_id", offsets.get(0));
+
+        query.bind("offset_timestamp", new Timestamp(DateTime.parse(offsets.get(1)).getMillis()));
 
       }
 
@@ -217,9 +238,11 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
                 new Measurements(metricName, MetricQueries.dimensionsFor(h, dimSetIdBytes),
                                  new ArrayList<Object[]>());
 
+            measurements.setId(Hex.encodeHexString(defdimsIdBytes));
+
             results.put(defdimsId, measurements);
 
-            if (results.keySet().size() > 1) {
+            if (Strings.isNullOrEmpty(groupBy) && results.keySet().size() > 1) {
 
               throw new MultipleMetricsException(name, dimensions);
 
