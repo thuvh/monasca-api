@@ -208,6 +208,7 @@ class TestMeasurements(base.BaseMonascaTest):
         measurements = elements[0]['measurements']
         self._verify_list_measurements_meas_len(measurements=measurements,
                                                 test_len=4)
+        offset_id = elements[0]['id']
 
         for measurement_index in xrange(len(measurements) - 2):
             max_limit = len(measurements) - measurement_index
@@ -218,11 +219,12 @@ class TestMeasurements(base.BaseMonascaTest):
                 expected_measurements = measurements[first_index:last_index]
 
                 offset_timestamp = measurements[measurement_index][0]
+                offset = offset_id + '#' + offset_timestamp
                 query_parms = '?name=' + str(self._names_list[1]) + \
                               '&merge_metrics=true&start_time=' + \
                               self._start_time + '&end_time=' + \
                               self._end_time + '&offset=' + \
-                              str(offset_timestamp) + '&limit=' + str(limit)
+                              str(offset) + '&limit=' + str(limit)
                 resp, response_body = self.monasca_client.list_measurements(
                     query_parms)
                 self._verify_list_measurements(resp, response_body)
