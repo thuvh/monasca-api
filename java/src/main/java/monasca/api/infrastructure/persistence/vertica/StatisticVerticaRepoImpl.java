@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -94,11 +95,11 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
 
       }
 
-      if (!Boolean.TRUE.equals(mergeMetricsFlag) && byteMap.keySet().size() > 1) {
+      //if (!Boolean.TRUE.equals(mergeMetricsFlag) && byteMap.keySet().size() > 1) {
 
-        throw new MultipleMetricsException(name, dimensions);
+      //  throw new MultipleMetricsException(name, dimensions);
 
-      }
+      //}
 
       List<List<Object>> statisticsListList = new ArrayList<>();
 
@@ -128,21 +129,24 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
 
       }
 
-      // Just use the first entry in the byteMap to get the def name and dimensions.
-      Statistics statistics = byteMap.entrySet().iterator().next().getValue();
+      for (Map.Entry<byte[], Statistics> entry: byteMap.entrySet()) {
 
-      statistics.setColumns(statisticsColumns);
+        Statistics statistics = entry.getValue();
 
-      if (Boolean.TRUE.equals(mergeMetricsFlag) && byteMap.keySet().size() > 1) {
+        statistics.setColumns(statisticsColumns);
 
-        // Wipe out the dimensions.
-        statistics.setDimensions(new HashMap<String, String>());
+        if (Boolean.TRUE.equals(mergeMetricsFlag) && byteMap.keySet().size() > 1) {
+
+          // Wipe out the dimensions.
+          statistics.setDimensions(new HashMap<String, String>());
+
+        }
+
+        statistics.setStatistics(statisticsListList);
+
+        statisticsList.add(entry.getValue());
 
       }
-
-      statistics.setStatistics(statisticsListList);
-
-      statisticsList.add(statistics);
 
     }
 
