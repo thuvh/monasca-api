@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "5aef4532_354db2c4",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MeasurementVerticaRepoImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 8126
+      },
+      "writtenOn": "2016-03-09T14:46:41Z",
+      "side": 0,
+      "message": "I think this will stay in and be conditional on the new parm?",
+      "revId": "b8fe275d54df7f01f27beafd15f6788c5c9e6677",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5aef4532_91d4c320",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/StatisticVerticaRepoImpl.java",
         "patchSetId": 3
