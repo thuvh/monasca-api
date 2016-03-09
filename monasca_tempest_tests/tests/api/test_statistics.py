@@ -21,7 +21,7 @@ from monasca_tempest_tests.tests.api import constants
 from monasca_tempest_tests.tests.api import helpers
 from tempest.common.utils import data_utils
 from tempest import test
-from tempest_lib import exceptions
+from tempest.lib import exceptions
 
 NUM_MEASUREMENTS = 100
 MIN_REQUIRED_MEASUREMENTS = 2
@@ -332,7 +332,7 @@ class TestStatistics(base.BaseMonascaTest):
         self.assertTrue(element['id'] is not None)
         self.assertTrue(type(element['name']) is unicode)
         self.assertTrue(type(element['dimensions']) is dict)
-        self.assertEqual(len(element['dimensions']), 0)
+        self.assertEqual(len(element['dimensions']), 1)
         self.assertTrue(type(element['columns']) is list)
         self.assertTrue(type(element['statistics']) is list)
         self.assertEqual(element['name'], self._test_name)

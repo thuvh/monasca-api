@@ -14,7 +14,7 @@
 from tempest import config
 from tempest.common import credentials_factory
 import tempest.test
-from tempest_lib import exceptions
+from tempest.lib import exceptions
 
 from monasca_tempest_tests import clients
 
