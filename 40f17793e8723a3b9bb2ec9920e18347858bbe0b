@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5aef4532_dcc3e955",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 12712
+      },
+      "writtenOn": "2016-03-09T10:47:15Z",
+      "side": 1,
+      "message": "Really poor commit message.",
+      "revId": "40f17793e8723a3b9bb2ec9920e18347858bbe0b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
