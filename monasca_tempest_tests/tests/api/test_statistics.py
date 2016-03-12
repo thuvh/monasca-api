@@ -182,15 +182,15 @@ class TestStatistics(base.BaseMonascaTest):
                                   dimensions={'key1': 'value-1',
                                               'key2': 'value-1'},
                                   value=1),
-            helpers.create_metric(name=name, timestamp=start_timestamp + 500,
+            helpers.create_metric(name=name, timestamp=start_timestamp + 1000,
                                   dimensions={'key1': 'value-2',
                                               'key2': 'value-2'},
                                   value=2),
-            helpers.create_metric(name=name, timestamp=start_timestamp + 1000,
+            helpers.create_metric(name=name, timestamp=start_timestamp + 2000,
                                   dimensions={'key1': 'value-3',
                                               'key2': 'value-3'},
                                   value=3),
-            helpers.create_metric(name=name, timestamp=start_timestamp + 1500,
+            helpers.create_metric(name=name, timestamp=start_timestamp + 3000,
                                   dimensions={'key1': 'value-4',
                                               'key2': 'value-4'},
                                   value=4)
@@ -319,10 +319,10 @@ class TestStatistics(base.BaseMonascaTest):
 
     def _verify_statistics(self, statistics, num1, num2):
         self.assertTrue(type(statistics) is list)
-        self.assertEqual(statistics[1], (num1 + num2) / 2)
+        self.assertAlmostEqual(statistics[1], (num1 + num2) / 2)
         self.assertEqual(statistics[2], min(num1, num2))
         self.assertEqual(statistics[3], max(num1, num2))
-        self.assertEqual(statistics[4], num1 + num2)
+        self.assertAlmostEqual(statistics[4], num1 + num2)
         self.assertEqual(statistics[5], 2)
 
     def _verify_element(self, element):
