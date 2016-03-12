@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 Hewlett-Packard Development Company, L.P.
+ * (C) Copyright 2014, 2016 Hewlett Packard Enterprise Development Company LP
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -29,7 +29,6 @@ import org.slf4j.LoggerFactory;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -133,7 +132,7 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
 
       statistics.setColumns(statisticsColumns);
 
-      if (Boolean.TRUE.equals(mergeMetricsFlag) && byteMap.keySet().size() > 1) {
+      if (Boolean.TRUE.equals(mergeMetricsFlag)) {
 
         // Wipe out the dimensions.
         statistics.setDimensions(new HashMap<String, String>());
@@ -168,20 +167,20 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
       statisticsRow.add(average);
     }
 
-    if (count != null) {
-      statisticsRow.add(count);
+    if (min != null) {
+      statisticsRow.add(min);
     }
 
     if (max != null) {
       statisticsRow.add(max);
     }
 
-    if (min != null) {
-      statisticsRow.add(min);
-    }
-
     if (sum != null) {
       statisticsRow.add(sum);
+    }
+
+    if (count != null) {
+      statisticsRow.add(count);
     }
     return statisticsRow;
 
@@ -276,7 +275,6 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
     for (String string : list) {
       copy.add(string);
     }
-    Collections.sort(copy);
     copy.add(0, "timestamp");
 
     return copy;
@@ -294,8 +292,12 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
 
     sb.append("SELECT " + createColumnsStr(statistics));
 
-    if (period >= 1) {
+    if (period > 0) {
       sb.append("Time_slice(time_stamp, " + period);
+      sb.append(", 'SECOND', 'END') AS time_interval");
+    }
+    else {
+      sb.append(sb.append("Time_slice(time_stamp, " + 300));
       sb.append(", 'SECOND', 'END') AS time_interval");
     }
 
@@ -304,8 +306,12 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
     sb.append("WHERE to_hex(definition_dimensions_id) " + inClause);
     sb.append(createWhereClause(startTime, endTime, offset));
 
-    if (period >= 1) {
+    if (period > 0) {
       sb.append("group by Time_slice(time_stamp, " + period);
+      sb.append(", 'SECOND', 'END') order by time_interval");
+    }
+    else {
+      sb.append("group by Time_slice(time_stamp, " + 300);
       sb.append(", 'SECOND', 'END') order by time_interval");
     }
 
@@ -322,9 +328,9 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
     String s = "";
 
     if (startTime != null && endTime != null) {
-      s = "AND time_stamp >= :start_time AND time_stamp <= :end_time ";
+      s = "AND time_stamp > :start_time AND time_stamp < :end_time ";
     } else if (startTime != null) {
-      s = "AND time_stamp >= :start_time ";
+      s = "AND time_stamp > :start_time ";
     }
 
     if (offset != null && !offset.isEmpty()) {
