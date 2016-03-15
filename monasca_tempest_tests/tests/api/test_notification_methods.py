@@ -123,6 +123,53 @@ class TestNotificationMethods(base.BaseMonascaTest):
         self.assertEqual(204, resp.status)
 
     @test.attr(type="gate")
+    def test_list_notification_methods_sort_by(self):
+        notifications = list()
+        notifications.append(helpers.create_notification(
+            name='notification sort by 01',
+            type='EMAIL',
+            address='test01@localhost',
+        ))
+        notifications.append(helpers.create_notification(
+            name='notification sort by 04',
+            type='EMAIL',
+            address='test04@localhost',
+        ))
+        notifications.append(helpers.create_notification(
+            name='notification sort by 02',
+            type='EMAIL',
+            address='test02@localhost',
+        ))
+        notifications.append(helpers.create_notification(
+            name='notification sort by 03',
+            type='EMAIL',
+            address='test03@localhost',
+        ))
+        for notification in notifications:
+            self.monasca_client.create_notifications(notification)
+
+        resp, response_body = self.monasca_client.list_notification_methods(
+            '?sort_by=address')
+        self.assertEqual(200, resp.status)
+
+        prev_address = 'test01@localhost'
+        for notification in response_body['elements']:
+            assert prev_address <= notification['address'],\
+                "address {} came after {}".format(notification['address'], prev_address)
+            prev_address = notification['address']
+
+        for notification in response_body['elements']:
+            self.monasca_client.delete_notification_method(notification['id'])
+
+    @test.attr(type="gate")
+    @test.attr(type=['negative'])
+    def test_list_notification_methods_invalid_sort_by(self):
+        query_parms = '?sort_by=random'
+        self.assertRaises(exceptions.UnprocessableEntity,
+                          self.monasca_client.list_notification_methods,
+                          query_parms)
+
+    @test.attr(type="gate")
     def test_list_notification_methods_with_offset_limit(self):
         name1 = data_utils.rand_name('notification')
         name2 = data_utils.rand_name('notification')
