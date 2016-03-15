@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 Hewlett-Packard Development Company, L.P.
+ * Copyright (c) 2014,2016 Hewlett Packard Enterprise Development Company, L.P.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -42,22 +42,31 @@ final class MetricQueries {
 
       sb = new StringBuilder();
 
-      for (int i = 0; i < dimensions.size(); i++) {
-
-        sb
-            .append(" inner join MonMetrics.Dimensions dim")
-            .append(i)
-            .append(" on dim")
-            .append(i)
-            .append(".name = :dname")
-            .append(i)
-            .append(" and dim")
-            .append(i)
-            .append(".value = " + ":dvalue")
-            .append(i)
-            .append(" and " + tableToJoinName + ".dimension_set_id = dim")
-            .append(i)
-            .append(".dimension_set_id");
+      int i = 0;
+      for (String dimension_key : dimensions.keySet())  {
+        sb.append(" inner join MonMetrics.Dimensions dim").append(i).append(" on dim")
+                .append(i)
+                .append(".name = :dname").append(i);
+        String dim_value = dimensions.get(dimension_key);
+        if (!Strings.isNullOrEmpty(dim_value)) {
+          List<String> values = Splitter.on('|').splitToList(dim_value);
+          if (values.size() > 1) {
+            sb.append(" and (");
+            for (int j = 0; j < values.size(); j++) {
+              sb.append(" dim").append(i)
+                      .append(".value = :dvalue").append(i).append('_').append(j);
+              if (j < values.size() - 1) {
+                sb.append(" or");
+              }
+            }
+            sb.append(")");
+          } else {
+            sb.append(" and dim").append(i).append(".value = :dvalue").append(i);
+          }
+        }
+        sb.append(" and " + tableToJoinName + ".dimension_set_id = dim")
+                .append(i).append(".dimension_set_id");
+        i++;
       }
     }
 

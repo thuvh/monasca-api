@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 Hewlett-Packard Development Company, L.P.
+ * Copyright (c) 2014,2016 Hewlett Packard Enterprise Development Company, L.P.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -51,5 +51,18 @@ public class MetricQueriesTest {
     String expectedResult = "";
     Map<String, String> dimsMap = null;
     assertEquals(expectedResult, MetricQueries.buildJoinClauseFor(dimsMap, TABLE_TO_JOIN_DIMENSIONS_ON));
+  }
+
+  public void metricQueriesBuildJoinClauseForTest4() {
+    String expectedResult =
+        " inner join MonMetrics.Dimensions dim0 on dim0.name = :dname0 and ( dim0" + ".value "
+              + "= :dvalue0_0 or dim0.value = :dvalue0_1) and "
+              + "defdims.dimension_set_id = dim0.dimension_set_id";
+
+    Map<String, String> dimsMap = new HashMap<>();
+    dimsMap.put("foo", "bar|baz");
+
+    String s = MetricQueries.buildJoinClauseFor(dimsMap, TABLE_TO_JOIN_DIMENSIONS_ON);
+    assertEquals(expectedResult, s);
   }
 }
