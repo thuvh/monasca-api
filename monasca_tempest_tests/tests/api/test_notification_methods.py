@@ -14,6 +14,8 @@
 
 import time
 
+import six.moves.urllib.parse as urlparse
+
 from monasca_tempest_tests.tests.api import base
 from monasca_tempest_tests.tests.api import constants
 from monasca_tempest_tests.tests.api import helpers
@@ -121,6 +123,140 @@ class TestNotificationMethods(base.BaseMonascaTest):
         resp, response_body = self.monasca_client.\
             delete_notification_method(id)
         self.assertEqual(204, resp.status)
+
+    @test.attr(type="gate")
+    def test_list_notification_methods_sort_by(self):
+        notifications = list()
+        notifications.append(helpers.create_notification(
+            name='notification sort by 01',
+            type='PAGERDUTY',
+            address='test03@localhost',
+        ))
+        notifications.append(helpers.create_notification(
+            name='notification sort by 02',
+            type='WEBHOOK',
+            address='http://localhost/test01',
+        ))
+        notifications.append(helpers.create_notification(
+            name='notification sort by 03',
+            type='EMAIL',
+            address='test02@localhost',
+        ))
+        for notification in notifications:
+            resp, response_body = self.monasca_client.create_notifications(notification)
+            self.assertEqual(201, resp.status)
+            notification['id'] = response_body['id']
+            time.sleep(1)
+
+        resp, response_body = self.monasca_client.list_notification_methods()
+        self.assertEqual(200, resp.status)
+
+        sort_params1 = ['id', 'name', 'type', 'address']
+        for sort_by in sort_params1:
+            notif_sorted_by = sorted(notifications, key=lambda
+                notification: notification[sort_by])
+
+            resp, response_body = self.monasca_client.list_notification_methods(
+                '?sort_by=' + sort_by)
+            self.assertEqual(200, resp.status)
+            i = 0
+            for element in response_body['elements']:
+                self.assertEquals(notif_sorted_by[i][sort_by], element[sort_by])
+                i += 1
+
+            resp, response_body = self.monasca_client.list_notification_methods(
+                '?sort_by=' + sort_by + urlparse.quote(' asc'))
+            self.assertEqual(200, resp.status)
+            i = 0
+            for element in response_body['elements']:
+                self.assertEquals(notif_sorted_by[i][sort_by], element[sort_by])
+                i += 1
+
+            notif_sorted_by_reverse = sorted(notifications, key=lambda
+                notification: notification[sort_by], reverse=True)
+
+            resp, response_body = self.monasca_client.list_notification_methods(
+                '?sort_by=' + sort_by + urlparse.quote(' desc'))
+            self.assertEqual(200, resp.status)
+            i = 0
+            for element in response_body['elements']:
+                self.assertEquals(notif_sorted_by_reverse[i][sort_by],
+                                  element[sort_by])
+                i += 1
+
+        sort_params2 = ['created_at', 'updated_at']
+        for sort_by in sort_params2:
+            resp, response_body = self.monasca_client.list_notification_methods(
+                '?sort_by=' + sort_by)
+            self.assertEqual(200, resp.status)
+            i = 0
+            for element in response_body['elements']:
+                self.assertEquals(notifications[i]['id'], element['id'])
+                i += 1
+
+            resp, response_body = self.monasca_client.list_notification_methods(
+                '?sort_by=' + sort_by + urlparse.quote(' asc'))
+            self.assertEqual(200, resp.status)
+            i = 0
+            for element in response_body['elements']:
+                self.assertEquals(notifications[i]['id'], element['id'])
+                i += 1
+
+            resp, response_body = self.monasca_client.list_notification_methods(
+                '?sort_by=' + sort_by + urlparse.quote(' desc'))
+            self.assertEqual(200, resp.status)
+            i = -1
+            for element in response_body['elements']:
+                self.assertEquals(notifications[i]['id'], element['id'])
+                i -= 1
+
+        for element in response_body['elements']:
+            self.monasca_client.delete_notification_method(element['id'])
+
+    @test.attr(type="gate")
+    def test_list_notification_methods_multiple_sort_by(self):
+        notifications = list()
+        notifications.append(helpers.create_notification(
+            name='notification sort by 01',
+            type='EMAIL',
+            address='test02@localhost',
+        ))
+        notifications.append(helpers.create_notification(
+            name='notification sort by 02',
+            type='EMAIL',
+            address='test03@localhost',
+        ))
+        notifications.append(helpers.create_notification(
+            name='notification sort by 03',
+            type='EMAIL',
+            address='test01@localhost',
+        ))
+        for notification in notifications:
+            resp, response_body = self.monasca_client.create_notifications(notification)
+            notification['id'] = response_body['id']
+
+        notif_sorted_by = sorted(notifications, key=lambda
+            notification: notification['address'], reverse=True)
+
+        resp, response_body = self.monasca_client.list_notification_methods(
+            '?sort_by=' + urlparse.quote('type asc,address desc,id'))
+        self.assertEqual(200, resp.status)
+
+        i = 0
+        for element in response_body['elements']:
+            self.assertEquals(notif_sorted_by[i]['id'], element['id'])
+            i += 1
+
+        for element in response_body['elements']:
+            self.monasca_client.delete_notification_method(element['id'])
+
+    @test.attr(type="gate")
+    @test.attr(type=['negative'])
+    def test_list_notification_methods_invalid_sort_by(self):
+        query_parms = '?sort_by=random'
+        self.assertRaises(exceptions.UnprocessableEntity,
+                          self.monasca_client.list_notification_methods,
+                          query_parms)
 
     @test.attr(type="gate")
     def test_list_notification_methods_with_offset_limit(self):
