@@ -95,6 +95,29 @@ class TestDimensionValidation(unittest.TestCase):
             self.assertRaises(AssertionError, validation.dimension_value, dim_value)
 
 
+class TestValueMetaValidation(unittest.TestCase):
+    def test_valid_key(self):
+        value_meta_key = "this.is_a.valid-key"
+        validation.validate_value_meta_key(value_meta_key)
+        self.assertTrue(True)
+
+    def test_nonstring_key(self):
+        value_meta_key = 123456
+        self.assertRaises(AssertionError, validation.validate_value_meta_key,
+                          value_meta_key)
+
+    def test_long_key(self):
+        value_meta_key = "x" * 256
+        self.assertRaises(AssertionError, validation.validate_value_meta_key,
+                          value_meta_key)
+
+    def test_long_value(self):
+        value_meta_key = "x"
+        value_meta_value = "y" * 2048
+        self.assertRaises(AssertionError, validation.validate_value_meta_value,
+                          value_meta_value, value_meta_key)
+
+
 class TestRoleValidation(unittest.TestCase):
 
     def test_role_valid(self):
