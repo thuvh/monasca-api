@@ -74,3 +74,24 @@ def validate_sort_by(sort_by_list, allowed_sort_by):
             raise HTTPUnprocessableEntityError("Unprocessable Entity",
                                                "sort_by value {} must be 'asc' or 'desc'".format(
                                                    sort_by_values[1]))
+
+
+def validate_value_meta_name(name):
+    assert isinstance(name, (str, unicode)), "ValueMeta name must be a string"
+    assert len(name) <= 255, "ValueMeta name must be 255 characters or less"
+    assert len(name) >= 1, "ValueMeta name cannot be empty"
+
+
+def validate_value_meta_value(value):
+    assert isinstance(value, (str, unicode)), "ValueMeta value must be a string"
+    assert len(value) >= 1, "ValueMeta value cannot be empty"
+
+
+def validate_value_meta_entries(value_meta):
+    assert len(value_meta) <= 16, "ValueMeta entries must be 16 or less"
+
+
+def validate_value_meta_total_length(value_meta_string):
+    assert len(value_meta_string) <= 2048, "ValueMeta name value " \
+                                           "combinations must be 2048 " \
+                                           "characters or less"
