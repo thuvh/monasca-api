@@ -13,6 +13,7 @@
 # under the License.
 
 import falcon
+import json
 from oslo_config import cfg
 from oslo_log import log
 import simport
@@ -89,6 +90,19 @@ class Metrics(metrics_api_v2.MetricsV2API):
             for dimension_key in metric['dimensions']:
                 validation.dimension_key(dimension_key)
                 validation.dimension_value(metric['dimensions'][dimension_key])
+        if "value_meta" in metric:
+            try:
+                value_meta_json = json.dumps(metric['value_meta'])
+                validation.validate_value_meta_total_length(value_meta_json)
+                validation.validate_value_meta(metric['value_meta'])
+                for value_meta_name in metric['value_meta']:
+                    validation.validate_value_meta_name(value_meta_name)
+                    validation.validate_value_meta_value(
+                        metric['value_meta'][value_meta_name])
+            except Exception as ex:
+                LOG.debug(ex)
+                raise HTTPUnprocessableEntityError('Unprocessable Entity', ex.message)
+
 
     def _send_metrics(self, metrics):
 
