@@ -89,6 +89,11 @@ class Metrics(metrics_api_v2.MetricsV2API):
             for dimension_key in metric['dimensions']:
                 validation.dimension_key(dimension_key)
                 validation.dimension_value(metric['dimensions'][dimension_key])
+        if "value_meta" in metric:
+            for value_meta_key in metric['value_meta']:
+                validation.value_meta_key(value_meta_key)
+                validation.value_meta_value(
+                    metric['value_meta'][value_meta_key], value_meta_key)
 
     def _send_metrics(self, metrics):
 
