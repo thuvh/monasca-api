@@ -74,3 +74,16 @@ def validate_sort_by(sort_by_list, allowed_sort_by):
             raise HTTPUnprocessableEntityError("Unprocessable Entity",
                                                "sort_by value {} must be 'asc' or 'desc'".format(
                                                    sort_by_values[1]))
+
+
+def validate_value_meta_key(key):
+    assert isinstance(key, (str, unicode)), "ValueMeta key must be a string"
+    assert len(key) <= 255, "ValueMeta key must be 255 characters or less"
+    assert len(key) >= 1, "ValueMeta key cannot be empty"
+
+
+def validate_value_meta_value(value, key):
+    assert isinstance(key, (str, unicode)), "ValueMeta value must be a string"
+    # exclude '{"":""}' 7 characters total from every json string
+    assert len(key) + len(value) <= 2048 - 7, "valueMeta name value combinations must be 2048 characters or less"
+    assert len(value) >= 1, "ValueMeta value cannot be empty"

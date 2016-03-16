@@ -283,6 +283,32 @@ class TestMetrics(base.BaseMonascaTest):
                           metric)
 
     @test.attr(type='gate')
+    @test.attr(type=['negative'])
+    def test_create_metric_with_value_meta_key_exceeds_max_length(self):
+        long_value_meta_key = "x" * (constants.MAX_VALUE_META_KEY_LENGTH + 1)
+        metric = helpers.create_metric(name='name',
+                                       value_meta=
+                                       {long_value_meta_key:
+                                            "value_meta_value"}
+                                       )
+        self.assertRaises(exceptions.UnprocessableEntity,
+                          self.monasca_client.create_metrics,
+                          metric)
+
+    @test.attr(type='gate')
+    @test.attr(type=['negative'])
+    def test_create_metric_with_value_meta_exceeds_max_length(self):
+        value_meta_key = "x"
+        long_value_meta_value = "y" * constants.MAX_VALUE_META_TOTAL_LENGTH
+        metric = helpers.create_metric(name='name',
+                                       value_meta=
+                                       {value_meta_key: long_value_meta_value}
+                                       )
+        self.assertRaises(exceptions.UnprocessableEntity,
+                          self.monasca_client.create_metrics,
+                          metric)
+
+    @test.attr(type='gate')
     def test_list_metrics(self):
         resp, response_body = self.monasca_client.list_metrics()
         self.assertEqual(200, resp.status)
