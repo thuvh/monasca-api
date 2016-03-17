@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1af94dfe_29e6edaf",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MeasurementVerticaRepoImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 14123
+      },
+      "writtenOn": "2016-03-17T22:37:10Z",
+      "side": 1,
+      "message": "It\u0027s worth adding a dependency for just a call that can easily be substituted by an expression?",
+      "revId": "eb5eef0d8bebccd9c500f72c0a80b72f2be80c94",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1af94dfe_e9bd2569",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/StatisticVerticaRepoImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 14123
+      },
+      "writtenOn": "2016-03-17T22:37:10Z",
+      "side": 1,
+      "message": "It\u0027s worth adding a dependency for a method that can easily be substituted by an expression?",
+      "revId": "eb5eef0d8bebccd9c500f72c0a80b72f2be80c94",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
