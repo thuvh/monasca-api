@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1af94dfe_7e50a9d4",
+        "filename": "monasca_api/v2/common/validation.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-03-17T21:49:39Z",
+      "side": 1,
+      "message": "This assumes there is only one key,value pair in the value meta.",
+      "range": {
+        "startLine": 88,
+        "startChar": 43,
+        "endLine": 88,
+        "endChar": 44
+      },
+      "revId": "9e5089905e4bf45a0d62b2ec9cae880559184f1e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
