@@ -133,7 +133,7 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
 
       statistics.setColumns(statisticsColumns);
 
-      if (Boolean.TRUE.equals(mergeMetricsFlag) && byteMap.keySet().size() > 1) {
+      if (Boolean.TRUE.equals(mergeMetricsFlag)) {
 
         // Wipe out the dimensions.
         statistics.setDimensions(new HashMap<String, String>());
@@ -293,6 +293,10 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
     StringBuilder sb = new StringBuilder();
 
     sb.append("SELECT " + createColumnsStr(statistics));
+
+    if (period <= 0) {
+      period = 300;
+    }
 
     if (period >= 1) {
       sb.append("Time_slice(time_stamp, " + period);
