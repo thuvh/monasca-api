@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 Hewlett-Packard Development Company, L.P.
+ * Copyright (c) 2014,2016 Hewlett Packard Enterprise Development Company, L.P.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -45,33 +45,45 @@ final class MetricQueries {
       int numDims = dimensions.size();
       sb = new StringBuilder();
       sb.append(" and " + tableToJoinName + ".dimension_set_id in ")
-        .append("(select dimension_set_id from MonMetrics.Dimensions where ");
+              .append("(select dimension_set_id from MonMetrics.Dimensions where ");
 
-      for (int i = 0; i < numDims; i++) {
+      int i = 0;
+      for (String dimension_key : dimensions.keySet())  {
         sb.append("name = :dname")
-          .append(i)
-          .append(" and value = :dvalue")
-          .append(i);
-        if (i != (numDims - 1)) {
-           sb.append(" or ");
+                .append(i);
+        String dim_value = dimensions.get(dimension_key);
+        if (!Strings.isNullOrEmpty(dim_value)) {
+          List<String> values = Splitter.on('|').splitToList(dim_value);
+          if (values.size() > 1) {
+            sb.append(" and ( ");
+            for (int j = 0; j < values.size(); j++) {
+              sb.append("value = :dvalue").append(i).append('_').append(j);
+              if (j < values.size() - 1) {
+                sb.append(" or ");
+              }
+            }
+            sb.append(" )");
+          } else {
+            sb.append(" and value = :dvalue").append(i);
+          }
+          i++;
+        }
+        if (i < numDims) {
+          sb.append(" or ");
         }
       }
-
       sb.append(" group by dimension_set_id ")
-        .append(" having count(*) = " + numDims +" ");
-
-      //
-      // Limit is non-deterministic here unless we also
-      // order by.
-      //
-      if (limit > 0) {
-        sb.append("order by dimension_set_id ")
-          .append("limit " + Integer.toString(limit + 1));
-      }
-
-      sb.append(")");
+              .append(" having count(*) = " + numDims +" ");
     }
-
+    //
+    // Limit is non-deterministic here unless we also
+    // order by.
+    //
+    if (limit > 0) {
+      sb.append("order by dimension_set_id ")
+              .append("limit " + Integer.toString(limit + 1));
+    }
+    sb.append(")");
     return sb == null ? "" : sb.toString();
   }
 
@@ -90,7 +102,7 @@ final class MetricQueries {
   static Map<String, String> dimensionsFor(Handle handle, byte[] dimensionSetId) {
 
     return SqlQueries.keyValuesFor(handle, "select name, value from MonMetrics.Dimensions "
-        + "where" + " dimension_set_id = ?", dimensionSetId);
+            + "where" + " dimension_set_id = ?", dimensionSetId);
   }
 
   static String createDefDimIdInClause(Set<byte[]> defDimIdSet) {
