@@ -182,15 +182,15 @@ class TestStatistics(base.BaseMonascaTest):
                                   dimensions={'key1': 'value-1',
                                               'key2': 'value-1'},
                                   value=1),
-            helpers.create_metric(name=name, timestamp=start_timestamp + 500,
+            helpers.create_metric(name=name, timestamp=start_timestamp + 1100,
                                   dimensions={'key1': 'value-2',
                                               'key2': 'value-2'},
                                   value=2),
-            helpers.create_metric(name=name, timestamp=start_timestamp + 1000,
+            helpers.create_metric(name=name, timestamp=start_timestamp + 2100,
                                   dimensions={'key1': 'value-3',
                                               'key2': 'value-3'},
                                   value=3),
-            helpers.create_metric(name=name, timestamp=start_timestamp + 1500,
+            helpers.create_metric(name=name, timestamp=start_timestamp + 3100,
                                   dimensions={'key1': 'value-4',
                                               'key2': 'value-4'},
                                   value=4)
@@ -319,11 +319,11 @@ class TestStatistics(base.BaseMonascaTest):
 
     def _verify_statistics(self, statistics, num1, num2):
         self.assertTrue(type(statistics) is list)
-        self.assertEqual(statistics[1], (num1 + num2) / 2)
-        self.assertEqual(statistics[2], min(num1, num2))
-        self.assertEqual(statistics[3], max(num1, num2))
-        self.assertEqual(statistics[4], num1 + num2)
-        self.assertEqual(statistics[5], 2)
+        self.assertEqual(statistics[1], round((num1 + num2) / 2, 3))
+        self.assertEqual(statistics[2], 2)
+        self.assertEqual(statistics[3], round(max(num1, num2), 3))
+        self.assertEqual(statistics[4], round(min(num1, num2), 3))
+        self.assertEqual(statistics[5], round(num1 + num2, 3))
 
     def _verify_element(self, element):
         self.assertTrue(set(['id', 'name', 'dimensions', 'columns',
@@ -332,7 +332,6 @@ class TestStatistics(base.BaseMonascaTest):
         self.assertTrue(element['id'] is not None)
         self.assertTrue(type(element['name']) is unicode)
         self.assertTrue(type(element['dimensions']) is dict)
-        self.assertEqual(len(element['dimensions']), 0)
         self.assertTrue(type(element['columns']) is list)
         self.assertTrue(type(element['statistics']) is list)
         self.assertEqual(element['name'], self._test_name)
@@ -342,10 +341,10 @@ class TestStatistics(base.BaseMonascaTest):
         self.assertEqual(len(column), num_statistics_method + 1)
         self.assertEqual(column[0], 'timestamp')
         self.assertEqual(column[1], 'avg')
-        self.assertEqual(column[2], 'min')
+        self.assertEqual(column[2], 'count')
         self.assertEqual(column[3], 'max')
-        self.assertEqual(column[4], 'sum')
-        self.assertEqual(column[5], 'count')
+        self.assertEqual(column[4], 'min')
+        self.assertEqual(column[5], 'sum')
 
     def _check_timeout(self, timer, max_retries, elements,
                        expect_num_elements):

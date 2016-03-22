@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 Hewlett-Packard Development Company, L.P.
+ * Copyright (c) 2014, 2016 Hewlett-Packard Development Company, L.P.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -67,10 +67,10 @@ public class InfluxV9StatisticRepo implements StatisticRepo {
   public List<Statistics> find(String tenantId, String name, Map<String, String> dimensions,
                                DateTime startTime, @Nullable DateTime endTime,
                                List<String> statistics, int period, String offset, int limit,
-                               Boolean mergeMetricsFlag) throws Exception {
+                               Boolean mergeMetricsFlag, String groupBy) throws Exception {
 
     String q = buildQuery(tenantId, name, dimensions, startTime, endTime,
-                   statistics, period, offset, limit, mergeMetricsFlag);
+                   statistics, period, offset, limit, mergeMetricsFlag, groupBy);
 
     String r = this.influxV9RepoReader.read(q);
 
@@ -86,7 +86,8 @@ public class InfluxV9StatisticRepo implements StatisticRepo {
 
   private String buildQuery(String tenantId, String name, Map<String, String> dimensions,
                             DateTime startTime, DateTime endTime, List<String> statistics,
-                            int period, String offset, int limit, Boolean mergeMetricsFlag)
+                            int period, String offset, int limit, Boolean mergeMetricsFlag,
+                            String groupBy)
       throws Exception {
 
     String q;
@@ -108,9 +109,11 @@ public class InfluxV9StatisticRepo implements StatisticRepo {
 
     } else {
 
-      if (!this.influxV9MetricDefinitionRepo.isAtMostOneSeries(tenantId, name, dimensions)) {
+      if (!"*".equals(groupBy) &&
+          !this.influxV9MetricDefinitionRepo.isAtMostOneSeries(tenantId, name, dimensions)) {
 
         throw new MultipleMetricsException(name, dimensions);
+
       }
 
       q = String.format("select %1$s %2$s "
