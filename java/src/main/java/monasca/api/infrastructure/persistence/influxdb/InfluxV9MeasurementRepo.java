@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 Hewlett-Packard Development Company, L.P.
+ * Copyright (c) 2014, 2016 Hewlett-Packard Development Company, L.P.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -65,11 +65,12 @@ public class InfluxV9MeasurementRepo implements MeasurementRepo {
   @Override
   public List<Measurements> find(String tenantId, String name, Map<String, String> dimensions,
                                  DateTime startTime, @Nullable DateTime endTime,
-                                 @Nullable String offset, int limit, Boolean mergeMetricsFlag)
+                                 @Nullable String offset, int limit, Boolean mergeMetricsFlag,
+                                 String groupBy)
       throws Exception {
 
     String q = buildQuery(tenantId, name, dimensions, startTime, endTime,
-                          offset, limit, mergeMetricsFlag);
+                          offset, limit, mergeMetricsFlag, groupBy);
 
 
     String r = this.influxV9RepoReader.read(q);
@@ -85,7 +86,7 @@ public class InfluxV9MeasurementRepo implements MeasurementRepo {
 
   private String buildQuery(String tenantId, String name, Map<String, String> dimensions,
                             DateTime startTime, DateTime endTime, String offset, int limit,
-                            Boolean mergeMetricsFlag) throws Exception {
+                            Boolean mergeMetricsFlag, String groupBy) throws Exception {
 
     String q;
     if (Boolean.TRUE.equals(mergeMetricsFlag)) {
@@ -104,14 +105,15 @@ public class InfluxV9MeasurementRepo implements MeasurementRepo {
 
     } else {
 
-      if (!this.influxV9MetricDefinitionRepo.isAtMostOneSeries(tenantId, name, dimensions)) {
+      if (!"*".equals(groupBy) &&
+          !this.influxV9MetricDefinitionRepo.isAtMostOneSeries(tenantId, name, dimensions)) {
 
         throw new MultipleMetricsException(name, dimensions);
 
       }
       // The time column is automatically included in the results before all other columns.
       q = String.format("select value, value_meta %1$s "
-                        + "where %2$s %3$s %4$s %5$s %6$s %7$s %8$s %9$s slimit 1",
+                        + "where %2$s %3$s %4$s %5$s %6$s %7$s %8$s %9$s", //slimit 1
                         this.influxV9Utils.namePart(name, true),
                         this.influxV9Utils.privateTenantIdPart(tenantId),
                         this.influxV9Utils.privateRegionPart(this.region),
