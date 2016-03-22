@@ -66,7 +66,7 @@ public class MetricDefinitionVerticaRepoImpl implements MetricDefinitionRepo {
       + "%s " // Offset goes here
       + "%s " // Dimensions and clause goes here
       + "%s " // Time qualifier goes here
-      + "GROUP BY defDimsSub.id %s "
+      + "GROUP BY defDimsSub.id %s " // Dimension size clause goes here
       + "ORDER BY defDimsSub.id ASC "
       + "%s "; // limit goes here
 
@@ -89,7 +89,7 @@ public class MetricDefinitionVerticaRepoImpl implements MetricDefinitionRepo {
       + "ORDER BY max_id ASC %s"; // Limit goes here.
 
   private static final String DEFDIM_IDS_SELECT =
-      "SELECT defDims.id "
+      "SELECT to_hex(defDims.id) AS id "
       + "FROM MonMetrics.Definitions def, MonMetrics.DefinitionDimensions defDims "
       + "WHERE defDims.definition_id = def.id "
       + "AND def.tenant_id = :tenantId "
@@ -351,7 +351,7 @@ public class MetricDefinitionVerticaRepoImpl implements MetricDefinitionRepo {
       return "";
     }
 
-    Set<byte[]> defDimIdSet = new HashSet<>();
+    Set<String> defDimIdSet = new HashSet<>();
 
     String namePart = "";
 
@@ -375,7 +375,7 @@ public class MetricDefinitionVerticaRepoImpl implements MetricDefinitionRepo {
     List<Map<String, Object>> rows = query.list();
 
     for (Map<String, Object> row : rows) {
-      byte[] defDimId = (byte[]) row.get("id");
+      String defDimId = (String) row.get("id");
       defDimIdSet.add(defDimId);
     }
 

@@ -13,6 +13,7 @@
 # under the License.
 
 import time
+import datetime
 
 from oslo_utils import timeutils
 
@@ -235,17 +236,16 @@ class TestStatistics(base.BaseMonascaTest):
             max_limit = 5 - index
 
             for limit in xrange(1, max_limit):
-                offset_timestamp = start_timestamp + (1000 * index)
-                offset = timeutils.iso8601_from_timestamp(offset_timestamp / 1000)
+                offset = elements[index - 1][0]
 
                 last_index = index + limit
                 expected_elements = elements[index:last_index]
 
                 query_parms = '?name=' + name + '&merge_metrics=true' + \
-                                      '&statistics=avg' + '&start_time=' + \
-                                      str(start_time) + '&end_time=' + \
-                                      str(end_time) + '&period=1' + '&limit=' + \
-                                      str(limit) + '&offset=' + str(offset)
+                              '&statistics=avg' + '&start_time=' + \
+                              str(start_time) + '&end_time=' + \
+                              str(end_time) + '&period=1' + '&limit=' + \
+                              str(limit) + '&offset=' + str(offset)
                 resp, response_body = self.monasca_client.list_statistics(query_parms)
                 self.assertEqual(200, resp.status)
                 if not response_body['elements']:
