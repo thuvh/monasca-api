@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fa0719c6_be10c5a9",
+        "filename": "monasca_api/v2/reference/metrics.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-03-22T15:14:14Z",
+      "side": 1,
+      "message": "Yes this is the only place to use these validation functions for now. Thank you Joe.",
+      "parentUuid": "fa0719c6_427d6a6d",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 76
+      },
+      "revId": "626e4babfa12c310d272a8457001a553e3d97cb9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa0719c6_823b02d1",
         "filename": "monasca_api/v2/reference/metrics.py",
         "patchSetId": 7
