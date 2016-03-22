@@ -43,7 +43,7 @@ public class MetricQueriesTest {
   public void metricQueriesBuildDimensionAndClauseTest2() {
     String expectedResult = "";
     Map<String, String> dimsMap = new HashMap<>();
-    assertEquals(expectedResult, MetricQueries.buildDimensionAndClause(dimsMap,TABLE_TO_JOIN_DIMENSIONS_ON, 0));
+    assertEquals(expectedResult, MetricQueries.buildDimensionAndClause(dimsMap, TABLE_TO_JOIN_DIMENSIONS_ON, 0));
   }
 
   public void metricQueriesBuildDimensionAndClauseForTest3() {

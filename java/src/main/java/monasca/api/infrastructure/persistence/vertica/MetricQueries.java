@@ -17,12 +17,13 @@ package monasca.api.infrastructure.persistence.vertica;
 import com.google.common.base.Splitter;
 import com.google.common.base.Strings;
 
+import java.sql.Timestamp;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.commons.codec.binary.Hex;
+import org.joda.time.DateTime;
 import org.skife.jdbi.v2.Handle;
 import org.skife.jdbi.v2.Query;
 
@@ -32,6 +33,9 @@ import monasca.common.persistence.SqlQueries;
  * Vertica utilities for building metric queries.
  */
 final class MetricQueries {
+  static final char OFFSET_SEPARATOR = '_';
+  static final Splitter offsetSplitter = Splitter.on(OFFSET_SEPARATOR).omitEmptyStrings().trimResults();
+
   private MetricQueries() {}
 
   static String buildDimensionAndClause(Map<String, String> dimensions,
@@ -110,21 +114,14 @@ final class MetricQueries {
     }
   }
 
-
-  static Map<String, String> dimensionsFor(Handle handle, byte[] dimensionSetId) {
-
-    return SqlQueries.keyValuesFor(handle, "select name, value from MonMetrics.Dimensions "
-        + "where" + " dimension_set_id = ?", dimensionSetId);
-  }
-
-  static String createDefDimIdInClause(Set<byte[]> defDimIdSet) {
+  static String createDefDimIdInClause(Set<String> defDimIdSet) {
 
     StringBuilder sb = new StringBuilder("IN ");
 
     sb.append("(");
 
     boolean first = true;
-    for (byte[] defDimId : defDimIdSet) {
+    for (String defDimId : defDimIdSet) {
 
       if (first) {
         first = false;
@@ -132,11 +129,23 @@ final class MetricQueries {
         sb.append(",");
       }
 
-      sb.append("'" + Hex.encodeHexString(defDimId) + "'");
+      sb.append("'" + defDimId + "'");
     }
 
     sb.append(") ");
 
     return sb.toString();
+  }
+
+  static void bindOffsetToQuery(Query<Map<String, Object>> query, String offset) {
+    List<String> offsets =  offsetSplitter.splitToList(offset);
+    if (offsets.size() > 1) {
+      query.bind("offset_id", offsets.get(0));
+      query.bind("offset_timestamp",
+                 new Timestamp(DateTime.parse(offsets.get(1)).getMillis()));
+    } else {
+      query.bind("offset_timestamp",
+                 new Timestamp(DateTime.parse(offsets.get(0)).getMillis()));
+    }
   }
 }
