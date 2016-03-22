@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa0719c6_72964ef1",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/StatisticVerticaRepoImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-03-22T20:29:51Z",
+      "side": 1,
+      "message": "copyright is wrong",
+      "range": {
+        "startLine": 2,
+        "startChar": 27,
+        "endLine": 2,
+        "endChar": 55
+      },
+      "revId": "8905a21e7a557336485b45657f44ae4fcc43e4f1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
