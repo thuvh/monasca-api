@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa0719c6_427d6a6d",
+        "filename": "monasca_api/v2/reference/metrics.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2016-03-22T01:36:07Z",
+      "side": 1,
+      "message": "I\u0027m not sure these need to be separate functions.  The metric_name, and dimension validation functions are used in multiple places while these don\u0027t appear to be.",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 76
+      },
+      "revId": "626e4babfa12c310d272a8457001a553e3d97cb9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0719c6_823b02d1",
+        "filename": "monasca_api/v2/reference/metrics.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2016-03-22T01:36:07Z",
+      "side": 1,
+      "message": "If we have issues parsing value_meta we should do a log.error or log.exception here.",
+      "range": {
+        "startLine": 104,
+        "startChar": 20,
+        "endLine": 104,
+        "endChar": 25
+      },
+      "revId": "626e4babfa12c310d272a8457001a553e3d97cb9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
