@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa0719c6_614dec6b",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MetricQueries.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-03-22T15:19:01Z",
+      "side": 1,
+      "message": "copyright",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "803ef8ad98f8c1de000252340481686b4033f606",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0719c6_fec6bd47",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MetricQueries.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-03-22T15:19:01Z",
+      "side": 1,
+      "message": "You should look at using dimensions.entrySet() like in bindDimensionsToQuery. It makes the code simpler and avoids the dimensions.get() call",
+      "range": {
+        "startLine": 51,
+        "startChar": 11,
+        "endLine": 51,
+        "endChar": 53
+      },
+      "revId": "803ef8ad98f8c1de000252340481686b4033f606",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0719c6_deac99a2",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MetricQueries.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-03-22T15:19:01Z",
+      "side": 1,
+      "message": "sb will be null if dimensions is empty",
+      "range": {
+        "startLine": 74,
+        "startChar": 6,
+        "endLine": 74,
+        "endChar": 8
+      },
+      "revId": "803ef8ad98f8c1de000252340481686b4033f606",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0719c6_0137d0e3",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/vertica/MetricQueriesTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-03-22T15:19:01Z",
+      "side": 1,
+      "message": "copyright",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "803ef8ad98f8c1de000252340481686b4033f606",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
