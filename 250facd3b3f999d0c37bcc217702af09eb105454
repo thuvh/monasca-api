@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa0719c6_ecff1aa8",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/AlarmStateHistoryVerticaRepoImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-03-23T01:16:54Z",
+      "side": 1,
+      "message": "There is a possible problem in that the offset that is sent in as a query parameter is not a valid iso8601 timestamp. Therefore, the constructor to the DateTime object can raise an exception, such as IllegalArgumentException. Unfortunately, the offset isn\u0027t validated in the resource, and I\u0027m not sure that is the correct place, as the offset could be a different type, based on the database, such as Vertica or InfluxDB. \n\nProbably, best to add a try/catch block an throw\n\n      throw Exceptions.unprocessableEntity(\"...\")",
+      "range": {
+        "startLine": 132,
+        "startChar": 8,
+        "endLine": 132,
+        "endChar": 16
+      },
+      "revId": "250facd3b3f999d0c37bcc217702af09eb105454",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0719c6_8c277e63",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/AlarmStateHistoryVerticaRepoImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-03-23T01:16:54Z",
+      "side": 1,
+      "message": "Why did you change fomr \u003e\u003d to \u003e?",
+      "range": {
+        "startLine": 194,
+        "startChar": 33,
+        "endLine": 194,
+        "endChar": 34
+      },
+      "revId": "250facd3b3f999d0c37bcc217702af09eb105454",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0719c6_6c2aea2d",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/AlarmStateHistoryVerticaRepoImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-03-23T01:16:54Z",
+      "side": 1,
+      "message": "Same comment as above.",
+      "range": {
+        "startLine": 200,
+        "startChar": 22,
+        "endLine": 200,
+        "endChar": 32
+      },
+      "revId": "250facd3b3f999d0c37bcc217702af09eb105454",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0719c6_cc21764f",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/AlarmStateHistoryVerticaRepoImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-03-23T01:16:54Z",
+      "side": 1,
+      "message": "Seem similar comments as above.",
+      "range": {
+        "startLine": 245,
+        "startChar": 17,
+        "endLine": 245,
+        "endChar": 26
+      },
+      "revId": "250facd3b3f999d0c37bcc217702af09eb105454",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
