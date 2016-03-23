@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fa0719c6_c73b0fd0",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/AlarmStateHistoryVerticaRepoImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-03-23T01:43:10Z",
+      "side": 1,
+      "message": "Good point! Thanks Roland",
+      "parentUuid": "fa0719c6_ecff1aa8",
+      "range": {
+        "startLine": 132,
+        "startChar": 8,
+        "endLine": 132,
+        "endChar": 16
+      },
+      "revId": "250facd3b3f999d0c37bcc217702af09eb105454",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa0719c6_8c277e63",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/AlarmStateHistoryVerticaRepoImpl.java",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2016-03-23T01:16:54Z",
       "side": 1,
       "message": "Why did you change fomr \u003e\u003d to \u003e?",
+      "range": {
+        "startLine": 194,
+        "startChar": 33,
+        "endLine": 194,
+        "endChar": 34
+      },
+      "revId": "250facd3b3f999d0c37bcc217702af09eb105454",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0719c6_872117a2",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/AlarmStateHistoryVerticaRepoImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-03-23T01:43:10Z",
+      "side": 1,
+      "message": "It\u0027s \u003e instead of \u003e\u003d with influxdb and also our tempest test hmmm.",
+      "parentUuid": "fa0719c6_8c277e63",
       "range": {
         "startLine": 194,
         "startChar": 33,
