@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da0c15f0_2e933ba5",
+        "filename": "monasca_tempest_tests/tests/api/test_statistics.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-03-24T19:23:22Z",
+      "side": 1,
+      "message": "Nitpick, but this could be renamed to something that reflects its new purpose",
+      "range": {
+        "startLine": 102,
+        "startChar": 13,
+        "endLine": 102,
+        "endChar": 27
+      },
+      "revId": "bc44417b673971b28aaee4378eca880cfdaa2add",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
