@@ -154,12 +154,12 @@ class MetricsRepository(metrics_repository.MetricsRepository):
                         clean_dimension_value.encode('utf8'))
 
         if start_timestamp is not None:
-            where_clause += " and time > " + str(int(start_timestamp *
-                                                     1000000)) + "u"
+            where_clause += " and time >= " + str(int(start_timestamp *
+                                                      1000000)) + "u"
 
             if end_timestamp is not None:
-                where_clause += " and time < " + str(int(end_timestamp *
-                                                         1000000)) + "u"
+                where_clause += " and time <= " + str(int(end_timestamp *
+                                                          1000000)) + "u"
 
         return where_clause
 
