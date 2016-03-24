@@ -171,7 +171,7 @@ class TestStatistics(base.BaseMonascaTest):
         self.assertEqual(200, resp.status)
         time_diff = self._end_timestamp - self._start_timestamp
         len_statistics = len(response_body['elements'][0]['statistics'])
-        self.assertEqual(time_diff / 1000, len_statistics)
+        self.assertEqual(time_diff / 1000 + 1, len_statistics)
 
     @test.attr(type="gate")
     def test_list_statistics_with_offset_limit(self):

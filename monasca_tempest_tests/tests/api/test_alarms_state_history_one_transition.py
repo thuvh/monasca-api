@@ -123,7 +123,7 @@ class TestAlarmsStateHistoryOneTransition(base.BaseMonascaTest):
                         "to test."
             self.fail(error_msg)
 
-        # 2, query min(timestamp) < x
+        # 2, query min(timestamp) <= x
         min_element, max_element = self._get_elements_with_min_max_timestamp(
             all_elements)
         start_time = min_element['timestamp']
@@ -133,9 +133,7 @@ class TestAlarmsStateHistoryOneTransition(base.BaseMonascaTest):
         selected_elements = selected_response_body['elements']
 
         # 3. compare #1 and #2
-        expected_elements = all_elements
-        expected_elements.remove(min_element)
-        self.assertEqual(expected_elements, selected_elements)
+        self.assertEqual(all_elements, selected_elements)
 
     @test.attr(type="gate")
     def test_list_alarms_state_history_with_end_time(self):
@@ -150,7 +148,7 @@ class TestAlarmsStateHistoryOneTransition(base.BaseMonascaTest):
                         "to test."
             self.fail(error_msg)
 
-        # 2, query x < max(timestamp)
+        # 2, query x <= max(timestamp)
         min_element, max_element = self._get_elements_with_min_max_timestamp(
             all_elements)
         end_time = max_element['timestamp']
@@ -160,9 +158,7 @@ class TestAlarmsStateHistoryOneTransition(base.BaseMonascaTest):
         selected_elements = selected_response_body['elements']
 
         # 3. compare #1 and #2
-        expected_elements = all_elements
-        expected_elements.remove(max_element)
-        self.assertEqual(expected_elements, selected_elements)
+        self.assertEqual(all_elements, selected_elements)
 
     @test.attr(type="gate")
     def test_list_alarms_state_history_with_start_end_time(self):
@@ -177,7 +173,7 @@ class TestAlarmsStateHistoryOneTransition(base.BaseMonascaTest):
                         "to test."
             self.fail(error_msg)
 
-        # 2, query min(timestamp) < x < max(timestamp)
+        # 2, query min(timestamp) <= x <= max(timestamp)
         min_element, max_element = self._get_elements_with_min_max_timestamp(
             all_elements)
         start_time = min_element['timestamp']
@@ -189,10 +185,7 @@ class TestAlarmsStateHistoryOneTransition(base.BaseMonascaTest):
         selected_elements = selected_response_body['elements']
 
         # 3. compare #1 and #2
-        expected_elements = all_elements
-        expected_elements.remove(min_element)
-        expected_elements.remove(max_element)
-        self.assertEqual(expected_elements, selected_elements)
+        self.assertEqual(all_elements, selected_elements)
 
     @test.attr(type="gate")
     def test_list_alarms_state_history_with_offset_limit(self):
