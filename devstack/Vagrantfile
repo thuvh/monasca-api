@@ -91,7 +91,7 @@ LOGDIR=$DEST/logs
 LOG_COLOR=False
 
 disable_all_services
-enable_service rabbit mysql key tempest
+enable_service rabbit mysql key tempest horizon
 
 # The following two variables allow switching between Java and Python for the implementations
 # of the Monasca API and the Monasca Persister. If these variables are not set, then the
@@ -106,7 +106,8 @@ MONASCA_API_IMPLEMENTATION_LANG=${MONASCA_API_IMPLEMENTATION_LANG:-python}
 MONASCA_PERSISTER_IMPLEMENTATION_LANG=${MONASCA_PERSISTER_IMPLEMENTATION_LANG:-python}
 
 # This line will enable all of Monasca.
-enable_plugin monasca-api https://git.openstack.org/openstack/monasca-api
+# enable_plugin monasca-api https://git.openstack.org/openstack/monasca-api
+enable_plugin monasca-api file:///vagrant_home/Documents/repos/openstack/monasca-api.java
 ' > local.conf
     ./stack.sh
   SHELL
