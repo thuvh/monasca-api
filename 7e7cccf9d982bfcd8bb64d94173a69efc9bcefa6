@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba0121b8_98556ac8",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-03-28T18:59:07Z",
+      "side": 1,
+      "message": "Did you really mean to comment this out?",
+      "range": {
+        "startLine": 506,
+        "startChar": 4,
+        "endLine": 506,
+        "endChar": 53
+      },
+      "revId": "7e7cccf9d982bfcd8bb64d94173a69efc9bcefa6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba0121b8_18583afa",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 570,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-03-28T18:59:07Z",
+      "side": 1,
+      "message": "Should you also remove /var/vertica or does the dpkg do that?",
+      "range": {
+        "startLine": 570,
+        "startChar": 0,
+        "endLine": 570,
+        "endChar": 28
+      },
+      "revId": "7e7cccf9d982bfcd8bb64d94173a69efc9bcefa6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
