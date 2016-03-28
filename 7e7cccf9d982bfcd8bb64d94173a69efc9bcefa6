@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "ba0121b8_ae6c689d",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-03-28T19:55:28Z",
+      "side": 1,
+      "message": "At one point in-time i had added code to actually download the vertica binaries using a url that i got after i logged in to the Vertica site. I left some of this code in as a comment if i ever wanted to go back and enable this again, assuming that Vertica gave is approval.",
+      "parentUuid": "ba0121b8_b8302ea0",
+      "range": {
+        "startLine": 506,
+        "startChar": 4,
+        "endLine": 506,
+        "endChar": 53
+      },
+      "revId": "7e7cccf9d982bfcd8bb64d94173a69efc9bcefa6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba0121b8_18583afa",
         "filename": "devstack/plugin.sh",
         "patchSetId": 1
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "since roland used the vertica install script it actually puts the database config and data under /opt/vertica. In our installs we make a data_directory and put vertica to it from the admintools.conf",
       "parentUuid": "ba0121b8_18583afa",
+      "range": {
+        "startLine": 570,
+        "startChar": 0,
+        "endLine": 570,
+        "endChar": 28
+      },
+      "revId": "7e7cccf9d982bfcd8bb64d94173a69efc9bcefa6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba0121b8_2e269868",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 570,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-03-28T19:55:28Z",
+      "side": 1,
+      "message": "Oh sure, blame it on me.",
+      "parentUuid": "ba0121b8_38e41e0c",
       "range": {
         "startLine": 570,
         "startChar": 0,
