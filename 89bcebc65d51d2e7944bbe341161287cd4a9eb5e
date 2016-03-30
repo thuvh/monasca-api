@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba0121b8_fe67aeb4",
+        "filename": "monasca_api/tests/test_validation.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-03-30T19:04:52Z",
+      "side": 1,
+      "message": "wrong copyright",
+      "range": {
+        "startLine": 1,
+        "startChar": 30,
+        "endLine": 1,
+        "endChar": 37
+      },
+      "revId": "89bcebc65d51d2e7944bbe341161287cd4a9eb5e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba0121b8_bef896c4",
+        "filename": "monasca_api/v2/common/validation.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-03-30T19:04:52Z",
+      "side": 1,
+      "message": "wrong copyright",
+      "range": {
+        "startLine": 1,
+        "startChar": 21,
+        "endLine": 1,
+        "endChar": 25
+      },
+      "revId": "89bcebc65d51d2e7944bbe341161287cd4a9eb5e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba0121b8_be1ff606",
+        "filename": "monasca_api/v2/reference/metrics.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-03-30T19:04:52Z",
+      "side": 1,
+      "message": "i think you can take this away and add it to the other copyright",
+      "range": {
+        "startLine": 1,
+        "startChar": 17,
+        "endLine": 1,
+        "endChar": 24
+      },
+      "revId": "89bcebc65d51d2e7944bbe341161287cd4a9eb5e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba0121b8_7ee0befa",
+        "filename": "monasca_tempest_tests/tests/api/test_metrics.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-03-30T19:04:52Z",
+      "side": 1,
+      "message": "copyright",
+      "range": {
+        "startLine": 1,
+        "startChar": 26,
+        "endLine": 1,
+        "endChar": 33
+      },
+      "revId": "89bcebc65d51d2e7944bbe341161287cd4a9eb5e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
