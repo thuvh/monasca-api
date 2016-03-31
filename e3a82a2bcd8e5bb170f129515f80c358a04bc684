@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba0121b8_ccc01653",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 884,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-03-31T15:40:54Z",
+      "side": 1,
+      "message": "I think we need to document that the total length of the dictionary is limited to 2048. This is the only way that I could come up to describe this.\n\n{string(255): string}(2048)\n\nProbably should add some verbage related to the fact that the json string itself is limited to 2048, including brackets, ...",
+      "range": {
+        "startLine": 884,
+        "startChar": 2,
+        "endLine": 884,
+        "endChar": 12
+      },
+      "revId": "e3a82a2bcd8e5bb170f129515f80c358a04bc684",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba0121b8_0c0fae88",
+        "filename": "monasca_api/v2/common/validation.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-03-31T15:40:54Z",
+      "side": 1,
+      "message": "I think it would be preferable to have some variables declared at the top of the file or use the one\u0027s that you declared in contants.\n\nMAX_ELEMENTS_VALUE_META \u003d 16, or whatever names we used in the Java code, except the one that we discussed that was not named clearly.",
+      "range": {
+        "startLine": 83,
+        "startChar": 30,
+        "endLine": 83,
+        "endChar": 32
+      },
+      "revId": "e3a82a2bcd8e5bb170f129515f80c358a04bc684",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
