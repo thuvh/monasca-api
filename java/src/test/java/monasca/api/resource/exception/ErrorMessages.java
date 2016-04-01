@@ -52,7 +52,8 @@ public final class ErrorMessages {
             @Nullable String detailsPrefix) {
           assertEquals(rootKey, faultType);
           assertEquals(message.code, code);
-          assertTrue(message.message.startsWith(messagePrefix), message.message);
+          assertTrue(message.message.startsWith(messagePrefix),
+              String.format("String '%s' does not start with '%s'", message.message, messagePrefix));
           if (detailsPrefix != null)
             assertTrue(message.details.startsWith(detailsPrefix), message.details);
         }
