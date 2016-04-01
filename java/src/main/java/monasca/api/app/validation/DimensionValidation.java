@@ -36,6 +36,11 @@ public final class DimensionValidation {
   private static final Pattern VALID_DIMENSION_NAME = Pattern.compile("[^><={}(),\"\\\\;&\\|]+$");
   private static final String INVALID_CHAR_STRING = "> < = { } ( ) \" \\ , ; & |";
 
+  private enum DimensionType {
+    key,
+    value
+  }
+
   private DimensionValidation() {}
 
   interface DimensionValidator {
@@ -146,25 +151,54 @@ public final class DimensionValidation {
    * Validates a list of dimension names
    * @param names
    */
-
   public static void validateNames(List<String> names) {
-    if(names != null) {
+    if (names != null) {
       for (String name : names) {
-        if (Strings.isNullOrEmpty(name)) {
-          throw Exceptions.unprocessableEntity("Dimension name cannot be empty");
+        validateDimensionPart(name, DimensionType.key);
+      }
+    }
+  }
+
+  /**
+   * Validates a dimension key
+   * @param key
+   */
+  public static void validateKey(String key) {
+    validateDimensionPart(key, DimensionType.key);
+  }
+
+  /**
+   * Validates a dimension value
+   * @param value
+   */
+  public static void validateValue(String value) {
+    validateDimensionPart(value, DimensionType.value);
+  }
+
+  /**
+   * Validates a dimension part
+   * @param part Dimension part
+   * @param type Type of dimension (key or value)
+   */
+  public static void validateDimensionPart(String part, DimensionType type) {
+    if (part != null) {
+      if (Strings.isNullOrEmpty(part)) {
+        throw Exceptions.unprocessableEntity("Dimension %s cannot be empty", type);
+      }
+      if (part.length() > 255) {
+        throw Exceptions.unprocessableEntity("Dimension %s '%s' must be 255 characters or less",
+                                             type, part);
+      }
+      if (type == DimensionType.key) {
+        // Dimension key that start with underscores are reserved for internal use only.
+        if (part.startsWith("_")) {
+          throw Exceptions.unprocessableEntity("Dimension %s '%s' cannot start with underscore (_)",
+                                               type, part);
         }
-        if (name.length() > 255) {
-          throw Exceptions.unprocessableEntity("Dimension name '%s' must be 255 characters or less",
-                                               name);
-        }
-        // Dimension names that start with underscores are reserved for internal use only.
-        if (name.startsWith("_")) {
-          throw Exceptions.unprocessableEntity("Dimension name '%s' cannot start with underscore (_)",
-                                               name);
-        }
-        if (!VALID_DIMENSION_NAME.matcher(name).matches())
-          throw Exceptions.unprocessableEntity(
-              "Dimension name '%s' may not contain: %s", name, INVALID_CHAR_STRING);
+      }
+      if (!VALID_DIMENSION_NAME.matcher(part).matches()) {
+        throw Exceptions.unprocessableEntity(
+            "Dimension %s '%s' may not contain: %s", type, part, INVALID_CHAR_STRING);
       }
     }
   }
