@@ -168,4 +168,49 @@ public final class DimensionValidation {
       }
     }
   }
+
+  /**
+   * Validates a dimension key
+   * @param key
+   */
+  public static void validateKey(String key) {
+    if(key != null) {
+      if (Strings.isNullOrEmpty(key)) {
+        throw Exceptions.unprocessableEntity("Dimension key cannot be empty");
+      }
+      if (key.length() > 255) {
+        throw Exceptions.unprocessableEntity("Dimension key '%s' must be 255 characters or less",
+                                             key);
+      }
+      // Dimension key that start with underscores are reserved for internal use only.
+      if (key.startsWith("_")) {
+        throw Exceptions.unprocessableEntity("Dimension key '%s' cannot start with underscore (_)",
+                                             key);
+      }
+      if (!VALID_DIMENSION_NAME.matcher(key).matches()) {
+        throw Exceptions.unprocessableEntity(
+              "Dimension key '%s' may not contain: %s", key, INVALID_CHAR_STRING);
+      }
+    }
+  }
+
+  /**
+   * Validates a dimension value
+   * @param value
+   */
+  public static void validateValue(String value) {
+    if(value != null) {
+      if (Strings.isNullOrEmpty(value)) {
+        throw Exceptions.unprocessableEntity("Dimension value cannot be empty");
+      }
+      if (value.length() > 255) {
+        throw Exceptions.unprocessableEntity("Dimension value '%s' must be 255 characters or less",
+                                             value);
+      }
+      if (!VALID_DIMENSION_NAME.matcher(value).matches()) {
+        throw Exceptions.unprocessableEntity(
+            "Dimension value '%s' may not contain: %s", value, INVALID_CHAR_STRING);
+      }
+    }
+  }
 }

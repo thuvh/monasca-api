@@ -95,10 +95,22 @@ public final class Validation {
     Map<String, String> dimensions = new HashMap<String, String>();
     for (String dimensionStr : COMMA_SPLITTER.split(dimensionsStr)) {
       String[] dimensionArr = Iterables.toArray(COLON_SPLITTER.split(dimensionStr), String.class);
-      if (dimensionArr.length == 2)
+      if (dimensionArr.length == 2) {
+        DimensionValidation.validateKey(dimensionArr[0]);
+        if (dimensionArr[1].contains("|")) {
+          List<String> dimensionValueArr = Splitter.on('|').splitToList(dimensionArr[1]);
+          for (String dimensionValue : dimensionValueArr) {
+            DimensionValidation.validateValue(dimensionValue);
+          }
+        } else {
+          DimensionValidation.validateValue(dimensionArr[1]);
+        }
         dimensions.put(dimensionArr[0], dimensionArr[1]);
-      if (dimensionArr.length == 1)
+      }
+      if (dimensionArr.length == 1) {
+        DimensionValidation.validateKey(dimensionArr[0]);
         dimensions.put(dimensionArr[0], "");
+      }
     }
 
     //DimensionValidation.validate(dimensions);

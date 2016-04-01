@@ -21,6 +21,7 @@ import java.util.Map;
 
 import javax.ws.rs.WebApplicationException;
 
+import org.apache.commons.lang3.StringUtils;
 import org.testng.annotations.Test;
 
 @Test
@@ -51,5 +52,50 @@ public class DimensionsTest {
         put("abc", null);
       }
     });
+  }
+
+  public void shouldValidateKey() {
+    DimensionValidation.validateKey("this.is_a.valid-key");
+  }
+
+  @Test(expectedExceptions = WebApplicationException.class)
+  public void shouldErrorOnValidateKeyWithEmptyKey() {
+    DimensionValidation.validateKey("");
+  }
+
+  @Test(expectedExceptions = WebApplicationException.class)
+  public void shouldErrorOnValidateKeyWithLongKey() {
+    String key = StringUtils.repeat("A", 256);
+    DimensionValidation.validateKey(key);
+  }
+
+  @Test(expectedExceptions = WebApplicationException.class)
+  public void shouldErrorOnValidateKeyWithStartingUnderscore() {
+    DimensionValidation.validateKey("_key");
+  }
+
+  @Test(expectedExceptions = WebApplicationException.class)
+  public void shouldErrorOnValidateKeyWithInvalidCharKey() {
+    DimensionValidation.validateKey("this{}that");
+  }
+
+  public void shouldValidateValue() {
+    DimensionValidation.validateValue("this.is_a.valid-value");
+  }
+
+  @Test(expectedExceptions = WebApplicationException.class)
+  public void shouldErrorOnValidateValueWithEmptyValue() {
+    DimensionValidation.validateValue("");
+  }
+
+  @Test(expectedExceptions = WebApplicationException.class)
+  public void shouldErrorOnValidateValueWithLongValue() {
+    String value = StringUtils.repeat("A", 256);
+    DimensionValidation.validateValue(value);
+  }
+
+  @Test(expectedExceptions = WebApplicationException.class)
+  public void shouldErrorOnValidateValueWithInvalidCharValue() {
+    DimensionValidation.validateValue("this{}that");
   }
 }
