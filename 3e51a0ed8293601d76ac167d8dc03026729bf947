@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba0121b8_7c0b5f7d",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 1643,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-04-01T00:39:18Z",
+      "side": 1,
+      "message": "The url needs to be in quotes, as in \n\n\u0027http://localhost:3000\u0027",
+      "revId": "3e51a0ed8293601d76ac167d8dc03026729bf947",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
