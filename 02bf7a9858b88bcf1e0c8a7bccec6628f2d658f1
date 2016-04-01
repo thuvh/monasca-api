@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba0121b8_dd7a62bc",
+        "filename": "monasca_api/v2/common/validation.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-04-01T05:28:26Z",
+      "side": 1,
+      "message": "Why not simply use:\n \"ValueMeta entries must be %s or less\" % VALUE_META_MAX_NUMBER\n\nAlso as far as I remember breaking the line should be done by wrapping\nline in () parentheses. That is I guess specified in PEP somewhere.",
+      "range": {
+        "startLine": 86,
+        "startChar": 23,
+        "endLine": 103,
+        "endChar": 76
+      },
+      "revId": "02bf7a9858b88bcf1e0c8a7bccec6628f2d658f1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
