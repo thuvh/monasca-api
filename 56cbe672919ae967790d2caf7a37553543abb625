@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a061dce_5a97ff8f",
+        "filename": "monasca_tempest_tests/tests/api/test_notification_methods.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-04-05T15:39:09Z",
+      "side": 1,
+      "message": "This test might be more useful if one of the \u0027type\u0027 fields was something other than \u0027EMAIL\u0027. Then we could see it sort both type and address.",
+      "range": {
+        "startLine": 220,
+        "startChar": 18,
+        "endLine": 220,
+        "endChar": 23
+      },
+      "revId": "56cbe672919ae967790d2caf7a37553543abb625",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
