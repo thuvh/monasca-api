@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a061dce_04df8e0d",
+        "filename": "java/src/main/java/monasca/api/app/validation/DimensionValidation.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-04-07T04:39:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a061dce_c92781b4",
+      "range": {
+        "startLine": 176,
+        "startChar": 21,
+        "endLine": 176,
+        "endChar": 32
+      },
+      "revId": "a41affac1326982f9ef459ab4eff65df9e8fe701",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a061dce_06104858",
         "filename": "java/src/main/java/monasca/api/app/validation/DimensionValidation.java",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2016-04-06T18:05:42Z",
       "side": 1,
       "message": "Needs a space after the if",
+      "range": {
+        "startLine": 177,
+        "startChar": 4,
+        "endLine": 177,
+        "endChar": 6
+      },
+      "revId": "a41affac1326982f9ef459ab4eff65df9e8fe701",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a061dce_44e506da",
+        "filename": "java/src/main/java/monasca/api/app/validation/DimensionValidation.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-04-07T04:39:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a061dce_06104858",
       "range": {
         "startLine": 177,
         "startChar": 4,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "9a061dce_84d39e03",
+        "filename": "java/src/main/java/monasca/api/app/validation/DimensionValidation.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-04-07T04:39:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a061dce_692f5588",
+      "range": {
+        "startLine": 201,
+        "startChar": 21,
+        "endLine": 201,
+        "endChar": 34
+      },
+      "revId": "a41affac1326982f9ef459ab4eff65df9e8fe701",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a061dce_86045818",
         "filename": "java/src/main/java/monasca/api/app/validation/DimensionValidation.java",
         "patchSetId": 4
@@ -82,6 +154,30 @@
       "writtenOn": "2016-04-06T18:05:42Z",
       "side": 1,
       "message": "Needs a space after the if",
+      "range": {
+        "startLine": 202,
+        "startChar": 4,
+        "endLine": 202,
+        "endChar": 6
+      },
+      "revId": "a41affac1326982f9ef459ab4eff65df9e8fe701",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a061dce_24ea92ac",
+        "filename": "java/src/main/java/monasca/api/app/validation/DimensionValidation.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-04-07T04:39:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a061dce_86045818",
       "range": {
         "startLine": 202,
         "startChar": 4,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "9a061dce_643e4a29",
+        "filename": "java/src/main/java/monasca/api/app/validation/DimensionValidation.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-04-07T04:39:39Z",
+      "side": 1,
+      "message": "To achieve this function, it may need many modification of code and code may be more complicate. So I didn\u0027t do that.",
+      "parentUuid": "9a061dce_29671dea",
+      "range": {
+        "startLine": 207,
+        "startChar": 46,
+        "endLine": 207,
+        "endChar": 61
+      },
+      "revId": "a41affac1326982f9ef459ab4eff65df9e8fe701",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a061dce_29aefde5",
         "filename": "java/src/main/java/monasca/api/app/validation/Validation.java",
         "patchSetId": 4
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "9a061dce_440a267a",
+        "filename": "java/src/main/java/monasca/api/app/validation/Validation.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-04-07T04:39:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a061dce_29aefde5",
+      "range": {
+        "startLine": 101,
+        "startChar": 43,
+        "endLine": 101,
+        "endChar": 59
+      },
+      "revId": "a41affac1326982f9ef459ab4eff65df9e8fe701",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a061dce_69e2b530",
         "filename": "java/src/main/java/monasca/api/app/validation/Validation.java",
         "patchSetId": 4
@@ -151,6 +295,30 @@
       "writtenOn": "2016-04-06T18:05:42Z",
       "side": 1,
       "message": "This silently ignores dimensionArr.length \u003e 2",
+      "range": {
+        "startLine": 113,
+        "startChar": 6,
+        "endLine": 113,
+        "endChar": 7
+      },
+      "revId": "a41affac1326982f9ef459ab4eff65df9e8fe701",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a061dce_240f3289",
+        "filename": "java/src/main/java/monasca/api/app/validation/Validation.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-04-07T04:39:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a061dce_69e2b530",
       "range": {
         "startLine": 113,
         "startChar": 6,
