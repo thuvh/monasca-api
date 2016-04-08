@@ -1,5 +1,6 @@
 /*
 * (C) Copyright 2015 Hewlett Packard Enterprise Development Company LP
+* Copyright 2016 FUJITSU LIMITED
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -175,6 +176,7 @@ CREATE TABLE `sub_alarm` (
   `alarm_id` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `sub_expression_id` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `expression` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sporadic` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
