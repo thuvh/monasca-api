@@ -70,7 +70,8 @@ def create_alarm_definition(name=None,
                             severity=None,
                             alarm_actions=None,
                             ok_actions=None,
-                            undetermined_actions=None):
+                            undetermined_actions=None,
+                            deterministic=False):
     alarm_definition = {}
     if name is not None:
         alarm_definition['name'] = name
@@ -78,6 +79,8 @@ def create_alarm_definition(name=None,
         alarm_definition['description'] = description
     if expression is not None:
         alarm_definition['expression'] = expression
+    if deterministic is not None:
+        alarm_definition['deterministic'] = deterministic
     if match_by is not None:
         alarm_definition['match_by'] = match_by
     if severity is not None:
