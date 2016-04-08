@@ -18,20 +18,44 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Collections;
 import java.util.List;
 
+import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.google.common.base.Function;
 import monasca.api.domain.model.common.Link;
 import monasca.api.domain.model.common.Linked;
 import monasca.common.model.alarm.AlarmExpression;
+import monasca.common.model.alarm.AlarmSubExpression;
 import monasca.common.model.domain.common.AbstractEntity;
 
 @XmlRootElement(name = "Alarm definition")
 public class AlarmDefinition extends AbstractEntity implements Linked {
+  private static final Function<List<AlarmSubExpression>, Boolean> IS_DETERMINISTIC_FUNCTION =
+      new Function<List<AlarmSubExpression>, Boolean>() {
+
+        @Nullable
+        @Override
+        public Boolean apply(@Nullable final List<AlarmSubExpression> input) {
+          if (input == null || input.isEmpty()) {
+            return AlarmSubExpression.DEFAULT_DETERMINISTIC;
+          }
+          for (final AlarmSubExpression alarmSubExpression : input) {
+            if (!alarmSubExpression.isDeterministic()) {
+              return false;
+            }
+          }
+          return true;
+        }
+
+      };
   private List<Link> links;
   private String name;
   private String description = "";
   private String expression;
+  // no need to add this to hashCode and equals, because it is computed from expression, which is
+  // already mentioned there
+  private boolean deterministic;
   private Object expressionData;
   private List<String> matchBy;
   private String severity;
@@ -199,9 +223,13 @@ public class AlarmDefinition extends AbstractEntity implements Linked {
     this.description = description == null ? "" : description;
   }
 
+  @SuppressWarnings("ConstantConditions")
   public void setExpression(String expression) {
     this.expression = expression;
-    setExpressionData(AlarmExpression.of(expression).getExpressionTree());
+
+    final AlarmExpression alarmExpression = AlarmExpression.of(expression);
+    this.setExpressionData(alarmExpression.getExpressionTree());
+    this.setDeterministic(IS_DETERMINISTIC_FUNCTION.apply(alarmExpression.getSubExpressions()));
   }
 
   @JsonIgnore
@@ -237,6 +265,14 @@ public class AlarmDefinition extends AbstractEntity implements Linked {
 
   public void setUndeterminedActions(List<String> undeterminedActions) {
     this.undeterminedActions = undeterminedActions;
+  }
+
+  public void setDeterministic(final boolean deterministic) {
+    this.deterministic = deterministic;
+  }
+
+  public boolean isDeterministic() {
+    return this.deterministic;
   }
 
   @Override

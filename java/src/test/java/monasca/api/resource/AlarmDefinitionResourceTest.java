@@ -68,7 +68,7 @@ public class AlarmDefinitionResourceTest extends AbstractMonApiResourceTest {
   protected void setupResources() throws Exception {
     super.setupResources();
 
-    expression = "avg(disk_read_ops{service=hpcs.compute, instance_id=937}) >= 90";
+    expression = "avg(disk_read_ops{service=hpcs.compute, instance_id=937},deterministic=false) >= 90";
     List<String> matchBy = Arrays.asList("service", "instance_id");
     alarmItem =
         new AlarmDefinition("123", "Disk Exceeds 1k Operations", null, "LOW", expression,
