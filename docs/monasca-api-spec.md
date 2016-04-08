@@ -511,11 +511,17 @@ Each subexpression is made up of several parts with a couple of options:
 
 ````
 <sub_expression>
-    ::= <function> '(' <metric> [',' period] ')' <relational_operator> threshold_value ['times' periods]
+    ::= <function> '(' <metric> [',' deterministic] [',' period] ')' <relational_operator> threshold_value ['times' periods]
     | '(' expression ')'
 
 ````
-Period must be an integer multiple of 60.  The default period is 60 seconds.
+Period must be an integer multiple of 60. The default period is 60 seconds.
+
+Deterministic can be specified in multiple ways:
+* not specified - acts as default approach
+* (default) deterministic keyword - alarms will be deterministic
+* one of {yes, true, 1} - alarms will be deterministic
+* one of {no, false, 0} - alarms will be non-deterministic
 
 The logical_operators are: `and` (also `&&`), `or` (also `||`).
 
@@ -601,6 +607,22 @@ In this example a compound alarm expression is evaluated involving two threshold
 
 ```
 avg(cpu.system_perc{hostname=hostname.domain.com}) > 90 or avg(disk_read_ops{hostname=hostname.domain.com, device=vda}, 120) > 1000
+```
+
+#### Non-deterministic alarm example
+In this example alarm is created with one expression which is non-deterministic
+
+```
+count(log.error{}, deterministic=false) > 1
+```
+
+#### Deterministic alarm with non-deterministic sub expression
+In this example alarm's expression is composed of 3 parts where two of them
+are marked as *non-deterministic*. However entire expression is deterministic because
+of the 3rd expression.
+
+```
+count(log.error{}, deterministic=false) > 1 or count(log.warning{}, deterministic=false) > 1 and avg(cpu.user_perc{}) > 10
 ```
 
 ### Changing Alarm Definitions
@@ -1715,6 +1737,68 @@ Cache-Control: no-cache
 }
 ```
 
+By default all alarm definitions are created as deterministic. In other words
+request above is equivalent to the following:
+```
+POST /v2.0/alarm-definitions HTTP/1.1
+Host: 192.168.10.4:8080
+Content-Type: application/json
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Cache-Control: no-cache
+
+{
+   "name":"Average CPU percent greater than 10",
+   "description":"The average CPU percent is greater than 10",
+   "expression":"(avg(cpu.user_perc{hostname=devstack},deterministic=true) > 10)",
+   "match_by":[
+     "hostname"
+   ],
+   "severity":"LOW",
+   "ok_actions":[
+     "c60ec47e-5038-4bf1-9f95-4046c6e9a759"
+   ],
+   "alarm_actions":[
+     "c60ec47e-5038-4bf1-9f95-4046c6e9a759"
+   ],
+   "undetermined_actions":[
+     "c60ec47e-5038-4bf1-9f95-4046c6e9a759"
+   ]
+}
+```
+
+To create non-deterministic definition following request should be sent:
+```
+POST /v2.0/alarm-definitions HTTP/1.1
+Host: 192.168.10.4:8080
+Content-Type: application/json
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Cache-Control: no-cache
+
+{
+   "name":"Average CPU percent greater than 10",
+   "description":"The average CPU percent is greater than 10",
+   "expression":"(avg(cpu.user_perc{hostname=devstack},deterministic=false) > 10)",
+   "match_by":[
+     "hostname"
+   ],
+   "severity":"LOW",
+   "ok_actions":[
+     "c60ec47e-5038-4bf1-9f95-4046c6e9a759"
+   ],
+   "alarm_actions":[
+     "c60ec47e-5038-4bf1-9f95-4046c6e9a759"
+   ],
+   "undetermined_actions":[
+     "c60ec47e-5038-4bf1-9f95-4046c6e9a759"
+   ]
+}
+```
+
+    "deterministic" keyword can take different values. Following variants are permitted:
+    {true,yes,1} to create deterministic alarm definition or {false,no,0} to create
+    non-deterministic definition. Alternatively only deterministic keyword can be
+    specified which works in the same way as default behavior mentioned above.
+
 ### Response
 #### Status Code
 * 201 - Created
@@ -1727,6 +1811,7 @@ Returns a JSON object of alarm definition objects with the following fields:
 * name (string) - Name of alarm definition.
 * description (string) - Description of alarm definition.
 * expression (string) - The alarm definition expression.
+* deterministic (boolean) - Is the underlying expression deterministic ?
 * expression_data (JSON object) - The alarm definition expression as a JSON object.
 * match_by ([string]) - The metric dimensions to match to the alarm dimensions
 * severity (string) - The severity of an alarm definition. Either `LOW`, `MEDIUM`, `HIGH` or `CRITICAL`.
@@ -1748,6 +1833,7 @@ Returns a JSON object of alarm definition objects with the following fields:
    "name":"Average CPU percent greater than 10",
    "description":"The average CPU percent is greater than 10",
    "expression":"(avg(cpu.user_perc{hostname=devstack}) > 10)",
+   "deterministic": true,
    "expression_data":{
       "function":"AVG",
       "metric_name":"cpu.user_perc",
@@ -1819,6 +1905,7 @@ Returns a JSON object with a 'links' array of links and an 'elements' array of a
 * name (string) - Name of alarm definition.
 * description (string) - Description of alarm definition.
 * expression (string) - The alarm definition expression.
+* deterministic (boolean) - Is the underlying expression deterministic ?
 * expression_data (JSON object) - The alarm definition expression as a JSON object.
 * match_by ([string]) - The metric dimensions to use to create unique alarms
 * severity (string) - The severity of an alarm definition. Either `LOW`, `MEDIUM`, `HIGH` or `CRITICAL`.
@@ -1852,6 +1939,7 @@ Returns a JSON object with a 'links' array of links and an 'elements' array of a
             "name": "CPU percent greater than 10",
             "description": "Release the hounds",
             "expression": "(avg(cpu.user_perc{hostname=devstack}) > 10)",
+            "deterministic": true,
             "expression_data": {
                 "function": "AVG",
                 "metric_name": "cpu.user_perc",
@@ -1877,6 +1965,38 @@ Returns a JSON object with a 'links' array of links and an 'elements' array of a
             "undetermined_actions": [
                 "c60ec47e-5038-4bf1-9f95-4046c6e9a759"
             ]
+        },
+        {
+            "id": "g9323232-6543-4cbf-1234-0993a947ea83",
+            "links": [
+                {
+                    "rel": "self",
+                    "href": "http://192.168.10.4:8080/v2.0/alarm-definitions/g9323232-6543-4cbf-1234-0993a947ea83"
+                }
+            ],
+            "name": "Log error count exceeds 1000",
+            "description": "Release the cats",
+            "expression": "(count(log.error{hostname=devstack}, deterministic=false) > 1000)",
+            "deterministic": false,
+            "expression_data": {
+                "function": "AVG",
+                "metric_name": "log.error",
+                "dimensions": {
+                    "hostname": "devstack"
+                },
+                "operator": "GT",
+                "threshold": 1000,
+                "period": 60,
+                "periods": 1
+            },
+            "match_by": [
+                "hostname"
+            ],
+            "severity": "CRITICAL",
+            "actions_enabled": true,
+            "alarm_actions": [],
+            "ok_actions": [],
+            "undetermined_actions": []
         }
     ]
 }
@@ -1913,6 +2033,7 @@ Returns a JSON alarm definition object with the following fields:
 * name (string) - Name of alarm definition.
 * description (string) - Description of alarm definition.
 * expression (string) - The alarm definition expression.
+* deterministic (boolean) - Is the underlying expression deterministic ?
 * expression_data (JSON object) - The alarm definition expression as a JSON object.
 * match_by ([string]) - The metric dimensions to use to create unique alarms
 * severity (string) - The severity of an alarm definition. Either `LOW`, `MEDIUM`, `HIGH` or `CRITICAL`.
@@ -1934,6 +2055,7 @@ Returns a JSON alarm definition object with the following fields:
     "name": "CPU percent greater than 10",
     "description": "Release the hounds",
     "expression": "(avg(cpu.user_perc{hostname=devstack}) > 10)",
+    "deterministic": true,
     "expression_data": {
         "function": "AVG",
         "metric_name": "cpu.user_perc",
@@ -2035,6 +2157,7 @@ Returns a JSON alarm definition object with the following parameters:
 * name (string) - Name of alarm definition.
 * description (string) - Description of alarm definition.
 * expression (string) - The alarm definition expression.
+* deterministic (boolean) - Is the underlying expression deterministic ?
 * expression_data (JSON object) - The alarm definition expression as a JSON object.
 * match_by ([string]) - The metric dimensions to use to create unique alarms
 * severity (string) - The severity of an alarm definition. Either `LOW`, `MEDIUM`, `HIGH` or `CRITICAL`.
@@ -2056,6 +2179,7 @@ Returns a JSON alarm definition object with the following parameters:
     "name": "CPU percent greater than 15",
     "description": "Release the hounds",
     "expression": "(avg(cpu.user_perc{hostname=devstack}) > 15)",
+    "deterministic": true,
     "expression_data": {
         "function": "AVG",
         "metric_name": "cpu.user_perc",
@@ -2086,7 +2210,7 @@ ___
 
 ## Patch Alarm Definition
 ### PATCH /v2.0/alarm-definitions/{alarm_definition_id}
-Update select parameters of the specified alarm definition, and enable/disable its actions.
+Update selected parameters of the specified alarm definition, and enable/disable its actions.
 
 #### Headers
 * X-Auth-Token (string, required) - Keystone auth token
@@ -2154,6 +2278,7 @@ Returns a JSON alarm definition object with the following fields:
 * name (string) - Name of alarm definition.
 * description (string) - Description of alarm definition.
 * expression (string) - The alarm definition expression.
+* deterministic (boolean) - Is the underlying expression deterministic ?
 * expression_data (JSON object) - The alarm definition expression as a JSON object.
 * match_by ([string]) - The metric dimensions to use to create unique alarms
 * severity (string) - The severity of an alarm definition. Either `LOW`, `MEDIUM`, `HIGH` or `CRITICAL`.
@@ -2175,6 +2300,7 @@ Returns a JSON alarm definition object with the following fields:
     "name": "CPU percent greater than 15",
     "description": "Release the hounds",
     "expression": "(avg(cpu.user_perc{hostname=devstack}) > 15)",
+    "deterministic": true,
     "expression_data": {
         "function": "AVG",
         "metric_name": "cpu.user_perc",
@@ -2461,7 +2587,7 @@ Returns a JSON object with a 'links' array of links and an 'elements' array of a
 * reason (string) - The reason for the state transition.
 * reason_data (string) - The reason for the state transition as a JSON object.
 * timestamp (string) - The time in ISO 8601 combined date and time format in UTC when the state transition occurred.
-* sub_alarms ({{string, string, string(255): string(255), string, string, string, string}, string, [string]) - The sub-alarms stated of when the alarm state transition occurred.
+* sub_alarms ({{string, string, string(255): string(255), string, string, string, string, boolean}, string, [string]) - The sub-alarms stated of when the alarm state transition occurred.
 
 #### Response Examples
 ```
@@ -2505,7 +2631,8 @@ Returns a JSON object with a 'links' array of links and an 'elements' array of a
                         "operator": "GT",
                         "threshold": 15,
                         "period": 60,
-                        "periods": 1
+                        "periods": 1,
+                        "deterministic": true
                     },
                     "sub_alarm_state": "OK",
                     "current_values": [
@@ -2542,7 +2669,8 @@ Returns a JSON object with a 'links' array of links and an 'elements' array of a
                         "operator": "GT",
                         "threshold": 10,
                         "period": 60,
-                        "periods": 3
+                        "periods": 3,
+                        "deterministic": true
                     },
                     "sub_alarm_state": "OK",
                     "current_values": [
@@ -2581,7 +2709,8 @@ Returns a JSON object with a 'links' array of links and an 'elements' array of a
                         "operator": "GT",
                         "threshold": 10,
                         "period": 60,
-                        "periods": 3
+                        "periods": 3,
+                        "deterministic": true
                     },
                     "sub_alarm_state": "ALARM",
                     "current_values": [
@@ -2928,7 +3057,7 @@ Returns a JSON object with a 'links' array of links and an 'elements' array of a
 * reason (string) - The reason for the state transition.
 * reason_data (string) - The reason for the state transition as a JSON object.
 * timestamp (string) - The time in ISO 8601 combined date and time format in UTC when the state transition occurred.
-* sub_alarms ({{string, string, string(255): string(255), string, string, string, string}, string, [string]) - The sub-alarms stated of when the alarm state transition occurred.
+* sub_alarms ({{string, string, string(255): string(255), string, string, string, string, boolean}, string, [string]) - The sub-alarms stated of when the alarm state transition occurred.
 
 #### Response Examples
 ```
@@ -2970,7 +3099,8 @@ Returns a JSON object with a 'links' array of links and an 'elements' array of a
                         "operator": "LT",
                         "threshold": 10,
                         "period": 60,
-                        "periods": 3
+                        "periods": 3,
+                        "deterministic": true
                     },
                     "sub_alarm_state": "ALARM",
                     "current_values": [
@@ -3007,7 +3137,8 @@ Returns a JSON object with a 'links' array of links and an 'elements' array of a
                         "operator": "LT",
                         "threshold": 10,
                         "period": 60,
-                        "periods": 3
+                        "periods": 3,
+                        "deterministic": true
                     },
                     "sub_alarm_state": "OK",
                     "current_values": [
@@ -3044,7 +3175,8 @@ Returns a JSON object with a 'links' array of links and an 'elements' array of a
                         "operator": "LT",
                         "threshold": 10,
                         "period": 60,
-                        "periods": 3
+                        "periods": 3,
+                        "deterministic": true
                     },
                     "sub_alarm_state": "ALARM",
                     "current_values": [
@@ -3095,4 +3227,3 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
 implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-

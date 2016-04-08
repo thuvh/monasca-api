@@ -60,6 +60,13 @@ public class AlarmDefinitionMySqlRepoImpl implements AlarmDefinitionRepo {
       "select sa.*, sad.dimensions from sub_alarm_definition as sa "
           + "left join (select sub_alarm_definition_id, group_concat(dimension_name, '=', value) as dimensions from sub_alarm_definition_dimension group by sub_alarm_definition_id ) as sad "
           + "on sad.sub_alarm_definition_id = sa.id where sa.alarm_definition_id = :alarmDefId";
+  private static final String CREATE_SUB_EXPRESSION_SQL = "insert into sub_alarm_definition "
+          + "(id, alarm_definition_id, function, metric_name, "
+          + "operator, threshold, period, periods, is_deterministic, "
+          + "created_at, updated_at) "
+          + "values (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
+  private static final String UPDATE_SUB_ALARM_DEF_SQL = "update sub_alarm_definition set "
+      + "operator = ?, is_deterministic = ?, threshold = ?, updated_at = NOW() where id = ?";
 
   private final DBI db;
   private final PersistUtils persistUtils;
@@ -280,10 +287,23 @@ public class AlarmDefinitionMySqlRepoImpl implements AlarmDefinitionRepo {
         // Need to convert the results appropriately based on type.
         Integer period = Conversions.variantToInteger(row.get("period"));
         Integer periods = Conversions.variantToInteger(row.get("periods"));
+        Boolean isDeterministic = "1".equals(row.get("is_deterministic").toString());
         Map<String, String> dimensions =
             DimensionQueries.dimensionsFor((String) row.get("dimensions"));
-        subExpressions.put(id, new AlarmSubExpression(function, new MetricDefinition(metricName,
-            dimensions), operator, threshold, period, periods));
+
+        subExpressions.put(
+            id,
+            new AlarmSubExpression(
+                function,
+                new MetricDefinition(metricName,dimensions),
+                operator,
+                threshold,
+                period,
+                periods,
+                isDeterministic
+            )
+        );
+
       }
 
       return subExpressions;
@@ -315,8 +335,12 @@ public class AlarmDefinitionMySqlRepoImpl implements AlarmDefinitionRepo {
         for (Map.Entry<String, AlarmSubExpression> entry : changedSubAlarms.entrySet()) {
           AlarmSubExpression sa = entry.getValue();
           h.execute(
-              "update sub_alarm_definition set operator = ?, threshold = ?, updated_at = NOW() where id = ?",
-              sa.getOperator().name(), sa.getThreshold(), entry.getKey());
+              UPDATE_SUB_ALARM_DEF_SQL,
+              sa.getOperator().name(),
+              sa.getThreshold(),
+              sa.isDeterministic(),
+              entry.getKey()
+          );
         }
 
       // Insert new sub-alarms
@@ -365,12 +389,9 @@ public class AlarmDefinitionMySqlRepoImpl implements AlarmDefinitionRepo {
         MetricDefinition metricDef = subExpr.getMetricDefinition();
 
         // Persist sub-alarm
-        handle
-            .insert(
-                "insert into sub_alarm_definition (id, alarm_definition_id, function, metric_name, operator, threshold, period, periods, created_at, updated_at) "
-                    + "values (?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())", subAlarmId, id, subExpr
-                    .getFunction().name(), metricDef.name, subExpr.getOperator().name(), subExpr
-                    .getThreshold(), subExpr.getPeriod(), subExpr.getPeriods());
+        handle.insert(CREATE_SUB_EXPRESSION_SQL, subAlarmId, id, subExpr.getFunction().name(),
+            metricDef.name, subExpr.getOperator().name(), subExpr.getThreshold(),
+            subExpr.getPeriod(), subExpr.getPeriods(), subExpr.isDeterministic());
 
         // Persist sub-alarm dimensions
         if (metricDef.dimensions != null && !metricDef.dimensions.isEmpty())
