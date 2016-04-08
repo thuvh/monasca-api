@@ -17,6 +17,10 @@ import sys
 
 import pyparsing
 
+_DETERMINISTIC_ASSIGNMENT_LEN = 3
+_DETERMINISTIC_ASSIGNMENT_SHORT_LEN = 1
+_DETERMINISTIC_ASSIGNMENT_VALUE_INDEX = 2
+
 
 class SubExpr(object):
 
@@ -35,6 +39,7 @@ class SubExpr(object):
         self._threshold = tokens.threshold
         self._period = tokens.period
         self._periods = tokens.periods
+        self._deterministic = tokens.deterministic
         self._id = None
 
     @property
@@ -127,6 +132,21 @@ class SubExpr(object):
             return self._periods
         else:
             return u'1'
+
+    @property
+    def deterministic(self):
+        if self._deterministic:
+            expr_len = len(self._deterministic)
+            if expr_len == _DETERMINISTIC_ASSIGNMENT_LEN:
+                # deterministic expression (i.e. deterministic=false)
+                val = (self.
+                       _deterministic[_DETERMINISTIC_ASSIGNMENT_VALUE_INDEX]
+                       .lower())
+                return val in ['true', 'yes', '1']
+            elif expr_len == _DETERMINISTIC_ASSIGNMENT_SHORT_LEN:
+                # just a deterministic keyword
+                return True
+        return True
 
     @property
     def normalized_operator(self):
@@ -237,8 +257,23 @@ period = integer_number("period")
 threshold = decimal_number("threshold")
 periods = integer_number("periods")
 
-function_and_metric = (func + LPAREN + metric + pyparsing.Optional(
-    COMMA + period) + RPAREN)
+deterministic_words = pyparsing.oneOf(
+    ('true', 'yes', '1', 'false', 'no', '0'),
+    caseless=True
+)
+deterministic = (
+    pyparsing.CaselessLiteral('deterministic') +
+    pyparsing.Optional(
+        pyparsing.Literal('=') + deterministic_words
+    )
+)('deterministic')
+
+function_and_metric = (
+    func + LPAREN + metric +
+    pyparsing.Optional(COMMA + period) +
+    pyparsing.Optional(COMMA + deterministic) +
+    RPAREN
+)
 
 expression = pyparsing.Forward()
 
@@ -291,6 +326,15 @@ def main():
         "ntp.offset > 1 or ntp.offset < -5",
 
         "max(3test_metric5{it's this=that's it}) lt 5 times 3",
+
+        "count(log.error{test=1}, deterministic=true) > 1.0",
+        "count(log.error{test=1}, deterministic=yes) > 1.0",
+        "count(log.error{test=1}, deterministic=1) > 1.0",
+        "count(log.error{test=1}, deterministic) > 1.0",
+
+        "count(log.error{test=1}, deterministic=false) > 1.0",
+        "count(log.error{test=1}, deterministic=no) > 1.0",
+        "count(log.error{test=1}, deterministic=0) > 1.0"
     ]
 
     for expr in expr_list:
@@ -306,6 +350,8 @@ def main():
                 sub_expr.fmtd_sub_expr_str.encode('utf8')))
             print('sub_expr dimensions: {}'.format(
                 sub_expr.dimensions_str.encode('utf8')))
+            print('sub_expr deterministic: {}'.format(
+                sub_expr.deterministic))
             print("")
         print("")
 
