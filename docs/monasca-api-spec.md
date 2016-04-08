@@ -1715,6 +1715,68 @@ Cache-Control: no-cache
 }
 ```
 
+By default all alarm definitions are created as deterministic. In other words
+request above is equivalent to the following:
+```
+POST /v2.0/alarm-definitions HTTP/1.1
+Host: 192.168.10.4:8080
+Content-Type: application/json
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Cache-Control: no-cache
+
+{
+   "name":"Average CPU percent greater than 10",
+   "description":"The average CPU percent is greater than 10",
+   "expression":"(avg(cpu.user_perc{hostname=devstack},deterministic=true) > 10)",
+   "match_by":[
+     "hostname"
+   ],
+   "severity":"LOW",
+   "ok_actions":[
+     "c60ec47e-5038-4bf1-9f95-4046c6e9a759"
+   ],
+   "alarm_actions":[
+     "c60ec47e-5038-4bf1-9f95-4046c6e9a759"
+   ],
+   "undetermined_actions":[
+     "c60ec47e-5038-4bf1-9f95-4046c6e9a759"
+   ]
+}
+```
+
+To create non-deterministic definition following request should be sent:
+```
+POST /v2.0/alarm-definitions HTTP/1.1
+Host: 192.168.10.4:8080
+Content-Type: application/json
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Cache-Control: no-cache
+
+{
+   "name":"Average CPU percent greater than 10",
+   "description":"The average CPU percent is greater than 10",
+   "expression":"(avg(cpu.user_perc{hostname=devstack},deterministic=false) > 10)",
+   "match_by":[
+     "hostname"
+   ],
+   "severity":"LOW",
+   "ok_actions":[
+     "c60ec47e-5038-4bf1-9f95-4046c6e9a759"
+   ],
+   "alarm_actions":[
+     "c60ec47e-5038-4bf1-9f95-4046c6e9a759"
+   ],
+   "undetermined_actions":[
+     "c60ec47e-5038-4bf1-9f95-4046c6e9a759"
+   ]
+}
+```
+
+    "deterministic" keyword can take different values. Following variants are permitted:
+    {true,yes,1} to create deterministic alarm definition or {false,no,0} to create
+    non-deterministic definition. Alternatively only deterministic keyword can be
+    specified which works in the same way as default behavior mentioned above.
+
 ### Response
 #### Status Code
 * 201 - Created
@@ -2086,7 +2148,7 @@ ___
 
 ## Patch Alarm Definition
 ### PATCH /v2.0/alarm-definitions/{alarm_definition_id}
-Update select parameters of the specified alarm definition, and enable/disable its actions.
+Update selected parameters of the specified alarm definition, and enable/disable its actions.
 
 #### Headers
 * X-Auth-Token (string, required) - Keystone auth token
@@ -2461,7 +2523,7 @@ Returns a JSON object with a 'links' array of links and an 'elements' array of a
 * reason (string) - The reason for the state transition.
 * reason_data (string) - The reason for the state transition as a JSON object.
 * timestamp (string) - The time in ISO 8601 combined date and time format in UTC when the state transition occurred.
-* sub_alarms ({{string, string, string(255): string(255), string, string, string, string}, string, [string]) - The sub-alarms stated of when the alarm state transition occurred.
+* sub_alarms ({{string, string, string(255): string(255), string, string, string, string, boolean}, string, [string]) - The sub-alarms stated of when the alarm state transition occurred.
 
 #### Response Examples
 ```
@@ -2505,7 +2567,8 @@ Returns a JSON object with a 'links' array of links and an 'elements' array of a
                         "operator": "GT",
                         "threshold": 15,
                         "period": 60,
-                        "periods": 1
+                        "periods": 1,
+                        "deterministic": true
                     },
                     "sub_alarm_state": "OK",
                     "current_values": [
@@ -2542,7 +2605,8 @@ Returns a JSON object with a 'links' array of links and an 'elements' array of a
                         "operator": "GT",
                         "threshold": 10,
                         "period": 60,
-                        "periods": 3
+                        "periods": 3,
+                        "deterministic": true
                     },
                     "sub_alarm_state": "OK",
                     "current_values": [
@@ -2581,7 +2645,8 @@ Returns a JSON object with a 'links' array of links and an 'elements' array of a
                         "operator": "GT",
                         "threshold": 10,
                         "period": 60,
-                        "periods": 3
+                        "periods": 3,
+                        "deterministic": true
                     },
                     "sub_alarm_state": "ALARM",
                     "current_values": [
@@ -2928,7 +2993,7 @@ Returns a JSON object with a 'links' array of links and an 'elements' array of a
 * reason (string) - The reason for the state transition.
 * reason_data (string) - The reason for the state transition as a JSON object.
 * timestamp (string) - The time in ISO 8601 combined date and time format in UTC when the state transition occurred.
-* sub_alarms ({{string, string, string(255): string(255), string, string, string, string}, string, [string]) - The sub-alarms stated of when the alarm state transition occurred.
+* sub_alarms ({{string, string, string(255): string(255), string, string, string, string, boolean}, string, [string]) - The sub-alarms stated of when the alarm state transition occurred.
 
 #### Response Examples
 ```
@@ -2970,7 +3035,8 @@ Returns a JSON object with a 'links' array of links and an 'elements' array of a
                         "operator": "LT",
                         "threshold": 10,
                         "period": 60,
-                        "periods": 3
+                        "periods": 3,
+                        "deterministic": true
                     },
                     "sub_alarm_state": "ALARM",
                     "current_values": [
@@ -3007,7 +3073,8 @@ Returns a JSON object with a 'links' array of links and an 'elements' array of a
                         "operator": "LT",
                         "threshold": 10,
                         "period": 60,
-                        "periods": 3
+                        "periods": 3,
+                        "deterministic": true
                     },
                     "sub_alarm_state": "OK",
                     "current_values": [
@@ -3044,7 +3111,8 @@ Returns a JSON object with a 'links' array of links and an 'elements' array of a
                         "operator": "LT",
                         "threshold": 10,
                         "period": 60,
-                        "periods": 3
+                        "periods": 3,
+                        "deterministic": true
                     },
                     "sub_alarm_state": "ALARM",
                     "current_values": [
@@ -3095,4 +3163,3 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
 implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-
