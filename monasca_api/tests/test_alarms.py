@@ -346,6 +346,7 @@ class TestAlarmDefinition(AlarmTestBase):
                      'operator': 'gte',
                      'threshold': 1,
                      'period': 60,
+                     'is_deterministic': True,
                      'periods': 1})},
              'changed': {},
              'new': {},
@@ -358,6 +359,7 @@ class TestAlarmDefinition(AlarmTestBase):
                       'operator': 'gte',
                       'threshold': 1,
                       'period': 60,
+                      'is_deterministic': True,
                       'periods': 1})}
              }
         )
@@ -421,7 +423,8 @@ class TestAlarmDefinition(AlarmTestBase):
                      'operator': 'gte',
                      'threshold': 1,
                      'period': 60,
-                     'periods': 1})},
+                     'periods': 1,
+                     'is_deterministic': True})},
              'changed': {},
              'new': {},
              'unchanged': {'11111': sub_alarm_definition.SubAlarmDefinition(
@@ -433,7 +436,8 @@ class TestAlarmDefinition(AlarmTestBase):
                       'operator': 'gte',
                       'threshold': 1,
                       'period': 60,
-                      'periods': 1})}
+                      'periods': 1,
+                      'is_deterministic': True})}
              }
         )
 

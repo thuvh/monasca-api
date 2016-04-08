@@ -263,13 +263,17 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
         description = (alarm_definition_row['description'].decode('utf8')
                        if alarm_definition_row['description'] is not None else None)
 
+        expression = alarm_definition_row['expression'].decode('utf8')
+        is_deterministic = self._is_definition_deterministic(expression)
+
         result = {
             u'actions_enabled': alarm_definition_row['actions_enabled'] == 1,
             u'alarm_actions': alarm_actions_list,
             u'undetermined_actions': undetermined_actions_list,
             u'ok_actions': ok_actions_list,
             u'description': description,
-            u'expression': alarm_definition_row['expression'].decode('utf8'),
+            u'expression': expression,
+            u'deterministic': is_deterministic,
             u'id': alarm_definition_row['id'].decode('utf8'),
             u'match_by': match_by,
             u'name': alarm_definition_row['name'].decode('utf8'),
@@ -321,11 +325,14 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
             undetermined_actions_list = get_comma_separated_str_as_list(
                 alarm_definition_row['undetermined_actions'])
 
+            expression = alarm_definition_row['expression']
+            is_deterministic = self._is_definition_deterministic(expression)
             ad = {u'id': alarm_definition_row['id'],
                   u'name': alarm_definition_row['name'],
                   u'description': alarm_definition_row['description'] if (
                       alarm_definition_row['description']) else u'',
                   u'expression': alarm_definition_row['expression'],
+                  u'deterministic': is_deterministic,
                   u'match_by': match_by,
                   u'severity': alarm_definition_row['severity'].upper(),
                   u'actions_enabled':
@@ -340,6 +347,20 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
         result = helpers.paginate_alarming(result, req_uri, limit)
 
         return result
+
+    def _is_definition_deterministic(self, expression):
+        expr_parser = (monasca_api.expression_parser
+                       .alarm_expr_parser.AlarmExprParser(expression))
+        sub_expressions = expr_parser.sub_expr_list
+
+        if not sub_expressions:
+            return True
+
+        for sub_expr in sub_expressions:
+            if sub_expr.deterministic:
+                return True
+
+        return False
 
     def _validate_alarm_definition(self, alarm_definition, require_all=False):
 
