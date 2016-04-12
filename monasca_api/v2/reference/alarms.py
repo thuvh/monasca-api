@@ -181,20 +181,20 @@ class Alarms(alarms_api_v2.AlarmsV2API,
         alarm_metric_rows = self._alarms_repo.get_alarm_metrics(alarm_id)
         sub_alarm_rows = self._alarms_repo.get_sub_alarms(tenant_id, alarm_id)
 
-        old_state, time_ms = self._alarms_repo.update_alarm(tenant_id, alarm_id,
+        old_alarm, time_ms = self._alarms_repo.update_alarm(tenant_id, alarm_id,
                                                             new_state,
                                                             lifecycle_state, link)
 
         # alarm_definition_id is the same for all rows.
         alarm_definition_id = sub_alarm_rows[0]['alarm_definition_id']
 
-        state_info = {u'alarmState': new_state, u'oldAlarmState': old_state}
+        state_info = {u'alarmState': new_state, u'oldAlarmState': old_alarm['state']}
 
         self._send_alarm_event(u'alarm-updated', tenant_id,
                                alarm_definition_id, alarm_metric_rows,
-                               sub_alarm_rows, state_info)
+                               sub_alarm_rows, link, lifecycle_state, state_info)
 
-        if old_state != new_state:
+        if old_alarm['state'] != new_state:
             try:
                 alarm_definition_row = self._alarms_repo.get_alarm_definition(
                     tenant_id, alarm_id)
@@ -207,8 +207,8 @@ class Alarms(alarms_api_v2.AlarmsV2API,
                 self._send_alarm_transitioned_event(tenant_id, alarm_id,
                                                     alarm_definition_row,
                                                     alarm_metric_rows,
-                                                    old_state, new_state,
-                                                    time_ms)
+                                                    old_alarm['state'],
+                                                    new_state, time_ms)
 
     @resource.resource_try_catch_block
     def _alarm_patch(self, tenant_id, alarm_id, new_state, lifecycle_state,
