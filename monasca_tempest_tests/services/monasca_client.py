@@ -143,10 +143,10 @@ class MonascaClient(rest_client.RestClient):
         resp, response_body = self.delete(uri)
         return resp, response_body
 
-    def update_alarm_definition(self, id, name, expression, description=None,
-                                actions_enabled=None, match_by=None,
-                                severity=None, alarm_actions=None,
-                                ok_actions=None, undetermined_actions=None,
+    def update_alarm_definition(self, id, name, expression, description,
+                                actions_enabled, match_by,
+                                severity, alarm_actions,
+                                ok_actions, undetermined_actions,
                                 **kwargs):
         uri = 'alarm-definitions/' + id
         request_body = {}
@@ -171,7 +171,7 @@ class MonascaClient(rest_client.RestClient):
         for key, value in kwargs.iteritems():
             request_body[key] = value
 
-        resp, response_body = self.patch(uri, json.dumps(request_body))
+        resp, response_body = self.put(uri, json.dumps(request_body))
         return resp, json.loads(response_body)
 
     def patch_alarm_definition(self,
