@@ -1,5 +1,5 @@
-# Copyright 2014 Hewlett-Packard
-# Copyright 2016 FUJITSU LIMITED
+# (C) Copyright 2014,2016 Hewlett Packard Enterprise Development Company LP
+#  Copyright 2016 FUJITSU LIMITED
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -524,17 +524,20 @@ class AlarmDefinitionsRepository(sql_repository.SQLRepository,
             else:
                 new_severity = severity.encode('utf8')
 
-            if match_by is None:
-                if patch:
-                    new_match_by = original_row['match_by']
-                else:
-                    new_match_by = None
+            if match_by is None and patch:
+                new_match_by = original_row['match_by']
             else:
-                new_match_by = ",".join(match_by).encode('utf8')
-
-            if new_match_by != original_row['match_by']:
-                msg = "match_by must not change".encode('utf8')
-                raise exceptions.InvalidUpdateException(msg)
+                encode_match_by = ",".join(match_by).encode('utf8') if match_by is not None else None
+                allowed_match_by = [None, "[]", ""]
+                if not original_row['match_by']:
+                    match_by_same = encode_match_by in allowed_match_by
+                else:
+                    match_by_same = original_row['match_by'] == encode_match_by
+                if not match_by_same:
+                    msg = "match_by must not change".encode('utf8')
+                    raise exceptions.InvalidUpdateException(msg)
+                else:
+                    new_match_by = original_row['match_by']
 
             if actions_enabled is None:
                 new_actions_enabled = original_row['actions_enabled']
