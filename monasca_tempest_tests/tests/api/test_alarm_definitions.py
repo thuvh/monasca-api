@@ -582,12 +582,9 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
         updated_description = 'updated description'
         updated_expression = "max(cpu.system_perc) < 0"
         resp, response_body = self.monasca_client.update_alarm_definition(
-            id=str(response_body_list[0]['id']),
-            name=updated_name,
-            expression=updated_expression,
-            description=updated_description,
-            actions_enabled='true'
-        )
+            str(response_body_list[0]['id']), updated_name, updated_expression,
+            updated_description, 'true', response_body_list[0]['match_by'],
+            'LOW', None, None, None)
         self.assertEqual(200, resp.status)
         self._verify_update_patch_alarm_definition(response_body, updated_name,
                                                    updated_expression,
@@ -612,10 +609,9 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
         updated_match_by = ['hostname']
         self.assertRaises(exceptions.UnprocessableEntity,
                           self.monasca_client.update_alarm_definition,
-                          id=response_body_list[0]['id'], name=name,
-                          expression=expression,
-                          description=description, actions_enabled='true',
-                          match_by=updated_match_by)
+                          response_body_list[0]['id'], name, expression,
+                          description, 'true', updated_match_by, 'LOW', None,
+                          None, None)
 
     @test.attr(type="gate")
     def test_update_notification_in_alarm_definition(self):
@@ -636,13 +632,9 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
         # Update alarm definition
         update_alarm_def_name = data_utils.rand_name('monitoring_alarm_update')
         resp, response_body = self.monasca_client.update_alarm_definition(
-            response_body_list[0]['id'],
-            name=update_alarm_def_name,
-            expression=expression,
-            actions_enabled='true',
-            alarm_actions=[notification_id],
-            ok_actions=[notification_id],
-            undetermined_actions=[notification_id])
+            response_body_list[0]['id'], update_alarm_def_name, expression,
+            'description', 'true', None, 'LOW', [notification_id],
+            [notification_id], [notification_id])
         self.assertEqual(200, resp.status)
         self._verify_update_patch_alarm_definition(response_body,
                                                    update_alarm_def_name,
