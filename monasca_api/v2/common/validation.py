@@ -102,3 +102,9 @@ def validate_value_meta(value_meta):
         # value
         assert isinstance(value_meta[name], (str, unicode)), "ValueMeta value must be a string"
         assert len(value_meta[name]) >= 1, "ValueMeta value cannot be empty"
+
+
+def validate_match_by_dimension_key(dkey):
+    assert isinstance(dkey, (str, unicode)), "Match-by dimension key must be a string"
+    assert len(dkey) <= 255, "Match-by dimension key must be 255 characters or less"
+    assert not restricted_chars.search(dkey), "Invalid characters in match-by dimension name " + dkey
