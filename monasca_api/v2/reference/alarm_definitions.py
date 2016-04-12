@@ -1,4 +1,4 @@
-# Copyright 2014,2016 Hewlett Packard Enterprise Development Company, L.P.
+# (C) Copyright 2014,2016 Hewlett Packard Enterprise Development Company LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -347,7 +347,7 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
             schema_alarms.validate(alarm_definition, require_all=require_all)
             if 'match_by' in alarm_definition:
                 for name in alarm_definition['match_by']:
-                    validation.dimension_key(name)
+                    validation.validate_match_by_dimension_key(name)
 
         except Exception as ex:
             LOG.debug(ex)

@@ -74,3 +74,9 @@ def validate_sort_by(sort_by_list, allowed_sort_by):
             raise HTTPUnprocessableEntityError("Unprocessable Entity",
                                                "sort_by value {} must be 'asc' or 'desc'".format(
                                                    sort_by_values[1]))
+
+
+def validate_match_by_dimension_key(dkey):
+    assert isinstance(dkey, (str, unicode)), "Match-by dimension key must be a string"
+    assert len(dkey) <= 255, "Match-by dimension key must be 255 characters or less"
+    assert not restricted_chars.search(dkey), "Invalid characters in match-by dimension name " + dkey
