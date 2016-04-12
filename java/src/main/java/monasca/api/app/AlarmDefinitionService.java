@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 2014 Hewlett-Packard Development Company, L.P.
- * 
+ * (C) Copyright 2014,2016 Hewlett Packard Enterprise Development Company LP
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software distributed under the License
  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
  * or implied. See the License for the specific language governing permissions and limitations under
@@ -13,6 +13,7 @@
  */
 package monasca.api.app;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -93,7 +94,7 @@ public class AlarmDefinitionService {
   /**
    * Creates an alarm definition and publishes an AlarmDefinitionCreatedEvent. Note, the event is
    * published first since chances of failure are higher.
-   * 
+   *
    * @throws EntityExistsException if an alarm already exists for the name
    * @throws InvalidEntityException if one of the actions cannot be found
    */
@@ -143,7 +144,7 @@ public class AlarmDefinitionService {
 
   /**
    * Deletes the alarm definition identified by the {@code alarmDefId}.
-   * 
+   *
    * @throws EntityNotFoundException if the alarm cannot be found
    */
   public void delete(String tenantId, String alarmDefId) {
@@ -198,6 +199,7 @@ public class AlarmDefinitionService {
       }
       validateChangesAllowed(command.matchBy, oldAlarmDefinition,
               subExpressions);
+      command.matchBy = oldAlarmDefinition.getMatchBy();
       updateInternal(tenantId, alarmDefId, false, command.name,
               command.description, command.expression, command.matchBy,
               command.severity, alarmExpression, command.actionsEnabled,
@@ -217,8 +219,9 @@ public class AlarmDefinitionService {
   private void validateChangesAllowed(final List<String> newMatchBy,
       final AlarmDefinition oldAlarmDefinition, final SubExpressions subExpressions) {
     final boolean matchBySame;
+    List<String> allowed_match_by = Arrays.asList("", "[]");
     if (oldAlarmDefinition.getMatchBy() == null || oldAlarmDefinition.getMatchBy().isEmpty()) {
-      matchBySame = newMatchBy == null || newMatchBy.isEmpty();
+      matchBySame = newMatchBy == null || newMatchBy.isEmpty() || allowed_match_by.contains(newMatchBy.get(0));
     }
     else {
       matchBySame = oldAlarmDefinition.getMatchBy().equals(newMatchBy);
@@ -242,7 +245,7 @@ public class AlarmDefinitionService {
   /**
    * Patches the alarm definition for the {@code tenantId} and {@code alarmDefId} to the state of
    * the {@code fields}.
-   * 
+   *
    * @throws EntityNotFoundException if the alarm cannot be found
    * @throws InvalidEntityException if one of the actions cannot be found
    */
@@ -276,6 +279,7 @@ public class AlarmDefinitionService {
         final SubExpressions subExpressions = subExpressionsFor(
                 repo.findSubExpressions(alarmDefId), alarmExpression);
         validateChangesAllowed(matchBy, oldAlarmDefinition, subExpressions);
+        matchBy = oldAlarmDefinition.getMatchBy();
         updateInternal(tenantId, alarmDefId, true, name, description,
                 expression, matchBy, severity, alarmExpression, enabled,
                 alarmActions, okActions, undeterminedActions, subExpressions);
@@ -389,7 +393,7 @@ public class AlarmDefinitionService {
 
   /**
    * Asserts an alarm definition exists for the {@code alarmDefId} as well as the actions.
-   * 
+   *
    * @throws EntityNotFoundException if the alarm cannot be found
    */
   private AlarmDefinition assertAlarmDefinitionExists(String tenantId, String alarmDefId,

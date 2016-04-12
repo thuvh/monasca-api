@@ -1,5 +1,5 @@
-# Copyright 2014 Hewlett-Packard
-# Copyright 2016 FUJITSU LIMITED
+# (C) Copyright 2014,2016 Hewlett Packard Enterprise Development Company LP
+#  Copyright 2016 FUJITSU LIMITED
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -524,13 +524,15 @@ class AlarmDefinitionsRepository(sql_repository.SQLRepository,
             else:
                 new_severity = severity.encode('utf8')
 
-            if match_by is None:
+            encode_match_by = ",".join(match_by).encode('utf8') \
+                if match_by is not None else None
+            if encode_match_by in [None, "[]", ""]:
                 if patch:
                     new_match_by = original_row['match_by']
                 else:
                     new_match_by = None
             else:
-                new_match_by = ",".join(match_by).encode('utf8')
+                new_match_by = encode_match_by
 
             if new_match_by != original_row['match_by']:
                 msg = "match_by must not change".encode('utf8')
