@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a18252c_84081493",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-04-13T14:11:56Z",
+      "side": 1,
+      "message": "OK I will change the code for that.",
+      "parentUuid": "5a18252c_643698e7",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 61
+      },
+      "revId": "5b5043f390304a473a4514dd8362166316b0df3c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a18252c_843bf49b",
         "filename": "monasca_api/common/repositories/sqla/alarm_definitions_repository.py",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "5a18252c_a47a70ef",
+        "filename": "monasca_api/common/repositories/sqla/alarm_definitions_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-04-13T14:11:56Z",
+      "side": 1,
+      "message": "Hmmm I need to spend more time on this. It checks new_match_by !\u003d original_row[\u0027match_by\u0027] later on line 532 though. Thanks Craig!",
+      "parentUuid": "5a18252c_843bf49b",
+      "range": {
+        "startLine": 527,
+        "startChar": 0,
+        "endLine": 527,
+        "endChar": 75
+      },
+      "revId": "5b5043f390304a473a4514dd8362166316b0df3c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a18252c_c4e16c00",
         "filename": "monasca_api/tests/test_ad_repository.py",
         "patchSetId": 4
@@ -59,6 +107,30 @@
       "writtenOn": "2016-04-13T14:05:09Z",
       "side": 1,
       "message": "Is there a test that verifies that an exception is thrown if match_by changes?",
+      "range": {
+        "startLine": 432,
+        "startChar": 9,
+        "endLine": 432,
+        "endChar": 64
+      },
+      "revId": "5b5043f390304a473a4514dd8362166316b0df3c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a18252c_8703f60c",
+        "filename": "monasca_api/tests/test_ad_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-04-13T14:11:56Z",
+      "side": 1,
+      "message": "I don\u0027t think so. I will add one!",
+      "parentUuid": "5a18252c_c4e16c00",
       "range": {
         "startLine": 432,
         "startChar": 9,
