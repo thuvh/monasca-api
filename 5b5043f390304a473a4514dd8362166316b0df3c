@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a18252c_643698e7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-04-13T14:05:09Z",
+      "side": 1,
+      "message": "Space is probably not needed. Empty or [] should be sufficient",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 61
+      },
+      "revId": "5b5043f390304a473a4514dd8362166316b0df3c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a18252c_843bf49b",
+        "filename": "monasca_api/common/repositories/sqla/alarm_definitions_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-04-13T14:05:09Z",
+      "side": 1,
+      "message": "This is not correct. It would allow you to pass in [] on update if the old match_by was really hostname,url and have it work. It should only set it to original_row[\u0027match_by\u0027] for the patch case. For update, it should be an empty list",
+      "range": {
+        "startLine": 527,
+        "startChar": 0,
+        "endLine": 527,
+        "endChar": 75
+      },
+      "revId": "5b5043f390304a473a4514dd8362166316b0df3c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a18252c_c4e16c00",
+        "filename": "monasca_api/tests/test_ad_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-04-13T14:05:09Z",
+      "side": 1,
+      "message": "Is there a test that verifies that an exception is thrown if match_by changes?",
+      "range": {
+        "startLine": 432,
+        "startChar": 9,
+        "endLine": 432,
+        "endChar": 64
+      },
+      "revId": "5b5043f390304a473a4514dd8362166316b0df3c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
