@@ -22,6 +22,30 @@
       "revId": "49b1155804b82db0758c8f951e07a2d7519b0276",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a18252c_23127f09",
+        "filename": "monasca_api/v2/reference/alarms.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-04-14T19:30:09Z",
+      "side": 1,
+      "message": "Sounds good also there is another bug here in line195. That\u0027s actually the main bug here to fix. We missed one/two input arguments for _send_alarm_event function.",
+      "parentUuid": "5a18252c_cc05d37a",
+      "range": {
+        "startLine": 186,
+        "startChar": 0,
+        "endLine": 186,
+        "endChar": 60
+      },
+      "revId": "49b1155804b82db0758c8f951e07a2d7519b0276",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
