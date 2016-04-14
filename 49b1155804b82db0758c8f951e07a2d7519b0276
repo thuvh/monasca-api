@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a18252c_cc05d37a",
+        "filename": "monasca_api/v2/reference/alarms.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-04-14T13:22:17Z",
+      "side": 1,
+      "message": "So, the bug was on this line where old_state was being set, but that was really the old_alarm. Ooops.\n\nAs one possible nit-pick code improvement, maybe you could have just fixed this one line, then just set\n\nold_state \u003d old_alarm[\u0027state\u0027]\n\nThen, the rest of the code would have remained the same and been slightly moe concise/readable.",
+      "range": {
+        "startLine": 186,
+        "startChar": 0,
+        "endLine": 186,
+        "endChar": 60
+      },
+      "revId": "49b1155804b82db0758c8f951e07a2d7519b0276",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
