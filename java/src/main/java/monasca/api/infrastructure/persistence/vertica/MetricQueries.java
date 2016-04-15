@@ -34,59 +34,46 @@ import monasca.common.persistence.SqlQueries;
 final class MetricQueries {
   private MetricQueries() {}
 
-  static String buildDimensionAndClause(Map<String, String> dimensions,
-                                        String tableToJoinName,
-                                        int limit) {
+  static String buildJoinClauseFor(Map<String, String> dimensions, String tableToJoinName) {
 
     StringBuilder sb = null;
 
-    if (dimensions != null && dimensions.size() > 0) {
+    if (dimensions != null) {
 
-      int numDims = dimensions.size();
       sb = new StringBuilder();
-      sb.append(" and " + tableToJoinName + ".dimension_set_id in ")
-        .append("(select dimension_set_id from MonMetrics.Dimensions where ");
 
       int i = 0;
       for (Iterator<Map.Entry<String, String>> it = dimensions.entrySet().iterator(); it.hasNext(); i++) {
+        sb.append( "inner join MonMetrics.Dimensions dim").append(i);
         Map.Entry<String, String> entry = it.next();
-        sb.append("name = :dname").append(i);
+        sb.append(" on dim").append(i)
+            .append(".name = :dname").append(i);
         String dim_value = entry.getValue();
         if (!Strings.isNullOrEmpty(dim_value)) {
           List<String> values = Splitter.on('|').splitToList(dim_value);
           if (values.size() > 1) {
-            sb.append(" and ( ");
+            sb.append(" and (");
             for (int j = 0; j < values.size(); j++) {
-              sb.append("value = :dvalue").append(i).append('_').append(j);
+              sb.append("dim").append(i)
+                  .append(".value = :dvalue").append(i).append('_').append(j);
               if (j < values.size() - 1) {
                 sb.append(" or ");
               }
             }
-            sb.append(" )");
+            sb.append(")");
           } else {
-            sb.append(" and value = :dvalue").append(i);
+            sb.append(" and ")
+                .append("dim").append(i).append(".value = :dvalue").append(i);
           }
         }
-        if (it.hasNext()) {
-          sb.append(" or ");
-        }
+        sb.append(" and " + tableToJoinName + ".dimension_set_id = dim")
+            .append(i)
+            .append(".dimension_set_id ");
       }
-      sb.append(" group by dimension_set_id")
-        .append(" having count(*) = " + numDims +" ");
-
-      //
-      // Limit is non-deterministic here unless we also
-      // order by.
-      //
-      if (limit > 0) {
-        sb.append("order by dimension_set_id ")
-          .append("limit " + Integer.toString(limit + 1));
-      }
-
-      sb.append(")");
     }
 
     return sb == null ? "" : sb.toString();
+
   }
 
   static void bindDimensionsToQuery(Query<?> query, Map<String, String> dimensions) {

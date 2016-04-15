@@ -29,7 +29,6 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Iterator;
 import java.util.Set;
 
 import javax.annotation.Nullable;
@@ -68,10 +67,10 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
       DEFDIM_IDS_SELECT =
       "SELECT defDims.id, defDims.dimension_set_id, defDims.definition_id "
       + "FROM MonMetrics.Definitions def, MonMetrics.DefinitionDimensions defDims "
+      + "%s" // Dimension join clause goes here
       + "WHERE defDims.definition_id = def.id "
       + "AND def.tenant_id = :tenantId "
-      + "%s "   // Name clause here
-      + "%s;";  // Dimensions and clause goes here
+      + "%s;";  // Name clause goes here
 
   private static final String TABLE_TO_JOIN_DIMENSIONS_ON = "defDims";
 
@@ -114,8 +113,8 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
 
       String defDimSql = String.format(
           DEFDIM_IDS_SELECT,
-          namePart,
-          MetricQueries.buildDimensionAndClause(dimensions, "defDims", 0));
+          MetricQueries.buildJoinClauseFor(dimensions, "defDims"),
+          namePart);
 
       Query<Map<String, Object>> query = h.createQuery(defDimSql).bind("tenantId", tenantId);
 
