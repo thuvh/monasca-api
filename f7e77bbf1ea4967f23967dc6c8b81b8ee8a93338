@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a122d0e_d1f9754f",
+        "filename": "monasca_api/v2/common/validation.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-04-15T17:43:30Z",
+      "side": 1,
+      "message": "I saw we have \nif \"value_meta\" in metric:\n   validation.validate_value_meta(metric[\u0027value_meta\u0027])\nin metrics.py \nDo we still need it here?",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 22
+      },
+      "revId": "f7e77bbf1ea4967f23967dc6c8b81b8ee8a93338",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
