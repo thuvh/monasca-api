@@ -93,6 +93,30 @@
       "revId": "49b1155804b82db0758c8f951e07a2d7519b0276",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a18252c_673d968e",
+        "filename": "monasca_api/v2/reference/alarms.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-04-15T01:49:22Z",
+      "side": 1,
+      "message": "Yep you are right! line 207 is actually the main bug Im trying to fix here in this review :-)",
+      "parentUuid": "5a18252c_bc43456b",
+      "range": {
+        "startLine": 243,
+        "startChar": 21,
+        "endLine": 243,
+        "endChar": 51
+      },
+      "revId": "49b1155804b82db0758c8f951e07a2d7519b0276",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
