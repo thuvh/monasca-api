@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a122d0e_0b79acc8",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MetricDefinitionVerticaRepoImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-04-18T23:10:03Z",
+      "side": 1,
+      "message": "Applying the limit here can cause dimensions to be cut off because each row contains a single dimension key-value pair",
+      "range": {
+        "startLine": 61,
+        "startChar": 9,
+        "endLine": 61,
+        "endChar": 25
+      },
+      "revId": "6c6f7f8a9f3296d6e48a79d22afcd2de454f94a1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a122d0e_ebac3037",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MetricDefinitionVerticaRepoImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-04-18T23:10:03Z",
+      "side": 1,
+      "message": "This is a very confusing way of getting the configuration setting for max_limit",
+      "range": {
+        "startLine": 200,
+        "startChar": 4,
+        "endLine": 200,
+        "endChar": 86
+      },
+      "revId": "6c6f7f8a9f3296d6e48a79d22afcd2de454f94a1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
