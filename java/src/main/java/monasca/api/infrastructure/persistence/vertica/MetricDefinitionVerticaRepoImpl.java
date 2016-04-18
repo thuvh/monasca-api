@@ -15,6 +15,7 @@ package monasca.api.infrastructure.persistence.vertica;
 
 import monasca.api.domain.model.metric.MetricDefinitionRepo;
 import monasca.api.domain.model.metric.MetricName;
+import monasca.api.infrastructure.persistence.PersistUtils;
 import monasca.api.resource.exception.Exceptions;
 import monasca.common.model.metric.MetricDefinition;
 
@@ -56,7 +57,8 @@ public class MetricDefinitionVerticaRepoImpl implements MetricDefinitionRepo {
       + "%s " // Offset goes here.
       + "%s " // Dimensions and clause goes here
       + "%s " // Optional timestamp qualifier goes here
-      + "ORDER BY defDims.id ASC";
+      + "ORDER BY defDims.id ASC "
+      + "limit :max_limit";
 
   private static final String
       FIND_METRIC_NAMES_SQL =
@@ -192,11 +194,14 @@ public class MetricDefinitionVerticaRepoImpl implements MetricDefinitionRepo {
       DateTime startTime,
       DateTime endTime,
       String offset,
-      int limit) {
+      int page_limit,
+      PersistUtils persistUtils) {
+
+    int max_limit = (persistUtils != null) ? persistUtils.getLimit(null) : page_limit;
 
     List<Map<String, Object>>
         rows =
-        executeMetricDefsQuery(tenantId, name, dimensions, startTime, endTime, offset, limit);
+        executeMetricDefsQuery(tenantId, name, dimensions, startTime, endTime, offset, page_limit, max_limit);
 
     List<MetricDefinition> metricDefs = new ArrayList<>(rows.size());
 
@@ -248,7 +253,8 @@ public class MetricDefinitionVerticaRepoImpl implements MetricDefinitionRepo {
       DateTime startTime,
       DateTime endTime,
       String offset,
-      int limit) {
+      int page_limit,
+      int max_limit) {
 
     String namePart = "";
 
@@ -274,10 +280,13 @@ public class MetricDefinitionVerticaRepoImpl implements MetricDefinitionRepo {
       String sql =
         String.format(FIND_METRIC_DEFS_SQL,
                       namePart, offsetPart,
-                      MetricQueries.buildDimensionAndClause(dimensions, "defDims", limit),
+                      MetricQueries.buildDimensionAndClause(dimensions, "defDims", page_limit),
                       timeInClause);
 
       Query<Map<String, Object>> query = h.createQuery(sql).bind("tenantId", tenantId);
+
+      logger.debug("binding max limit: {}", max_limit);
+      query.bind("max_limit", max_limit + 1);
 
       if (name != null && !name.isEmpty()) {
         logger.debug("binding name: {}", name);

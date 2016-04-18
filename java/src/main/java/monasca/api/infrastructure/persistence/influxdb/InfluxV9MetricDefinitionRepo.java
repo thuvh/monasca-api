@@ -30,6 +30,7 @@ import monasca.api.ApiConfig;
 import monasca.api.domain.model.measurement.Measurements;
 import monasca.api.domain.model.metric.MetricDefinitionRepo;
 import monasca.api.domain.model.metric.MetricName;
+import monasca.api.infrastructure.persistence.PersistUtils;
 import monasca.common.model.metric.MetricDefinition;
 
 
@@ -90,7 +91,9 @@ public class InfluxV9MetricDefinitionRepo implements MetricDefinitionRepo {
                                      Map<String, String> dimensions,
                                      DateTime startTime,
                                      DateTime endTime,
-                                     String offset, int limit) throws Exception {
+                                     String offset,
+                                     int limit,
+                                     PersistUtils persistUtils) throws Exception {
 
     int startIndex = this.influxV9Utils.startIndex(offset);
 

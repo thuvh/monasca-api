@@ -86,7 +86,7 @@ public class MetricDefinitionVerticaRepositoryImplTest {
   }
 
   public void shouldFindWithoutDimensions() throws Exception {
-    List<MetricDefinition> defs = repo.find("bob", "cpu_utilization", null, null, null, null, 1);
+    List<MetricDefinition> defs = repo.find("bob", "cpu_utilization", null, null, null, null, 1, null);
     assertEquals(defs.size(), 3);
   }
 
@@ -97,7 +97,8 @@ public class MetricDefinitionVerticaRepositoryImplTest {
                                             new DateTime(2014, 1, 1, 0, 0, 0),
                                             null,
                                             null,
-                                            1);
+                                            1,
+                                            null);
     assertEquals(defs.size(), 3);
   }
 
@@ -108,7 +109,8 @@ public class MetricDefinitionVerticaRepositoryImplTest {
                                             new DateTime(2014, 1, 1, 0, 1, 1),
                                             null,
                                             null,
-                                            1);
+                                            1,
+                                            null);
     assertEquals(defs.size(), 0);
   }
 
@@ -119,7 +121,8 @@ public class MetricDefinitionVerticaRepositoryImplTest {
                                             new DateTime(2014, 1, 1, 0, 0, 0),
                                             new DateTime(2014, 1, 1, 0, 1, 1),
                                             null,
-                                            1);
+                                            1,
+                                            null);
     assertEquals(defs.size(), 3);
   }
 
@@ -130,7 +133,8 @@ public class MetricDefinitionVerticaRepositoryImplTest {
                                             new DateTime(2013, 1, 1, 0, 0, 0),
                                             new DateTime(2013, 12, 31, 0, 0, 0),
                                             null,
-                                            1);
+                                            1,
+                                            null);
     assertEquals(defs.size(), 0);
   }
 
@@ -139,11 +143,11 @@ public class MetricDefinitionVerticaRepositoryImplTest {
     dims.put("service", "compute");
     dims.put("instance_id", "123");
 
-    List<MetricDefinition> defs = repo.find("bob", "cpu_utilization", dims, null, null, null, 1);
+    List<MetricDefinition> defs = repo.find("bob", "cpu_utilization", dims, null, null, null, 1, null);
     assertEquals(defs.size(), 2);
 
     dims.put("flavor_id", "2");
-    defs = repo.find("bob", "cpu_utilization", dims, null, null, null, 1);
+    defs = repo.find("bob", "cpu_utilization", dims, null, null, null, 1, null);
     assertEquals(defs.size(), 1);
   }
 }

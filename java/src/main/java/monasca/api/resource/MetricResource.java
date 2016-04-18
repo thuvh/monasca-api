@@ -153,7 +153,8 @@ public class MetricResource {
         startTime,
         endTime,
         offset,
-        paging_limit
+        paging_limit,
+        persistUtils
     );
 
     return Links.paginate(paging_limit, resources, uriInfo);
