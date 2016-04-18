@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a122d0e_8f268dcc",
+        "filename": "monasca_api/common/repositories/sqla/alarm_definitions_repository.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 20873
+      },
+      "writtenOn": "2016-04-18T10:09:17Z",
+      "side": 1,
+      "message": "encode_match_by in [None, \"[]\", \"\"]\n\nWould it look better in this form?",
+      "range": {
+        "startLine": 529,
+        "startChar": 15,
+        "endLine": 529,
+        "endChar": 90
+      },
+      "revId": "3b714a7d1b9226bfb30ed133772dd6e4baaba4db",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
