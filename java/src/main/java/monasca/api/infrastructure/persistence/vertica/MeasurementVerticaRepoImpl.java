@@ -29,7 +29,6 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Iterator;
 import java.util.Set;
 
 import javax.annotation.Nullable;
@@ -67,13 +66,15 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
   private static final String
       DEFDIM_IDS_SELECT =
       "SELECT defDims.id, defDims.dimension_set_id, defDims.definition_id "
-      + "FROM MonMetrics.Definitions def, MonMetrics.DefinitionDimensions defDims "
-      + "WHERE defDims.definition_id = def.id "
-      + "AND def.tenant_id = :tenantId "
+      + "FROM MonMetrics.Definitions def "
+      + "JOIN MonMetrics.DefinitionDimensions defDims ON defDims.definition_id = def.id "
+      + "LEFT OUTER JOIN MonMetrics.Dimensions dims ON defDIms.dimension_set_id = dims"
+      + ".dimension_set_id "
+      + "WHERE def.tenant_id = :tenantId "
       + "%s "   // Name clause here
       + "%s;";  // Dimensions and clause goes here
 
-  private static final String TABLE_TO_JOIN_DIMENSIONS_ON = "defDims";
+  private static final String TABLE_TO_JOIN_DIMENSIONS_ON = "dims";
 
   private final DBI db;
 
@@ -115,7 +116,7 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
       String defDimSql = String.format(
           DEFDIM_IDS_SELECT,
           namePart,
-          MetricQueries.buildDimensionAndClause(dimensions, "defDims", 0));
+          MetricQueries.buildDimensionAndClause(dimensions, TABLE_TO_JOIN_DIMENSIONS_ON));
 
       Query<Map<String, Object>> query = h.createQuery(defDimSql).bind("tenantId", tenantId);
 
