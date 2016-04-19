@@ -29,7 +29,6 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Iterator;
 import java.util.Set;
 
 import javax.annotation.Nullable;
@@ -53,6 +52,8 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
   public static final DateTimeFormatter DATETIME_FORMATTER =
       ISODateTimeFormat.dateTime().withZoneUTC();
 
+  public static final ByteBuffer EMPTY_DEF_ID = ByteBuffer.wrap(new byte[0]);
+
   private static final String FIND_BY_METRIC_DEF_SQL =
       "select mes.definition_dimensions_id, "
       + "mes.time_stamp, mes.value, mes.value_meta "
@@ -66,14 +67,18 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
 
   private static final String
       DEFDIM_IDS_SELECT =
-      "SELECT defDims.id, defDims.dimension_set_id, defDims.definition_id "
-      + "FROM MonMetrics.Definitions def, MonMetrics.DefinitionDimensions defDims "
-      + "WHERE defDims.definition_id = def.id "
-      + "AND def.tenant_id = :tenantId "
+      "SELECT defDims.id "
+      + "FROM MonMetrics.Definitions def "
+      + "JOIN MonMetrics.DefinitionDimensions defDims ON defDims.definition_id = def.id "
+      + "LEFT OUTER JOIN MonMetrics.Dimensions dims ON defDIms.dimension_set_id = dims"
+      + ".dimension_set_id "
+      + "WHERE def.tenant_id = :tenantId "
       + "%s "   // Name clause here
-      + "%s;";  // Dimensions and clause goes here
+      + "%s "  // Dimensions and clause goes here
+      + "GROUP BY defDims.id "
+      + "%s "; // Dimension size clause goes here
 
-  private static final String TABLE_TO_JOIN_DIMENSIONS_ON = "defDims";
+  private static final String TABLE_TO_JOIN_DIMENSIONS_ON = "dims";
 
   private final DBI db;
 
@@ -104,7 +109,6 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
       Map<ByteBuffer, Measurements> results = new LinkedHashMap<>();
 
       Set<byte[]> defDimIdSet = new HashSet<>();
-      Set<byte[]> dimSetIdSet = new HashSet<>();
 
       String namePart = "";
 
@@ -115,7 +119,8 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
       String defDimSql = String.format(
           DEFDIM_IDS_SELECT,
           namePart,
-          MetricQueries.buildDimensionAndClause(dimensions, "defDims", 0));
+          MetricQueries.buildDimensionAndClause(dimensions, TABLE_TO_JOIN_DIMENSIONS_ON),
+          MetricQueries.buildDimensionsSizeClause(dimensions));
 
       Query<Map<String, Object>> query = h.createQuery(defDimSql).bind("tenantId", tenantId);
 
@@ -127,22 +132,14 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
 
       List<Map<String, Object>> rows = query.list();
 
-      ByteBuffer defId = ByteBuffer.wrap(new byte[0]);
-
       for (Map<String, Object> row : rows) {
 
         byte[] defDimId = (byte[]) row.get("id");
         defDimIdSet.add(defDimId);
 
-        byte[] dimSetIdBytes = (byte[]) row.get("dimension_set_id");
-        dimSetIdSet.add(dimSetIdBytes);
-
-        byte[] defIdBytes = (byte[]) row.get("definition_id");
-        defId = ByteBuffer.wrap(defIdBytes);
-
       }
 
-      if (!Boolean.TRUE.equals(mergeMetricsFlag) && (dimSetIdSet.size() > 1)) {
+      if (!Boolean.TRUE.equals(mergeMetricsFlag) && (defDimIdSet.size() > 1)) {
         throw new MultipleMetricsException(name, dimensions);
       }
 
@@ -211,7 +208,7 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
 
         }
 
-        Measurements measurements = (Boolean.TRUE.equals(mergeMetricsFlag)) ? results.get(defId) : results.get(defdimsId);
+        Measurements measurements = (Boolean.TRUE.equals(mergeMetricsFlag)) ? results.get(EMPTY_DEF_ID) : results.get(defdimsId);
 
         if (measurements == null) {
           if (Boolean.TRUE.equals(mergeMetricsFlag)) {
@@ -219,10 +216,10 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
                 new Measurements(name, new HashMap<String, String>(),
                                  new ArrayList<Object[]>());
 
-            results.put(defId, measurements);
+            results.put(EMPTY_DEF_ID, measurements);
           } else {
             measurements =
-                new Measurements(name, MetricQueries.dimensionsFor(h, (byte[]) dimSetIdSet.toArray()[0]),
+                new Measurements(name, MetricQueries.dimensionsFor(h, (byte[]) defDimIdSet.toArray()[0]),
                                  new ArrayList<Object[]>());
             results.put(defdimsId, measurements);
           }
