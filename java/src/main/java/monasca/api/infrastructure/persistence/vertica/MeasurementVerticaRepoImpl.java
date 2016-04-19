@@ -29,7 +29,6 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Iterator;
 import java.util.Set;
 
 import javax.annotation.Nullable;
@@ -66,14 +65,18 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
 
   private static final String
       DEFDIM_IDS_SELECT =
-      "SELECT defDims.id, defDims.dimension_set_id, defDims.definition_id "
-      + "FROM MonMetrics.Definitions def, MonMetrics.DefinitionDimensions defDims "
-      + "WHERE defDims.definition_id = def.id "
-      + "AND def.tenant_id = :tenantId "
+      "SELECT defDims.id "
+      + "FROM MonMetrics.Definitions def "
+      + "JOIN MonMetrics.DefinitionDimensions defDims ON defDims.definition_id = def.id "
+      + "LEFT OUTER JOIN MonMetrics.Dimensions dims ON defDIms.dimension_set_id = dims"
+      + ".dimension_set_id "
+      + "WHERE def.tenant_id = :tenantId "
       + "%s "   // Name clause here
-      + "%s;";  // Dimensions and clause goes here
+      + "%s "  // Dimensions and clause goes here
+      + "GROUP BY defDims.id "
+      + "%s "; // Dimension size clause goes here
 
-  private static final String TABLE_TO_JOIN_DIMENSIONS_ON = "defDims";
+  private static final String TABLE_TO_JOIN_DIMENSIONS_ON = "dims";
 
   private final DBI db;
 
@@ -115,7 +118,8 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
       String defDimSql = String.format(
           DEFDIM_IDS_SELECT,
           namePart,
-          MetricQueries.buildDimensionAndClause(dimensions, "defDims", 0));
+          MetricQueries.buildDimensionAndClause(dimensions, TABLE_TO_JOIN_DIMENSIONS_ON),
+          MetricQueries.buildDimensionsSizeClause(dimensions));
 
       Query<Map<String, Object>> query = h.createQuery(defDimSql).bind("tenantId", tenantId);
 
@@ -134,15 +138,9 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
         byte[] defDimId = (byte[]) row.get("id");
         defDimIdSet.add(defDimId);
 
-        byte[] dimSetIdBytes = (byte[]) row.get("dimension_set_id");
-        dimSetIdSet.add(dimSetIdBytes);
-
-        byte[] defIdBytes = (byte[]) row.get("definition_id");
-        defId = ByteBuffer.wrap(defIdBytes);
-
       }
 
-      if (!Boolean.TRUE.equals(mergeMetricsFlag) && (dimSetIdSet.size() > 1)) {
+      if (!Boolean.TRUE.equals(mergeMetricsFlag) && (defDimIdSet.size() > 1)) {
         throw new MultipleMetricsException(name, dimensions);
       }
 
@@ -222,7 +220,7 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
             results.put(defId, measurements);
           } else {
             measurements =
-                new Measurements(name, MetricQueries.dimensionsFor(h, (byte[]) dimSetIdSet.toArray()[0]),
+                new Measurements(name, MetricQueries.dimensionsFor(h, (byte[]) defDimIdSet.toArray()[0]),
                                  new ArrayList<Object[]>());
             results.put(defdimsId, measurements);
           }
