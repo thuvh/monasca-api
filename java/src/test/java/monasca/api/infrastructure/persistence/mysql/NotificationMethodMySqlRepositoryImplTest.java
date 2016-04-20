@@ -68,7 +68,7 @@ public class NotificationMethodMySqlRepositoryImplTest {
   }
 
   public void shouldCreate() {
-    NotificationMethod nmA = repo.create("555", "MyEmail", NotificationMethodType.EMAIL, "a@b");
+    NotificationMethod nmA = repo.create("555", "MyEmail", NotificationMethodType.EMAIL, "a@b", 0);
     NotificationMethod nmB = repo.findById("555", nmA.getId());
 
     assertEquals(nmA, nmB);
@@ -92,15 +92,15 @@ public class NotificationMethodMySqlRepositoryImplTest {
     List<NotificationMethod> nms = repo.find("444", null, null, 1);
 
     assertEquals(nms, Arrays.asList(new NotificationMethod("123", "MyEmail",
-        NotificationMethodType.EMAIL, "a@b"),new NotificationMethod("124", "OtherEmail",
-                NotificationMethodType.EMAIL, "a@b")));
+        NotificationMethodType.EMAIL, "a@b", 0),new NotificationMethod("124", "OtherEmail",
+                NotificationMethodType.EMAIL, "a@b", 0)));
   }
 
   public void shouldUpdate() {
-    repo.update("444", "123", "Foo", NotificationMethodType.EMAIL, "abc");
+    repo.update("444", "123", "Foo", NotificationMethodType.EMAIL, "abc", 0);
     NotificationMethod nm = repo.findById("444", "123");
 
-    assertEquals(nm, new NotificationMethod("123", "Foo", NotificationMethodType.EMAIL, "abc"));
+    assertEquals(nm, new NotificationMethod("123", "Foo", NotificationMethodType.EMAIL, "abc", 0));
   }
 
   public void shouldDeleteById() {
@@ -114,16 +114,16 @@ public class NotificationMethodMySqlRepositoryImplTest {
   }
 
   public void shouldUpdateDuplicateWithSameValues() {
-      repo.update("444", "123", "Foo", NotificationMethodType.EMAIL, "abc");
+      repo.update("444", "123", "Foo", NotificationMethodType.EMAIL, "abc", 0);
       NotificationMethod nm = repo.findById("444", "123");
 
-      assertEquals(nm, new NotificationMethod("123", "Foo", NotificationMethodType.EMAIL, "abc"));
+      assertEquals(nm, new NotificationMethod("123", "Foo", NotificationMethodType.EMAIL, "abc", 0));
     }
 
   @Test(expectedExceptions = EntityExistsException.class)
   public void shouldNotUpdateDuplicateWithSameName() {
 
-      repo.update("444", "124", "MyEmail", NotificationMethodType.EMAIL, "abc");
+      repo.update("444", "124", "MyEmail", NotificationMethodType.EMAIL, "abc", 0);
     }
 
 }
