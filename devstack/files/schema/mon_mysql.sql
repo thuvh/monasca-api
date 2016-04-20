@@ -141,6 +141,7 @@ CREATE TABLE `notification_method` (
   `name` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `type` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `address` varchar(512) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `periodic_interval` tinyint NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),

@@ -74,6 +74,7 @@ def create_nm_model(metadata=None):
                  Column('name', String(250)),
                  Column('type', String(20)),
                  Column('address', String(512)),
+                 Column('periodic_interval', Integer),
                  Column('created_at', DateTime),
                  Column('updated_at', DateTime))
 
