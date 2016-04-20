@@ -16,6 +16,24 @@
       "revId": "5697d16f4237a8ef65de6917aedd056388848b10",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a122d0e_12f1666b",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MetricQueries.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-04-20T21:35:17Z",
+      "side": 0,
+      "message": "We have to limit only after we\u0027ve applied all the filters, otherwise the filters do not work properly. Also, note that the dimension and clause is not a part of other queries which do include a limit",
+      "parentUuid": "1a122d0e_0bf2d699",
+      "revId": "5697d16f4237a8ef65de6917aedd056388848b10",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
