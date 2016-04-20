@@ -23,6 +23,8 @@ LOG = log.getLogger(__name__)
 
 schemes = ['http', 'https']
 
+valid_periodic_intervals = [0, 1]
+
 notification_schema = {
     voluptuous.Required('name'): voluptuous.Schema(
         voluptuous.All(voluptuous.Any(str, unicode),
@@ -37,18 +39,31 @@ notification_schema = {
 request_body_schema = voluptuous.Schema(voluptuous.Any(notification_schema))
 
 
-def validate(msg):
+def parse_and_validate_notification(msg, require_all=False):
     try:
         request_body_schema(msg)
     except Exception as ex:
         LOG.debug(ex)
         raise exceptions.ValidationException(str(ex))
 
+    if msg['periodic_interval'] is None:
+        if require_all:
+            raise exceptions.ValidationException("Periodic interval is required")
+        else:
+            msg['periodic_interval'] = 0
+    else:
+        msg['periodic_interval'] = _parse_and_validate_periodic_interval(msg['periodic_interval'])
+
     notification_type = str(msg['type']).upper()
+
     if notification_type == 'EMAIL':
         _validate_email(msg['address'])
     elif notification_type == 'WEBHOOK':
         _validate_url(msg['address'])
+
+    if notification_type != 'WEBHOOK' and msg['periodic_interval'] != 0:
+        raise exceptions.ValidationException("Periodic interval can only be set with webhooks")
+
 
 
 def _validate_email(address):
@@ -70,3 +85,13 @@ def _validate_url(address):
     if parsed.scheme not in schemes:
         raise exceptions.ValidationException("Address {} scheme is not in {}"
                                              .format(address, schemes))
+
+
+def _parse_and_validate_periodic_interval(periodic_interval):
+    try:
+        periodic_interval = int(periodic_interval)
+    except Exception:
+        raise Exception("Periodic Interval {} must be a valid integer", periodic_interval)
+    if periodic_interval not in valid_periodic_intervals:
+        raise Exception("{} is not a valid periodic interval", periodic_interval)
+    return periodic_interval

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 Hewlett-Packard Development Company, L.P.
+ * (C) Copyright 2014-2016 Hewlett Packard Enterprise Development Company LP
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -38,6 +38,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 import monasca.api.app.command.CreateNotificationMethodCommand;
+import monasca.api.app.command.UpdateNotificationMethodCommand;
 import monasca.api.app.validation.Validation;
 import monasca.api.domain.model.notificationmethod.NotificationMethod;
 import monasca.api.domain.model.notificationmethod.NotificationMethodRepo;
@@ -67,9 +68,11 @@ public class NotificationMethodResource {
   public Response create(@Context UriInfo uriInfo, @HeaderParam("X-Tenant-Id") String tenantId,
       @Valid CreateNotificationMethodCommand command) {
     command.validate();
+    int periodicInterval = Validation.parseAndValidateNumber(command.periodicInterval, "periodic_interval");
 
     NotificationMethod notificationMethod =
-        Links.hydrate(repo.create(tenantId, command.name, command.type, command.address), uriInfo,
+        Links.hydrate(repo.create(tenantId, command.name, command.type,
+                command.address, periodicInterval), uriInfo,
             false);
     return Response.created(URI.create(notificationMethod.getId())).entity(notificationMethod)
         .build();
@@ -112,11 +115,13 @@ public class NotificationMethodResource {
   public NotificationMethod update(@Context UriInfo uriInfo,
       @HeaderParam("X-Tenant-Id") String tenantId,
       @PathParam("notification_method_id") String notificationMethodId,
-      @Valid CreateNotificationMethodCommand command) {
+      @Valid UpdateNotificationMethodCommand command) {
     command.validate();
+    int periodicInterval = Validation.parseAndValidateNumber(command.periodicInterval, "periodic_interval");
 
     return Links.hydrate(
-        repo.update(tenantId, notificationMethodId, command.name, command.type, command.address),
+        repo.update(tenantId, notificationMethodId, command.name, command.type,
+                command.address, periodicInterval),
         uriInfo, true);
   }
 
