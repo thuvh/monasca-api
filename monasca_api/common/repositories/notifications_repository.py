@@ -23,7 +23,7 @@ class NotificationsRepository(object):
 
     @abc.abstractmethod
     def create_notification(self, tenant_id, name, notification_type,
-                            address):
+                            address, periodic_interval):
         return
 
     @abc.abstractmethod
@@ -40,5 +40,5 @@ class NotificationsRepository(object):
 
     @abc.abstractmethod
     def update_notification(self, notification_id, tenant_id, name, notification_type,
-                            address):
+                            address, periodic_interval):
         return
