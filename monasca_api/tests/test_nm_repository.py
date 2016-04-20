@@ -57,6 +57,7 @@ class TestNotificationMethodRepoDB(testtools.TestCase, fixtures.TestWithFixtures
                                     name=bindparam('name'),
                                     type=bindparam('type'),
                                     address=bindparam('address'),
+                                    periodic_interval=bindparam('periodic_interval'),
                                     created_at=bindparam('created_at'),
                                     updated_at=bindparam('updated_at')))
 
@@ -80,6 +81,7 @@ class TestNotificationMethodRepoDB(testtools.TestCase, fixtures.TestWithFixtures
                              'name': 'MyEmail',
                              'type': 'EMAIL',
                              'address': 'a@b',
+                             'periodic_interval': 0,
                              'created_at': datetime.datetime.now(),
                              'updated_at': datetime.datetime.now()},
                             {'id': '124',
@@ -87,6 +89,7 @@ class TestNotificationMethodRepoDB(testtools.TestCase, fixtures.TestWithFixtures
                              'name': 'OtherEmail',
                              'type': 'EMAIL',
                              'address': 'a@b',
+                             'periodic_interval': 0,
                              'created_at': datetime.datetime.now(),
                              'updated_at': datetime.datetime.now()}]
 
@@ -137,6 +140,25 @@ class TestNotificationMethodRepoDB(testtools.TestCase, fixtures.TestWithFixtures
                           'EMAIL',
                           'a@b')
 
+    def test_should_create(self):
+        from monasca_api.common.repositories import exceptions
+        nmA = self.repo.create_notification('555',
+                                            'MyEmail',
+                                            'EMAIL',
+                                            'a@b',
+                                            0)
+        nmB = self.repo.list_notification('555', nmA)
+
+        self.assertEqual(nmA, nmB['id'])
+
+        self.assertRaises(exceptions.AlreadyExistsException,
+                          self.repo.create_notification,
+                          '555',
+                          'MyEmail',
+                          'EMAIL',
+                          'a@b',
+                          0)
+
     def test_should_exists(self):
         from monasca_api.common.repositories import exceptions
         self.assertTrue(self.repo.list_notification("444", "123"))
@@ -159,7 +181,7 @@ class TestNotificationMethodRepoDB(testtools.TestCase, fixtures.TestWithFixtures
 
     def test_update(self):
         import copy
-        self.repo.update_notification('123', '444', 'Foo', 'EMAIL', 'abc')
+        self.repo.update_notification('123', '444', 'Foo', 'EMAIL', 'abc', 0)
         nm = self.repo.list_notification('444', '123')
         new_nm = copy.deepcopy(self.default_nms[0])
         new_nm['name'] = 'Foo'
@@ -175,7 +197,8 @@ class TestNotificationMethodRepoDB(testtools.TestCase, fixtures.TestWithFixtures
                           'no really tenant',
                           '',
                           '',
-                          '')
+                          '',
+                          0)
 
     def test_should_delete(self):
         from monasca_api.common.repositories import exceptions
@@ -187,8 +210,8 @@ class TestNotificationMethodRepoDB(testtools.TestCase, fixtures.TestWithFixtures
 
     def test_should_update_duplicate_with_same_values(self):
         import copy
-        self.repo.update_notification('123', '444', 'Foo', 'EMAIL', 'abc')
-        self.repo.update_notification('123', '444', 'Foo', 'EMAIL', 'abc')
+        self.repo.update_notification('123', '444', 'Foo', 'EMAIL', 'abc', 0)
+        self.repo.update_notification('123', '444', 'Foo', 'EMAIL', 'abc', 0)
         nm = self.repo.list_notification('444', '123')
         new_nm = copy.deepcopy(self.default_nms[0])
         new_nm['name'] = 'Foo'
