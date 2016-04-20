@@ -72,9 +72,9 @@ public class NotificationMethodSqlRepositoryImplTest {
       session.beginTransaction();
 
       NotificationMethodDb notificationMethodDb1 =
-          new NotificationMethodDb("123", "444", "MyEmail", AlarmNotificationMethodType.EMAIL, "a@b", new DateTime(), new DateTime());
+          new NotificationMethodDb("123", "444", "MyEmail", AlarmNotificationMethodType.EMAIL, "a@b", 0, new DateTime(), new DateTime());
       NotificationMethodDb notificationMethodDb2 =
-          new NotificationMethodDb("124", "444", "OtherEmail", AlarmNotificationMethodType.EMAIL, "a@b", new DateTime(), new DateTime());
+          new NotificationMethodDb("124", "444", "OtherEmail", AlarmNotificationMethodType.EMAIL, "a@b", 0, new DateTime(), new DateTime());
 
       session.save(notificationMethodDb1);
       session.save(notificationMethodDb2);
@@ -90,7 +90,7 @@ public class NotificationMethodSqlRepositoryImplTest {
 
   @Test(groups = "orm")
   public void shouldCreate() {
-    NotificationMethod nmA = repo.create("555", "MyEmail", NotificationMethodType.EMAIL, "a@b");
+    NotificationMethod nmA = repo.create("555", "MyEmail", NotificationMethodType.EMAIL, "a@b", 0);
     NotificationMethod nmB = repo.findById("555", nmA.getId());
 
     assertEquals(nmA, nmB);
@@ -107,25 +107,25 @@ public class NotificationMethodSqlRepositoryImplTest {
   public void shouldFind() {
     List<NotificationMethod> nms1 = repo.find("444", null, null, 1);
 
-    assertEquals(nms1, Arrays.asList(new NotificationMethod("123", "MyEmail", NotificationMethodType.EMAIL, "a@b"), new NotificationMethod("124",
-        "OtherEmail", NotificationMethodType.EMAIL, "a@b")));
+    assertEquals(nms1, Arrays.asList(new NotificationMethod("123", "MyEmail", NotificationMethodType.EMAIL, "a@b", 0), new NotificationMethod("124",
+        "OtherEmail", NotificationMethodType.EMAIL, "a@b", 0)));
 
     List<NotificationMethod> nms2 = repo.find("444", null, "123", 1);
 
-    assertEquals(nms2, Collections.singletonList(new NotificationMethod("124", "OtherEmail", NotificationMethodType.EMAIL, "a@b")));
+    assertEquals(nms2, Collections.singletonList(new NotificationMethod("124", "OtherEmail", NotificationMethodType.EMAIL, "a@b", 0)));
   }
 
   @Test(groups = "orm")
   public void shouldUpdate() {
-    repo.update("444", "123", "Foo", NotificationMethodType.EMAIL, "abc");
+    repo.update("444", "123", "Foo", NotificationMethodType.EMAIL, "abc", 0);
     NotificationMethod nm = repo.findById("444", "123");
 
-    assertEquals(nm, new NotificationMethod("123", "Foo", NotificationMethodType.EMAIL, "abc"));
+    assertEquals(nm, new NotificationMethod("123", "Foo", NotificationMethodType.EMAIL, "abc", 0));
   }
 
   @Test(groups = "orm")
   public void shouldUpdateReturnValue() {
-    NotificationMethod nm = repo.update("444", "123", "Foo", NotificationMethodType.EMAIL, "abc");
+    NotificationMethod nm = repo.update("444", "123", "Foo", NotificationMethodType.EMAIL, "abc", 0);
 
     NotificationMethod foundNotificationMethod = repo.findById("444", "123");
     assertEquals(nm, foundNotificationMethod);
@@ -144,16 +144,16 @@ public class NotificationMethodSqlRepositoryImplTest {
 
   @Test(groups = "orm")
   public void shouldUpdateDuplicateWithSameValues() {
-    repo.update("444", "123", "Foo", NotificationMethodType.EMAIL, "abc");
+    repo.update("444", "123", "Foo", NotificationMethodType.EMAIL, "abc", 0);
     NotificationMethod nm = repo.findById("444", "123");
 
-    assertEquals(nm, new NotificationMethod("123", "Foo", NotificationMethodType.EMAIL, "abc"));
+    assertEquals(nm, new NotificationMethod("123", "Foo", NotificationMethodType.EMAIL, "abc", 0));
   }
 
   @Test(groups = "orm", expectedExceptions = EntityExistsException.class)
   public void shouldNotUpdateDuplicateWithSameName() {
 
-    repo.update("444", "124", "MyEmail", NotificationMethodType.EMAIL, "abc");
+    repo.update("444", "124", "MyEmail", NotificationMethodType.EMAIL, "abc", 0);
   }
 
   @Test(groups = "orm", expectedExceptions = WebApplicationException.class)
