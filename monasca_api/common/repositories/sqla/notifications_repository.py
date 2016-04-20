@@ -58,6 +58,7 @@ class NotificationsRepository(sql_repository.SQLRepository,
                                      name=bindparam('b_name'),
                                      type=bindparam('b_type'),
                                      address=bindparam('b_address'),
+                                     periodic_interval=bindparam('b_periodic_interval'),
                                      created_at=bindparam('b_created_at'),
                                      updated_at=bindparam('b_updated_at')))
 
@@ -72,6 +73,7 @@ class NotificationsRepository(sql_repository.SQLRepository,
                                      name=bindparam('b_name'),
                                      type=bindparam('b_type'),
                                      address=bindparam('b_address'),
+                                     periodic_interval=bindparam('b_periodic_interval'),
                                      updated_at=bindparam('b_updated_at')))
 
         self._select_nm_id_query = (select([nm])
@@ -85,7 +87,7 @@ class NotificationsRepository(sql_repository.SQLRepository,
                                                nm.c.name == bindparam('b_name'))))
 
     def create_notification(self, tenant_id, name,
-                            notification_type, address):
+                            notification_type, address, periodic_interval):
 
         with self._db_engine.connect() as conn:
             row = conn.execute(self._select_nm_count_name_query,
@@ -105,6 +107,7 @@ class NotificationsRepository(sql_repository.SQLRepository,
                          b_name=name.encode('utf8'),
                          b_type=notification_type.encode('utf8'),
                          b_address=address.encode('utf8'),
+                         b_periodic_interval=periodic_interval,
                          b_created_at=now,
                          b_updated_at=now)
 
@@ -186,7 +189,7 @@ class NotificationsRepository(sql_repository.SQLRepository,
                                 b_name=name.encode('utf8')).fetchone()
 
     @sql_repository.sql_try_catch_block
-    def update_notification(self, notification_id, tenant_id, name, notification_type, address):
+    def update_notification(self, notification_id, tenant_id, name, notification_type, address, periodic_interval):
         with self._db_engine.connect() as conn:
             now = datetime.datetime.utcnow()
 
@@ -196,6 +199,7 @@ class NotificationsRepository(sql_repository.SQLRepository,
                                   b_name=name.encode('utf8'),
                                   b_type=notification_type.encode('utf8'),
                                   b_address=address.encode('utf8'),
+                                  b_periodic_interval=periodic_interval,
                                   b_updated_at=now)
 
             if cursor.rowcount < 1:
