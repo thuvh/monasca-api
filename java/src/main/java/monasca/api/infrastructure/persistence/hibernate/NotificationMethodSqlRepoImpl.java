@@ -53,7 +53,7 @@ public class NotificationMethodSqlRepoImpl
 
   @Override
   public NotificationMethod create(String tenantId, String name, NotificationMethodType type,
-                                   String address) {
+                                   String address, int periodicInterval) {
     Transaction tx = null;
     Session session = null;
     try {
@@ -73,6 +73,7 @@ public class NotificationMethodSqlRepoImpl
           name,
           AlarmNotificationMethodType.valueOf(type.name()),
           address,
+          periodicInterval,
           now,
           now
       );
@@ -158,7 +159,7 @@ public class NotificationMethodSqlRepoImpl
 
   @Override
   public NotificationMethod update(String tenantId, String notificationMethodId, String name,
-                                   NotificationMethodType type, String address) {
+                                   NotificationMethodType type, String address, int periodicInterval) {
     Session session = null;
     Transaction tx = null;
     try {
@@ -180,6 +181,7 @@ public class NotificationMethodSqlRepoImpl
       db.setName(name);
       db.setType(AlarmNotificationMethodType.valueOf(type.name()));
       db.setAddress(address);
+      db.setPeriodicInterval(periodicInterval);
       db.setUpdatedAt(this.getUTCNow());
 
       session.save(db);
@@ -270,7 +272,8 @@ public class NotificationMethodSqlRepoImpl
         db.getId(),
         db.getName(),
         NotificationMethodType.valueOf(db.getType().name()),
-        db.getAddress()
+        db.getAddress(),
+        db.getPeriodicInterval()
     );
   }
 }

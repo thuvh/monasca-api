@@ -52,7 +52,7 @@ class TestNotificationMethods(base.BaseMonascaTest):
     @test.attr(type=['negative'])
     def test_create_notification_method_with_no_name(self):
         notification = helpers.create_notification(name=None)
-        self.assertRaises((exceptions.BadRequest,exceptions.UnprocessableEntity),
+        self.assertRaises((exceptions.BadRequest, exceptions.UnprocessableEntity),
                           self.monasca_client.create_notifications,
                           notification)
 
@@ -60,7 +60,7 @@ class TestNotificationMethods(base.BaseMonascaTest):
     @test.attr(type=['negative'])
     def test_create_notification_method_with_no_type(self):
         notification = helpers.create_notification(type=None)
-        self.assertRaises((exceptions.BadRequest,exceptions.UnprocessableEntity),
+        self.assertRaises((exceptions.BadRequest, exceptions.UnprocessableEntity),
                           self.monasca_client.create_notifications,
                           notification)
 
@@ -68,7 +68,7 @@ class TestNotificationMethods(base.BaseMonascaTest):
     @test.attr(type=['negative'])
     def test_create_notification_method_with_no_address(self):
         notification = helpers.create_notification(address=None)
-        self.assertRaises((exceptions.BadRequest,exceptions.UnprocessableEntity),
+        self.assertRaises((exceptions.BadRequest, exceptions.UnprocessableEntity),
                           self.monasca_client.create_notifications,
                           notification)
 
@@ -100,6 +100,50 @@ class TestNotificationMethods(base.BaseMonascaTest):
                           notification)
 
     @test.attr(type="gate")
+    @test.attr(type=['negative'])
+    def test_create_notification_method_with_invalid_float_periodic_interval(self):
+        notification = helpers.create_notification(periodic_interval=1.2)
+        self.assertRaises((exceptions.BadRequest, exceptions.UnprocessableEntity),
+                          self.monasca_client.create_notifications,
+                          notification)
+
+    @test.attr(type="gate")
+    @test.attr(type=['negative'])
+    def test_create_notification_method_with_invalid_string_periodic_interval(self):
+        notification = helpers.create_notification(periodic_interval='random')
+        self.assertRaises((exceptions.BadRequest, exceptions.UnprocessableEntity),
+                          self.monasca_client.create_notifications,
+                          notification)
+
+    @test.attr(type="gate")
+    @test.attr(type=['negative'])
+    def test_create_email_notification_method_with_invalid_non_zero_periodic_interval(self):
+        notification = helpers.create_notification(periodic_interval=1)
+        self.assertRaises((exceptions.BadRequest, exceptions.UnprocessableEntity),
+                          self.monasca_client.create_notifications,
+                          notification)
+
+    @test.attr(type="gate")
+    @test.attr(type=['negative'])
+    def test_create_pagerduty_notification_method_with_invalid_non_zero_periodic_interval(self):
+        notification = helpers.create_notification(type='PAGERDUTY',
+                                                   address='test03@localhost',
+                                                   periodic_interval=1)
+        self.assertRaises((exceptions.BadRequest, exceptions.UnprocessableEntity),
+                          self.monasca_client.create_notifications,
+                          notification)
+
+    @test.attr(type="gate")
+    @test.attr(type=['negative'])
+    def test_create_webhook_notification_method_with_invalid_periodic_interval(self):
+        notification = helpers.create_notification(type='WEBHOOK',
+                                                   address='http://localhost/test01',
+                                                   periodic_interval=10)
+        self.assertRaises((exceptions.BadRequest, exceptions.UnprocessableEntity),
+                          self.monasca_client.create_notifications,
+                          notification)
+
+    @test.attr(type="gate")
     def test_list_notification_methods(self):
         notification = helpers.create_notification()
         resp, response_body = self.monasca_client.create_notifications(
@@ -112,7 +156,7 @@ class TestNotificationMethods(base.BaseMonascaTest):
         self.assertTrue(set(['links', 'elements']) == set(response_body))
         elements = response_body['elements']
         element = elements[0]
-        self.assertTrue(set(['id', 'links', 'name', 'type', 'address']) ==
+        self.assertTrue(set(['id', 'links', 'name', 'type', 'address', 'periodic_interval']) ==
                         set(element))
         self.assertTrue(type(element['id']) is unicode)
         self.assertTrue(type(element['links']) is list)
@@ -359,7 +403,8 @@ class TestNotificationMethods(base.BaseMonascaTest):
         resp, response_body = self.monasca_client.\
             update_notification_method(id, new_name,
                                        type=response_body['type'],
-                                       address=response_body['address'])
+                                       address=response_body['address'],
+                                       periodic_interval=response_body['periodic_interval'])
         self.assertEqual(200, resp.status)
         self.assertEqual(new_name, response_body['name'])
         resp, response_body = self.monasca_client.\
@@ -380,7 +425,8 @@ class TestNotificationMethods(base.BaseMonascaTest):
             self.monasca_client.\
             update_notification_method(id, name=response_body['name'],
                                        type=new_type,
-                                       address=response_body['address'])
+                                       address=response_body['address'],
+                                       periodic_interval=response_body['periodic_interval'])
         self.assertEqual(200, resp.status)
         self.assertEqual(new_type, response_body['type'])
         resp, response_body = self.monasca_client.\
@@ -401,7 +447,8 @@ class TestNotificationMethods(base.BaseMonascaTest):
             update_notification_method(id,
                                        name=response_body['name'],
                                        type=response_body['type'],
-                                       address=new_address)
+                                       address=new_address,
+                                       periodic_interval=0)
         self.assertEqual(200, resp.status)
         self.assertEqual(new_address, response_body['address'])
         resp, response_body = \
@@ -422,7 +469,7 @@ class TestNotificationMethods(base.BaseMonascaTest):
         self.assertRaises((exceptions.BadRequest, exceptions.UnprocessableEntity),
                           self.monasca_client.update_notification_method, id,
                           name=new_name_long, type=response_body['type'],
-                          address=response_body['address'])
+                          address=response_body['address'], periodic_interval=response_body['periodic_interval'])
         resp, response_body = \
             self.monasca_client.delete_notification_method(id)
         self.assertEqual(204, resp.status)
@@ -439,7 +486,7 @@ class TestNotificationMethods(base.BaseMonascaTest):
         self.assertRaises((exceptions.BadRequest, exceptions.UnprocessableEntity),
                           self.monasca_client.update_notification_method, id,
                           name=response_body['name'], type='random',
-                          address=response_body['address'])
+                          address=response_body['address'], periodic_interval=0)
         resp, response_body = \
             self.monasca_client.delete_notification_method(id)
         self.assertEqual(204, resp.status)
@@ -458,7 +505,7 @@ class TestNotificationMethods(base.BaseMonascaTest):
         self.assertRaises((exceptions.BadRequest, exceptions.UnprocessableEntity),
                           self.monasca_client.update_notification_method, id,
                           name=response_body['name'], type=response_body['type'],
-                          address=new_address_long)
+                          address=new_address_long, periodic_interval=response_body['periodic_interval'])
         resp, response_body = \
             self.monasca_client.delete_notification_method(id)
         self.assertEqual(204, resp.status)
@@ -488,4 +535,98 @@ class TestNotificationMethods(base.BaseMonascaTest):
                           id)
         resp, response_body = self.monasca_client.\
             delete_notification_method(response_body['id'])
+        self.assertEqual(204, resp.status)
+
+    @test.attr(type="gate")
+    @test.attr(type=['negative'])
+    def test_update_email_notification_method_with_nonzero_periodic_interval(self):
+        name = data_utils.rand_name('notification-')
+        notification = helpers.create_notification(name=name)
+        resp, response_body = self.monasca_client.create_notifications(
+            notification)
+        id = response_body['id']
+        self.assertEqual(201, resp.status)
+        self.assertRaises((exceptions.BadRequest, exceptions.UnprocessableEntity),
+                          self.monasca_client.update_notification_method, id,
+                          name=response_body['name'], type=response_body['type'],
+                          address=response_body['address'], periodic_interval=1)
+        resp, response_body = \
+            self.monasca_client.delete_notification_method(id)
+        self.assertEqual(204, resp.status)
+
+    @test.attr(type="gate")
+    @test.attr(type=['negative'])
+    def test_update_webhook_notification_method_to_email_with_nonzero_periodic_interval(self):
+        name = data_utils.rand_name('notification-')
+        notification = helpers.create_notification(name=name,
+                                                   type='WEBHOOK',
+                                                   address='http://localhost/test01',
+                                                   periodic_interval=1)
+        resp, response_body = self.monasca_client.create_notifications(
+            notification)
+        id = response_body['id']
+        self.assertEqual(201, resp.status)
+        self.assertRaises((exceptions.BadRequest, exceptions.UnprocessableEntity),
+                          self.monasca_client.update_notification_method, id,
+                          name=response_body['name'], type='EMAIL',
+                          address='test@localhost', periodic_interval=response_body['periodic_interval'])
+        resp, response_body = \
+            self.monasca_client.delete_notification_method(id)
+        self.assertEqual(204, resp.status)
+
+    @test.attr(type="gate")
+    @test.attr(type=['negative'])
+    def test_update_webhook_notification_method_to_pagerduty_with_nonzero_periodic_interval(self):
+        name = data_utils.rand_name('notification-')
+        notification = helpers.create_notification(name=name,
+                                                   type='WEBHOOK',
+                                                   address='http://localhost/test01',
+                                                   periodic_interval=1)
+        resp, response_body = self.monasca_client.create_notifications(
+            notification)
+        id = response_body['id']
+        self.assertEqual(201, resp.status)
+        self.assertRaises((exceptions.BadRequest, exceptions.UnprocessableEntity),
+                          self.monasca_client.update_notification_method, id,
+                          name=response_body['name'], type='PAGERDUTY',
+                          address='test@localhost', periodic_interval=response_body['periodic_interval'])
+        resp, response_body = \
+            self.monasca_client.delete_notification_method(id)
+        self.assertEqual(204, resp.status)
+
+    @test.attr(type="gate")
+    @test.attr(type=['negative'])
+    def test_update_notification_method_with_non_int_periodic_interval(self):
+        name = data_utils.rand_name('notification-')
+        notification = helpers.create_notification(name=name)
+        resp, response_body = self.monasca_client.create_notifications(
+            notification)
+        id = response_body['id']
+        self.assertEqual(201, resp.status)
+        self.assertRaises((exceptions.BadRequest, exceptions.UnprocessableEntity),
+                          self.monasca_client.update_notification_method, id,
+                          name=response_body['name'], type=response_body['type'],
+                          address=response_body['name'], periodic_interval='zero')
+        resp, response_body = \
+            self.monasca_client.delete_notification_method(id)
+        self.assertEqual(204, resp.status)
+
+    @test.attr(type="gate")
+    @test.attr(type=['negative'])
+    def test_update_webhook_notification_method_with_invalid_periodic_interval(self):
+        name = data_utils.rand_name('notification-')
+        notification = helpers.create_notification(name=name,
+                                                   type='WEBHOOK',
+                                                   address='http://localhost/test01',
+                                                   periodic_interval=1)
+        resp, response_body = self.monasca_client.create_notifications(
+            notification)
+        id = response_body['id']
+        self.assertEqual(201, resp.status)
+        self.assertRaises((exceptions.BadRequest, exceptions.UnprocessableEntity),
+                          self.monasca_client.update_notification_method, id,
+                          name=response_body['name'], type=response_body['type'],
+                          address=response_body['address'], periodic_interval=5)
+        resp, response_body = \
+            self.monasca_client.delete_notification_method(id)
         self.assertEqual(204, resp.status)
