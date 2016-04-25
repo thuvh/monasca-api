@@ -1,0 +1,228 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a122d0e_7f9f2403",
+        "filename": "java/src/main/java/monasca/api/app/command/CreateNotificationMethodCommand.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-04-25T22:17:58Z",
+      "side": 1,
+      "message": "This is really an int, it shouldn\u0027t be stored as a String",
+      "range": {
+        "startLine": 32,
+        "startChar": 9,
+        "endLine": 32,
+        "endChar": 15
+      },
+      "revId": "a2db46c0a2975dee042dd62f426ecd6ffc3d6e29",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a122d0e_9f84c0b1",
+        "filename": "java/src/main/java/monasca/api/app/command/UpdateNotificationMethodCommand.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-04-25T22:17:58Z",
+      "side": 1,
+      "message": "If this is a new file, why does it have a 2014 copyright?",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "a2db46c0a2975dee042dd62f426ecd6ffc3d6e29",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a122d0e_ff9334f8",
+        "filename": "java/src/main/java/monasca/api/app/command/UpdateNotificationMethodCommand.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-04-25T22:17:58Z",
+      "side": 1,
+      "message": "Should be an int",
+      "range": {
+        "startLine": 33,
+        "startChar": 11,
+        "endLine": 33,
+        "endChar": 17
+      },
+      "revId": "a2db46c0a2975dee042dd62f426ecd6ffc3d6e29",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a122d0e_1fbf1061",
+        "filename": "java/src/main/java/monasca/api/app/validation/NotificationMethodValidation.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-04-25T22:17:58Z",
+      "side": 1,
+      "message": "formatting",
+      "range": {
+        "startLine": 27,
+        "startChar": 81,
+        "endLine": 27,
+        "endChar": 83
+      },
+      "revId": "a2db46c0a2975dee042dd62f426ecd6ffc3d6e29",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a122d0e_dfa59847",
+        "filename": "java/src/main/java/monasca/api/app/validation/NotificationMethodValidation.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-04-25T22:17:58Z",
+      "side": 1,
+      "message": "Same exception as above, don\u0027t have duplicates",
+      "range": {
+        "startLine": 46,
+        "startChar": 20,
+        "endLine": 46,
+        "endChar": 108
+      },
+      "revId": "a2db46c0a2975dee042dd62f426ecd6ffc3d6e29",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a122d0e_bf77fcd2",
+        "filename": "java/src/main/java/monasca/api/domain/model/notificationmethod/NotificationMethod.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-04-25T22:17:58Z",
+      "side": 1,
+      "message": "too many blank lines",
+      "revId": "a2db46c0a2975dee042dd62f426ecd6ffc3d6e29",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a122d0e_9f59605e",
+        "filename": "java/src/test/java/monasca/api/domain/model/NotificationMethodTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-04-25T22:17:58Z",
+      "side": 1,
+      "message": "1 is a better test",
+      "range": {
+        "startLine": 34,
+        "startChar": 86,
+        "endLine": 34,
+        "endChar": 87
+      },
+      "revId": "a2db46c0a2975dee042dd62f426ecd6ffc3d6e29",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a122d0e_bf253cc3",
+        "filename": "java/src/test/java/monasca/api/resource/NotificationMethodResourceTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-04-25T22:17:58Z",
+      "side": 1,
+      "message": "Set it to 1, test more cases",
+      "range": {
+        "startLine": 52,
+        "startChar": 99,
+        "endLine": 52,
+        "endChar": 100
+      },
+      "revId": "a2db46c0a2975dee042dd62f426ecd6ffc3d6e29",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a122d0e_9f2040b2",
+        "filename": "java/src/test/java/monasca/api/resource/NotificationMethodResourceTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-04-25T22:17:58Z",
+      "side": 1,
+      "message": "eq(1) if you do the above",
+      "range": {
+        "startLine": 59,
+        "startChar": 93,
+        "endLine": 59,
+        "endChar": 101
+      },
+      "revId": "a2db46c0a2975dee042dd62f426ecd6ffc3d6e29",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a122d0e_5f150847",
+        "filename": "java/src/test/resources/monasca/api/infrastructure/persistence/mysql/notification_method.sql",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-04-25T22:17:58Z",
+      "side": 1,
+      "message": "What is the max value of tinyint? Seems like it is not worth limiting it. There are few of these created",
+      "range": {
+        "startLine": 7,
+        "startChar": 22,
+        "endLine": 7,
+        "endChar": 29
+      },
+      "revId": "a2db46c0a2975dee042dd62f426ecd6ffc3d6e29",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
