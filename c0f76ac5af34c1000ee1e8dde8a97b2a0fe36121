@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a122d0e_c945e543",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MeasurementVerticaRepoImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-04-26T15:59:59Z",
+      "side": 1,
+      "message": "This variable is not used anywhere else",
+      "range": {
+        "startLine": 110,
+        "startChar": 18,
+        "endLine": 110,
+        "endChar": 29
+      },
+      "revId": "c0f76ac5af34c1000ee1e8dde8a97b2a0fe36121",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a122d0e_89664deb",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MeasurementVerticaRepoImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-04-26T15:59:59Z",
+      "side": 1,
+      "message": "This is really a constant. Let\u0027s make it one explicitly to make it easier to see what is happening below",
+      "range": {
+        "startLine": 134,
+        "startChar": 17,
+        "endLine": 134,
+        "endChar": 22
+      },
+      "revId": "c0f76ac5af34c1000ee1e8dde8a97b2a0fe36121",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a122d0e_69f011fe",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MetricQueries.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-04-26T15:59:59Z",
+      "side": 1,
+      "message": "Rewrite this as:\n\nif (dimensions \u003d\u003d null || dimensions.isEmpty()) {\n  return \"\";\n}\n\nThat will make the code simpler",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 44,
+        "endChar": 54
+      },
+      "revId": "c0f76ac5af34c1000ee1e8dde8a97b2a0fe36121",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a122d0e_2938d99f",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MetricQueries.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-04-26T15:59:59Z",
+      "side": 1,
+      "message": "dimensions.isEmpty()",
+      "range": {
+        "startLine": 90,
+        "startChar": 30,
+        "endLine": 90,
+        "endChar": 52
+      },
+      "revId": "c0f76ac5af34c1000ee1e8dde8a97b2a0fe36121",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
