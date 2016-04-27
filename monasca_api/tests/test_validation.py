@@ -251,52 +251,75 @@ class TestNotificationValidation(unittest.TestCase):
     def test_validation_for_email(self):
         notification = {"name": "MyEmail", "type": "EMAIL", "address": "name@domain.com"}
         try:
-            schemas_notifications.validate(notification)
+            schemas_notifications.parse_and_validate(notification)
         except schemas_exceptions.ValidationException:
             self.fail("shouldn't happen")
 
-    def test_validation_exception_for_email(self):
+    def test_validation_exception_for_invalid_email_address(self):
         notification = {"name": "MyEmail", "type": "EMAIL", "address": "name@domain."}
         with self.assertRaises(schemas_exceptions.ValidationException) as ve:
-            schemas_notifications.validate(notification)
+            schemas_notifications.parse_and_validate(notification)
         ex = ve.exception
         self.assertEqual("Address name@domain. is not of correct format", ex.message)
+
+    def test_validation_exception_for_invalid_periodic_interval_for_email(self):
+        notification = {"name": "MyEmail", "type": "EMAIL", "address": "name@domain.com", "periodic_interval": "1"}
+        with self.assertRaises(schemas_exceptions.ValidationException) as ve:
+            schemas_notifications.parse_and_validate(notification)
+        ex = ve.exception
+        self.assertEqual("Periodic interval can only be set with webhooks", ex.message)
 
     def test_validation_for_webhook(self):
         notification = {"name": "MyWebhook", "type": "WEBHOOK", "address": "http://somedomain.com"}
         try:
-            schemas_notifications.validate(notification)
+            schemas_notifications.parse_and_validate(notification)
         except schemas_exceptions.ValidationException:
             self.fail("shouldn't happen")
 
     def test_validation_exception_for_webhook_no_scheme(self):
         notification = {"name": "MyWebhook", "type": "WEBHOOK", "address": "//somedomain.com"}
         with self.assertRaises(schemas_exceptions.ValidationException) as ve:
-            schemas_notifications.validate(notification)
+            schemas_notifications.parse_and_validate(notification)
         ex = ve.exception
         self.assertEqual("Address //somedomain.com does not have URL scheme", ex.message)
 
     def test_validation_exception_for_webhook_no_netloc(self):
         notification = {"name": "MyWebhook", "type": "WEBHOOK", "address": "http://"}
         with self.assertRaises(schemas_exceptions.ValidationException) as ve:
-            schemas_notifications.validate(notification)
+            schemas_notifications.parse_and_validate(notification)
         ex = ve.exception
         self.assertEqual("Address http:// does not have network location", ex.message)
 
     def test_validation_exception_for_webhook_invalid_scheme(self):
         notification = {"name": "MyWebhook", "type": "WEBHOOK", "address": "ftp://somedomain.com"}
         with self.assertRaises(schemas_exceptions.ValidationException) as ve:
-            schemas_notifications.validate(notification)
+            schemas_notifications.parse_and_validate(notification)
         ex = ve.exception
         self.assertEqual("Address ftp://somedomain.com scheme is not in ['http', 'https']", ex.message)
+
+    def test_validation_exception_for_webhook_invalid_periodic_interval(self):
+        notification = {"name": "MyWebhook", "type": "WEBHOOK", "address": "//somedomain.com",
+                        "periodic_interval": "10"}
+        with self.assertRaises(schemas_exceptions.ValidationException) as ve:
+            schemas_notifications.parse_and_validate(notification)
+        ex = ve.exception
+        self.assertEqual("10 is not a valid periodic interval", ex.message)
 
     def test_validation_for_pagerduty(self):
         notification = {"name": "MyPagerduty", "type": "PAGERDUTY",
                         "address": "nzH2LVRdMzun11HNC2oD"}
         try:
-            schemas_notifications.validate(notification)
+            schemas_notifications.parse_and_validate(notification)
         except schemas_exceptions.ValidationException:
             self.fail("shouldn't happen")
+
+    def test_validation_exception_for_invalid_periodic_interval_for_pagerduty(self):
+        notification = {"name": "MyPagerduty", "type": "PAGERDUTY",
+                        "address": "nzH2LVRdMzun11HNC2oD", "periodic_interval": 1}
+        with self.assertRaises(schemas_exceptions.ValidationException) as ve:
+            schemas_notifications.parse_and_validate(notification)
+        ex = ve.exception
+        self.assertEqual("Periodic interval can only be set with webhooks", ex.message)
 
     def test_validation_for_max_name_address(self):
         name = "A" * 250
@@ -305,7 +328,7 @@ class TestNotificationValidation(unittest.TestCase):
         self.assertEqual(512, len(address))
         notification = {"name": name, "type": "WEBHOOK", "address": address}
         try:
-            schemas_notifications.validate(notification)
+            schemas_notifications.parse_and_validate(notification)
         except schemas_exceptions.ValidationException:
             self.fail("shouldn't happen")
 
@@ -315,7 +338,7 @@ class TestNotificationValidation(unittest.TestCase):
         notification = {"name": name, "type": "WEBHOOK", "address": "http://somedomain.com"}
         self.assertRaises(
             schemas_exceptions.ValidationException,
-            schemas_notifications.validate, notification)
+            schemas_notifications.parse_and_validate, notification)
 
     def test_validation_exception_for_exceeded_address_length(self):
         address = "http://" + "A" * 503 + ".io"
@@ -323,4 +346,27 @@ class TestNotificationValidation(unittest.TestCase):
         notification = {"name": "MyWebhook", "type": "WEBHOOK", "address": address}
         self.assertRaises(
             schemas_exceptions.ValidationException,
-            schemas_notifications.validate, notification)
+            schemas_notifications.parse_and_validate, notification)
+
+    def test_validation_exception_for_invalid_periodic_interval_float(self):
+        notification = {"name": "MyWebhook", "type": "WEBHOOK", "address": "//somedomain.com",
+                        "periodic_interval": 1.2}
+        with self.assertRaises(schemas_exceptions.ValidationException) as ve:
+            schemas_notifications.parse_and_validate(notification)
+        ex = ve.exception
+        self.assertEqual("expected int for dictionary value @ data['periodic_interval']", ex.message)
+
+    def test_validation_exception_for_invalid_periodic_interval_non_int(self):
+        notification = {"name": "MyWebhook", "type": "WEBHOOK", "address": "//somedomain.com",
+                        "periodic_interval": "zero"}
+        with self.assertRaises(schemas_exceptions.ValidationException) as ve:
+            schemas_notifications.parse_and_validate(notification)
+        ex = ve.exception
+        self.assertEqual("Periodic Interval zero must be a valid integer", ex.message)
+
+    def test_validation_exception_for_missing_periodic_interval(self):
+        notification = {"name": "MyEmail", "type": "EMAIL", "address": "name@domain."}
+        with self.assertRaises(schemas_exceptions.ValidationException) as ve:
+            schemas_notifications.parse_and_validate(notification, require_all=True)
+        ex = ve.exception
+        self.assertEqual("Periodic interval is required", ex.message)
