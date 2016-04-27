@@ -52,7 +52,8 @@ def create_metric(name='name-1',
 
 def create_notification(name=data_utils.rand_name('notification-'),
                         type='EMAIL',
-                        address='john.doe@domain.com'):
+                        address='john.doe@domain.com',
+                        periodic_interval=0):
     notification = {}
     if name is not None:
         notification['name'] = name
@@ -60,6 +61,8 @@ def create_notification(name=data_utils.rand_name('notification-'),
         notification['type'] = type
     if address is not None:
         notification['address'] = address
+    if periodic_interval is not None:
+        notification['periodic_interval'] = periodic_interval
     return notification
 
 
