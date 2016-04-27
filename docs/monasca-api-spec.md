@@ -1365,6 +1365,7 @@ None.
 * name (string(250), required) - A descriptive name of the notification method.
 * type (string(100), required) - The type of notification method (`EMAIL`, `WEBHOOK`, or `PAGERDUTY` ).
 * address (string(100), required) - The email/url address to notify.
+* periodic_interval (integer, optional) - The interval in minutes to continually send the notification again. Only can be set as a non zero value for WEBHOOK methods. Allowed periodic intervals for Webhooks are 0, 1. The notification will continue to be sent at the defined interval until the alarm it is associated with changes state. 
 
 #### Request Examples
 ```
@@ -1394,6 +1395,7 @@ Returns a JSON notification method object with the following fields:
 * name (string) - Name of notification method
 * type (string) - Type of notification method
 * address (string) - Address of notification method
+* periodic_interval (integer) - Periodic interval of notification method
 
 #### Response Examples
 ```
@@ -1407,7 +1409,8 @@ Returns a JSON notification method object with the following fields:
    ],
    "name":"Name of notification method",
    "type":"EMAIL",
-   "address":"john.doe@hp.com"
+   "address":"john.doe@hp.com",
+   "periodic_interval":0
 }
 ```
 ___
@@ -1455,6 +1458,7 @@ Returns a JSON object with a 'links' array of links and an 'elements' array of n
 * name (string) - Name of notification method
 * type (string) - Type of notification method
 * address (string) - Address of notification method
+* periodic_interval (integer) - Periodic interval of notification method
 
 #### Response Examples
 ```
@@ -1480,7 +1484,8 @@ Returns a JSON object with a 'links' array of links and an 'elements' array of n
             ],
             "name": "Name of notification method",
             "type": "EMAIL",
-            "address": "john.doe@hp.com"
+            "address": "john.doe@hp.com",
+            "periodic_interval": 0
         },
         {
             "id": "c60ec47e-5038-4bf1-9f95-4046c6e9a759",
@@ -1491,8 +1496,9 @@ Returns a JSON object with a 'links' array of links and an 'elements' array of n
                 }
             ],
             "name": "Name of notification method",
-            "type": "EMAIL",
-            "address": "jane.doe@hp.com"
+            "type": "WEBHOOK",
+            "address": "http://localhost:3333",
+            "periodic_interval": 1
         }
     ]
 }
@@ -1535,6 +1541,7 @@ Returns a JSON notification method object with the following fields:
 * name (string) - Name of notification method
 * type (string) - Type of notification method
 * address (string) - Address of notification method
+* periodic_interval (integer) - Periodic interval of notification method
 
 #### Response Examples
 ```
@@ -1548,7 +1555,8 @@ Returns a JSON notification method object with the following fields:
    ],
    "name":"Name of notification method",
    "type":"EMAIL",
-   "address":"john.doe@hp.com"
+   "address":"john.doe@hp.com",
+   "periodic_interval": 0
 }
 ```
 ___
@@ -1573,6 +1581,7 @@ None.
 * name (string(250), required) - A descriptive name of the notifcation method.
 * type (string(100), required) - The type of notification method (`EMAIL`, `WEBHOOK`, or `PAGERDUTY` ).
 * address (string(100), required) - The email/url address to notify.
+* periodic_interval (integer, required) - The interval in minutes to continually send the notification again. Only can be set as a non zero value for WEBHOOK methods. Allowed periodic intervals for Webhooks are 0, 1. The notification will continue to be sent at the defined interval until the alarm it is associated with changes state.
 
 #### Request Examples
 ````
@@ -1585,7 +1594,8 @@ Cache-Control: no-cache
 {
    "name":"New name of notification method",
    "type":"EMAIL",
-   "address":"jane.doe@hp.com"
+   "address":"jane.doe@hp.com",
+   "periodic_interval":0
 }
 ````
 
@@ -1602,6 +1612,7 @@ Returns a JSON notification method object with the following fields:
 * name (string) - Name of notification method
 * type (string) - Type of notification method
 * address (string) - Address of notification method
+* periodic_interval (integer) - Periodic interval of notification method
 
 #### Response Examples
 ````
@@ -1615,7 +1626,8 @@ Returns a JSON notification method object with the following fields:
    ],
    "name":"New name of notification method",
    "type":"EMAIL",
-   "address":"jane.doe@hp.com"
+   "address":"jane.doe@hp.com",
+   "periodic_interval":0
 }
 ````
 ___

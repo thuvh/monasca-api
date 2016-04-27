@@ -21,6 +21,8 @@ kafka:
     alarm_topic: "alarm-state-transitions"
     notification_topic: "alarm-notifications"
     notification_retry_topic: "retry-notifications"
+    periodic:
+        1: 1-minute-notifications
     max_offset_lag: 600  # In seconds, undefined for none
 
 mysql:
@@ -67,6 +69,8 @@ zookeeper:
     url: "127.0.0.1:2181"
     notification_path: "/notification/alarms"
     notification_retry_path: "/notification/retry"
+    periodic_path:
+        1: /notification/1_minute
 
 logging: # Used in logging.dictConfig
     version: 1
