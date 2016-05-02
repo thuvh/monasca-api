@@ -411,6 +411,6 @@ public class AlarmDefinitionService {
     if (!actions.isEmpty())
       for (String action : actions)
         if (!notificationMethodRepo.exists(tenantId, action))
-          throw new InvalidEntityException("No notification method exists for action %s", action);
+          throw new EntityNotFoundException("No notification method exists for action %s", action);
   }
 }

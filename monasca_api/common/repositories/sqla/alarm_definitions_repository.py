@@ -754,7 +754,7 @@ class AlarmDefinitionsRepository(sql_repository.SQLRepository,
             row = conn.execute(self.select_nm_query,
                                b_id=action.encode('utf8')).fetchone()
             if row is None:
-                raise exceptions.RepositoryException(
+                raise exceptions.InvalidUpdateException(
                     "Non-existent notification id {} submitted for {} "
                     "notification action".format(action.encode('utf8'),
                                                  alarm_state.encode('utf8')))
