@@ -689,7 +689,8 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
                           match_by=patched_match_by)
 
     @test.attr(type="gate")
-    def test_patch_actions_in_alarm_definition(self):
+    @test.attr(type=['negative'])
+    def test_patch_alarm_definition_with_invalid_actions(self):
         notification_name = data_utils.rand_name('notification-')
         notification_type = 'EMAIL'
         address = 'root@localhost'
@@ -703,25 +704,20 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
         response_body_list = self._create_alarm_definitions(
             expression=None, number_of_definitions=1)
         # Patch alarm definition
-        patch_alarm_def_name = data_utils.rand_name('monitoring_alarm_update')
-        resp, body = self.monasca_client.patch_alarm_definition(
-            response_body_list[0]['id'],
-            name=patch_alarm_def_name,
-            expression=response_body_list[0]['expression'],
-            actions_enabled='true',
-            alarm_actions=[notification_id],
-            ok_actions=[notification_id],
-            undetermined_actions=[notification_id]
-        )
-        self.assertEqual(200, resp.status)
-        self._verify_update_patch_alarm_definition(body, patch_alarm_def_name,
-                                                   None, None, notification_id)
-        # Get and verify details of an alarm after update
-        resp, response_body = self.monasca_client.get_alarm_definition(
-            response_body_list[0]['id'])
-        self._verify_update_patch_alarm_definition(response_body,
-                                                   patch_alarm_def_name, None,
-                                                   None, notification_id)
+        self.assertRaises(exceptions.UnprocessableEntity,
+                          self.monasca_client.patch_alarm_definition,
+                          id=response_body_list[0]['id'],
+                          alarm_actions=['invalid_notification'])
+
+        self.assertRaises(exceptions.UnprocessableEntity,
+                          self.monasca_client.patch_alarm_definition,
+                          id=response_body_list[0]['id'],
+                          ok_actions=['invalid_notification'])
+
+        self.assertRaises(exceptions.UnprocessableEntity,
+                          self.monasca_client.patch_alarm_definition,
+                          id=response_body_list[0]['id'],
+                          undetermined_actions=['invalid_notification'])
         self._delete_notification(notification_id)
 
     # Delete
