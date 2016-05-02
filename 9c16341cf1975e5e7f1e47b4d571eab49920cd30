@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a122d0e_8b7181ab",
+        "filename": "devstack/files/monasca-api/api-config.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-05-02T18:38:54Z",
+      "side": 1,
+      "message": "This seems like a Vertica specific property, should it be in that section?",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 20
+      },
+      "revId": "9c16341cf1975e5e7f1e47b4d571eab49920cd30",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a122d0e_6b9985d0",
+        "filename": "java/src/main/java/monasca/api/ApiConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-05-02T18:38:54Z",
+      "side": 1,
+      "message": "The issue that I see here is that if you place the new jar on a system with an old config file, the API will fail to start because of NotNull",
+      "range": {
+        "startLine": 37,
+        "startChar": 2,
+        "endLine": 37,
+        "endChar": 10
+      },
+      "revId": "9c16341cf1975e5e7f1e47b4d571eab49920cd30",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a122d0e_aba39dff",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MeasurementVerticaRepoImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-05-02T18:38:54Z",
+      "side": 1,
+      "message": "This code is duplicated in the Vertica files. Isn\u0027t there some place this could be placed as utility method?",
+      "range": {
+        "startLine": 92,
+        "startChar": 4,
+        "endLine": 92,
+        "endChar": 60
+      },
+      "revId": "9c16341cf1975e5e7f1e47b4d571eab49920cd30",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
