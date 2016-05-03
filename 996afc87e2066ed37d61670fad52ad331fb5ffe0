@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1a122d0e_00054b13",
+        "filename": "java/src/main/java/monasca/api/app/validation/Validation.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-05-03T20:50:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a122d0e_993580f8",
+      "range": {
+        "startLine": 248,
+        "startChar": 51,
+        "endLine": 248,
+        "endChar": 67
+      },
+      "revId": "996afc87e2066ed37d61670fad52ad331fb5ffe0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a122d0e_545baf21",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMySqlRepoImpl.java",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "1a122d0e_c3ad1dec",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMySqlRepoImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-05-03T20:50:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a122d0e_545baf21",
+      "range": {
+        "startLine": 143,
+        "startChar": 58,
+        "endLine": 143,
+        "endChar": 66
+      },
+      "revId": "996afc87e2066ed37d61670fad52ad331fb5ffe0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a122d0e_b475e398",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMySqlRepoImpl.java",
         "patchSetId": 4
@@ -59,6 +107,30 @@
       "writtenOn": "2016-04-29T20:51:14Z",
       "side": 1,
       "message": "!severity.isEmpty()",
+      "range": {
+        "startLine": 213,
+        "startChar": 30,
+        "endLine": 213,
+        "endChar": 49
+      },
+      "revId": "996afc87e2066ed37d61670fad52ad331fb5ffe0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a122d0e_4380ed49",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMySqlRepoImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-05-03T20:50:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a122d0e_b475e398",
       "range": {
         "startLine": 213,
         "startChar": 30,
@@ -117,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "1a122d0e_dd02f6b3",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMySqlRepositoryImplTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-05-03T20:50:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a122d0e_f4c75b95",
+      "range": {
+        "startLine": 291,
+        "startChar": 0,
+        "endLine": 291,
+        "endChar": 116
+      },
+      "revId": "996afc87e2066ed37d61670fad52ad331fb5ffe0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a122d0e_f4559bc1",
         "filename": "monasca_api/common/repositories/mysql/alarm_definitions_repository.py",
         "patchSetId": 4
@@ -163,6 +259,30 @@
     },
     {
       "key": {
+        "uuid": "1a122d0e_5d25465a",
+        "filename": "monasca_api/common/repositories/mysql/alarms_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-05-03T20:50:48Z",
+      "side": 1,
+      "message": "Removing the multiple state option",
+      "parentUuid": "1a122d0e_b42de347",
+      "range": {
+        "startLine": 269,
+        "startChar": 18,
+        "endLine": 269,
+        "endChar": 24
+      },
+      "revId": "996afc87e2066ed37d61670fad52ad331fb5ffe0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a122d0e_b4a203ac",
         "filename": "monasca_api/v2/common/validation.py",
         "patchSetId": 4
@@ -174,6 +294,30 @@
       "writtenOn": "2016-04-29T20:51:14Z",
       "side": 1,
       "message": "It would be nice if this message was built from VALID_ALARM_STATES instead of duplicating the values",
+      "range": {
+        "startLine": 115,
+        "startChar": 73,
+        "endLine": 115,
+        "endChar": 99
+      },
+      "revId": "996afc87e2066ed37d61670fad52ad331fb5ffe0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a122d0e_5ddc2646",
+        "filename": "monasca_api/v2/common/validation.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-05-03T20:50:48Z",
+      "side": 1,
+      "message": "removed the multiple state option",
+      "parentUuid": "1a122d0e_b4a203ac",
       "range": {
         "startLine": 115,
         "startChar": 73,
@@ -209,6 +353,30 @@
     },
     {
       "key": {
+        "uuid": "1a122d0e_3ddfaa3b",
+        "filename": "monasca_api/v2/common/validation.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-05-03T20:50:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a122d0e_1492d756",
+      "range": {
+        "startLine": 124,
+        "startChar": 44,
+        "endLine": 124,
+        "endChar": 77
+      },
+      "revId": "996afc87e2066ed37d61670fad52ad331fb5ffe0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a122d0e_14a0178f",
         "filename": "monasca_tempest_tests/tests/api/test_alarms.py",
         "patchSetId": 4
@@ -220,6 +388,30 @@
       "writtenOn": "2016-04-29T20:51:14Z",
       "side": 1,
       "message": "Shouldn\u0027t you add test_list_alarms_by_state_multiple_values",
+      "range": {
+        "startLine": 363,
+        "startChar": 8,
+        "endLine": 363,
+        "endChar": 43
+      },
+      "revId": "996afc87e2066ed37d61670fad52ad331fb5ffe0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a122d0e_9de6be14",
+        "filename": "monasca_tempest_tests/tests/api/test_alarms.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-05-03T20:50:48Z",
+      "side": 1,
+      "message": "removed the multiple state option",
+      "parentUuid": "1a122d0e_14a0178f",
       "range": {
         "startLine": 363,
         "startChar": 8,
