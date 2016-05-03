@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1a122d0e_eef0dacb",
+        "filename": "devstack/files/monasca-api/api-config.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 8126
+      },
+      "writtenOn": "2016-05-03T20:38:20Z",
+      "side": 1,
+      "message": "good point -- will move to vertica related section.",
+      "parentUuid": "1a122d0e_8b7181ab",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 20
+      },
+      "revId": "9c16341cf1975e5e7f1e47b4d571eab49920cd30",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a122d0e_6b9985d0",
         "filename": "java/src/main/java/monasca/api/ApiConfig.java",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "1a122d0e_aecd4288",
+        "filename": "java/src/main/java/monasca/api/ApiConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8126
+      },
+      "writtenOn": "2016-05-03T20:38:20Z",
+      "side": 1,
+      "message": "yup - i believe you are correct, will remove the annotation.",
+      "parentUuid": "1a122d0e_6b9985d0",
+      "range": {
+        "startLine": 37,
+        "startChar": 2,
+        "endLine": 37,
+        "endChar": 10
+      },
+      "revId": "9c16341cf1975e5e7f1e47b4d571eab49920cd30",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a122d0e_aba39dff",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MeasurementVerticaRepoImpl.java",
         "patchSetId": 4
@@ -59,6 +107,30 @@
       "writtenOn": "2016-05-02T18:38:54Z",
       "side": 1,
       "message": "This code is duplicated in the Vertica files. Isn\u0027t there some place this could be placed as utility method?",
+      "range": {
+        "startLine": 92,
+        "startChar": 4,
+        "endLine": 92,
+        "endChar": 60
+      },
+      "revId": "9c16341cf1975e5e7f1e47b4d571eab49920cd30",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a122d0e_0ea396b2",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MeasurementVerticaRepoImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 8126
+      },
+      "writtenOn": "2016-05-03T20:38:20Z",
+      "side": 1,
+      "message": "good catch, will find a central place to stick this",
+      "parentUuid": "1a122d0e_aba39dff",
       "range": {
         "startLine": 92,
         "startChar": 4,
