@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a122d0e_1a4c7475",
+        "filename": "java/src/main/java/monasca/api/app/AlarmDefinitionService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-05-03T18:32:37Z",
+      "side": 1,
+      "message": "You mixed String.format() options with String concatentation. Can you also break this into two lines? It is too long",
+      "range": {
+        "startLine": 414,
+        "startChar": 79,
+        "endLine": 414,
+        "endChar": 137
+      },
+      "revId": "e54ab72385095492d1b3bd98e8242b9b75e436a7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
