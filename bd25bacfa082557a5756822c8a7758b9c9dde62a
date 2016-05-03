@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a122d0e_040424c4",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-05-03T15:51:47Z",
+      "side": 1,
+      "message": "should you be adding this for the api/agent as well? Weird that we only did three of our services but not the api.",
+      "range": {
+        "startLine": 124,
+        "startChar": 26,
+        "endLine": 124,
+        "endChar": 33
+      },
+      "revId": "bd25bacfa082557a5756822c8a7758b9c9dde62a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a122d0e_a44f3033",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-05-03T15:51:47Z",
+      "side": 1,
+      "message": "is there a use case of installing storm without the thresh. They are tied together for us",
+      "range": {
+        "startLine": 145,
+        "startChar": 4,
+        "endLine": 145,
+        "endChar": 17
+      },
+      "revId": "bd25bacfa082557a5756822c8a7758b9c9dde62a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a122d0e_a4d570e6",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-05-03T15:51:47Z",
+      "side": 1,
+      "message": "also if we are adding this stuff in should we add to the vagrant file of enabling them so when someone does a vagrant up from the monasca api devstack environment everything is up and running ?\n\nIn the Vagrant file as of right now -\n\ndisable_all_services\nenable_service rabbit mysql key tempest horizon",
+      "range": {
+        "startLine": 179,
+        "startChar": 7,
+        "endLine": 179,
+        "endChar": 25
+      },
+      "revId": "bd25bacfa082557a5756822c8a7758b9c9dde62a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
