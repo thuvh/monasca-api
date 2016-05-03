@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a122d0e_ba1460e9",
+        "filename": "devstack/files/monasca-notification/notification.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-05-03T19:23:55Z",
+      "side": 1,
+      "message": "copyright",
+      "range": {
+        "startLine": 2,
+        "startChar": 16,
+        "endLine": 2,
+        "endChar": 20
+      },
+      "revId": "ff0560b33eb548745cb190a4e1589e8b7443b14a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a122d0e_5adc2c46",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-05-03T19:23:55Z",
+      "side": 1,
+      "message": "copyright",
+      "range": {
+        "startLine": 2,
+        "startChar": 16,
+        "endLine": 2,
+        "endChar": 20
+      },
+      "revId": "ff0560b33eb548745cb190a4e1589e8b7443b14a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a122d0e_3da16a47",
+        "filename": "monasca_api/tests/test_validation.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-05-03T19:23:55Z",
+      "side": 1,
+      "message": "Is there a test for a valid setting of periodic_interval?",
+      "range": {
+        "startLine": 300,
+        "startChar": 8,
+        "endLine": 300,
+        "endChar": 78
+      },
+      "revId": "ff0560b33eb548745cb190a4e1589e8b7443b14a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a122d0e_5d6c2608",
+        "filename": "monasca_api/v2/common/schemas/notifications_request_body_schema.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-05-03T19:23:55Z",
+      "side": 1,
+      "message": "Isn\u0027t this set in a config file somewhere? Will it always be only 1?",
+      "range": {
+        "startLine": 31,
+        "startChar": 27,
+        "endLine": 31,
+        "endChar": 33
+      },
+      "revId": "ff0560b33eb548745cb190a4e1589e8b7443b14a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
