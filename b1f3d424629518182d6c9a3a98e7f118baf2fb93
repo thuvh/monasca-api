@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a122d0e_128d4231",
+        "filename": "monasca_tempest_tests/tests/api/test_alarms_state_history_one_transition.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-05-04T21:21:40Z",
+      "side": 1,
+      "message": "These tests should be modified to return a partial set to verify the filter is working.",
+      "range": {
+        "startLine": 136,
+        "startChar": 25,
+        "endLine": 136,
+        "endChar": 37
+      },
+      "revId": "b1f3d424629518182d6c9a3a98e7f118baf2fb93",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
