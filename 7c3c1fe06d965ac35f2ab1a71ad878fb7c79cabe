@@ -46,6 +46,30 @@
       "revId": "7c3c1fe06d965ac35f2ab1a71ad878fb7c79cabe",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a122d0e_26e9281b",
+        "filename": "devstack/files/schema/mon_mysql.sql",
+        "patchSetId": 13
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2016-05-04T19:31:56Z",
+      "side": 1,
+      "message": "I like interval better.",
+      "parentUuid": "1a122d0e_5fa7c80a",
+      "range": {
+        "startLine": 144,
+        "startChar": 3,
+        "endLine": 144,
+        "endChar": 20
+      },
+      "revId": "7c3c1fe06d965ac35f2ab1a71ad878fb7c79cabe",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
