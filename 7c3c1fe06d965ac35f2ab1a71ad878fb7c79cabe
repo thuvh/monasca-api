@@ -22,6 +22,30 @@
       "revId": "7c3c1fe06d965ac35f2ab1a71ad878fb7c79cabe",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a122d0e_5fa7c80a",
+        "filename": "devstack/files/schema/mon_mysql.sql",
+        "patchSetId": 13
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-05-04T18:44:51Z",
+      "side": 1,
+      "message": "i would be fine with that. I know roland was thinking just \u0027period\u0027. Would like to get other people\u0027s opinions on this.",
+      "parentUuid": "1a122d0e_00721e11",
+      "range": {
+        "startLine": 144,
+        "startChar": 3,
+        "endLine": 144,
+        "endChar": 20
+      },
+      "revId": "7c3c1fe06d965ac35f2ab1a71ad878fb7c79cabe",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
