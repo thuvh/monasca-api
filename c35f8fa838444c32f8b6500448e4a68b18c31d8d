@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a122d0e_e3a9e27d",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-05-04T22:20:27Z",
+      "side": 1,
+      "message": "This disables the smoke test in CI. If its going to match the other changes, then it should probably be enabled by default in the settings file.",
+      "range": {
+        "startLine": 179,
+        "startChar": 26,
+        "endLine": 179,
+        "endChar": 44
+      },
+      "revId": "c35f8fa838444c32f8b6500448e4a68b18c31d8d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
