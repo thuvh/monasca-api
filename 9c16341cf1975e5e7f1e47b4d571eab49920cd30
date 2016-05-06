@@ -73,6 +73,29 @@
     },
     {
       "key": {
+        "uuid": "dab17558_ce2f12f5",
+        "filename": "devstack/files/monasca-api/api-config.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-05-06T03:55:34Z",
+      "side": 1,
+      "message": "The change is really straight-forward. My only comment is whether you should have the hint specified in the config/yaml file, which would provide room to add additional hints in the future.\n\nSo, rather than have a boolean in the yaml/config file to enable/disable the hard-coded hint in the code, specify the hint the the yaml/config file so that you could add more hints in the future.\n\nBTW, my understanding from earlier on of the hint is that it is for fully replicating the data across the cluster. Is all the data fully replicated, as in the measurements table too, or are only the definitions, dimensions and def_dims tables replicated. The measurements table is huge, and I was assuming based on the earlier discussions with them that it was not fully replicated across the DB.",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 13
+      },
+      "revId": "9c16341cf1975e5e7f1e47b4d571eab49920cd30",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a122d0e_6b9985d0",
         "filename": "java/src/main/java/monasca/api/ApiConfig.java",
         "patchSetId": 4
