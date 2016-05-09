@@ -28,10 +28,11 @@ used in kafka_publisher, but the original settings were at the api/server.py
 which I think is at the wrong place. I move these settings here for now, we
 need to have a bit more re-engineering to get it right.
 """
-global_opts = [cfg.StrOpt('region', help='Region that API is running in')]
+global_opts = [cfg.StrOpt('region', help='Region that API is running in'),
+               cfg.ListOpt('valid_notification_periods', default=[0, 60],
+                           help='Valid periods for notification methods')]
 
 cfg.CONF.register_opts(global_opts)
-
 
 security_opts = [cfg.ListOpt('default_authorized_roles', default=['admin'],
                              help='Roles that are allowed full access to the '
