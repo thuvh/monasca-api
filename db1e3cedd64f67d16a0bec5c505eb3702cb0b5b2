@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dab17558_826f36c4",
+        "filename": "devstack/files/schema/mon_mysql.sql",
+        "patchSetId": 7
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-05-09T21:47:51Z",
+      "side": 1,
+      "message": "The metrics database can\u0027t handle sporadic so no point in putting it in here",
+      "range": {
+        "startLine": 106,
+        "startChar": 3,
+        "endLine": 106,
+        "endChar": 11
+      },
+      "revId": "db1e3cedd64f67d16a0bec5c505eb3702cb0b5b2",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
