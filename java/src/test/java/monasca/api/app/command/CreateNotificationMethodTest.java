@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 Hewlett-Packard Development Company, L.P.
+ * (C) Copyright 2014-2016 Hewlett Packard Enterprise Development Company LP
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -48,7 +48,7 @@ public class CreateNotificationMethodTest extends AbstractModelTest {
 
   public void shouldDeserializeFromJson() throws Exception {
     CreateNotificationMethodCommand newNotificationMethod =
-        new CreateNotificationMethodCommand("MyEmail", NotificationMethodType.EMAIL, "a@b");
+        new CreateNotificationMethodCommand("MyEmail", NotificationMethodType.EMAIL, "a@b", "0");
 
     String json = jsonFixture("fixtures/newNotificationMethod.json");
     CreateNotificationMethodCommand other = fromJson(json, CreateNotificationMethodCommand.class);
@@ -57,9 +57,18 @@ public class CreateNotificationMethodTest extends AbstractModelTest {
 
   public void shouldDeserializeFromJsonLowerCaseEnum() throws Exception {
     CreateNotificationMethodCommand newNotificationMethod =
-        new CreateNotificationMethodCommand("MyEmail", NotificationMethodType.EMAIL, "a@b");
+        new CreateNotificationMethodCommand("MyEmail", NotificationMethodType.EMAIL, "a@b", "0");
 
     String json = jsonFixture("fixtures/newNotificationMethodWithLowercaseEnum.json");
+    CreateNotificationMethodCommand other = fromJson(json, CreateNotificationMethodCommand.class);
+    assertEquals(other, newNotificationMethod);
+  }
+
+  public void shouldDeserializeFromJsonDefinedPeriod() throws Exception {
+    CreateNotificationMethodCommand newNotificationMethod =
+            new CreateNotificationMethodCommand("MyWebhook", NotificationMethodType.WEBHOOK, "http://somedomain.com", "60");
+
+    String json = jsonFixture("fixtures/newNotificationMethodWithPeriod.json");
     CreateNotificationMethodCommand other = fromJson(json, CreateNotificationMethodCommand.class);
     assertEquals(other, newNotificationMethod);
   }
@@ -67,7 +76,7 @@ public class CreateNotificationMethodTest extends AbstractModelTest {
   @Test(expectedExceptions = JsonMappingException.class)
   public void shouldDeserializeFromJsonEnumError() throws Exception {
     CreateNotificationMethodCommand newNotificationMethod =
-        new CreateNotificationMethodCommand("MyEmail", NotificationMethodType.EMAIL, "a@b");
+        new CreateNotificationMethodCommand("MyEmail", NotificationMethodType.EMAIL, "a@b", "0");
 
     String json = jsonFixture("fixtures/newNotificationMethodWithInvalidEnum.json");
     CreateNotificationMethodCommand other = fromJson(json, CreateNotificationMethodCommand.class);
@@ -76,36 +85,55 @@ public class CreateNotificationMethodTest extends AbstractModelTest {
 
   public void testValidationForEmail() {
     CreateNotificationMethodCommand newNotificationMethod =
-        new CreateNotificationMethodCommand("MyEmail", NotificationMethodType.EMAIL, "name@domain.com");
+        new CreateNotificationMethodCommand("MyEmail", NotificationMethodType.EMAIL, "name@domain.com", "0");
       newNotificationMethod.validate();
   }
 
   @Test(expectedExceptions = WebApplicationException.class)
   public void testValidationExceptionForEmail() throws Exception {
     CreateNotificationMethodCommand newNotificationMethod =
-        new CreateNotificationMethodCommand("MyEmail", NotificationMethodType.EMAIL, "name@domain.");
+        new CreateNotificationMethodCommand("MyEmail", NotificationMethodType.EMAIL, "name@domain.", "0");
+    newNotificationMethod.validate();
+  }
 
+  @Test(expectedExceptions = WebApplicationException.class)
+  public void testValidationExceptionForNonZeroPeriodForEmail() {
+    CreateNotificationMethodCommand newNotificationMethod =
+            new CreateNotificationMethodCommand("MyEmail", NotificationMethodType.EMAIL, "name@domain.", "60");
     newNotificationMethod.validate();
   }
 
   public void testValidationForWebhook() {
     CreateNotificationMethodCommand newNotificationMethod =
-        new CreateNotificationMethodCommand("MyWebhook", NotificationMethodType.WEBHOOK, "http://somedomain.com");
+        new CreateNotificationMethodCommand("MyWebhook", NotificationMethodType.WEBHOOK, "http://somedomain.com", "0");
       newNotificationMethod.validate();
+  }
+
+  public void testValidationNonZeroPeriodForWebhook() {
+    CreateNotificationMethodCommand newNotificationMethod =
+            new CreateNotificationMethodCommand("MyWebhook", NotificationMethodType.WEBHOOK, "http://somedomain.com", "60");
+    newNotificationMethod.validate();
   }
 
   @Test(expectedExceptions = WebApplicationException.class)
   public void testValidationExceptionForWebhook() throws Exception {
     CreateNotificationMethodCommand newNotificationMethod =
-        new CreateNotificationMethodCommand("MyWebhook", NotificationMethodType.WEBHOOK, "ftp://localhost");
+        new CreateNotificationMethodCommand("MyWebhook", NotificationMethodType.WEBHOOK, "ftp://localhost", "0");
 
     newNotificationMethod.validate();
   }
 
   public void testValidationForPagerduty() {
     CreateNotificationMethodCommand newNotificationMethod =
-        new CreateNotificationMethodCommand("MyPagerduty", NotificationMethodType.PAGERDUTY, "nzH2LVRdMzun11HNC2oD");
+        new CreateNotificationMethodCommand("MyPagerduty", NotificationMethodType.PAGERDUTY, "nzH2LVRdMzun11HNC2oD", "0");
       newNotificationMethod.validate();
+  }
+
+  @Test(expectedExceptions = WebApplicationException.class)
+  public void testValidationExceptionForNonZeroPeriodForPagerDuty() {
+    CreateNotificationMethodCommand newNotificationMethod =
+            new CreateNotificationMethodCommand("MyPagerduty", NotificationMethodType.PAGERDUTY, "nzH2LVRdMzun11HNC2oD", "60");
+    newNotificationMethod.validate();
   }
 
   public void testValidationForMaxNameAddress() {
@@ -114,7 +142,7 @@ public class CreateNotificationMethodTest extends AbstractModelTest {
     String address = "http://" + StringUtils.repeat("A", 502) + ".io";
     assertEquals(address.length(), 512);
     CreateNotificationMethodCommand newNotificationMethod =
-        new CreateNotificationMethodCommand(name, NotificationMethodType.WEBHOOK, address);
+        new CreateNotificationMethodCommand(name, NotificationMethodType.WEBHOOK, address, "0");
     Set<ConstraintViolation<CreateNotificationMethodCommand>> constraintViolations =
         validator.validate(newNotificationMethod);
 
@@ -125,7 +153,7 @@ public class CreateNotificationMethodTest extends AbstractModelTest {
     String name = StringUtils.repeat("A", 251);
     assertEquals(name.length(), 251);
     CreateNotificationMethodCommand newNotificationMethod =
-        new CreateNotificationMethodCommand(name, NotificationMethodType.WEBHOOK, "http://somedomain.com");
+        new CreateNotificationMethodCommand(name, NotificationMethodType.WEBHOOK, "http://somedomain.com", "0");
     Set<ConstraintViolation<CreateNotificationMethodCommand>> constraintViolations =
         validator.validate(newNotificationMethod);
 
@@ -138,12 +166,26 @@ public class CreateNotificationMethodTest extends AbstractModelTest {
     String address = "http://" + StringUtils.repeat("A", 503) + ".io";
     assertEquals(address.length(), 513);
     CreateNotificationMethodCommand newNotificationMethod =
-        new CreateNotificationMethodCommand("MyWebhook", NotificationMethodType.WEBHOOK, address);
+        new CreateNotificationMethodCommand("MyWebhook", NotificationMethodType.WEBHOOK, address, "0");
     Set<ConstraintViolation<CreateNotificationMethodCommand>> constraintViolations =
         validator.validate(newNotificationMethod);
 
     assertEquals(constraintViolations.size(), 1);
     assertEquals(constraintViolations.iterator().next().getMessage(),
         "size must be between 1 and 512");
+  }
+
+  @Test(expectedExceptions = WebApplicationException.class)
+  public void testValidationExceptionForNonIntPeriod() {
+    CreateNotificationMethodCommand newNotificationMethod =
+            new CreateNotificationMethodCommand("MyEmail", NotificationMethodType.EMAIL, "name@domain.com", "interval");
+    newNotificationMethod.validate();
+  }
+
+  @Test(expectedExceptions = WebApplicationException.class)
+  public void testValidationExceptionForInvalidPeriod() {
+    CreateNotificationMethodCommand newNotificationMethod =
+            new CreateNotificationMethodCommand("MyWebhook", NotificationMethodType.WEBHOOK, "http://somedomain.com", "10");
+    newNotificationMethod.validate();
   }
 }
