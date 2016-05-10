@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dab17558_69d644f2",
+        "filename": "monasca_tempest_tests/services/monasca_client.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-05-10T16:47:18Z",
+      "side": 1,
+      "message": "would this take our ability to test not passing in an invalid amount of arguments away?  In this case when you call this method every field will be defined even if we set it to None. That is not always what a end user could do and not testing our API to make sure every field is passed in. With the old code you could say okay lets make sure our API is making sure all fields are passed in on an update and have a negative test to make sure it throws an error if you dont which we do not have a test for.",
+      "range": {
+        "startLine": 160,
+        "startChar": 22,
+        "endLine": 160,
+        "endChar": 32
+      },
+      "revId": "fe70afd5e944d71b0eee6b51ab2ace7d0f6e378f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
