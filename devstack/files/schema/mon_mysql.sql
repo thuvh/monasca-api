@@ -103,6 +103,7 @@ CREATE TABLE `metric_definition` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tenant_id` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
   `region` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `sporadic` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
