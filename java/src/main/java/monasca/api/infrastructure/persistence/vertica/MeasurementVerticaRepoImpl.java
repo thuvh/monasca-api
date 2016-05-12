@@ -22,8 +22,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -53,18 +54,12 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
       "SELECT to_hex(mes.definition_dimensions_id) as def_dims_id, "
       + "mes.time_stamp, mes.value, mes.value_meta "
       + "FROM MonMetrics.Measurements mes "
-      + "WHERE to_hex(mes.definition_dimensions_id) %s " // Sub select query
+      + "WHERE mes.time_stamp >= :startTime "
       + "%s " // endtime and offset here
-      + "AND mes.time_stamp >= :startTime "
+      + "AND definition_dimensions_id IN (%s) " // id subquery here
       + "ORDER BY %s" // sort by id if not merging
       + "mes.time_stamp ASC "
       + "LIMIT :limit";
-
-  private static final String
-      DEFDIM_IDS_SELECT =
-      "SELECT defDims.id "
-      + "FROM MonMetrics.DefinitionDimensions defDims "
-      + "WHERE defDims.id IN (%s)";
 
   private final DBI db;
 
@@ -93,26 +88,11 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
 
     try (Handle h = db.open()) {
 
-      Map<String, Measurements> results = findDefIds(h, tenantId, name, dimensions);
+      Map<String, Measurements> results = new HashMap<>();
 
-      Set<String> defDimsIdSet = results.keySet();
-
-      if (!"*".equals(groupBy) && !Boolean.TRUE.equals(mergeMetricsFlag) && (defDimsIdSet.size() > 1)) {
-        throw new MultipleMetricsException(name, dimensions);
+      if (!"*".equals(groupBy) && !Boolean.TRUE.equals(mergeMetricsFlag)) {
+        MetricQueries.checkForMultipleDefinitions(h, tenantId, name, dimensions);
       }
-
-      //
-      // If we didn't find any definition dimension ids,
-      // we won't have any measurements, let's just bail
-      // now.
-      //
-      if (defDimsIdSet.size() == 0) {
-
-        return new ArrayList<>(results.values());
-
-      }
-
-      String defDimInClause = MetricQueries.createDefDimIdInClause(defDimsIdSet);
  
       StringBuilder sb = new StringBuilder();
 
@@ -124,14 +104,14 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
 
       if (offset != null && !offset.isEmpty()) {
 
-        if (Boolean.TRUE.equals(mergeMetricsFlag)) {
-
-          sb.append(" and mes.time_stamp > :offset_timestamp ");
-
-        } else {
+        if ("*".equals(groupBy)) {
 
           sb.append(" and (TO_HEX(mes.definition_dimensions_id) > :offset_id "
                     + "or (TO_HEX(mes.definition_dimensions_id) = :offset_id and mes.time_stamp > :offset_timestamp)) ");
+
+        } else {
+
+          sb.append(" and mes.time_stamp > :offset_timestamp ");
 
         }
 
@@ -144,11 +124,22 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
 
       }
 
-      String sql = String.format(FIND_BY_METRIC_DEF_SQL, defDimInClause, sb, orderById);
+      String sql = String.format(FIND_BY_METRIC_DEF_SQL,
+                                 sb,
+                                 MetricQueries.buildMetricDefinitionSubSql(name, dimensions,
+                                                                           null, null),
+                                 orderById);
 
       Query<Map<String, Object>> query = h.createQuery(sql)
+              .bind("tenantId", tenantId)
               .bind("startTime", new Timestamp(startTime.getMillis()))
               .bind("limit", limit + 1);
+
+      if (name != null && !name.isEmpty()) {
+        query.bind("name", name);
+      }
+
+      MetricQueries.bindDimensionsToQuery(query, dimensions);
 
       if (endTime != null) {
         logger.debug("binding endtime: {}", endTime);
@@ -172,54 +163,67 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
 
       if ("*".equals(groupBy)) {
 
+        String currentDefId = null;
+
         for (Map<String, Object> row : rows) {
 
           String defDimsId = (String) row.get("def_dims_id");
 
-          Object[] measurement = parseRow(row);
+          if (defDimsId != null && !defDimsId.equals(currentDefId)) {
+            currentDefId = defDimsId;
+            results.put(defDimsId, new Measurements());
+          }
+
+          List<Object> measurement = parseRow(row);
 
           results.get(defDimsId).addMeasurement(measurement);
 
         }
 
+        MetricQueries.addDefsToResults(results, h);
+
       } else {
+
+
+
+        Measurements firstMeasurement = new Measurements();
+
+        firstMeasurement.setName(name);
+
+        if (dimensions == null) {
+          dimensions = new HashMap<>();
+        }
+        firstMeasurement.setDimensions(dimensions);
 
         String firstDefDimsId = (String) rows.get(0).get("def_dims_id");
 
-        Measurements firstMeasurement = results.get(firstDefDimsId);
+        boolean exactMatch = true;
+        for (Map<String, Object> row : rows) {
 
-        // clear dimensions
-        firstMeasurement.setDimensions(new HashMap<String, String>());
+          if (!firstDefDimsId.equals(row.get("def_dims_id"))) {
+            exactMatch = false;
+          }
 
-        results.clear();
+          List<Object> measurement = parseRow(row);
+
+          firstMeasurement.addMeasurement(measurement);
+
+        }
 
         results.put(firstDefDimsId, firstMeasurement);
 
-        for (Map<String, Object> row : rows) {
-
-          Object[] measurement = parseRow(row);
-
-          results.get(firstDefDimsId).addMeasurement(measurement);
-
+        if (exactMatch) {
+          firstMeasurement.setId(firstDefDimsId);
+          MetricQueries.addDefsToResults(results, h);
         }
 
-      }
-
-      // clean up any empty measurements
-      Iterator<Map.Entry<String, Measurements>> it = results.entrySet().iterator();
-      while (it.hasNext())
-      {
-        Map.Entry<String, Measurements> entry = it.next();
-        if (entry.getValue().getMeasurements().size() == 0) {
-          it.remove();
-        }
       }
 
       return new ArrayList<>(results.values());
     }
   }
 
-  private Object[] parseRow(Map<String, Object> row) {
+  private List<Object> parseRow(Map<String, Object> row) {
 
     String timestamp = DATETIME_FORMATTER.print(((Timestamp) row.get("time_stamp")).getTime());
 
@@ -242,71 +246,7 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
 
     }
 
-    return new Object[]{timestamp, value, valueMetaMap};
+    return Arrays.asList(timestamp, value, valueMetaMap);
 
-  }
-
-  private Map<String, Measurements> findDefIds(Handle h, String tenantId,
-                                              String name, Map<String, String> dimensions) {
-
-    String defDimSql = String.format(
-        MetricQueries.FIND_METRIC_DEFS_SQL,
-        MetricQueries.buildMetricDefinitionSubSql(name, dimensions));
-
-    Query<Map<String, Object>> query = h.createQuery(defDimSql).bind("tenantId", tenantId);
-
-    MetricQueries.bindDimensionsToQuery(query, dimensions);
-
-    if (name != null && !name.isEmpty()) {
-      query.bind("name", name);
-    }
-
-    List<Map<String, Object>> rows = query.list();
-
-    Map<String, Measurements> stringIdMap = new HashMap<>();
-
-    String currentDefDimId = null;
-
-    Map<String, String> dims = null;
-
-    for (Map<String, Object> row : rows) {
-
-      String defDimId = (String) row.get("defDimsId");
-
-      String defName = (String) row.get("name");
-
-      String dimName = (String) row.get("dName");
-
-      String dimValue = (String) row.get("dValue");
-
-      if (defDimId == null || !defDimId.equals(currentDefDimId)) {
-
-        currentDefDimId = defDimId;
-
-        dims = new HashMap<>();
-
-        if (dimName != null && dimValue != null)
-          dims.put(dimName, dimValue);
-
-        Measurements measurements = new Measurements();
-
-        measurements.setId(defDimId);
-
-        measurements.setName(defName);
-
-        measurements.setDimensions(dims);
-
-        stringIdMap.put(currentDefDimId, measurements);
-
-      } else {
-
-        if (dimName != null && dimValue != null)
-          dims.put(dimName, dimValue);
-
-      }
-
-    }
-
-    return stringIdMap;
   }
 }
