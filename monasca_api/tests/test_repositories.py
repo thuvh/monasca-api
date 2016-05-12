@@ -1,4 +1,5 @@
 # Copyright 2015 Cray Inc. All Rights Reserved.
+# (C) Copyright 2016 Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -55,7 +56,8 @@ class TestRepoMetricsInfluxDB(unittest.TestCase):
             end_timestamp=2,
             offset=None,
             limit=1,
-            merge_metrics_flag=True)
+            merge_metrics_flag=True,
+            group_by=None)
 
         self.assertEqual(len(result), 1)
         self.assertEqual(result[0]['dimensions'], None)
