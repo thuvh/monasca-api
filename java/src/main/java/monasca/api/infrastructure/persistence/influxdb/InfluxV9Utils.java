@@ -259,10 +259,13 @@ public class InfluxV9Utils {
                       : " group by time(300s), * fill(0)";
   }
 
-  public String periodPart(int period) {
+  public String periodPart(int period, boolean mergeMetricsFlag) {
 
-    return period > 0 ? String.format(" group by time(%1$ds) fill(0)", period)
-                      : " group by time(300s) fill(0)";
+    String periodStr = period > 0 ? String.format(" group by time(%1$ds)", period)
+                      : " group by time(300s)";
+    periodStr += mergeMetricsFlag ? " fill(0)" : ", * fill(0)";
+
+    return periodStr;
   }
 
   Map<String, String> filterPrivateTags(Map<String, String> tagMap) {
