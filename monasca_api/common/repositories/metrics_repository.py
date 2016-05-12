@@ -1,4 +1,4 @@
-# Copyright 2014 Hewlett-Packard
+# (C) Copyright 2014,2016 Hewlett Packard Enterprise Development Company LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -26,13 +26,15 @@ class MetricsRepository(object):
     @abc.abstractmethod
     def measurement_list(self, tenant_id, region, name, dimensions,
                          start_timestamp, end_timestamp, offset, limit,
-                         merge_metrics_flag):
+                         merge_metrics_flag,
+                         group_by):
         pass
 
     @abc.abstractmethod
     def metrics_statistics(self, tenant_id, region, name, dimensions,
                            start_timestamp, end_timestamp, statistics,
-                           period, offset, limit, merge_metrics_flag):
+                           period, offset, limit, merge_metrics_flag,
+                           group_by):
         pass
 
     @abc.abstractmethod
