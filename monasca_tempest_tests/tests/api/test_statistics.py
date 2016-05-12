@@ -241,11 +241,12 @@ class TestStatistics(base.BaseMonascaTest):
                           '&end_time=' + end_time + \
                           '&limit=1'
             resp, response_body = self.monasca_client.list_measurements(query_parms)
+            next_link = None
             for link in response_body['links']:
                 if link['rel'] == 'next':
                     next_link = link['href']
             if not next_link:
-                self.fail("No next link returned with query parameters: {}".formet(query_parms))
+                self.fail("No next link returned with query parameters: {}".format(query_parms))
             offset = helpers.get_query_param(next_link, "offset")
             # python api returns exact timestamp, but the test needs a rounded number
             offset_period_index = offset.find('.')
