@@ -31,6 +31,7 @@ import javax.annotation.Nullable;
 
 import monasca.api.ApiConfig;
 import monasca.api.domain.exception.MultipleMetricsException;
+import monasca.api.domain.model.measurement.Measurements;
 import monasca.api.domain.model.statistic.StatisticRepo;
 import monasca.api.domain.model.statistic.Statistics;
 
@@ -64,7 +65,7 @@ public class InfluxV9StatisticRepo implements StatisticRepo {
   }
 
   @Override
-  public List<Statistics> find(String tenantId, String name, Map<String, String> dimensions,
+  public List<Measurements> find(String tenantId, String name, Map<String, String> dimensions,
                                DateTime startTime, @Nullable DateTime endTime,
                                List<String> statistics, int period, String offset, int limit,
                                Boolean mergeMetricsFlag, String groupBy) throws Exception {
@@ -76,7 +77,7 @@ public class InfluxV9StatisticRepo implements StatisticRepo {
 
     Series series = this.objectMapper.readValue(r, Series.class);
 
-    List<Statistics> statisticsList = statisticslist(series, offset, limit);
+    List<Measurements> statisticsList = statisticslist(series, offset, limit);
 
     logger.debug("Found {} metric definitions matching query", statisticsList.size());
 
@@ -132,7 +133,7 @@ public class InfluxV9StatisticRepo implements StatisticRepo {
     return q;
   }
 
-  private List<Statistics> statisticslist(Series series, String offsetStr, int limit) {
+  private List<Measurements> statisticslist(Series series, String offsetStr, int limit) {
 
     int offsetId = 0;
     String offsetTimestamp = "1970-01-01T00:00:00.000Z";
@@ -148,7 +149,7 @@ public class InfluxV9StatisticRepo implements StatisticRepo {
       }
     }
 
-    List<Statistics> statisticsList = new LinkedList<>();
+    List<Measurements> statisticsList = new LinkedList<>();
 
     if (!series.isEmpty()) {
 
@@ -174,12 +175,12 @@ public class InfluxV9StatisticRepo implements StatisticRepo {
           List<Object> values = buildValsList(valueObjects);
 
           if (((String) values.get(0)).compareTo(offsetTimestamp) > 0 || index > offsetId) {
-            statistics.addStatistics(values);
+            statistics.addMeasurement(values);
             remaining_limit--;
           }
         }
 
-        if (statistics.getStatistics().size() > 0) {
+        if (statistics.getMeasurements().size() > 0) {
           statisticsList.add(statistics);
         }
         index++;

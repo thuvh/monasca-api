@@ -13,6 +13,7 @@
  */
 package monasca.api.domain.model.measurement;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -23,18 +24,18 @@ import monasca.common.model.domain.common.AbstractEntity;
  * Encapsulates a metric measurements.
  */
 public class Measurements extends AbstractEntity {
-  private static final String[] COLUMNS = new String[] {"timestamp", "value", "value_meta"};
+  private static final List<String> COLUMNS = Arrays.asList("timestamp", "value", "value_meta");
 
-  private String name;
-  private Map<String, String> dimensions;
-  private final String[] columns = COLUMNS;
-  private List<Object[]> measurements;
+  protected String name;
+  protected Map<String, String> dimensions;
+  protected List<String> columns = COLUMNS;
+  protected List<List<Object>> measurements;
 
   public Measurements() {
     measurements = new LinkedList<>();
   }
 
-  public Measurements(String name, Map<String, String> dimensions, List<Object[]> measurements) {
+  public Measurements(String name, Map<String, String> dimensions, List<List<Object>> measurements) {
     this.name = name;
     this.dimensions = dimensions;
     this.measurements = measurements;
@@ -46,7 +47,7 @@ public class Measurements extends AbstractEntity {
     this.measurements = new LinkedList<>();
   }
 
-  public void addMeasurement(Object[] measurement) {
+  public void addMeasurement(List<Object> measurement) {
     measurements.add(measurement);
   }
 
@@ -77,7 +78,7 @@ public class Measurements extends AbstractEntity {
     return true;
   }
 
-  public String[] getColumns() {
+  public List<String> getColumns() {
     return columns;
   }
 
@@ -85,7 +86,7 @@ public class Measurements extends AbstractEntity {
     return dimensions;
   }
 
-  public List<Object[]> getMeasurements() {
+  public List<List<Object>> getMeasurements() {
     return measurements;
   }
 
@@ -107,7 +108,7 @@ public class Measurements extends AbstractEntity {
     this.dimensions = dimensions;
   }
 
-  public void setMeasurements(List<Object[]> measurements) {
+  public void setMeasurements(List<List<Object>> measurements) {
     this.measurements = measurements;
   }
 
