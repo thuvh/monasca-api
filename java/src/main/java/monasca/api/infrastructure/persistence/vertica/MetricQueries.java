@@ -51,13 +51,19 @@ final class MetricQueries {
       + "WHERE defSub.tenant_id = :tenantId "
       + "%s " // metric name here
       + "%s " // dimension and clause here
+      + "%s " // time and clause here
       + "GROUP BY defDimsSub.id";
 
-  private static final String TABLE_TO_JOIN_DIMENSIONS_ON = "defDimsSub";
+  private static final String MEASUREMENT_AND_CLAUSE =
+      "SELECT definition_dimensions_id FROM MonMetrics.Measurements "
+      + "WHERE time_stamp >= :startTime "; // start or start and end time here
+
+  private static final String TABLE_TO_JOIN_ON = "defDimsSub";
 
   private MetricQueries() {}
 
-  static String buildMetricDefinitionSubSql(String name, Map<String, String> dimensions) {
+  static String buildMetricDefinitionSubSql(String name, Map<String, String> dimensions,
+                                            DateTime startTime, DateTime endTime) {
 
     String namePart = "";
 
@@ -68,7 +74,9 @@ final class MetricQueries {
     return String.format(METRIC_DEF_SUB_SQL,
                          namePart,
                          buildDimensionAndClause(dimensions,
-                                                 TABLE_TO_JOIN_DIMENSIONS_ON));
+                                                 TABLE_TO_JOIN_ON),
+                         buildTimeAndClause(startTime, endTime,
+                                            TABLE_TO_JOIN_ON));
   }
 
   static String buildDimensionAndClause(Map<String, String> dimensions,
@@ -120,6 +128,30 @@ final class MetricQueries {
 
 
     return sb.toString();
+  }
+
+  static String buildTimeAndClause(
+      DateTime startTime,
+      DateTime endTime,
+      String tableToJoin)
+  {
+    if (startTime == null) {
+      return "";
+    }
+
+    StringBuilder timeAndClause = new StringBuilder();
+
+    timeAndClause.append("AND ").append(tableToJoin).append(".id IN (");
+
+    timeAndClause.append(MEASUREMENT_AND_CLAUSE);
+
+    if (endTime != null) {
+      timeAndClause.append("AND time_stamp <= :endTime ");
+    }
+
+    timeAndClause.append(")");
+
+    return timeAndClause.toString();
   }
 
   static void bindDimensionsToQuery(Query<?> query, Map<String, String> dimensions) {

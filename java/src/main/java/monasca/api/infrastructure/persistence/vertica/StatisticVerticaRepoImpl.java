@@ -75,7 +75,8 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
 
     try (Handle h = db.open()) {
 
-      Map<String, Statistics> byteMap = findDefIds(h, tenantId, name, dimensions);
+      Map<String, Statistics> byteMap = findDefIds(h, tenantId, name, dimensions, startTime,
+                                                   endTime);
 
       if (byteMap.isEmpty()) {
 
@@ -209,11 +210,13 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
       Handle h,
       String tenantId,
       String name,
-      Map<String, String> dimensions) {
+      Map<String, String> dimensions,
+      DateTime startTime,
+      DateTime endTime) {
 
     String sql = String.format(
         MetricQueries.FIND_METRIC_DEFS_SQL,
-        MetricQueries.buildMetricDefinitionSubSql(name, dimensions));
+        MetricQueries.buildMetricDefinitionSubSql(name, dimensions, startTime, endTime));
 
     Query<Map<String, Object>> query =
         h.createQuery(sql)
@@ -225,6 +228,14 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
 
       query.bind("name", name);
 
+    }
+
+    if (startTime != null) {
+      query.bind("startTime", startTime);
+    }
+
+    if (endTime != null) {
+      query.bind("endTime", endTime);
     }
 
     MetricQueries.bindDimensionsToQuery(query, dimensions);
