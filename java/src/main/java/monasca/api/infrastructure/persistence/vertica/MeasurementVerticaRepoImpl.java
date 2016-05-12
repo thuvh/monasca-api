@@ -53,18 +53,12 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
       "SELECT to_hex(mes.definition_dimensions_id) as def_dims_id, "
       + "mes.time_stamp, mes.value, mes.value_meta "
       + "FROM MonMetrics.Measurements mes "
-      + "WHERE to_hex(mes.definition_dimensions_id) %s " // Sub select query
+      + "WHERE mes.time_stamp >= :startTime "
       + "%s " // endtime and offset here
-      + "AND mes.time_stamp >= :startTime "
+      + "AND definition_dimensions_id IN (%s) " // id subquery here
       + "ORDER BY %s" // sort by id if not merging
       + "mes.time_stamp ASC "
       + "LIMIT :limit";
-
-  private static final String
-      DEFDIM_IDS_SELECT =
-      "SELECT defDims.id "
-      + "FROM MonMetrics.DefinitionDimensions defDims "
-      + "WHERE defDims.id IN (%s)";
 
   private final DBI db;
 
@@ -93,7 +87,8 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
 
     try (Handle h = db.open()) {
 
-      Map<String, Measurements> results = findDefIds(h, tenantId, name, dimensions);
+      Map<String, Measurements> results = findDefIds(h, tenantId, name, dimensions, startTime,
+                                                     endTime);
 
       Set<String> defDimsIdSet = results.keySet();
 
@@ -111,8 +106,6 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
         return new ArrayList<>(results.values());
 
       }
-
-      String defDimInClause = MetricQueries.createDefDimIdInClause(defDimsIdSet);
  
       StringBuilder sb = new StringBuilder();
 
@@ -124,14 +117,14 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
 
       if (offset != null && !offset.isEmpty()) {
 
-        if (Boolean.TRUE.equals(mergeMetricsFlag)) {
-
-          sb.append(" and mes.time_stamp > :offset_timestamp ");
-
-        } else {
+        if ("*".equals(groupBy)) {
 
           sb.append(" and (TO_HEX(mes.definition_dimensions_id) > :offset_id "
                     + "or (TO_HEX(mes.definition_dimensions_id) = :offset_id and mes.time_stamp > :offset_timestamp)) ");
+
+        } else {
+
+          sb.append(" and mes.time_stamp > :offset_timestamp ");
 
         }
 
@@ -144,11 +137,22 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
 
       }
 
-      String sql = String.format(FIND_BY_METRIC_DEF_SQL, defDimInClause, sb, orderById);
+      String sql = String.format(FIND_BY_METRIC_DEF_SQL,
+                                 sb,
+                                 MetricQueries.buildMetricDefinitionSubSql(name, dimensions,
+                                                                           null, null),
+                                 orderById);
 
       Query<Map<String, Object>> query = h.createQuery(sql)
+              .bind("tenantId", tenantId)
               .bind("startTime", new Timestamp(startTime.getMillis()))
               .bind("limit", limit + 1);
+
+      if (name != null && !name.isEmpty()) {
+        query.bind("name", name);
+      }
+
+      MetricQueries.bindDimensionsToQuery(query, dimensions);
 
       if (endTime != null) {
         logger.debug("binding endtime: {}", endTime);
@@ -247,11 +251,12 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
   }
 
   private Map<String, Measurements> findDefIds(Handle h, String tenantId,
-                                              String name, Map<String, String> dimensions) {
+                                              String name, Map<String, String> dimensions,
+                                              DateTime startTime, DateTime endTime) {
 
     String defDimSql = String.format(
         MetricQueries.FIND_METRIC_DEFS_SQL,
-        MetricQueries.buildMetricDefinitionSubSql(name, dimensions));
+        MetricQueries.buildMetricDefinitionSubSql(name, dimensions, startTime, endTime));
 
     Query<Map<String, Object>> query = h.createQuery(defDimSql).bind("tenantId", tenantId);
 
@@ -259,6 +264,14 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
 
     if (name != null && !name.isEmpty()) {
       query.bind("name", name);
+    }
+
+    if (startTime != null) {
+      query.bind("startTime", startTime);
+    }
+
+    if (endTime != null) {
+      query.bind("endTime", endTime);
     }
 
     List<Map<String, Object>> rows = query.list();
