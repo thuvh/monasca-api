@@ -140,6 +140,30 @@
       "revId": "30896118b01e0cc9b87a8d0119b9adfeced6a4c2",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dab17558_9db874e7",
+        "filename": "java/src/main/java/monasca/api/domain/model/alarmdefinition/AlarmDefinition.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-05-13T05:33:19Z",
+      "side": 1,
+      "message": "However I think that I\u0027ll move this code to AlarmExpression class. Here it makes everything blurred. \n\nEverything else, I\u0027ll keep the unchanged till we agree on something.",
+      "parentUuid": "dab17558_da084230",
+      "range": {
+        "startLine": 58,
+        "startChar": 18,
+        "endLine": 58,
+        "endChar": 31
+      },
+      "revId": "30896118b01e0cc9b87a8d0119b9adfeced6a4c2",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
