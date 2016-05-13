@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "dab17558_a7ba876c",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-05-13T05:15:34Z",
+      "side": 1,
+      "message": "Described in \n \n Alarm Definitions and Alarms\n\nsection",
+      "parentUuid": "dab17558_ec4da2c5",
+      "range": {
+        "startLine": 520,
+        "startChar": 0,
+        "endLine": 520,
+        "endChar": 13
+      },
+      "revId": "30896118b01e0cc9b87a8d0119b9adfeced6a4c2",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dab17558_ac6c3a37",
         "filename": "docs/monasca-api-spec.md",
         "patchSetId": 13
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "dab17558_8762e314",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-05-13T05:15:34Z",
+      "side": 1,
+      "message": "Refactored.",
+      "parentUuid": "dab17558_ac6c3a37",
+      "range": {
+        "startLine": 523,
+        "startChar": 0,
+        "endLine": 524,
+        "endChar": 58
+      },
+      "revId": "30896118b01e0cc9b87a8d0119b9adfeced6a4c2",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dab17558_0f2a987e",
         "filename": "java/src/main/java/monasca/api/domain/model/alarmdefinition/AlarmDefinition.java",
         "patchSetId": 13
@@ -59,6 +107,30 @@
       "writtenOn": "2016-05-12T20:12:48Z",
       "side": 1,
       "message": "What is the point of adding this? iisDeterministic() is not used anywhere. I don\u0027t think any of these changes in this file are needed",
+      "range": {
+        "startLine": 58,
+        "startChar": 18,
+        "endLine": 58,
+        "endChar": 31
+      },
+      "revId": "30896118b01e0cc9b87a8d0119b9adfeced6a4c2",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dab17558_da084230",
+        "filename": "java/src/main/java/monasca/api/domain/model/alarmdefinition/AlarmDefinition.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-05-13T05:15:34Z",
+      "side": 1,
+      "message": "I want to have this value presented in ui. \n\nBecause expression can be actually composed of multiple sub-expression where all or just one can be nondeterministic (1st option - entire alarm is nondeterministic, 2nd option - alarm is still deterministic).\n\nI calculate that value here using expression and display this in UI along with entire expression. User clearly sees what kind of an alarm he has and knows the states that alarm can enter or not. In the UI all I have is expression as a string, so computing that there would be cumbersome whereas here is is easy. \n\nI\u0027ve added a field instead of putting all there in\n\n isDeterministic\n\nmethod, because then each call to this method would trigger parsing the expression. Right now it is done only once and deterministic value is computed also just once.",
+      "parentUuid": "dab17558_0f2a987e",
       "range": {
         "startLine": 58,
         "startChar": 18,
