@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dab17558_07a6c152",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-05-13T23:09:52Z",
+      "side": 1,
+      "message": "the",
+      "range": {
+        "startLine": 506,
+        "startChar": 49,
+        "endLine": 506,
+        "endChar": 53
+      },
+      "revId": "1962237c9dca96a337a46057802b480cba266d16",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dab17558_c7ab191d",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-05-13T23:09:52Z",
+      "side": 1,
+      "message": "The Non-deterministic alarm\u0027s",
+      "range": {
+        "startLine": 506,
+        "startChar": 0,
+        "endLine": 506,
+        "endChar": 23
+      },
+      "revId": "1962237c9dca96a337a46057802b480cba266d16",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dab17558_87ebd177",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 508,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-05-13T23:09:52Z",
+      "side": 1,
+      "message": "when created",
+      "range": {
+        "startLine": 508,
+        "startChar": 63,
+        "endLine": 508,
+        "endChar": 74
+      },
+      "revId": "1962237c9dca96a337a46057802b480cba266d16",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dab17558_e7029d3d",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-05-13T23:09:52Z",
+      "side": 1,
+      "message": "The entire",
+      "range": {
+        "startLine": 511,
+        "startChar": 45,
+        "endLine": 511,
+        "endChar": 51
+      },
+      "revId": "1962237c9dca96a337a46057802b480cba266d16",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dab17558_a73b75ea",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 1966,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-05-13T23:09:52Z",
+      "side": 1,
+      "message": "If you are going to leave this new field in Alarm Definition, then you need to specify that it is effectively read-only. It is set via the expression and can\u0027t be set explicitly like all of the other fields.",
+      "range": {
+        "startLine": 1966,
+        "startChar": 1,
+        "endLine": 1966,
+        "endChar": 72
+      },
+      "revId": "1962237c9dca96a337a46057802b480cba266d16",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dab17558_67186d85",
+        "filename": "monasca_api/common/repositories/model/sub_alarm_definition.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-05-13T23:09:52Z",
+      "side": 1,
+      "message": "lower has no affect on numerals",
+      "range": {
+        "startLine": 51,
+        "startChar": 61,
+        "endLine": 51,
+        "endChar": 69
+      },
+      "revId": "1962237c9dca96a337a46057802b480cba266d16",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
