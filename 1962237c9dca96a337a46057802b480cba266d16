@@ -2,6 +2,86 @@
   "comments": [
     {
       "key": {
+        "uuid": "dab17558_1d7d72b1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 18
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 15359
+      },
+      "writtenOn": "2016-05-14T02:25:14Z",
+      "side": 1,
+      "message": "Not sure, but isn\u0027t it suposed to be \u0027is\u0027?",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 2
+      },
+      "revId": "1962237c9dca96a337a46057802b480cba266d16",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dab17558_bd3b86ea",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 18
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 15359
+      },
+      "writtenOn": "2016-05-14T02:25:14Z",
+      "side": 1,
+      "message": "I believe it would be better if you could add a brief description in the commit message for the reviewers about why (non)deterministic alarms are important.",
+      "range": {
+        "startLine": 9,
+        "startChar": 2,
+        "endLine": 16,
+        "endChar": 26
+      },
+      "revId": "1962237c9dca96a337a46057802b480cba266d16",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dab17558_1da61253",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 18
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 15359
+      },
+      "writtenOn": "2016-05-14T02:25:14Z",
+      "side": 1,
+      "message": "It would be good if you could add the blueprint info here (partially-implements: blueprint alarmsonlogs), like recommended here: http://docs.openstack.org/infra/manual/developers.html#committing-a-change",
+      "revId": "1962237c9dca96a337a46057802b480cba266d16",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dab17558_b86ef4c6",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 15359
+      },
+      "writtenOn": "2016-05-14T02:25:14Z",
+      "side": 1,
+      "message": "state",
+      "revId": "1962237c9dca96a337a46057802b480cba266d16",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dab17558_07a6c152",
         "filename": "docs/monasca-api-spec.md",
         "patchSetId": 18
@@ -117,6 +197,69 @@
     },
     {
       "key": {
+        "uuid": "dab17558_78d00c54",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/hibernate/AlarmDefinitionSqlRepoImpl.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 15359
+      },
+      "writtenOn": "2016-05-14T02:25:14Z",
+      "side": 1,
+      "message": "Sorry if it is a dumb question, but is it an unrelated change?",
+      "range": {
+        "startLine": 595,
+        "startChar": 4,
+        "endLine": 595,
+        "endChar": 53
+      },
+      "revId": "1962237c9dca96a337a46057802b480cba266d16",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dab17558_78376cb0",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/AlarmDefinitionMySqlRepoImpl.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 15359
+      },
+      "writtenOn": "2016-05-14T02:25:14Z",
+      "side": 1,
+      "message": "Please, add a space after the comma.",
+      "range": {
+        "startLine": 298,
+        "startChar": 47,
+        "endLine": 298,
+        "endChar": 48
+      },
+      "revId": "1962237c9dca96a337a46057802b480cba266d16",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dab17558_7805acc0",
+        "filename": "java/src/test/java/monasca/api/app/validation/AlarmExpressionsTest.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 15359
+      },
+      "writtenOn": "2016-05-14T02:25:14Z",
+      "side": 1,
+      "message": "I believe it would be good to have another test case with valid a keyword (deterministic) and values (true and false).",
+      "revId": "1962237c9dca96a337a46057802b480cba266d16",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dab17558_67186d85",
         "filename": "monasca_api/common/repositories/model/sub_alarm_definition.py",
         "patchSetId": 18
@@ -133,6 +276,99 @@
         "startChar": 61,
         "endLine": 51,
         "endChar": 69
+      },
+      "revId": "1962237c9dca96a337a46057802b480cba266d16",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dab17558_b80f14e0",
+        "filename": "monasca_api/common/repositories/model/sub_alarm_definition.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 15359
+      },
+      "writtenOn": "2016-05-14T02:25:14Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "dab17558_67186d85",
+      "range": {
+        "startLine": 51,
+        "startChar": 61,
+        "endLine": 51,
+        "endChar": 69
+      },
+      "revId": "1962237c9dca96a337a46057802b480cba266d16",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dab17558_f8e7dc0f",
+        "filename": "monasca_api/expression_parser/alarm_expr_parser.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 15359
+      },
+      "writtenOn": "2016-05-14T02:25:14Z",
+      "side": 1,
+      "message": "Why 3? Is the expression size, like deterministic \u003d true? In order to avoid magic numbers, I suggest you put this number in a static field.",
+      "range": {
+        "startLine": 135,
+        "startChar": 43,
+        "endLine": 135,
+        "endChar": 44
+      },
+      "revId": "1962237c9dca96a337a46057802b480cba266d16",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dab17558_38f204d3",
+        "filename": "monasca_api/expression_parser/alarm_expr_parser.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 15359
+      },
+      "writtenOn": "2016-05-14T02:25:14Z",
+      "side": 1,
+      "message": "Same here.",
+      "range": {
+        "startLine": 136,
+        "startChar": 42,
+        "endLine": 136,
+        "endChar": 43
+      },
+      "revId": "1962237c9dca96a337a46057802b480cba266d16",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dab17558_98b7b0f4",
+        "filename": "monasca_api/v2/reference/__init__.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 15359
+      },
+      "writtenOn": "2016-05-14T02:25:14Z",
+      "side": 1,
+      "message": "Is this an unrelated change?",
+      "range": {
+        "startLine": 141,
+        "startChar": 56,
+        "endLine": 141,
+        "endChar": 62
       },
       "revId": "1962237c9dca96a337a46057802b480cba266d16",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
