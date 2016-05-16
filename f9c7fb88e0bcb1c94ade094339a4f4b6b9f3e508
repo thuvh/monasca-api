@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dab17558_5ebcf4ba",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16204
+      },
+      "writtenOn": "2016-05-16T08:08:56Z",
+      "side": 1,
+      "message": "From a perspective of someone who was not familiar with the idea of non-deterministic metrics before, this description is informative and understandable.\n\nLooking forward to see this concept in action.",
+      "revId": "f9c7fb88e0bcb1c94ade094339a4f4b6b9f3e508",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
