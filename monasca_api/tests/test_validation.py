@@ -156,7 +156,7 @@ class TestRoleValidation(unittest.TestCase):
 
         self.assertRaises(
             falcon.HTTPUnauthorized,
-            helpers.validate_authorization, req, authorized_roles)
+            helpers.validate_authorization, req, authorized_roles, 'Token')
 
     def test_empty_role_header(self):
         req_roles = ''
@@ -167,7 +167,7 @@ class TestRoleValidation(unittest.TestCase):
 
         self.assertRaises(
             falcon.HTTPUnauthorized,
-            helpers.validate_authorization, req, authorized_roles)
+            helpers.validate_authorization, req, authorized_roles, 'Token')
 
     def test_no_role_header(self):
         req_roles = None
@@ -178,7 +178,7 @@ class TestRoleValidation(unittest.TestCase):
 
         self.assertRaises(
             falcon.HTTPUnauthorized,
-            helpers.validate_authorization, req, authorized_roles)
+            helpers.validate_authorization, req, authorized_roles, 'Token')
 
 
 class TestTimestampsValidation(unittest.TestCase):

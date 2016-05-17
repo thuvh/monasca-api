@@ -44,7 +44,8 @@ class KeystoneContextFilter(object):
         if user_id is None:
             msg = "Neither X_USER_ID nor X_USER found in request"
             LOG.error(msg)
-            raise falcon.HTTPUnauthorized(title='Forbidden', description=msg)
+            raise falcon.HTTPUnauthorized(title='Forbidden', description=msg,
+                                          challenge='Token')
 
         roles = self._get_roles(env)
 
