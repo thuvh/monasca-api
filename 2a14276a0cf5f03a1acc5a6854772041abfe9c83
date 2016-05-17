@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dab17558_8297e8ea",
+        "filename": "monasca_api/v2/common/schemas/notifications_request_body_schema.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-05-17T04:32:55Z",
+      "side": 1,
+      "message": "I am little confused. From documentation point of view it looks like period has a meaning only if notification method is webhook. Correct if I am wrong, but if that\u0027s the case, I think that any period parsing and validation makes sense only if webhook is used.\n\nPS. Same thinking goes for java.",
+      "range": {
+        "startLine": 65,
+        "startChar": 25,
+        "endLine": 65,
+        "endChar": 44
+      },
+      "revId": "2a14276a0cf5f03a1acc5a6854772041abfe9c83",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
