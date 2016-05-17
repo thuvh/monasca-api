@@ -22,6 +22,30 @@
       "revId": "2a14276a0cf5f03a1acc5a6854772041abfe9c83",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dab17558_1b018705",
+        "filename": "monasca_api/v2/common/schemas/notifications_request_body_schema.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-05-17T14:10:17Z",
+      "side": 1,
+      "message": "The reason why I validate that it is only zero and throw an error if it isnt for non webhook notifications is because i dont want the behavior of someone trying to set it to a non zero period expecting that it will be sent periodically  . I dont see any negatives of doing that and removes any confusion on the user side.",
+      "parentUuid": "dab17558_8297e8ea",
+      "range": {
+        "startLine": 65,
+        "startChar": 25,
+        "endLine": 65,
+        "endChar": 44
+      },
+      "revId": "2a14276a0cf5f03a1acc5a6854772041abfe9c83",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
