@@ -13,11 +13,14 @@
  */
 package monasca.api.app.command;
 
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
 import org.hibernate.validator.constraints.NotEmpty;
 
 import monasca.api.app.validation.NotificationMethodValidation;
+import monasca.api.app.validation.Validation;
 import monasca.api.domain.model.notificationmethod.NotificationMethodType;
 
 public class CreateNotificationMethodCommand {
@@ -30,6 +33,7 @@ public class CreateNotificationMethodCommand {
   @Size(min = 1, max = 512)
   public String address;
   public String period;
+  private int convertedPeriod = 0;
 
   public CreateNotificationMethodCommand() {this.period = "0";}
 
@@ -37,7 +41,8 @@ public class CreateNotificationMethodCommand {
     this.name = name;
     this.type = type;
     this.address = address;
-    this.period = period == null ? "0" : period;
+    period = period == null ? "0" : period;
+    this.setPeriod(period);
   }
 
   @Override
@@ -66,10 +71,21 @@ public class CreateNotificationMethodCommand {
       return false;
     if (type != other.type)
       return false;
+    if (convertedPeriod != other.convertedPeriod)
+      return false;
     return true;
   }
 
   public void validate() {
-    NotificationMethodValidation.validate(type, address, period);
+    NotificationMethodValidation.validate(type, address, convertedPeriod);
+  }
+
+  public void setPeriod(String period){
+    this.period = period;
+    this.convertedPeriod = Validation.parseAndValidateNumber(period, "period");
+  }
+
+  public int getConvertedPeriod(){
+    return this.convertedPeriod;
   }
 }
