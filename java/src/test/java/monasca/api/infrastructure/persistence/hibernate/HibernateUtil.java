@@ -97,7 +97,7 @@ class HibernateUtil {
     Properties properties = new Properties();
     properties.put("hibernate.connection.provider_class", "com.zaxxer.hikari.hibernate.HikariConnectionProvider");
     properties.put("hibernate.hbm2ddl.auto", "create-drop");
-    properties.put("show_sql", false);
+    properties.put("show_sql", true);
     properties.put("hibernate.hikari.dataSourceClassName", "org.h2.jdbcx.JdbcDataSource");
     properties.put("hibernate.hikari.dataSource.url", "jdbc:h2:mem:mon;MODE=PostgreSQL");
     properties.put("hibernate.hikari.dataSource.user", "sa");
