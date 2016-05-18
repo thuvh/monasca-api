@@ -26,13 +26,12 @@ public class NotificationMethodValidation {
 
     private static final List<Integer> VALID_PERIODS = Arrays.asList(0, 60);
 
-    public static void validate(NotificationMethodType type, String address, String period) {
-        int convertedPeriod = Validation.parseAndValidateNumber(period, "period");
+    public static void validate(NotificationMethodType type, String address, int period) {
         switch (type) {
             case EMAIL : {
                 if (!EmailValidator.getInstance(true).isValid(address))
                     throw Exceptions.unprocessableEntity("Address %s is not of correct format", address);
-                if (convertedPeriod != 0)
+                if (period != 0)
                     throw Exceptions.unprocessableEntity("Period can not be non zero for Email");
             } break;
             case WEBHOOK : {
@@ -42,12 +41,12 @@ public class NotificationMethodValidation {
                     throw Exceptions.unprocessableEntity("Address %s is not of correct format", address);
             } break;
             case PAGERDUTY : {
-                if (convertedPeriod != 0)
+                if (period != 0)
                     throw Exceptions.unprocessableEntity("Period can not be non zero for Pagerduty");
             } break;
         }
-        if (!VALID_PERIODS.contains(convertedPeriod)){
-            throw Exceptions.unprocessableEntity("%d is not a valid period", convertedPeriod);
+        if (!VALID_PERIODS.contains(period)){
+            throw Exceptions.unprocessableEntity("%d is not a valid period", period);
         }
     }
 }
