@@ -114,6 +114,29 @@
       "revId": "f021980351890e469f61c2bdc1a3326f64d55d11",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bab6814e_3605e779",
+        "filename": "monasca_api/expression_parser/alarm_expr_parser.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-05-19T21:25:12Z",
+      "side": 1,
+      "message": "This could be done as a parse action. Also, why allow the \u0027yes\u0027,\u0027true\u0027,\u00271\u0027 and so on? It could just check if the key exists or not, which would keep things simpler",
+      "range": {
+        "startLine": 138,
+        "startChar": 8,
+        "endLine": 148,
+        "endChar": 27
+      },
+      "revId": "f021980351890e469f61c2bdc1a3326f64d55d11",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
