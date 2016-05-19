@@ -22,6 +22,30 @@
       "revId": "de01f7ddb80dd7a86a05af37f335d903868fee31",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bab6814e_90b77e85",
+        "filename": "devstack/files/keystone/create_monasca_service.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 20259
+      },
+      "writtenOn": "2016-05-19T19:25:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bab6814e_4d22b501",
+      "range": {
+        "startLine": 26,
+        "startChar": 9,
+        "endLine": 26,
+        "endChar": 36
+      },
+      "revId": "de01f7ddb80dd7a86a05af37f335d903868fee31",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
