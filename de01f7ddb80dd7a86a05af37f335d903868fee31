@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bab6814e_4d22b501",
+        "filename": "devstack/files/keystone/create_monasca_service.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 8866
+      },
+      "writtenOn": "2016-05-19T13:57:13Z",
+      "side": 1,
+      "message": "\u0027default\u0027 \u003d\u003d default domain id\n\u0027Default\u0027 \u003d\u003d default domain name",
+      "range": {
+        "startLine": 26,
+        "startChar": 9,
+        "endLine": 26,
+        "endChar": 36
+      },
+      "revId": "de01f7ddb80dd7a86a05af37f335d903868fee31",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
