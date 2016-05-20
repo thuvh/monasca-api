@@ -117,6 +117,30 @@
     },
     {
       "key": {
+        "uuid": "bab6814e_8ae0dcfb",
+        "filename": "devstack/files/schema/mon_mysql.sql",
+        "patchSetId": 18
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-05-20T03:59:59Z",
+      "side": 1,
+      "message": "I think that is needed with NOT NULL clause.",
+      "parentUuid": "bab6814e_7512ba0a",
+      "range": {
+        "startLine": 144,
+        "startChar": 11,
+        "endLine": 144,
+        "endChar": 14
+      },
+      "revId": "2a14276a0cf5f03a1acc5a6854772041abfe9c83",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bab6814e_15f08ec8",
         "filename": "docs/monasca-api-spec.md",
         "patchSetId": 18
@@ -243,6 +267,30 @@
       "writtenOn": "2016-05-20T03:05:24Z",
       "side": 1,
       "message": "and here the default is null?",
+      "range": {
+        "startLine": 22,
+        "startChar": 3,
+        "endLine": 22,
+        "endChar": 9
+      },
+      "revId": "2a14276a0cf5f03a1acc5a6854772041abfe9c83",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bab6814e_6ad5b81a",
+        "filename": "monasca_api/tests/sqlite_alarm.sql",
+        "patchSetId": 18
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-05-20T03:59:59Z",
+      "side": 1,
+      "message": "Maybe that\u0027s because",
+      "parentUuid": "bab6814e_47f0adfe",
       "range": {
         "startLine": 22,
         "startChar": 3,
