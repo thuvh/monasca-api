@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "bab6814e_c5c0fc52",
+        "filename": "devstack/files/monasca-notification/notification.yaml",
+        "patchSetId": 18
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-05-20T14:24:05Z",
+      "side": 1,
+      "message": "fine with me will change",
+      "parentUuid": "bab6814e_953f5e86",
+      "range": {
+        "startLine": 25,
+        "startChar": 11,
+        "endLine": 25,
+        "endChar": 13
+      },
+      "revId": "2a14276a0cf5f03a1acc5a6854772041abfe9c83",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bab6814e_75f63afa",
         "filename": "devstack/files/monasca-notification/notification.yaml",
         "patchSetId": 18
@@ -82,6 +106,30 @@
       "writtenOn": "2016-05-20T03:05:24Z",
       "side": 1,
       "message": "same comment as up above.",
+      "range": {
+        "startLine": 73,
+        "startChar": 12,
+        "endLine": 73,
+        "endChar": 24
+      },
+      "revId": "2a14276a0cf5f03a1acc5a6854772041abfe9c83",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bab6814e_a59df867",
+        "filename": "devstack/files/monasca-notification/notification.yaml",
+        "patchSetId": 18
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-05-20T14:24:05Z",
+      "side": 1,
+      "message": "will change",
+      "parentUuid": "bab6814e_15540ec8",
       "range": {
         "startLine": 73,
         "startChar": 12,
@@ -141,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "bab6814e_25ae2881",
+        "filename": "devstack/files/schema/mon_mysql.sql",
+        "patchSetId": 18
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-05-20T14:24:05Z",
+      "side": 1,
+      "message": "Will add default value",
+      "parentUuid": "bab6814e_8ae0dcfb",
+      "range": {
+        "startLine": 144,
+        "startChar": 11,
+        "endLine": 144,
+        "endChar": 14
+      },
+      "revId": "2a14276a0cf5f03a1acc5a6854772041abfe9c83",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bab6814e_15f08ec8",
         "filename": "docs/monasca-api-spec.md",
         "patchSetId": 18
@@ -187,6 +259,30 @@
     },
     {
       "key": {
+        "uuid": "bab6814e_658b10c4",
+        "filename": "java/src/main/java/monasca/api/app/command/CreateNotificationMethodCommand.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-05-20T14:24:05Z",
+      "side": 1,
+      "message": "Good catch, I will add in the hash codes for the notification commands this one and the update notification command",
+      "parentUuid": "bab6814e_d5cc466c",
+      "range": {
+        "startLine": 44,
+        "startChar": 17,
+        "endLine": 44,
+        "endChar": 23
+      },
+      "revId": "2a14276a0cf5f03a1acc5a6854772041abfe9c83",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bab6814e_75a2ba4c",
         "filename": "java/src/main/java/monasca/api/app/command/UpdateNotificationMethodCommand.java",
         "patchSetId": 18
@@ -198,6 +294,30 @@
       "writtenOn": "2016-05-20T03:05:24Z",
       "side": 1,
       "message": "hashCode needs to be implemented. I wonder how many classes this isn\u0027t being done for?\n\nAlso, maybe we should look into using, http://stackoverflow.com/questions/27581/what-issues-should-be-considered-when-overriding-equals-and-hashcode-in-java",
+      "range": {
+        "startLine": 45,
+        "startChar": 11,
+        "endLine": 45,
+        "endChar": 18
+      },
+      "revId": "2a14276a0cf5f03a1acc5a6854772041abfe9c83",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bab6814e_2542a868",
+        "filename": "java/src/main/java/monasca/api/app/command/UpdateNotificationMethodCommand.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-05-20T14:24:05Z",
+      "side": 1,
+      "message": "will override the hashcode method and I will make sure all classes that have equals overridden has the hashcode method overwritten",
+      "parentUuid": "bab6814e_75a2ba4c",
       "range": {
         "startLine": 45,
         "startChar": 11,
@@ -233,6 +353,30 @@
     },
     {
       "key": {
+        "uuid": "bab6814e_0547a477",
+        "filename": "java/src/main/java/monasca/api/app/validation/NotificationMethodValidation.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-05-20T14:24:05Z",
+      "side": 1,
+      "message": "that is what we are doing, Just have not put up the changes yet for it",
+      "parentUuid": "bab6814e_f52a2a8f",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 27,
+        "endChar": 11
+      },
+      "revId": "2a14276a0cf5f03a1acc5a6854772041abfe9c83",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bab6814e_87a8d5dc",
         "filename": "java/src/test/resources/monasca/api/infrastructure/persistence/mysql/notification_method.sql",
         "patchSetId": 18
@@ -244,6 +388,30 @@
       "writtenOn": "2016-05-20T03:05:24Z",
       "side": 1,
       "message": "so, here you set the default to 0, but in the other sql file, it isn\u0027t\n\njust wondering if this should be the same in the other sql file?",
+      "range": {
+        "startLine": 7,
+        "startChar": 19,
+        "endLine": 7,
+        "endChar": 23
+      },
+      "revId": "2a14276a0cf5f03a1acc5a6854772041abfe9c83",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bab6814e_053e84d9",
+        "filename": "java/src/test/resources/monasca/api/infrastructure/persistence/mysql/notification_method.sql",
+        "patchSetId": 18
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-05-20T14:24:05Z",
+      "side": 1,
+      "message": "it should be",
+      "parentUuid": "bab6814e_87a8d5dc",
       "range": {
         "startLine": 7,
         "startChar": 19,
@@ -291,6 +459,30 @@
       "side": 1,
       "message": "Maybe that\u0027s because",
       "parentUuid": "bab6814e_47f0adfe",
+      "range": {
+        "startLine": 22,
+        "startChar": 3,
+        "endLine": 22,
+        "endChar": 9
+      },
+      "revId": "2a14276a0cf5f03a1acc5a6854772041abfe9c83",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bab6814e_2510e858",
+        "filename": "monasca_api/tests/sqlite_alarm.sql",
+        "patchSetId": 18
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-05-20T14:24:05Z",
+      "side": 1,
+      "message": "Did this wrong will make sure the schema is the same across",
+      "parentUuid": "bab6814e_6ad5b81a",
       "range": {
         "startLine": 22,
         "startChar": 3,
