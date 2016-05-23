@@ -68,7 +68,7 @@ enable_service monasca-persister
 enable_service monasca-notification
 
 # monasca-thresh depends on MySQL, monasca-kafka, monasca-storm
-enable_service monasca-thresh
+#enable_service monasca-thresh
 
 # monasca-agent depends on monasca-api
 enable_service monasca-agent
