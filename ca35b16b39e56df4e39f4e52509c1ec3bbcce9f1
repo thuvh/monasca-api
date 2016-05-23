@@ -22,6 +22,30 @@
       "revId": "ca35b16b39e56df4e39f4e52509c1ec3bbcce9f1",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bab6814e_959ed060",
+        "filename": "monasca_api/common/repositories/sqla/alarm_definitions_repository.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-05-23T15:56:38Z",
+      "side": 1,
+      "message": "Yes, you\u0027re right. Thanks",
+      "parentUuid": "bab6814e_0d031fb9",
+      "range": {
+        "startLine": 3,
+        "startChar": 20,
+        "endLine": 3,
+        "endChar": 21
+      },
+      "revId": "ca35b16b39e56df4e39f4e52509c1ec3bbcce9f1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
