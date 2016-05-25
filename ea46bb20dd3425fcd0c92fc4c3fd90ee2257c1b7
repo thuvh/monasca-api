@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bab6814e_6fa14d46",
+        "filename": "monasca_api/common/repositories/sqla/alarm_definitions_repository.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-05-25T22:02:19Z",
+      "side": 1,
+      "message": "dont need both copyrights",
+      "range": {
+        "startLine": 3,
+        "startChar": 29,
+        "endLine": 3,
+        "endChar": 36
+      },
+      "revId": "ea46bb20dd3425fcd0c92fc4c3fd90ee2257c1b7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
