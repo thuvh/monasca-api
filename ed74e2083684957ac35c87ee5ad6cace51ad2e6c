@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bab6814e_71ce242e",
+        "filename": "monasca_api/common/repositories/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-05-26T16:22:07Z",
+      "side": 1,
+      "message": "here",
+      "range": {
+        "startLine": 1,
+        "startChar": 17,
+        "endLine": 1,
+        "endChar": 24
+      },
+      "revId": "ed74e2083684957ac35c87ee5ad6cace51ad2e6c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bab6814e_51ea0075",
+        "filename": "monasca_api/tests/test_repositories.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-05-26T16:22:07Z",
+      "side": 1,
+      "message": "add here",
+      "range": {
+        "startLine": 1,
+        "startChar": 21,
+        "endLine": 1,
+        "endChar": 22
+      },
+      "revId": "ed74e2083684957ac35c87ee5ad6cace51ad2e6c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bab6814e_716aa4ee",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-05-26T16:22:07Z",
+      "side": 1,
+      "message": "should we call this paginate measurements now since you can pass multiple now?",
+      "range": {
+        "startLine": 393,
+        "startChar": 4,
+        "endLine": 393,
+        "endChar": 24
+      },
+      "revId": "ed74e2083684957ac35c87ee5ad6cace51ad2e6c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bab6814e_17cd0831",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-05-26T16:22:07Z",
+      "side": 1,
+      "message": "what if the limit lands on zero? Lets say your limit is 10. There are three measurements in the list. Each with 5 measurements. So you hit the else in the two iterations and in result the limit is now 0 on the last iteration. You get to this point and you use a negative limit as an index and it will fail with an exception",
+      "range": {
+        "startLine": 411,
+        "startChar": 57,
+        "endLine": 411,
+        "endChar": 62
+      },
+      "revId": "ed74e2083684957ac35c87ee5ad6cace51ad2e6c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bab6814e_f7e2049f",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-05-26T16:22:07Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 497,
+        "startChar": 44,
+        "endLine": 497,
+        "endChar": 49
+      },
+      "revId": "ed74e2083684957ac35c87ee5ad6cace51ad2e6c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bab6814e_74f0d2fd",
+        "filename": "monasca_tempest_tests/tests/api/test_measurements.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-05-26T16:22:07Z",
+      "side": 1,
+      "message": "no tests with limit we should add that.",
+      "range": {
+        "startLine": 264,
+        "startChar": 38,
+        "endLine": 264,
+        "endChar": 39
+      },
+      "revId": "ed74e2083684957ac35c87ee5ad6cace51ad2e6c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bab6814e_d7f6e05b",
+        "filename": "monasca_tempest_tests/tests/api/test_statistics.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-05-26T16:22:07Z",
+      "side": 1,
+      "message": "no test for this functionality in statistics?",
+      "range": {
+        "startLine": 244,
+        "startChar": 24,
+        "endLine": 244,
+        "endChar": 28
+      },
+      "revId": "ed74e2083684957ac35c87ee5ad6cace51ad2e6c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
