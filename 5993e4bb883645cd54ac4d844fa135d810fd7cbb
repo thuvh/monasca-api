@@ -1,0 +1,181 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9abb7d3a_f3e511dc",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 23
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-05-31T16:21:57Z",
+      "side": 1,
+      "message": "deterministic\u0027s alarm -\u003e deterministic alarm\u0027s",
+      "revId": "5993e4bb883645cd54ac4d844fa135d810fd7cbb",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abb7d3a_ae068083",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 23
+      },
+      "lineNbr": 507,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-05-31T16:21:57Z",
+      "side": 1,
+      "message": "The alarm should be \"OK\" if no data is received.",
+      "revId": "5993e4bb883645cd54ac4d844fa135d810fd7cbb",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abb7d3a_ae916049",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 23
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-05-31T16:21:57Z",
+      "side": 1,
+      "message": "The alarm definition is considered deterministic if _any_ of its expressions are deterministic.",
+      "revId": "5993e4bb883645cd54ac4d844fa135d810fd7cbb",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abb7d3a_6e1f78b7",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 23
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-05-31T16:21:57Z",
+      "side": 1,
+      "message": "deterministic\u003dno is invalid syntax",
+      "revId": "5993e4bb883645cd54ac4d844fa135d810fd7cbb",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abb7d3a_ce8664da",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 23
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-05-31T16:21:57Z",
+      "side": 1,
+      "message": "deterministic\u003dno is invalid syntax",
+      "revId": "5993e4bb883645cd54ac4d844fa135d810fd7cbb",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abb7d3a_6475d930",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 23
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-05-31T16:21:57Z",
+      "side": 1,
+      "message": "nitpick: expressions are marked \"deterministic\" and left unmarked for \"non-deterministic\"",
+      "range": {
+        "startLine": 532,
+        "startChar": 8,
+        "endLine": 532,
+        "endChar": 14
+      },
+      "revId": "5993e4bb883645cd54ac4d844fa135d810fd7cbb",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abb7d3a_29444a48",
+        "filename": "java/src/main/java/monasca/api/domain/model/alarmdefinition/AlarmDefinition.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-05-31T16:21:57Z",
+      "side": 1,
+      "message": "Because this is really a read-only field, I\u0027m not sure we want a public setter for it.",
+      "range": {
+        "startLine": 251,
+        "startChar": 14,
+        "endLine": 251,
+        "endChar": 30
+      },
+      "revId": "5993e4bb883645cd54ac4d844fa135d810fd7cbb",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abb7d3a_6975b230",
+        "filename": "monasca_api/expression_parser/alarm_expr_parser.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-05-31T16:21:57Z",
+      "side": 1,
+      "message": "period should be after deterministic keyword",
+      "range": {
+        "startLine": 256,
+        "startChar": 14,
+        "endLine": 256,
+        "endChar": 22
+      },
+      "revId": "5993e4bb883645cd54ac4d844fa135d810fd7cbb",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abb7d3a_2673de16",
+        "filename": "monasca_tempest_tests/tests/api/helpers.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-05-31T16:21:57Z",
+      "side": 1,
+      "message": "This function is used to create new definitions but the field \u0027deterministic\u0027 doesn\u0027t exist in the create command, causing an internal server error.",
+      "range": {
+        "startLine": 74,
+        "startChar": 28,
+        "endLine": 74,
+        "endChar": 41
+      },
+      "revId": "5993e4bb883645cd54ac4d844fa135d810fd7cbb",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
