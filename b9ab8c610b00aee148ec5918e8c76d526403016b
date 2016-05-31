@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9abb7d3a_e9c42b60",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 2370,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-05-31T04:23:34Z",
+      "side": 1,
+      "message": "According to the code, severity is a possible Query Parameter, but it isn\u0027t listed here",
+      "range": {
+        "startLine": 2370,
+        "startChar": 0,
+        "endLine": 2370,
+        "endChar": 20
+      },
+      "revId": "b9ab8c610b00aee148ec5918e8c76d526403016b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abb7d3a_29e113d1",
+        "filename": "monasca_api/common/repositories/mysql/alarms_repository.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-05-31T04:23:34Z",
+      "side": 1,
+      "message": "The java alarm count resources allows severities as a query parameter",
+      "range": {
+        "startLine": 423,
+        "startChar": 8,
+        "endLine": 423,
+        "endChar": 48
+      },
+      "revId": "b9ab8c610b00aee148ec5918e8c76d526403016b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abb7d3a_a9f4e386",
+        "filename": "monasca_api/common/repositories/sqla/alarms_repository.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-05-31T04:23:34Z",
+      "side": 1,
+      "message": "This code is duplicated 3 times",
+      "range": {
+        "startLine": 289,
+        "startChar": 0,
+        "endLine": 293,
+        "endChar": 67
+      },
+      "revId": "b9ab8c610b00aee148ec5918e8c76d526403016b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
