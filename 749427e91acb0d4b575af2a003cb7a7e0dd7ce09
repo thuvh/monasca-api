@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9abb7d3a_5b3e9028",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 24
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2016-06-01T09:27:06Z",
+      "side": 1,
+      "message": "Keyword should be outside of dimensions brackets.",
+      "range": {
+        "startLine": 518,
+        "startChar": 56,
+        "endLine": 518,
+        "endChar": 69
+      },
+      "revId": "749427e91acb0d4b575af2a003cb7a7e0dd7ce09",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abb7d3a_f7b31896",
+        "filename": "monasca_api/expression_parser/alarm_expr_parser.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2016-06-01T09:27:06Z",
+      "side": 1,
+      "message": "\u0027SubExpr\u0027 object has no attribute \u0027periodu\u0027",
+      "range": {
+        "startLine": 333,
+        "startChar": 25,
+        "endLine": 333,
+        "endChar": 32
+      },
+      "revId": "749427e91acb0d4b575af2a003cb7a7e0dd7ce09",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
