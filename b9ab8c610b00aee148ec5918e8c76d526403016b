@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9abb7d3a_fcb8fe12",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 2370,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-06-01T18:24:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9abb7d3a_e9c42b60",
+      "range": {
+        "startLine": 2370,
+        "startChar": 0,
+        "endLine": 2370,
+        "endChar": 20
+      },
+      "revId": "b9ab8c610b00aee148ec5918e8c76d526403016b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9abb7d3a_29e113d1",
         "filename": "monasca_api/common/repositories/mysql/alarms_repository.py",
         "patchSetId": 11
@@ -59,6 +83,30 @@
       "writtenOn": "2016-05-31T04:23:34Z",
       "side": 1,
       "message": "This code is duplicated 3 times",
+      "range": {
+        "startLine": 289,
+        "startChar": 0,
+        "endLine": 293,
+        "endChar": 67
+      },
+      "revId": "b9ab8c610b00aee148ec5918e8c76d526403016b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abb7d3a_07c00a4f",
+        "filename": "monasca_api/common/repositories/sqla/alarms_repository.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-06-01T18:24:34Z",
+      "side": 1,
+      "message": "I think there is enough of this code that should be cleaned up we should consider doing it separately.",
+      "parentUuid": "9abb7d3a_a9f4e386",
       "range": {
         "startLine": 289,
         "startChar": 0,
