@@ -15,7 +15,9 @@ package monasca.api.app.command;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
 import org.apache.commons.validator.routines.EmailValidator;
+import org.apache.commons.validator.routines.RegexValidator;
 import org.apache.commons.validator.routines.UrlValidator;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -23,6 +25,13 @@ import monasca.api.domain.model.notificationmethod.NotificationMethodType;
 import monasca.api.resource.exception.Exceptions;
 
 public class CreateNotificationMethodCommand {
+  private static final String[] SCHEMES = {"http","https"};
+  // Allow QA to use the TLD .test. This is valid according to RFC-2606
+  private static final RegexValidator TEST_TLD_VALIDATOR = new RegexValidator(".+\\.test$");
+  private static final UrlValidator URL_VALIDATOR =
+            new UrlValidator(SCHEMES,
+                             TEST_TLD_VALIDATOR,
+                             UrlValidator.ALLOW_LOCAL_URLS | UrlValidator.ALLOW_2_SLASHES);
   @NotEmpty
   @Size(min = 1, max = 250)
   public String name;
@@ -71,9 +80,7 @@ public class CreateNotificationMethodCommand {
           throw Exceptions.unprocessableEntity("Address %s is not of correct format", address);
       }; break;
       case WEBHOOK : {
-        String[] schemes = {"http","https"};
-        UrlValidator urlValidator = new UrlValidator(schemes, UrlValidator.ALLOW_LOCAL_URLS | UrlValidator.ALLOW_2_SLASHES);
-        if (!urlValidator.isValid(address))
+        if (!URL_VALIDATOR.isValid(address))
           throw Exceptions.unprocessableEntity("Address %s is not of correct format", address);
       }; break;
       case PAGERDUTY : {

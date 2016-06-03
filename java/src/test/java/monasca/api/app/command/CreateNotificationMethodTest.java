@@ -94,6 +94,19 @@ public class CreateNotificationMethodTest extends AbstractModelTest {
       newNotificationMethod.validate();
   }
 
+  public void testValidationTestDomainForWebhook() {
+    CreateNotificationMethodCommand newNotificationMethod =
+        new CreateNotificationMethodCommand("MyWebhook", NotificationMethodType.WEBHOOK, "http://test.test");
+      newNotificationMethod.validate();
+  }
+
+  @Test(expectedExceptions = WebApplicationException.class)
+  public void testValidationInvalidDomainForWebhook() {
+    CreateNotificationMethodCommand newNotificationMethod =
+        new CreateNotificationMethodCommand("MyWebhook", NotificationMethodType.WEBHOOK, "http://test.fred");
+      newNotificationMethod.validate();
+  }
+
   @Test(expectedExceptions = WebApplicationException.class)
   public void testValidationExceptionForWebhook() throws Exception {
     CreateNotificationMethodCommand newNotificationMethod =
