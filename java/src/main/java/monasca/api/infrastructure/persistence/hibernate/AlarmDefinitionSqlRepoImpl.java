@@ -251,6 +251,7 @@ public class AlarmDefinitionSqlRepoImpl
             + "LEFT OUTER JOIN alarm_action AS aa ON t.id = aa.alarm_definition_id ORDER BY t.id, t.created_at";
 
     StringBuilder sbWhere = new StringBuilder();
+    StringBuilder limitOffset = new StringBuilder();
 
     if (name != null) {
       sbWhere.append(" and ad.name = :name");
@@ -260,16 +261,16 @@ public class AlarmDefinitionSqlRepoImpl
       sbWhere.append(" and ad.severity = :severity");
     }
 
-    if (offset != null && !offset.equals("0")) {
-      sbWhere.append(" and ad.id > :offset");
-    }
-
-    String limitPart = "";
     if (limit > 0) {
-      limitPart = " limit :limit";
+      limitOffset.append(" limit :limit");
+    }
+    if (offset != null) {
+      limitOffset.append(" offset ");
+      limitOffset.append(offset);
+      limitOffset.append(' ');
     }
 
-    String sql = String.format(query, SubAlarmDefinitionQueries.buildJoinClauseFor(dimensions), sbWhere, limitPart);
+    String sql = String.format(query, SubAlarmDefinitionQueries.buildJoinClauseFor(dimensions), sbWhere, limitOffset);
 
     try {
       session = sessionFactory.openSession();
@@ -285,10 +286,6 @@ public class AlarmDefinitionSqlRepoImpl
 
       if (severity != null) {
         qAlarmDefinition.setString("severity", severity.name());
-      }
-
-      if (offset != null && !offset.equals("0")) {
-        qAlarmDefinition.setString("offset", offset);
       }
 
       if (limit > 0) {

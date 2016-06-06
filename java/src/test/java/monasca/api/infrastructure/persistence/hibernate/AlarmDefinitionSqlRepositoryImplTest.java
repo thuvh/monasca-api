@@ -27,7 +27,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.google.common.base.Joiner;
+import com.google.common.base.Optional;
+import com.google.common.base.Predicate;
+import com.google.common.collect.FluentIterable;
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Lists;
 import monasca.api.domain.exception.EntityNotFoundException;
 import monasca.api.domain.model.alarmdefinition.AlarmDefinition;
 import monasca.api.domain.model.alarmdefinition.AlarmDefinitionRepo;
@@ -50,6 +55,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import javax.annotation.Nullable;
 import javax.ws.rs.WebApplicationException;
 
 @Test(groups = "orm")
@@ -386,6 +392,84 @@ public class AlarmDefinitionSqlRepositoryImplTest {
     alarmDefinition = alarmDefinitions.get(0);
 
     assertEquals(this.alarmDef_123, alarmDefinition);
+  }
+
+  public void shouldFindWithOffset() {
+    // create more alarm definition for this test
+    final AlarmDefinition localAd1 = new AlarmDefinition("999", "60% CPU", null, "LOW",
+        "avg(hpcs.compute{flavor_id=888, image_id=888, metric_name=mem}) > 20 and avg(hpcs.compute) < 100",
+        Arrays.asList("flavor_id", "image_id"), true, Arrays.asList("29387234", "77778687"), Collections.<String>emptyList(),
+        Collections.<String>emptyList());
+    final AlarmDefinition localAd2 = new AlarmDefinition("9999", "70% CPU", null, "LOW",
+        "avg(hpcs.compute{flavor_id=999, image_id=888, metric_name=mem}) > 20 and avg(hpcs.compute) < 99",
+        Arrays.asList("flavor_id", "image_id"), true, Arrays.asList("29387234", "77778687"), Collections.<String>emptyList(),
+        Collections.<String>emptyList());
+    final AlarmDefinition localAd3 = new AlarmDefinition("99999", "80% CPU", null, "LOW",
+        "avg(hpcs.compute{flavor_id=1111, image_id=888, metric_name=mem}) > 20 and avg(hpcs.compute) < 88",
+        Arrays.asList("flavor_id", "image_id"), true, Arrays.asList("29387234", "77778687"), Collections.<String>emptyList(),
+        Collections.<String>emptyList());
+
+    final Session session = sessionFactory.openSession();
+    session.beginTransaction();
+
+    for (final AlarmDefinition ad : Lists.newArrayList(localAd1, localAd2, localAd3)) {
+      final AlarmDefinitionDb adDb = new AlarmDefinitionDb()
+          .setTenantId("bob")
+          .setName(ad.getName())
+          .setSeverity(AlarmSeverity.valueOf(ad.getSeverity()))
+          .setExpression(ad.getExpression())
+          .setMatchBy(Joiner.on(",").join(ad.getMatchBy()))
+          .setActionsEnabled(ad.isActionsEnabled());
+
+      session.save(adDb.setId(ad.getId()));
+
+      for (final String alarmActionId : ad.getAlarmActions()) {
+        session.save(new AlarmActionDb()
+            .setActionId(alarmActionId)
+            .setAlarmDefinition(adDb)
+            .setAlarmState(AlarmState.ALARM)
+        );
+      }
+    }
+    session.getTransaction().commit();
+    session.close();
+
+    // run tests
+    checkList(repo.find("bob", null, null, null, null, null, 1), this.alarmDef_123, this.alarmDef_234);
+    checkList(repo.find("bob", null, null, null, null, "1", 1), this.alarmDef_234, localAd1);
+    checkList(repo.find("bob", null, null, null, null, "2", 1), localAd1, localAd2);
+    checkList(repo.find("bob", null, null, null, null, "3", 1), localAd2, localAd3);
+    checkList(repo.find("bob", null, null, null, null, "4", 1), localAd3);
+    checkList(repo.find("bob", null, null, null, null, "5", 1));
+
+    checkList(repo.find("bob", null, null, null, null, null, 0),
+        this.alarmDef_123, this.alarmDef_234, localAd1, localAd2, localAd3);
+    checkList(repo.find("bob", null, null, null, null, null, 6),
+        this.alarmDef_123, this.alarmDef_234, localAd1, localAd2, localAd3);
+    checkList(repo.find("bob", null, null, null, null, "2", 3),
+        localAd1, localAd2, localAd3);
+  }
+
+  private void checkList(List<AlarmDefinition> found, AlarmDefinition... expected) {
+    assertEquals(found.size(), expected.length);
+    AlarmDefinition actual;
+
+    for (final AlarmDefinition alarmDefinition : expected) {
+      final Optional<AlarmDefinition> alarmOptional = FluentIterable
+          .from(found)
+          .firstMatch(new Predicate<AlarmDefinition>() {
+            @Override
+            public boolean apply(@Nullable final AlarmDefinition input) {
+              assert input != null;
+              return input.getId().equals(alarmDefinition.getId());
+            }
+          });
+      assertTrue(alarmOptional.isPresent());
+
+      actual = alarmOptional.get();
+      assertEquals(actual, alarmDefinition, String.format("%s not equal to %s", actual, alarmDefinition));
+    }
+
   }
 
 }
