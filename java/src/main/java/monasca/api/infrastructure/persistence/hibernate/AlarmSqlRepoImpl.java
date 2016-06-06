@@ -27,10 +27,13 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.google.common.base.Function;
+import com.google.common.base.Joiner;
 import com.google.common.base.Preconditions;
+import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -46,7 +49,6 @@ import monasca.api.domain.exception.EntityNotFoundException;
 import monasca.api.domain.model.alarm.Alarm;
 import monasca.api.domain.model.alarm.AlarmCount;
 import monasca.api.domain.model.alarm.AlarmRepo;
-import monasca.api.resource.exception.Exceptions;
 import monasca.common.hibernate.db.AlarmDb;
 import monasca.common.hibernate.db.SubAlarmDb;
 import monasca.common.hibernate.type.BinaryId;
@@ -64,6 +66,9 @@ public class AlarmSqlRepoImpl
     implements AlarmRepo {
 
   private static final Logger logger = LoggerFactory.getLogger(AlarmSqlRepoImpl.class);
+  private static final Joiner COMMA_JOINER = Joiner.on(",");
+  private static final Splitter SPACE_SPLITTER = Splitter.on(" ");
+  private static final AlarmSortByFunction ALARM_SORT_BY_FUNCTION = new AlarmSortByFunction();
 
   private static final String FIND_ALARM_BY_ID_SQL =
       "select distinct ad.id as alarm_definition_id, ad.severity, ad.name as alarm_definition_name, "
@@ -98,7 +103,7 @@ public class AlarmSqlRepoImpl
       + "inner join metric_definition as md on md.id = mdd.metric_definition_id "
       + "left outer join (select dimension_set_id, name, value "
       + "from metric_dimension group by dimension_set_id, name, value) as mdg on mdg.dimension_set_id = mdd.metric_dimension_set_id "
-      + "order by a.id ASC";
+      + "%s";
 
   @Inject
   public AlarmSqlRepoImpl(@Named("orm") SessionFactory sessionFactory) {
@@ -170,11 +175,6 @@ public class AlarmSqlRepoImpl
                           final boolean enforceLimit) {
     logger.trace(ORM_LOG_MARKER, "find(...) entering");
 
-    if (sortBy != null && !sortBy.isEmpty()) {
-      throw Exceptions.unprocessableEntity(
-          "Sort_by is not implemented for the hibernate database type");
-    }
-
     Preconditions.checkNotNull(tenantId, "TenantId is required");
 
     Session session = null;
@@ -183,7 +183,9 @@ public class AlarmSqlRepoImpl
 
     try {
       final Query query;
-      final String sql = String.format(FIND_ALARMS_SQL, this.getFindAlarmsSubQuery(
+
+      final String sortByClause = ALARM_SORT_BY_FUNCTION.apply(sortBy);
+      final String alarmsSubQuery = this.getFindAlarmsSubQuery(
           alarmDefId,
           metricName,
           metricDimensions,
@@ -192,10 +194,13 @@ public class AlarmSqlRepoImpl
           lifecycleState,
           link,
           stateUpdatedStart,
+          sortBy,
           offset,
           limit,
           enforceLimit
-      ));
+      );
+
+      final String sql = String.format(FIND_ALARMS_SQL, alarmsSubQuery, sortByClause);
 
       try {
         query = new Function<Session, Query>(){
@@ -204,7 +209,8 @@ public class AlarmSqlRepoImpl
           @Override
           public Query apply(@Nullable final Session input) {
             assert input != null;
-            final Query query = input.createSQLQuery(sql);
+            final Query query = input.createSQLQuery(sql)
+                .setReadOnly(true);
 
             query.setString("tenantId", tenantId);
 
@@ -276,6 +282,7 @@ public class AlarmSqlRepoImpl
                                        final String lifecycleState,
                                        final String link,
                                        final DateTime stateUpdatedStart,
+                                       final List<String> sortBy,
                                        final String offset,
                                        final int limit,
                                        final boolean enforceLimit) {
@@ -337,8 +344,6 @@ public class AlarmSqlRepoImpl
     if (stateUpdatedStart != null) {
       sbWhere.append(" and a.state_updated_at >= :stateUpdatedStart");
     }
-
-    sbWhere.append(" order by a.id ASC ");
 
     if (enforceLimit && limit > 0) {
       sbWhere.append(" limit :limit");
@@ -597,5 +602,74 @@ public class AlarmSqlRepoImpl
                                    String offset, int limit) {
     // Not Implemented
     return null;
+  }
+
+  private static class AlarmSortByFunction
+      implements Function<List<String>, String> {
+
+    static final Map<String, List<String>> SORT_BY_TO_COLUMN_ALIAS = Maps.newHashMapWithExpectedSize(10);
+
+    static {
+      SORT_BY_TO_COLUMN_ALIAS.put("alarm_id",
+          Lists.newArrayList("a.id"));
+      SORT_BY_TO_COLUMN_ALIAS.put("alarm_definition_id",
+          Lists.newArrayList("ad.id"));
+      SORT_BY_TO_COLUMN_ALIAS.put("alarm_definition_name",
+          Lists.newArrayList("ad.name"));
+      SORT_BY_TO_COLUMN_ALIAS.put("created_timestamp",
+          Lists.newArrayList("a.created_at"));
+      SORT_BY_TO_COLUMN_ALIAS.put("updated_timestamp",
+          Lists.newArrayList("a.updated_at"));
+      SORT_BY_TO_COLUMN_ALIAS.put("state_updated_timestamp",
+          Lists.newArrayList("a.state_updated_at"));
+      SORT_BY_TO_COLUMN_ALIAS.put("state",
+          Lists.newArrayList("a.state='ALARM'", "a.state='UNDETERMINED'", "a.state='OK'"));
+      SORT_BY_TO_COLUMN_ALIAS.put("severity",
+          Lists.newArrayList("ad.severity='CRITICAL'", "ad.severity='HIGH'", "ad.severity='MEDIUM'", "ad.severity='LOW'"));
+    }
+
+    @Nullable
+    @Override
+    public String apply(@Nullable final List<String> input) {
+      final StringBuilder orderClause = new StringBuilder(" ORDER BY ");
+
+      if (CollectionUtils.isEmpty(input)) {
+        return orderClause.append("a.id ASC ").toString();
+      }
+
+      final List<String> sortByElements = Lists.newArrayListWithExpectedSize(input.size());
+      for (final String sortByElement : input) {
+        final List<String> split = SPACE_SPLITTER.splitToList(sortByElement);
+
+        final String sortAlias = split.get(0);
+        final String sortOrder = split.size() >= 2 ? split.get(1).toUpperCase() : "ASC";
+
+        final List<String> columnAlias = SORT_BY_TO_COLUMN_ALIAS.get(sortAlias);
+        if (columnAlias != null) {
+          sortByElements.add(new Function<List<String>, String>() {
+
+            @Nullable
+            @Override
+            public String apply(@Nullable final List<String> input) {
+              final List<String> builder = Lists.newArrayListWithExpectedSize(input.size());
+              for (final String part : input) {
+                builder.add(part.trim());
+              }
+              return String.format("(%s) %s", COMMA_JOINER.join(builder), sortOrder);
+            }
+
+          }.apply(columnAlias));
+        }
+      }
+
+      if (!sortByElements.contains("a.id")) {
+        sortByElements.add("a.id");
+      }
+
+      orderClause.append(COMMA_JOINER.join(sortByElements)).append(" ASC");
+
+      return orderClause.toString();
+    }
+
   }
 }
