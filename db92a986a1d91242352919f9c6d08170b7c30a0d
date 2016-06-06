@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7aa08908_e3cac6a0",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/hibernate/AlarmDefinitionSqlRepoImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2016-06-06T12:57:40Z",
+      "side": 1,
+      "message": "Blank line please.",
+      "revId": "db92a986a1d91242352919f9c6d08170b7c30a0d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7aa08908_a3371eaf",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/hibernate/AlarmDefinitionSqlRepoImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2016-06-06T12:57:40Z",
+      "side": 1,
+      "message": "Why don\u0027t you want to use the named parameter here?",
+      "range": {
+        "startLine": 268,
+        "startChar": 6,
+        "endLine": 270,
+        "endChar": 30
+      },
+      "revId": "db92a986a1d91242352919f9c6d08170b7c30a0d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
