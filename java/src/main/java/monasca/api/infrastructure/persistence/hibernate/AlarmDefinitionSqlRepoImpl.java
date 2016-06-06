@@ -235,10 +235,6 @@ public class AlarmDefinitionSqlRepoImpl
       throw Exceptions.unprocessableEntity(
           "Sort_by is not implemented for the hibernate database type");
     }
-    if (severity != null) {
-      throw Exceptions.unprocessableEntity(
-          "Severity is not implemented for the hibernate database type");
-    }
 
     Session session = null;
     List<AlarmDefinition> resultSet = Lists.newArrayList();
@@ -258,6 +254,10 @@ public class AlarmDefinitionSqlRepoImpl
 
     if (name != null) {
       sbWhere.append(" and ad.name = :name");
+    }
+
+    if (severity != null) {
+      sbWhere.append(" and ad.severity = :severity");
     }
 
     if (offset != null && !offset.equals("0")) {
@@ -281,6 +281,10 @@ public class AlarmDefinitionSqlRepoImpl
 
       if (name != null) {
         qAlarmDefinition.setString("name", name);
+      }
+
+      if (severity != null) {
+        qAlarmDefinition.setString("severity", severity.name());
       }
 
       if (offset != null && !offset.equals("0")) {

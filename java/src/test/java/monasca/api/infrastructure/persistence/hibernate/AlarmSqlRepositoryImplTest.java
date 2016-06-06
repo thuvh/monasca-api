@@ -120,7 +120,7 @@ public class AlarmSqlRepositoryImplTest {
           TENANT_ID,
           "50% CPU",
           "avg(cpu.sys_mem{service=monitoring}) > 20 and avg(cpu.idle_perc{service=monitoring}) < 10",
-          AlarmSeverity.LOW,
+          AlarmSeverity.HIGH,
           "hostname,region",
           true
       );
@@ -236,7 +236,7 @@ public class AlarmSqlRepositoryImplTest {
       session.getTransaction().commit();
 
       compoundAlarm =
-          new Alarm("234111", "234", "50% CPU", "LOW", buildAlarmMetrics(
+          new Alarm("234111", "234", "50% CPU", "HIGH", buildAlarmMetrics(
               buildMetricDefinition("cpu.sys_mem", "hostname", "roland", "region", "colorado", "service", "monitoring"),
               buildMetricDefinition("cpu.idle_perc", "extra", "vivi", "hostname", "roland", "region", "colorado", "service", "monitoring")),
               AlarmState.UNDETERMINED, null, null, timestamp4, timestamp4, timestamp4);
@@ -463,6 +463,18 @@ public class AlarmSqlRepositoryImplTest {
   public void shouldUpdateThrowException() {
 
     repo.update(TENANT_ID, "Not a valid alarm id", AlarmState.UNDETERMINED, null, null);
+  }
+
+  public void shouldFilterBySeverity() {
+    checkList(repo.find(TENANT_ID, null, null, null, null, AlarmSeverity.LOW, null, null, null, null, null, 1, false),
+        alarm1, alarm2, alarm3);
+
+    checkList(repo.find(TENANT_ID, null, null, null, null, AlarmSeverity.HIGH, null, null, null, null, null, 1, false),
+        compoundAlarm);
+
+    // no alarms for those severities
+    checkList(repo.find(TENANT_ID, null, null, null, null, AlarmSeverity.CRITICAL, null, null, null, null, null, 1, false));
+    checkList(repo.find(TENANT_ID, null, null, null, null, AlarmSeverity.MEDIUM, null, null, null, null, null, 1, false));
   }
 
   private void checkList(List<Alarm> found, Alarm... expected) {

@@ -174,10 +174,6 @@ public class AlarmSqlRepoImpl
       throw Exceptions.unprocessableEntity(
           "Sort_by is not implemented for the hibernate database type");
     }
-    if (severity != null) {
-      throw Exceptions.unprocessableEntity(
-          "Severity filter is not implemented for the hibernate database type");
-    }
 
     Preconditions.checkNotNull(tenantId, "TenantId is required");
 
@@ -192,6 +188,7 @@ public class AlarmSqlRepoImpl
           metricName,
           metricDimensions,
           state,
+          severity,
           lifecycleState,
           link,
           stateUpdatedStart,
@@ -221,6 +218,10 @@ public class AlarmSqlRepoImpl
 
             if (state != null) {
               query.setString("state", state.name());
+            }
+
+            if (severity != null) {
+              query.setString("severity", severity.name());
             }
 
             if (link != null) {
@@ -271,6 +272,7 @@ public class AlarmSqlRepoImpl
                                        final String metricName,
                                        final Map<String, String> metricDimensions,
                                        final AlarmState state,
+                                       final AlarmSeverity severity,
                                        final String lifecycleState,
                                        final String link,
                                        final DateTime stateUpdatedStart,
@@ -318,6 +320,10 @@ public class AlarmSqlRepoImpl
 
     if (state != null) {
       sbWhere.append(" and a.state = :state");
+    }
+
+    if (severity != null) {
+      sbWhere.append(" and ad.severity = :severity");
     }
 
     if (lifecycleState != null) {
