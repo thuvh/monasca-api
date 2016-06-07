@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7aa08908_91fde53c",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/hibernate/AlarmDefinitionSqlRepoImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-06-07T03:59:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7aa08908_e3cac6a0",
+      "revId": "db92a986a1d91242352919f9c6d08170b7c30a0d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7aa08908_a3371eaf",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/hibernate/AlarmDefinitionSqlRepoImpl.java",
         "patchSetId": 2
@@ -30,6 +48,30 @@
       "writtenOn": "2016-06-06T12:57:40Z",
       "side": 1,
       "message": "Why don\u0027t you want to use the named parameter here?",
+      "range": {
+        "startLine": 268,
+        "startChar": 6,
+        "endLine": 270,
+        "endChar": 30
+      },
+      "revId": "db92a986a1d91242352919f9c6d08170b7c30a0d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7aa08908_31feb138",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/hibernate/AlarmDefinitionSqlRepoImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-06-07T03:59:21Z",
+      "side": 1,
+      "message": "I\u0027ve been having some troubles using that as named parameter, it may be that it is not possible to specify offset that way.\n\nYou know, basically it would be the best to have full criteria code here but unfortunately that would require a lot of custom association modelling and even now I am not that sure it would work.",
+      "parentUuid": "7aa08908_a3371eaf",
       "range": {
         "startLine": 268,
         "startChar": 6,
