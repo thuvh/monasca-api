@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7aa08908_089b5873",
+        "filename": "monasca_api/common/repositories/mysql/alarms_repository.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-06-07T16:56:00Z",
+      "side": 1,
+      "message": "Shouldn\u0027t severity be handled like it is in get_alarms()? The java code allows the multiple severities for alarm counts",
+      "range": {
+        "startLine": 432,
+        "startChar": 0,
+        "endLine": 433,
+        "endChar": 52
+      },
+      "revId": "908275faaae8fe4ed1f052fa6803911c0ebebd5d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
