@@ -81,6 +81,30 @@
       "revId": "db92a986a1d91242352919f9c6d08170b7c30a0d",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7aa08908_f170a9de",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/hibernate/AlarmDefinitionSqlRepoImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-06-07T04:04:36Z",
+      "side": 1,
+      "message": "But I think I might have done this wrong on previous occasion.",
+      "parentUuid": "7aa08908_31feb138",
+      "range": {
+        "startLine": 268,
+        "startChar": 6,
+        "endLine": 270,
+        "endChar": 30
+      },
+      "revId": "db92a986a1d91242352919f9c6d08170b7c30a0d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
