@@ -1,0 +1,10 @@
+Code-Review+2: Roland Hochmuth <roland.hochmuth@hp.com>
+Workflow+1: Roland Hochmuth <roland.hochmuth@hp.com>
+Code-Review+2: Bradley Klein <bradley.klein@twcable.com>
+Workflow+1: Bradley Klein <bradley.klein@twcable.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Wed, 08 Jun 2016 22:59:39 +0000
+Reviewed-on: https://review.openstack.org/286281
+Project: openstack/monasca-api
+Branch: refs/heads/master
