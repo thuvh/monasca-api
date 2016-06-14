@@ -648,7 +648,11 @@ class TestAlarms(base.BaseMonascaTest):
         alarm_definition_id = response_body['id']
         self._create_metrics_for_match_by(
             num=1, alarm_definition_id=alarm_definition_id)
+        # Create metrics again for java api
+        self._create_metrics_for_match_by(
+            num=1, alarm_definition_id=alarm_definition_id)
         query_param = '?alarm_definition_id=' + str(alarm_definition_id)
+
         resp, response_body = self.monasca_client.list_alarms(query_param)
         self._verify_list_alarms_elements(resp, response_body,
                                           expect_num_elements=1)
@@ -668,6 +672,9 @@ class TestAlarms(base.BaseMonascaTest):
             alarm_definition)
         alarm_definition_id = response_body['id']
         # create some metrics
+        self._create_metrics_for_match_by(
+            num=2, alarm_definition_id=alarm_definition_id)
+        # Create metrics again for java api
         self._create_metrics_for_match_by(
             num=2, alarm_definition_id=alarm_definition_id)
         query_param = '?alarm_definition_id=' + str(alarm_definition_id)
@@ -692,6 +699,9 @@ class TestAlarms(base.BaseMonascaTest):
         resp, response_body = self.monasca_client.create_alarm_definitions(
             alarm_definition)
         alarm_definition_id = response_body['id']
+        self._create_metrics_for_match_by_sub_expressions(
+            num=2, alarm_definition_id=alarm_definition_id)
+        # Create metrics again for java api
         self._create_metrics_for_match_by_sub_expressions(
             num=2, alarm_definition_id=alarm_definition_id)
         query_param = '?alarm_definition_id=' + str(alarm_definition_id)
@@ -724,6 +734,9 @@ class TestAlarms(base.BaseMonascaTest):
         alarm_definition_id = response_body['id']
         query_param = '?alarm_definition_id=' + str(alarm_definition_id)
         # create some metrics
+        self._create_metrics_for_match_by_sub_expressions_list(
+            num=4, alarm_definition_id=alarm_definition_id)
+        # Create metrics again for java api
         self._create_metrics_for_match_by_sub_expressions_list(
             num=4, alarm_definition_id=alarm_definition_id)
         resp, response_body = self.monasca_client.list_alarms(query_param)
