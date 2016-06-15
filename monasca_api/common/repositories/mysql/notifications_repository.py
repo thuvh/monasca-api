@@ -87,7 +87,18 @@ class NotificationsRepository(mysql_repository.MySQLRepository,
         parms = [tenant_id]
 
         if offset:
-            query += " and id > %s "
+            reverse_offset = False
+            if sort_by is not None:
+                for field in sort_by:
+                    if field.startswith('id') and field.endswith('desc'):
+                        reverse_offset = True
+                        break
+
+            if reverse_offset:
+                query += " and id < %s "
+            else:
+                query += " and id > %s "
+
             parms.append(offset.encode('utf8'))
 
         if sort_by:
