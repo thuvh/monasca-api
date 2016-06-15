@@ -24,8 +24,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import javax.ws.rs.WebApplicationException;
-
 import monasca.api.domain.exception.EntityExistsException;
 import monasca.api.domain.exception.EntityNotFoundException;
 import monasca.api.domain.model.notificationmethod.NotificationMethod;
@@ -111,9 +109,21 @@ public class NotificationMethodSqlRepositoryImplTest {
     assertEquals(nms1, Arrays.asList(new NotificationMethod("123", "MyEmail", NotificationMethodType.EMAIL, "a@b", 0), new NotificationMethod("124",
         "OtherEmail", NotificationMethodType.EMAIL, "a@b", 0)));
 
-    List<NotificationMethod> nms2 = repo.find("444", null, "123", 1);
+    List<NotificationMethod> nms2 = repo.find("444", null, "1", 1);
 
     assertEquals(nms2, Collections.singletonList(new NotificationMethod("124", "OtherEmail", NotificationMethodType.EMAIL, "a@b", 0)));
+  }
+
+  @Test(groups = "orm")
+  public void shouldSortBy() {
+    // null sorts by will sort by ID
+    List<NotificationMethod> nms1 = repo.find("444", null, null, 1);
+    assertEquals(nms1, Arrays.asList(new NotificationMethod("123", "MyEmail", NotificationMethodType.EMAIL, "a@b", 0),
+        new NotificationMethod("124", "OtherEmail", NotificationMethodType.EMAIL, "a@b", 0)));
+
+    List<NotificationMethod> nms2 = repo.find("444", Arrays.asList("name desc", "address"), null, 1);
+    assertEquals(nms2, Arrays.asList(new NotificationMethod("124", "OtherEmail", NotificationMethodType.EMAIL, "a@b", 0),
+        new NotificationMethod("123", "MyEmail", NotificationMethodType.EMAIL, "a@b", 0)));
   }
 
   @Test(groups = "orm")
@@ -155,10 +165,5 @@ public class NotificationMethodSqlRepositoryImplTest {
   public void shouldNotUpdateDuplicateWithSameName() {
 
     repo.update("444", "124", "MyEmail", NotificationMethodType.EMAIL, "abc", 0);
-  }
-
-  @Test(groups = "orm", expectedExceptions = WebApplicationException.class)
-  public void shouldFindThrowException() {
-    repo.find("444", Arrays.asList("name", "address"), null, 1);
   }
 }
