@@ -28,6 +28,8 @@ LOG = log.getLogger(__name__)
 
 schemes = ['http', 'https']
 
+valid_periods = [0, 60]
+
 notification_schema = {
     Required('name'): Schema(All(Any(str, unicode), Length(max=250))),
     Required('type'): Schema(Any("EMAIL", "email", "WEBHOOK", "webhook", "PAGERDUTY", "pagerduty")),
