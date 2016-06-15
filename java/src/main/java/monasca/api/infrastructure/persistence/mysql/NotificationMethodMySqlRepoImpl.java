@@ -118,7 +118,18 @@ public class NotificationMethodMySqlRepoImpl implements NotificationMethodRepo {
 
       String offsetPart = "";
       if (offset != null) {
-        offsetPart = "and nm.id > :offset";
+        boolean reverseOffset = false;
+        if (sortBy != null && !sortBy.isEmpty()) {
+          for (String field: sortBy) {
+            if (field.startsWith("id") && field.endsWith("desc")) {
+              reverseOffset = true;
+            }
+          }
+        }
+        if (reverseOffset)
+          offsetPart = "and nm.id < :offset";
+        else
+          offsetPart = "and nm.id > :offset";
       }
 
       String orderByPart = "";

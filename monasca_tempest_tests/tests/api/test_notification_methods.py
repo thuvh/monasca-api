@@ -346,8 +346,8 @@ class TestNotificationMethods(base.BaseMonascaTest):
         resp, response_body = self.monasca_client.\
             list_notification_methods(query_parms)
         self.assertEqual(200, resp.status)
-        self.assertEqual(4, len(elements))
-        self.assertEqual(first_element, elements[0])
+        self.assertEqual(4, len(response_body['elements']))
+        self.assertEqual(first_element, response_body['elements'][0])
 
         timeout = time.time() + 60 * 1   # 1 minute timeout
         for limit in xrange(1, 5):
@@ -389,6 +389,48 @@ class TestNotificationMethods(base.BaseMonascaTest):
         resp, response_body = self.monasca_client.\
             delete_notification_method(id4)
         self.assertEqual(204, resp.status)
+
+    @test.attr(type="gate")
+    def test_list_notification_methods_with_offset_sort_by_id(self):
+        name1 = data_utils.rand_name('notification')
+        name2 = data_utils.rand_name('notification')
+        name3 = data_utils.rand_name('notification')
+        notification1 = helpers.create_notification(name=name1)
+        notification2 = helpers.create_notification(name=name2)
+        notification3 = helpers.create_notification(name=name3)
+
+        resp, response_body = self.monasca_client.create_notifications(
+            notification1)
+        self.assertEqual(201, resp.status)
+        resp, response_body = self.monasca_client.create_notifications(
+            notification2)
+        self.assertEqual(201, resp.status)
+        resp, response_body = self.monasca_client.create_notifications(
+            notification3)
+        self.assertEqual(201, resp.status)
+
+        resp, response_body = self.monasca_client.list_notification_methods()
+        elements = response_body['elements']
+
+        first_element = elements[0]
+        center_element = elements[1]
+        last_element = elements[2]
+
+        query_parms = ('?offset=' + str(center_element['id']) +
+                       '&sort_by=' + urlparse.quote('id asc'))
+        resp, response_body = self.monasca_client. \
+            list_notification_methods(query_parms)
+        self.assertEqual(200, resp.status)
+        self.assertEqual(1, len(response_body['elements']))
+        self.assertEqual(last_element, response_body['elements'][0])
+
+        query_parms = ('?offset=' + str(center_element['id']) +
+                       '&sort_by=' + urlparse.quote('id desc'))
+        resp, response_body = self.monasca_client. \
+            list_notification_methods(query_parms)
+        self.assertEqual(200, resp.status)
+        self.assertEqual(1, len(response_body['elements']))
+        self.assertEqual(first_element, response_body['elements'][0])
 
     @test.attr(type="gate")
     def test_get_notification_method(self):

@@ -134,8 +134,19 @@ class NotificationsRepository(sql_repository.SQLRepository,
                 order_columns = [nm.c.id]
 
             if offset:
-                select_nm_query = (select_nm_query
-                                   .where(nm.c.id > bindparam('b_offset')))
+                reverse_offset = False
+                for column in order_columns:
+                    column_str = str(column)
+                    if column_str.startswith('id') and column_str.endswith('desc'):
+                        reverse_offset = True
+                        break
+
+                if reverse_offset:
+                    select_nm_query = (select_nm_query
+                                       .where(nm.c.id < bindparam('b_offset')))
+                else:
+                    select_nm_query = (select_nm_query
+                                       .where(nm.c.id > bindparam('b_offset')))
 
                 parms['b_offset'] = offset.encode('utf8')
 
