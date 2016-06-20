@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a9d85d2_aead4a33",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2016-06-20T16:50:02Z",
+      "side": 1,
+      "message": "This should probably be done in the extra_monasca section to keep all the logging in one place.  Also, we\u0027ve been prefacing our logs with monasca to avoid any name clashes.  Not sure if we need to in this case but it might be a good idea.",
+      "range": {
+        "startLine": 520,
+        "startChar": 70,
+        "endLine": 520,
+        "endChar": 78
+      },
+      "revId": "f54048481738e3f0f95bae55f6cfeb6a30b39a04",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
