@@ -22,6 +22,30 @@
       "revId": "f54048481738e3f0f95bae55f6cfeb6a30b39a04",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a9d85d2_29ee7422",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-06-20T16:54:58Z",
+      "side": 1,
+      "message": "This is for testing only, and if I leave it in the monasca_extra session, we fail the build before we link the logs I want to see. We may want to consider moving all of these to the relevant install section.",
+      "parentUuid": "5a9d85d2_aead4a33",
+      "range": {
+        "startLine": 520,
+        "startChar": 70,
+        "endLine": 520,
+        "endChar": 78
+      },
+      "revId": "f54048481738e3f0f95bae55f6cfeb6a30b39a04",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
