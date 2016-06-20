@@ -517,6 +517,8 @@ function install_monasca_influxdb {
 
     sleep 60s
 
+    sudo ln -sf /var/log/influxdb/influxd.log ${SCREEN_LOGDIR}/screen-influxdb.log
+
 }
 
 function install_monasca_vertica {
