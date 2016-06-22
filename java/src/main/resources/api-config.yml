@@ -18,6 +18,11 @@ maxQueryLimit: 10000
 validNotificationPeriods:
   - 60
 
+validNotificationMethods:
+  - Email
+  - WebHooks
+  - PagerDuty
+
 kafka:
   brokerUris:
     - 192.168.10.6:9092

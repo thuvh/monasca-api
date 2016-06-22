@@ -47,6 +47,8 @@ public class ApiConfig extends Configuration {
   public String alarmStateTransitionsTopic = "alarm-state-transitions";
   @NotEmpty
   public List<Integer> validNotificationPeriods;
+  @NotEmpty
+  public List<String> validNotificationMethods;
   @Valid
   @NotNull
   public DataSourceFactory mysql;
