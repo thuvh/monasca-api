@@ -32,6 +32,11 @@ eventsTopic: events
 validNotificationPeriods:
   - 60
 
+validNotificationMethods:
+  - Email
+  - WebHook
+  - PagerDuty
+
 kafka:
   brokerUris:
     - "127.0.0.1:9092"
@@ -94,7 +99,7 @@ middleware:
   useHttps: False
   truststore: "None"
   truststorePassword: "None"
-  connTimeout: 5000
+  connTimeout: 500
   connSSLClientAuth: False
   keystore: "None"
   keystorePassword: "None"
