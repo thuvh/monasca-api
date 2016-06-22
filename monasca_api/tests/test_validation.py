@@ -278,6 +278,13 @@ class TestNotificationValidation(unittest.TestCase):
         except schemas_exceptions.ValidationException:
             self.fail("shouldn't happen")
 
+    def test_validation_exception_for_invalid_notification_type(self):
+        notification = {"name": "MyWebhook", "type": "MyNotificaitonType", "address": "SomeAddress"}
+        with self.assertRaises(schemas_exceptions.ValidationException) as ve:
+            schemas_notifications.parse_and_validate(notification, valid_periods)
+        ex = ve.exception
+        self.assertEqual("Invalid notification type MyNotificaitonType", ex.message)
+
     def test_validation_for_webhook_non_zero_period(self):
         notification = {"name": "MyWebhook", "type": "WEBHOOK", "address": "http://somedomain.com",
                         "period": 60}
