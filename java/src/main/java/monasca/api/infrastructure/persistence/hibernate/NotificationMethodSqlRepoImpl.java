@@ -34,7 +34,6 @@ import monasca.api.domain.exception.EntityExistsException;
 import monasca.api.domain.exception.EntityNotFoundException;
 import monasca.api.domain.model.notificationmethod.NotificationMethod;
 import monasca.api.domain.model.notificationmethod.NotificationMethodRepo;
-import monasca.api.domain.model.notificationmethod.NotificationMethodType;
 import monasca.api.resource.exception.Exceptions;
 import monasca.common.hibernate.db.NotificationMethodDb;
 import monasca.common.model.alarm.AlarmNotificationMethodType;
@@ -53,7 +52,7 @@ public class NotificationMethodSqlRepoImpl
   }
 
   @Override
-  public NotificationMethod create(String tenantId, String name, NotificationMethodType type,
+  public NotificationMethod create(String tenantId, String name, String pNotificationMethodType,
                                    String address, int period) {
     Transaction tx = null;
     Session session = null;
@@ -72,7 +71,7 @@ public class NotificationMethodSqlRepoImpl
           id,
           tenantId,
           name,
-          AlarmNotificationMethodType.valueOf(type.name()),
+          AlarmNotificationMethodType.valueOf(pNotificationMethodType),
           address,
           period,
           now,
@@ -160,7 +159,7 @@ public class NotificationMethodSqlRepoImpl
 
   @Override
   public NotificationMethod update(String tenantId, String notificationMethodId, String name,
-                                   NotificationMethodType type, String address, int period) {
+                                   String pNotificationMethodType, String address, int period) {
     Session session = null;
     Transaction tx = null;
     try {
@@ -180,7 +179,7 @@ public class NotificationMethodSqlRepoImpl
             notificationMethodId);
       }
       db.setName(name);
-      db.setType(AlarmNotificationMethodType.valueOf(type.name()));
+      db.setType(AlarmNotificationMethodType.valueOf(pNotificationMethodType));
       db.setAddress(address);
       db.setPeriod(period);
       db.setUpdatedAt(this.getUTCNow());
@@ -272,7 +271,7 @@ public class NotificationMethodSqlRepoImpl
     return db == null ? null : new NotificationMethod(
         db.getId(),
         db.getName(),
-        NotificationMethodType.valueOf(db.getType().name()),
+        db.getType().name(),
         db.getAddress(),
         db.getPeriod()
     );

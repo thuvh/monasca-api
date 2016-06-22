@@ -22,45 +22,21 @@ import monasca.api.domain.model.common.Linked;
 public class NotificationMethod extends AbstractEntity implements Linked {
   private List<Link> links;
   private String name;
-  private NotificationMethodType type;
+  private String type;
   private String address;
   private int period;
 
   public NotificationMethod() {}
 
-  public NotificationMethod(String id, String name, NotificationMethodType type, String address, int period) {
+  public NotificationMethod(String id, String name, String type, String address, int period) {
     this.id = id;
     this.name = name;
-    this.type = type;
+    this.type = type.toUpperCase();
     this.address = address;
     this.period = period;
   }
 
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj)
-      return true;
-    if (!super.equals(obj))
-      return false;
-    if (getClass() != obj.getClass())
-      return false;
-    NotificationMethod other = (NotificationMethod) obj;
-    if (address == null) {
-      if (other.address != null)
-        return false;
-    } else if (!address.equals(other.address))
-      return false;
-    if (name == null) {
-      if (other.name != null)
-        return false;
-    } else if (!name.equals(other.name))
-      return false;
-    if (period != other.period)
-      return false;
-    if (type != other.type)
-      return false;
-    return true;
-  }
+ 
 
   public String getAddress() {
     return address;
@@ -78,7 +54,7 @@ public class NotificationMethod extends AbstractEntity implements Linked {
     return name;
   }
 
-  public NotificationMethodType getType() {
+  public String getType() {
     return type;
   }
 
@@ -86,18 +62,48 @@ public class NotificationMethod extends AbstractEntity implements Linked {
     return period;
   }
 
-  @Override
-  public int hashCode() {
-    final int prime = 31;
-    int result = super.hashCode();
-    result = prime * result + ((address == null) ? 0 : address.hashCode());
-    result = prime * result + ((name == null) ? 0 : name.hashCode());
-    result = prime * result + ((type == null) ? 0 : type.hashCode());
-    result = prime * result + period;
-    return result;
-  }
 
-  public void setAddress(String address) {
+@Override
+public int hashCode() {
+	final int prime = 31;
+	int result = super.hashCode();
+	result = prime * result + ((address == null) ? 0 : address.hashCode());
+	result = prime * result + ((name == null) ? 0 : name.hashCode());
+	result = prime * result + period;
+	result = prime * result + ((type == null) ? 0 : type.hashCode());
+	return result;
+}
+
+@Override
+public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (!super.equals(obj))
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	NotificationMethod other = (NotificationMethod) obj;
+	if (address == null) {
+		if (other.address != null)
+			return false;
+	} else if (!address.equals(other.address))
+		return false;
+	if (name == null) {
+		if (other.name != null)
+			return false;
+	} else if (!name.equals(other.name))
+		return false;
+	if (period != other.period)
+		return false;
+	if (type == null) {
+		if (other.type != null)
+			return false;
+	} else if (!type.equalsIgnoreCase(other.type))
+		return false;
+	return true;
+}
+
+public void setAddress(String address) {
     this.address = address;
   }
 
@@ -113,8 +119,8 @@ public class NotificationMethod extends AbstractEntity implements Linked {
     this.name = name;
   }
 
-  public void setType(NotificationMethodType type) {
-    this.type = type;
+  public void setType(String type) {
+    this.type = type.toUpperCase();
   }
 
   public void setPeriod(int period) {
