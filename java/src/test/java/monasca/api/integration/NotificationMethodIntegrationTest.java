@@ -37,7 +37,6 @@ import monasca.api.app.command.CreateNotificationMethodCommand;
 import monasca.api.domain.exception.EntityNotFoundException;
 import monasca.api.domain.model.notificationmethod.NotificationMethod;
 import monasca.api.domain.model.notificationmethod.NotificationMethodRepo;
-import monasca.api.domain.model.notificationmethod.NotificationMethodType;
 import monasca.api.infrastructure.persistence.PersistUtils;
 import monasca.api.infrastructure.persistence.mysql.NotificationMethodMySqlRepoImpl;
 import monasca.api.resource.AbstractMonApiResourceTest;
@@ -77,7 +76,7 @@ public class NotificationMethodIntegrationTest extends AbstractMonApiResourceTes
 
     // Fixtures
     notificationMethod =
-        new NotificationMethod("123", "Joe's Email", NotificationMethodType.EMAIL, "a@b", 0);
+        new NotificationMethod("123", "Joe's Email", "EMAIL", "a@b", 0);
   }
 
   public void shouldCreate() throws Exception {
@@ -107,7 +106,7 @@ public class NotificationMethodIntegrationTest extends AbstractMonApiResourceTes
             .header("X-Tenant-Id", TENANT_ID)
             .type(MediaType.APPLICATION_JSON)
             .post(ClientResponse.class,
-                new CreateNotificationMethodCommand("MyEmail", NotificationMethodType.EMAIL, "a@b", "0"));
+                new CreateNotificationMethodCommand("MyEmail", "EMAIL", "a@b", "0"));
 
     assertEquals(response.getStatus(), 409);
   }

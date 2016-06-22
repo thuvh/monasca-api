@@ -15,20 +15,20 @@ package monasca.api.app.command;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
 import org.hibernate.validator.constraints.NotEmpty;
 
 import java.util.List;
 
 import monasca.api.app.validation.NotificationMethodValidation;
 import monasca.api.app.validation.Validation;
-import monasca.api.domain.model.notificationmethod.NotificationMethodType;
 
 public class UpdateNotificationMethodCommand {
     @NotEmpty
     @Size(min = 1, max = 250)
     public String name;
     @NotNull
-    public NotificationMethodType type;
+    public String type;
     @NotEmpty
     @Size(min = 1, max = 512)
     public String address;
@@ -38,7 +38,7 @@ public class UpdateNotificationMethodCommand {
 
     public UpdateNotificationMethodCommand() {}
 
-    public UpdateNotificationMethodCommand(String name, NotificationMethodType type, String address, String period) {
+    public UpdateNotificationMethodCommand(String name, String type, String address, String period) {
         this.name = name;
         this.type = type;
         this.address = address;
@@ -69,15 +69,18 @@ public class UpdateNotificationMethodCommand {
                 return false;
         } else if (!period.equals(other.period))
             return false;
-        if (type != other.type)
+        if (type == null) {
+            if (other.type != null)
+               return false;
+          } else if (!type.equalsIgnoreCase(other.type))
             return false;
         if (convertedPeriod != other.convertedPeriod)
             return false;
         return true;
     }
 
-    public void validate(List<Integer> validPeriods) {
-        NotificationMethodValidation.validate(type, address, convertedPeriod, validPeriods);
+    public void validate(List<Integer> validPeriods, List<String> validNotificationMethodTypes) {
+        NotificationMethodValidation.validate(type, address, convertedPeriod, validPeriods, validNotificationMethodTypes);
     }
 
     public void setPeriod(String period){
