@@ -13,7 +13,6 @@
  */
 package monasca.api.app.validation;
 
-import monasca.api.domain.model.notificationmethod.NotificationMethodType;
 import monasca.api.resource.exception.Exceptions;
 
 import org.apache.commons.validator.routines.EmailValidator;
@@ -31,23 +30,23 @@ public class NotificationMethodValidation {
                                TEST_TLD_VALIDATOR,
                                UrlValidator.ALLOW_LOCAL_URLS | UrlValidator.ALLOW_2_SLASHES);
 
-    public static void validate(NotificationMethodType type, String address, int period,
+    public static void validate(String type, String address, int period,
                                 List<Integer> validPeriods) {
-        switch (type) {
-            case EMAIL : {
+        
+        if (type.equals("EMAIL")) {
                 if (!EmailValidator.getInstance(true).isValid(address))
                     throw Exceptions.unprocessableEntity("Address %s is not of correct format", address);
                 if (period != 0)
                     throw Exceptions.unprocessableEntity("Period can not be non zero for Email");
-            } break;
-            case WEBHOOK : {
+            }
+        if (type.equals("WEBHOOK")) {
                 if (!URL_VALIDATOR.isValid(address))
                     throw Exceptions.unprocessableEntity("Address %s is not of correct format", address);
-            } break;
-            case PAGERDUTY : {
-                if (period != 0)
+        } 
+        if (type.equals("PAGERDUTY")) {
+                if (period != 0){
                     throw Exceptions.unprocessableEntity("Period can not be non zero for Pagerduty");
-            } break;
+            }
         }
         if (period != 0 && !validPeriods.contains(period)){
             throw Exceptions.unprocessableEntity("%d is not a valid period", period);
