@@ -29,6 +29,7 @@ import monasca.common.hibernate.db.MetricDefinitionDb;
 import monasca.common.hibernate.db.MetricDefinitionDimensionsDb;
 import monasca.common.hibernate.db.MetricDimensionDb;
 import monasca.common.hibernate.db.NotificationMethodDb;
+import monasca.common.hibernate.db.NotificationMethodTypesDb;
 import monasca.common.hibernate.db.SubAlarmDb;
 import monasca.common.hibernate.db.SubAlarmDefinitionDb;
 import monasca.common.hibernate.db.SubAlarmDefinitionDimensionDb;
@@ -52,6 +53,7 @@ class HibernateUtil {
       configuration.addAnnotatedClass(SubAlarmDb.class);
       configuration.addAnnotatedClass(AlarmActionDb.class);
       configuration.addAnnotatedClass(NotificationMethodDb.class);
+      configuration.addAnnotatedClass(NotificationMethodTypesDb.class);
 
       configuration.setProperties(getHikariH2Properties());
 

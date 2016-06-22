@@ -21,7 +21,7 @@ import monasca.api.domain.exception.EntityNotFoundException;
  * Repository for notification methods.
  */
 public interface NotificationMethodRepo {
-  NotificationMethod create(String tenantId, String name, NotificationMethodType type,
+  NotificationMethod create(String tenantId, String name, String type,
       String address, int period);
 
   /**
@@ -44,7 +44,7 @@ public interface NotificationMethodRepo {
    *         {@code notificationMethodId}
    */
   NotificationMethod update(String tenantId, String notificationMethodId, String name,
-      NotificationMethodType type, String address, int period);
+      String type, String address, int period);
 
   List<NotificationMethod> find(String tenantId, List<String> sortBy, String offset, int limit);
 }
