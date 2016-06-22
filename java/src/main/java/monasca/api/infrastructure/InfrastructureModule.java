@@ -13,10 +13,10 @@
  */
 package monasca.api.infrastructure;
 
+import javax.inject.Singleton;
+
 import com.google.inject.AbstractModule;
 import com.google.inject.ProvisionException;
-
-import javax.inject.Singleton;
 
 import monasca.api.ApiConfig;
 import monasca.api.domain.model.alarm.AlarmRepo;
@@ -26,9 +26,15 @@ import monasca.api.domain.model.dimension.DimensionRepo;
 import monasca.api.domain.model.measurement.MeasurementRepo;
 import monasca.api.domain.model.metric.MetricDefinitionRepo;
 import monasca.api.domain.model.notificationmethod.NotificationMethodRepo;
+import monasca.api.domain.model.notificationmethod.NotificationMethodTypesRepo;
 import monasca.api.domain.model.statistic.StatisticRepo;
 import monasca.api.infrastructure.persistence.PersistUtils;
 import monasca.api.infrastructure.persistence.Utils;
+import monasca.api.infrastructure.persistence.hibernate.AlarmDefinitionSqlRepoImpl;
+import monasca.api.infrastructure.persistence.hibernate.AlarmHibernateUtils;
+import monasca.api.infrastructure.persistence.hibernate.AlarmSqlRepoImpl;
+import monasca.api.infrastructure.persistence.hibernate.NotificationMethodSqlRepoImpl;
+import monasca.api.infrastructure.persistence.hibernate.NotificationMethodTypesSqlRepoImpl;
 import monasca.api.infrastructure.persistence.influxdb.InfluxV9AlarmStateHistoryRepo;
 import monasca.api.infrastructure.persistence.influxdb.InfluxV9DimensionRepo;
 import monasca.api.infrastructure.persistence.influxdb.InfluxV9MeasurementRepo;
@@ -40,10 +46,7 @@ import monasca.api.infrastructure.persistence.mysql.AlarmDefinitionMySqlRepoImpl
 import monasca.api.infrastructure.persistence.mysql.AlarmMySqlRepoImpl;
 import monasca.api.infrastructure.persistence.mysql.MySQLUtils;
 import monasca.api.infrastructure.persistence.mysql.NotificationMethodMySqlRepoImpl;
-import monasca.api.infrastructure.persistence.hibernate.AlarmDefinitionSqlRepoImpl;
-import monasca.api.infrastructure.persistence.hibernate.AlarmSqlRepoImpl;
-import monasca.api.infrastructure.persistence.hibernate.NotificationMethodSqlRepoImpl;
-import monasca.api.infrastructure.persistence.hibernate.AlarmHibernateUtils;
+import monasca.api.infrastructure.persistence.mysql.NotificationMethodTypesMySqlRepoImpl;
 import monasca.api.infrastructure.persistence.vertica.AlarmStateHistoryVerticaRepoImpl;
 import monasca.api.infrastructure.persistence.vertica.DimensionVerticaRepoImpl;
 import monasca.api.infrastructure.persistence.vertica.MeasurementVerticaRepoImpl;
@@ -77,10 +80,12 @@ public class InfrastructureModule extends AbstractModule {
       this.bind(AlarmRepo.class).to(AlarmSqlRepoImpl.class).in(Singleton.class);
       this.bind(AlarmDefinitionRepo.class).to(AlarmDefinitionSqlRepoImpl.class).in(Singleton.class);
       this.bind(NotificationMethodRepo.class).to(NotificationMethodSqlRepoImpl.class).in(Singleton.class);
+      this.bind(NotificationMethodTypesRepo.class).to(NotificationMethodTypesSqlRepoImpl.class).in(Singleton.class);
     } else {
       bind(AlarmRepo.class).to(AlarmMySqlRepoImpl.class).in(Singleton.class);
       bind(AlarmDefinitionRepo.class).to(AlarmDefinitionMySqlRepoImpl.class).in(Singleton.class);
       bind(NotificationMethodRepo.class).to(NotificationMethodMySqlRepoImpl.class).in(Singleton.class);
+      bind(NotificationMethodTypesRepo.class).to(NotificationMethodTypesMySqlRepoImpl.class).in(Singleton.class);
       bind(PersistUtils.class).in(Singleton.class);
     }
 

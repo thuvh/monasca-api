@@ -30,7 +30,7 @@ schemes = ['http', 'https']
 
 notification_schema = {
     Required('name'): Schema(All(Any(str, unicode), Length(max=250))),
-    Required('type'): Schema(Any("EMAIL", "email", "WEBHOOK", "webhook", "PAGERDUTY", "pagerduty")),
+    Required('type'): Schema(Any(str)),
     Required('address'): Schema(All(Any(str, unicode), Length(max=512))),
     Marker('period'): All(Any(int, str))}
 
