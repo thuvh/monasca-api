@@ -23,7 +23,7 @@ import org.testng.annotations.Test;
 
 import monasca.api.domain.model.common.Link;
 import monasca.api.domain.model.notificationmethod.NotificationMethod;
-import monasca.api.domain.model.notificationmethod.NotificationMethodType;
+
 
 @Test
 public class NotificationMethodTest extends AbstractModelTest {
@@ -31,7 +31,7 @@ public class NotificationMethodTest extends AbstractModelTest {
 
   public NotificationMethodTest() {
     notificationMethod =
-        new NotificationMethod("123", "MyEmail", NotificationMethodType.EMAIL, "a@b", 0);
+        new NotificationMethod("123", "MyEmail", "EMAIL", "a@b", 0);
     notificationMethod.setLinks(Arrays.asList(new Link("self",
         "https://cloudsvc.example.com/v1.0")));
   }

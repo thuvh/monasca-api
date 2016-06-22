@@ -22,16 +22,16 @@ import monasca.api.domain.model.common.Linked;
 public class NotificationMethod extends AbstractEntity implements Linked {
   private List<Link> links;
   private String name;
-  private NotificationMethodType type;
+  private String type;
   private String address;
   private int period;
 
   public NotificationMethod() {}
 
-  public NotificationMethod(String id, String name, NotificationMethodType type, String address, int period) {
+  public NotificationMethod(String id, String name, String type, String address, int period) {
     this.id = id;
     this.name = name;
-    this.type = type;
+    this.type = type.toUpperCase();
     this.address = address;
     this.period = period;
   }
@@ -78,7 +78,7 @@ public class NotificationMethod extends AbstractEntity implements Linked {
     return name;
   }
 
-  public NotificationMethodType getType() {
+  public String getType() {
     return type;
   }
 
@@ -113,8 +113,8 @@ public class NotificationMethod extends AbstractEntity implements Linked {
     this.name = name;
   }
 
-  public void setType(NotificationMethodType type) {
-    this.type = type;
+  public void setType(String type) {
+    this.type = type.toUpperCase();
   }
 
   public void setPeriod(int period) {

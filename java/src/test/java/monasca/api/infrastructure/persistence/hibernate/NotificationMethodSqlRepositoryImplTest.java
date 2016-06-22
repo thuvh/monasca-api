@@ -30,7 +30,6 @@ import monasca.api.domain.exception.EntityExistsException;
 import monasca.api.domain.exception.EntityNotFoundException;
 import monasca.api.domain.model.notificationmethod.NotificationMethod;
 import monasca.api.domain.model.notificationmethod.NotificationMethodRepo;
-import monasca.api.domain.model.notificationmethod.NotificationMethodType;
 import monasca.common.hibernate.db.NotificationMethodDb;
 import monasca.common.model.alarm.AlarmNotificationMethodType;
 import org.hibernate.Session;
@@ -46,6 +45,10 @@ public class NotificationMethodSqlRepositoryImplTest {
   NotificationMethodRepo repo = null;
   private SessionFactory sessionFactory;
   private Transaction tx;
+  
+  private static final String NOTIFICATION_METHOD_WEBHOOK = "WEBHOOK";
+  private static final String NOTIFICATION_METHOD_EMAIL   = "EMAIL";
+  private static final String NOTIFICATION_METHOD_PAGERDUTY   = "PAGERDUTY";
 
   @BeforeMethod
   protected void beforeMethod() throws Exception {
@@ -91,7 +94,7 @@ public class NotificationMethodSqlRepositoryImplTest {
 
   @Test(groups = "orm")
   public void shouldCreate() {
-    NotificationMethod nmA = repo.create("555", "MyEmail", NotificationMethodType.EMAIL, "a@b", 0);
+    NotificationMethod nmA = repo.create("555", "MyEmail", NOTIFICATION_METHOD_EMAIL, "a@b", 0);
     NotificationMethod nmB = repo.findById("555", nmA.getId());
 
     assertEquals(nmA, nmB);
@@ -108,25 +111,25 @@ public class NotificationMethodSqlRepositoryImplTest {
   public void shouldFind() {
     List<NotificationMethod> nms1 = repo.find("444", null, null, 1);
 
-    assertEquals(nms1, Arrays.asList(new NotificationMethod("123", "MyEmail", NotificationMethodType.EMAIL, "a@b", 0), new NotificationMethod("124",
-        "OtherEmail", NotificationMethodType.EMAIL, "a@b", 0)));
+    assertEquals(nms1, Arrays.asList(new NotificationMethod("123", "MyEmail", NOTIFICATION_METHOD_EMAIL, "a@b", 0), new NotificationMethod("124",
+        "OtherEmail", NOTIFICATION_METHOD_EMAIL, "a@b", 0)));
 
     List<NotificationMethod> nms2 = repo.find("444", null, "123", 1);
 
-    assertEquals(nms2, Collections.singletonList(new NotificationMethod("124", "OtherEmail", NotificationMethodType.EMAIL, "a@b", 0)));
+    assertEquals(nms2, Collections.singletonList(new NotificationMethod("124", "OtherEmail", NOTIFICATION_METHOD_EMAIL, "a@b", 0)));
   }
 
   @Test(groups = "orm")
   public void shouldUpdate() {
-    repo.update("444", "123", "Foo", NotificationMethodType.EMAIL, "abc", 0);
+    repo.update("444", "123", "Foo", NOTIFICATION_METHOD_EMAIL, "abc", 0);
     NotificationMethod nm = repo.findById("444", "123");
 
-    assertEquals(nm, new NotificationMethod("123", "Foo", NotificationMethodType.EMAIL, "abc", 0));
+    assertEquals(nm, new NotificationMethod("123", "Foo", NOTIFICATION_METHOD_EMAIL, "abc", 0));
   }
 
   @Test(groups = "orm")
   public void shouldUpdateReturnValue() {
-    NotificationMethod nm = repo.update("444", "123", "Foo", NotificationMethodType.EMAIL, "abc", 0);
+    NotificationMethod nm = repo.update("444", "123", "Foo", NOTIFICATION_METHOD_EMAIL, "abc", 0);
 
     NotificationMethod foundNotificationMethod = repo.findById("444", "123");
     assertEquals(nm, foundNotificationMethod);
@@ -145,16 +148,16 @@ public class NotificationMethodSqlRepositoryImplTest {
 
   @Test(groups = "orm")
   public void shouldUpdateDuplicateWithSameValues() {
-    repo.update("444", "123", "Foo", NotificationMethodType.EMAIL, "abc", 0);
+    repo.update("444", "123", "Foo", NOTIFICATION_METHOD_EMAIL, "abc", 0);
     NotificationMethod nm = repo.findById("444", "123");
 
-    assertEquals(nm, new NotificationMethod("123", "Foo", NotificationMethodType.EMAIL, "abc", 0));
+    assertEquals(nm, new NotificationMethod("123", "Foo", NOTIFICATION_METHOD_EMAIL, "abc", 0));
   }
 
   @Test(groups = "orm", expectedExceptions = EntityExistsException.class)
   public void shouldNotUpdateDuplicateWithSameName() {
 
-    repo.update("444", "124", "MyEmail", NotificationMethodType.EMAIL, "abc", 0);
+    repo.update("444", "124", "MyEmail", NOTIFICATION_METHOD_EMAIL, "abc", 0);
   }
 
   @Test(groups = "orm", expectedExceptions = WebApplicationException.class)
