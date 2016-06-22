@@ -55,8 +55,10 @@ public class NotificationMethodResource {
   private final static List<String> ALLOWED_SORT_BY = Arrays.asList("id", "name", "type",
                                                                     "address", "updated_at",
                                                                     "created_at");
+  private final static List<String> DEFAULT_NOTIFICATION_METHODS = Arrays.asList("Email", "PagerDuty", "WebHook");  
   private final List<Integer> validPeriods;
-
+  private final List<String> validNotificationMethods;
+  
 
   @Inject
   public NotificationMethodResource(ApiConfig config, NotificationMethodRepo repo,
@@ -65,6 +67,8 @@ public class NotificationMethodResource {
     this.persistUtils = persistUtils;
     this.validPeriods = config.validNotificationPeriods == null ? Arrays.asList(0, 60):
             config.validNotificationPeriods;
+    this.validNotificationMethods = config.validNotificationMethods == null ? DEFAULT_NOTIFICATION_METHODS :
+            config.validNotificationMethods;
   }
 
   @POST
