@@ -13,6 +13,11 @@ eventsTopic: events
 validNotificationPeriods:
   - 60
 
+validNotificationMethods:
+  - Email
+  - WebHooks
+  - PagerDuty
+
 databaseConfiguration:
   # vertica | influxdb
   databaseType: influxdb
