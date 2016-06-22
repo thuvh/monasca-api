@@ -31,7 +31,10 @@ need to have a bit more re-engineering to get it right.
 """
 global_opts = [cfg.StrOpt('region', help='Region that API is running in'),
                cfg.ListOpt('valid_notification_periods', default=[0, 60],
-                           help='Valid periods for notification methods')]
+                           help='Valid periods for notification methods'),
+               cfg.ListOpt('valid_notification_method_types', default=["Email", "PagerDuty", "WebHook"],
+                           help='Valid notification method types')
+               ]
 
 cfg.CONF.register_opts(global_opts)
 
@@ -143,6 +146,7 @@ sql_opts = [cfg.StrOpt('url', default=None), cfg.StrOpt('host', default=None),
             cfg.StrOpt('drivername', default=None), cfg.IntOpt('port', default=None),
             cfg.StrOpt('database', default=None), cfg.StrOpt('query', default=None)]
 sql_group = cfg.OptGroup(name='database', title='sql')
+
 
 cfg.CONF.register_group(sql_group)
 cfg.CONF.register_opts(sql_opts, sql_group)

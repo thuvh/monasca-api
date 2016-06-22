@@ -45,7 +45,6 @@ import monasca.api.app.validation.NotificationMethodValidation;
 import monasca.api.app.validation.Validation;
 import monasca.api.domain.model.notificationmethod.NotificationMethod;
 import monasca.api.domain.model.notificationmethod.NotificationMethodRepo;
-import monasca.api.domain.model.notificationmethod.NotificationMethodType;
 import monasca.api.infrastructure.persistence.PersistUtils;
 import monasca.api.resource.annotation.PATCH;
 
@@ -59,8 +58,10 @@ public class NotificationMethodResource {
   private final static List<String> ALLOWED_SORT_BY = Arrays.asList("id", "name", "type",
                                                                     "address", "updated_at",
                                                                     "created_at");
+  private final static List<String> DEFAULT_NOTIFICATION_METHODS = Arrays.asList("Email", "PagerDuty", "WebHook");
   private final List<Integer> validPeriods;
-
+  private final List<String> validNotificationMethods;
+  
 
   @Inject
   public NotificationMethodResource(ApiConfig config, NotificationMethodRepo repo,
@@ -69,6 +70,8 @@ public class NotificationMethodResource {
     this.persistUtils = persistUtils;
     this.validPeriods = config.validNotificationPeriods == null ? Arrays.asList(0, 60):
             config.validNotificationPeriods;
+    this.validNotificationMethods = config.validNotificationMethods == null ? DEFAULT_NOTIFICATION_METHODS :
+            config.validNotificationMethods;
   }
 
   @POST
@@ -77,7 +80,7 @@ public class NotificationMethodResource {
   @Produces(MediaType.APPLICATION_JSON)
   public Response create(@Context UriInfo uriInfo, @HeaderParam("X-Tenant-Id") String tenantId,
       @Valid CreateNotificationMethodCommand command) {
-    command.validate(this.validPeriods);
+    command.validate(this.validPeriods,validNotificationMethods);
 
     NotificationMethod notificationMethod =
         Links.hydrate(repo.create(tenantId, command.name, command.type,
@@ -125,7 +128,7 @@ public class NotificationMethodResource {
       @HeaderParam("X-Tenant-Id") String tenantId,
       @PathParam("notification_method_id") String notificationMethodId,
       @Valid UpdateNotificationMethodCommand command) {
-    command.validate(this.validPeriods);
+    command.validate(this.validPeriods,validNotificationMethods);
 
     return Links.hydrate(
         repo.update(tenantId, notificationMethodId, command.name, command.type,
@@ -145,14 +148,14 @@ public class NotificationMethodResource {
     NotificationMethod originalNotificationMethod = repo.findById(tenantId, notificationMethodId);
     String name = command.name == null ? originalNotificationMethod.getName()
             : command.name;
-    NotificationMethodType type = command.type == null ? originalNotificationMethod.getType()
+    String type = command.type == null ? originalNotificationMethod.getType()
             : command.type;
     String address = command.address == null ? originalNotificationMethod.getAddress()
             : command.address;
     int period = command.period == null ? originalNotificationMethod.getPeriod()
             : command.getConvertedPeriod();
 
-    NotificationMethodValidation.validate(type, address, period, this.validPeriods);
+    NotificationMethodValidation.validate(type, address, period, this.validPeriods,validNotificationMethods);
 
     return Links.hydrate(
             repo.update(tenantId, notificationMethodId, name, type,

@@ -32,6 +32,11 @@ eventsTopic: events
 validNotificationPeriods:
   - 60
 
+validNotificationMethods:
+  - Email
+  - WebHooks
+  - PagerDuty
+
 kafka:
   brokerUris:
     - "127.0.0.1:9092"
