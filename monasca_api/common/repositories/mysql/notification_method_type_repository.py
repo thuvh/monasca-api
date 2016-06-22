@@ -12,27 +12,22 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+
+from monasca_common.repositories.mysql import mysql_repository
 from oslo_log import log
+
+from monasca_api.common.repositories import notification_method_type_repository as nr
 
 LOG = log.getLogger(__name__)
 
 
-class NotificationsV2API(object):
+class NotificationMethodTypeRepository(mysql_repository.MySQLRepository,
+                                       nr.NotificationMethodTypeRepository):
     def __init__(self):
-        super(NotificationsV2API, self).__init__()
-        LOG.info('Initializing NotificationsV2API!')
 
-    def on_post(self, req, res):
-        res.status = '501 Not Implemented'
+        super(NotificationMethodTypeRepository, self).__init__()
 
-    def on_delete(self, req, res, notification_method_id):
-        res.status = '501 Not Implemented'
-
-    def on_get(self, req, res, notification_method_id):
-        res.status = '501 Not Implemented'
-
-    def on_put(self, req, res, notification_method_id):
-        res.status = '501 Not Implemented'
-
-    def on_patch(self, req, res, notification_method_id):
-        res.status = '501 Not Implemented'
+    def list_notification_method_types(self):
+        query = "select name from notification_method_type"
+        rows = self._execute_query(query)
+        return rows
