@@ -13,6 +13,7 @@
 # under the License.
 
 import monasca_api.v2.common.validation as validation
+from oslo_config import cfg
 from oslo_log import log
 import six.moves.urllib.parse as urlparse
 from voluptuous import All
@@ -30,7 +31,7 @@ schemes = ['http', 'https']
 
 notification_schema = {
     Required('name'): Schema(All(Any(str, unicode), Length(max=250))),
-    Required('type'): Schema(Any("EMAIL", "email", "WEBHOOK", "webhook", "PAGERDUTY", "pagerduty")),
+    Required('type'): Schema(Any(str)),
     Required('address'): Schema(All(Any(str, unicode), Length(max=512))),
     Marker('period'): All(Any(int, str))}
 
@@ -51,6 +52,13 @@ def parse_and_validate(msg, valid_periods, require_all=False):
             msg['period'] = 0
     else:
         msg['period'] = _parse_and_validate_period(msg['period'], valid_periods)
+
+    valid_notification_method_types = [types.upper() for types in cfg.CONF.valid_notification_method_types]
+
+    if msg['type'].upper() not in valid_notification_method_types:
+        ex = exceptions.ValidationException("{} is not a valid notification method type".format(msg['type']))
+        LOG.debug(ex)
+        raise ex
 
     notification_type = str(msg['type']).upper()
 
