@@ -20,14 +20,13 @@ import org.hibernate.validator.constraints.NotEmpty;
 import java.util.List;
 
 import monasca.api.app.validation.NotificationMethodValidation;
-import monasca.api.domain.model.notificationmethod.NotificationMethodType;
 
 public class UpdateNotificationMethodCommand {
     @NotEmpty
     @Size(min = 1, max = 250)
     public String name;
     @NotNull
-    public NotificationMethodType type;
+    public String type;
     @NotEmpty
     @Size(min = 1, max = 512)
     public String address;
@@ -36,7 +35,7 @@ public class UpdateNotificationMethodCommand {
 
     public UpdateNotificationMethodCommand() {}
 
-    public UpdateNotificationMethodCommand(String name, NotificationMethodType type, String address, String period) {
+    public UpdateNotificationMethodCommand(String name, String type, String address, String period) {
         this.name = name;
         this.type = type;
         this.address = address;

@@ -32,7 +32,6 @@ import monasca.api.domain.exception.EntityExistsException;
 import monasca.api.domain.exception.EntityNotFoundException;
 import monasca.api.domain.model.notificationmethod.NotificationMethod;
 import monasca.api.domain.model.notificationmethod.NotificationMethodRepo;
-import monasca.api.domain.model.notificationmethod.NotificationMethodType;
 import monasca.api.infrastructure.persistence.PersistUtils;
 import monasca.common.persistence.BeanMapper;
 
@@ -54,7 +53,7 @@ public class NotificationMethodMySqlRepoImpl implements NotificationMethodRepo {
 
   @Override
   public NotificationMethod create(String tenantId, String name,
-      NotificationMethodType type, String address, int period) {
+      String notificaitonMethodType, String address, int period) {
     try (Handle h = db.open()) {
       h.begin();
       if (getNotificationIdForTenantIdAndName(h,tenantId, name) != null)
@@ -64,10 +63,10 @@ public class NotificationMethodMySqlRepoImpl implements NotificationMethodRepo {
       String id = UUID.randomUUID().toString();
       h.insert(
           "insert into notification_method (id, tenant_id, name, type, address, period, created_at, updated_at) values (?, ?, ?, ?, ?, ?, NOW(), NOW())",
-          id, tenantId, name, type.toString(), address, period);
+          id, tenantId, name, notificaitonMethodType, address, period);
       LOG.debug("Creating notification method {} for {}", name, tenantId);
       h.commit();
-      return new NotificationMethod(id, name, type, address, period);
+      return new NotificationMethod(id, name, notificaitonMethodType, address, period);
     }
   }
 
@@ -174,7 +173,7 @@ public class NotificationMethodMySqlRepoImpl implements NotificationMethodRepo {
 
   @Override
   public NotificationMethod update(String tenantId, String notificationMethodId, String name,
-      NotificationMethodType type, String address, int period) {
+      String notificaitonMethodType, String address, int period) {
     try (Handle h = db.open()) {
       h.begin();
       String notificationID = getNotificationIdForTenantIdAndName(h,tenantId, name);
@@ -187,11 +186,11 @@ public class NotificationMethodMySqlRepoImpl implements NotificationMethodRepo {
           .update(
               "update notification_method set name = ?, type = ?, address = ?, period = ?, updated_at = NOW() "
               + "where tenant_id = ? and id = ?",
-              name, type.name(), address, period, tenantId, notificationMethodId) == 0)
+              name, notificaitonMethodType, address, period, tenantId, notificationMethodId) == 0)
         throw new EntityNotFoundException("No notification method exists for %s",
             notificationMethodId);
       h.commit();
-      return new NotificationMethod(notificationMethodId, name, type, address, period);
+      return new NotificationMethod(notificationMethodId, name, notificaitonMethodType, address, period);
     }
   }
 }
