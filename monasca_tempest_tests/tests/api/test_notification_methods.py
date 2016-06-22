@@ -791,7 +791,7 @@ class TestNotificationMethods(base.BaseMonascaTest):
             notification)
         id = response_body['id']
         self.assertEqual(201, resp.status)
-        self.assertRaises((exceptions.BadRequest, exceptions.UnprocessableEntity),
+        self.assertRaises((exceptions.BadRequest, exceptions.NotFound, exceptions.UnprocessableEntity),
                           self.monasca_client.patch_notification_method, id, type='random')
         resp, response_body = \
             self.monasca_client.delete_notification_method(id)
