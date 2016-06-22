@@ -144,6 +144,13 @@ class MonascaClient(rest_client.RestClient):
         resp, response_body = self.patch(uri, json.dumps(request_body))
         return resp, json.loads(response_body)
 
+    def list_notification_method_types(self, query_params=None):
+        uri = 'notification-methods/types'
+        if query_params is not None:
+            uri = uri + query_params
+        resp, response_body = self.get(uri)
+        return resp, json.loads(response_body)
+
     def create_alarm_definitions(self, alarm_definitions):
         uri = 'alarm-definitions'
         request_body = json.dumps(alarm_definitions)

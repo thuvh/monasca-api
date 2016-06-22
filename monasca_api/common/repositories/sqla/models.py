@@ -80,6 +80,11 @@ def create_nm_model(metadata=None):
                  Column('updated_at', DateTime))
 
 
+def create_nmt_model(metadata=None):
+    return Table('notification_method_type', metadata,
+                 Column('name', String(20), primary_key=True))
+
+
 def create_mdd_model(metadata=None):
     return Table('metric_definition_dimensions', metadata,
                  Column('id', Binary),
