@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 Hewlett-Packard Development Company, L.P.
+ * Copyright (c) 2014 Hewlett-Packard Development L.P.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -53,6 +53,7 @@ import monasca.common.hibernate.db.MetricDefinitionDb;
 import monasca.common.hibernate.db.MetricDefinitionDimensionsDb;
 import monasca.common.hibernate.db.MetricDimensionDb;
 import monasca.common.hibernate.db.NotificationMethodDb;
+import monasca.common.hibernate.db.NotificationMethodTypesDb;
 import monasca.common.hibernate.db.SubAlarmDb;
 import monasca.common.hibernate.db.SubAlarmDefinitionDb;
 import monasca.common.hibernate.db.SubAlarmDefinitionDimensionDb;
@@ -117,6 +118,7 @@ public class MonApiModule
       configuration.addAnnotatedClass(SubAlarmDefinitionDimensionDb.class);
       configuration.addAnnotatedClass(SubAlarmDb.class);
       configuration.addAnnotatedClass(NotificationMethodDb.class);
+      configuration.addAnnotatedClass(NotificationMethodTypesDb.class);
 
       configuration.setProperties(this.getORMProperties(this.config.hibernate.getDataSourceClassName()));
       ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
