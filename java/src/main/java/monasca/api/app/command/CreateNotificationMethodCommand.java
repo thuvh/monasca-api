@@ -23,14 +23,13 @@ import java.util.List;
 
 import monasca.api.app.validation.NotificationMethodValidation;
 import monasca.api.app.validation.Validation;
-import monasca.api.domain.model.notificationmethod.NotificationMethodType;
 
 public class CreateNotificationMethodCommand {
   @NotEmpty
   @Size(min = 1, max = 250)
   public String name;
   @NotNull
-  public NotificationMethodType type;
+  public String type;
   @NotEmpty
   @Size(min = 1, max = 512)
   public String address;
@@ -39,9 +38,9 @@ public class CreateNotificationMethodCommand {
 
   public CreateNotificationMethodCommand() {this.period = "0";}
 
-  public CreateNotificationMethodCommand(String name, NotificationMethodType type, String address, String period) {
+  public CreateNotificationMethodCommand(String name, String  notificationMethodType, String address, String period) {
     this.name = name;
-    this.type = type;
+    this.type = notificationMethodType;
     this.address = address;
     period = period == null ? "0" : period;
     this.setPeriod(period);
@@ -71,7 +70,10 @@ public class CreateNotificationMethodCommand {
         return false;
     } else if (!period.equals(other.period))
       return false;
-    if (type != other.type)
+    if (type == null) {
+      if (other.type != null)
+         return false;
+    } else if (!type.equalsIgnoreCase(other.type))
       return false;
     if (convertedPeriod != other.convertedPeriod)
       return false;

@@ -45,7 +45,6 @@ import monasca.api.app.validation.NotificationMethodValidation;
 import monasca.api.app.validation.Validation;
 import monasca.api.domain.model.notificationmethod.NotificationMethod;
 import monasca.api.domain.model.notificationmethod.NotificationMethodRepo;
-import monasca.api.domain.model.notificationmethod.NotificationMethodType;
 import monasca.api.infrastructure.persistence.PersistUtils;
 import monasca.api.resource.annotation.PATCH;
 
@@ -59,8 +58,10 @@ public class NotificationMethodResource {
   private final static List<String> ALLOWED_SORT_BY = Arrays.asList("id", "name", "type",
                                                                     "address", "updated_at",
                                                                     "created_at");
+  private final static List<String> DEFAULT_NOTIFICATION_METHODS = Arrays.asList("Email", "PagerDuty", "WebHook");
   private final List<Integer> validPeriods;
-
+  private final List<String> validNotificationMethods;
+  
 
   @Inject
   public NotificationMethodResource(ApiConfig config, NotificationMethodRepo repo,
@@ -69,6 +70,8 @@ public class NotificationMethodResource {
     this.persistUtils = persistUtils;
     this.validPeriods = config.validNotificationPeriods == null ? Arrays.asList(0, 60):
             config.validNotificationPeriods;
+    this.validNotificationMethods = config.validNotificationMethods == null ? DEFAULT_NOTIFICATION_METHODS :
+            config.validNotificationMethods;
   }
 
   @POST
@@ -145,7 +148,7 @@ public class NotificationMethodResource {
     NotificationMethod originalNotificationMethod = repo.findById(tenantId, notificationMethodId);
     String name = command.name == null ? originalNotificationMethod.getName()
             : command.name;
-    NotificationMethodType type = command.type == null ? originalNotificationMethod.getType()
+    String type = command.type == null ? originalNotificationMethod.getType()
             : command.type;
     String address = command.address == null ? originalNotificationMethod.getAddress()
             : command.address;
