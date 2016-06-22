@@ -22,12 +22,11 @@ import javax.validation.constraints.Size;
 
 import monasca.api.app.validation.NotificationMethodValidation;
 import monasca.api.app.validation.Validation;
-import monasca.api.domain.model.notificationmethod.NotificationMethodType;
 
 public class PatchNotificationMethodCommand {
     @Size(min = 1, max = 250)
     public String name;
-    public NotificationMethodType type;
+    public String type;
     @Size(min = 1, max = 512)
     public String address;
     public String period;
@@ -59,7 +58,10 @@ public class PatchNotificationMethodCommand {
                 return false;
         } else if (!period.equals(other.period))
             return false;
-        if (type != other.type)
+        if (type == null) {
+            if (other.type != null)
+               return false;
+          } else if (!type.equalsIgnoreCase(other.type))
             return false;
         if (convertedPeriod != other.convertedPeriod)
             return false;
