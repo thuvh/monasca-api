@@ -1700,10 +1700,11 @@ function install_monasca_grafana {
 
     echo_summary "Install Grafana"
 
-    sudo apt-get install -y wget
-
-    curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
-    sudo apt-get install -y nodejs
+    # install node with nvm, works behind corporate proxy
+    # and does not result in gnutsl_handshake error
+    sudo apt-get install -y curl
+    curl https://raw.githubusercontent.com/creationix/nvm/v0.31.1/install.sh | bash
+    . ~/.bashrc && nvm install 4.0.0
 
     cd "${MONASCA_BASE}"
     wget https://storage.googleapis.com/golang/go1.5.2.linux-amd64.tar.gz
