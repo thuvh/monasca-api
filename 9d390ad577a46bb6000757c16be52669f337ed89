@@ -59,6 +59,23 @@
     },
     {
       "key": {
+        "uuid": "3aaa91ec_866c1409",
+        "filename": "java/src/main/java/monasca/api/app/validation/NotificationMethodValidation.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-06-24T21:41:32Z",
+      "side": 1,
+      "message": "whitespace.",
+      "revId": "9d390ad577a46bb6000757c16be52669f337ed89",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3aaa91ec_49a4ffb8",
         "filename": "java/src/main/java/monasca/api/app/validation/NotificationMethodValidation.java",
         "patchSetId": 5
