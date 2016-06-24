@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3aaa91ec_69f57beb",
+        "filename": "java/src/main/java/monasca/api/app/command/CreateNotificationMethodCommand.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-06-24T21:32:32Z",
+      "side": 1,
+      "message": "If equals is added then hashCode should be too. I though we just checked this in our code recently, but I guess we missed one or maybe even more than one. Would it be possible to add hashCode?",
+      "revId": "9d390ad577a46bb6000757c16be52669f337ed89",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3aaa91ec_0955d7c4",
+        "filename": "java/src/main/java/monasca/api/app/command/PatchNotificationMethodCommand.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-06-24T21:32:32Z",
+      "side": 1,
+      "message": "Apparently we missed hashCode in more than one location. Would it be possible to add hashCode here too?",
+      "range": {
+        "startLine": 64,
+        "startChar": 19,
+        "endLine": 64,
+        "endChar": 20
+      },
+      "revId": "9d390ad577a46bb6000757c16be52669f337ed89",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3aaa91ec_c9758f64",
+        "filename": "java/src/main/java/monasca/api/app/command/UpdateNotificationMethodCommand.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-06-24T21:32:32Z",
+      "side": 1,
+      "message": "please add hashCode here too?",
+      "revId": "9d390ad577a46bb6000757c16be52669f337ed89",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3aaa91ec_49a4ffb8",
+        "filename": "java/src/main/java/monasca/api/app/validation/NotificationMethodValidation.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-06-24T21:32:32Z",
+      "side": 1,
+      "message": "I realize that you are going to add several new plugins for notification methods, but some of these will still be \"relatively\" well known, such as HIPCHAT, SLACK and JIRA. I think in all of these cases if the period !\u003d 0, then it should throw an exception, as I think that is the behaviour that we want. Additionally, you could add validation logic for these if there is some validation that you want to do on the address.",
+      "revId": "9d390ad577a46bb6000757c16be52669f337ed89",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3aaa91ec_a993e359",
+        "filename": "java/src/main/java/monasca/api/domain/model/notificationmethod/NotificationMethod.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-06-24T21:32:32Z",
+      "side": 1,
+      "message": "I guess we missed hashCode here too. It should probably be added.",
+      "revId": "9d390ad577a46bb6000757c16be52669f337ed89",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
