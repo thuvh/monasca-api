@@ -1708,14 +1708,23 @@ function clean_monasca_horizon_ui {
 
 }
 
+# install node with nvm, works behind corporate proxy
+# and does not result in gnutsl_handshake error
+function install_node_nvm {
+
+    echo_summary "Install Node"
+
+    sudo apt-get install -y curl
+    curl https://raw.githubusercontent.com/creationix/nvm/v0.31.1/install.sh | bash
+
+    (source "${HOME}"/.nvm/nvm.sh >> /dev/null; nvm install 4.0.0; nvm use 4.0.0)
+}
+
 function install_monasca_grafana {
 
     echo_summary "Install Grafana"
 
-    sudo apt-get install -y wget
-
-    curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
-    sudo apt-get install -y nodejs
+    install_node_nvm
 
     cd "${MONASCA_BASE}"
     wget https://storage.googleapis.com/golang/go1.5.2.linux-amd64.tar.gz
@@ -1749,10 +1758,12 @@ function install_monasca_grafana {
     go run build.go setup
     $GOPATH/bin/godep restore
     go run build.go build
-    npm config set unsafe-perm true
-    npm install
-    sudo npm install -g grunt-cli
-    grunt --force
+
+    (source "${HOME}"/.nvm/nvm.sh >> /dev/null; nvm use 4.0.0; npm config set unsafe-perm true)
+    (source "${HOME}"/.nvm/nvm.sh >> /dev/null; nvm use 4.0.0; npm install)
+    (source "${HOME}"/.nvm/nvm.sh >> /dev/null; nvm use 4.0.0; npm install grunt-cli)
+    (source "${HOME}"/.nvm/nvm.sh >> /dev/null; nvm use 4.0.0; grunt --force)
+
     cd "${MONASCA_BASE}"
     sudo rm -r grafana-plugins
     sudo rm -r grafana
