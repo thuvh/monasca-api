@@ -93,6 +93,24 @@
     },
     {
       "key": {
+        "uuid": "3aaa91ec_12e7af40",
+        "filename": "java/src/main/java/monasca/api/app/validation/NotificationMethodValidation.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-06-25T15:01:18Z",
+      "side": 1,
+      "message": "Was just reviewing my comments again. Minimally, I think we want  the default logic to be to throw Exceptions.unprocessableEntity, if the period is anything but 0, and it isn\u0027t a WEBHOOK for now. For SLACK, HIPCHAT, and JIRA it doesn\u0027t make any sense to periodically send a notification.\n\nAlso, since we know that we are planning on adding HIPCHAT, SLACK and JIRA, if any authentication is possible on the address, I would be OK adding hard-coded authenticators. Note, in the case of PAGERDUTY, there is no validation on the address, so I\u0027m not sure there should be anything done in the case of the above either.",
+      "parentUuid": "3aaa91ec_49a4ffb8",
+      "revId": "9d390ad577a46bb6000757c16be52669f337ed89",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3aaa91ec_a993e359",
         "filename": "java/src/main/java/monasca/api/domain/model/notificationmethod/NotificationMethod.java",
         "patchSetId": 5
