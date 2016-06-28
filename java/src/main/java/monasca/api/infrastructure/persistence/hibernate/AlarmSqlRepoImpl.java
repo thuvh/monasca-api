@@ -618,7 +618,6 @@ public class AlarmSqlRepoImpl
                                    List<AlarmSeverity> severities, String lifecycleState, String link,
                                    DateTime stateUpdatedStart, List<String> groupBy,
                                    String offset, int limit) {
-    // Not Implemented
     return null;
   }
 
