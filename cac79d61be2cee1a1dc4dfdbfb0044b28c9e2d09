@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3aaa91ec_177d97e7",
+        "filename": "monasca_api/v2/common/validation.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-06-28T01:34:57Z",
+      "side": 1,
+      "message": "Where did you get this one from or did you just create on your own.\n\nWondering if we should use something like, https://github.com/scottbrady91/Python-Email-Verification-Script/blob/master/src/VerifyEmailAddress.py which comes from https://www.scottbrady91.com/Email-Verification/Python-Email-Verification-Script.",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 13
+      },
+      "revId": "cac79d61be2cee1a1dc4dfdbfb0044b28c9e2d09",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
