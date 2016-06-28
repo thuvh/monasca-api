@@ -22,6 +22,30 @@
       "revId": "cac79d61be2cee1a1dc4dfdbfb0044b28c9e2d09",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3aaa91ec_3aed1a8f",
+        "filename": "monasca_api/v2/common/validation.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2016-06-28T02:13:39Z",
+      "side": 1,
+      "message": "Unfortunately the regexp in the script you linked doesn\u0027t cover much of the spec.  I\u0027d prefer to be overly permissive if we\u0027re going to do our own validation so we don\u0027t run into any maintenance headaches later.  Ideally we could replace it in the future with a library someone else maintains maintains.",
+      "parentUuid": "3aaa91ec_177d97e7",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 13
+      },
+      "revId": "cac79d61be2cee1a1dc4dfdbfb0044b28c9e2d09",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
