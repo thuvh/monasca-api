@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3aaa91ec_c4b649f8",
+        "filename": "java/src/main/java/monasca/api/domain/model/measurement/Measurements.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-06-29T21:00:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3aaa91ec_dec33837",
+      "range": {
+        "startLine": 55,
+        "startChar": 17,
+        "endLine": 55,
+        "endChar": 23
+      },
+      "revId": "0fc63eb956f8bd1e56330ed529c2b8af1b542f9b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3aaa91ec_be510cdb",
         "filename": "java/src/main/java/monasca/api/domain/model/statistic/StatisticRepo.java",
         "patchSetId": 6
@@ -36,6 +60,30 @@
       "writtenOn": "2016-06-27T21:45:17Z",
       "side": 1,
       "message": "I don\u0027t like the change to Measurements since it really is a Statistics being returned here. You can use Statistics if you make some changes to other code to use List\u003c? extends Measurements\u003e for some methods like Links.paginateMeasurements()",
+      "range": {
+        "startLine": 33,
+        "startChar": 7,
+        "endLine": 33,
+        "endChar": 19
+      },
+      "revId": "0fc63eb956f8bd1e56330ed529c2b8af1b542f9b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3aaa91ec_ff494e32",
+        "filename": "java/src/main/java/monasca/api/domain/model/statistic/StatisticRepo.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-06-29T21:00:16Z",
+      "side": 1,
+      "message": "Agreed, done.",
+      "parentUuid": "3aaa91ec_be510cdb",
       "range": {
         "startLine": 33,
         "startChar": 7,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "3aaa91ec_e45545c2",
+        "filename": "java/src/main/java/monasca/api/domain/model/statistic/Statistics.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-06-29T21:00:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3aaa91ec_7e1cc413",
+      "range": {
+        "startLine": 30,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 42
+      },
+      "revId": "0fc63eb956f8bd1e56330ed529c2b8af1b542f9b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3aaa91ec_5eb3c80a",
         "filename": "java/src/main/java/monasca/api/domain/model/statistic/Statistics.java",
         "patchSetId": 6
@@ -82,6 +154,30 @@
       "writtenOn": "2016-06-27T21:45:17Z",
       "side": 1,
       "message": "This should just be:\n\n    super(name, dimensions);\n    this.columns \u003d columns;\n\nUnless there is a reason it should be an ArrayList\u003c\u003e vs a LinkedList in Measurements",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 42
+      },
+      "revId": "0fc63eb956f8bd1e56330ed529c2b8af1b542f9b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3aaa91ec_c45ac9f1",
+        "filename": "java/src/main/java/monasca/api/domain/model/statistic/Statistics.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-06-29T21:00:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3aaa91ec_5eb3c80a",
       "range": {
         "startLine": 34,
         "startChar": 0,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "3aaa91ec_847a8186",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MeasurementVerticaRepoImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-06-29T21:00:16Z",
+      "side": 1,
+      "message": "It was decided that group_by overrides merge. If group_by is set then offset needs to be split, but in all other cases, we only need the timestamp.",
+      "parentUuid": "3aaa91ec_3eecfc8e",
+      "range": {
+        "startLine": 109,
+        "startChar": 7,
+        "endLine": 109,
+        "endChar": 34
+      },
+      "revId": "0fc63eb956f8bd1e56330ed529c2b8af1b542f9b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3aaa91ec_fb15669b",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MetricQueries.java",
         "patchSetId": 6
@@ -128,6 +248,30 @@
       "writtenOn": "2016-06-27T21:45:17Z",
       "side": 1,
       "message": "This import is not used",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 43
+      },
+      "revId": "0fc63eb956f8bd1e56330ed529c2b8af1b542f9b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3aaa91ec_64b7953a",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MetricQueries.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-06-29T21:00:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3aaa91ec_fb15669b",
       "range": {
         "startLine": 26,
         "startChar": 0,
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "3aaa91ec_8488c172",
+        "filename": "java/src/main/java/monasca/api/resource/Links.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-06-29T21:00:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3aaa91ec_c05c437f",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 38
+      },
+      "revId": "0fc63eb956f8bd1e56330ed529c2b8af1b542f9b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3aaa91ec_c0d3a3d3",
         "filename": "java/src/main/java/monasca/api/resource/Links.java",
         "patchSetId": 6
@@ -174,6 +342,30 @@
       "writtenOn": "2016-06-27T21:45:17Z",
       "side": 1,
       "message": "This import is not needed anymore",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 53
+      },
+      "revId": "0fc63eb956f8bd1e56330ed529c2b8af1b542f9b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3aaa91ec_e479c583",
+        "filename": "java/src/main/java/monasca/api/resource/Links.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-06-29T21:00:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3aaa91ec_c0d3a3d3",
       "range": {
         "startLine": 32,
         "startChar": 0,
