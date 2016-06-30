@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3aaa91ec_23b8a729",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 1765,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-06-30T20:38:15Z",
+      "side": 1,
+      "message": "Change that to source nvm to check if that helps.",
+      "range": {
+        "startLine": 1765,
+        "startChar": 24,
+        "endLine": 1765,
+        "endChar": 29
+      },
+      "revId": "36db72bfb90bebc58bb2e0b86c6753d24ce673b0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
