@@ -855,6 +855,7 @@ function install_monasca_api_python {
 
     pip_install gunicorn
     pip_install PyMySQL
+    pip_install influxdb
 
     (cd "${MONASCA_BASE}"/monasca-api ; sudo python setup.py sdist)
 
@@ -1068,6 +1069,7 @@ function install_monasca_persister_python {
     PIP_VIRTUAL_ENV=/opt/monasca-persister
 
     pip_install $MONASCA_PERSISTER_SRC_DIST
+    pip_install influxdb
 
     unset PIP_VIRTUAL_ENV
 
