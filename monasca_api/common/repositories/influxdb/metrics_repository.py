@@ -16,6 +16,7 @@
 # under the License.
 from datetime import datetime
 import json
+import hashlib
 
 from influxdb import client
 from influxdb.exceptions import InfluxDBClientError
@@ -204,6 +205,41 @@ class MetricsRepository(metrics_repository.MetricsRepository):
         except Exception as ex:
             LOG.exception(ex)
             raise exceptions.RepositoryException(ex)
+
+    def _generate_dimension_values_id(self, metric_name, dimension_name):
+        sha1 = hashlib.sha1()
+        hashstr = "metricName=" + (metric_name or "") + "dimensionName=" + dimension_name
+        sha1.update(hashstr)
+        return sha1.hexdigest()
+
+    def _build_serie_dimension_values(self, series_names, metric_name, dimension_name,
+                                      tenant_id, region, offset):
+        dim_vals = []
+        sha1_id = self._generate_dimension_values_id(metric_name, dimension_name)
+        json_dim_vals = {u'id': sha1_id,
+                         u'dimension_name': dimension_name,
+                         u'metric_name': metric_name,
+                         u'values': dim_vals}
+
+        if not series_names:
+            return json_dim_vals
+
+        if 'series' in series_names.raw:
+            for series in series_names.raw['series']:
+                for tag_values in series[u'values']:
+
+                    dims = {
+                        name: value
+                        for name, value in zip(series[u'columns'], tag_values)
+                        if value and not name.startswith(u'_')
+                    }
+
+                    if dimension_name in dims and dims[dimension_name] not in dim_vals:
+                        dim_vals.append(dims[dimension_name])
+
+        dim_vals = sorted(dim_vals)
+        json_dim_vals[ u'values'] = dim_vals
+        return json_dim_vals
 
     def _build_serie_metric_list(self, series_names, tenant_id, region,
                                  start_timestamp, end_timestamp,
@@ -585,3 +621,23 @@ class MetricsRepository(metrics_repository.MetricsRepository):
     def _get_millis_from_timestamp(self, dt):
         dt = dt.replace(tzinfo=None)
         return int((dt - datetime(1970, 1, 1)).total_seconds() * 1000)
+
+    def list_dimension_values(self, tenant_id, region, metric_name,
+                              dimension_name, offset, limit):
+
+        try:
+            query = self._build_show_series_query(None, metric_name, tenant_id, region)
+            result = self.influxdb_client.query(query)
+
+            json_dim_vals = self._build_serie_dimension_values(result,
+                                                               metric_name,
+                                                               dimension_name,
+                                                               tenant_id,
+                                                               region,
+                                                               offset)
+
+            return json_dim_vals
+
+        except Exception as ex:
+            LOG.exception(ex)
+            raise exceptions.RepositoryException(ex)
