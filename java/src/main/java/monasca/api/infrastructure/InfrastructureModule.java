@@ -22,6 +22,7 @@ import monasca.api.ApiConfig;
 import monasca.api.domain.model.alarm.AlarmRepo;
 import monasca.api.domain.model.alarmdefinition.AlarmDefinitionRepo;
 import monasca.api.domain.model.alarmstatehistory.AlarmStateHistoryRepo;
+import monasca.api.domain.model.dimension.DimensionRepo;
 import monasca.api.domain.model.measurement.MeasurementRepo;
 import monasca.api.domain.model.metric.MetricDefinitionRepo;
 import monasca.api.domain.model.notificationmethod.NotificationMethodRepo;
@@ -43,6 +44,7 @@ import monasca.api.infrastructure.persistence.hibernate.AlarmSqlRepoImpl;
 import monasca.api.infrastructure.persistence.hibernate.NotificationMethodSqlRepoImpl;
 import monasca.api.infrastructure.persistence.hibernate.AlarmHibernateUtils;
 import monasca.api.infrastructure.persistence.vertica.AlarmStateHistoryVerticaRepoImpl;
+import monasca.api.infrastructure.persistence.vertica.DimensionVerticaRepoImpl;
 import monasca.api.infrastructure.persistence.vertica.MeasurementVerticaRepoImpl;
 import monasca.api.infrastructure.persistence.vertica.MetricDefinitionVerticaRepoImpl;
 import monasca.api.infrastructure.persistence.vertica.StatisticVerticaRepoImpl;
@@ -84,6 +86,7 @@ public class InfrastructureModule extends AbstractModule {
     if (config.databaseConfiguration.getDatabaseType().trim().equalsIgnoreCase(VERTICA)) {
 
       bind(AlarmStateHistoryRepo.class).to(AlarmStateHistoryVerticaRepoImpl.class).in(Singleton.class);
+      bind(DimensionRepo.class).to(DimensionVerticaRepoImpl.class).in(Singleton.class);
       bind(MetricDefinitionRepo.class).to(MetricDefinitionVerticaRepoImpl.class).in(Singleton.class);
       bind(MeasurementRepo.class).to(MeasurementVerticaRepoImpl.class).in(Singleton.class);
       bind(StatisticRepo.class).to(StatisticVerticaRepoImpl.class).in(Singleton.class);

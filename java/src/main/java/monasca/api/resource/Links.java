@@ -26,6 +26,7 @@ import com.google.common.base.Preconditions;
 import monasca.api.ApiConfig;
 import monasca.api.domain.model.alarm.AlarmCount;
 import monasca.api.domain.model.common.Paged;
+import monasca.api.domain.model.dimension.DimensionValues;
 import monasca.api.domain.model.measurement.Measurements;
 import monasca.common.model.domain.common.AbstractEntity;
 import monasca.api.domain.model.common.Link;
@@ -357,6 +358,22 @@ public final class Links {
     }
 
     alarmCount.setLinks(links);
+  }
+
+  public static DimensionValues paginateDimensionValues(DimensionValues dimVals, int limit, UriInfo uriInfo)
+      throws UnsupportedEncodingException
+  {
+    List<Link> links = new ArrayList<>();
+    links.add(getSelfLink(uriInfo));
+
+    if (dimVals.getValues().size() > limit) {
+      dimVals.getValues().remove(dimVals.getValues().size()-1);
+      String offset = dimVals.getValues().get(dimVals.getValues().size()-1);
+      links.add(getNextLink(offset, uriInfo));
+    }
+
+    dimVals.setLinks(links);
+    return dimVals;
   }
 
 }
