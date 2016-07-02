@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1aa78d24_d92a3ee7",
+        "filename": "etc/api-config.conf",
+        "patchSetId": 16
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-07-02T20:53:45Z",
+      "side": 1,
+      "message": "I think line 45 should be connected with 44.",
+      "revId": "062699332ed339c2d7f84f0cd7f1668a001ea189",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
