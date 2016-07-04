@@ -16,6 +16,24 @@
       "revId": "062699332ed339c2d7f84f0cd7f1668a001ea189",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa78d24_e73139ee",
+        "filename": "etc/api-config.conf",
+        "patchSetId": 16
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-07-04T11:30:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1aa78d24_d92a3ee7",
+      "revId": "062699332ed339c2d7f84f0cd7f1668a001ea189",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
