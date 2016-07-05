@@ -27,6 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import monasca.api.domain.model.notificationmethod.NotificationMethodTypesRepo;
+import monasca.common.hibernate.db.NotificationMethodTypesDb;
 
 /**
  * Notification method repository implementation.
@@ -51,9 +52,13 @@ public class NotificationMethodTypesSqlRepoImpl
 
     try {
       session = sessionFactory.openSession();
-      Query q = session.createSQLQuery("Select * from notification_method_types").addEntity(String.class);
+      //Query q = session.createSQLQuery("Select * from notification_method_type").addEntity(String.class);
+      Query q = session.createQuery("from NotificationMethodTypesDb");
 
-      notification_method_types = q.list();
+      List<NotificationMethodTypesDb> resultList = q.list();
+      for (NotificationMethodTypesDb type : resultList){
+    	  notification_method_types.add(type.getName());
+      }
 
       return notification_method_types;
 

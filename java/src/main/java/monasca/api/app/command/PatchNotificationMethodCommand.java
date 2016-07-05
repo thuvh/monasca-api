@@ -68,8 +68,8 @@ public class PatchNotificationMethodCommand {
         return true;
     }
 
-    public void validate(List<Integer> validPeriods) {
-        NotificationMethodValidation.validate(type, address, convertedPeriod, validPeriods);
+    public void validate(List<Integer> validPeriods ){
+        NotificationMethodValidation.validate(type, address, convertedPeriod,validPeriods);
     }
 
     @JsonProperty("period")

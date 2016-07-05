@@ -59,6 +59,11 @@ public class NotificationMethodMySqlRepoImpl implements NotificationMethodRepo {
       if (getNotificationIdForTenantIdAndName(h,tenantId, name) != null)
         throw new EntityExistsException(
             "Notification method %s \"%s\" already exists.", tenantId, name);
+      
+      if(!isValidNotificaitonMethodType(h, notificationMethodType)){
+            throw new EntityExistsException(
+            "Not a valid notification method type %s ",  notificationMethodType);
+      }
 
       String id = UUID.randomUUID().toString();
       h.insert(
@@ -103,6 +108,23 @@ public class NotificationMethodMySqlRepoImpl implements NotificationMethodRepo {
       return null;
     }
   }
+
+  private boolean isValidNotificaitonMethodType(Handle h ,String notifMethod){
+
+      String query = "  SELECT * from notification_method_type";
+
+      Query<Map<String, Object>> q  = h.createQuery(query);
+      List<Map<String, Object>>  result = q.list();
+
+
+      for (Map<String, Object> m : result) {
+          String method = (String)m.get("name");
+          if (method.equalsIgnoreCase(notifMethod))
+              return true;
+      }
+      return false;
+  }
+
 
   @Override
   public List<NotificationMethod> find(String tenantId, List<String> sortBy, String offset,

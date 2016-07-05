@@ -53,6 +53,14 @@ public class NotificationMethodMySqlRepositoryImplTest {
     handle = db.open();
     handle.execute(Resources.toString(getClass().getResource("notification_method.sql"),
         Charset.defaultCharset()));
+    handle.execute(Resources.toString(getClass().getResource("notification_method_type.sql"),
+            Charset.defaultCharset()));
+    handle
+    .execute("insert into notification_method_type ( name) values ('EMAIL')");
+    handle
+    .execute("insert into notification_method_type ( name) values ('PAGERDUTY')");
+    handle
+    .execute("insert into notification_method_type ( name) values ('WEBHOOK')");
     repo = new NotificationMethodMySqlRepoImpl(db, new PersistUtils());
   }
 

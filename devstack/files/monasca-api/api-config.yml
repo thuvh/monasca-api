@@ -94,7 +94,7 @@ middleware:
   useHttps: False
   truststore: "None"
   truststorePassword: "None"
-  connTimeout: 5000
+  connTimeout: 500
   connSSLClientAuth: False
   keystore: "None"
   keystorePassword: "None"

@@ -53,6 +53,7 @@ import monasca.common.hibernate.db.MetricDefinitionDb;
 import monasca.common.hibernate.db.MetricDefinitionDimensionsDb;
 import monasca.common.hibernate.db.MetricDimensionDb;
 import monasca.common.hibernate.db.NotificationMethodDb;
+import monasca.common.hibernate.db.NotificationMethodTypesDb;
 import monasca.common.hibernate.db.SubAlarmDb;
 import monasca.common.hibernate.db.SubAlarmDefinitionDb;
 import monasca.common.hibernate.db.SubAlarmDefinitionDimensionDb;
@@ -117,6 +118,7 @@ public class MonApiModule
       configuration.addAnnotatedClass(SubAlarmDefinitionDimensionDb.class);
       configuration.addAnnotatedClass(SubAlarmDb.class);
       configuration.addAnnotatedClass(NotificationMethodDb.class);
+      configuration.addAnnotatedClass(NotificationMethodTypesDb.class);
 
       configuration.setProperties(this.getORMProperties(this.config.hibernate.getDataSourceClassName()));
       ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
