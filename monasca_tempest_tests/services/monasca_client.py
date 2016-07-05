@@ -21,13 +21,6 @@ CONF = config.CONF
 
 class MonascaClient(rest_client.RestClient):
 
-    def __init__(self, auth_provider):
-        super(MonascaClient, self).__init__(
-            auth_provider,
-            CONF.monitoring.catalog_type,
-            CONF.monitoring.region or CONF.identity.region,
-            endpoint_type=CONF.monitoring.endpoint_type)
-
     def get_version(self):
         resp, response_body = self.get('')
         return resp, response_body

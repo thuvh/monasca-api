@@ -30,7 +30,7 @@ class TestReadOnlyRole(base.BaseMonascaTest):
         credentials = cls.cred_provider.get_creds_by_roles(
             ['monasca-read-only-user']).credentials
         cls.os = clients.Manager(credentials=credentials)
-        cls.monasca_client = cls.os.monasca_client
+        cls.monasca_client = cls.os.monitoring.MonascaClient()
 
     @classmethod
     def resource_cleanup(cls):
