@@ -896,6 +896,8 @@ class TestAlarms(base.BaseMonascaTest):
             alarm_definition_ids.append(response_body['id'])
         expected_metric = helpers.create_metric(name=metric_name,
                                                 dimensions={key: value})
+        # Ensure the new Alarm Definitions get to the Threshold Engine
+        time.sleep(constants.ALARM_DEFINITION_CREATION_WAIT)
         # create some metrics
         for j in xrange(num):
             for i in xrange(constants.MAX_RETRIES):
@@ -911,6 +913,8 @@ class TestAlarms(base.BaseMonascaTest):
         return alarm_definition_ids, expected_metric
 
     def _create_metrics_for_match_by(self, num, alarm_definition_id):
+        # Ensure the new Alarm Definition gets to the Threshold Engine
+        time.sleep(constants.ALARM_DEFINITION_CREATION_WAIT)
         metric1 = helpers.create_metric(
             name='cpu.idle_perc',
             dimensions={'service': 'monitoring',
@@ -925,6 +929,8 @@ class TestAlarms(base.BaseMonascaTest):
 
     def _create_metrics_for_match_by_sub_expressions(self, num,
                                                      alarm_definition_id):
+        # Ensure the new Alarm Definition gets to the Threshold Engine
+        time.sleep(constants.ALARM_DEFINITION_CREATION_WAIT)
         metric1 = helpers.create_metric(
             name='cpu.idle_perc',
             dimensions={'service': 'monitoring',
@@ -949,6 +955,8 @@ class TestAlarms(base.BaseMonascaTest):
 
     def _create_metrics_for_match_by_sub_expressions_list(self, num,
                                                           alarm_definition_id):
+        # Ensure the new Alarm Definition gets to the Threshold Engine
+        time.sleep(constants.ALARM_DEFINITION_CREATION_WAIT)
         # create some metrics
         metric1 = helpers.create_metric(
             name='cpu.idle_perc',
