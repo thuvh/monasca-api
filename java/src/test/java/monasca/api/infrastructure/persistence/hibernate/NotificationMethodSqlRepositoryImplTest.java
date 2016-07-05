@@ -26,12 +26,6 @@ import java.util.List;
 
 import javax.ws.rs.WebApplicationException;
 
-import monasca.api.domain.exception.EntityExistsException;
-import monasca.api.domain.exception.EntityNotFoundException;
-import monasca.api.domain.model.notificationmethod.NotificationMethod;
-import monasca.api.domain.model.notificationmethod.NotificationMethodRepo;
-import monasca.common.hibernate.db.NotificationMethodDb;
-import monasca.common.model.alarm.AlarmNotificationMethodType;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -39,6 +33,14 @@ import org.joda.time.DateTime;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import monasca.api.domain.exception.EntityExistsException;
+import monasca.api.domain.exception.EntityNotFoundException;
+import monasca.api.domain.model.notificationmethod.NotificationMethod;
+import monasca.api.domain.model.notificationmethod.NotificationMethodRepo;
+import monasca.common.hibernate.db.NotificationMethodDb;
+import monasca.common.hibernate.db.NotificationMethodTypesDb;
+import monasca.common.model.alarm.AlarmNotificationMethodType;
 
 @Test(groups = "orm")
 public class NotificationMethodSqlRepositoryImplTest {
@@ -82,6 +84,18 @@ public class NotificationMethodSqlRepositoryImplTest {
 
       session.save(notificationMethodDb1);
       session.save(notificationMethodDb2);
+
+      NotificationMethodTypesDb notificationMethodTypeDb1 =
+              new NotificationMethodTypesDb("EMAIL");
+      NotificationMethodTypesDb notificationMethodTypeDb2 =
+              new NotificationMethodTypesDb("WEBHOOK");
+      NotificationMethodTypesDb notificationMethodTypeDb3 =
+              new NotificationMethodTypesDb("PAGERDUTY");
+
+      session.save(notificationMethodTypeDb1);
+      session.save(notificationMethodTypeDb2);
+      session.save(notificationMethodTypeDb3);
+
 
       session.getTransaction().commit();
 

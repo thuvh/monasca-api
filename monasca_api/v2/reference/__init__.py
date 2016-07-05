@@ -80,6 +80,8 @@ repositories_opts = [
     cfg.StrOpt('transforms_driver', default='mysql_transforms_repo',
                help='The repository driver to use for transforms'),
     cfg.StrOpt('notifications_driver', default='mysql_notifications_repo',
+               help='The repository driver to use for notifications'),
+    cfg.StrOpt('notification_method_type_driver', default='mysql_notifications_repo',
                help='The repository driver to use for notifications')]
 
 repositories_group = cfg.OptGroup(name='repositories', title='repositories')
