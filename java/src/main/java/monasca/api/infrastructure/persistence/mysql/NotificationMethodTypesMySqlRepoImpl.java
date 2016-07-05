@@ -51,14 +51,13 @@ public class NotificationMethodTypesMySqlRepoImpl implements NotificationMethodT
 	List<String>  notification_method_types = new ArrayList<String>();
     try (Handle h = db.open()) {
 
-      String query = "  SELECT * from notification_method_types";
+      String query = "  SELECT * from notification_method_type";
 
       Query<Map<String, Object>> q  = h.createQuery(query);
       List<Map<String, Object>>  result = q.list();
 
       for (Map<String, Object> m : result) {
             notification_method_types.add((String)m.get("name"));
-
       }
       return notification_method_types;
 
