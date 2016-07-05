@@ -249,9 +249,11 @@ class TestStatistics(base.BaseMonascaTest):
             # python api returns exact timestamp, but the test needs a rounded number
             offset_period_index = offset.find('.')
             offset = offset[:offset_period_index] + 'Z'
+            # The offset can be a combination id and date. Get just the date
+            offset_date = offset.split('_')[-1]
 
             for limit in xrange(1, max_limit):
-                expected_elements = [elem for elem in elements if elem[0] > offset]
+                expected_elements = [elem for elem in elements if elem[0] > offset_date]
                 expected_elements = expected_elements[:limit]
 
                 query_parms = '?name=' + name + '&merge_metrics=true' + \
