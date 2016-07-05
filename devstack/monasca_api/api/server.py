@@ -43,10 +43,7 @@ dispatcher_opts = [cfg.StrOpt('versions', default=None,
                    cfg.StrOpt('alarms_state_history', default=None,
                               help='Alarms state history'),
                    cfg.StrOpt('notification_methods', default=None,
-                              help='Notification methods'),
-                   cfg.StrOpt('notification_method_types', default=None,
-                              help='notification_method_types methods')]
-
+                              help='Notification methods')]
 
 dispatcher_group = cfg.OptGroup(name='dispatcher', title='dispatcher')
 cfg.CONF.register_group(dispatcher_group)
