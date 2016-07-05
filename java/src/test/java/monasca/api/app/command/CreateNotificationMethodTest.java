@@ -79,8 +79,8 @@ public class CreateNotificationMethodTest extends AbstractModelTest {
     CreateNotificationMethodCommand other = fromJson(json, CreateNotificationMethodCommand.class);
     assertEquals(other, newNotificationMethod);
   }
-  
-  @Test(expectedExceptions = AssertionError.class)
+
+  @Test(expectedExceptions = java.lang.AssertionError.class)
   public void shouldDeserializeFromJsonEnumError() throws Exception {
     CreateNotificationMethodCommand newNotificationMethod =
         new CreateNotificationMethodCommand("MyEmail", NOTIFICATION_METHOD_EMAIL, "a@b", "0");

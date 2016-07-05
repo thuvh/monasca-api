@@ -24,7 +24,6 @@ from monasca_api.v2.common.schemas import (
 from monasca_api.v2.common.schemas import exceptions as schemas_exceptions
 from monasca_api.v2.common import validation
 from monasca_api.v2.reference import helpers
-from monasca_api.v2.reference import resource
 
 LOG = log.getLogger(__name__)
 
@@ -39,6 +38,8 @@ class Notifications(notifications_api_v2.NotificationsV2API):
             cfg.CONF.security.default_authorized_roles)
         self._notifications_repo = simport.load(
             cfg.CONF.repositories.notifications_driver)()
+        self._notification_method_type_repo = simport.load(
+            cfg.CONF.repositories.notification_method_type_driver)()
         self.valid_periods = cfg.CONF.valid_notification_periods
 
     def _parse_and_validate_notification(self, notification, require_all=False):
@@ -66,9 +67,18 @@ class Notifications(notifications_api_v2.NotificationsV2API):
             if found_notification_id != expected_id:
                 LOG.warn("Found existing notification method for {} with tenant_id {} with unexpected id {}"
                          .format(name, tenant_id, found_notification_id))
-                raise exceptions.AlreadyExistsException(
+                raise falcon.HTTPBadRequest(
                     "A notification method with name {} already exists with id {}"
                     .format(name, found_notification_id))
+
+    def _validate_notification_method_type_exist(self, nmt):
+        notification_methods = self._notification_method_type_repo.list_notification_method_types(notification_method)
+        exists = nmt.upper() in notification_methods
+
+        if not exists:
+                LOG.warn("Found no notification method type  {} . Did you install/enable the plugin for that type?"
+                         .format(nmt))
+                raise exceptions.AlreadyExistsException("Not a valid notification method type {} ".format(nmt))
 
     @resource.resource_try_catch_block
     def _create_notification(self, tenant_id, notification, uri):
