@@ -12,12 +12,19 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-from tempest import clients
+from tempest import config
+from tempest.lib.services import service_clients
 
-from monasca_tempest_tests.services import monasca_client
+CONF = config.CONF
 
 
-class Manager(clients.Manager):
-    def __init__(self, credentials=None, service=None):
-        super(Manager, self).__init__(credentials, service)
-        self.monasca_client = monasca_client.MonascaClient(self.auth_provider)
+class Manager(service_clients.ServiceClients):
+    """Tempest stable service clients and loaded plugins service clients"""
+
+    def __init__(self, credentials):
+        # Identity settings
+        if CONF.identity.auth_version == 'v2':
+            identity_uri = CONF.identity.uri
+        else:
+            identity_uri = CONF.identity.uri_v3
+        super(Manager, self).__init__(credentials, identity_uri)
