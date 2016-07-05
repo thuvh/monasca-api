@@ -1813,6 +1813,52 @@ Cache-Control: no-cache
 This request does not return a response body.
 ___
 
+## List supported Notification Method Types
+List supported notification method types.
+
+### GET /v2.0/notification-methods/types/
+
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+
+
+#### Query Parameters
+None.
+
+#### Request Body
+None.
+
+#### Request Examples
+````
+GET /v2.0/notification-methods/types
+Host: 192.168.10.4:8080
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Cache-Control: no-cache
+
+````
+
+### Response
+
+#### Status Code
+* 200 - OK
+
+#### Response Body
+Returns a JSON list which has list of notification types supported
+
+* type (string) - Type of notification method
+
+
+#### Response Examples
+````
+{
+
+  types: ["Email","WebHook","PagerDuty","CustomNotificationMethodAdded"]
+
+}
+````
+___
+
+
 # Alarm Definitions
 Operations for working with alarm definitions.
 
