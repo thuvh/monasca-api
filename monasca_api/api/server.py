@@ -108,6 +108,10 @@ def launch(conf, config_file="/etc/monasca/api-config.conf"):
     app.add_route("/v2.0/notification-methods/{notification_method_id}",
                   notification_methods)
 
+    notification_method_types = simport.load(
+        cfg.CONF.dispatcher.notification_method_types)()
+    app.add_route("/v2.0/notification-methods/types", notification_method_types)
+
     LOG.debug('Dispatcher drivers have been added to the routes!')
     return app
 
