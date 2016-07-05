@@ -24,6 +24,10 @@ CONF = config.CONF
 class BaseMonascaTest(tempest.test.BaseTestCase):
     """Base test case class for all Monasca API tests."""
 
+    # NOTE(andreaf) Override the client manager class to be used, with
+    # monasca own one, which includes plugin registered services as well
+    client_manager = clients.Manager
+
     @classmethod
     def skip_checks(cls):
         super(BaseMonascaTest, cls).skip_checks()
@@ -39,7 +43,7 @@ class BaseMonascaTest(tempest.test.BaseTestCase):
         credentials = cls.cred_provider.get_creds_by_roles(
             ['monasca-user', 'anotherrole']).credentials
         cls.os = clients.Manager(credentials=credentials)
-        cls.monasca_client = cls.os.monasca_client
+        cls.monasca_client = cls.os.monitoring.MonascaClient()
 
     @staticmethod
     def cleanup_resources(method, list_of_ids):
