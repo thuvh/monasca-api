@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "3aaa91ec_8c0ef5e2",
+        "filename": "java/src/main/java/monasca/api/app/command/CreateNotificationMethodCommand.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2016-07-05T19:53:56Z",
+      "side": 1,
+      "message": "It is there at line 97",
+      "parentUuid": "3aaa91ec_69f57beb",
+      "revId": "9d390ad577a46bb6000757c16be52669f337ed89",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3aaa91ec_0955d7c4",
         "filename": "java/src/main/java/monasca/api/app/command/PatchNotificationMethodCommand.java",
         "patchSetId": 5
@@ -30,6 +48,30 @@
       "writtenOn": "2016-06-24T21:32:32Z",
       "side": 1,
       "message": "Apparently we missed hashCode in more than one location. Would it be possible to add hashCode here too?",
+      "range": {
+        "startLine": 64,
+        "startChar": 19,
+        "endLine": 64,
+        "endChar": 20
+      },
+      "revId": "9d390ad577a46bb6000757c16be52669f337ed89",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3aaa91ec_0c0325b9",
+        "filename": "java/src/main/java/monasca/api/app/command/PatchNotificationMethodCommand.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2016-07-05T19:53:56Z",
+      "side": 1,
+      "message": "At line 91",
+      "parentUuid": "3aaa91ec_0955d7c4",
       "range": {
         "startLine": 64,
         "startChar": 19,
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "3aaa91ec_4c2fed3e",
+        "filename": "java/src/main/java/monasca/api/app/command/UpdateNotificationMethodCommand.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2016-07-05T19:53:56Z",
+      "side": 1,
+      "message": "At line 95",
+      "parentUuid": "3aaa91ec_c9758f64",
+      "revId": "9d390ad577a46bb6000757c16be52669f337ed89",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3aaa91ec_866c1409",
         "filename": "java/src/main/java/monasca/api/app/validation/NotificationMethodValidation.java",
         "patchSetId": 5
@@ -70,6 +130,24 @@
       "writtenOn": "2016-06-24T21:41:32Z",
       "side": 1,
       "message": "whitespace.",
+      "revId": "9d390ad577a46bb6000757c16be52669f337ed89",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3aaa91ec_8c25555d",
+        "filename": "java/src/main/java/monasca/api/app/validation/NotificationMethodValidation.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2016-07-05T19:53:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3aaa91ec_866c1409",
       "revId": "9d390ad577a46bb6000757c16be52669f337ed89",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -122,6 +200,24 @@
       "writtenOn": "2016-06-24T21:32:32Z",
       "side": 1,
       "message": "I guess we missed hashCode here too. It should probably be added.",
+      "revId": "9d390ad577a46bb6000757c16be52669f337ed89",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3aaa91ec_3054ee52",
+        "filename": "java/src/main/java/monasca/api/domain/model/notificationmethod/NotificationMethod.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2016-07-05T19:53:56Z",
+      "side": 1,
+      "message": "It is at line 94",
+      "parentUuid": "3aaa91ec_a993e359",
       "revId": "9d390ad577a46bb6000757c16be52669f337ed89",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
