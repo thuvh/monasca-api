@@ -38,3 +38,14 @@ class MonascaTempestPlugin(plugins.TempestPlugin):
     def get_opt_lists(self):
         return [(config_monitoring.monitoring_group.name,
                  config_monitoring.MonitoringGroup)]
+
+    def get_service_clients(self):
+        monitoring_config = config.service_client_config('monitoring')
+        params = {
+            'name': 'monitoring',
+            'service_version': 'monitoring',
+            'module_path': 'monasca_tempest_tests.services',
+            'client_names': ['MonascaClient'],
+        }
+        params.update(monitoring_config)
+        return [params]
