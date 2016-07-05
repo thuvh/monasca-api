@@ -41,6 +41,7 @@ import monasca.api.resource.AlarmResource;
 import monasca.api.resource.MeasurementResource;
 import monasca.api.resource.MetricResource;
 import monasca.api.resource.NotificationMethodResource;
+import monasca.api.resource.NotificationMethodTypesResource;
 import monasca.api.resource.StatisticResource;
 import monasca.api.resource.VersionResource;
 import monasca.api.resource.exception.ConstraintViolationExceptionMapper;
@@ -111,6 +112,7 @@ public class MonApiApplication extends Application<ApiConfig> {
     environment.jersey().register(Injector.getInstance(MeasurementResource.class));
     environment.jersey().register(Injector.getInstance(StatisticResource.class));
     environment.jersey().register(Injector.getInstance(NotificationMethodResource.class));
+    environment.jersey().register(Injector.getInstance(NotificationMethodTypesResource.class));
 
     /** Configure providers */
     removeExceptionMappers(environment.jersey().getResourceConfig().getSingletons());
