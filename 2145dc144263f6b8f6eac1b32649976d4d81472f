@@ -46,6 +46,30 @@
       "revId": "2145dc144263f6b8f6eac1b32649976d4d81472f",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa78d24_ced92824",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 1819,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-07-06T20:30:25Z",
+      "side": 1,
+      "message": "No, no..what I head in mind was something like\n\n GET /v2.0/notification-methods\n\nreturns list of actual notification methods. Those entities, each one of them have a notification type that server (monasca-api) supports. My idea was to use OPTIONS http method over the same endpoint that could, as a response, return list of all possible types of notifications that server is capable of processing.\n\nIn other words that would something like\n\n OPTIONS /v2.0/notification-methods\n\n {\n   types: [\"WEBHOOK\", \"PAGERGUDY\", \"EMAIL\", \"JIRA\", \"HIPCHAT\"]\n }\n\nbut again, I think I might have overused what OPTIONS can be used for, so I guess that initial idea here is right way to go.\n\nBTW, sorry if that comment was out of place. I am still trying to figure this OPTIONS and I still come back in my mind to article I read while log - http://zacstewart.com/2012/04/14/http-options-method.html.\n\nThat\u0027s why I suggested that as an option to consider.",
+      "parentUuid": "1aa78d24_3ac90f27",
+      "range": {
+        "startLine": 1819,
+        "startChar": 4,
+        "endLine": 1819,
+        "endChar": 7
+      },
+      "revId": "2145dc144263f6b8f6eac1b32649976d4d81472f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
