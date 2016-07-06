@@ -189,6 +189,24 @@
     },
     {
       "key": {
+        "uuid": "1aa78d24_7a01006a",
+        "filename": "java/src/main/java/monasca/api/app/validation/NotificationMethodValidation.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-07-06T05:11:28Z",
+      "side": 1,
+      "message": "You can always add full class name into configuration file that would be the validator + method name if necessary. Load that via reflection and run it.\n\nSo in configuration you would have:\nvalid_notification_types:\n  - key: SOME_TYPE\n    validator: org.apache.commons.validator.routines.UrlValidator.isValid\n\nand so on. For new notification types you could use something else available from Apache. Not sure if that would be possible in any case...but if the case is to drop hard coded notifications types it\u0027d be only for the best if you would drop their direct validation in monasca-api.",
+      "parentUuid": "3aaa91ec_12e7af40",
+      "revId": "9d390ad577a46bb6000757c16be52669f337ed89",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3aaa91ec_a993e359",
         "filename": "java/src/main/java/monasca/api/domain/model/notificationmethod/NotificationMethod.java",
         "patchSetId": 5
