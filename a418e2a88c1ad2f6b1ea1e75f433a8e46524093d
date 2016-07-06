@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1aa78d24_5a07e4c9",
+        "filename": "java/src/main/java/monasca/api/resource/Links.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-07-06T04:58:04Z",
+      "side": 1,
+      "message": "I think that { should go the previous line.\nMethod above have exception declared also like you do but bracket is in the same line. All the methods seems to follow that from what I can see.",
+      "revId": "a418e2a88c1ad2f6b1ea1e75f433a8e46524093d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
