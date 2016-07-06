@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1aa78d24_da28f4e4",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 1819,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-07-06T05:15:16Z",
+      "side": 1,
+      "message": "HTTP Options and /v2.0/notification-methods ?\n\nFor me it seems like a decent way to retrieve all possible notification types as you inform about server capabilities for this endpoint.",
+      "range": {
+        "startLine": 1819,
+        "startChar": 4,
+        "endLine": 1819,
+        "endChar": 7
+      },
+      "revId": "2145dc144263f6b8f6eac1b32649976d4d81472f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
