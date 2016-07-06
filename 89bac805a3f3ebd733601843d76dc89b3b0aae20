@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1aa78d24_2e0c2c3a",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 1195,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-07-06T20:22:15Z",
+      "side": 1,
+      "message": "Above it says that offset is integer or hexadecimal value (depends on database). Here it says that this is dimension value. Those thinks are not correlated I guess. Or am I missing something obvious here ?",
+      "revId": "89bac805a3f3ebd733601843d76dc89b3b0aae20",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
