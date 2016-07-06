@@ -22,6 +22,30 @@
       "revId": "2145dc144263f6b8f6eac1b32649976d4d81472f",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa78d24_3ac90f27",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 1819,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-07-06T17:55:05Z",
+      "side": 1,
+      "message": "I\u0027m not sure what the comment is for. Are you suggesting to remove \"/type\" from the URL?\n\nGET /v2.0/notification-methods returns a list of all the currently defines notification methods. Adding query parameters to this query, should just filter the notification methods, not change the document that is returned. Just returning a list of the supported notification method types, is a new document, therefore, that is the reason for introducing a new endpoint.",
+      "parentUuid": "1aa78d24_da28f4e4",
+      "range": {
+        "startLine": 1819,
+        "startChar": 4,
+        "endLine": 1819,
+        "endChar": 7
+      },
+      "revId": "2145dc144263f6b8f6eac1b32649976d4d81472f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
