@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1aa78d24_7f4857cd",
+        "filename": "java/src/main/java/monasca/api/app/validation/NotificationMethodValidation.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-07-07T22:34:50Z",
+      "side": 1,
+      "message": "This method should also throw error if supplied type is not among those considered valid. I couldn\u0027t find such line of code in Java, but Python does have it.",
+      "revId": "94ddbe9e07d2ac9dc6dabc8549d17f000d3ed578",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa78d24_dfb34be8",
+        "filename": "monasca_api/v2/common/schemas/notifications_request_body_schema.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-07-07T22:34:50Z",
+      "side": 1,
+      "message": "parentheses is not needed here.",
+      "revId": "94ddbe9e07d2ac9dc6dabc8549d17f000d3ed578",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa78d24_5fd75bed",
+        "filename": "monasca_api/v2/common/schemas/notifications_request_body_schema.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-07-07T22:34:50Z",
+      "side": 1,
+      "message": "perhaps it\u0027d be good to log those that are valid.\nsomething like\n\n \u0027{} not found in valid available notification types {}\u0027 % (type, valid_type)",
+      "revId": "94ddbe9e07d2ac9dc6dabc8549d17f000d3ed578",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
