@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "1aa78d24_c0fdf96f",
+        "filename": "devstack/files/monasca-api/api-config.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2016-07-08T19:39:05Z",
+      "side": 1,
+      "message": "Ok, Got it. It is from rebase of previous commit \"Fix Alaram definition test by Craig Bryant\"",
+      "parentUuid": "1aa78d24_2a001caa",
+      "revId": "258bf943add2e82de0c6982edd418678efebb873",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1aa78d24_aaed3190",
         "filename": "java/src/main/java/monasca/api/app/validation/NotificationMethodValidation.java",
         "patchSetId": 9
