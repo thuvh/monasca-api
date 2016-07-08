@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1aa78d24_b0e3f732",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 18
+      },
+      "lineNbr": 1723,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-07-08T11:21:37Z",
+      "side": 1,
+      "message": "Does not hurt to have this, better be safe than sorry.\nBut I can remove that, if gate passes that\u0027s fine with me.",
+      "parentUuid": "1aa78d24_97a99a7e",
+      "range": {
+        "startLine": 1723,
+        "startChar": 4,
+        "endLine": 1723,
+        "endChar": 32
+      },
+      "revId": "a2a80ebba07b076c74cc0ffab18b1e28c0ca41d1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1aa78d24_1213f80e",
         "filename": "devstack/plugin.sh",
         "patchSetId": 18
@@ -36,6 +60,30 @@
       "writtenOn": "2016-07-08T09:21:23Z",
       "side": 1,
       "message": "Why do you enable the interactive mode? Is it necessary?",
+      "range": {
+        "startLine": 1725,
+        "startChar": 4,
+        "endLine": 1725,
+        "endChar": 10
+      },
+      "revId": "a2a80ebba07b076c74cc0ffab18b1e28c0ca41d1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa78d24_d00203b4",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 18
+      },
+      "lineNbr": 1725,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-07-08T11:21:37Z",
+      "side": 1,
+      "message": "It is only temporary to execute nvm commands which rely on sourcing particular file. Otherwise nvm command is not visible.",
+      "parentUuid": "1aa78d24_1213f80e",
       "range": {
         "startLine": 1725,
         "startChar": 4,
