@@ -81,6 +81,30 @@
       "revId": "258bf943add2e82de0c6982edd418678efebb873",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa78d24_0aca804f",
+        "filename": "java/src/main/java/monasca/api/app/validation/NotificationMethodValidation.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2016-07-08T18:46:35Z",
+      "side": 1,
+      "message": "We\u0027ve been trying to make the Python API follow the spec as closely as possible so where we can the Java API should return the same errors.",
+      "parentUuid": "1aa78d24_aaed3190",
+      "range": {
+        "startLine": 52,
+        "startChar": 57,
+        "endLine": 52,
+        "endChar": 90
+      },
+      "revId": "258bf943add2e82de0c6982edd418678efebb873",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
