@@ -19,6 +19,29 @@
     },
     {
       "key": {
+        "uuid": "1aa78d24_54cd7d85",
+        "filename": "java/src/test/java/monasca/api/resource/NotificationMethodResourceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2016-07-08T01:00:23Z",
+      "side": 1,
+      "message": "Also need to specify what is being rejected here.",
+      "range": {
+        "startLine": 225,
+        "startChar": 40,
+        "endLine": 225,
+        "endChar": 43
+      },
+      "revId": "94ddbe9e07d2ac9dc6dabc8549d17f000d3ed578",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1aa78d24_dfb34be8",
         "filename": "monasca_api/v2/common/schemas/notifications_request_body_schema.py",
         "patchSetId": 7
