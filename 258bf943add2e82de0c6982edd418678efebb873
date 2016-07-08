@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1aa78d24_ea43b96a",
+        "filename": "devstack/files/monasca-api/api-config.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-07-08T17:17:50Z",
+      "side": 1,
+      "message": "Is there any particular reason that this value was increased ? I am not saying that\u0027s wrong, just trying to understand the motivation here.",
+      "revId": "258bf943add2e82de0c6982edd418678efebb873",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa78d24_aaed3190",
+        "filename": "java/src/main/java/monasca/api/app/validation/NotificationMethodValidation.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-07-08T17:17:50Z",
+      "side": 1,
+      "message": "I am not sure if that\u0027s that important, but shouldn\u0027t the exception string should be the same in both implementations (java, python). I mean, looking at the code right now, there some exceptions to that rule, so I guess I am thinking out loud.\n\nDoes anyone have a comment on that ? Should the errors be consistent between implementations where it can be achieved.",
+      "range": {
+        "startLine": 52,
+        "startChar": 57,
+        "endLine": 52,
+        "endChar": 90
+      },
+      "revId": "258bf943add2e82de0c6982edd418678efebb873",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
