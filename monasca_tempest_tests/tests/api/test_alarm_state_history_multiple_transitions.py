@@ -119,14 +119,18 @@ class TestAlarmStateHistoryMultipleTransitions(base.BaseMonascaTest):
             element = elements[0]
             second_element = elements[1]
             alarm_id = element['alarm_id']
-            query_parms = '?limit=1'
+            params = [('limit', 1)]
+            query_parms = '?' + urlencode(params)
             resp, response_body = self.monasca_client.\
                 list_alarm_state_history(alarm_id, query_parms)
             elements = response_body['elements']
             self.assertEqual(200, resp.status)
             self.assertEqual(1, len(elements))
 
-            query_parms = '?offset=' + str(element['timestamp'])
+            # Get the second element using offset from first call
+            offset = self._get_offset(response_body)
+            params.extend([('offset', offset)])
+            query_parms = '?' + urlencode(params)
             resp, response_body = self.monasca_client.\
                 list_alarm_state_history(alarm_id, query_parms)
             elements_new = response_body['elements']
