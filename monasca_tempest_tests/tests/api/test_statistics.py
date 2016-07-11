@@ -198,6 +198,7 @@ class TestStatistics(base.BaseMonascaTest):
                                   value=4)
         ]
 
+        num_metrics = len(metric)
         self.monasca_client.create_metrics(metric)
         query_parms = '?name=' + name
         for i in xrange(constants.MAX_RETRIES):
@@ -208,7 +209,7 @@ class TestStatistics(base.BaseMonascaTest):
                 break
             else:
                 time.sleep(constants.RETRY_WAIT_SECS)
-        self._check_timeout(i, constants.MAX_RETRIES, elements, 4)
+        self._check_timeout(i, constants.MAX_RETRIES, elements, num_metrics)
 
         start_time = helpers.timestamp_to_iso(start_timestamp)
         end_timestamp = start_timestamp + 4000
@@ -223,36 +224,28 @@ class TestStatistics(base.BaseMonascaTest):
 
         query_parms = '?name=' + name + '&merge_metrics=true&statistics=avg'\
                       + '&start_time=' + str(start_time) + '&end_time=' + \
-                      str(end_time) + '&period=1' + '&limit=4'
+                      str(end_time) + '&period=1' + '&limit=' + str(num_metrics)
         resp, response_body = self.monasca_client.list_statistics(
             query_parms)
         self.assertEqual(200, resp.status)
         elements = response_body['elements'][0]['statistics']
-        self.assertEqual(4, len(elements))
+        self.assertEqual(num_metrics, len(elements))
         self.assertEqual(first_element, elements[0])
 
-        for index in xrange(1, 4):
-            max_limit = 4 - index
-
-            # Get first offset from api
+        for limit in xrange(1, num_metrics):
             query_parms = '?name=' + str(name) + \
-                          '&merge_metrics=true&start_time=' + elements[index - 1][0] + \
+                          '&merge_metrics=true&start_time=' + elements[0][0] + \
                           '&end_time=' + end_time + \
                           '&limit=1'
             resp, response_body = self.monasca_client.list_measurements(query_parms)
-            for link in response_body['links']:
-                if link['rel'] == 'next':
-                    next_link = link['href']
-            if not next_link:
-                self.fail("No next link returned with query parameters: {}".formet(query_parms))
-            offset = helpers.get_query_param(next_link, "offset")
-            # python api returns exact timestamp, but the test needs a rounded number
-            offset_period_index = offset.find('.')
-            offset = offset[:offset_period_index] + 'Z'
+            self.assertEqual(200, resp.status)
+            offset = self._get_offset(response_body)
 
-            for limit in xrange(1, max_limit):
-                expected_elements = [elem for elem in elements if elem[0] > offset]
-                expected_elements = expected_elements[:limit]
+            start_index = 0
+            while True:
+                num_expected_elements = limit
+                if (num_expected_elements + start_index) > num_metrics:
+                    num_expected_elements = num_metrics - start_index
 
                 query_parms = '?name=' + name + '&merge_metrics=true' + \
                               '&statistics=avg' + '&start_time=' + \
@@ -267,10 +260,16 @@ class TestStatistics(base.BaseMonascaTest):
                     self.fail("No statistics returned")
                 new_elements = response_body['elements'][0]['statistics']
 
-                self.assertEqual(limit, len(new_elements))
+                self.assertEqual(num_expected_elements, len(new_elements))
                 # bug in the python API causes limit 1 to not have matching timestamps
                 if limit > 1:
+                    expected_elements = elements[start_index:start_index+limit]
                     self.assertEqual(expected_elements, new_elements)
+                start_index += num_expected_elements
+                if start_index >= num_metrics:
+                    break
+                # Get the next set
+                offset = self._get_offset(response_body)
 
 
     @test.attr(type="gate")
@@ -361,6 +360,15 @@ class TestStatistics(base.BaseMonascaTest):
                 self.assertAlmostEqual(statistics[i], num1 + num2)
             elif method == 'count':
                 self.assertEqual(statistics[i], 2)
+
+    def _get_offset(self, response_body):
+        for link in response_body['links']:
+            if link['rel'] == 'next':
+                next_link = link['href']
+        if not next_link:
+            self.fail("No next link returned with query parameters: {}".format(query_parms))
+        offset = helpers.get_query_param(next_link, "offset")
+        return offset
 
     def _check_timeout(self, timer, max_retries, elements,
                        expect_num_elements):
