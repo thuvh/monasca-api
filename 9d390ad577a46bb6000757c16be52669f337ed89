@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "1aa78d24_7d28da33",
+        "filename": "java/src/main/java/monasca/api/app/command/CreateNotificationMethodCommand.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-07-11T22:15:55Z",
+      "side": 1,
+      "message": "Oh, you\u0027re right.",
+      "parentUuid": "3aaa91ec_8c0ef5e2",
+      "revId": "9d390ad577a46bb6000757c16be52669f337ed89",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3aaa91ec_0955d7c4",
         "filename": "java/src/main/java/monasca/api/app/command/PatchNotificationMethodCommand.java",
         "patchSetId": 5
@@ -72,6 +90,30 @@
       "side": 1,
       "message": "At line 91",
       "parentUuid": "3aaa91ec_0955d7c4",
+      "range": {
+        "startLine": 64,
+        "startChar": 19,
+        "endLine": 64,
+        "endChar": 20
+      },
+      "revId": "9d390ad577a46bb6000757c16be52669f337ed89",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa78d24_f88a18be",
+        "filename": "java/src/main/java/monasca/api/app/command/PatchNotificationMethodCommand.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-07-11T22:15:55Z",
+      "side": 1,
+      "message": "Hmmm, I guess I was expecting to see hashCode modified because equals was modified, so it never occurred to me to look to see if it was here. The issue was that \"equals\" wasn\u0027t declared correctly as type wan\u0027t part of it until now.",
+      "parentUuid": "3aaa91ec_0c0325b9",
       "range": {
         "startLine": 64,
         "startChar": 19,
