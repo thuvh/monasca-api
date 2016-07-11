@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "1aa78d24_93e03bfc",
+        "filename": "devstack/files/monasca-api/api-config.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-07-11T10:38:13Z",
+      "side": 1,
+      "message": "Sorry, I thought that you were the one who wrote that.\nSorry :)",
+      "parentUuid": "1aa78d24_c0fdf96f",
+      "revId": "258bf943add2e82de0c6982edd418678efebb873",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1aa78d24_aaed3190",
         "filename": "java/src/main/java/monasca/api/app/validation/NotificationMethodValidation.java",
         "patchSetId": 9
