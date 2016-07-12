@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1aa78d24_d69ba364",
+        "filename": "java/src/test/java/monasca/api/resource/NotificationMethodTypeResourceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-07-12T05:03:06Z",
+      "side": 1,
+      "message": "Could you add the test that would support two use cases:\n\n1) entry in configuration has more values than default notification types\n2) entry in configuration has just one value\n\n?",
+      "revId": "9a139ed00679e00bf404a9a6acfe2f370281c904",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
