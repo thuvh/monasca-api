@@ -88,6 +88,24 @@
       "revId": "c7bb17cde663eb72768e958c1bb09551143a1b57",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa78d24_772a3b92",
+        "filename": "java/src/main/java/monasca/api/resource/DimensionResource.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-07-13T20:28:24Z",
+      "side": 1,
+      "message": "Yes, as I said if technically this is not achievable in short period of time + we might even consider dropping influx in favor of cassandra, I think we can stay with current solution.",
+      "parentUuid": "1aa78d24_a6cbe51c",
+      "revId": "c7bb17cde663eb72768e958c1bb09551143a1b57",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
