@@ -70,6 +70,24 @@
       "revId": "c7bb17cde663eb72768e958c1bb09551143a1b57",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa78d24_a6cbe51c",
+        "filename": "java/src/main/java/monasca/api/resource/DimensionResource.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 8126
+      },
+      "writtenOn": "2016-07-13T16:22:00Z",
+      "side": 1,
+      "message": "Anything is possible if we get to the point where we add this functionality.  I think it would be easier on the vertica side than influxdb -- at least for influxdb, we\u0027d need to process the series twice, filter/sort for each of the dimension names.  It\u0027s even more complicated than that -- since offset is a dimension value, but for which dimension set.  The more I think about it, the less it seems like this even a future enhancement to this new endpoint.  So for now I\u0027d like to just go with supporting only one dimension name (and optional metric-name) at a time.  Are you OK with that Tomasz?",
+      "parentUuid": "1aa78d24_9e01d3b1",
+      "revId": "c7bb17cde663eb72768e958c1bb09551143a1b57",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
