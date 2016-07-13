@@ -34,6 +34,24 @@
       "revId": "c7bb17cde663eb72768e958c1bb09551143a1b57",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa78d24_43c79844",
+        "filename": "java/src/main/java/monasca/api/resource/DimensionResource.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 11155
+      },
+      "writtenOn": "2016-07-13T14:54:46Z",
+      "side": 1,
+      "message": "At least for Grafana, which was the use case we were thinking of for this endpoint, we would never need to query on more than one dimension at once.",
+      "parentUuid": "1aa78d24_512bfd81",
+      "revId": "c7bb17cde663eb72768e958c1bb09551143a1b57",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
