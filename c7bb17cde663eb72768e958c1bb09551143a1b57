@@ -52,6 +52,24 @@
       "revId": "c7bb17cde663eb72768e958c1bb09551143a1b57",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa78d24_9e01d3b1",
+        "filename": "java/src/main/java/monasca/api/resource/DimensionResource.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-07-13T15:16:15Z",
+      "side": 1,
+      "message": "Well, querying single dimension would work if that were supporting multiple dimensions at once.\n\nStill don\u0027t know how difficult it might be in vertica/influx repo to implement, do you ?",
+      "parentUuid": "1aa78d24_43c79844",
+      "revId": "c7bb17cde663eb72768e958c1bb09551143a1b57",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
