@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1aa78d24_512bfd81",
+        "filename": "java/src/main/java/monasca/api/resource/DimensionResource.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-07-13T05:40:26Z",
+      "side": 1,
+      "message": "Just quick questions, sorry that this is so late - trust me I don\u0027t want to break down your plans with it. \n\nAnyway, I was thinking if this endpoint should actually support multiple dimensions at once ?\n\nYou could put 1,2 or 3 dimensions and get the results for all of them, instead of single dimension per call ? If optimization is a reason this change was proposed, I think that doing single HTTP call would be in order, at least to get values for multiple dimensions, right ?",
+      "revId": "c7bb17cde663eb72768e958c1bb09551143a1b57",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
