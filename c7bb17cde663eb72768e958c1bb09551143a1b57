@@ -16,6 +16,24 @@
       "revId": "c7bb17cde663eb72768e958c1bb09551143a1b57",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa78d24_a332bcef",
+        "filename": "java/src/main/java/monasca/api/resource/DimensionResource.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 8126
+      },
+      "writtenOn": "2016-07-13T14:54:42Z",
+      "side": 1,
+      "message": "We wouldn\u0027t use that in grafana -- but I could see extending this at some point in the future if needed?",
+      "parentUuid": "1aa78d24_512bfd81",
+      "revId": "c7bb17cde663eb72768e958c1bb09551143a1b57",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
