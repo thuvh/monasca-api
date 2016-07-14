@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1aa78d24_97b32c4d",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 1153,
+      "author": {
+        "id": 8126
+      },
+      "writtenOn": "2016-07-14T20:40:58Z",
+      "side": 1,
+      "message": "I don\u0027t have a strong opinion -- I\u0027m fine with either.  Should we go with /v2.0/metrics/dimensions/values or /v2.0/dimensions/values?  I\u0027m thinking the former...",
+      "parentUuid": "1aa78d24_96617c14",
+      "range": {
+        "startLine": 1153,
+        "startChar": 23,
+        "endLine": 1153,
+        "endChar": 39
+      },
+      "revId": "a4e9aa6100f33b57095227263d997d7738bae6ef",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1aa78d24_569274f7",
         "filename": "docs/monasca-api-spec.md",
         "patchSetId": 11
@@ -36,6 +60,30 @@
       "writtenOn": "2016-07-14T16:05:52Z",
       "side": 1,
       "message": "What does this id field mean? Also, what is it useful for if the offset is based on the dimension value?",
+      "range": {
+        "startLine": 1207,
+        "startChar": 12,
+        "endLine": 1207,
+        "endChar": 20
+      },
+      "revId": "a4e9aa6100f33b57095227263d997d7738bae6ef",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa78d24_d73814a2",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 1207,
+      "author": {
+        "id": 8126
+      },
+      "writtenOn": "2016-07-14T20:40:58Z",
+      "side": 1,
+      "message": "great question.  i\u0027ll update this doc to be more realistic.  the id needs to be consistent across the pagination requests -- so i generate a sha1 hash string of the dimension_name and metric_name (and any their parm prefixes).  It\u0027s necessary for grafana to stitch it altogether after it gets all the pages.",
+      "parentUuid": "1aa78d24_569274f7",
       "range": {
         "startLine": 1207,
         "startChar": 12,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "1aa78d24_1743bc14",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 1210,
+      "author": {
+        "id": 8126
+      },
+      "writtenOn": "2016-07-14T20:40:58Z",
+      "side": 1,
+      "message": "crap -- good catch, will update",
+      "parentUuid": "1aa78d24_d69dc40b",
+      "range": {
+        "startLine": 1210,
+        "startChar": 22,
+        "endLine": 1210,
+        "endChar": 23
+      },
+      "revId": "a4e9aa6100f33b57095227263d997d7738bae6ef",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1aa78d24_a64a8053",
         "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionRepo.java",
         "patchSetId": 11
@@ -82,6 +154,30 @@
       "writtenOn": "2016-07-14T19:55:26Z",
       "side": 1,
       "message": "Do y ou want to use a TWC/Charter copyright?",
+      "range": {
+        "startLine": 2,
+        "startChar": 30,
+        "endLine": 2,
+        "endChar": 37
+      },
+      "revId": "a4e9aa6100f33b57095227263d997d7738bae6ef",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa78d24_d75f74e2",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionRepo.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 8126
+      },
+      "writtenOn": "2016-07-14T20:40:58Z",
+      "side": 1,
+      "message": "no -- but if you want to remove the HPE one i will, just let me know.",
+      "parentUuid": "1aa78d24_a64a8053",
       "range": {
         "startLine": 2,
         "startChar": 30,
@@ -140,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "1aa78d24_576c249d",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionValues.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 8126
+      },
+      "writtenOn": "2016-07-14T20:40:58Z",
+      "side": 1,
+      "message": "nice -- didn\u0027t know about that, will add to the next patch set",
+      "parentUuid": "1aa78d24_4a33e8f6",
+      "range": {
+        "startLine": 34,
+        "startChar": 19,
+        "endLine": 34,
+        "endChar": 29
+      },
+      "revId": "a4e9aa6100f33b57095227263d997d7738bae6ef",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1aa78d24_46be3c01",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9DimensionRepo.java",
         "patchSetId": 11
@@ -174,6 +294,24 @@
       "writtenOn": "2016-07-14T16:05:52Z",
       "side": 1,
       "message": "Any negative tests that would make sense here?",
+      "revId": "a4e9aa6100f33b57095227263d997d7738bae6ef",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa78d24_17df3c3b",
+        "filename": "monasca_tempest_tests/tests/api/test_dimensions.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 8126
+      },
+      "writtenOn": "2016-07-14T20:40:58Z",
+      "side": 1,
+      "message": "yeah -- i can think of a couple -- will add them in the next PS",
+      "parentUuid": "1aa78d24_4a8f6875",
       "revId": "a4e9aa6100f33b57095227263d997d7738bae6ef",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
