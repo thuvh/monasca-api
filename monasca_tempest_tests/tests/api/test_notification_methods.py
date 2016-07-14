@@ -765,6 +765,29 @@ class TestNotificationMethods(base.BaseMonascaTest):
         self.assertEqual(204, resp.status)
 
     @test.attr(type="gate")
+    def test_patch_webhook_notification_to_email_with_zero_period(self):
+        type = 'WEBHOOK'
+        notification = helpers.create_notification(
+            type=type, address='http://localhost/test01', period=60)
+        resp, response_body = self.monasca_client.create_notifications(
+            notification)
+        self.assertEqual(201, resp.status)
+        self.assertEqual(type, response_body['type'])
+        id = response_body['id']
+        new_type = 'EMAIL'
+        new_period = 0
+        resp, response_body = \
+            self.monasca_client.\
+            patch_notification_method(id, type=new_type,
+                                      address='john.doe@domain.com',
+                                      period=new_period)
+        self.assertEqual(200, resp.status)
+        self.assertEqual(new_type, response_body['type'])
+        resp, response_body = self.monasca_client.\
+            delete_notification_method(id)
+        self.assertEqual(204, resp.status)
+
+    @test.attr(type="gate")
     @test.attr(type=['negative'])
     def test_patch_notification_method_name_exceeds_max_length(self):
         name = data_utils.rand_name('notification-')
