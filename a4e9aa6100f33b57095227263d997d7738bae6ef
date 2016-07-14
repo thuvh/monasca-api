@@ -71,6 +71,52 @@
     },
     {
       "key": {
+        "uuid": "1aa78d24_a64a8053",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionRepo.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-07-14T19:55:26Z",
+      "side": 1,
+      "message": "Do y ou want to use a TWC/Charter copyright?",
+      "range": {
+        "startLine": 2,
+        "startChar": 30,
+        "endLine": 2,
+        "endChar": 37
+      },
+      "revId": "a4e9aa6100f33b57095227263d997d7738bae6ef",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa78d24_4662bcda",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionValues.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-07-14T19:55:26Z",
+      "side": 1,
+      "message": "Do you want to use a TWC/Charter copyright?",
+      "range": {
+        "startLine": 2,
+        "startChar": 3,
+        "endLine": 2,
+        "endChar": 12
+      },
+      "revId": "a4e9aa6100f33b57095227263d997d7738bae6ef",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1aa78d24_4a33e8f6",
         "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionValues.java",
         "patchSetId": 11
@@ -87,6 +133,29 @@
         "startChar": 19,
         "endLine": 34,
         "endChar": 29
+      },
+      "revId": "a4e9aa6100f33b57095227263d997d7738bae6ef",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa78d24_46be3c01",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9DimensionRepo.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-07-14T19:55:26Z",
+      "side": 1,
+      "message": "copyright?",
+      "range": {
+        "startLine": 2,
+        "startChar": 30,
+        "endLine": 2,
+        "endChar": 37
       },
       "revId": "a4e9aa6100f33b57095227263d997d7738bae6ef",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
