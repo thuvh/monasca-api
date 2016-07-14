@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1aa78d24_96617c14",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 1153,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-07-14T16:05:52Z",
+      "side": 1,
+      "message": "I think dimensions/values makes more sense here",
+      "range": {
+        "startLine": 1153,
+        "startChar": 23,
+        "endLine": 1153,
+        "endChar": 39
+      },
+      "revId": "a4e9aa6100f33b57095227263d997d7738bae6ef",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa78d24_569274f7",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 1207,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-07-14T16:05:52Z",
+      "side": 1,
+      "message": "What does this id field mean? Also, what is it useful for if the offset is based on the dimension value?",
+      "range": {
+        "startLine": 1207,
+        "startChar": 12,
+        "endLine": 1207,
+        "endChar": 20
+      },
+      "revId": "a4e9aa6100f33b57095227263d997d7738bae6ef",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa78d24_d69dc40b",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 1210,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-07-14T16:05:52Z",
+      "side": 1,
+      "message": "This was a list in my testing",
+      "range": {
+        "startLine": 1210,
+        "startChar": 22,
+        "endLine": 1210,
+        "endChar": 23
+      },
+      "revId": "a4e9aa6100f33b57095227263d997d7738bae6ef",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa78d24_4a33e8f6",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionValues.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-07-14T16:05:52Z",
+      "side": 1,
+      "message": "The decorator below will make the metric name only appear if not null\n\n@JsonInclude(JsonInclude.Include.NON_NULL)",
+      "range": {
+        "startLine": 34,
+        "startChar": 19,
+        "endLine": 34,
+        "endChar": 29
+      },
+      "revId": "a4e9aa6100f33b57095227263d997d7738bae6ef",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa78d24_4a8f6875",
+        "filename": "monasca_tempest_tests/tests/api/test_dimensions.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-07-14T16:05:52Z",
+      "side": 1,
+      "message": "Any negative tests that would make sense here?",
+      "revId": "a4e9aa6100f33b57095227263d997d7738bae6ef",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
