@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fad55976_99d97286",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 1834,
+      "author": {
+        "id": 22210
+      },
+      "writtenOn": "2016-07-17T02:49:26Z",
+      "side": 1,
+      "message": "Default port for Monasca API is 8070. There is also a patch to update it - https://review.openstack.org/#/c/343249/\n\nSome refs:\nhttps://github.com/openstack/monasca-api/blob/91851af169b0d7da590b1dedec1ad68b9490e56d/devstack/files/keystone/create_monasca_service.py#L203\n\nhttps://github.com/openstack/monasca-vagrant/search?utf8\u003d%E2%9C%93\u0026q\u003d8070\n\nhttps://github.com/openstack/monasca-ceilometer/blob/02ca4e80fe09e5ead44d3ff9829ed6e982cbbe3c/devstack/settings#L7",
+      "range": {
+        "startLine": 1834,
+        "startChar": 19,
+        "endLine": 1834,
+        "endChar": 23
+      },
+      "revId": "2bfaffb3ddf9ea6fc74e96695172edc95f9e75ac",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
