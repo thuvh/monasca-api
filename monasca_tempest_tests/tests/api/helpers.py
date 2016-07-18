@@ -33,6 +33,7 @@ def create_metric(name='name-1',
                       'key-1': 'value-1',
                       'key-2': 'value-2'
                   },
+                  sporadic=False
                   ):
     metric = {}
     if name is not None:
@@ -47,7 +48,10 @@ def create_metric(name='name-1',
         metric['value'] = value
     if value_meta is not None:
         metric['value_meta'] = value_meta
+    if sporadic:
+        metric['sporadic'] = True
     return metric
+
 
 
 def create_notification(name=data_utils.rand_name('notification-'),

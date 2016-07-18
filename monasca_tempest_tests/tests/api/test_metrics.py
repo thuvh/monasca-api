@@ -317,7 +317,40 @@ class TestMetrics(base.BaseMonascaTest):
         element = elements[0]
         self._verify_list_metrics_element(element, test_key=None,
                                           test_value=None, test_name=None)
-        self.assertTrue(set(['id', 'name', 'dimensions']) == set(element))
+        metric_elements = set(['id', 'name', 'dimensions', 'sporadic'])
+        self.assertTrue(metric_elements == set(element))
+
+    @test.attr(type='gate')
+    def test_list_sporadic_metric(self):
+        name = data_utils.rand_name('name')
+        timestamp = int(round(time.time() * 1000))
+        time_iso = helpers.timestamp_to_iso(timestamp)
+        end_timestamp = int(round(timestamp + 3600 * 24 * 1000))
+        end_time_iso = helpers.timestamp_to_iso(end_timestamp)
+        metric = helpers.create_metric(name=name,
+                                       dimensions=None,
+                                       timestamp=timestamp,
+                                       value=1.23,
+                                       sporadic=True)
+        resp, response_body = self.monasca_client.create_metrics(metric)
+        self.assertEqual(204, resp.status)
+        query_param = '?name=' + name
+        for i in xrange(constants.MAX_RETRIES):
+            resp, response_body = self.monasca_client.list_metrics(query_param)
+            self.assertEqual(200, resp.status)
+            elements = response_body['elements']
+            for element in elements:
+                if bool(element['sporadic']):
+                    self._verify_list_metrics_element(element, test_name=name,
+                                                      sporadic=True)
+                    return
+            time.sleep(constants.RETRY_WAIT_SECS)
+            if i == constants.MAX_RETRIES - 1:
+                error_msg = "Failed test_list_sporadic_metric: " \
+                            "timeout on waiting for metrics: at least " \
+                            "one metric is needed. Current number of " \
+                            "metrics = 0"
+                self.fail(error_msg)
 
     @test.attr(type='gate')
     def test_list_metrics_with_dimensions(self):
@@ -506,13 +539,23 @@ class TestMetrics(base.BaseMonascaTest):
         if test_vm_key is not None and test_vm_value is not None:
             self.assertEqual(str(measurement[2][test_vm_key]), test_vm_value)
 
-    def _verify_list_metrics_element(self, element, test_key=None,
-                                     test_value=None, test_name=None):
+    def _verify_list_metrics_element(self,
+                                     element,
+                                     test_key=None,
+                                     test_value=None,
+                                     test_name=None,
+                                     sporadic=False):
         self.assertTrue(type(element['id']) is unicode)
         self.assertTrue(type(element['name']) is unicode)
         self.assertTrue(type(element['dimensions']) is dict)
-        self.assertEqual(set(element), set(['dimensions', 'id', 'name']))
+        metric_elements = set(['dimensions', 'id', 'name', 'sporadic'])
+        self.assertEqual(set(element), metric_elements)
         self.assertTrue(str(element['id']) is not None)
+        if sporadic:
+            self.assertTrue(type(element['sporadic']) is bool)
+            self.assertTrue(element['sporadic'])
+        else:
+            self.assertFalse(element['sporadic'])
         if test_key is not None and test_value is not None:
             self.assertEqual(str(element['dimensions'][test_key]), test_value)
         if test_name is not None:
