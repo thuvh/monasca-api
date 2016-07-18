@@ -1,5 +1,5 @@
 #
-# (C) Copyright 2015,2016 Hewlett Packard Enterprise Development Company LP
+# (C) Copyright 2015,2016 Hewlett Packard Enterprise Development LP
 # Copyright 2016 FUJITSU LIMITED
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -1513,23 +1513,17 @@ function install_monasca_agent {
 
     MONASCA_AGENT_SRC_DIST=$(ls -td "${MONASCA_BASE}"/monasca-agent/dist/monasca-agent-*.tar.gz | head -1)
 
-    sudo mkdir -p /opt/monasca-agent/
+    sudo mkdir -p /opt/monasca-agent/ 
 
-    sudo chown $STACK_USER:monasca /opt/monasca-agent
+    (cd /opt/monasca-agent ; sudo virtualenv .)
 
-    (cd /opt/monasca-agent ; virtualenv .)
+    (cd /opt/monasca-agent ; sudo ./bin/pip install $MONASCA_AGENT_SRC_DIST)
 
-    PIP_VIRTUAL_ENV=/opt/monasca-agent
-
-    pip_install --pre --allow-all-external --allow-unverified simport simport
-
-    (cd /opt/monasca-agent ; sudo -H ./bin/pip install $MONASCA_AGENT_SRC_DIST)
-
-    (cd /opt/monasca-agent ; sudo -H ./bin/pip install $MONASCA_CLIENT_SRC_DIST)
+    (cd /opt/monasca-agent ; sudo ./bin/pip install $MONASCA_CLIENT_SRC_DIST)
 
     (cd /opt/monasca-agent ; ./bin/pip install kafka-python==0.9.2)
 
-    unset PIP_VIRTUAL_ENV
+    sudo chown $STACK_USER:monasca /opt/monasca-agent
 
     sudo mkdir -p /etc/monasca/agent/conf.d || true
 
