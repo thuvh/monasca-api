@@ -186,13 +186,17 @@ class MetricsRepository(metrics_repository.MetricsRepository):
                 query += ' offset {}'.format(int(offset) + 1)
 
             result = self.influxdb_client.query(query)
-
             json_metric_list = self._build_serie_metric_list(result,
                                                              tenant_id,
                                                              region,
                                                              start_timestamp,
                                                              end_timestamp,
                                                              offset)
+            sporadic_query = 'select * from "{}" where sporadic = true'
+            for metric in json_metric_list:
+                sporadic_result = self.influxdb_client.query(
+                    sporadic_query.format(metric[u'name']))
+                metric[u'sporadic'] = True if sporadic_result else False
 
             return json_metric_list
 

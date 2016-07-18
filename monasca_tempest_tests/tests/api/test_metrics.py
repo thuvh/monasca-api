@@ -317,7 +317,8 @@ class TestMetrics(base.BaseMonascaTest):
         element = elements[0]
         self._verify_list_metrics_element(element, test_key=None,
                                           test_value=None, test_name=None)
-        self.assertTrue(set(['id', 'name', 'dimensions']) == set(element))
+        metric_elements = set(['id', 'name', 'dimensions', 'sporadic'])
+        self.assertTrue(metric_elements == set(element))
 
     @test.attr(type='gate')
     def test_list_metrics_with_dimensions(self):
@@ -511,7 +512,8 @@ class TestMetrics(base.BaseMonascaTest):
         self.assertTrue(type(element['id']) is unicode)
         self.assertTrue(type(element['name']) is unicode)
         self.assertTrue(type(element['dimensions']) is dict)
-        self.assertEqual(set(element), set(['dimensions', 'id', 'name']))
+        metric_elements = set(['dimensions', 'id', 'name', 'sporadic'])
+        self.assertEqual(set(element), metric_elements)
         self.assertTrue(str(element['id']) is not None)
         if test_key is not None and test_value is not None:
             self.assertEqual(str(element['dimensions'][test_key]), test_value)
