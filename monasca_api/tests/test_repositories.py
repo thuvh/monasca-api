@@ -25,6 +25,11 @@ CONF = cfg.CONF
 
 class TestRepoMetricsInfluxDB(unittest.TestCase):
 
+    class FakeResponse(object):
+
+        def __init__(self, raw):
+            self.raw = raw
+
     def setUp(self):
         super(TestRepoMetricsInfluxDB, self).setUp()
 
@@ -76,7 +81,7 @@ class TestRepoMetricsInfluxDB(unittest.TestCase):
     @patch("monasca_api.common.repositories.influxdb.metrics_repository.client.InfluxDBClient")
     def test_list_metrics(self, influxdb_client_mock):
         mock_client = influxdb_client_mock.return_value
-        mock_client.query.return_value.raw = {
+        raw_response = {
             u'series': [{
                 u'values': [[
                     u'disk.space_used_perc,_region=region,_tenant_id='
@@ -95,6 +100,10 @@ class TestRepoMetricsInfluxDB(unittest.TestCase):
                              u'hostname', u'hosttype', u'extra', u'mount_point']
             }]
         }
+
+        fake_metrics_response = self.FakeResponse(raw_response)
+        # second query returns empty because there is no sporadic metric saved
+        mock_client.query.side_effect = [fake_metrics_response, {}]
 
         repo = influxdb_repo.MetricsRepository()
 
@@ -119,6 +128,7 @@ class TestRepoMetricsInfluxDB(unittest.TestCase):
                 u'mount_point': u'/',
                 u'hosttype': u'native'
             },
+            u'sporadic': False,
         }])
 
     @patch("monasca_api.common.repositories.influxdb.metrics_repository.client.InfluxDBClient")
