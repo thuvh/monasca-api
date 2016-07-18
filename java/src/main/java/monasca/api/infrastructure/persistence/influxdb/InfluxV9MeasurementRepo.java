@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014, 2016 Hewlett-Packard Development Company, L.P.
+ * (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -67,9 +67,9 @@ public class InfluxV9MeasurementRepo implements MeasurementRepo {
 
   @Override
   public List<Measurements> find(String tenantId, String name, Map<String, String> dimensions,
-                                 DateTime startTime, @Nullable DateTime endTime,
-                                 @Nullable String offset, int limit, Boolean mergeMetricsFlag,
-                                 String groupBy)
+                                 List<String> metricIds, DateTime startTime,
+                                 @Nullable DateTime endTime, @Nullable String offset, int limit,
+                                 Boolean mergeMetricsFlag, String groupBy)
       throws Exception {
 
     String q = buildQuery(tenantId, name, dimensions, startTime, endTime,

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 Hewlett-Packard Development Company, L.P.
+ * (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -61,6 +61,7 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
       String tenantId,
       String name,
       Map<String, String> dimensions,
+      List<String> metricIds,
       DateTime startTime,
       DateTime endTime,
       List<String> statisticsCols,
@@ -77,13 +78,13 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
 
     try (Handle h = db.open()) {
 
-      if (!"*".equals(groupBy) && !Boolean.TRUE.equals(mergeMetricsFlag)) {
+      if (!"*".equals(groupBy) && !Boolean.TRUE.equals(mergeMetricsFlag) && metricIds == null) {
 
         MetricQueries.checkForMultipleDefinitions(h, tenantId, name, dimensions);
 
       }
 
-      String sql = createQuery(name, dimensions, period, startTime, endTime, offset,
+      String sql = createQuery(name, dimensions, metricIds, period, startTime, endTime, offset,
                                statisticsCols, mergeMetricsFlag);
 
       logger.debug("vertica sql: {}", sql);
@@ -108,13 +109,18 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
         MetricQueries.bindOffsetToQuery(query, offset);
       }
 
+      if (metricIds != null) {
+        logger.debug("binding metric_ids: {}", metricIds);
+        MetricQueries.bindMetricIdsToQuery(query, metricIds);
+      }
+
       List<Map<String, Object>> rows = query.list();
 
       if (rows.size() == 0) {
         return new ArrayList<>();
       }
 
-      if ("*".equals(groupBy)) {
+      if ("*".equals(groupBy) || (metricIds != null && metricIds.size() > 1)) {
 
         String currentDefId = null;
 
@@ -230,6 +236,7 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
   private String createQuery(
       String name,
       Map<String, String> dimensions,
+      List<String> metricIds,
       int period,
       DateTime startTime,
       DateTime endTime,
@@ -249,9 +256,13 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
     }
 
     sb.append(" FROM MonMetrics.Measurements ");
-    sb.append("WHERE TO_HEX(definition_dimensions_id) IN (")
-        .append(MetricQueries.buildMetricDefinitionSubSql(name, dimensions, null, null))
-        .append(") ");
+    sb.append("WHERE TO_HEX(definition_dimensions_id) IN (");
+    if (metricIds != null) {
+      sb.append(MetricQueries.buildMetricIdInClause(metricIds));
+    } else {
+      sb.append(MetricQueries.buildMetricDefinitionSubSql(name, dimensions, null, null));
+    }
+    sb.append(") ");
     sb.append(createWhereClause(startTime, endTime, offset, mergeMetricsFlag));
 
     if (period >= 1) {
