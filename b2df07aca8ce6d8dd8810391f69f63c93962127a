@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dada55a8_e76f6c90",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 15519
+      },
+      "writtenOn": "2016-07-18T19:53:50Z",
+      "side": 1,
+      "message": "Can you add a reason why we are removing?",
+      "revId": "b2df07aca8ce6d8dd8810391f69f63c93962127a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
