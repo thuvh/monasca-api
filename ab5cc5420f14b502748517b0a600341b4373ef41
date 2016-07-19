@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dada55a8_56e7deaf",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9DimensionRepo.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-07-19T15:25:43Z",
+      "side": 1,
+      "message": "This puts the quotes around the whole name part (from \u0027and\u0027 to the regex), they should only be around \u0027hostname\u0027",
+      "range": {
+        "startLine": 73,
+        "startChar": 58,
+        "endLine": 73,
+        "endChar": 66
+      },
+      "revId": "ab5cc5420f14b502748517b0a600341b4373ef41",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
