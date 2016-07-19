@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dada55a8_9045c871",
+        "filename": "monasca_tempest_tests/tests/api/test_dimensions.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-07-19T22:31:09Z",
+      "side": 1,
+      "message": "Is elements supposed to be a list or dictionary? Included spec says list.",
+      "range": {
+        "startLine": 127,
+        "startChar": 8,
+        "endLine": 127,
+        "endChar": 67
+      },
+      "revId": "89d8ba08f8115e30f7e224958e5a1ded74bfee5b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
