@@ -212,7 +212,8 @@ min = pyparsing.CaselessLiteral("min")
 avg = pyparsing.CaselessLiteral("avg")
 count = pyparsing.CaselessLiteral("count")
 sum = pyparsing.CaselessLiteral("sum")
-func = (max | min | avg | count | sum)("func")
+last = pyparsing.CaselessLiteral("last")
+func = (max | min | avg | count | sum | last)("func")
 
 less_than_op = (
     (pyparsing.CaselessLiteral("<") | pyparsing.CaselessLiteral("lt")))
@@ -311,7 +312,9 @@ def main():
 
         "count(log.error{test=1}, deterministic) > 1.0",
 
-        "count(log.error{test=1}, deterministic, 120) > 1.0"
+        "count(log.error{test=1}, deterministic, 120) > 1.0",
+
+        "last(test_metric{hold=here}) < 13"
     ]
 
     for expr in expr_list:
