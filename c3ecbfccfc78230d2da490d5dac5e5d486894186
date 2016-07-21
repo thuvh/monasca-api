@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dada55a8_7f998578",
+        "filename": "java/src/test/resources/monasca-api-config.yml",
+        "patchSetId": 15
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-07-21T22:36:29Z",
+      "side": 1,
+      "message": "This config option isn\u0027t considered valid in the java API and will cause it to fail on startup. Did you mean to use the database to get the valid types instead?",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 25
+      },
+      "revId": "c3ecbfccfc78230d2da490d5dac5e5d486894186",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_b1e4d6ab",
+        "filename": "monasca_api/tests/test_validation.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-07-21T22:36:29Z",
+      "side": 1,
+      "message": "Nitpick but this should probably specify that the type is meant to be invalid. The title suggests that this is a positive test.",
+      "range": {
+        "startLine": 281,
+        "startChar": 28,
+        "endLine": 281,
+        "endChar": 35
+      },
+      "revId": "c3ecbfccfc78230d2da490d5dac5e5d486894186",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
