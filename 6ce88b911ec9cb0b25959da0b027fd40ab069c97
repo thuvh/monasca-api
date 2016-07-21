@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dada55a8_b19216f4",
+        "filename": "monasca_api/v2/reference/notifications.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2016-07-21T21:45:00Z",
+      "side": 1,
+      "message": "Why did this change?  A duplicate entry should be a 409 shouldn\u0027t it?",
+      "range": {
+        "startLine": 71,
+        "startChar": 29,
+        "endLine": 71,
+        "endChar": 43
+      },
+      "revId": "6ce88b911ec9cb0b25959da0b027fd40ab069c97",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
