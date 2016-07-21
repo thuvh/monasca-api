@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dada55a8_f03c8d94",
+        "filename": "monasca_api/v2/reference/notifications.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2016-07-21T20:01:45Z",
+      "side": 1,
+      "message": "You removed the resource import but this provides the decorator used on all the database access methods in this file.",
+      "range": {
+        "startLine": 26,
+        "startChar": 1,
+        "endLine": 26,
+        "endChar": 44
+      },
+      "revId": "9f5419c6dfd7fa967545f23f189eaab734e7a207",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_b5004703",
+        "filename": "monasca_api/v2/reference/notifications.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2016-07-21T20:01:45Z",
+      "side": 1,
+      "message": "This seems to be dead code that isn\u0027t referenced anywhere else.",
+      "range": {
+        "startLine": 74,
+        "startChar": 8,
+        "endLine": 74,
+        "endChar": 48
+      },
+      "revId": "9f5419c6dfd7fa967545f23f189eaab734e7a207",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_501f595a",
+        "filename": "monasca_api/v2/reference/notificationstype.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2016-07-21T20:01:45Z",
+      "side": 1,
+      "message": "This call needs to be broken out into a self method and wrapped with a @resource.resource_try_catch_block decorator so that we don\u0027t let exceptions bubble up to gunicorn.",
+      "range": {
+        "startLine": 34,
+        "startChar": 17,
+        "endLine": 34,
+        "endChar": 85
+      },
+      "revId": "9f5419c6dfd7fa967545f23f189eaab734e7a207",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
