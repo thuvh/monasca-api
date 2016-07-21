@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dada55a8_2bc993ac",
+        "filename": "monasca_api/v2/common/schemas/notifications_request_body_schema.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2016-07-21T20:49:47Z",
+      "side": 1,
+      "message": "Should this be reading the valid types from the database now that we\u0027re adding the notification types endpoint?",
+      "range": {
+        "startLine": 56,
+        "startChar": 4,
+        "endLine": 56,
+        "endChar": 35
+      },
+      "revId": "a89300d6caf03e45e8e9599541a60a29fc47be9b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
