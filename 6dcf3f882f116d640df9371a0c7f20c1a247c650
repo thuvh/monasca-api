@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "dada55a8_f1a665ac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-07-21T14:21:36Z",
+      "side": 1,
+      "message": "multiple",
+      "range": {
+        "startLine": 7,
+        "startChar": 11,
+        "endLine": 7,
+        "endChar": 19
+      },
+      "revId": "6dcf3f882f116d640df9371a0c7f20c1a247c650",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_b1e6ade5",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-07-21T14:21:36Z",
+      "side": 1,
+      "message": "hate to do this but i do not want to go back through and change copyrights later. Would you mind going through each file you changed and take out the company?",
+      "range": {
+        "startLine": 3,
+        "startChar": 65,
+        "endLine": 3,
+        "endChar": 72
+      },
+      "revId": "6dcf3f882f116d640df9371a0c7f20c1a247c650",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dada55a8_dd49d961",
         "filename": "monasca_api/common/repositories/metrics_repository.py",
         "patchSetId": 5
