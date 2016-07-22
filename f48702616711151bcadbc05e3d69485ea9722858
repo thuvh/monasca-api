@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "dada55a8_23240f0b",
+        "filename": "etc/api-config.conf",
+        "patchSetId": 18
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-07-22T04:57:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dada55a8_52a9588f",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 20
+      },
+      "revId": "f48702616711151bcadbc05e3d69485ea9722858",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dada55a8_9228f0e3",
         "filename": "requirements.txt",
         "patchSetId": 18
@@ -36,6 +60,30 @@
       "writtenOn": "2016-07-20T22:32:37Z",
       "side": 1,
       "message": "Similar to my comment on the persister, this import should be removed or commented out. Will need to pip install separately.",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 9
+      },
+      "revId": "f48702616711151bcadbc05e3d69485ea9722858",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_432943e5",
+        "filename": "requirements.txt",
+        "patchSetId": 18
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-07-22T04:57:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dada55a8_9228f0e3",
       "range": {
         "startLine": 17,
         "startChar": 0,
