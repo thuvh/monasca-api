@@ -235,14 +235,16 @@ class TestStatistics(base.BaseMonascaTest):
 
         for limit in xrange(1, num_metrics):
             query_parms = '?name=' + str(name) + \
+                          '&statistics=max' + \
                           '&merge_metrics=true&start_time=' + elements[0][0] + \
                           '&end_time=' + end_time + \
+                          '&period=1' + \
                           '&limit=1'
-            resp, response_body = self.monasca_client.list_measurements(query_parms)
+            resp, response_body = self.monasca_client.list_statistics(query_parms)
             self.assertEqual(200, resp.status)
             offset = self._get_offset(response_body)
 
-            start_index = 0
+            start_index = 1
             while True:
                 num_expected_elements = limit
                 if (num_expected_elements + start_index) > num_metrics:
@@ -267,9 +269,10 @@ class TestStatistics(base.BaseMonascaTest):
 
                 self.assertEqual(num_expected_elements, len(new_elements))
                 # bug in the python API causes limit 1 to not have matching timestamps
-                if limit > 1:
-                    expected_elements = elements[start_index:start_index+limit]
-                    self.assertEqual(expected_elements, new_elements)
+                # if limit > 1:
+                expected_elements = elements[start_index:start_index+limit]
+                self.assertEqual(expected_elements, new_elements)
+
                 start_index += num_expected_elements
                 if start_index >= num_metrics:
                     break

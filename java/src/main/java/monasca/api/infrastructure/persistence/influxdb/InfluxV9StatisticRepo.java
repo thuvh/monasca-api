@@ -13,11 +13,14 @@
  */
 package monasca.api.infrastructure.persistence.influxdb;
 
+import com.google.common.base.Strings;
 import com.google.inject.Inject;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.ISODateTimeFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,7 +34,6 @@ import javax.annotation.Nullable;
 
 import monasca.api.ApiConfig;
 import monasca.api.domain.exception.MultipleMetricsException;
-import monasca.api.domain.model.measurement.Measurements;
 import monasca.api.domain.model.statistic.StatisticRepo;
 import monasca.api.domain.model.statistic.Statistics;
 
@@ -46,6 +48,8 @@ public class InfluxV9StatisticRepo implements StatisticRepo {
   private final InfluxV9RepoReader influxV9RepoReader;
   private final InfluxV9Utils influxV9Utils;
   private final InfluxV9MetricDefinitionRepo influxV9MetricDefinitionRepo;
+  private static final DateTimeFormatter ISO_8601_FORMATTER = ISODateTimeFormat
+      .dateOptionalTimeParser().withZoneUTC();
 
 
   private final ObjectMapper objectMapper = new ObjectMapper();
@@ -70,6 +74,14 @@ public class InfluxV9StatisticRepo implements StatisticRepo {
                                List<String> statistics, int period, String offset, int limit,
                                Boolean mergeMetricsFlag, String groupBy) throws Exception {
 
+    String offsetTimePart = "";
+    if(!Strings.isNullOrEmpty(offset)) {
+      int i = offset.indexOf('_');
+      offsetTimePart = offset.substring(i + 1);
+      DateTime offsetDateTime = DateTime.parse(offsetTimePart).plusSeconds(period);
+      offset = offset.substring(0,i).concat(offsetDateTime.toString());
+    }
+
     String q = buildQuery(tenantId, name, dimensions, startTime, endTime,
                    statistics, period, offset, limit, mergeMetricsFlag, groupBy);
 
@@ -91,12 +103,18 @@ public class InfluxV9StatisticRepo implements StatisticRepo {
                             String groupBy)
       throws Exception {
 
+    String offsetTimePart = "";
+    if(!Strings.isNullOrEmpty(offset)) {
+      int i = offset.indexOf('_');
+      offsetTimePart = offset.substring(i + 1);
+    }
+
     String q;
 
     if (Boolean.TRUE.equals(mergeMetricsFlag)) {
 
       q = String.format("select %1$s %2$s "
-                        + "where %3$s %4$s %5$s %6$s %7$s %8$s %9$s",
+                        + "where %3$s %4$s %5$s %6$s %7$s %8$s %9$s %10$s",
                         funcPart(statistics),
                         this.influxV9Utils.namePart(name, true),
                         this.influxV9Utils.privateTenantIdPart(tenantId),
@@ -104,6 +122,7 @@ public class InfluxV9StatisticRepo implements StatisticRepo {
                         this.influxV9Utils.startTimePart(startTime),
                         this.influxV9Utils.dimPart(dimensions),
                         this.influxV9Utils.endTimePart(endTime),
+                        this.influxV9Utils.timeOffsetPart(offsetTimePart),
                         this.influxV9Utils.periodPart(period),
                         this.influxV9Utils.limitPart(limit));
 
@@ -174,7 +193,7 @@ public class InfluxV9StatisticRepo implements StatisticRepo {
 
           List<Object> values = buildValsList(valueObjects);
 
-          if (((String) values.get(0)).compareTo(offsetTimestamp) > 0 || index > offsetId) {
+          if (((String) values.get(0)).compareTo(offsetTimestamp) >= 0 || index > offsetId) {
             statistics.addMeasurement(values);
             remaining_limit--;
           }
@@ -197,7 +216,11 @@ public class InfluxV9StatisticRepo implements StatisticRepo {
     ArrayList<Object> valObjArryList = new ArrayList<>();
 
     // First value is the timestamp.
-    valObjArryList.add(values[0]);
+    int index = values[0].toString().indexOf('.');
+    if (index > 0)
+      valObjArryList.add(values[0].toString().substring(0,index).concat("Z"));
+    else
+      valObjArryList.add(values[0]);
 
     // All other values are doubles.
     for (int i = 1; i < values.length; ++i) {
