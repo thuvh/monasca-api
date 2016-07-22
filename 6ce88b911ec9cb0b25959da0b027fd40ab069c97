@@ -22,6 +22,30 @@
       "revId": "6ce88b911ec9cb0b25959da0b027fd40ab069c97",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_140e6be4",
+        "filename": "monasca_api/v2/reference/notifications.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2016-07-22T01:21:31Z",
+      "side": 1,
+      "message": "My mistake.  It is getting hard rebasing dependent reviews, Will fix it.",
+      "parentUuid": "dada55a8_b19216f4",
+      "range": {
+        "startLine": 71,
+        "startChar": 29,
+        "endLine": 71,
+        "endChar": 43
+      },
+      "revId": "6ce88b911ec9cb0b25959da0b027fd40ab069c97",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
