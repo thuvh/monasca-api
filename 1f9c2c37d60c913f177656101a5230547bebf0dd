@@ -22,6 +22,30 @@
       "revId": "1f9c2c37d60c913f177656101a5230547bebf0dd",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_87e31905",
+        "filename": "monasca_tempest_tests/tests/api/test_statistics.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-07-22T20:13:16Z",
+      "side": 1,
+      "message": "Nevermind, PS5 fixed it",
+      "parentUuid": "dada55a8_639eeb08",
+      "range": {
+        "startLine": 251,
+        "startChar": 36,
+        "endLine": 251,
+        "endChar": 45
+      },
+      "revId": "1f9c2c37d60c913f177656101a5230547bebf0dd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
