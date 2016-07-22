@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dada55a8_a36c6337",
+        "filename": "monasca_tempest_tests/tests/api/test_statistics.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-07-22T14:38:11Z",
+      "side": 1,
+      "message": "This appears to result in a double encoding actually",
+      "range": {
+        "startLine": 251,
+        "startChar": 36,
+        "endLine": 251,
+        "endChar": 45
+      },
+      "revId": "13aa4ae9ddd6255e4b9a7e853ff5ae0b93ea311f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
