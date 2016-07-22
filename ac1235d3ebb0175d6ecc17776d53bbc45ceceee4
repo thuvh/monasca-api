@@ -46,6 +46,30 @@
       "revId": "ac1235d3ebb0175d6ecc17776d53bbc45ceceee4",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_4bdc9518",
+        "filename": "monasca_api/v2/common/schemas/notifications_request_body_schema.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2016-07-22T16:58:52Z",
+      "side": 1,
+      "message": "I didn\u0027t see any modification of this file in the other review.  Are you sure you modified it there?",
+      "parentUuid": "dada55a8_cb7b6528",
+      "range": {
+        "startLine": 56,
+        "startChar": 4,
+        "endLine": 56,
+        "endChar": 35
+      },
+      "revId": "ac1235d3ebb0175d6ecc17776d53bbc45ceceee4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
