@@ -46,6 +46,29 @@
       "revId": "6ce88b911ec9cb0b25959da0b027fd40ab069c97",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_ebb58931",
+        "filename": "monasca_api/v2/reference/notifications.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2016-07-22T16:52:25Z",
+      "side": 1,
+      "message": "It doesn\u0027t seem like not finding the data you\u0027re after should raise an AlreadyExistsException.",
+      "range": {
+        "startLine": 82,
+        "startChar": 33,
+        "endLine": 82,
+        "endChar": 55
+      },
+      "revId": "6ce88b911ec9cb0b25959da0b027fd40ab069c97",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
