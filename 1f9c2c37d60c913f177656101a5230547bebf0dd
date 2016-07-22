@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dada55a8_639eeb08",
+        "filename": "monasca_tempest_tests/tests/api/test_statistics.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-07-22T14:39:01Z",
+      "side": 1,
+      "message": "Accidentally put the first comment on ps4, but this seems to result in a double encoding",
+      "range": {
+        "startLine": 251,
+        "startChar": 36,
+        "endLine": 251,
+        "endChar": 45
+      },
+      "revId": "1f9c2c37d60c913f177656101a5230547bebf0dd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
