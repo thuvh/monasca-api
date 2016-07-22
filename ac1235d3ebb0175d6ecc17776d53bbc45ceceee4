@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dada55a8_6bf7d9f5",
+        "filename": "monasca_api/v2/common/schemas/notifications_request_body_schema.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2016-07-22T16:52:17Z",
+      "side": 1,
+      "message": "If you\u0027re doing validation when you attempt to create the notification in another patch set doesn\u0027t this have to change either here or in the other patch set?",
+      "range": {
+        "startLine": 56,
+        "startChar": 4,
+        "endLine": 56,
+        "endChar": 35
+      },
+      "revId": "ac1235d3ebb0175d6ecc17776d53bbc45ceceee4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
