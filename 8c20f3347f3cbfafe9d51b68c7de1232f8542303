@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dada55a8_ad29a939",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9StatisticRepo.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-07-25T14:19:05Z",
+      "side": 1,
+      "message": "Should be a space after the if",
+      "range": {
+        "startLine": 78,
+        "startChar": 5,
+        "endLine": 78,
+        "endChar": 7
+      },
+      "revId": "8c20f3347f3cbfafe9d51b68c7de1232f8542303",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_cd997d70",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9StatisticRepo.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-07-25T14:19:05Z",
+      "side": 1,
+      "message": "What happens if the user passes in an offset without a \u0027_\u0027 ? Does it return a 400 or 500?",
+      "range": {
+        "startLine": 82,
+        "startChar": 34,
+        "endLine": 82,
+        "endChar": 35
+      },
+      "revId": "8c20f3347f3cbfafe9d51b68c7de1232f8542303",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_0dcb9554",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9StatisticRepo.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-07-25T14:19:05Z",
+      "side": 1,
+      "message": "space after if",
+      "range": {
+        "startLine": 107,
+        "startChar": 5,
+        "endLine": 107,
+        "endChar": 7
+      },
+      "revId": "8c20f3347f3cbfafe9d51b68c7de1232f8542303",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_6d15f199",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9StatisticRepo.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-07-25T14:19:05Z",
+      "side": 1,
+      "message": "Comment about why you are doing this would be nice",
+      "range": {
+        "startLine": 221,
+        "startChar": 6,
+        "endLine": 221,
+        "endChar": 78
+      },
+      "revId": "8c20f3347f3cbfafe9d51b68c7de1232f8542303",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
