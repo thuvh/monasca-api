@@ -1,0 +1,437 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dada55a8_82d3cc5e",
+        "filename": "java/src/main/java/monasca/api/app/command/CreateNotificationMethodCommand.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-07-25T16:24:35Z",
+      "side": 1,
+      "message": "Extra space should be removed.",
+      "range": {
+        "startLine": 41,
+        "startChar": 62,
+        "endLine": 41,
+        "endChar": 84
+      },
+      "revId": "a37af62314b692268174f9cf7ddb551bfbaa84da",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_42ba740b",
+        "filename": "java/src/main/java/monasca/api/app/command/PatchNotificationMethodCommand.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-07-25T16:24:35Z",
+      "side": 1,
+      "message": "Extra space should be removed.",
+      "range": {
+        "startLine": 71,
+        "startChar": 52,
+        "endLine": 71,
+        "endChar": 54
+      },
+      "revId": "a37af62314b692268174f9cf7ddb551bfbaa84da",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_626df897",
+        "filename": "java/src/main/java/monasca/api/app/validation/NotificationMethodValidation.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-07-25T16:24:35Z",
+      "side": 1,
+      "message": "Indentation looks to be wrong.",
+      "revId": "a37af62314b692268174f9cf7ddb551bfbaa84da",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_62c97878",
+        "filename": "java/src/main/java/monasca/api/domain/model/notificationmethod/NotificationMethodType.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-07-25T16:24:35Z",
+      "side": 1,
+      "message": "All the copyrights are incorrect in all the files. The \"Company\" should be removed. Just waiting for them to change it on us again.",
+      "revId": "a37af62314b692268174f9cf7ddb551bfbaa84da",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_56f23ed3",
+        "filename": "java/src/main/java/monasca/api/domain/model/notificationmethod/NotificationMethodType.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-07-25T16:24:35Z",
+      "side": 1,
+      "message": "The level of indentation is screwed up in this file. I didn\u0027t leave a comment for each one.",
+      "range": {
+        "startLine": 36,
+        "startChar": 1,
+        "endLine": 36,
+        "endChar": 7
+      },
+      "revId": "a37af62314b692268174f9cf7ddb551bfbaa84da",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_b6857a08",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/hibernate/NotificationMethodTypesSqlRepoImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-07-25T16:24:35Z",
+      "side": 1,
+      "message": "indentation again",
+      "revId": "a37af62314b692268174f9cf7ddb551bfbaa84da",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_767ca2eb",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/NotificationMethodMySqlRepoImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-07-25T16:24:35Z",
+      "side": 1,
+      "message": "Really shouldn\u0027t have a \"*\" in your select statement and should identify each column explicitly. If a column is added to the table, then problems could occur.",
+      "revId": "a37af62314b692268174f9cf7ddb551bfbaa84da",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_c7b316e8",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/NotificationMethodMySqlRepoImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-07-25T16:24:35Z",
+      "side": 1,
+      "message": "Indentation in this file is 2 chars, but you have it as 4 here.",
+      "revId": "a37af62314b692268174f9cf7ddb551bfbaa84da",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_27cb1255",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/NotificationMethodMySqlRepoImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-07-25T16:24:35Z",
+      "side": 1,
+      "message": "The indentation here, which is 4 chars, doesn\u0027t match the indentation up above, which is 2.",
+      "range": {
+        "startLine": 208,
+        "startChar": 14,
+        "endLine": 208,
+        "endChar": 15
+      },
+      "revId": "a37af62314b692268174f9cf7ddb551bfbaa84da",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_a704227e",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/NotificationMethodTypesMySqlRepoImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-07-25T16:24:35Z",
+      "side": 1,
+      "message": "indentation",
+      "revId": "a37af62314b692268174f9cf7ddb551bfbaa84da",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_073b6e39",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/NotificationMethodTypesMySqlRepoImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-07-25T16:24:35Z",
+      "side": 1,
+      "message": "Should use select *. Queries should explicitly declare the columns of interest.",
+      "range": {
+        "startLine": 54,
+        "startChar": 38,
+        "endLine": 54,
+        "endChar": 62
+      },
+      "revId": "a37af62314b692268174f9cf7ddb551bfbaa84da",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_a7c70211",
+        "filename": "java/src/main/java/monasca/api/resource/NotificationMethodTypesResource.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-07-25T16:24:35Z",
+      "side": 1,
+      "message": "indentation",
+      "revId": "a37af62314b692268174f9cf7ddb551bfbaa84da",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_07d7eebf",
+        "filename": "java/src/main/java/monasca/api/resource/NotificationMethodTypesResource.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-07-25T16:24:35Z",
+      "side": 1,
+      "message": "indentation",
+      "revId": "a37af62314b692268174f9cf7ddb551bfbaa84da",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_47f8c649",
+        "filename": "java/src/main/java/monasca/api/resource/NotificationMethodTypesResource.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-07-25T16:24:35Z",
+      "side": 1,
+      "message": "is there a space or tab here? Gerrit shows it as red.",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 5
+      },
+      "revId": "a37af62314b692268174f9cf7ddb551bfbaa84da",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_478f26cc",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/hibernate/NotificationMethodTypesSqlRepositoryImplTest.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-07-25T16:24:35Z",
+      "side": 1,
+      "message": "indentation",
+      "revId": "a37af62314b692268174f9cf7ddb551bfbaa84da",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_c7b9567b",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/hibernate/NotificationMethodTypesSqlRepositoryImplTest.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-07-25T16:24:35Z",
+      "side": 1,
+      "message": "indentation",
+      "revId": "a37af62314b692268174f9cf7ddb551bfbaa84da",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_e76d7a05",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/mysql/NotificationMethodTypeMySqlRepositoryImplTest.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-07-25T16:24:35Z",
+      "side": 1,
+      "message": "space",
+      "revId": "a37af62314b692268174f9cf7ddb551bfbaa84da",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_c77036df",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/mysql/NotificationMethodTypeMySqlRepositoryImplTest.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-07-25T16:24:35Z",
+      "side": 1,
+      "message": "indentation",
+      "revId": "a37af62314b692268174f9cf7ddb551bfbaa84da",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_c7479675",
+        "filename": "java/src/test/java/monasca/api/resource/NotificationMethodTypeResourceTest.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-07-25T16:24:35Z",
+      "side": 1,
+      "message": "space/tab and several other spots in this file.",
+      "revId": "a37af62314b692268174f9cf7ddb551bfbaa84da",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_62dcd812",
+        "filename": "monasca_api/api/notificationstype_api_v2.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-07-25T16:24:35Z",
+      "side": 1,
+      "message": "Copyright.",
+      "revId": "a37af62314b692268174f9cf7ddb551bfbaa84da",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_4219d478",
+        "filename": "monasca_api/v2/reference/notificationstype.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-07-25T16:24:35Z",
+      "side": 1,
+      "message": "not supported yet",
+      "range": {
+        "startLine": 41,
+        "startChar": 60,
+        "endLine": 41,
+        "endChar": 66
+      },
+      "revId": "a37af62314b692268174f9cf7ddb551bfbaa84da",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_a2fff0ff",
+        "filename": "monasca_api/v2/reference/notificationstype.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-07-25T16:24:35Z",
+      "side": 1,
+      "message": "no -\u003e not",
+      "revId": "a37af62314b692268174f9cf7ddb551bfbaa84da",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_e25a8882",
+        "filename": "monasca_tempest_tests/tests/api/test_notification_method_type.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-07-25T16:24:35Z",
+      "side": 1,
+      "message": "I think there could be some more Tempest tests added, such as negative tests, and also testing whether the response object contains the right stuff, like links, elements, elements is a list, and elements contains expected types.",
+      "revId": "a37af62314b692268174f9cf7ddb551bfbaa84da",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
