@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "dada55a8_cdb5fed0",
+        "filename": "monasca_tempest_tests/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-07-25T14:01:48Z",
+      "side": 1,
+      "message": "Do you run your tempest tests on a system other than the devstack system? If so, using that IP address would be required but since this is explaining how to run the tempest tests on the devstack system, 127.0.0.1 works and doesn\u0027t require changing if a different IP address is used for the devstack system",
+      "parentUuid": "dada55a8_cb79d794",
+      "range": {
+        "startLine": 48,
+        "startChar": 6,
+        "endLine": 48,
+        "endChar": 33
+      },
+      "revId": "62c6b8422e214d1df07661fea466b9056ecfcd28",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dada55a8_0b700fa3",
         "filename": "monasca_tempest_tests/README.md",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "dada55a8_4dcaae50",
+        "filename": "monasca_tempest_tests/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-07-25T14:01:48Z",
+      "side": 1,
+      "message": "See above",
+      "parentUuid": "dada55a8_0b700fa3",
+      "range": {
+        "startLine": 49,
+        "startChar": 9,
+        "endLine": 49,
+        "endChar": 35
+      },
+      "revId": "62c6b8422e214d1df07661fea466b9056ecfcd28",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dada55a8_ab6103d5",
         "filename": "monasca_tempest_tests/README.md",
         "patchSetId": 1
@@ -59,6 +107,30 @@
       "writtenOn": "2016-07-21T20:42:28Z",
       "side": 1,
       "message": "I also added use_dynamic_credentials \u003d true",
+      "range": {
+        "startLine": 51,
+        "startChar": 4,
+        "endLine": 51,
+        "endChar": 10
+      },
+      "revId": "62c6b8422e214d1df07661fea466b9056ecfcd28",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_4df8ee7c",
+        "filename": "monasca_tempest_tests/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-07-25T14:01:48Z",
+      "side": 1,
+      "message": "What does that flag do?",
+      "parentUuid": "dada55a8_ab6103d5",
       "range": {
         "startLine": 51,
         "startChar": 4,
