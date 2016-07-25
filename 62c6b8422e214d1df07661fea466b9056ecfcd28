@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "dada55a8_9cffb500",
+        "filename": "monasca_tempest_tests/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-07-25T15:28:25Z",
+      "side": 1,
+      "message": "Good to know! Thanks!",
+      "parentUuid": "dada55a8_cdb5fed0",
+      "range": {
+        "startLine": 48,
+        "startChar": 6,
+        "endLine": 48,
+        "endChar": 33
+      },
+      "revId": "62c6b8422e214d1df07661fea466b9056ecfcd28",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dada55a8_0b700fa3",
         "filename": "monasca_tempest_tests/README.md",
         "patchSetId": 1
@@ -131,6 +155,30 @@
       "side": 1,
       "message": "What does that flag do?",
       "parentUuid": "dada55a8_ab6103d5",
+      "range": {
+        "startLine": 51,
+        "startChar": 4,
+        "endLine": 51,
+        "endChar": 10
+      },
+      "revId": "62c6b8422e214d1df07661fea466b9056ecfcd28",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_01219eb4",
+        "filename": "monasca_tempest_tests/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-07-25T15:28:25Z",
+      "side": 1,
+      "message": "Quote from documentation http://docs.openstack.org/developer/tempest/configuration.html#dynamic-credentials : Dynamic Credentials (formerly known as Tenant isolation) was originally created to enable running Tempest in parallel. For each test class it creates a unique set of user credentials to use for the tests in the class. It can create up to three sets of username, password, and project names for a primary user, an admin user, and an alternate user.",
+      "parentUuid": "dada55a8_4df8ee7c",
       "range": {
         "startLine": 51,
         "startChar": 4,
