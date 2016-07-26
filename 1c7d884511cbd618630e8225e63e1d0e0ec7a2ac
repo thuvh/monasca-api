@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "dada55a8_526961bd",
+        "filename": "java/src/main/java/monasca/api/app/validation/NotificationMethodValidation.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2016-07-26T17:45:08Z",
+      "side": 1,
+      "message": "I thought periodic is allowed only for email",
+      "parentUuid": "dada55a8_34277d13",
+      "range": {
+        "startLine": 37,
+        "startChar": 24,
+        "endLine": 37,
+        "endChar": 33
+      },
+      "revId": "1c7d884511cbd618630e8225e63e1d0e0ec7a2ac",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dada55a8_37b01f43",
         "filename": "monasca_api/v2/reference/__init__.py",
         "patchSetId": 18
@@ -36,6 +60,30 @@
       "writtenOn": "2016-07-26T16:48:48Z",
       "side": 1,
       "message": "do we have an extra , here?",
+      "range": {
+        "startLine": 34,
+        "startChar": 73,
+        "endLine": 34,
+        "endChar": 74
+      },
+      "revId": "1c7d884511cbd618630e8225e63e1d0e0ec7a2ac",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_72b3c54d",
+        "filename": "monasca_api/v2/reference/__init__.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2016-07-26T17:45:08Z",
+      "side": 1,
+      "message": "That should be fine. Any how I will remove it",
+      "parentUuid": "dada55a8_37b01f43",
       "range": {
         "startLine": 34,
         "startChar": 73,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "dada55a8_3294ad89",
+        "filename": "monasca_tempest_tests/tests/api/test_notification_methods.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2016-07-26T17:45:08Z",
+      "side": 1,
+      "message": "Will look into it",
+      "parentUuid": "dada55a8_7773b74e",
+      "range": {
+        "startLine": 154,
+        "startChar": 4,
+        "endLine": 160,
+        "endChar": 39
+      },
+      "revId": "1c7d884511cbd618630e8225e63e1d0e0ec7a2ac",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dada55a8_d7b543ed",
         "filename": "monasca_tempest_tests/tests/api/test_notification_methods.py",
         "patchSetId": 18
@@ -82,6 +154,30 @@
       "writtenOn": "2016-07-26T16:53:28Z",
       "side": 1,
       "message": "In java tempest tests log it shows: \"tempest.lib.exceptions.NotFound: Object not found\"",
+      "range": {
+        "startLine": 794,
+        "startChar": 61,
+        "endLine": 794,
+        "endChar": 69
+      },
+      "revId": "1c7d884511cbd618630e8225e63e1d0e0ec7a2ac",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_d2e9d11b",
+        "filename": "monasca_tempest_tests/tests/api/test_notification_methods.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 794,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2016-07-26T17:45:08Z",
+      "side": 1,
+      "message": "Looking into it",
+      "parentUuid": "dada55a8_d7b543ed",
       "range": {
         "startLine": 794,
         "startChar": 61,
