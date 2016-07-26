@@ -121,6 +121,29 @@
     },
     {
       "key": {
+        "uuid": "dada55a8_f2a04cf6",
+        "filename": "java/src/main/java/monasca/api/app/validation/NotificationMethodValidation.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-07-26T20:32:06Z",
+      "side": 1,
+      "message": "if period is equal to 60 and the type is anything but webhook we will throw the exception here",
+      "range": {
+        "startLine": 48,
+        "startChar": 12,
+        "endLine": 48,
+        "endChar": 18
+      },
+      "revId": "1c7d884511cbd618630e8225e63e1d0e0ec7a2ac",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dada55a8_37b01f43",
         "filename": "monasca_api/v2/reference/__init__.py",
         "patchSetId": 18
