@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dada55a8_c82c7e4c",
+        "filename": "java/src/main/java/monasca/api/MonApiApplication.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-07-26T17:54:00Z",
+      "side": 1,
+      "message": "Copyright is still not correct.",
+      "revId": "82d195d58a1dd8719fb7b4316517dfd2b43d38e6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
