@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2014 Hewlett-Packard
-# (C) Copyright 2015,2016 Hewlett Packard Enterprise Development Company LP
+# (C) Copyright 2014-2016 Hewlett Packard Enterprise Development Company LP.
 # Copyright 2015 Cray Inc. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
@@ -584,7 +583,9 @@ class MetricsRepository(metrics_repository.MetricsRepository):
 
             offset_clause = self._build_offset_clause(offset, limit)
 
-            query += where_clause + time_clause + offset_clause
+            order_clause = " order by time"
+
+            query += where_clause + time_clause + order_clause + offset_clause
 
             result = self.influxdb_client.query(query)
 

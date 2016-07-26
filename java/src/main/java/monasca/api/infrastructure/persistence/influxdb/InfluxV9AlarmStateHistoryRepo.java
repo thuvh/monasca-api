@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 Hewlett-Packard Development Company, L.P.
+ * (C) Copyright 2014-2016 Hewlett Packard Enterprise Development Company LP.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -85,7 +85,7 @@ public class InfluxV9AlarmStateHistoryRepo implements AlarmStateHistoryRepo {
     String q = String.format("select alarm_id, metrics, old_state, new_state, "
                              + "reason, reason_data, sub_alarms "
                              + "from alarm_state_history "
-                             + "where %1$s %2$s %3$s %4$s",
+                             + "where %1$s %2$s %3$s order by time %4$s",
                              this.influxV9Utils.publicTenantIdPart(tenantId),
                              this.influxV9Utils.alarmIdPart(alarmId),
                              this.influxV9Utils.timeOffsetPart(offset),
@@ -118,7 +118,7 @@ public class InfluxV9AlarmStateHistoryRepo implements AlarmStateHistoryRepo {
     String q = String.format("select alarm_id, metrics, old_state, new_state, "
                              + "reason, reason_data, sub_alarms "
                              + "from alarm_state_history "
-                             + "where %1$s %2$s %3$s %4$s %5$s",
+                             + "where %1$s %2$s %3$s %4$s order by time %5$s",
                              this.influxV9Utils.publicTenantIdPart(tenantId),
                              this.influxV9Utils.startTimeEndTimePart(startTime, endTime),
                              this.influxV9Utils.alarmIdsPart(alarmIdList),
