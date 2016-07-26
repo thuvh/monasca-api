@@ -16,6 +16,24 @@
       "revId": "fe3386bbf12a7f4a82bb085917b97fe82f3769f4",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_b8d513e6",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 1974,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-07-26T21:35:54Z",
+      "side": 1,
+      "message": "Python version is fine",
+      "parentUuid": "dada55a8_52095883",
+      "revId": "fe3386bbf12a7f4a82bb085917b97fe82f3769f4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
