@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dada55a8_785c3b4b",
+        "filename": "monasca_tempest_tests/tests/api/test_notification_methods.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-07-26T21:43:47Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 1,
+        "startChar": 65,
+        "endLine": 1,
+        "endChar": 72
+      },
+      "revId": "b0631729f52ce2a48af37865269f0fc547b3c69c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_985f6f40",
+        "filename": "monasca_tempest_tests/tests/api/test_notification_methods.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 771,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-07-26T21:43:47Z",
+      "side": 1,
+      "message": "should we have a test for the opposite as well ? I dont think there is a zero period to non zero period via patch test",
+      "range": {
+        "startLine": 771,
+        "startChar": 55,
+        "endLine": 771,
+        "endChar": 57
+      },
+      "revId": "b0631729f52ce2a48af37865269f0fc547b3c69c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
