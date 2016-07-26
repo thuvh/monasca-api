@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "dada55a8_12008000",
+        "filename": "java/src/main/java/monasca/api/app/validation/NotificationMethodValidation.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-07-26T20:28:02Z",
+      "side": 1,
+      "message": "it is only for webhooks but this code is catching that right now with the third conditional period !\u003d 0 \u0026\u0026 !type.equals(\"WEBHOOK\")",
+      "parentUuid": "dada55a8_77ae0e2f",
+      "range": {
+        "startLine": 37,
+        "startChar": 24,
+        "endLine": 37,
+        "endChar": 33
+      },
+      "revId": "1c7d884511cbd618630e8225e63e1d0e0ec7a2ac",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dada55a8_37b01f43",
         "filename": "monasca_api/v2/reference/__init__.py",
         "patchSetId": 18
