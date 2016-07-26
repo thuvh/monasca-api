@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "dada55a8_d81d67bf",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-07-26T22:20:59Z",
+      "side": 1,
+      "message": "Still need to regenerate this to add the new resource",
+      "range": {
+        "startLine": 9,
+        "startChar": 2,
+        "endLine": 9,
+        "endChar": 19
+      },
+      "revId": "fe3386bbf12a7f4a82bb085917b97fe82f3769f4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dada55a8_52095883",
         "filename": "docs/monasca-api-spec.md",
         "patchSetId": 20
@@ -48,6 +71,46 @@
       "writtenOn": "2016-07-26T22:18:39Z",
       "side": 1,
       "message": "Indentation is incorrect in this file.",
+      "revId": "fe3386bbf12a7f4a82bb085917b97fe82f3769f4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_ec87cc5e",
+        "filename": "java/src/main/java/monasca/api/resource/NotificationMethodTypesResource.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-07-26T22:20:59Z",
+      "side": 1,
+      "message": "No spaces",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 2
+      },
+      "revId": "fe3386bbf12a7f4a82bb085917b97fe82f3769f4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_8ccf307e",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/hibernate/NotificationMethodTypesSqlRepositoryImplTest.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-07-26T22:20:59Z",
+      "side": 1,
+      "message": "indents should be multiple of 2",
       "revId": "fe3386bbf12a7f4a82bb085917b97fe82f3769f4",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
