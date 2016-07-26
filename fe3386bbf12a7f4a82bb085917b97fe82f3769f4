@@ -34,6 +34,57 @@
       "revId": "fe3386bbf12a7f4a82bb085917b97fe82f3769f4",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_fdbf7dcd",
+        "filename": "java/src/main/java/monasca/api/domain/model/notificationmethod/NotificationMethodType.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-07-26T22:18:39Z",
+      "side": 1,
+      "message": "Indentation is incorrect in this file.",
+      "revId": "fe3386bbf12a7f4a82bb085917b97fe82f3769f4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_ddd8b920",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/mysql/NotificationMethodMySqlRepositoryImplTest.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-07-26T22:18:39Z",
+      "side": 1,
+      "message": "more indentation being flagged",
+      "revId": "fe3386bbf12a7f4a82bb085917b97fe82f3769f4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_9df92183",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/mysql/NotificationMethodTypeMySqlRepositoryImplTest.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-07-26T22:18:39Z",
+      "side": 1,
+      "message": "indentation",
+      "revId": "fe3386bbf12a7f4a82bb085917b97fe82f3769f4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
