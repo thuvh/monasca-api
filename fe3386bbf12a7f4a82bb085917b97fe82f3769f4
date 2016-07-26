@@ -77,6 +77,29 @@
     },
     {
       "key": {
+        "uuid": "dada55a8_e2799594",
+        "filename": "java/src/main/java/monasca/api/resource/NotificationMethodTypesResource.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-07-26T22:47:33Z",
+      "side": 1,
+      "message": "The ID is a part of the AbstractEntity the this class inherits from. You may be able to override it in the class, but I would be fine with either adding an integer value (adjusted for offset) as the ID, or re-using the name as the id.\nThe metric-names resource had a similar issue.",
+      "range": {
+        "startLine": 65,
+        "startChar": 25,
+        "endLine": 65,
+        "endChar": 47
+      },
+      "revId": "fe3386bbf12a7f4a82bb085917b97fe82f3769f4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dada55a8_ec87cc5e",
         "filename": "java/src/main/java/monasca/api/resource/NotificationMethodTypesResource.java",
         "patchSetId": 20
