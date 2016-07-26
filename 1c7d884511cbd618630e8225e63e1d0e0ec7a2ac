@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dada55a8_34277d13",
+        "filename": "java/src/main/java/monasca/api/app/validation/NotificationMethodValidation.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-07-26T16:48:48Z",
+      "side": 1,
+      "message": "Do we need to check if period !\u003d 0  for email type?",
+      "range": {
+        "startLine": 37,
+        "startChar": 24,
+        "endLine": 37,
+        "endChar": 33
+      },
+      "revId": "1c7d884511cbd618630e8225e63e1d0e0ec7a2ac",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_37b01f43",
+        "filename": "monasca_api/v2/reference/__init__.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-07-26T16:48:48Z",
+      "side": 1,
+      "message": "do we have an extra , here?",
+      "range": {
+        "startLine": 34,
+        "startChar": 73,
+        "endLine": 34,
+        "endChar": 74
+      },
+      "revId": "1c7d884511cbd618630e8225e63e1d0e0ec7a2ac",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
