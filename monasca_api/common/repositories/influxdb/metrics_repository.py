@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2014 Hewlett-Packard
-# (C) Copyright 2015,2016 Hewlett Packard Enterprise Development Company LP
+# (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
 # Copyright 2015 Cray Inc. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
@@ -501,10 +500,10 @@ class MetricsRepository(metrics_repository.MetricsRepository):
         if offset:
 
             offset_clause = (
-                " and time > '{}' limit {}".format(offset, str(limit + 1)))
+                " and time > '{}' order by time limit {}".format(offset, str(limit + 1)))
         else:
 
-            offset_clause = " limit {}".format(str(limit + 1))
+            offset_clause = " limit order by time {}".format(str(limit + 1))
 
         return offset_clause
 
