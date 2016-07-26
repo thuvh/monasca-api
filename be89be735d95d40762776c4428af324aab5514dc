@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "dada55a8_cf691a8e",
+        "filename": "monasca_api/v2/reference/__init__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 8126
+      },
+      "writtenOn": "2016-07-26T22:24:42Z",
+      "side": 1,
+      "message": "Perhaps -- I can change to monasca-read-only-user, but since it\u0027s only a default, I\u0027m assuming the checked-in config files are overriding anything set here...",
+      "parentUuid": "dada55a8_8c8a90bd",
+      "range": {
+        "startLine": 44,
+        "startChar": 69,
+        "endLine": 44,
+        "endChar": 82
+      },
+      "revId": "be89be735d95d40762776c4428af324aab5514dc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dada55a8_acd5d4e5",
         "filename": "monasca_tempest_tests/tests/api/test_read_only_role.py",
         "patchSetId": 3
@@ -36,6 +60,24 @@
       "writtenOn": "2016-07-26T22:15:02Z",
       "side": 1,
       "message": "Why no positive test?",
+      "revId": "be89be735d95d40762776c4428af324aab5514dc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_2fcc36ba",
+        "filename": "monasca_tempest_tests/tests/api/test_read_only_role.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 8126
+      },
+      "writtenOn": "2016-07-26T22:24:42Z",
+      "side": 1,
+      "message": "I\u0027m having difficulty with the oslo cred_provider to change roles/users after the class is instantiated.  To perform a positive test I\u0027d need to use the full admin role to create something to GET, then switch to read-only and verify GET works.  If you have an example of how to make this work I\u0027d love to see it...",
+      "parentUuid": "dada55a8_acd5d4e5",
       "revId": "be89be735d95d40762776c4428af324aab5514dc",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
