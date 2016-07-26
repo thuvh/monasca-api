@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dada55a8_52095883",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 1974,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-07-26T20:45:39Z",
+      "side": 1,
+      "message": "The links for each item are unresolvable and probably unnecessary. Also an ID of null is not very useful\n\n\n  \"elements\": [\n    {\n      \"id\": null,\n      \"links\": [\n        {\n          \"rel\": \"self\",\n          \"href\": \"http://192.168.10.6:8070/v2.0/notification-methods/types/null\"\n        }\n      ],\n      \"type\": \"EMAIL\"\n    },\n    {\n      \"id\": null,\n      \"links\": [\n        {\n          \"rel\": \"self\",\n          \"href\": \"http://192.168.10.6:8070/v2.0/notification-methods/types/null\"\n        }\n      ],\n      \"type\": \"PAGERDUTY\"\n    },\n    {\n      \"id\": null,\n      \"links\": [\n        {\n          \"rel\": \"self\",\n          \"href\": \"http://192.168.10.6:8070/v2.0/notification-methods/types/null\"\n        }\n      ],\n      \"type\": \"WEBHOOK\"\n    }\n  ]",
+      "revId": "fe3386bbf12a7f4a82bb085917b97fe82f3769f4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
