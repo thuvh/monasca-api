@@ -15,7 +15,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 from datetime import datetime
-
+from datetime import timedelta
 import hashlib
 import json
 
@@ -91,6 +91,10 @@ class MetricsRepository(metrics_repository.MetricsRepository):
                                               region, start_timestamp,
                                               end_timestamp)
         if offset:
+            if '_' in offset:
+                tmp = datetime.strptime(str(offset).split('_')[1], "%Y-%m-%dT%H:%M:%S.%fZ")
+                tmp = tmp + timedelta(seconds=period)
+                offset = offset.split('_')[0] + '_' + tmp.isoformat()
             offset_clause = (" and time > '{}'".format(offset))
             from_clause += offset_clause
 
