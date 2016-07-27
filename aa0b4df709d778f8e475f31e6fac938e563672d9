@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bacf61ea_1d0e7534",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-07-27T19:07:29Z",
+      "side": 1,
+      "message": "I wonder if influx is confused by having two \" and time \u003e \" clauses? One is added by _build_where_clause() since start_timestamp is set as well. Also, _build_where_clause() is using setting the time as microseconds while this is using an ISO formatted date.",
+      "range": {
+        "startLine": 98,
+        "startChar": 29,
+        "endLine": 98,
+        "endChar": 47
+      },
+      "revId": "aa0b4df709d778f8e475f31e6fac938e563672d9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
