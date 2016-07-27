@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "bacf61ea_b1b962ef",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-07-27T14:44:07Z",
+      "side": 1,
+      "message": "Also, this method is used for all influx queries, so it should be validated that everything is expected to be ordered by time.",
+      "range": {
+        "startLine": 498,
+        "startChar": 8,
+        "endLine": 498,
+        "endChar": 28
+      },
+      "revId": "2386fb87402eed316b5f0ea52f8adb494a8df084",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bacf61ea_11c14e81",
         "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
         "patchSetId": 3
