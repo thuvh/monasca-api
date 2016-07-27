@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bacf61ea_1c920558",
+        "filename": "monasca_api/v2/reference/__init__.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-07-27T15:14:16Z",
+      "side": 1,
+      "message": "extra \u0027-\u0027 here",
+      "range": {
+        "startLine": 44,
+        "startChar": 87,
+        "endLine": 44,
+        "endChar": 88
+      },
+      "revId": "a4dc23c8c6e0eea969732712f914236efc3d8a59",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_17481e2d",
+        "filename": "monasca_tempest_tests/tests/api/test_read_only_role.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-07-27T15:14:16Z",
+      "side": 1,
+      "message": "Seems like it would be best if all endpoints were tested, perhaps grouped into negative and positive?",
+      "range": {
+        "startLine": 42,
+        "startChar": 4,
+        "endLine": 42,
+        "endChar": 39
+      },
+      "revId": "a4dc23c8c6e0eea969732712f914236efc3d8a59",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
