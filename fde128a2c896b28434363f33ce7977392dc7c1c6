@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bacf61ea_0fed978b",
+        "filename": "devstack/files/schema/mon_mysql.sql",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-07-27T21:37:49Z",
+      "side": 1,
+      "message": "Shouldn\u0027t that be constrained with alarm_state table ?",
+      "revId": "fde128a2c896b28434363f33ce7977392dc7c1c6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
