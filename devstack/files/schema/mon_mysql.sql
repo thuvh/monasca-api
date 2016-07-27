@@ -1,5 +1,5 @@
 /*
-* (C) Copyright 2015,2016 Hewlett Packard Enterprise Development Company LP
+* (C) Copyright 2015,2016 Hewlett Packard Enterprise Development LP
 * Copyright 2016 FUJITSU LIMITED
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -180,6 +180,7 @@ CREATE TABLE `sub_alarm` (
   `expression` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
+  `state` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_sub_alarm` (`alarm_id`),
   KEY `fk_sub_alarm_expr` (`sub_expression_id`),
