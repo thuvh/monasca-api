@@ -60,6 +60,24 @@
     },
     {
       "key": {
+        "uuid": "dada55a8_911aa5c4",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 1974,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2016-07-27T02:21:10Z",
+      "side": 1,
+      "message": "I can\u0027t get rid of ID, so ID value is same as type and removed links for elements",
+      "parentUuid": "dada55a8_52095883",
+      "revId": "fe3386bbf12a7f4a82bb085917b97fe82f3769f4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dada55a8_fdbf7dcd",
         "filename": "java/src/main/java/monasca/api/domain/model/notificationmethod/NotificationMethodType.java",
         "patchSetId": 20
@@ -77,6 +95,24 @@
     },
     {
       "key": {
+        "uuid": "dada55a8_a0a4b54a",
+        "filename": "java/src/main/java/monasca/api/domain/model/notificationmethod/NotificationMethodType.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2016-07-27T02:21:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dada55a8_fdbf7dcd",
+      "revId": "fe3386bbf12a7f4a82bb085917b97fe82f3769f4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dada55a8_e2799594",
         "filename": "java/src/main/java/monasca/api/resource/NotificationMethodTypesResource.java",
         "patchSetId": 20
@@ -88,6 +124,30 @@
       "writtenOn": "2016-07-26T22:47:33Z",
       "side": 1,
       "message": "The ID is a part of the AbstractEntity the this class inherits from. You may be able to override it in the class, but I would be fine with either adding an integer value (adjusted for offset) as the ID, or re-using the name as the id.\nThe metric-names resource had a similar issue.",
+      "range": {
+        "startLine": 65,
+        "startChar": 25,
+        "endLine": 65,
+        "endChar": 47
+      },
+      "revId": "fe3386bbf12a7f4a82bb085917b97fe82f3769f4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_d109bd96",
+        "filename": "java/src/main/java/monasca/api/resource/NotificationMethodTypesResource.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2016-07-27T02:21:10Z",
+      "side": 1,
+      "message": "Reusing name as ID",
+      "parentUuid": "dada55a8_e2799594",
       "range": {
         "startLine": 65,
         "startChar": 25,
@@ -123,6 +183,30 @@
     },
     {
       "key": {
+        "uuid": "dada55a8_6023ddbd",
+        "filename": "java/src/main/java/monasca/api/resource/NotificationMethodTypesResource.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2016-07-27T02:21:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dada55a8_ec87cc5e",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 2
+      },
+      "revId": "fe3386bbf12a7f4a82bb085917b97fe82f3769f4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dada55a8_8ccf307e",
         "filename": "java/src/test/java/monasca/api/infrastructure/persistence/hibernate/NotificationMethodTypesSqlRepositoryImplTest.java",
         "patchSetId": 20
@@ -134,6 +218,24 @@
       "writtenOn": "2016-07-26T22:20:59Z",
       "side": 1,
       "message": "indents should be multiple of 2",
+      "revId": "fe3386bbf12a7f4a82bb085917b97fe82f3769f4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_16ea2b74",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/hibernate/NotificationMethodTypesSqlRepositoryImplTest.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2016-07-27T02:21:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dada55a8_8ccf307e",
       "revId": "fe3386bbf12a7f4a82bb085917b97fe82f3769f4",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -157,6 +259,24 @@
     },
     {
       "key": {
+        "uuid": "dada55a8_c055691e",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/mysql/NotificationMethodMySqlRepositoryImplTest.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2016-07-27T02:21:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dada55a8_ddd8b920",
+      "revId": "fe3386bbf12a7f4a82bb085917b97fe82f3769f4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dada55a8_9df92183",
         "filename": "java/src/test/java/monasca/api/infrastructure/persistence/mysql/NotificationMethodTypeMySqlRepositoryImplTest.java",
         "patchSetId": 20
@@ -168,6 +288,24 @@
       "writtenOn": "2016-07-26T22:18:39Z",
       "side": 1,
       "message": "indentation",
+      "revId": "fe3386bbf12a7f4a82bb085917b97fe82f3769f4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dada55a8_0032e10f",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/mysql/NotificationMethodTypeMySqlRepositoryImplTest.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2016-07-27T02:21:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dada55a8_9df92183",
       "revId": "fe3386bbf12a7f4a82bb085917b97fe82f3769f4",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
