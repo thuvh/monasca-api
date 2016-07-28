@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bacf61ea_2a179fa4",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-07-28T03:56:00Z",
+      "side": 1,
+      "message": "I think that it can be removed.",
+      "revId": "a0baf05a41ef06ab24b30d8bcdd91a23204473a0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
