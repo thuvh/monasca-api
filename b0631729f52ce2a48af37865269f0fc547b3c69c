@@ -45,6 +45,30 @@
       "revId": "b0631729f52ce2a48af37865269f0fc547b3c69c",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_ff8fe320",
+        "filename": "monasca_tempest_tests/tests/api/test_notification_methods.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 771,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-07-28T15:38:51Z",
+      "side": 1,
+      "message": "will do!",
+      "parentUuid": "dada55a8_985f6f40",
+      "range": {
+        "startLine": 771,
+        "startChar": 55,
+        "endLine": 771,
+        "endChar": 57
+      },
+      "revId": "b0631729f52ce2a48af37865269f0fc547b3c69c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
