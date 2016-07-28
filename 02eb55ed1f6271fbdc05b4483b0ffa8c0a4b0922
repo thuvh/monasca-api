@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bacf61ea_b36f8691",
+        "filename": "devstack/files/schema/mon_mysql.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-07-28T05:49:58Z",
+      "side": 1,
+      "message": "This isn\u0027t going to work. The current Threshold Engine is not setting this field so all attempts to create sub_alarms fail. That is why the tests fail with no alarms being created. We need a default value on this field that is valid",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 183,
+        "endChar": 58
+      },
+      "revId": "02eb55ed1f6271fbdc05b4483b0ffa8c0a4b0922",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
