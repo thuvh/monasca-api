@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bacf61ea_37b19090",
+        "filename": "monasca_api/common/repositories/mysql/notification_method_type_repository.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2016-07-28T21:38:05Z",
+      "side": 1,
+      "message": "This needs the @mysql_repository.mysql_try_catch_block decorator to properly translate from mysql errors to errors we\u0027re going to surface to the user.",
+      "range": {
+        "startLine": 30,
+        "startChar": 8,
+        "endLine": 30,
+        "endChar": 38
+      },
+      "revId": "66af542b96e120daa87e4ee1d5f0ed79b565b8dc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
