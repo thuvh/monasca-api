@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 Hewlett-Packard Development Company, L.P.
+ * (C) Copyright 2014, 2016 Hewlett Packard Enterprise Development LP
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -18,6 +18,7 @@ import monasca.api.domain.model.statistic.StatisticRepo;
 import monasca.api.domain.model.statistic.Statistics;
 import monasca.api.ApiConfig;
 
+import monasca.api.resource.exception.Exceptions;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
@@ -84,17 +85,17 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
       }
 
       String sql = createQuery(name, dimensions, period, startTime, endTime, offset,
-                               statisticsCols, mergeMetricsFlag);
+              statisticsCols, mergeMetricsFlag);
 
       logger.debug("vertica sql: {}", sql);
 
       Query<Map<String, Object>>
-          query =
-          h.createQuery(sql)
-              .bind("tenantId", tenantId)
-              .bind("start_time", startTime)
-              .bind("end_time", endTime)
-              .bind("limit", limit + 1);
+              query =
+              h.createQuery(sql)
+                      .bind("tenantId", tenantId)
+                      .bind("start_time", startTime)
+                      .bind("end_time", endTime)
+                      .bind("limit", limit + 1);
 
       if (name != null && !name.isEmpty()) {
         query.bind("name", name);
@@ -108,72 +109,86 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
         MetricQueries.bindOffsetToQuery(query, offset);
       }
 
-      List<Map<String, Object>> rows = query.list();
+      try {
+        List<Map<String, Object>> rows = query.list();
 
-      if (rows.size() == 0) {
-        return new ArrayList<>();
-      }
+        if (rows.size() == 0) {
+          return new ArrayList<>();
+        }
 
-      if ("*".equals(groupBy)) {
+        if ("*".equals(groupBy)) {
 
-        String currentDefId = null;
+          String currentDefId = null;
 
-        for (Map<String, Object> row : rows) {
+          for (Map<String, Object> row : rows) {
 
-          List<Object> statisticsRow = parseRow(row);
+            List<Object> statisticsRow = parseRow(row);
 
-          String defDimsId = (String) row.get("id");
+            String defDimsId = (String) row.get("id");
 
-          if (defDimsId != null && !defDimsId.equals(currentDefId)) {
-            Statistics newStats = new Statistics();
-            newStats.setColumns(statisticsColumns);
+            if (defDimsId != null && !defDimsId.equals(currentDefId)) {
+              Statistics newStats = new Statistics();
+              newStats.setColumns(statisticsColumns);
 
-            statisticsMap.put(defDimsId, newStats);
-            currentDefId = defDimsId;
+              statisticsMap.put(defDimsId, newStats);
+              currentDefId = defDimsId;
+            }
+
+            statisticsMap.get(defDimsId).addMeasurement(statisticsRow);
+
           }
 
-          statisticsMap.get(defDimsId).addMeasurement(statisticsRow);
-
-        }
-
-        MetricQueries.addDefsToResults(statisticsMap, h, this.dbHint);
-
-      } else {
-
-        Statistics statistics = new Statistics();
-
-        statistics.setId("");
-
-        statistics.setName(name);
-
-        statistics.setColumns(statisticsColumns);
-
-        String firstDefId = (String) rows.get(0).get("id");
-
-        for (Map<String, Object> row : rows) {
-
-          List<Object> statisticsRow = parseRow(row);
-
-          statistics.addMeasurement(statisticsRow);
-
-        }
-
-        statisticsMap.put(firstDefId, statistics);
-
-        if (!Boolean.TRUE.equals(mergeMetricsFlag)) {
-          statistics.setId(firstDefId);
           MetricQueries.addDefsToResults(statisticsMap, h, this.dbHint);
+
         } else {
-          if (dimensions == null) {
-            dimensions = new HashMap<>();
+
+          Statistics statistics = new Statistics();
+
+          statistics.setId("");
+
+          statistics.setName(name);
+
+          statistics.setColumns(statisticsColumns);
+
+          String firstDefId = (String) rows.get(0).get("id");
+
+          for (Map<String, Object> row : rows) {
+
+            List<Object> statisticsRow = parseRow(row);
+
+            statistics.addMeasurement(statisticsRow);
+
           }
-          statistics.setDimensions(dimensions);
+
+          statisticsMap.put(firstDefId, statistics);
+
+          if (!Boolean.TRUE.equals(mergeMetricsFlag)) {
+            statistics.setId(firstDefId);
+            MetricQueries.addDefsToResults(statisticsMap, h, this.dbHint);
+          } else {
+            if (dimensions == null) {
+              dimensions = new HashMap<>();
+            }
+            statistics.setDimensions(dimensions);
+          }
         }
+      } catch (Exception e) {
+
+        if (e.getMessage().contains("ERROR: Date/time field value out of range")) {
+
+          throw Exceptions.unprocessableEntity("ERROR: Date/time field value out of range");
+
+        } else {
+
+          throw Exceptions.unprocessableEntity("Vertica Database cannot process the query");
+
+        }
+
       }
 
+      return new ArrayList<>(statisticsMap.values());
     }
 
-    return new ArrayList<>(statisticsMap.values());
   }
 
   private List<Object> parseRow(Map<String, Object> row) {

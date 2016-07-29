@@ -1,4 +1,4 @@
-/* Copyright (c) 2014, 2016 Hewlett-Packard Development Company, L.P.
+/* (C) Copyright 2014, 2016 Hewlett Packard Enterprise Development LP
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -16,6 +16,7 @@ import monasca.api.domain.exception.MultipleMetricsException;
 import monasca.api.domain.model.measurement.MeasurementRepo;
 import monasca.api.domain.model.measurement.Measurements;
 import monasca.api.ApiConfig;
+import monasca.api.resource.exception.Exceptions;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -159,59 +160,73 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
 
       }
 
-      List<Map<String, Object>> rows = query.list();
+      try {
+        List<Map<String, Object>> rows = query.list();
 
-      if (rows.size() == 0) {
-        return new ArrayList<>();
-      }
+        if (rows.size() == 0) {
+          return new ArrayList<>();
+        }
 
-      if ("*".equals(groupBy)) {
+        if ("*".equals(groupBy)) {
 
-        String currentDefId = null;
+          String currentDefId = null;
 
-        for (Map<String, Object> row : rows) {
+          for (Map<String, Object> row : rows) {
 
-          String defDimsId = (String) row.get("def_dims_id");
+            String defDimsId = (String) row.get("def_dims_id");
 
-          if (defDimsId != null && !defDimsId.equals(currentDefId)) {
-            currentDefId = defDimsId;
-            results.put(defDimsId, new Measurements());
+            if (defDimsId != null && !defDimsId.equals(currentDefId)) {
+              currentDefId = defDimsId;
+              results.put(defDimsId, new Measurements());
+            }
+
+            List<Object> measurement = parseRow(row);
+
+            results.get(defDimsId).addMeasurement(measurement);
+
           }
 
-          List<Object> measurement = parseRow(row);
-
-          results.get(defDimsId).addMeasurement(measurement);
-
-        }
-
-        MetricQueries.addDefsToResults(results, h, this.dbHint);
-
-      } else {
-
-        Measurements firstMeasurement = new Measurements();
-
-        firstMeasurement.setName(name);
-
-        String firstDefDimsId = (String) rows.get(0).get("def_dims_id");
-
-        for (Map<String, Object> row : rows) {
-
-          List<Object> measurement = parseRow(row);
-
-          firstMeasurement.addMeasurement(measurement);
-
-        }
-
-        results.put(firstDefDimsId, firstMeasurement);
-
-        if (!Boolean.TRUE.equals(mergeMetricsFlag)) {
-          firstMeasurement.setId(firstDefDimsId);
           MetricQueries.addDefsToResults(results, h, this.dbHint);
+
         } else {
-          if (dimensions == null) {
-            dimensions = new HashMap<>();
+
+          Measurements firstMeasurement = new Measurements();
+
+          firstMeasurement.setName(name);
+
+          String firstDefDimsId = (String) rows.get(0).get("def_dims_id");
+
+          for (Map<String, Object> row : rows) {
+
+            List<Object> measurement = parseRow(row);
+
+            firstMeasurement.addMeasurement(measurement);
+
           }
-          firstMeasurement.setDimensions(dimensions);
+
+          results.put(firstDefDimsId, firstMeasurement);
+
+          if (!Boolean.TRUE.equals(mergeMetricsFlag)) {
+            firstMeasurement.setId(firstDefDimsId);
+            MetricQueries.addDefsToResults(results, h, this.dbHint);
+          } else {
+            if (dimensions == null) {
+              dimensions = new HashMap<>();
+            }
+            firstMeasurement.setDimensions(dimensions);
+          }
+        }
+      } catch (Exception e) {
+        // Can not print out the whole error message from the exception because it contains a lot of query vertica
+        // information and it is very long.
+        if (e.getMessage().contains("ERROR: Date/time field value out of range")) {
+
+          throw Exceptions.unprocessableEntity("ERROR: Date/time field value out of range");
+
+        } else {
+
+          throw Exceptions.unprocessableEntity("Vertica Database cannot process the query");
+
         }
 
       }
