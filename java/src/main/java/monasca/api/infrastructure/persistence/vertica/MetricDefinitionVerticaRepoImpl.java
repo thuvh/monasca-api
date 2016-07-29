@@ -1,6 +1,6 @@
 /*
- * (C) Copyright 2014, 2016 Hewlett Packard Enterprise Development LP
- * 
+ * (C) Copyright 2014,2016 Hewlett Packard Enterprise Development LP
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
  *
@@ -267,8 +267,8 @@ public class MetricDefinitionVerticaRepoImpl implements MetricDefinitionRepo {
       }
 
       MetricQueries.bindDimensionsToQuery(query, dimensions);
-
-      return query.list();
+      VerticaUtils verticaUtils = new VerticaUtils();
+      return verticaUtils.queryList(query);
 
     }
   }
