@@ -36,7 +36,7 @@ test_config = {
             'stream_actions', 'stream_definition', 'sub_alarm',
             'sub_alarm_definition', 'sub_alarm_definition_dimension',
             'event_transform', 'alarm_state', 'alarm_definition_severity',
-            'notification_method_type', 'stream_actions_action_type'
+            'notification_method_type'
         ],
         'arg_defaults': {
             'dbtype': "influxdb",
