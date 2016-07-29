@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bacf61ea_8a22aeff",
+        "filename": "monasca_api/common/repositories/mysql/notification_method_type_repository.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2016-07-29T15:09:25Z",
+      "side": 1,
+      "message": "This needs to be @mysql_repository.mysql_try_catch_block\n\nYou\u0027re not importing a sql_repository in this file.",
+      "revId": "94853730db24394f9af495b18f935fa1f281a973",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
