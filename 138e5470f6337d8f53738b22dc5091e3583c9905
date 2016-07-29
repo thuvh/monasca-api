@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bacf61ea_ca8f86ca",
+        "filename": "monasca_api/common/repositories/mysql/notification_method_type_repository.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2016-07-29T15:12:36Z",
+      "side": 1,
+      "message": "This needs to be @mysql_repository.mysql_try_catch_block\n\nThe sqla decorator is slightly different.  Use the one from the existing mysql_repository import and remove the sqla import.",
+      "range": {
+        "startLine": 32,
+        "startChar": 8,
+        "endLine": 32,
+        "endChar": 38
+      },
+      "revId": "138e5470f6337d8f53738b22dc5091e3583c9905",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
