@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 Hewlett-Packard Development Company, L.P.
+ * (C) Copyright 2014,2016 Hewlett Packard Enterprise Development LP
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -38,6 +38,7 @@ public class MetricDefinitionVerticaRepositoryImplTest {
   private Handle handle;
   private MetricDefinitionRepo repo;
   private ApiConfig config;
+  private VerticaUtils verticaUtils;
 
   @BeforeClass
   protected void setupClass() throws Exception {
@@ -45,7 +46,8 @@ public class MetricDefinitionVerticaRepositoryImplTest {
     db = new DBI("jdbc:vertica://192.168.10.4/mon", "dbadmin", "password");
     handle = db.open();
     config = new ApiConfig();
-    repo = new MetricDefinitionVerticaRepoImpl(db, config);
+    verticaUtils = new VerticaUtils();
+    repo = new MetricDefinitionVerticaRepoImpl(db, config, verticaUtils);
   }
 
   @AfterClass
