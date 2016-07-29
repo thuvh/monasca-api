@@ -1,4 +1,4 @@
-/* Copyright (c) 2014, 2016 Hewlett-Packard Development Company, L.P.
+/* (C) Copyright 2014, 2016 Hewlett Packard Enterprise Development LP
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -159,12 +159,11 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
 
       }
 
-      List<Map<String, Object>> rows = query.list();
-
+      List<Map<String, Object>> rows;
+      rows = VerticaUtils.queryList(query);
       if (rows.size() == 0) {
         return new ArrayList<>();
       }
-
       if ("*".equals(groupBy)) {
 
         String currentDefId = null;
@@ -213,7 +212,6 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
           }
           firstMeasurement.setDimensions(dimensions);
         }
-
       }
 
       return new ArrayList<>(results.values());
