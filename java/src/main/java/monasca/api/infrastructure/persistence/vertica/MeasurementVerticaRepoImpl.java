@@ -1,4 +1,4 @@
-/* Copyright (c) 2014, 2016 Hewlett-Packard Development Company, L.P.
+/* (C) Copyright 2014, 2016 Hewlett Packard Enterprise Development LP
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -16,6 +16,7 @@ import monasca.api.domain.exception.MultipleMetricsException;
 import monasca.api.domain.model.measurement.MeasurementRepo;
 import monasca.api.domain.model.measurement.Measurements;
 import monasca.api.ApiConfig;
+import monasca.api.resource.exception.Exceptions;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -159,12 +160,25 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
 
       }
 
-      List<Map<String, Object>> rows = query.list();
+      List<Map<String, Object>> rows;
+      try {
+        rows = query.list();
+      } catch (Exception e) {
+        // Can not print out the whole error message from the exception because it contains a lot of query vertica
+        // information and it is very long.
+        if (e.getMessage().contains("ERROR: Date/time field value out of range")) {
 
+          throw Exceptions.unprocessableEntity(e.getCause().toString());
+
+        } else {
+
+          throw Exceptions.unprocessableEntity("Vertica Database cannot process the query: " + e.getCause().toString());
+
+        }
+      }
       if (rows.size() == 0) {
         return new ArrayList<>();
       }
-
       if ("*".equals(groupBy)) {
 
         String currentDefId = null;
@@ -213,7 +227,6 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
           }
           firstMeasurement.setDimensions(dimensions);
         }
-
       }
 
       return new ArrayList<>(results.values());
