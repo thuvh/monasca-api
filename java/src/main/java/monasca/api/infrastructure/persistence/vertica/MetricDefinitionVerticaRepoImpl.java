@@ -1,5 +1,5 @@
 /*
- * (C) Copyright 2014,2016 Hewlett Packard Enterprise Development Company LP
+ * (C) Copyright 2014,2016 Hewlett Packard Enterprise Development LP
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -301,7 +301,21 @@ public class MetricDefinitionVerticaRepoImpl implements MetricDefinitionRepo {
 
       MetricQueries.bindDimensionsToQuery(query, dimensions);
 
-      return query.list();
+      try {
+        return query.list();
+      } catch (Exception e) {
+        // Can not print out the whole error message from the exception because it contains a lot of query vertica
+        // information and it is very long.
+        if (e.getMessage().contains("ERROR: Date/time field value out of range")) {
+
+          throw Exceptions.unprocessableEntity("ERROR: Date/time field value out of range");
+
+        } else {
+
+          throw Exceptions.unprocessableEntity("Vertica Database cannot process the query");
+
+        }
+      }
 
     }
   }
