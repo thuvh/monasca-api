@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bacf61ea_a69c26c1",
+        "filename": "monasca_tempest_tests/tests/api/test_notification_methods.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 787,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-07-29T05:57:34Z",
+      "side": 1,
+      "message": "Why don\u0027t you also assert new_period to confirm period is changed?",
+      "range": {
+        "startLine": 787,
+        "startChar": 8,
+        "endLine": 787,
+        "endChar": 57
+      },
+      "revId": "ae2eeb7f679358dbc4b96afe8b87531fd5fd8771",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
