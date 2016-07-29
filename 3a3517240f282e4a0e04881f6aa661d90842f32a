@@ -320,6 +320,23 @@
       "revId": "3a3517240f282e4a0e04881f6aa661d90842f32a",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_581a427e",
+        "filename": "monasca_api/v2/reference/notifications.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-07-29T19:39:24Z",
+      "side": 1,
+      "message": "This upper should be removed too. The Notification Method Type is a string. We didn\u0027t make it case insensitive.",
+      "revId": "3a3517240f282e4a0e04881f6aa661d90842f32a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
