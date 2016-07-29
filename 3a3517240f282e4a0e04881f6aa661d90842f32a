@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "bacf61ea_334a0f56",
+        "filename": "java/src/main/java/monasca/api/domain/model/notificationmethod/NotificationMethodType.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-07-29T19:40:50Z",
+      "side": 1,
+      "message": "Correct, it isn\u0027t. The type is just a string and as we didnt\u0027 say it was case insensitive, it should be case sensitive, so lower case should work too.",
+      "parentUuid": "bacf61ea_1fa9d424",
+      "range": {
+        "startLine": 39,
+        "startChar": 18,
+        "endLine": 39,
+        "endChar": 19
+      },
+      "revId": "3a3517240f282e4a0e04881f6aa661d90842f32a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bacf61ea_624f976b",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/hibernate/NotificationMethodSqlRepoImpl.java",
         "patchSetId": 24
