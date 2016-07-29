@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014,2016 Hewlett Packard Enterprise Development Company, L.P.
+ * (C) Copyright 2014, 2016 Hewlett Packard Enterprise Development LP
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -33,7 +33,6 @@ import java.util.Map;
 
 import javax.ws.rs.WebApplicationException;
 
-import monasca.api.domain.model.alarm.Alarm;
 import monasca.api.resource.exception.Exceptions;
 import monasca.common.model.alarm.AlarmSeverity;
 

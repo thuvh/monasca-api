@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 2014 Hewlett-Packard Development Company, L.P.
- * 
+ * (C) Copyright 2014, 2016 Hewlett Packard Enterprise Development LP
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
  * 
@@ -16,6 +16,7 @@ package monasca.api.app.validation;
 
 import static org.testng.Assert.assertEquals;
 
+import org.joda.time.DateTime;
 import org.testng.annotations.Test;
 
 import java.util.Map;
@@ -34,5 +35,10 @@ public class ValidationTest {
     assertEquals(dimensions.size(), 2);
     assertEquals(dimensions.get("aa"), "bb");
     assertEquals(dimensions.get("url"), "http://localhost:8081/healthcheck");
+  }
+
+  public void testParseAndValidateDate() {
+    final DateTime date_time1 = Validation.parseAndValidateDate("2016-01-01T12:00:00Z", "timestamp", true);
+    assertEquals(date_time1.toString(), "2016-01-01T12:00:00.000Z");
   }
 }
