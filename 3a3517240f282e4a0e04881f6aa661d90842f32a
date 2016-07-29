@@ -1,0 +1,325 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bacf61ea_df28dce4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 24
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-07-29T18:40:43Z",
+      "side": 1,
+      "message": "If you make another change, can you change this to monasca api? The misspelling is annoying me :)",
+      "range": {
+        "startLine": 7,
+        "startChar": 42,
+        "endLine": 7,
+        "endChar": 51
+      },
+      "revId": "3a3517240f282e4a0e04881f6aa661d90842f32a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_1fa9d424",
+        "filename": "java/src/main/java/monasca/api/domain/model/notificationmethod/NotificationMethodType.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-07-29T18:40:43Z",
+      "side": 1,
+      "message": "You don\u0027t have .toUpperCase() on this. That doesn\u0027t seem consistent with NotificationMethod",
+      "range": {
+        "startLine": 39,
+        "startChar": 18,
+        "endLine": 39,
+        "endChar": 19
+      },
+      "revId": "3a3517240f282e4a0e04881f6aa661d90842f32a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_624f976b",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/hibernate/NotificationMethodSqlRepoImpl.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-07-29T18:40:43Z",
+      "side": 1,
+      "message": "It doesn\u0027t seem like this is going to work since AlarmNotificationMethodType is enum with only EMAIL, WEBHOOK and PAGERDUTY",
+      "range": {
+        "startLine": 74,
+        "startChar": 10,
+        "endLine": 74,
+        "endChar": 69
+      },
+      "revId": "3a3517240f282e4a0e04881f6aa661d90842f32a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_e2438740",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/NotificationMethodMySqlRepoImpl.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-07-29T18:40:43Z",
+      "side": 1,
+      "message": "Should be a space after the if",
+      "revId": "3a3517240f282e4a0e04881f6aa661d90842f32a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_427b738c",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/NotificationMethodMySqlRepoImpl.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-07-29T18:40:43Z",
+      "side": 1,
+      "message": "Why the extra spaces at the front?",
+      "range": {
+        "startLine": 114,
+        "startChar": 18,
+        "endLine": 114,
+        "endChar": 21
+      },
+      "revId": "3a3517240f282e4a0e04881f6aa661d90842f32a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_c295a387",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/NotificationMethodMySqlRepoImpl.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-07-29T18:40:43Z",
+      "side": 1,
+      "message": "Need space after the if",
+      "revId": "3a3517240f282e4a0e04881f6aa661d90842f32a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_c2c9235b",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/NotificationMethodTypesMySqlRepoImpl.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-07-29T18:40:43Z",
+      "side": 1,
+      "message": "Why the extra space at the front?",
+      "range": {
+        "startLine": 54,
+        "startChar": 22,
+        "endLine": 54,
+        "endChar": 23
+      },
+      "revId": "3a3517240f282e4a0e04881f6aa661d90842f32a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_c2d003f9",
+        "filename": "java/src/main/java/monasca/api/resource/NotificationMethodResource.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-07-29T18:40:43Z",
+      "side": 1,
+      "message": "Don\u0027t add blank lines to code you aren\u0027t changing",
+      "revId": "3a3517240f282e4a0e04881f6aa661d90842f32a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_62067787",
+        "filename": "java/src/main/java/monasca/api/resource/NotificationMethodResource.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-07-29T18:40:43Z",
+      "side": 1,
+      "message": "See above",
+      "revId": "3a3517240f282e4a0e04881f6aa661d90842f32a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_a2818fc5",
+        "filename": "java/src/main/java/monasca/api/resource/NotificationMethodTypesResource.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-07-29T18:40:43Z",
+      "side": 1,
+      "message": "The API doc does not specify you can pass offset and limit and your repo doesn\u0027t handle them. Remove them",
+      "range": {
+        "startLine": 60,
+        "startChar": 14,
+        "endLine": 61,
+        "endChar": 35
+      },
+      "revId": "3a3517240f282e4a0e04881f6aa661d90842f32a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_42ced32e",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/hibernate/NotificationMethodTypesSqlRepositoryImplTest.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-07-29T18:40:43Z",
+      "side": 1,
+      "message": "Too many blank lines",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 0
+      },
+      "revId": "3a3517240f282e4a0e04881f6aa661d90842f32a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_82d44bbd",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/mysql/NotificationMethodMySqlRepositoryImplTest.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-07-29T18:40:43Z",
+      "side": 1,
+      "message": "weird spacing",
+      "range": {
+        "startLine": 48,
+        "startChar": 58,
+        "endLine": 48,
+        "endChar": 63
+      },
+      "revId": "3a3517240f282e4a0e04881f6aa661d90842f32a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_e204274b",
+        "filename": "java/src/test/java/monasca/api/resource/NotificationMethodResourceTest.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-07-29T18:40:43Z",
+      "side": 1,
+      "message": "Weird spacing",
+      "range": {
+        "startLine": 52,
+        "startChar": 59,
+        "endLine": 52,
+        "endChar": 62
+      },
+      "revId": "3a3517240f282e4a0e04881f6aa661d90842f32a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_a29d0f0c",
+        "filename": "java/src/test/java/monasca/api/resource/NotificationMethodTypeResourceTest.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-07-29T18:40:43Z",
+      "side": 1,
+      "message": "Too many blank lines",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 0
+      },
+      "revId": "3a3517240f282e4a0e04881f6aa661d90842f32a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_e2b26793",
+        "filename": "monasca_api/api/notifications_api_v2.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-07-29T18:40:43Z",
+      "side": 1,
+      "message": "Since you didn\u0027t actually make any changes other than the copyright, you don\u0027t have to update the copyright",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 67
+      },
+      "revId": "3a3517240f282e4a0e04881f6aa661d90842f32a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
