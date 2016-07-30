@@ -164,12 +164,11 @@ class NotificationsRepository(sql_repository.SQLRepository,
 
     @sql_repository.sql_try_catch_block
     def list_notification(self, tenant_id, notification_id):
-
         with self._db_engine.connect() as conn:
-
-            row = conn.execute(self._select_nm_id_query,
-                               b_tenant_id=tenant_id,
-                               b_id=notification_id).fetchone()
+            query = conn.execute(self._select_nm_id_query,
+                                 b_tenant_id=tenant_id,
+                                 b_id=notification_id)
+            row = query.fetchone()
 
             if row is not None:
                 return dict(row)
