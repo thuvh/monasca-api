@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bacf61ea_d4470f75",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 24
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2016-07-30T06:14:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bacf61ea_df28dce4",
+      "range": {
+        "startLine": 7,
+        "startChar": 42,
+        "endLine": 7,
+        "endChar": 51
+      },
+      "revId": "3a3517240f282e4a0e04881f6aa661d90842f32a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bacf61ea_1fa9d424",
         "filename": "java/src/main/java/monasca/api/domain/model/notificationmethod/NotificationMethodType.java",
         "patchSetId": 24
@@ -72,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "bacf61ea_5454bf1f",
+        "filename": "java/src/main/java/monasca/api/domain/model/notificationmethod/NotificationMethodType.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2016-07-30T06:14:03Z",
+      "side": 1,
+      "message": "Some place we need to do case insensitive comparission. DB has \"EMAIL\", so if the user sends \"Email\" what should we do?",
+      "parentUuid": "bacf61ea_334a0f56",
+      "range": {
+        "startLine": 39,
+        "startChar": 18,
+        "endLine": 39,
+        "endChar": 19
+      },
+      "revId": "3a3517240f282e4a0e04881f6aa661d90842f32a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bacf61ea_624f976b",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/hibernate/NotificationMethodSqlRepoImpl.java",
         "patchSetId": 24
@@ -95,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "bacf61ea_542b1f94",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/hibernate/NotificationMethodSqlRepoImpl.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2016-07-30T06:14:03Z",
+      "side": 1,
+      "message": "This is chicken and egg problem. This code is in monasca-common, and I can\u0027t change it without breaking others. I\u0027will have review where AlaramNotificationMethodType will be converted to class which has all the methods of Enum and constant of Enum. That is the only way to do it without breaking anything else",
+      "parentUuid": "bacf61ea_624f976b",
+      "range": {
+        "startLine": 74,
+        "startChar": 10,
+        "endLine": 74,
+        "endChar": 69
+      },
+      "revId": "3a3517240f282e4a0e04881f6aa661d90842f32a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bacf61ea_e2438740",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/NotificationMethodMySqlRepoImpl.java",
         "patchSetId": 24
@@ -106,6 +178,24 @@
       "writtenOn": "2016-07-29T18:40:43Z",
       "side": 1,
       "message": "Should be a space after the if",
+      "revId": "3a3517240f282e4a0e04881f6aa661d90842f32a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_34702b0b",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/NotificationMethodMySqlRepoImpl.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2016-07-30T06:14:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bacf61ea_e2438740",
       "revId": "3a3517240f282e4a0e04881f6aa661d90842f32a",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -175,6 +265,30 @@
     },
     {
       "key": {
+        "uuid": "bacf61ea_54731f15",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/NotificationMethodTypesMySqlRepoImpl.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2016-07-30T06:14:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bacf61ea_c2c9235b",
+      "range": {
+        "startLine": 54,
+        "startChar": 22,
+        "endLine": 54,
+        "endChar": 23
+      },
+      "revId": "3a3517240f282e4a0e04881f6aa661d90842f32a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bacf61ea_c2d003f9",
         "filename": "java/src/main/java/monasca/api/resource/NotificationMethodResource.java",
         "patchSetId": 24
@@ -186,6 +300,24 @@
       "writtenOn": "2016-07-29T18:40:43Z",
       "side": 1,
       "message": "Don\u0027t add blank lines to code you aren\u0027t changing",
+      "revId": "3a3517240f282e4a0e04881f6aa661d90842f32a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_14540751",
+        "filename": "java/src/main/java/monasca/api/resource/NotificationMethodResource.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2016-07-30T06:14:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bacf61ea_c2d003f9",
       "revId": "3a3517240f282e4a0e04881f6aa661d90842f32a",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -209,6 +341,24 @@
     },
     {
       "key": {
+        "uuid": "bacf61ea_b4c9bb28",
+        "filename": "java/src/main/java/monasca/api/resource/NotificationMethodResource.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2016-07-30T06:14:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bacf61ea_62067787",
+      "revId": "3a3517240f282e4a0e04881f6aa661d90842f32a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bacf61ea_a2818fc5",
         "filename": "java/src/main/java/monasca/api/resource/NotificationMethodTypesResource.java",
         "patchSetId": 24
@@ -220,6 +370,30 @@
       "writtenOn": "2016-07-29T18:40:43Z",
       "side": 1,
       "message": "The API doc does not specify you can pass offset and limit and your repo doesn\u0027t handle them. Remove them",
+      "range": {
+        "startLine": 60,
+        "startChar": 14,
+        "endLine": 61,
+        "endChar": 35
+      },
+      "revId": "3a3517240f282e4a0e04881f6aa661d90842f32a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_54e15f99",
+        "filename": "java/src/main/java/monasca/api/resource/NotificationMethodTypesResource.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2016-07-30T06:14:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bacf61ea_a2818fc5",
       "range": {
         "startLine": 60,
         "startChar": 14,
@@ -255,6 +429,30 @@
     },
     {
       "key": {
+        "uuid": "bacf61ea_d4a26f4a",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/hibernate/NotificationMethodTypesSqlRepositoryImplTest.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2016-07-30T06:14:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bacf61ea_42ced32e",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 0
+      },
+      "revId": "3a3517240f282e4a0e04881f6aa661d90842f32a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bacf61ea_82d44bbd",
         "filename": "java/src/test/java/monasca/api/infrastructure/persistence/mysql/NotificationMethodMySqlRepositoryImplTest.java",
         "patchSetId": 24
@@ -266,6 +464,30 @@
       "writtenOn": "2016-07-29T18:40:43Z",
       "side": 1,
       "message": "weird spacing",
+      "range": {
+        "startLine": 48,
+        "startChar": 58,
+        "endLine": 48,
+        "endChar": 63
+      },
+      "revId": "3a3517240f282e4a0e04881f6aa661d90842f32a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_7492a3f7",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/mysql/NotificationMethodMySqlRepositoryImplTest.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2016-07-30T06:14:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bacf61ea_82d44bbd",
       "range": {
         "startLine": 48,
         "startChar": 58,
@@ -301,6 +523,30 @@
     },
     {
       "key": {
+        "uuid": "bacf61ea_34b30b9a",
+        "filename": "java/src/test/java/monasca/api/resource/NotificationMethodResourceTest.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2016-07-30T06:14:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bacf61ea_e204274b",
+      "range": {
+        "startLine": 52,
+        "startChar": 59,
+        "endLine": 52,
+        "endChar": 62
+      },
+      "revId": "3a3517240f282e4a0e04881f6aa661d90842f32a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bacf61ea_a29d0f0c",
         "filename": "java/src/test/java/monasca/api/resource/NotificationMethodTypeResourceTest.java",
         "patchSetId": 24
@@ -312,6 +558,30 @@
       "writtenOn": "2016-07-29T18:40:43Z",
       "side": 1,
       "message": "Too many blank lines",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 0
+      },
+      "revId": "3a3517240f282e4a0e04881f6aa661d90842f32a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_74a90324",
+        "filename": "java/src/test/java/monasca/api/resource/NotificationMethodTypeResourceTest.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2016-07-30T06:14:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bacf61ea_a29d0f0c",
       "range": {
         "startLine": 57,
         "startChar": 0,
@@ -347,6 +617,30 @@
     },
     {
       "key": {
+        "uuid": "bacf61ea_946ab7ec",
+        "filename": "monasca_api/api/notifications_api_v2.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2016-07-30T06:14:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bacf61ea_e2b26793",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 67
+      },
+      "revId": "3a3517240f282e4a0e04881f6aa661d90842f32a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bacf61ea_581a427e",
         "filename": "monasca_api/v2/reference/notifications.py",
         "patchSetId": 24
@@ -358,6 +652,24 @@
       "writtenOn": "2016-07-29T19:39:24Z",
       "side": 1,
       "message": "This upper should be removed too. The Notification Method Type is a string. We didn\u0027t make it case insensitive.",
+      "revId": "3a3517240f282e4a0e04881f6aa661d90842f32a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_1477e7d3",
+        "filename": "monasca_api/v2/reference/notifications.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2016-07-30T06:14:03Z",
+      "side": 1,
+      "message": "Database has it as \"EMAIL\". So if the user sends \"Email\" should we throw invalid notification type?  I don\u0027t think so.\n\nSomewhere we need to do case insensitive comparison",
+      "parentUuid": "bacf61ea_581a427e",
       "revId": "3a3517240f282e4a0e04881f6aa661d90842f32a",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
