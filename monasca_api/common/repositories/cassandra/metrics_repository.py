@@ -23,6 +23,7 @@ from cassandra.query import SimpleStatement
 from oslo_config import cfg
 from oslo_log import log
 from oslo_utils import timeutils
+import six
 
 from monasca_common.rest import utils as rest_utils
 
@@ -57,7 +58,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
         sub_dimensions = {}
 
         if dimensions:
-            for key, value in dimensions.iteritems():
+            for key, value in dimensions.items():
                 if not value:
                     sub_dimensions[key] = value
 
@@ -79,7 +80,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
                     extracted_dimensions = sub_dimensions.copy()
 
                     for dims in iter(or_dims_tuple):
-                        for k, v in dims.iteritems():
+                        for k, v in dims.items():
                             extracted_dimensions[k] = v
 
                     metrics = self._list_metrics(tenant_id, region, name,
@@ -144,25 +145,27 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
                 if include_metric_hash:
                     metric[u'metric_hash'] = metric_hash
 
-                for name, value in metric_map.iteritems():
+                for name, value in metric_map.items():
 
                     if name == '__name__':
 
-                        name = urllib.unquote_plus(value)
+                        name = six.moves.urllib.parse.quote(value)
 
                         metric[u'name'] = name
 
                     else:
 
-                        name = urllib.unquote_plus(name)
+                        name = six.moves.urllib.parse.quote(name)
 
-                        value = urllib.unquote_plus(value)
+                        value = six.moves.urllib.parse.quote(value)
 
                         dimensions[name] = value
 
                 metric[u'dimensions'] = dimensions
 
-                metric[u'id'] = binascii.hexlify(bytearray(metric_hash))
+                metric[u'id'] = (binascii
+                                 .hexlify(bytearray(metric_hash))
+                                 .decode('utf-8'))
 
                 json_metric_list.append(metric)
 
@@ -177,16 +180,16 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
         dimension_clause = ''
         if dimensions:
 
-            for name, value in dimensions.iteritems():
+            for name, value in dimensions.items():
                 if not value:
                     dimension_clause += ' and metric_map contains key %s '
 
-                    parms.append(urllib.quote_plus(name).encode('utf8'))
+                    parms.append(six.moves.urllib.parse.quote(name).encode('utf8'))
                 else:
                     dimension_clause += ' and metric_map[%s] = %s '
 
-                    parms.append(urllib.quote_plus(name).encode('utf8'))
-                    parms.append(urllib.quote_plus(value).encode('utf8'))
+                    parms.append(six.moves.urllib.parse.quote(name).encode('utf8'))
+                    parms.append(six.moves.urllib.parse.quote(value).encode('utf8'))
         return dimension_clause
 
     def _build_name_clause(self, name, parms):
@@ -195,8 +198,8 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
         if name:
             name_clause = ' and metric_map[%s] = %s '
 
-            parms.append(urllib.quote_plus('__name__').encode('utf8'))
-            parms.append(urllib.quote_plus(name).encode('utf8'))
+            parms.append(six.moves.urllib.parse.quote('__name__').encode('utf8'))
+            parms.append(six.moves.urllib.parse.quote(name).encode('utf8'))
 
         return name_clause
 
@@ -355,10 +358,10 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
             for row in rows:
 
                 metric_map = row.metric_map
-                for name, value in metric_map.iteritems():
+                for name, value in metric_map.items():
 
                     if name == '__name__':
-                        value = urllib.unquote_plus(value)
+                        value = six.moves.urllib.parse.quote(value)
                         metric_name = {u'name': value}
 
                         if metric_name not in json_name_list:
@@ -366,7 +369,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
 
                         break
 
-            return sorted(json_name_list)
+            return sorted(json_name_list, key=lambda x: x['name'])
 
         except Exception as ex:
             LOG.exception(ex)
@@ -535,12 +538,15 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
                         tmp_start_period.strftime('%Y-%m-%dT%H:%M:%SZ')
                         .decode('utf8')
                     ]
-                    for _statistics in requested_statistics:
+                    for _ in requested_statistics:
                         stat.append(0)
                     tmp_start_period += timedelta(seconds=period)
                     stats_list.append(stat)
 
-            statistic = {u'name': name.decode('utf8'),
+            if six.PY2:
+                name = name.decode('utf8')
+
+            statistic = {u'name': name,
                          # The last date in the stats list.
                          u'id': stats_list[-1][0],
                          u'dimensions': dimensions,
@@ -656,7 +662,11 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
             st = st[:23] + 'Z'
         else:
             st += '.000Z'
-        return st.decode('utf8')
+
+        if six.PY2:
+            st = st.decode('utf-8')
+
+        return st
 
     @staticmethod
     def _get_millis_from_timestamp(dt):
@@ -695,7 +705,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
             for row in rows:
 
                 metric_map = row.metric_map
-                for name, value in metric_map.iteritems():
+                for name, value in metric_map.items():
 
                     name = urllib.unquote_plus(name)
                     value = urllib.unquote_plus(value)
@@ -732,7 +742,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
             for row in rows:
 
                 metric_map = row.metric_map
-                for name, value in metric_map.iteritems():
+                for name, value in metric_map.items():
 
                     name = urllib.unquote_plus(name)
                     dim_name = {u'dimension_name': name}
