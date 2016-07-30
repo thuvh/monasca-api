@@ -18,13 +18,13 @@ from datetime import timedelta
 import hashlib
 import itertools
 import json
-import urllib
 
 from cassandra.cluster import Cluster
 from cassandra.query import SimpleStatement
 from oslo_config import cfg
 from oslo_log import log
 from oslo_utils import timeutils
+import six
 
 from monasca_api.common.repositories import exceptions
 from monasca_api.common.repositories import metrics_repository
@@ -57,7 +57,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
         sub_dimensions = {}
 
         if dimensions:
-            for key, value in dimensions.iteritems():
+            for key, value in six.iteritems(dimensions):
                 if not value:
                     sub_dimensions[key] = value
 
@@ -144,19 +144,19 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
                 if include_metric_hash:
                     metric[u'metric_hash'] = metric_hash
 
-                for name, value in metric_map.iteritems():
+                for name, value in six.iteritems(metric_map):
 
                     if name == '__name__':
 
-                        name = urllib.unquote_plus(value)
+                        name = six.moves.urllib.parse.quote(value)
 
                         metric[u'name'] = name
 
                     else:
 
-                        name = urllib.unquote_plus(name)
+                        name = six.moves.urllib.parse.quote(name)
 
-                        value = urllib.unquote_plus(value)
+                        value = six.moves.urllib.parse.quote(value)
 
                         dimensions[name] = value
 
@@ -177,16 +177,16 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
         dimension_clause = ''
         if dimensions:
 
-            for name, value in dimensions.iteritems():
+            for name, value in six.iteritems(dimensions):
                 if not value:
                     dimension_clause += ' and metric_map contains key %s '
 
-                    parms.append(urllib.quote_plus(name).encode('utf8'))
+                    parms.append(six.moves.urllib.parse.quote(name).encode('utf8'))
                 else:
                     dimension_clause += ' and metric_map[%s] = %s '
 
-                    parms.append(urllib.quote_plus(name).encode('utf8'))
-                    parms.append(urllib.quote_plus(value).encode('utf8'))
+                    parms.append(six.moves.urllib.parse.quote(name).encode('utf8'))
+                    parms.append(six.moves.urllib.parse.quote(value).encode('utf8'))
         return dimension_clause
 
     def _build_name_clause(self, name, parms):
@@ -195,8 +195,8 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
         if name:
             name_clause = ' and metric_map[%s] = %s '
 
-            parms.append(urllib.quote_plus('__name__').encode('utf8'))
-            parms.append(urllib.quote_plus(name).encode('utf8'))
+            parms.append(six.moves.urllib.parse.quote('__name__').encode('utf8'))
+            parms.append(six.moves.urllib.parse.quote(name).encode('utf8'))
 
         return name_clause
 
@@ -358,7 +358,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
                 for name, value in metric_map.iteritems():
 
                     if name == '__name__':
-                        value = urllib.unquote_plus(value)
+                        value = six.moves.urllib.parse.quote(value)
                         metric_name = {u'name': value}
 
                         if metric_name not in json_name_list:
@@ -722,11 +722,10 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
 
             for row in rows:
 
-                metric_map = row.metric_map
-                for name, value in metric_map.iteritems():
+                for name, value in six.iteritems(row.metric_map):
 
-                    name = urllib.unquote_plus(name)
-                    value = urllib.unquote_plus(value)
+                    name = six.moves.urllib.parse.quote(name)
+                    value = six.moves.urllib.parse.quote(value)
 
                     if name == dimension_name:
                         dim_vals.add(value)
