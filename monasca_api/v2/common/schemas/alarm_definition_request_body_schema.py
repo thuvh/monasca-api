@@ -36,8 +36,8 @@ def validate_action_list(notification_ids, action_type):
         raise Invalid('Not a list: {}'.format(type(notification_ids)))
     existing = []
     for notification_id in notification_ids:
-        if not isinstance(notification_id, (str, six.text_type)):
-            raise Invalid('list item <{}> -> {} not one of (str, unicode)'
+        if not isinstance(notification_id, six.string_types):
+            raise Invalid('list item <{}> -> {} not one of six.string_types'
                           .format(notification_id, type(notification_id)))
         if len(notification_id) > MAX_ITEM_LENGTH:
             raise Invalid('length {} > {}'.format(len(notification_id),
@@ -60,11 +60,11 @@ def validate_undetermined_action_list(v):
     validate_action_list(v, 'UNDETERMINED')
 
 alarm_definition_schema = {
-    Required('name'): All(Any(str, six.text_type), Length(max=255)),
-    Required('expression'): All(Any(str, six.text_type)),
-    Marker('description'): All(Any(str, six.text_type), Length(max=255)),
+    Required('name'): All(Any(*six.string_types), Length(max=255)),
+    Required('expression'): All(Any(*six.string_types)),
+    Marker('description'): All(Any(*six.string_types), Length(max=255)),
     Marker('severity'): All(Upper, Any('LOW', 'MEDIUM', 'HIGH', 'CRITICAL')),
-    Marker('match_by'): Any([six.text_type], [str]),
+    Marker('match_by'): Any(list(six.string_types)),
     Marker('ok_actions'): validate_ok_action_list,
     Marker('alarm_actions'): validate_alarm_action_list,
     Marker('undetermined_actions'): validate_undetermined_action_list,

@@ -20,6 +20,7 @@ from monasca_common.validation import metrics as metric_validation
 from oslo_config import cfg
 from oslo_log import log
 import pyparsing
+import six
 
 from monasca_api.api import alarm_definitions_api_v2
 from monasca_api.common.repositories import exceptions
@@ -96,7 +97,7 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
                 severity = severity.upper()
             sort_by = helpers.get_query_param(req, 'sort_by', default_val=None)
             if sort_by is not None:
-                if isinstance(sort_by, basestring):
+                if isinstance(sort_by, six.string_types):
                     sort_by = sort_by.split(',')
 
                 allowed_sort_by = {'id', 'name', 'severity',
@@ -275,13 +276,20 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
         undetermined_actions_list = get_comma_separated_str_as_list(
             alarm_definition_row['undetermined_actions'])
 
-        description = (alarm_definition_row['description']
-                       if alarm_definition_row['description'] is not None else None)
+        description = alarm_definition_row.get('description', None)
 
-        expression = alarm_definition_row['expression']
+        expression = (alarm_definition_row['expression'] if six.PY3
+                      else alarm_definition_row['expression'].decode('utf-8'))
         is_deterministic = is_definition_deterministic(expression)
 
-        result = {
+        alarm_id = (alarm_definition_row['id'] if six.PY3
+                    else alarm_definition_row['id'].decode('utf-8'))
+        alarm_name = (alarm_definition_row['name'] if six.PY3
+                      else alarm_definition_row['name'].decode('utf-8'))
+        alarm_severity = (alarm_definition_row['severity'] if six.PY3
+                          else alarm_definition_row['severity'].decode('utf-8'))
+
+        return {
             u'actions_enabled': alarm_definition_row['actions_enabled'] == 1,
             u'alarm_actions': alarm_actions_list,
             u'undetermined_actions': undetermined_actions_list,
@@ -289,13 +297,11 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
             u'description': description,
             u'expression': expression,
             u'deterministic': is_deterministic,
-            u'id': alarm_definition_row['id'],
+            u'id': alarm_id,
             u'match_by': match_by,
-            u'name': alarm_definition_row['name'],
-            u'severity': alarm_definition_row['severity'].upper()
+            u'name': alarm_name,
+            u'severity': alarm_severity.upper()
         }
-
-        return result
 
     def _alarm_definition_delete(self, tenant_id, id):
 
@@ -371,7 +377,7 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
 
         except Exception as ex:
             LOG.debug(ex)
-            raise HTTPUnprocessableEntityError('Unprocessable Entity', ex.message)
+            raise HTTPUnprocessableEntityError('Unprocessable Entity', str(ex))
 
     def _alarm_definition_update_or_patch(self, tenant_id,
                                           definition_id,
@@ -732,7 +738,9 @@ def get_comma_separated_str_as_list(comma_separated_str):
     if not comma_separated_str:
         return []
     else:
-        return comma_separated_str.decode('utf8').split(',')
+        if six.PY2:
+            comma_separated_str = comma_separated_str.decode('utf8')
+        return comma_separated_str.split(',')
 
 
 def is_definition_deterministic(expression):

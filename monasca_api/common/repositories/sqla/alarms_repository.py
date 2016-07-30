@@ -24,6 +24,9 @@ from sqlalchemy import MetaData, update, delete, select, text, bindparam, func, 
 from sqlalchemy import or_
 
 
+from six.moves import range
+
+
 class AlarmsRepository(sql_repository.SQLRepository,
                        alarms_repository.AlarmsRepository):
 

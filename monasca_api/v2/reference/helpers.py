@@ -169,7 +169,7 @@ def get_query_dimensions(req, param_key='dimensions'):
             return dimensions
 
         dimensions_param = params[param_key]
-        if isinstance(dimensions_param, basestring):
+        if isinstance(dimensions_param, six.string_types):
             dimensions_str_array = dimensions_param.split(',')
         elif isinstance(dimensions_param, list):
             dimensions_str_array = []
@@ -187,7 +187,7 @@ def get_query_dimensions(req, param_key='dimensions'):
         return dimensions
     except Exception as ex:
         LOG.debug(ex)
-        raise HTTPUnprocessableEntityError('Unprocessable Entity', ex.message)
+        raise HTTPUnprocessableEntityError('Unprocessable Entity', str(ex))
 
 
 def get_query_starttime_timestamp(req, required=True):
@@ -202,7 +202,7 @@ def get_query_starttime_timestamp(req, required=True):
                 return None
     except Exception as ex:
         LOG.debug(ex)
-        raise HTTPUnprocessableEntityError('Unprocessable Entity', ex.message)
+        raise HTTPUnprocessableEntityError('Unprocessable Entity', str(ex))
 
 
 def get_query_endtime_timestamp(req, required=True):
@@ -395,7 +395,7 @@ def paginate_with_no_id(dictionary_list, uri, offset, limit):
 
         links = [{u'rel': u'self', u'href': self_link.decode('utf8')}]
         if len(truncated_list_offset) > limit:
-            new_offset = truncated_list_offset_limit[limit - 1].values()[0]
+            new_offset = list(truncated_list_offset_limit[limit - 1].values())[0]
             next_link = build_base_uri(parsed_uri)
             new_query_params = [u'offset' + '=' + new_offset]
 

@@ -12,10 +12,8 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-import monasca_api.v2.common.validation as validation
 from oslo_log import log
 import six
-import six.moves.urllib.parse as urlparse
 from voluptuous import All
 from voluptuous import Any
 from voluptuous import Length
@@ -24,16 +22,17 @@ from voluptuous import Required
 from voluptuous import Schema
 
 from monasca_api.v2.common.schemas import exceptions
+from monasca_api.v2.common import validation
 
 LOG = log.getLogger(__name__)
 
 schemes = ['http', 'https']
 
 notification_schema = {
-    Required('name'): Schema(All(Any(str, six.text_type), Length(max=250))),
-    Required('type'): Schema(Any(str, six.text_type)),
-    Required('address'): Schema(All(Any(str, six.text_type), Length(max=512))),
-    Marker('period'): All(Any(int, str))}
+    Required('name'): Schema(All(Any(*six.string_types), Length(max=250))),
+    Required('type'): Schema(Any(*six.string_types)),
+    Required('address'): Schema(All(Any(*six.string_types), Length(max=512))),
+    Marker('period'): All(Any(*(six.integer_types + six.string_types)))}
 
 request_body_schema = Schema(Any(notification_schema))
 
@@ -71,7 +70,7 @@ def _validate_email(address):
 
 def _validate_url(address):
     try:
-        parsed = urlparse.urlparse(address)
+        parsed = six.moves.urllib.parse.urlparse(address)
     except Exception:
         raise exceptions.ValidationException("Address {} is not of correct format".format(address))
 
@@ -91,5 +90,5 @@ def _parse_and_validate_period(period, valid_periods):
     except Exception:
         raise exceptions.ValidationException("Period {} must be a valid integer".format(period))
     if period != 0 and period not in valid_periods:
-        raise exceptions.ValidationException("{} is not a valid period, not in {}".format(period, valid_periods))
+        raise exceptions.ValidationException("{} is not a valid period".format(period))
     return period

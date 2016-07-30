@@ -16,25 +16,21 @@
 import binascii
 from collections import namedtuple
 from datetime import datetime
-import unittest
 
 from mock import patch
-
-import monasca_api.common.repositories.cassandra.metrics_repository as cassandra_repo
-import monasca_api.common.repositories.influxdb.metrics_repository as influxdb_repo
 
 from oslo_config import cfg
 from oslo_config import fixture as fixture_config
 from oslo_utils import timeutils
-import testtools
+from oslotest import base
+
+import monasca_api.common.repositories.cassandra.metrics_repository as cassandra_repo
+import monasca_api.common.repositories.influxdb.metrics_repository as influxdb_repo
 
 CONF = cfg.CONF
 
 
-class TestRepoMetricsInfluxDB(unittest.TestCase):
-
-    def setUp(self):
-        super(TestRepoMetricsInfluxDB, self).setUp()
+class TestRepoMetricsInfluxDB(base.BaseTestCase):
 
     @patch("monasca_api.common.repositories.influxdb.metrics_repository.client.InfluxDBClient")
     def test_measurement_list(self, influxdb_client_mock):
@@ -184,7 +180,7 @@ class TestRepoMetricsInfluxDB(unittest.TestCase):
                          ])
 
 
-class TestRepoMetricsCassandra(testtools.TestCase):
+class TestRepoMetricsCassandra(base.BaseTestCase):
 
     def setUp(self):
         super(TestRepoMetricsCassandra, self).setUp()
@@ -193,6 +189,9 @@ class TestRepoMetricsCassandra(testtools.TestCase):
             fixture_config.Config(cfg.CONF))
         self._fixture_config.config(cluster_ip_addresses='127.0.0.1',
                                     group='cassandra')
+
+    def tearDown(self):
+        super(TestRepoMetricsCassandra, self).tearDown()
 
     @patch("monasca_api.common.repositories.cassandra.metrics_repository.Cluster.connect")
     def test_list_metrics(self, cassandra_connect_mock):

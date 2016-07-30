@@ -25,9 +25,9 @@ alarm_update_schema = {
     voluptuous.Optional('state'): voluptuous.All(
         voluptuous.Any('OK', 'ALARM', 'UNDETERMINED')),
     voluptuous.Optional('lifecycle_state'): voluptuous.All(
-        voluptuous.Any(str, six.text_type), voluptuous.Length(max=50)),
+        voluptuous.Any(six.string_types), voluptuous.Length(max=50)),
     voluptuous.Optional('link'): voluptuous.All(
-        voluptuous.Any(str, six.text_type), voluptuous.Length(max=512))
+        voluptuous.Any(six.string_types), voluptuous.Length(max=512))
 }
 
 

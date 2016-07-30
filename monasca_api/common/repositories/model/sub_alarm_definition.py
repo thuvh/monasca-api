@@ -12,6 +12,8 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+import six
+
 
 class SubAlarmDefinition(object):
     """Holds sub alarm definition
@@ -56,7 +58,7 @@ class SubAlarmDefinition(object):
             self.metric_name = sub_expr.metric_name
             self.dimensions_str = sub_expr.dimensions_str
             self.dimensions = self._init_dimensions(sub_expr.dimensions_str)
-            self.function = sub_expr.normalized_func.decode('utf8')
+            self.function = six.u(sub_expr.normalized_func)
             self.operator = sub_expr.normalized_operator
             self.period = sub_expr.period
             self.periods = sub_expr.periods
@@ -99,12 +101,12 @@ class SubAlarmDefinition(object):
         if self.periods:
             result += " times {}".format(str(self.periods).encode('utf8'))
 
-        return result.decode('utf8')
+        return result.decode('utf8') if six.PY2 else result
 
     def __hash__(self):
 
         dimensions_str = "".join(sorted([name + value for name, value in
-                                         self.dimensions.iteritems()]))
+                                         self.dimensions.items()]))
 
         # don't use id to hash.
         return (hash(self.alarm_definition_id) ^

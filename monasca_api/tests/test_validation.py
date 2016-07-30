@@ -17,6 +17,7 @@ import unittest
 
 import falcon
 import mock
+import six
 
 import monasca_api.v2.common.exceptions as common_exceptions
 import monasca_api.v2.common.schemas.alarm_definition_request_body_schema as schemas_alarm_defs
@@ -197,14 +198,14 @@ class TestNotificationValidation(unittest.TestCase):
         with self.assertRaises(schemas_exceptions.ValidationException) as ve:
             schemas_notifications.parse_and_validate(notification, valid_periods)
         ex = ve.exception
-        self.assertEqual("Address name@ is not of correct format", ex.message)
+        self.assertEqual("Address name@ is not of correct format", str(ex))
 
     def test_validation_exception_for_invalid_period_for_email(self):
         notification = {"name": "MyEmail", "type": "EMAIL", "address": "name@domain.com", "period": "60"}
         with self.assertRaises(schemas_exceptions.ValidationException) as ve:
             schemas_notifications.parse_and_validate(notification, valid_periods)
         ex = ve.exception
-        self.assertEqual("Period can only be set with webhooks", ex.message)
+        self.assertEqual("Period can only be set with webhooks", str(ex))
 
     def test_validation_for_webhook(self):
         notification = {"name": "MyWebhook", "type": "WEBHOOK", "address": "http://somedomain.com"}
@@ -226,21 +227,21 @@ class TestNotificationValidation(unittest.TestCase):
         with self.assertRaises(schemas_exceptions.ValidationException) as ve:
             schemas_notifications.parse_and_validate(notification, valid_periods)
         ex = ve.exception
-        self.assertEqual("Address //somedomain.com does not have URL scheme", ex.message)
+        self.assertEqual("Address //somedomain.com does not have URL scheme", str(ex))
 
     def test_validation_exception_for_webhook_no_netloc(self):
         notification = {"name": "MyWebhook", "type": "WEBHOOK", "address": "http://"}
         with self.assertRaises(schemas_exceptions.ValidationException) as ve:
             schemas_notifications.parse_and_validate(notification, valid_periods)
         ex = ve.exception
-        self.assertEqual("Address http:// does not have network location", ex.message)
+        self.assertEqual("Address http:// does not have network location", str(ex))
 
     def test_validation_exception_for_webhook_invalid_scheme(self):
         notification = {"name": "MyWebhook", "type": "WEBHOOK", "address": "ftp://somedomain.com"}
         with self.assertRaises(schemas_exceptions.ValidationException) as ve:
             schemas_notifications.parse_and_validate(notification, valid_periods)
         ex = ve.exception
-        self.assertEqual("Address ftp://somedomain.com scheme is not in ['http', 'https']", ex.message)
+        self.assertEqual("Address ftp://somedomain.com scheme is not in ['http', 'https']", str(ex))
 
     def test_validation_exception_for_webhook_invalid_period(self):
         notification = {"name": "MyWebhook", "type": "WEBHOOK", "address": "//somedomain.com",
@@ -248,7 +249,7 @@ class TestNotificationValidation(unittest.TestCase):
         with self.assertRaises(schemas_exceptions.ValidationException) as ve:
             schemas_notifications.parse_and_validate(notification, valid_periods)
         ex = ve.exception
-        self.assertEqual("10 is not a valid period, not in [0, 60]", ex.message)
+        self.assertEqual("10 is not a valid period", str(ex))
 
     def test_validation_for_pagerduty(self):
         notification = {"name": "MyPagerduty", "type": "PAGERDUTY",
@@ -264,7 +265,7 @@ class TestNotificationValidation(unittest.TestCase):
         with self.assertRaises(schemas_exceptions.ValidationException) as ve:
             schemas_notifications.parse_and_validate(notification, valid_periods)
         ex = ve.exception
-        self.assertEqual("Period can only be set with webhooks", ex.message)
+        self.assertEqual("Period can only be set with webhooks", str(ex))
 
     def test_validation_for_max_name_address(self):
         name = "A" * 250
@@ -299,7 +300,7 @@ class TestNotificationValidation(unittest.TestCase):
         with self.assertRaises(schemas_exceptions.ValidationException) as ve:
             schemas_notifications.parse_and_validate(notification, valid_periods)
         ex = ve.exception
-        self.assertEqual("expected int for dictionary value @ data['period']", ex.message)
+        self.assertEqual("expected int for dictionary value @ data['period']", str(ex))
 
     def test_validation_exception_for_invalid_period_non_int(self):
         notification = {"name": "MyWebhook", "type": "WEBHOOK", "address": "//somedomain.com",
@@ -307,14 +308,14 @@ class TestNotificationValidation(unittest.TestCase):
         with self.assertRaises(schemas_exceptions.ValidationException) as ve:
             schemas_notifications.parse_and_validate(notification, valid_periods)
         ex = ve.exception
-        self.assertEqual("Period zero must be a valid integer", ex.message)
+        self.assertEqual("Period zero must be a valid integer", str(ex))
 
     def test_validation_exception_for_missing_period(self):
         notification = {"name": "MyEmail", "type": "EMAIL", "address": "name@domain."}
         with self.assertRaises(schemas_exceptions.ValidationException) as ve:
             schemas_notifications.parse_and_validate(notification, valid_periods, require_all=True)
         ex = ve.exception
-        self.assertEqual("Period is required", ex.message)
+        self.assertEqual("Period is required", str(ex))
 
 
 class TestAlarmDefinitionValidation(unittest.TestCase):
