@@ -233,6 +233,6 @@ def _field_sort_general(element, compiler_, **kw):
             fields_list.append("WHEN {0}={1} THEN {2}".format(compiler_.process(element.column),
                                                               compiler_.process(field),
                                                               idx))
-        fields_list.append("ELSE {0}".format(len(element.fields)))
+        fields_list.append("ELSE {0}".format(len(list(element.fields))))
         fields_list.append("END")
     return " ".join(fields_list)

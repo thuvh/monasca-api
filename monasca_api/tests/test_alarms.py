@@ -226,8 +226,8 @@ class TestAlarmDefinition(AlarmTestBase):
         return_value.create_alarm_definition.return_value = u"00000001-0001-0001-0001-000000000001"
 
         alarm_def = {
-            "name": "Test Definition",
-            "expression": "test.metric > 10"
+            u'name': u'Test Definition',
+            u'expression': u'test.metric > 10'
         }
 
         expected_data = {
@@ -258,24 +258,24 @@ class TestAlarmDefinition(AlarmTestBase):
         return_value.create_alarm_definition.return_value = u"00000001-0001-0001-0001-000000000001"
 
         valid_expressions = [
-            "max(-_.千幸福的笑脸{घोड़ा=馬,  "
-            "dn2=dv2,千幸福的笑脸घ=千幸福的笑脸घ}) gte 100 "
-            "times 3 && "
-            "(min(ເຮືອນ{dn3=dv3,家=дом}) < 10 or sum(biz{dn5=dv5}) >99 and "
-            "count(fizzle) lt 0or count(baz) > 1)".decode('utf8'),
+            u"max(-_.千幸福的笑脸{घोड़ा=馬,  "
+            u"dn2=dv2,千幸福的笑脸घ=千幸福的笑脸घ}) gte 100 "
+            u"times 3 && "
+            u"(min(ເຮືອນ{dn3=dv3,家=дом}) < 10 or sum(biz{dn5=dv5}) >99 and "
+            u"count(fizzle) lt 0or count(baz) > 1)",
 
-            "max(foo{hostname=mini-mon,千=千}, 120) > 100 and (max(bar)>100 "
-            " or max(biz)>100)".decode('utf8'),
+            u"max(foo{hostname=mini-mon,千=千}, 120) > 100 and (max(bar)>100 "
+            u" or max(biz)>100)",
 
-            "max(foo)>=100",
+            u"max(foo)>=100",
 
-            "test_metric{this=that, that =  this} < 1",
+            u"test_metric{this=that, that =  this} < 1",
 
-            "max  (  3test_metric5  {  this  =  that  })  lt  5 times    3",
+            u"max  (  3test_metric5  {  this  =  that  })  lt  5 times    3",
 
-            "3test_metric5 lt 3",
+            u"3test_metric5 lt 3",
 
-            "ntp.offset > 1 or ntp.offset < -5",
+            u"ntp.offset > 1 or ntp.offset < -5",
         ]
 
         alarm_def = {
