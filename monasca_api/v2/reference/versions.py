@@ -14,6 +14,8 @@
 
 import json
 
+import six
+
 import falcon
 from oslo_log import log
 
@@ -39,24 +41,28 @@ class Versions(versions_api.VersionsAPI):
         super(Versions, self).__init__()
 
     def on_get(self, req, res, version_id=None):
+        path = req.uri
+        if six.PY2 and isinstance(req.uri, six.text_type):
+            path = path.decode('utf=8')
+
         result = {
             'links': [{
                 'rel': 'self',
-                'href': req.uri.decode('utf8')
+                'href': path
             }],
             'elements': []
         }
         if version_id is None:
             for version in VERSIONS:
                 VERSIONS[version]['links'][0]['href'] = (
-                    req.uri.decode('utf8') + version)
+                    path + version)
                 result['elements'].append(VERSIONS[version])
             res.body = json.dumps(result)
             res.status = falcon.HTTP_200
         else:
             if version_id in VERSIONS:
                 VERSIONS[version_id]['links'][0]['href'] = (
-                    req.uri.decode('utf8'))
+                    path)
                 res.body = json.dumps(VERSIONS[version_id])
                 res.status = falcon.HTTP_200
             else:

@@ -15,6 +15,8 @@
 import datetime
 import json
 
+import six
+
 import falcon
 import falcon.testing as testing
 
@@ -31,7 +33,11 @@ class TestVersions(testing.TestBase):
     def test_list_versions(self):
         result = self.simulate_request('/versions')
         self.assertEqual(self.srmock.status, falcon.HTTP_200)
-        response = json.loads(result[0])
+        if six.PY3:
+            res = result[0].decode('utf-8')
+        else:
+            res = result[0]
+        response = json.loads(res)
         self.assertIsInstance(response, dict)
         self.assertTrue(set(['links', 'elements']) ==
                         set(response))
@@ -46,7 +52,11 @@ class TestVersions(testing.TestBase):
     def test_valid_version_id(self):
         result = self.simulate_request('/versions/v2.0')
         self.assertEqual(self.srmock.status, falcon.HTTP_200)
-        response = json.loads(result[0])
+        if six.PY3:
+            res = result[0].decode('utf-8')
+        else:
+            res = result[0]
+        response = json.loads(res)
         self.assertIsInstance(response, dict)
         version = response
         self.assertTrue(set(['id', 'links', 'status', 'updated']) ==
