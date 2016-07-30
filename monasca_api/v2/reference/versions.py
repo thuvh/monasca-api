@@ -13,6 +13,7 @@
 # under the License.
 
 import json
+import six
 
 import falcon
 
@@ -37,24 +38,27 @@ class Versions(versions_api.VersionsAPI):
         super(Versions, self).__init__()
 
     def on_get(self, req, res, version_id=None):
+        req_uri = req.uri
+        if six.PY2:
+            req_uri = req_uri.decode('utf-8')
+
         result = {
             'links': [{
                 'rel': 'self',
-                'href': req.uri.decode('utf8')
+                'href': req_uri
             }],
             'elements': []
         }
+
         if version_id is None:
             for version in VERSIONS:
-                VERSIONS[version]['links'][0]['href'] = (
-                    req.uri.decode('utf8') + version)
+                VERSIONS[version]['links'][0]['href'] = req_uri + version
                 result['elements'].append(VERSIONS[version])
             res.body = json.dumps(result)
             res.status = falcon.HTTP_200
         else:
             if version_id in VERSIONS:
-                VERSIONS[version_id]['links'][0]['href'] = (
-                    req.uri.decode('utf8'))
+                VERSIONS[version_id]['links'][0]['href'] = req_uri
                 res.body = json.dumps(VERSIONS[version_id])
                 res.status = falcon.HTTP_200
             else:

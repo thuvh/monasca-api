@@ -151,7 +151,7 @@ class RESTResponseEquals(object):
         if len(actual) != 1:
             return matchers.Mismatch("Response contains <> 1 item: %r" % actual)
 
-        response_data = json.loads(actual[0])
+        response_data = json.loads(actual[0].decode('utf-8'))
 
         if u"links" in response_data:
             del response_data[u"links"]
@@ -223,11 +223,11 @@ class TestAlarmDefinition(AlarmTestBase):
     def test_alarm_definition_create(self):
         return_value = self.alarm_def_repo_mock.return_value
         return_value.get_alarm_definitions.return_value = []
-        return_value.create_alarm_definition.return_value = u"00000001-0001-0001-0001-000000000001"
+        return_value.create_alarm_definition.return_value = u'00000001-0001-0001-0001-000000000001'
 
         alarm_def = {
-            "name": "Test Definition",
-            "expression": "test.metric > 10"
+            u'name': u'Test Definition',
+            u'expression': u'test.metric > 10'
         }
 
         expected_data = {
@@ -245,7 +245,10 @@ class TestAlarmDefinition(AlarmTestBase):
         }
 
         response = self.simulate_request("/v2.0/alarm-definitions/",
-                                         headers={'X-Roles': 'admin', 'X-Tenant-Id': TENANT_ID},
+                                         headers={
+                                             'X-Roles': 'admin',
+                                             'X-Tenant-Id': TENANT_ID
+                                         },
                                          method="POST",
                                          body=json.dumps(alarm_def))
 
@@ -258,24 +261,24 @@ class TestAlarmDefinition(AlarmTestBase):
         return_value.create_alarm_definition.return_value = u"00000001-0001-0001-0001-000000000001"
 
         valid_expressions = [
-            "max(-_.千幸福的笑脸{घोड़ा=馬,  "
-            "dn2=dv2,千幸福的笑脸घ=千幸福的笑脸घ}) gte 100 "
-            "times 3 && "
-            "(min(ເຮືອນ{dn3=dv3,家=дом}) < 10 or sum(biz{dn5=dv5}) >99 and "
-            "count(fizzle) lt 0or count(baz) > 1)".decode('utf8'),
+            u"max(-_.千幸福的笑脸{घोड़ा=馬,  "
+            u"dn2=dv2,千幸福的笑脸घ=千幸福的笑脸घ}) gte 100 "
+            u"times 3 && "
+            u"(min(ເຮືອນ{dn3=dv3,家=дом}) < 10 or sum(biz{dn5=dv5}) >99 and "
+            u"count(fizzle) lt 0or count(baz) > 1)",
 
-            "max(foo{hostname=mini-mon,千=千}, 120) > 100 and (max(bar)>100 "
-            " or max(biz)>100)".decode('utf8'),
+            u"max(foo{hostname=mini-mon,千=千}, 120) > 100 and (max(bar)>100 "
+            u" or max(biz)>100)",
 
-            "max(foo)>=100",
+            u"max(foo)>=100",
 
-            "test_metric{this=that, that =  this} < 1",
+            u"test_metric{this=that, that =  this} < 1",
 
-            "max  (  3test_metric5  {  this  =  that  })  lt  5 times    3",
+            u"max  (  3test_metric5  {  this  =  that  })  lt  5 times    3",
 
-            "3test_metric5 lt 3",
+            u"3test_metric5 lt 3",
 
-            "ntp.offset > 1 or ntp.offset < -5",
+            u"ntp.offset > 1 or ntp.offset < -5",
         ]
 
         alarm_def = {
@@ -311,15 +314,15 @@ class TestAlarmDefinition(AlarmTestBase):
 
     def test_alarm_definition_create_with_invalid_expressions(self):
         bad_expressions = [
-            "test=metric > 10",
-            "test.metric{dim=this=that} > 10",
-            "test_metric(5) > 2"
-            "test_metric > 10 and or alt_metric > 10"
+            u"test=metric > 10",
+            u"test.metric{dim=this=that} > 10",
+            u"test_metric(5) > 2"
+            u"test_metric > 10 and or alt_metric > 10"
         ]
 
         alarm_def = {
-            u'name': 'Test Definition',
-            u'expression': 'test.metric > 10'
+            u'name': u'Test Definition',
+            u'expression': u'test.metric > 10'
         }
 
         for expression in bad_expressions:
