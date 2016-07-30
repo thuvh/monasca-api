@@ -13,9 +13,11 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
+
 import sys
 
 import pyparsing
+import six
 
 _DETERMINISTIC_ASSIGNMENT_LEN = 3
 _DETERMINISTIC_ASSIGNMENT_SHORT_LEN = 1
@@ -222,7 +224,7 @@ def periodsValidation(instr, loc, tokens):
 
 # Initialize non-ascii unicode code points in the Basic Multilingual Plane.
 unicode_printables = u''.join(
-    unichr(c) for c in xrange(128, 65536) if not unichr(c).isspace())
+    six.unichr(c) for c in six.moves.range(128, 65536) if not six.unichr(c).isspace())
 
 # Does not like comma. No Literals from above allowed.
 valid_identifier_chars = (
