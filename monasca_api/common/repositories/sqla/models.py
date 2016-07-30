@@ -209,7 +209,7 @@ class field_sort(expression.ColumnElement):
     column = None
     fields = []
 
-    def __init__(self, column, fields):
+    def __init__(self, column=None, fields=None):
         self.column = column
         self.fields = fields
 
@@ -228,11 +228,14 @@ def _field_sort_mysql(element, compiler_, **kw):
 def _field_sort_general(element, compiler_, **kw):
     fields_list = []
     if element.fields:
-        fields_list.append("CASE")
-        for idx, field in enumerate(element.fields):
-            fields_list.append("WHEN {0}={1} THEN {2}".format(compiler_.process(element.column),
-                                                              compiler_.process(field),
-                                                              idx))
-        fields_list.append("ELSE {0}".format(len(element.fields)))
-        fields_list.append("END")
+        fields_list.append('CASE')
+        as_list = list(element.fields)
+        for idx, field in enumerate(as_list):
+            fields_list.append('WHEN {0}={1} THEN {2}'.format(
+                compiler_.process(element.column),
+                compiler_.process(field),
+                idx)
+            )
+        fields_list.append('ELSE {0}'.format(len(as_list)))
+        fields_list.append('END')
     return " ".join(fields_list)

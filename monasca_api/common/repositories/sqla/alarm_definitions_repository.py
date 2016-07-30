@@ -16,6 +16,7 @@
 import datetime
 
 from oslo_utils import uuidutils
+import six
 
 from monasca_api.common.repositories import alarm_definitions_repository as adr
 from monasca_api.common.repositories import exceptions
@@ -288,7 +289,7 @@ class AlarmDefinitionsRepository(sql_repository.SQLRepository,
                 query_from = query_from.join(sad, sadi == ad.c.id)
 
                 i = 0
-                for n, v in dimensions.iteritems():
+                for n, v in six.iteritems(dimensions):
                     bind_dimension_name = 'b_sadd_dimension_name_{}'.format(i)
                     bind_value = 'b_sadd_value_{}'.format(i)
                     sadd_ = (select([sadd.c.sub_alarm_definition_id])
@@ -316,11 +317,10 @@ class AlarmDefinitionsRepository(sql_repository.SQLRepository,
             if severity:
                 severities = severity.split('|')
                 query = query.where(
-                    or_(ad.c.severity == bindparam('b_severity' + str(i)) for i in xrange(len(severities))))
+                    or_(ad.c.severity == bindparam('b_severity' + str(i)) for i in six.moves.range(len(severities))))
                 for i, s in enumerate(severities):
                     parms['b_severity' + str(i)] = s.encode('utf8')
 
-            order_columns = []
             if sort_by is not None:
                 order_columns = [literal_column('ad.' + col) for col in sort_by]
                 if 'id' not in sort_by:
@@ -574,8 +574,8 @@ class AlarmDefinitionsRepository(sql_repository.SQLRepository,
                 conn.execute(query, parms)
 
             parms = []
-            for sub_alarm_definition_id, sub_alarm_def in (
-                    changed_sub_alarm_defs_by_id.iteritems()):
+            changed_ids_it = six.iteritems(changed_sub_alarm_defs_by_id)
+            for sub_alarm_definition_id, sub_alarm_def in changed_ids_it:
                 parms.append({'b_operator': sub_alarm_def.operator,
                               'b_threshold': sub_alarm_def.threshold,
                               'b_is_deterministic': sub_alarm_def.deterministic,
@@ -684,7 +684,7 @@ class AlarmDefinitionsRepository(sql_repository.SQLRepository,
             sad = sub_alarm_definition.SubAlarmDefinition(
                 sub_expr=sub_expr)
             # Inject the alarm definition id.
-            sad.alarm_definition_id = alarm_definition_id.decode('utf8')
+            sad.alarm_definition_id = six.u(alarm_definition_id)
             new_sub_alarm_defs_set.add(sad)
 
         # Identify old or changed expressions

@@ -14,6 +14,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+import copy
 import datetime
 
 import fixtures
@@ -23,7 +24,9 @@ from oslo_db.sqlalchemy.engines import create_engine
 from sqlalchemy import delete, MetaData, insert, bindparam
 import testtools
 
+from monasca_api.common.repositories import exceptions
 from monasca_api.common.repositories.sqla import models
+from monasca_api.common.repositories.sqla import notifications_repository as nr
 
 CONF = cfg.CONF
 
@@ -73,25 +76,23 @@ class TestNotificationMethodRepoDB(testtools.TestCase, fixtures.TestWithFixtures
         self._fixture_config.config(connection='sqlite://',
                                     group='database')
 
-        from monasca_api.common.repositories.sqla import notifications_repository as nr
-
         self.repo = nr.NotificationsRepository()
-        self.default_nms = [{'id': '123',
-                             'tenant_id': '444',
-                             'name': 'MyEmail',
-                             'type': 'EMAIL',
-                             'address': 'a@b',
-                             'period': 0,
-                             'created_at': datetime.datetime.now(),
-                             'updated_at': datetime.datetime.now()},
-                            {'id': '124',
-                             'tenant_id': '444',
-                             'name': 'OtherEmail',
-                             'type': 'EMAIL',
-                             'address': 'a@b',
-                             'period': 0,
-                             'created_at': datetime.datetime.now(),
-                             'updated_at': datetime.datetime.now()}]
+        self.default_nms = [{u'id': u'123',
+                             u'tenant_id': u'444',
+                             u'name': u'MyEmail',
+                             u'type': u'EMAIL',
+                             u'address': u'a@b',
+                             u'period': 0,
+                             u'created_at': datetime.datetime.now(),
+                             u'updated_at': datetime.datetime.now()},
+                            {u'id': u'124',
+                             u'tenant_id': u'444',
+                             u'name': u'OtherEmail',
+                             u'type': u'EMAIL',
+                             u'address': u'a@b',
+                             u'period': 0,
+                             u'created_at': datetime.datetime.now(),
+                             u'updated_at': datetime.datetime.now()}]
 
         with self.engine.connect() as conn:
             conn.execute(self._delete_nm_query)
@@ -123,7 +124,6 @@ class TestNotificationMethodRepoDB(testtools.TestCase, fixtures.TestWithFixtures
         self.assertEqual(self.engine.table_names(), expected_list_tables)
 
     def test_should_create(self):
-        from monasca_api.common.repositories import exceptions
         nmA = self.repo.create_notification('555',
                                             'MyEmail',
                                             'EMAIL',
@@ -142,7 +142,6 @@ class TestNotificationMethodRepoDB(testtools.TestCase, fixtures.TestWithFixtures
                           0)
 
     def test_should_exists(self):
-        from monasca_api.common.repositories import exceptions
         self.assertTrue(self.repo.list_notification("444", "123"))
         self.assertRaises(exceptions.DoesNotExistException,
                           self.repo.list_notification, "444", "1234")
@@ -162,17 +161,21 @@ class TestNotificationMethodRepoDB(testtools.TestCase, fixtures.TestWithFixtures
         self.assertEqual(nms, [])
 
     def test_update(self):
-        import copy
         self.repo.update_notification('123', '444', 'Foo', 'EMAIL', 'abc', 0)
-        nm = self.repo.list_notification('444', '123')
-        new_nm = copy.deepcopy(self.default_nms[0])
-        new_nm['name'] = 'Foo'
-        new_nm['type'] = 'EMAIL'
-        new_nm['address'] = 'abc'
-        new_nm['created_at'] = nm['created_at']
-        new_nm['updated_at'] = nm['updated_at']
-        self.assertEqual(nm, new_nm)
-        from monasca_api.common.repositories import exceptions
+
+        actual_nm = self.repo.list_notification('444', '123')
+        expected_nm = {
+            'name': u'Foo',
+            'type': u'EMAIL',
+            'address': u'abc',
+            'id': actual_nm['id'],
+            'tenant_id': actual_nm['tenant_id'],
+            'period': actual_nm['period'],
+            'created_at': actual_nm['created_at'],
+            'updated_at': actual_nm['updated_at']
+        }
+
+        self.assertDictEqual(expected_nm, actual_nm)
         self.assertRaises(exceptions.DoesNotExistException,
                           self.repo.update_notification,
                           'no really id',
@@ -191,7 +194,6 @@ class TestNotificationMethodRepoDB(testtools.TestCase, fixtures.TestWithFixtures
                           self.repo.delete_notification, 'no really tenant', '123')
 
     def test_should_update_duplicate_with_same_values(self):
-        import copy
         self.repo.update_notification('123', '444', 'Foo', 'EMAIL', 'abc', 0)
         self.repo.update_notification('123', '444', 'Foo', 'EMAIL', 'abc', 0)
         nm = self.repo.list_notification('444', '123')

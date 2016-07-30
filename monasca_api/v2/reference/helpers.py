@@ -22,7 +22,7 @@ from oslo_log import log
 from oslo_utils import timeutils
 import simplejson
 import six
-import six.moves.urllib.parse as urlparse
+from six.moves.urllib import parse as urlparse
 
 from monasca_api.v2.common.exceptions import HTTPUnprocessableEntityError
 
@@ -38,7 +38,7 @@ def read_json_msg_body(req):
     """
     try:
         msg = req.stream.read()
-        json_msg = json.loads(msg)
+        json_msg = json.loads(msg.decode('utf-8'))
         return json_msg
     except ValueError as ex:
         LOG.debug(ex)
@@ -154,7 +154,7 @@ def get_query_dimensions(req, param_key='dimensions'):
             return dimensions
 
         dimensions_param = params[param_key]
-        if isinstance(dimensions_param, basestring):
+        if isinstance(dimensions_param, six.string_types):
             dimensions_str_array = dimensions_param.split(',')
         elif isinstance(dimensions_param, list):
             dimensions_str_array = []
@@ -172,7 +172,7 @@ def get_query_dimensions(req, param_key='dimensions'):
         return dimensions
     except Exception as ex:
         LOG.debug(ex)
-        raise HTTPUnprocessableEntityError('Unprocessable Entity', ex.message)
+        raise HTTPUnprocessableEntityError('Unprocessable Entity', str(ex))
 
 
 def get_query_starttime_timestamp(req, required=True):
@@ -187,7 +187,7 @@ def get_query_starttime_timestamp(req, required=True):
                 return None
     except Exception as ex:
         LOG.debug(ex)
-        raise HTTPUnprocessableEntityError('Unprocessable Entity', ex.message)
+        raise HTTPUnprocessableEntityError('Unprocessable Entity', str(ex))
 
 
 def get_query_endtime_timestamp(req, required=True):
@@ -340,15 +340,15 @@ def paginate(resource, uri, limit):
             next_link += '?' + '&'.join(new_query_params)
 
         resource = {u'links': ([{u'rel': u'self',
-                                 u'href': self_link.decode('utf8')},
+                                 u'href': six.u(self_link)},
                                 {u'rel': u'next',
-                                 u'href': next_link.decode('utf8')}]),
+                                 u'href': six.u(next_link)}]),
                     u'elements': resource[:limit]}
 
     else:
 
         resource = {u'links': ([{u'rel': u'self',
-                                 u'href': self_link.decode('utf8')}]),
+                                 u'href': six.u(self_link)}]),
                     u'elements': resource}
 
     return resource
@@ -380,7 +380,7 @@ def paginate_with_no_id(dictionary_list, uri, offset, limit):
 
         links = [{u'rel': u'self', u'href': self_link.decode('utf8')}]
         if len(truncated_list_offset) > limit:
-            new_offset = truncated_list_offset_limit[limit - 1].values()[0]
+            new_offset = list(truncated_list_offset_limit[limit - 1].values())[0]
             next_link = build_base_uri(parsed_uri)
             new_query_params = [u'offset' + '=' + new_offset]
 
