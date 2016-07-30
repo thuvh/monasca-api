@@ -21,6 +21,7 @@ import falcon
 from oslo_log import log
 from oslo_utils import timeutils
 import simplejson
+import six
 import six.moves.urllib.parse as urlparse
 
 from monasca_api.common.repositories import constants
@@ -179,8 +180,7 @@ def get_query_dimensions(req):
         dimensions = {}
         if 'dimensions' in params:
             dimensions_param = params['dimensions']
-
-            if isinstance(dimensions_param, basestring):
+            if isinstance(dimensions_param, six.string_types):
                 dimensions_str_array = dimensions_param.split(',')
             elif isinstance(dimensions_param, list):
                 dimensions_str_array = []
@@ -201,7 +201,7 @@ def get_query_dimensions(req):
         return dimensions
     except Exception as ex:
         LOG.debug(ex)
-        raise HTTPUnprocessableEntityError('Unprocessable Entity', ex.message)
+        raise HTTPUnprocessableEntityError('Unprocessable Entity', ex)
 
 
 def get_query_starttime_timestamp(req, required=True):
