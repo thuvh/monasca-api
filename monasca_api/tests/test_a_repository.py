@@ -17,6 +17,7 @@
 import datetime
 import time
 
+import six
 import fixtures
 from oslo_config import cfg
 from oslo_config import fixture as fixture_config

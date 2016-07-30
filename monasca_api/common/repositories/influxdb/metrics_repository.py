@@ -12,6 +12,7 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
+
 from datetime import datetime
 from datetime import timedelta
 from distutils import version
@@ -22,6 +23,7 @@ from influxdb.exceptions import InfluxDBClientError
 from oslo_config import cfg
 from oslo_log import log
 from oslo_utils import timeutils
+import six
 
 from monasca_api.common.repositories import exceptions
 from monasca_api.common.repositories import metrics_repository
@@ -233,8 +235,8 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
 
         # dimensions - optional
         if dimensions:
-            for dimension_name, dimension_value in iter(
-                    sorted(dimensions.iteritems())):
+            sorted_dims = sorted(six.iteritems(dimensions))
+            for dimension_name, dimension_value in iter(sorted_dims):
                 # replace ' with \' to make query parsable
                 clean_dimension_name = dimension_name.replace("\'", "\\'")
                 if dimension_value == "":
@@ -329,8 +331,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
         for value in dim_value_set:
             json_dim_value_list.append({u'dimension_value': value})
 
-        json_dim_value_list = sorted(json_dim_value_list)
-        return json_dim_value_list
+        return sorted(json_dim_value_list, key=lambda x: x['dimension_value'])
 
     def _build_serie_dimension_values_from_v0_11_0(self, series_names, dimension_name):
         '''In InfluxDB v0.11.0 the SHOW TAG VALUES output changed.
@@ -363,8 +364,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
         for value in dim_value_set:
             json_dim_value_list.append({u'dimension_value': value})
 
-        json_dim_value_list = sorted(json_dim_value_list)
-        return json_dim_value_list
+        return sorted(json_dim_value_list, key=six.string_types[0])
 
     def _build_serie_dimension_names(self, series_names):
         dim_name_set = set()
@@ -389,8 +389,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
         for name in dim_name_set:
             json_dim_name_list.append({u'dimension_name': name})
 
-        json_dim_name_list = sorted(json_dim_name_list)
-        return json_dim_name_list
+        return sorted(json_dim_name_list, key=lambda x: x['dimension_name'])
 
     def _build_serie_metric_list_to_v0_11_0(self, series_names, tenant_id, region,
                                             start_timestamp, end_timestamp,
@@ -502,11 +501,9 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
             return json_metric_list
 
         for name in measurement_names.raw.get(u'series', [{}])[0].get(u'values', []):
-            entry = {u'name': name[0]}
-            json_metric_list.append(entry)
+            json_metric_list.append({u'name': name[0]})
 
-        json_metric_list = sorted(json_metric_list)
-        return json_metric_list
+        return sorted(json_metric_list, key=six.string_types[0])
 
     def _get_dimensions(self, tenant_id, region, name, dimensions):
         metrics_list = self.list_metrics(tenant_id, region, name,

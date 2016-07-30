@@ -38,7 +38,7 @@ def read_json_msg_body(req):
     """
     try:
         msg = req.stream.read()
-        json_msg = json.loads(msg)
+        json_msg = json.loads(str(msg))
         return json_msg
     except ValueError as ex:
         LOG.debug(ex)
@@ -154,7 +154,7 @@ def get_query_dimensions(req, param_key='dimensions'):
             return dimensions
 
         dimensions_param = params[param_key]
-        if isinstance(dimensions_param, basestring):
+        if isinstance(dimensions_param, six.string_types):
             dimensions_str_array = dimensions_param.split(',')
         elif isinstance(dimensions_param, list):
             dimensions_str_array = []
@@ -174,7 +174,7 @@ def get_query_dimensions(req, param_key='dimensions'):
         return dimensions
     except Exception as ex:
         LOG.debug(ex)
-        raise HTTPUnprocessableEntityError('Unprocessable Entity', ex.message)
+        raise HTTPUnprocessableEntityError('Unprocessable Entity', str(ex))
 
 
 def get_query_starttime_timestamp(req, required=True):
@@ -189,7 +189,7 @@ def get_query_starttime_timestamp(req, required=True):
                 return None
     except Exception as ex:
         LOG.debug(ex)
-        raise HTTPUnprocessableEntityError('Unprocessable Entity', ex.message)
+        raise HTTPUnprocessableEntityError('Unprocessable Entity', str(ex))
 
 
 def get_query_endtime_timestamp(req, required=True):
