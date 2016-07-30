@@ -15,14 +15,16 @@
 from oslo_log import log
 import voluptuous
 
+import six
+
 from monasca_api.v2.common.schemas import exceptions
 
 LOG = log.getLogger(__name__)
 
 dimensions_schema = voluptuous.Schema({
-    voluptuous.All(voluptuous.Any(str, unicode),
+    voluptuous.All(voluptuous.Any(str, six.text_type),
                    voluptuous.Length(max=255)): voluptuous.All(
-        voluptuous.Any(str, unicode), voluptuous.Length(max=255))})
+        voluptuous.Any(str, six.text_type), voluptuous.Length(max=255))})
 
 
 def validate(dimensions):

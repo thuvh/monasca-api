@@ -15,12 +15,14 @@
 from oslo_log import log
 import voluptuous
 
+import six
+
 from monasca_api.v2.common.schemas import exceptions
 
 LOG = log.getLogger(__name__)
 
 metric_name_schema = voluptuous.Schema(
-    voluptuous.All(voluptuous.Any(str, unicode), voluptuous.Length(max=64)))
+    voluptuous.All(voluptuous.Any(str, six.text_type), voluptuous.Length(max=64)))
 
 
 def validate(name):
