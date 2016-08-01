@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "bacf61ea_9e1f305a",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-08-01T20:31:37Z",
+      "side": 1,
+      "message": "Not sure we want to open it where we need it every time, one reason being the performance reasons Shinya has mentioned. In general, I try and always create objects in their fully constructed state so I don\u0027t like to see code that defers this sort of initialization. On the other hand, I recently had this come up in the notification engine. In the case of the mysql connector, the session object is not created in the initializer, but deferred until it is used. If an exception occurs when using it, a new session is tried. This was done this way because the load balancer might close the connection after some period of inactivity and the mysql session object doesn\u0027t re-establish a connection in this case. If you have a session object that reestablishes the connection, then it would be fine with me to create it in the initializer as is done here.",
+      "parentUuid": "bacf61ea_af278fc8",
+      "revId": "08de223e92d54be433b121e8326b3a16c8e43b94",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bacf61ea_6c24855f",
         "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
         "patchSetId": 22
@@ -101,6 +119,24 @@
       "side": 1,
       "message": "I don\u0027t think so. There are not in \nhttps://docs.python.org/3/reference/lexical_analysis.html?highlight\u003dreserved#keywords .\nPython 2.7 is neither.\nAre there any other reserved words?",
       "parentUuid": "bacf61ea_6c24855f",
+      "revId": "08de223e92d54be433b121e8326b3a16c8e43b94",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_9e7bb07a",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-08-01T20:31:37Z",
+      "side": 1,
+      "message": "They aren\u0027t reserved words, but they are built-in functions. See, https://docs.python.org/2/library/functions.html. Is there a difference between a reserved word and built-in function that would allow us to continue to use these words.\n\nIt is probably best to use different variables names as there is collision.",
+      "parentUuid": "bacf61ea_8fe60b13",
       "revId": "08de223e92d54be433b121e8326b3a16c8e43b94",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
