@@ -16,6 +16,7 @@ from monasca_api.v2.common.exceptions import HTTPUnprocessableEntityError
 
 import json
 import re
+import six
 
 invalid_chars = "<>={}(),\"\\\\|;&"
 restricted_chars = re.compile('[' + invalid_chars + ']')
@@ -34,14 +35,14 @@ EMAIL_PATTERN = '^.+@.+$'
 
 
 def metric_name(name):
-    assert isinstance(name, (str, unicode)), "Metric name must be a string"
+    assert isinstance(name, (str, six.text_type)), "Metric name must be a string"
     assert len(name) <= 255, "Metric name must be 255 characters or less"
     assert len(name) >= 1, "Metric name cannot be empty"
     assert not restricted_chars.search(name), "Invalid characters in metric name " + name
 
 
 def dimension_key(dkey):
-    assert isinstance(dkey, (str, unicode)), "Dimension key must be a string"
+    assert isinstance(dkey, (str, six.text_type)), "Dimension key must be a string"
     assert len(dkey) <= 255, "Dimension key must be 255 characters or less"
     assert len(dkey) >= 1, "Dimension key cannot be empty"
     assert dkey[0] != '_', "Dimension key cannot start with underscore (_)"
@@ -49,7 +50,7 @@ def dimension_key(dkey):
 
 
 def dimension_value(value):
-    assert isinstance(value, (str, unicode)), "Dimension value must be a string"
+    assert isinstance(value, (str, six.text_type)), "Dimension value must be a string"
     assert len(value) <= 255, "Dimension value must be 255 characters or less"
     assert len(value) >= 1, "Dimension value cannot be empty"
     assert not restricted_chars.search(value), "Invalid characters in dimension value " + value
@@ -106,12 +107,12 @@ def validate_value_meta(value_meta):
         VALUE_META_MAX_LENGTH)
     for name in value_meta:
         # name
-        assert isinstance(name, (str, unicode)), "ValueMeta name must be a string"
+        assert isinstance(name, (str, six.text_type)), "ValueMeta name must be a string"
         assert len(name) <= VALUE_META_NAME_MAX_LENGTH, "ValueMeta name must be {} characters or less".format(
             VALUE_META_NAME_MAX_LENGTH)
         assert len(name) >= 1, "ValueMeta name cannot be empty"
         # value
-        assert isinstance(value_meta[name], (str, unicode)), "ValueMeta value must be a string"
+        assert isinstance(value_meta[name], (str, six.text_type)), "ValueMeta value must be a string"
         assert len(value_meta[name]) >= 1, "ValueMeta value cannot be empty"
 
 
