@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bacf61ea_8c40d935",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-08-01T05:15:38Z",
+      "side": 1,
+      "message": "just a nit, but I think that it looks better if you have one empty line between license header and imports.",
+      "revId": "08de223e92d54be433b121e8326b3a16c8e43b94",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_ac6afdb0",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-08-01T05:15:38Z",
+      "side": 1,
+      "message": "I am not sure how that works, but wouldn\u0027t it be better to open session where you need it ? For that TTL of any data call ?",
+      "revId": "08de223e92d54be433b121e8326b3a16c8e43b94",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_6c24855f",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-08-01T05:15:38Z",
+      "side": 1,
+      "message": "sum, max and min are reserved keywords in python.",
+      "revId": "08de223e92d54be433b121e8326b3a16c8e43b94",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
