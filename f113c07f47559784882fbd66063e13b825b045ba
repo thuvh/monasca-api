@@ -22,6 +22,30 @@
       "revId": "f113c07f47559784882fbd66063e13b825b045ba",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_0cf50956",
+        "filename": "devstack/files/monasca-smoke-test/smoke2_configs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-08-01T05:37:22Z",
+      "side": 1,
+      "message": "Sure, will do this ASAP.",
+      "parentUuid": "bacf61ea_1b78d68e",
+      "range": {
+        "startLine": 35,
+        "startChar": 56,
+        "endLine": 35,
+        "endChar": 73
+      },
+      "revId": "f113c07f47559784882fbd66063e13b825b045ba",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
