@@ -22,6 +22,30 @@
       "revId": "6b2b88f3cab46cd442369b22da3624611b871169",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_aa29288c",
+        "filename": "devstack/files/schema/mon_mysql.sql",
+        "patchSetId": 3
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-08-01T13:32:16Z",
+      "side": 1,
+      "message": "It doesn\u0027t really matter. The column just has to be there and have a default state so that sub alarms can be created with the old code which does not set state. My thought was that most existing sub alarms would have OK state since Alarms normally should be in the OK state",
+      "parentUuid": "bacf61ea_29627f3e",
+      "range": {
+        "startLine": 183,
+        "startChar": 67,
+        "endLine": 183,
+        "endChar": 69
+      },
+      "revId": "6b2b88f3cab46cd442369b22da3624611b871169",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
