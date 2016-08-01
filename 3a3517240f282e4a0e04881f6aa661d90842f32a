@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "bacf61ea_0cf7ac8b",
+        "filename": "java/src/main/java/monasca/api/domain/model/notificationmethod/NotificationMethodType.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-08-01T15:24:06Z",
+      "side": 1,
+      "message": "So, even though our API doesn\u0027t specify that the name is case insensitive, it looks like the validation does a toUpperCase when comparing. So, to continue with the prior behavior, I think Craig is correct, .toUpperCase just needs to be added here. \n\nSo, let\u0027s stick with the case insensitive compare and upper case everything.\n\nWe should probably update the docs at some point.\n\nSorry for the confusion.",
+      "parentUuid": "bacf61ea_5454bf1f",
+      "range": {
+        "startLine": 39,
+        "startChar": 18,
+        "endLine": 39,
+        "endChar": 19
+      },
+      "revId": "3a3517240f282e4a0e04881f6aa661d90842f32a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bacf61ea_624f976b",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/hibernate/NotificationMethodSqlRepoImpl.java",
         "patchSetId": 24
