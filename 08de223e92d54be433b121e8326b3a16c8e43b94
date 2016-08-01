@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "bacf61ea_8f01eb3a",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-08-01T06:43:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bacf61ea_8c40d935",
+      "revId": "08de223e92d54be433b121e8326b3a16c8e43b94",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bacf61ea_ac6afdb0",
         "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
         "patchSetId": 22
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "bacf61ea_af278fc8",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-08-01T06:43:42Z",
+      "side": 1,
+      "message": "MetricsRepository instance has session.\nWhen api query cassandra, api uses this session.\nI think it would be slow that api gets session each time when api query cassandra.",
+      "parentUuid": "bacf61ea_ac6afdb0",
+      "revId": "08de223e92d54be433b121e8326b3a16c8e43b94",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bacf61ea_6c24855f",
         "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
         "patchSetId": 22
@@ -47,6 +83,24 @@
       "writtenOn": "2016-08-01T05:15:38Z",
       "side": 1,
       "message": "sum, max and min are reserved keywords in python.",
+      "revId": "08de223e92d54be433b121e8326b3a16c8e43b94",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_8fe60b13",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-08-01T06:43:42Z",
+      "side": 1,
+      "message": "I don\u0027t think so. There are not in \nhttps://docs.python.org/3/reference/lexical_analysis.html?highlight\u003dreserved#keywords .\nPython 2.7 is neither.\nAre there any other reserved words?",
+      "parentUuid": "bacf61ea_6c24855f",
       "revId": "08de223e92d54be433b121e8326b3a16c8e43b94",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
