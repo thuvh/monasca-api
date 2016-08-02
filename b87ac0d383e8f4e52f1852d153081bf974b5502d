@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bacf61ea_ed5121da",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-08-02T23:03:00Z",
+      "side": 1,
+      "message": "Do you need to add \"sudo pip install cassandra-driver\"? That isn\u0027t installed as one of the requirements and I think I had to do that in my DevStack environment.",
+      "revId": "b87ac0d383e8f4e52f1852d153081bf974b5502d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
