@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bacf61ea_3016f355",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 27
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 20259
+      },
+      "writtenOn": "2016-08-02T20:26:48Z",
+      "side": 1,
+      "message": "nit: remove trailing slash",
+      "range": {
+        "startLine": 199,
+        "startChar": 43,
+        "endLine": 199,
+        "endChar": 44
+      },
+      "revId": "5a0801e9d9a915eb891c9c1e659fd673575db26b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_0b2584ad",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 27
+      },
+      "lineNbr": 1920,
+      "author": {
+        "id": 20259
+      },
+      "writtenOn": "2016-08-02T20:26:48Z",
+      "side": 1,
+      "message": "nit: remove trailing slash",
+      "range": {
+        "startLine": 1920,
+        "startChar": 40,
+        "endLine": 1920,
+        "endChar": 41
+      },
+      "revId": "5a0801e9d9a915eb891c9c1e659fd673575db26b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
