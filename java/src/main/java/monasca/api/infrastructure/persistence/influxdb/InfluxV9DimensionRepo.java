@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Hewlett-Packard Development Company, L.P.
+ * (C) Copyright 2016 Hewlett Packard Enterprise Development LP
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -14,20 +14,20 @@
 package monasca.api.infrastructure.persistence.influxdb;
 
 import com.google.inject.Inject;
-
+import com.google.common.base.Strings;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
 import java.util.Set;
 
 import monasca.api.ApiConfig;
+import monasca.api.domain.model.dimension.DimensionNames;
 import monasca.api.domain.model.dimension.DimensionValues;
 import monasca.api.domain.model.dimension.DimensionRepo;
 
@@ -54,7 +54,7 @@ public class InfluxV9DimensionRepo implements DimensionRepo {
   }
 
   @Override
-  public DimensionValues find(
+  public DimensionValues findValues(
     String metricName,
     String tenantId,
     String dimensionName,
@@ -93,7 +93,6 @@ public class InfluxV9DimensionRepo implements DimensionRepo {
     }
 
     List<String> filteredValues = filterDimensionValues(matchingValues,
-                                                        dimensionName,
                                                         limit,
                                                         offset);
 
@@ -101,11 +100,10 @@ public class InfluxV9DimensionRepo implements DimensionRepo {
   }
 
   private List<String> filterDimensionValues(Set<String> matchingValues,
-                                             String dimensionName,
                                              int limit,
                                              String offset)
   {
-    Boolean haveOffset = (null != offset && !"".equals(offset));
+    Boolean haveOffset = !Strings.isNullOrEmpty(offset);
     List<String> filteredValues = new ArrayList<String>();
     int remaining_limit = limit + 1;
 
@@ -121,5 +119,63 @@ public class InfluxV9DimensionRepo implements DimensionRepo {
     }
 
     return filteredValues;
+  }
+
+  @Override
+  public DimensionNames findNames(
+          String metricName,
+          String tenantId,
+          String offset,
+          int limit) throws Exception
+  {
+    //
+    // Use treeset to keep list in alphabetic/predictable order
+    // for string based offset.
+    //
+    Set<String> matchingNames = new TreeSet<String>();
+
+    String q = String.format("show series %1$s where %2$s",
+            this.influxV9Utils.namePart(metricName, false),
+            this.influxV9Utils.privateTenantIdPart(tenantId));
+
+    logger.debug("Dimension names query: {}", q);
+    String r = this.influxV9RepoReader.read(q);
+    Series series = this.objectMapper.readValue(r, Series.class);
+
+    if (!series.isEmpty()) {
+      for (Serie serie : series.getSeries()) {
+        for (String[] names : serie.getValues()) {
+          Map<String, String> dimensions = this.influxV9Utils.getDimensions(names, serie.getColumns());
+          for (Map.Entry<String, String> entry : dimensions.entrySet()) {
+            matchingNames.add(entry.getKey());
+          }
+        }
+      }
+    }
+
+    List<String> filteredNames = filterDimensionNames(matchingNames, limit, offset);
+
+    return new DimensionNames(metricName, filteredNames);
+  }
+
+  private List<String> filterDimensionNames(Set<String> matchingNames,
+                                            int limit,
+                                            String offset) {
+    Boolean haveOffset = !Strings.isNullOrEmpty(offset);
+    List<String> filteredNames = new ArrayList<String>();
+    int remaining_limit = limit + 1;
+
+    for (String dimName : matchingNames) {
+      if (remaining_limit <= 0) {
+        break;
+      }
+      if (haveOffset && dimName.compareTo(offset) <= 0) {
+        continue;
+      }
+      filteredNames.add(dimName);
+      remaining_limit--;
+    }
+
+    return filteredNames;
   }
 }
