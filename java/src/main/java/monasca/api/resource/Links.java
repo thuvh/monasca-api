@@ -1,5 +1,5 @@
 /*
- * (C) Copyright 2014-2016 Hewlett Packard Enterprise Development Company LP
+ * (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -26,6 +26,7 @@ import com.google.common.base.Preconditions;
 import monasca.api.ApiConfig;
 import monasca.api.domain.model.alarm.AlarmCount;
 import monasca.api.domain.model.common.Paged;
+import monasca.api.domain.model.dimension.DimensionNames;
 import monasca.api.domain.model.dimension.DimensionValues;
 import monasca.api.domain.model.measurement.Measurements;
 import monasca.common.model.domain.common.AbstractEntity;
@@ -373,6 +374,23 @@ public final class Links {
     }
 
     elements.add(dimVals);
+    paged.elements = elements;
+    return paged;
+  }
+
+  public static Paged paginateDimensionNames(DimensionNames dimNames, int limit, UriInfo uriInfo)
+          throws UnsupportedEncodingException {
+    Paged paged = new Paged();
+    List<DimensionNames> elements = new ArrayList<DimensionNames>();
+    paged.links.add(getSelfLink(uriInfo));
+
+    if ((null != dimNames) && (dimNames.getDimensionNames().size() > limit)) {
+      dimNames.getDimensionNames().remove(dimNames.getDimensionNames().size()-1);
+      String offset = dimNames.getDimensionNames().get(dimNames.getDimensionNames().size()-1);
+      paged.links.add(getNextLink(offset, uriInfo));
+    }
+
+    elements.add(dimNames);
     paged.elements = elements;
     return paged;
   }

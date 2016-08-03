@@ -93,6 +93,17 @@ Document Version: v2.0
       - [Status Code](#status-code-2)
       - [Response Body](#response-body-4)
       - [Response Examples](#response-examples-3)
+  - [List dimension names](#list-dimension-names)
+      - [GET /v2.0/metrics/dimensions/names](#get-v20metricsdimensionsnames)
+      - [Headers](#headers-4)
+      - [Path Parameters](#path-parameters-4)
+      - [Query Parameters](#query-parameters-4)
+      - [Request Body](#request-body-4)
+      - [Request Examples](#request-examples-4)
+    - [Response](#response-4)
+      - [Status Code](#status-code-2)
+      - [Response Body](#response-body-4)
+      - [Response Examples](#response-examples-3)
 - [Measurements](#measurements)
   - [List measurements](#list-measurements)
     - [GET /v2.0/metrics/measurements](#get-v20metricsmeasurements)
@@ -1226,6 +1237,135 @@ Returns a JSON object with a 'links' array of links and an 'elements' array of m
 }
 ````
 ___
+
+## List dimension names
+Get dimension names
+
+#### GET /v2.0/metrics/dimensions/names
+
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+* Accept (string) - application/json
+
+#### Path Parameters
+None.
+
+#### Query Parameters
+* tenant_id (string, optional, restricted) - Tenant ID to from which to get dimension names. This parameter can be used to get dimension names from a tenant other than the tenant the request auth token is scoped to. Usage of this query parameter is restricted to users with the the monasca admin role, as defined in the monasca api configuration file, which defaults to `monasca-admin`.
+* metric_name (string(255), optional) - A metric name to filter dimension names by.
+* offset (string(255), optional) - The dimension names are returned in alphabetic order, and the offset is the dimension name after which to return in the next pagination request.
+* limit (integer, optional)
+
+#### Request Body
+None.
+
+#### Request Examples
+```
+GET /v2.0/metrics/dimensions/names HTTP/1.1
+Host: 192.168.10.6:8070
+Content-Type: application/json
+X-Auth-Token: 818d3d8f10bd4987adb3f84bc94a801d
+Cache-Control: no-cache
+```
+
+### Response
+#### Status Code
+* 200 - OK
+
+#### Response Body
+Returns a JSON object with a 'links' array of links and an 'elements' array of metric definition objects with the following fields:
+
+* dimension_names (list of strings)
+
+#### Response Examples
+Request #1
+
+```
+GET /v2.0/metrics/dimensions/names
+```
+
+Response for request #1:
+
+````
+{
+    "links": [
+        {
+            "rel": "self",
+            "href": "http://192.168.10.6:8070/v2.0/metrics/dimensions/names"
+        }
+    ],
+    "elements": [
+        {
+            "id": null,
+            "dimension_names": [
+                "dimensonName1",
+                "dimensonName2",
+                "dimensonName3"
+            ]
+        }
+    ]
+}
+````
+
+Request #2
+```
+GET /v2.0/metrics/dimensions/names?metric_name=cpu.idle_percent
+```
+
+Response for request #2:
+
+````
+{
+    "links": [
+        {
+            "rel": "self",
+            "href": "http://192.168.10.6:8070/v2.0/metrics/dimensions/names?metric_name=cpu.idle_percent"
+        }
+    ],
+    "elements": [
+        {
+            "id": null,
+            "metric_name": "cpu.idle_percent",
+            "dimension_names": [
+                "dimensonName1",
+                "dimensonName2"
+            ]
+        }
+    ]
+}
+````
+
+Request #3
+```
+GET /v2.0/metrics/dimensions/names?metric_name=cpu.frequency_mhz&offset=name1&limit=2
+```
+
+Response for request #3:
+
+````
+{
+  "links": [
+    {
+      "rel": "self",
+      "href": "http://192.168.10.6:8070/v2.0/metrics/dimensions/names?metric_name=cpu.frequency_mhz&offset=name1&limit=2"
+    },
+    {
+      "rel": "next",
+      "href": "http://192.168.10.6:8070/v2.0/metrics/dimensions/names?offset=name3&limit=2&metric_name=cpu.frequency_mhz"
+    }
+  ],
+  "elements": [
+    {
+      "id": null,
+      "metric_name": "cpu.frequency_mhz",
+      "dimension_names": [
+        "name2",
+        "name3"
+      ]
+    }
+  ]
+}
+````
 
 # Measurements
 Operations for accessing measurements of metrics.
