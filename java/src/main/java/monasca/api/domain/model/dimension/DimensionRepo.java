@@ -13,8 +13,6 @@
  */
 package monasca.api.domain.model.dimension;
 
-import java.util.List;
-
 import javax.annotation.Nullable;
 
 /**
@@ -30,5 +28,11 @@ public interface DimensionRepo {
                        String dimensionName,
                        @Nullable String offset,
                        int limit)
+      throws Exception;
+
+  DimensionNames find(String metricName,
+                      String tenantId,
+                      @Nullable String offset,
+                      int limit)
       throws Exception;
 }
