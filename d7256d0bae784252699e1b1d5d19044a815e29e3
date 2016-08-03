@@ -22,6 +22,30 @@
       "revId": "d7256d0bae784252699e1b1d5d19044a815e29e3",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_81d94986",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-08-03T04:10:37Z",
+      "side": 1,
+      "message": "How about AbstractMetricsRepository for super class?",
+      "parentUuid": "bacf61ea_2e032c78",
+      "range": {
+        "startLine": 36,
+        "startChar": 6,
+        "endLine": 36,
+        "endChar": 23
+      },
+      "revId": "d7256d0bae784252699e1b1d5d19044a815e29e3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
