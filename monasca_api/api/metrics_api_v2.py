@@ -64,3 +64,12 @@ class DimensionValuesV2API(object):
 
     def on_get(self, req, res):
         res.status = '501 Not Implemented'
+
+
+class DimensionNamesV2API(object):
+    def __init__(self):
+        super(DimensionNamesV2API, self).__init__()
+        LOG.info('Initializing DimensionNamesV2API!')
+
+    def on_get(self, req, res):
+        res.status = '501 Not Implemented'
