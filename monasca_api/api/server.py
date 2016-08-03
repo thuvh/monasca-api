@@ -46,6 +46,8 @@ dispatcher_opts = [cfg.StrOpt('versions', default=None,
                               help='Notification methods'),
                    cfg.StrOpt('dimension_values', default=None,
                               help='Dimension values'),
+                   cfg.StrOpt('dimension_names', default=None,
+                              help='Dimension names'),
                    cfg.StrOpt('notification_method_types', default=None,
                               help='notification_method_types methods')]
 
@@ -114,6 +116,9 @@ def launch(conf, config_file="/etc/monasca/api-config.conf"):
 
     dimension_values = simport.load(cfg.CONF.dispatcher.dimension_values)()
     app.add_route("/v2.0/metrics/dimensions/names/values", dimension_values)
+
+    dimension_names = simport.load(cfg.CONF.dispatcher.dimension_names)()
+    app.add_route("/v2.0/metrics/dimensions/names", dimension_names)
 
     notification_method_types = simport.load(
         cfg.CONF.dispatcher.notification_method_types)()

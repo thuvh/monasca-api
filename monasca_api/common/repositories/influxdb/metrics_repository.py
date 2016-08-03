@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2014 Hewlett-Packard
-# (C) Copyright 2015,2016 Hewlett Packard Enterprise Development Company LP
+# (C) Copyright 2015,2016 Hewlett Packard Enterprise Development LP
 # Copyright 2015 Cray Inc. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
@@ -237,6 +237,33 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
         dim_vals = sorted(dim_vals)
         json_dim_vals[u'values'] = dim_vals
         return json_dim_vals
+
+    def _build_serie_dimension_names(self, series_names, metric_name,
+                                     tenant_id, region, offset):
+        dim_names = []
+        json_dim_names = {u'dimension_names': dim_names}
+
+        #
+        # Only return metric name if one was provided
+        #
+        if metric_name:
+            json_dim_names[u'metric_name'] = metric_name
+
+        if not series_names:
+            return json_dim_names
+
+        if 'series' in series_names.raw:
+            for series in series_names.raw['series']:
+                for tag_value in series[u'values']:
+                    dims = {
+                        name: value
+                        for name, value in zip(series[u'columns'], tag_value)
+                        if not name.startswith(u'_')
+                }
+
+        dim_names = sorted(dims.keys())
+        json_dim_names[u'dimension_names'] = dim_names
+        return json_dim_names
 
     def _build_serie_metric_list(self, series_names, tenant_id, region,
                                  start_timestamp, end_timestamp,
@@ -635,6 +662,22 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
 
             return json_dim_vals
 
+        except Exception as ex:
+            LOG.exception(ex)
+            raise exceptions.RepositoryException(ex)
+
+    def list_dimension_names(self, tenant_id, region, metric_name,
+                             offset=None, limit=None):
+        try:
+            query = self._build_show_series_query(None, metric_name, tenant_id, region)
+            result = self.influxdb_client.query(query)
+
+            json_dim_names = self._build_serie_dimension_names(result,
+                                                               metric_name,
+                                                               tenant_id,
+                                                               region,
+                                                               offset)
+            return json_dim_names
         except Exception as ex:
             LOG.exception(ex)
             raise exceptions.RepositoryException(ex)
