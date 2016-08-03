@@ -16,6 +16,24 @@
       "revId": "b87ac0d383e8f4e52f1852d153081bf974b5502d",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_d3e67a15",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-08-03T00:22:57Z",
+      "side": 1,
+      "message": "It has already installation instructions.\nSee line 941(for api) and 1166(for persister).\nIt has successfully installed cassandra-driver in my environment.",
+      "parentUuid": "bacf61ea_ed5121da",
+      "revId": "b87ac0d383e8f4e52f1852d153081bf974b5502d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
