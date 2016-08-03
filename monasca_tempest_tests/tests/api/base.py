@@ -79,6 +79,7 @@ class BaseMonascaTest(tempest.test.BaseTestCase):
                     cls.monasca_client.delete_alarm(id)
         cls.cred_provider.clear_creds()
 
+
     def _get_offset(self, response_body):
         next_link = None
         self_link = None
@@ -94,4 +95,3 @@ class BaseMonascaTest(tempest.test.BaseTestCase):
         if 'offset' not in query_params:
             self.fail("No offset in next link: {}".format(next_link))
 
-        return query_params['offset'][0]

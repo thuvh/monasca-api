@@ -13,14 +13,9 @@
  */
 package monasca.api.domain.model.dimension;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-
-import monasca.common.model.domain.common.AbstractEntity;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.codec.binary.Hex;
@@ -29,41 +24,26 @@ import org.apache.commons.codec.binary.Hex;
  * Encapsulates the list of dimension values for a given dimension name
  * (and optional metric-name).
  */
-public class DimensionValues extends AbstractEntity {
+public class DimensionValues extends DimensionNames{
 
-  protected String id = null;
   protected String dimensionName;
-  @JsonInclude(JsonInclude.Include.NON_NULL)
-  protected String metricName;
-  protected List<String> values;
-  protected Map<String, List<String>> dimensionValues;
 
-  public DimensionValues() {
-    this.values = new ArrayList<String>();
-    this.dimensionValues = new HashMap<String, List<String>>();
-  }
-
-  public DimensionValues(String metricName, String dimensionName, List<String> values) {
-    this.metricName = metricName;
+  public DimensionValues(String metricName, List<String> dimensionValues, String dimensionName) {
+    super(metricName, dimensionValues);
     this.dimensionName = dimensionName;
-    this.values = values;
-    this.dimensionValues = new HashMap<String, List<String>>();
-    this.dimensionValues.put(dimensionName, values);
-    this.id = generateId();
   }
 
-  public List<String> getValues() {
-    return values;
+  @Override
+  @JsonProperty("values")
+  public List<String> getDimensionInfo() {
+    return this.dimensionInfo;
   }
 
   public String getDimensionName() {
     return dimensionName;
   }
 
-  public String getMetricName() {
-    return metricName;
-  }
-
+  @Override
   public String getId() {
     if (null == this.id) {
       this.id = generateId();
@@ -96,10 +76,10 @@ public class DimensionValues extends AbstractEntity {
         return false;
     } else if (!metricName.equals(other.metricName))
       return false;
-    if (values == null) {
-      if (other.values != null)
+    if (dimensionInfo == null) {
+      if (other.dimensionInfo != null)
         return false;
-    } else if (!values.equals(other.values))
+    } else if (!dimensionInfo.equals(other.dimensionInfo))
       return false;
     return true;
   }
@@ -110,13 +90,13 @@ public class DimensionValues extends AbstractEntity {
     int result = 1;
     result = prime * result + ((dimensionName == null) ? 0 : dimensionName.hashCode());
     result = prime * result + ((metricName == null) ? 0 : metricName.hashCode());
-    result = prime * result + ((values == null) ? 0 : values.hashCode());
+    result = prime * result + ((dimensionInfo == null) ? 0 : dimensionInfo.hashCode());
     return result;
   }
 
   @Override
   public String toString() {
     return String.format("MetricName=%s DimensionValues [name=%s, values=%s]",
-                         metricName, dimensionName, values);
+                         metricName, dimensionName, dimensionInfo);
   }
 }
