@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Hewlett-Packard Development Company, L.P.
+ * (C) Copyright 2016 Hewlett Packard Enterprise Development LP
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -13,8 +13,6 @@
  */
 package monasca.api.domain.model.dimension;
 
-import java.util.List;
-
 import javax.annotation.Nullable;
 
 /**
@@ -25,10 +23,19 @@ public interface DimensionRepo {
    * Finds dimension values given a dimension name and
    * optional metric name.
    */
-  DimensionValues find(String metricName,
-                       String tenantId,
-                       String dimensionName,
-                       @Nullable String offset,
-                       int limit)
+  DimensionValues findValues(String metricName,
+                             String tenantId,
+                             String dimensionName,
+                             @Nullable String offset,
+                             int limit)
+      throws Exception;
+
+  /**
+   * Finds dimension names given an optional metric name.
+   */
+  DimensionNames findNames(String metricName,
+                           String tenantId,
+                           @Nullable String offset,
+                           int limit)
       throws Exception;
 }
