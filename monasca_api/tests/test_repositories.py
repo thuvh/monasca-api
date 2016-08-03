@@ -165,6 +165,40 @@ class TestRepoMetricsInfluxDB(unittest.TestCase):
             u'metric_name': 'custom_metric'
         })
 
+    @patch("monasca_api.common.repositories.influxdb.metrics_repository.client.InfluxDBClient")
+    def test_list_dimension_names(self, influxdb_client_mock):
+        mock_client = influxdb_client_mock.return_value
+        mock_client.query.return_value.raw = {
+            u'series': [{
+                u'values': [[
+                    u'custom_metric,_region=useast,_tenant_id=38dc2a2549f94d2e9a4fa1cc45a4970c,'
+                    u'hostname=custom_host,service=custom_service',
+                    u'useast',
+                    u'38dc2a2549f94d2e9a4fa1cc45a4970c',
+                    u'custom_host',
+                    u'custom_service'
+                ]],
+                u'name': u'custom_metric',
+                u'columns': [u'_key', u'_region', u'_tenant_id', u'hostname', u'service']
+            }]
+        }
+
+        repo = influxdb_repo.MetricsRepository()
+
+        result = repo.list_dimension_names(
+            "38dc2a2549f94d2e9a4fa1cc45a4970c",
+            "useast",
+            "custom_metric",
+            offset=None,
+            limit=1)
+
+        self.assertEqual(result, {
+            u'dimension_names': [
+                u'hostname',
+                u'service'],
+            u'metric_name': u'custom_metric'
+        })
+
 
 class TestRepoMetricsCassandra(testtools.TestCase):
 
