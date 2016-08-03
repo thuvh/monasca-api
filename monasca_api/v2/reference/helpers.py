@@ -1,6 +1,5 @@
-# Copyright 2014 Hewlett-Packard
 # Copyright 2015 Cray Inc. All Rights Reserved.
-# Copyright 2016 Hewlett Packard Enterprise Development Company LP
+# Copyright 2014,2016 Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -398,8 +397,7 @@ def paginate_alarming(resource, uri, limit):
     return resource
 
 
-def paginate_dimension_values(dimvals, uri, offset, limit):
-
+def paginate_dimension_info(dim_list, uri, offset, limit, dim_flag):
     parsed_uri = urlparse.urlparse(uri)
     self_link = build_base_uri(parsed_uri)
     old_query_params = _get_old_query_params(parsed_uri)
@@ -407,14 +405,18 @@ def paginate_dimension_values(dimvals, uri, offset, limit):
     if old_query_params:
         self_link += '?' + '&'.join(old_query_params)
 
-    if (dimvals and dimvals[u'values']):
-        have_more, truncated_values = _truncate_dimension_values(dimvals[u'values'],
-                                                                 limit,
-                                                                 offset)
+    names = []
+    for i in xrange(len(dim_list)):
+        names.append(dim_list[i][dim_flag])
+
+    if names and len(names) > limit:
+        have_more, truncated_list, truncated_names_or_values \
+            = _truncate_dimension_values_or_names(dim_list, names,
+                                                  limit, offset)
 
         links = [{u'rel': u'self', u'href': self_link.decode('utf8')}]
         if have_more:
-            new_offset = truncated_values[limit - 1]
+            new_offset = truncated_names_or_values[limit - 1]
             next_link = build_base_uri(parsed_uri)
             new_query_params = [u'offset' + '=' + urlparse.quote(
                 new_offset.encode('utf8'), safe='')]
@@ -426,31 +428,24 @@ def paginate_dimension_values(dimvals, uri, offset, limit):
 
             links.append({u'rel': u'next', u'href': next_link.decode('utf8')})
 
-        truncated_dimvals = {u'id': dimvals[u'id'],
-                             u'dimension_name': dimvals[u'dimension_name'],
-                             u'values': truncated_values}
-        #
-        # Only return metric name if one was provided
-        #
-        if u'metric_name' in dimvals:
-            truncated_dimvals[u'metric_name'] = dimvals[u'metric_name']
-
         resource = {u'links': links,
-                    u'elements': [truncated_dimvals]}
+                    u'elements': truncated_list}
     else:
         resource = {u'links': ([{u'rel': u'self',
                                  u'href': self_link.decode('utf8')}]),
-                    u'elements': [dimvals]}
+                    u'elements': dim_list}
 
     return resource
 
 
-def _truncate_dimension_values(values, limit, offset):
-    if offset and offset in values:
-        next_value_pos = values.index(offset) + 1
-        values = values[next_value_pos:]
-    have_more = len(values) > limit
-    return have_more, values[:limit]
+def _truncate_dimension_values_or_names(dim_list, values_or_names, limit,
+                                        offset):
+    if offset and offset in values_or_names:
+        next_value_pos = values_or_names.index(offset) + 1
+        dim_list = dim_list[next_value_pos:]
+        values_or_names = values_or_names[next_value_pos:]
+    have_more = len(values_or_names) > limit
+    return have_more, dim_list[:limit], values_or_names[:limit]
 
 
 def paginate_measurement(measurement, uri, limit):
