@@ -1,4 +1,4 @@
-/* Copyright (c) 2016 Hewlett-Packard Development Company, L.P.
+/* (C) Copyright 2016 Hewlett Packard Enterprise Development LP
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -13,6 +13,7 @@
 package monasca.api.infrastructure.persistence.vertica;
 
 import monasca.api.ApiConfig;
+import monasca.api.domain.model.dimension.DimensionNames;
 import monasca.api.domain.model.dimension.DimensionRepo;
 import monasca.api.domain.model.dimension.DimensionValues;
 
@@ -22,7 +23,6 @@ import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.annotation.Nullable;
 
 import org.skife.jdbi.v2.DBI;
 import org.skife.jdbi.v2.Handle;
@@ -53,6 +53,23 @@ public class DimensionVerticaRepoImpl implements DimensionRepo {
       + "ORDER BY dims.value ASC "
       + "%s ";                       // limit goes here
 
+  private static final String FIND_DIMENSION_NAMES_SQL =
+        "SELECT %s"                   // dbHint goes here
+      + "  DISTINCT dims.name as dName "
+      + "FROM "
+      + "  MonMetrics.Definitions def,"
+      + "  MonMetrics.DefinitionDimensions defdims "
+      + "LEFT OUTER JOIN"
+      + "  MonMetrics.Dimensions dims"
+      + "    ON dims.dimension_set_id = defdims.dimension_set_id "
+      + "WHERE "
+      + "  def.id = defdims.definition_id"
+      + "  %s "                       // optional offset goes here
+      + "  %s "                       // metric name goes here
+      + "  and def.tenant_id = '%s' " // tenant_id goes here
+      + "ORDER BY dims.name ASC "
+      + "%s ";                        // limit goes here
+
   private final DBI db;
   private final String dbHint;
 
@@ -65,14 +82,13 @@ public class DimensionVerticaRepoImpl implements DimensionRepo {
   }
 
   @Override
-  public DimensionValues find(
+  public List<DimensionValues> findValues(
     String metricName,
     String tenantId,
     String dimensionName,
     String offset,
     int limit) throws Exception
   {
-    List<String> values = new ArrayList<String>();
     String offsetPart = "";
     String metricNamePart = "";
 
@@ -99,11 +115,60 @@ public class DimensionVerticaRepoImpl implements DimensionRepo {
       Query<Map<String, Object>> query = h.createQuery(sql);
 
       List<Map<String, Object>> rows = query.list();
+
+      List<DimensionValues> dimensionValuesList = new ArrayList<>(rows.size());
+
       for (Map<String, Object> row : rows) {
         String dimValue = (String) row.get("dValue");
-        values.add(dimValue);
+        DimensionValues dimensionValue = new DimensionValues(metricName, dimensionName, dimValue);
+        dimensionValuesList.add(dimensionValue);
       }
+      return dimensionValuesList;
     }
-    return new DimensionValues(metricName, dimensionName, values);
+
+  }
+
+  @Override
+  public List<DimensionNames> findNames(
+          String metricName,
+          String tenantId,
+          String offset,
+          int limit) throws Exception
+  {
+    String offsetPart = "";
+    String metricNamePart = "";
+
+    try (Handle h = db.open()) {
+
+      if (offset != null && !offset.isEmpty()) {
+        offsetPart = " and dims.name > '" + offset + "' ";
+      }
+
+      if (metricName != null && !metricName.isEmpty()) {
+        metricNamePart = " and def.name = '" + metricName + "' ";
+      }
+
+      String limitPart = " limit " + Integer.toString(limit + 1);
+
+      String sql = String.format(FIND_DIMENSION_NAMES_SQL,
+              this.dbHint,
+              offsetPart,
+              metricNamePart,
+              tenantId,
+              limitPart);
+
+      Query<Map<String, Object>> query = h.createQuery(sql);
+
+      List<Map<String, Object>> rows = query.list();
+      List<DimensionNames> dimensionNamesList = new ArrayList<>(rows.size());
+
+      for (Map<String, Object> row : rows) {
+        String dimName = (String) row.get("dName");
+        DimensionNames dimensionName = new DimensionNames(metricName, dimName);
+        dimensionNamesList.add(dimensionName);
+      }
+      return dimensionNamesList;
+    }
+
   }
 }
