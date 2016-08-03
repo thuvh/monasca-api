@@ -1,4 +1,4 @@
-# (C) Copyright 2016 Hewlett Packard Enterprise Development Company LP
+# (C) Copyright 2016 Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -22,6 +22,7 @@ from monasca_tempest_tests.tests.api import helpers
 from tempest.common.utils import data_utils
 from tempest import test
 from tempest.lib import exceptions
+from urllib import urlencode
 
 
 class TestDimensions(base.BaseMonascaTest):
@@ -29,34 +30,47 @@ class TestDimensions(base.BaseMonascaTest):
     @classmethod
     def resource_setup(cls):
         super(TestDimensions, cls).resource_setup()
-        name = data_utils.rand_name()
-        key = data_utils.rand_name()
+        metric_name1 = data_utils.rand_name()
+        name1 = "name_1"
+        name2 = "name_2"
         value1 = "value_1"
         value2 = "value_2"
-        cls._param = key + ':' + value1
-        cls._dimension_name = key
-        cls._dim_val_1 = value1
-        cls._dim_val_2 = value2
-        metric = helpers.create_metric(name=name,
-                                       dimensions={key: value1})
-        cls.monasca_client.create_metrics(metric)
-        metric = helpers.create_metric(name=name,
-                                       dimensions={key: value2})
-        cls.monasca_client.create_metrics(metric)
-        cls._test_metric = metric
 
+        metric1 = helpers.create_metric(name=metric_name1,
+                                        dimensions={name1: value1,
+                                                    name2: value2
+                                                    })
+        cls.monasca_client.create_metrics(metric1)
+        metric1 = helpers.create_metric(name=metric_name1,
+                                        dimensions={name1: value2})
+        cls.monasca_client.create_metrics(metric1)
+        cls._test_metric1 = metric1
+
+        metric_name2 = data_utils.rand_name()
+        name3 = "name_3"
+        value3 = "value_3"
+        metric2 = helpers.create_metric(name=metric_name2,
+                                        dimensions={name3: value3})
+        cls.monasca_client.create_metrics(metric2)
+        cls._test_metric2 = metric2
+        cls._test_metric_names = {metric_name1, metric_name2}
+        cls._dim_names_metric1 = [name1, name2]
+        cls._dim_names_metric2 = [name3]
+        cls._dim_names = cls._dim_names_metric1 + cls._dim_names_metric2
+        cls._dim_values = [value1, value2]
         start_time = str(timeutils.iso8601_from_timestamp(
-                         metric['timestamp'] / 1000.0))
-        parms = '?name=' + str(cls._test_metric['name']) + \
-                '&start_time=' + start_time
+                         metric1['timestamp'] / 1000.0))
 
+        param = '?start_time=' + start_time
+        returned_name_set = set()
         for i in xrange(constants.MAX_RETRIES):
             resp, response_body = cls.monasca_client.list_metrics(
-                parms)
+                param)
             elements = response_body['elements']
             for element in elements:
-                if str(element['name']) == cls._test_metric['name']:
-                    return
+                returned_name_set.add(str(element['name']))
+            if cls._test_metric_names.issubset(returned_name_set):
+                return
             time.sleep(constants.RETRY_WAIT_SECS)
 
         assert False, 'Unable to initialize metrics'
@@ -67,45 +81,56 @@ class TestDimensions(base.BaseMonascaTest):
 
     @test.attr(type='gate')
     def test_list_dimension_values_without_metric_name(self):
-        parms = '?dimension_name=' + self._dimension_name
-        resp, response_body = self.monasca_client.list_dimension_values(parms)
+        param = '?dimension_name=' + self._dim_names[0]
+        resp, response_body = self.monasca_client.list_dimension_values(param)
         self.assertEqual(200, resp.status)
         self.assertTrue(set(['links', 'elements']) == set(response_body))
-        if not self._is_dimension_name_in_list(response_body):
-            self.fail('Dimension name not found in response')
-        if self._is_metric_name_in_list(response_body):
+        if not self._is_dimension_name_in_list(response_body,
+                                               self._dim_names[0]):
+            self.fail('Dimension name {} not found in response'.
+                      format(self._dim_names[0]))
+        if not self._is_metric_name_not_in_list(response_body):
             self.fail('Metric name was in response and should not be')
-        if not self._are_dim_vals_in_list(response_body):
-            self.fail('Dimension value not found in response')
+        response_values = response_body['elements'][0]['values']
+        values = [str(value) for value in response_values]
+        self.assertEqual(values, self._dim_values)
 
     @test.attr(type='gate')
     def test_list_dimension_values_with_metric_name(self):
-        parms = '?metric_name=' + self._test_metric['name']
-        parms += '&dimension_name=' + self._dimension_name
+        parms = '?metric_name=' + self._test_metric1['name']
+        parms += '&dimension_name=' + self._dim_names[0]
         resp, response_body = self.monasca_client.list_dimension_values(parms)
         self.assertEqual(200, resp.status)
         self.assertTrue(set(['links', 'elements']) == set(response_body))
-        if not self._is_metric_name_in_list(response_body):
+        if not self._is_metric_name_in_list(response_body,
+                                            self._test_metric1['name']):
             self.fail('Metric name not found in response')
-        if not self._is_dimension_name_in_list(response_body):
-            self.fail('Dimension name not found in response')
-        if not self._are_dim_vals_in_list(response_body):
-            self.fail('Dimension value not found in response')
+        if not self._is_dimension_name_in_list(response_body,
+                                               self._dim_names[0]):
+            self.fail('Dimension name {} not found in response'.
+                      format(self._dim_names[0]))
+        response_values = response_body['elements'][0]['values']
+        values = [str(value) for value in response_values]
+        self.assertEqual(values, self._dim_values)
 
     @test.attr(type='gate')
     def test_list_dimension_values_limit_and_offset(self):
-        parms = '?dimension_name=' + self._dimension_name
-        parms += '&limit=1'
+        limit = 1
+        parms = '?dimension_name=' + self._dim_names[0]
+        parms += '&limit={}'.format(limit)
         resp, response_body = self.monasca_client.list_dimension_values(parms)
         self.assertEqual(200, resp.status)
         self.assertTrue(set(['links', 'elements']) == set(response_body))
-        if not self._is_dimension_name_in_list(response_body):
-            self.fail('Dimension name not found in response')
-        if not self._is_dim_val_in_list(response_body, self._dim_val_1):
-            self.fail('First dimension value not found in response')
-        if not self._is_offset_in_links(response_body, self._dim_val_1):
+        if not self._is_dimension_name_in_list(response_body,
+                                               self._dim_names[0]):
+            self.fail('Dimension name {} not found in response'.
+                      format(self._dim_names[0]))
+        response_values = response_body['elements'][0]['values']
+        values = [str(value) for value in response_values]
+        self.assertEqual(values, [self._dim_values[0]])
+        if not self._is_offset_in_links(response_body, self._dim_values[0]):
             self.fail('Offset not found in response')
-        if not self._is_limit_in_links(response_body):
+        if not self._is_limit_in_links(response_body, limit):
             self.fail('Limit not found in response')
 
     @test.attr(type='gate')
@@ -114,31 +139,113 @@ class TestDimensions(base.BaseMonascaTest):
         self.assertRaises(exceptions.UnprocessableEntity,
                           self.monasca_client.list_dimension_values)
 
-    def _is_metric_name_in_list(self, response_body):
+    @test.attr(type='gate')
+    def test_list_dimension_names(self):
+        resp, response_body = self.monasca_client.list_dimension_names()
+        self.assertEqual(200, resp.status)
+        self.assertTrue(set(['links', 'elements']) == set(response_body))
+        if not self._is_metric_name_not_in_list(response_body):
+            self.fail('Metric name was in response and should not be')
+        response_names = response_body['elements'][0]['dimension_names']
+        names = [str(value) for value in response_names]
+        self.assertEqual(names, self._dim_names)
+
+    @test.attr(type='gate')
+    def test_list_dimension_names_with_metric_name(self):
+        self._test_list_dimension_names_with_metric_name(
+            self._test_metric1['name'], self._dim_names_metric1)
+        self._test_list_dimension_names_with_metric_name(
+            self._test_metric2['name'], self._dim_names_metric2)
+
+    @test.attr(type='gate')
+    def test_list_dimension_names_limit_and_offset(self):
+        resp, response_body = self.monasca_client.list_dimension_names()
+        self.assertEqual(200, resp.status)
+        elements = response_body['elements'][0]['dimension_names']
+        num_dim_names = len(elements)
+        for limit in xrange(1, num_dim_names):
+            start_index = 0
+            params = [('limit', limit)]
+            offset = None
+            while True:
+                num_expected_elements = limit
+                if (num_expected_elements + start_index) > num_dim_names:
+                    num_expected_elements = num_dim_names - start_index
+
+                these_params = list(params)
+                # If not the first call, use the offset returned by the last
+                # call
+                if offset:
+                    these_params.extend([('offset', str(offset))])
+                query_parms = '?' + urlencode(these_params)
+                resp, response_body = self.monasca_client.list_dimension_names(
+                    query_parms)
+                self.assertEqual(200, resp.status)
+                if not response_body['elements']:
+                    self.fail("No metrics returned")
+                if not response_body['elements'][0]['dimension_names']:
+                    self.fail("No dimension names returned")
+                new_elements = response_body['elements'][0]['dimension_names']
+
+                self.assertEqual(num_expected_elements, len(new_elements))
+                expected_elements = elements[start_index:start_index+limit]
+                self.assertEqual(expected_elements, new_elements)
+                start_index += num_expected_elements
+                if start_index >= num_dim_names:
+                    break
+                # Get the next set
+                offset = self._get_offset(response_body, query_parms)
+
+    @test.attr(type='gate')
+    @test.attr(type=['negative'])
+    def test_list_dimension_names_with_wrong_metric_name(self):
+        self._test_list_dimension_names_with_metric_name(
+            'wrong_metric_name', [])
+
+    def _test_list_dimension_names_with_metric_name(self, metric_name,
+                                                    dimension_names):
+        param = '?metric_name=' + metric_name
+        resp, response_body = self.monasca_client.list_dimension_names(param)
+        self.assertEqual(200, resp.status)
+        self.assertTrue(set(['links', 'elements']) == set(response_body))
+        if self._is_metric_name_not_in_list(response_body):
+            self.fail('Metric name not found in response')
+        self.assertEqual(metric_name,
+                         response_body['elements'][0]['metric_name'])
+        response_names = response_body['elements'][0]['dimension_names']
+        names = [str(value) for value in response_names]
+        self.assertEqual(names, dimension_names)
+
+    def _is_metric_name_in_list(self, response_body, metric_name):
         elements = response_body['elements'][0]
         if 'metric_name' not in elements:
             return False
-        if str(elements['metric_name']) == self._test_metric['name']:
+        if str(elements['metric_name']) == metric_name:
             return True
         return False
 
-    def _is_dimension_name_in_list(self, response_body):
+    def _is_metric_name_not_in_list(self, response_body):
         elements = response_body['elements'][0]
-        if str(elements['dimension_name']) == self._dimension_name:
+        if 'metric_name' not in elements:
+            return True
+        return False
+
+    def _is_dimension_name_in_list(self, response_body, dimension_name):
+        elements = response_body['elements'][0]
+        if str(elements['dimension_name']) == dimension_name:
             return True
         return False
 
     def _are_dim_vals_in_list(self, response_body):
-        elements = response_body['elements'][0]
-        have_dim_1 = self._is_dim_val_in_list(response_body, self._dim_val_1)
-        have_dim_2 = self._is_dim_val_in_list(response_body, self._dim_val_2)
-        if have_dim_1 and have_dim_1:
+        element = response_body['elements'][0]
+        have_dim_1 = self._is_dim_val_in_list(element, self._dim_values[0])
+        have_dim_2 = self._is_dim_val_in_list(element, self._dim_values[1])
+        if have_dim_1 and have_dim_2:
             return True
         return False
 
-    def _is_dim_val_in_list(self, response_body, dim_val):
-        elements = response_body['elements'][0]
-        if dim_val in elements['values']:
+    def _is_dim_val_in_list(self, element, dim_val):
+        if dim_val in element['values']:
             return True
         return False
 
@@ -150,10 +257,9 @@ class TestDimensions(base.BaseMonascaTest):
                 return True
         return False
 
-    def _is_limit_in_links(self, response_body):
+    def _is_limit_in_links(self, response_body, limit):
         links = response_body['links']
-        limit = "limit=1"
         for link in links:
-            if limit in link['href']:
+            if str(limit) in link['href']:
                 return True
         return False
