@@ -1,6 +1,5 @@
-# Copyright 2014 Hewlett-Packard
 # Copyright 2015 Cray Inc. All Rights Reserved.
-# Copyright 2016 Hewlett Packard Enterprise Development Company LP
+# Copyright 2014,2016 Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -398,7 +397,12 @@ def paginate_alarming(resource, uri, limit):
     return resource
 
 
-def paginate_dimension_values(dimvals, uri, offset, limit):
+def paginate_dimension_info(dim_info_list, uri, offset, limit, dim_key):
+    # dim_info_list: a list of dictionaries. For example: for dimension name
+    #  list, [{u'dimension_name': u'name1'}, {u'dimension_name': u'name2'},
+    # {u'dimension_name': u'name3'}]
+    #
+    # dim_key: a string, either 'dimension_name' or 'dimension_value'
 
     parsed_uri = urlparse.urlparse(uri)
     self_link = build_base_uri(parsed_uri)
@@ -407,14 +411,18 @@ def paginate_dimension_values(dimvals, uri, offset, limit):
     if old_query_params:
         self_link += '?' + '&'.join(old_query_params)
 
-    if (dimvals and dimvals[u'values']):
-        have_more, truncated_values = _truncate_dimension_values(dimvals[u'values'],
-                                                                 limit,
-                                                                 offset)
+    names_or_values = _abstract_dim_names_or_values(dim_info_list, dim_key)
+
+    if names_or_values and len(names_or_values) > limit:
+        # names_or_values: a list of strings(either names or values) For
+        # example: ['name1', 'name2', 'name3']
+
+        have_more, truncated_list = _truncate_dimension_values_or_names(
+            dim_info_list, dim_key, limit, offset)
 
         links = [{u'rel': u'self', u'href': self_link.decode('utf8')}]
         if have_more:
-            new_offset = truncated_values[limit - 1]
+            new_offset = truncated_list[limit - 1][dim_key]
             next_link = build_base_uri(parsed_uri)
             new_query_params = [u'offset' + '=' + urlparse.quote(
                 new_offset.encode('utf8'), safe='')]
@@ -426,31 +434,34 @@ def paginate_dimension_values(dimvals, uri, offset, limit):
 
             links.append({u'rel': u'next', u'href': next_link.decode('utf8')})
 
-        truncated_dimvals = {u'id': dimvals[u'id'],
-                             u'dimension_name': dimvals[u'dimension_name'],
-                             u'values': truncated_values}
-        #
-        # Only return metric name if one was provided
-        #
-        if u'metric_name' in dimvals:
-            truncated_dimvals[u'metric_name'] = dimvals[u'metric_name']
-
         resource = {u'links': links,
-                    u'elements': [truncated_dimvals]}
+                    u'elements': truncated_list}
     else:
         resource = {u'links': ([{u'rel': u'self',
                                  u'href': self_link.decode('utf8')}]),
-                    u'elements': [dimvals]}
+                    u'elements': dim_info_list}
 
     return resource
 
 
-def _truncate_dimension_values(values, limit, offset):
-    if offset and offset in values:
-        next_value_pos = values.index(offset) + 1
-        values = values[next_value_pos:]
-    have_more = len(values) > limit
-    return have_more, values[:limit]
+def _truncate_dimension_values_or_names(dim_info_list, dim_key, limit,
+                                        offset):
+    names_or_values = _abstract_dim_names_or_values(dim_info_list, dim_key)
+    if offset and offset in names_or_values:
+        next_value_pos = names_or_values.index(offset) + 1
+        dim_info_list = dim_info_list[next_value_pos:]
+        names_or_values = names_or_values[next_value_pos:]
+    have_more = len(names_or_values) > limit
+    return have_more, dim_info_list[:limit]
+
+
+def _abstract_dim_names_or_values(dim_info_list, dim_key):
+    # Abstract the names or values from dim_info_list and put them into a
+    # separate list.
+    names_or_values = []
+    for i in xrange(len(dim_info_list)):
+        names_or_values.append(dim_info_list[i][dim_key])
+    return names_or_values
 
 
 def paginate_measurement(measurement, uri, limit):
