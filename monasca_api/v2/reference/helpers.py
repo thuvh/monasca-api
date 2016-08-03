@@ -1,6 +1,5 @@
-# Copyright 2014 Hewlett-Packard
 # Copyright 2015 Cray Inc. All Rights Reserved.
-# Copyright 2016 Hewlett Packard Enterprise Development Company LP
+# Copyright 2014,2016 Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -398,8 +397,7 @@ def paginate_alarming(resource, uri, limit):
     return resource
 
 
-def paginate_dimension_values(dimvals, uri, offset, limit):
-
+def paginate_names_or_values(resource_list, uri, offset, limit):
     parsed_uri = urlparse.urlparse(uri)
     self_link = build_base_uri(parsed_uri)
     old_query_params = _get_old_query_params(parsed_uri)
@@ -407,17 +405,20 @@ def paginate_dimension_values(dimvals, uri, offset, limit):
     if old_query_params:
         self_link += '?' + '&'.join(old_query_params)
 
-    if (dimvals and dimvals[u'values']):
-        have_more, truncated_values = _truncate_dimension_values(dimvals[u'values'],
-                                                                 limit,
-                                                                 offset)
+    metric_names = _abstract_dictionary_values(resource_list)
+
+    if metric_names:
+        # Truncate metric names list with offset first
+        truncated_list_offset = _truncate_with_offset(resource_list, offset)
+
+        # Then truncate it with limit
+        truncated_list_offset_limit = truncated_list_offset[:limit]
 
         links = [{u'rel': u'self', u'href': self_link.decode('utf8')}]
-        if have_more:
-            new_offset = truncated_values[limit - 1]
+        if len(truncated_list_offset) > limit:
+            new_offset = truncated_list_offset_limit[limit - 1].values()[0]
             next_link = build_base_uri(parsed_uri)
-            new_query_params = [u'offset' + '=' + urlparse.quote(
-                new_offset.encode('utf8'), safe='')]
+            new_query_params = [u'offset' + '=' + new_offset]
 
             _get_old_query_params_except_offset(new_query_params, parsed_uri)
 
@@ -426,31 +427,39 @@ def paginate_dimension_values(dimvals, uri, offset, limit):
 
             links.append({u'rel': u'next', u'href': next_link.decode('utf8')})
 
-        truncated_dimvals = {u'id': dimvals[u'id'],
-                             u'dimension_name': dimvals[u'dimension_name'],
-                             u'values': truncated_values}
-        #
-        # Only return metric name if one was provided
-        #
-        if u'metric_name' in dimvals:
-            truncated_dimvals[u'metric_name'] = dimvals[u'metric_name']
-
         resource = {u'links': links,
-                    u'elements': [truncated_dimvals]}
+                    u'elements': truncated_list_offset_limit}
     else:
         resource = {u'links': ([{u'rel': u'self',
                                  u'href': self_link.decode('utf8')}]),
-                    u'elements': [dimvals]}
+                    u'elements': resource_list}
 
     return resource
 
 
-def _truncate_dimension_values(values, limit, offset):
-    if offset and offset in values:
-        next_value_pos = values.index(offset) + 1
-        values = values[next_value_pos:]
-    have_more = len(values) > limit
-    return have_more, values[:limit]
+def _abstract_dictionary_values(dictionary_list):
+    """Abstract the dictionary values from a list of dictionaries and put them
+       into a separate list.
+    """
+    value_list = []
+    for item in dictionary_list:
+        value_list.extend(item.values())
+    return value_list
+
+
+def _truncate_with_offset(resource, offset):
+    """Truncate a list of dictionaries with a given offset.
+    """
+    value_list = _abstract_dictionary_values(resource)
+    if offset:
+        next_value_pos = 0
+        for i, j in enumerate(value_list):
+            if j > offset:
+                next_value_pos = i
+                break
+        resource = resource[next_value_pos:]
+
+    return resource
 
 
 def paginate_measurement(measurement, uri, limit):
