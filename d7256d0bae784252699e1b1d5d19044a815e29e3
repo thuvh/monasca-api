@@ -46,6 +46,99 @@
       "revId": "d7256d0bae784252699e1b1d5d19044a815e29e3",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_7d04aac5",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2016-08-03T12:42:55Z",
+      "side": 1,
+      "message": "Sounds good to me.",
+      "parentUuid": "bacf61ea_81d94986",
+      "range": {
+        "startLine": 36,
+        "startChar": 6,
+        "endLine": 36,
+        "endChar": 23
+      },
+      "revId": "d7256d0bae784252699e1b1d5d19044a815e29e3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_8003f575",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2016-08-03T12:42:55Z",
+      "side": 1,
+      "message": "I would go for\n [\"%s\"] * len(metric_hash_list)",
+      "range": {
+        "startLine": 275,
+        "startChar": 24,
+        "endLine": 275,
+        "endChar": 68
+      },
+      "revId": "d7256d0bae784252699e1b1d5d19044a815e29e3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_d3077ec7",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 572,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2016-08-03T12:42:55Z",
+      "side": 1,
+      "message": "see above",
+      "range": {
+        "startLine": 572,
+        "startChar": 28,
+        "endLine": 572,
+        "endChar": 69
+      },
+      "revId": "d7256d0bae784252699e1b1d5d19044a815e29e3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_33e7fae5",
+        "filename": "requirements.txt",
+        "patchSetId": 25
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2016-08-03T12:42:55Z",
+      "side": 1,
+      "message": "global-requirements use cassandra-driver\u003e\u003d2.1.4,!\u003d3.6.0 Can we take the same, or is there a reason to stick with 3.5?",
+      "range": {
+        "startLine": 17,
+        "startChar": 1,
+        "endLine": 17,
+        "endChar": 24
+      },
+      "revId": "d7256d0bae784252699e1b1d5d19044a815e29e3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
