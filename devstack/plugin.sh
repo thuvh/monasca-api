@@ -1190,6 +1190,16 @@ function install_monasca_notification {
     sudo apt-get -y install python-mysqldb
     sudo apt-get -y install libmysqlclient-dev
 
+    if [[ ! -d "${MONASCA_BASE}"/monasca-statsd ]]; then
+
+        sudo git clone https://git.openstack.org/openstack/monasca-statsd "${MONASCA_BASE}"/monasca-statsd
+
+    fi
+
+    (cd "${MONASCA_BASE}"/monasca-statsd ; sudo python setup.py sdist)
+
+    MONASCA_STATSD_SRC_DIST=$(ls -td "$MONASCA_BASE"/monascastatsd/dist/monascastatsd*.tar.gz | head -1)
+
     if [[ ! -d "${MONASCA_BASE}"/monasca-notification ]]; then
 
         sudo git clone https://git.openstack.org/openstack/monasca-notification "${MONASCA_BASE}"/monasca-notification
@@ -1205,6 +1215,8 @@ function install_monasca_notification {
     pip_install --allow-unverified simport $MONASCA_NOTIFICATION_SRC_DIST
 
     pip_install mysql-python
+
+    (cd /opt/monasca-notification ; ./bin/pip install $MONASCA_STATSD_SRC_DIST)
 
     unset PIP_VIRTUAL_ENV
 
