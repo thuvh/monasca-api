@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bacf61ea_b472777a",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2016-08-04T12:27:58Z",
+      "side": 1,
+      "message": "It would be better to use the \u0027apt_get_update\u0027 wrapper instead.",
+      "range": {
+        "startLine": 574,
+        "startChar": 4,
+        "endLine": 574,
+        "endChar": 23
+      },
+      "revId": "44f2570c89708056b01ff229e6e01aaeb1bd32e1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_d4672bb5",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2016-08-04T12:27:58Z",
+      "side": 1,
+      "message": "\u0027apt_get\u0027",
+      "range": {
+        "startLine": 575,
+        "startChar": 4,
+        "endLine": 575,
+        "endChar": 16
+      },
+      "revId": "44f2570c89708056b01ff229e6e01aaeb1bd32e1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_cf531838",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 580,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2016-08-04T12:27:58Z",
+      "side": 1,
+      "message": "Could you put this section into the following block:\n  if [[ \"$OFFLINE\" !\u003d \"True\" ]]; then\n\n  fi",
+      "range": {
+        "startLine": 577,
+        "startChar": 4,
+        "endLine": 580,
+        "endChar": 106
+      },
+      "revId": "44f2570c89708056b01ff229e6e01aaeb1bd32e1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
