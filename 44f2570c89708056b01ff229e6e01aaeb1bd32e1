@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bacf61ea_ae097886",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-08-04T16:34:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bacf61ea_b472777a",
+      "range": {
+        "startLine": 574,
+        "startChar": 4,
+        "endLine": 574,
+        "endChar": 23
+      },
+      "revId": "44f2570c89708056b01ff229e6e01aaeb1bd32e1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bacf61ea_d4672bb5",
         "filename": "devstack/plugin.sh",
         "patchSetId": 3
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "bacf61ea_ee27f00f",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-08-04T16:34:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bacf61ea_d4672bb5",
+      "range": {
+        "startLine": 575,
+        "startChar": 4,
+        "endLine": 575,
+        "endChar": 16
+      },
+      "revId": "44f2570c89708056b01ff229e6e01aaeb1bd32e1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bacf61ea_cf531838",
         "filename": "devstack/plugin.sh",
         "patchSetId": 3
@@ -59,6 +107,30 @@
       "writtenOn": "2016-08-04T12:27:58Z",
       "side": 1,
       "message": "Could you put this section into the following block:\n  if [[ \"$OFFLINE\" !\u003d \"True\" ]]; then\n\n  fi",
+      "range": {
+        "startLine": 577,
+        "startChar": 4,
+        "endLine": 580,
+        "endChar": 106
+      },
+      "revId": "44f2570c89708056b01ff229e6e01aaeb1bd32e1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_ce24ac0e",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 580,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-08-04T16:34:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bacf61ea_cf531838",
       "range": {
         "startLine": 577,
         "startChar": 4,
