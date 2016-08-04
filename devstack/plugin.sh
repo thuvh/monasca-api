@@ -65,7 +65,34 @@ else
 fi
 
 function pre_install_monasca {
-:
+    # Setup all virtual environments with necessary libraries
+
+    download_monasca_libs
+
+    install_monasca_virtual_env
+
+    if [[ "${MONASCA_API_IMPLEMENTATION_LANG,,}" == 'python' ]]; then
+
+        install_monasca_api_python_virtual_env
+
+    fi
+
+    if is_service_enabled monasca-persister; then
+        if [[ "${MONASCA_PERSISTER_IMPLEMENTATION_LANG,,}" == 'python' ]]; then
+
+            install_monasca_persister_python_virtual_env
+
+        fi
+    fi
+
+    if is_service_enabled monasca-notification; then
+        install_monasca_notification_virtual_env
+    fi
+
+    install_monasca_agent_virtual_env
+
+    install_standard_libs
+
 }
 
 function install_monasca {
@@ -94,8 +121,6 @@ function install_monasca {
     install_git
 
     update_maven
-
-    install_monasca_virtual_env
 
     install_openjdk_7_jdk
 
@@ -347,17 +372,153 @@ function clean_monasca {
     set -o errexit
 }
 
+function download_monasca_libs {
+
+    sudo mkdir -p /opt/monasca || true
+
+    if [[ ! -d "${MONASCA_BASE}"/monasca-common ]]; then
+
+        sudo git clone https://git.openstack.org/openstack/monasca-common "${MONASCA_BASE}"/monasca-common
+
+    fi
+
+    (cd "${MONASCA_BASE}"/monasca-common ; sudo python setup.py sdist)
+
+    MONASCA_COMMON_SRC_DIST=$(ls -td "$MONASCA_BASE"/monasca-common/dist/monasca-common*.tar.gz | head -1)
+
+    if [[ ! -d "${MONASCA_BASE}"/monasca-statsd ]]; then
+
+        sudo git clone https://git.openstack.org/openstack/monasca-statsd "${MONASCA_BASE}"/monasca-statsd
+
+    fi
+
+    (cd "${MONASCA_BASE}"/monasca-statsd ; sudo python setup.py sdist)
+
+    MONASCA_STATSD_SRC_DIST=$(ls -td "$MONASCA_BASE"/monasca-statsd/dist/monasca-statsd*.tar.gz | head -1)
+
+}
+
+function install_standard_libs {
+
+    sudo apt-get -y install build-essential
+    sudo apt-get -y install dialog
+    sudo apt-get -y install libxml2-dev
+    sudo apt-get -y install libxslt1-dev
+    sudo apt-get -y install python-dev
+    sudo apt-get -y install python-yaml
+    sudo apt-get -y install zookeeperd
+
+}
+
 function install_monasca_virtual_env {
 
     echo_summary "Install Monasca Virtual Environment"
 
     sudo groupadd --system monasca || true
 
-    sudo mkdir -p /opt/monasca || true
-
     sudo chown $STACK_USER:monasca /opt/monasca
 
     (cd /opt/monasca ; virtualenv .)
+
+    PIP_VIRTUAL_ENV=/opt/monasca
+
+    sudo pip install $MONASCA_COMMON_SRC_DIST
+
+    sudo pip install $MONASCA_STATSD_SRC_DIST
+
+    unset PIP_VIRTUAL_ENV
+}
+
+function install_monasca_notification_virtual_env {
+
+    sudo apt-get -y install python-mysqldb
+    sudo apt-get -y install libmysqlclient-dev
+
+    sudo mkdir -p /opt/monasca-notification/
+
+    sudo chown $STACK_USER:monasca /opt/monasca-notification
+
+    (cd /opt/monasca-notification ; virtualenv .)
+
+    PIP_VIRTUAL_ENV=/opt/monasca-notification
+
+    pip_install mysql-python
+
+    sudo pip install $MONASCA_COMMON_SRC_DIST
+
+    sudo pip install $MONASCA_STATSD_SRC_DIST
+
+    unset PIP_VIRTUAL_ENV
+
+    sudo debconf-set-selections <<< "postfix postfix/mailname string localhost"
+
+    sudo debconf-set-selections <<< "postfix postfix/main_mailer_type string 'Local only'"
+
+    sudo apt-get -y install mailutils
+
+}
+
+function install_monasca_agent_virtual_env {
+
+    sudo mkdir -p /opt/monasca-agent/
+
+    sudo chown $STACK_USER:monasca /opt/monasca-agent
+
+    (cd /opt/monasca-agent ; sudo virtualenv .)
+
+    PIP_VIRTUAL_ENV=/opt/
+
+    sudo pip install $MONASCA_COMMON_SRC_DIST
+
+    sudo pip install $MONASCA_STATSD_SRC_DIST
+
+    unset PIP_VIRTUAL_ENV
+
+}
+
+function install_monasca_api_python_virtual_env {
+
+    sudo apt-get -y install libmysqlclient-dev
+
+    sudo mkdir -p /opt/monasca-api
+
+    sudo chown $STACK_USER:monasca /opt/monasca-api
+
+    (cd /opt/monasca-api; virtualenv .)
+
+    PIP_VIRTUAL_ENV=/opt/monasca-api
+
+    pip_install gunicorn
+    pip_install PyMySQL
+    pip_install influxdb==2.8.0
+    pip_install cassandra-driver>=2.1.4,!=3.6.0
+
+    sudo pip install $MONASCA_COMMON_SRC_DIST
+
+    sudo pip install $MONASCA_STATSD_SRC_DIST
+
+    unset PIP_VIRTUAL_ENV
+}
+
+function install_monasca_persister_python_virtual_env {
+
+    sudo mkdir -p /opt/monasca-persister || true
+
+    sudo chown $STACK_USER:monasca /opt/monasca-persister
+
+    (cd /opt/monasca-persister ; virtualenv .)
+
+    PIP_VIRTUAL_ENV=/opt/monasca-persister
+
+    pip_install influxdb==2.8.0
+    pip_install cassandra-driver>=2.1.4,!=3.6.0
+
+    sudo pip install $MONASCA_COMMON_SRC_DIST
+
+    sudo pip install $MONASCA_STATSD_SRC_DIST
+
+    unset PIP_VIRTUAL_ENV
+
 }
 
 function clean_monasca_virtual_env {
@@ -373,8 +534,6 @@ function clean_monasca_virtual_env {
 function install_zookeeper {
 
     echo_summary "Install Monasca Zookeeper"
-
-    sudo apt-get -y install zookeeperd
 
     sudo cp "${MONASCA_BASE}"/monasca-api/devstack/files/zookeeper/zoo.cfg /etc/zookeeper/conf/zoo.cfg
 
@@ -539,8 +698,6 @@ function install_monasca_vertica {
     echo_summary "Install Monasca Vertica"
 
     # sudo mkdir -p /opt/monasca_download_dir || true
-
-    sudo apt-get -y install dialog
 
     sudo dpkg --skip-same-version -i /vagrant_home/vertica_${VERTICA_VERSION}_amd64.deb
 
@@ -926,21 +1083,7 @@ function install_monasca_api_python {
 
     echo_summary "Install Monasca monasca_api_python"
 
-    sudo apt-get -y install python-dev
-    sudo apt-get -y install libmysqlclient-dev
-
-    sudo mkdir -p /opt/monasca-api
-
-    sudo chown $STACK_USER:monasca /opt/monasca-api
-
-    (cd /opt/monasca-api; virtualenv .)
-
     PIP_VIRTUAL_ENV=/opt/monasca-api
-
-    pip_install gunicorn
-    pip_install PyMySQL
-    pip_install influxdb==2.8.0
-    pip_install cassandra-driver>=2.1.4,!=3.6.0
 
     (cd "${MONASCA_BASE}"/monasca-api ; sudo python setup.py sdist)
 
@@ -1155,17 +1298,9 @@ function install_monasca_persister_python {
 
     MONASCA_PERSISTER_SRC_DIST=$(ls -td "${MONASCA_BASE}"/monasca-persister/dist/monasca-persister-*.tar.gz | head -1)
 
-    sudo mkdir -p /opt/monasca-persister || true
-
-    sudo chown $STACK_USER:monasca /opt/monasca-persister
-
-    (cd /opt/monasca-persister ; virtualenv .)
-
     PIP_VIRTUAL_ENV=/opt/monasca-persister
 
     pip_install $MONASCA_PERSISTER_SRC_DIST
-    pip_install influxdb==2.8.0
-    pip_install cassandra-driver>=2.1.4,!=3.6.0
 
     unset PIP_VIRTUAL_ENV
 
@@ -1301,11 +1436,12 @@ function install_monasca_notification {
 
     MONASCA_NOTIFICATION_SRC_DIST=$(ls -td "${MONASCA_BASE}"/monasca-notification/dist/monasca-notification-*.tar.gz | head -1)
 
-    PIP_VIRTUAL_ENV=/opt/monasca
+    PIP_VIRTUAL_ENV=/opt/monasca-notification
 
     pip_install $MONASCA_NOTIFICATION_SRC_DIST
 
-    pip_install mysql-python
+    # Debug line ~ Need to Remove ~ #
+    (cd $PIP_VIRTUAL_ENV ; ./bin/pip list)
 
     unset PIP_VIRTUAL_ENV
 
@@ -1352,6 +1488,9 @@ function install_monasca_notification {
 
     sudo apt-get -y install mailutils
 
+    # Debug line ~ Need to Remove ~ #
+    (cd $PIP_VIRTUAL_ENV ; ./bin/pip list)
+
     sudo start monasca-notification || sudo restart monasca-notification
 
 }
@@ -1368,9 +1507,11 @@ function clean_monasca_notification {
 
     sudo userdel mon-notification
 
-    sudo rm -rf /opt/monasca/monasca-notification
+    sudo rm -rf /opt/monasca-notification/monasca-notification
 
     sudo rm /var/log/upstart/monasca-notification.log*
+
+    sudo rm -rf /opt/monasca-notification
 
     sudo apt-get -y purge libmysqlclient-dev
     sudo apt-get -y purge python-mysqldb
@@ -1553,8 +1694,6 @@ function install_monasca_keystone_client {
 
     echo_summary "Install Monasca Keystone Client"
 
-    sudo apt-get -y install python-dev
-
     PIP_VIRTUAL_ENV=/opt/monasca
 
     pip_install python-keystoneclient
@@ -1594,12 +1733,6 @@ function install_monasca_agent {
 
     echo_summary "Install Monasca monasca_agent"
 
-    sudo apt-get -y install python-dev
-    sudo apt-get -y install python-yaml
-    sudo apt-get -y install build-essential
-    sudo apt-get -y install libxml2-dev
-    sudo apt-get -y install libxslt1-dev
-
     if [[ ! -d "${MONASCA_BASE}"/python-monascaclient ]]; then
 
         sudo git clone https://git.openstack.org/openstack/python-monascaclient "${MONASCA_BASE}"/python-monascaclient
@@ -1620,17 +1753,9 @@ function install_monasca_agent {
 
     MONASCA_AGENT_SRC_DIST=$(ls -td "${MONASCA_BASE}"/monasca-agent/dist/monasca-agent-*.tar.gz | head -1)
 
-    sudo mkdir -p /opt/monasca-agent/
-
-    (cd /opt/monasca-agent ; sudo virtualenv .)
-
     (cd /opt/monasca-agent ; sudo ./bin/pip install $MONASCA_AGENT_SRC_DIST)
 
     (cd /opt/monasca-agent ; sudo ./bin/pip install $MONASCA_CLIENT_SRC_DIST)
-
-    (cd /opt/monasca-agent ; sudo ./bin/pip install kafka-python==0.9.2)
-
-    sudo chown $STACK_USER:monasca /opt/monasca-agent
 
     sudo mkdir -p /etc/monasca/agent/conf.d || true
 
@@ -1780,7 +1905,7 @@ function install_monasca_horizon_ui {
 
     fi
 
-    sudo pip install python-monascaclient
+    sudo pip install $MONASCA_CLIENT_SRC_DIST
 
     sudo ln -sf "${MONASCA_BASE}"/monasca-ui/monitoring/enabled/_50_admin_add_monitoring_panel.py "${MONASCA_BASE}"/horizon/openstack_dashboard/local/enabled/_50_admin_add_monitoring_panel.py
 
