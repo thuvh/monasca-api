@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bacf61ea_4e9b9c18",
+        "filename": "monasca_tempest_tests/tests/api/test_read_only_role.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-08-04T16:22:35Z",
+      "side": 1,
+      "message": "As this is a completely new file, I don\u0027t think it shoudl be copyright HPE.",
+      "revId": "c818c815d32f9e4d3368dbe3716bb784f00a780a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
