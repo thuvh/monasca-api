@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014,2016 Hewlett-Packard Development Company, L.P.
+ * (C) Copyright 2014,2016 Hewlett Packard Enterprise Development LP
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -58,7 +58,7 @@ public class StatisticResourceTest extends AbstractMonApiResourceTest {
         .header("X-Tenant-Id", "abc").get(ClientResponse.class);
     verify(statisticRepo).find(anyString(), anyString(), any(Map.class), any(DateTime.class),
         any(DateTime.class), any(List.class), anyInt(), any(String.class), anyInt(),
-        anyBoolean(), anyString());
+        anyBoolean(), any(List.class));
   }
 
   public void queryShouldThrowOnInvalidDateFormat() throws Exception {
