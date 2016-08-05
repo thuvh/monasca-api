@@ -513,12 +513,14 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
         return offset_clause
 
     def _build_group_by_clause(self, group_by, period=None):
+        if not isinstance(group_by, list):
+            group_by = str(group_by).split(',')
         if group_by or period:
             items = []
             if period:
                 items.append("time(" + str(period) + "s)")
             if group_by:
-                items.append('*')
+                items.extend(group_by)
             clause = " group by " + ','.join(items)
         else:
             clause = ""
