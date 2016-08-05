@@ -27,13 +27,13 @@ import org.joda.time.format.ISODateTimeFormat;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.ws.rs.WebApplicationException;
 
-import monasca.api.domain.model.alarm.Alarm;
 import monasca.api.resource.exception.Exceptions;
 import monasca.common.model.alarm.AlarmSeverity;
 
@@ -193,11 +193,21 @@ public final class Validation {
     }
   }
 
-  public static void validateMetricsGroupBy(String groupBy) {
+  public static List<String> parseAndValidateMetricsGroupBy(String groupBy) {
 
-    if (!Strings.isNullOrEmpty(groupBy) && !"*".equals(groupBy)) {
-      throw Exceptions.unprocessableEntity("Invalid group_by", "Group_by must be '*' if specified");
+    List<String> groupByList;
+
+    if (!Strings.isNullOrEmpty(groupBy)) {
+      groupByList = COMMA_SPLITTER.splitToList(groupBy);
+
+      if (!groupByList.isEmpty() && groupByList.contains("*")) {
+        groupByList = Collections.singletonList("*");
+      }
+    } else {
+      groupByList = new ArrayList<>();
     }
+
+    return groupByList;
   }
 
   public static void validateLifecycleState(String lifecycleState) {

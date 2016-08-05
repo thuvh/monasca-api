@@ -127,3 +127,35 @@ def get_query_param(uri, query_param_name):
         if query_param_name == parsed_query_name:
             query_param_val = parsed_query_val
     return query_param_val
+
+
+def get_expected_elements_inner_offset_limit(all_elements, offset, limit, inner_key):
+    expected_elements = []
+    total_statistics = 0
+
+    offset_id, offset_time = offset.split('_') if offset is not None else (None, None)
+    for element in all_elements:
+        element_id = element['id']
+        if offset is not None and element_id < offset_id:
+            continue
+        next_element = None
+        for statistic in element[inner_key]:
+            if offset is None or \
+                    (element_id == offset_id and statistic[0] > offset_time) or \
+                            element_id > offset_id:
+
+                if not next_element:
+                    next_element = element.copy()
+                    next_element[inner_key] = [statistic]
+                else:
+                    next_element[inner_key].append(statistic)
+                total_statistics += 1
+            if total_statistics >= limit:
+                if next_element:
+                    expected_elements.append(next_element)
+                return expected_elements
+
+        if next_element:
+            expected_elements.append(next_element)
+
+    return expected_elements
