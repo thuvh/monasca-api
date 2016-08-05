@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 Hewlett-Packard Development Company, L.P.
+ * (C) Copyright 2014,2016 Hewlett Packard Enterprise Development LP
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -23,7 +23,7 @@ import monasca.common.model.domain.common.AbstractEntity;
 /**
  * Encapsulates a metric measurements.
  */
-public class Measurements extends AbstractEntity {
+public class Measurements extends AbstractEntity implements Comparable<Measurements> {
   private static final List<String> COLUMNS = Arrays.asList("timestamp", "value", "value_meta");
 
   protected String name;
@@ -130,5 +130,10 @@ public class Measurements extends AbstractEntity {
   public String toString() {
     return String.format("Measurement [name=%s, dimensions=%s, measurements=%s]", name, dimensions,
         measurements);
+  }
+
+  @Override
+  public int compareTo(Measurements other) {
+    return this.id.compareTo(other.getId());
   }
 }

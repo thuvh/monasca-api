@@ -1,4 +1,4 @@
-# (C) Copyright 2014, 2016 Hewlett Packard Enterprise Development LP
+# (C) Copyright 2014,2016 Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -182,7 +182,7 @@ class MetricsMeasurements(metrics_api_v2.MetricsMeasurementsV2API):
         offset = helpers.get_query_param(req, 'offset')
         limit = helpers.get_limit(req)
         merge_metrics_flag = get_merge_metrics_flag(req)
-        group_by = helpers.get_query_param(req, "group_by")
+        group_by = helpers.get_query_group_by(req)
 
         result = self._measurement_list(tenant_id, name, dimensions,
                                         start_timestamp, end_timestamp,
@@ -243,7 +243,7 @@ class MetricsStatistics(metrics_api_v2.MetricsStatisticsV2API):
         offset = helpers.get_query_param(req, 'offset')
         limit = helpers.get_limit(req)
         merge_metrics_flag = get_merge_metrics_flag(req)
-        group_by = helpers.get_query_param(req, "group_by")
+        group_by = helpers.get_query_group_by(req)
 
         result = self._metric_statistics(tenant_id, name, dimensions,
                                          start_timestamp, end_timestamp,
