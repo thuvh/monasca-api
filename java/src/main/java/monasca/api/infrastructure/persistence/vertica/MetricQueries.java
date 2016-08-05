@@ -18,10 +18,7 @@ import com.google.common.base.Splitter;
 import com.google.common.base.Strings;
 
 import java.sql.Timestamp;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.joda.time.DateTime;
 import org.skife.jdbi.v2.Handle;
@@ -35,8 +32,8 @@ import monasca.api.domain.model.measurement.Measurements;
  */
 final class MetricQueries {
   private static final Splitter BAR_SPLITTER = Splitter.on('|').omitEmptyStrings().trimResults();
-  private static final char OFFSET_SEPARATOR = '_';
-  private static final Splitter offsetSplitter = Splitter.on(OFFSET_SEPARATOR).omitEmptyStrings().trimResults();
+  private static final Splitter UNDERSCORE_SPLITTER = Splitter.on('_').omitEmptyStrings().trimResults();
+  private static final Splitter COMMA_SPLITTER = Splitter.on(',').omitEmptyStrings().trimResults();
 
   static final String FIND_METRIC_DEFS_SQL =
       "SELECT %s TO_HEX(defDims.id) as defDimsId, def.name, dims.name as dName, dims.value AS dValue "
@@ -180,7 +177,7 @@ final class MetricQueries {
   }
 
   static void bindOffsetToQuery(Query<Map<String, Object>> query, String offset) {
-    List<String> offsets =  offsetSplitter.splitToList(offset);
+    List<String> offsets =  UNDERSCORE_SPLITTER.splitToList(offset);
     if (offsets.size() > 1) {
       query.bind("offset_id", offsets.get(0));
       query.bind("offset_timestamp",
@@ -279,6 +276,60 @@ final class MetricQueries {
 
       }
 
+    }
+  }
+
+  static List<String> parseGroupBy(String groupBy) {
+    if (Strings.isNullOrEmpty(groupBy))
+      return new ArrayList<>();
+
+    return COMMA_SPLITTER.splitToList(groupBy);
+  }
+
+  static Map<String, String> combineGroupByAndValues(List<String> groupBy, String valueStr) {
+    List<String> values = COMMA_SPLITTER.splitToList(valueStr);
+    Map<String, String> newDimensions = new HashMap<>();
+    for (int i = 0; i < groupBy.size(); i++) {
+      newDimensions.put(groupBy.get(i), values.get(i));
+    }
+    return newDimensions;
+  }
+
+  static String buildGroupByConcatString(List<String> groupBy) {
+    if (groupBy.isEmpty() || "*".equals(groupBy.get(0)))
+      return "";
+
+    String select = "(";
+    for (int i = 0; i < groupBy.size(); i++) {
+      if (i > 0)
+        select += " || ',' || ";
+      select += "gb" + i + ".value";
+    }
+    select += ") as dimension_values, ";
+    return select;
+  }
+
+  static String buildGroupBySql(List<String> groupBy) {
+    if (groupBy.isEmpty() || "*".equals(groupBy.get(0)))
+      return "";
+
+    StringBuilder groupBySql = new StringBuilder(
+            " JOIN MonMetrics.DefinitionDimensions as dd on dd.id = mes.definition_dimensions_id ");
+
+    for (int i = 0; i < groupBy.size(); i++) {
+      groupBySql.append("JOIN (SELECT dimension_set_id,value FROM MonMetrics.Dimensions WHERE name = ");
+      groupBySql.append(":groupBy").append(i).append(") as gb").append(i);
+      groupBySql.append(" ON gb").append(i).append(".dimension_set_id = dd.dimension_set_id ");
+    }
+
+    return groupBySql.toString();
+  }
+
+  static void bindGroupBy(Query<Map<String, Object>> query, List<String> groupBy) {
+    int i = 0;
+    for (String value: groupBy) {
+      query.bind("groupBy" + i, value);
+      i++;
     }
   }
 }

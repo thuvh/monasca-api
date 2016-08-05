@@ -22,11 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.annotation.Nullable;
 import javax.inject.Inject;
@@ -50,9 +46,11 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
       ISODateTimeFormat.dateTime().withZoneUTC();
 
   private static final String FIND_BY_METRIC_DEF_SQL =
-      "SELECT %s to_hex(mes.definition_dimensions_id) as def_dims_id, "
+      "SELECT %s " // db hint to satisfy query
+      + "%s to_hex(mes.definition_dimensions_id) as def_dims_id, " // select for groupBy if present
       + "mes.time_stamp, mes.value, mes.value_meta "
       + "FROM MonMetrics.Measurements mes "
+      + "%s" // joins for group by
       + "WHERE mes.time_stamp >= :startTime "
       + "%s " // endtime and offset here
       + "AND TO_HEX(definition_dimensions_id) IN (%s) " // id subquery here
@@ -86,34 +84,42 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
       @Nullable String offset,
       int limit,
       Boolean mergeMetricsFlag,
-      String groupBy) throws MultipleMetricsException {
+      List<String> groupBy) throws MultipleMetricsException {
 
     try (Handle h = db.open()) {
 
       Map<String, Measurements> results = new HashMap<>();
 
-      if (!"*".equals(groupBy) && !Boolean.TRUE.equals(mergeMetricsFlag)) {
+      if (groupBy.isEmpty() && !Boolean.TRUE.equals(mergeMetricsFlag)) {
         MetricQueries.checkForMultipleDefinitions(h, tenantId, name, dimensions);
       }
  
-      StringBuilder sb = new StringBuilder();
+      StringBuilder endtimeAndOffsetSql = new StringBuilder();
 
       if (endTime != null) {
 
-        sb.append(" and mes.time_stamp <= :endTime");
+        endtimeAndOffsetSql.append(" and mes.time_stamp <= :endTime");
 
       }
 
+      String concatGroupByString = MetricQueries.buildGroupByConcatString(groupBy);
+
       if (offset != null && !offset.isEmpty()) {
 
-        if ("*".equals(groupBy)) {
+        if (!groupBy.isEmpty() && "*".equals(groupBy.get(0))) {
 
-          sb.append(" and (TO_HEX(mes.definition_dimensions_id) > :offset_id "
+          endtimeAndOffsetSql.append(" and (TO_HEX(mes.definition_dimensions_id) > :offset_id "
                     + "or (TO_HEX(mes.definition_dimensions_id) = :offset_id and mes.time_stamp > :offset_timestamp)) ");
+
+        } else if (!groupBy.isEmpty()){
+
+          endtimeAndOffsetSql.append(" and (").append(concatGroupByString)
+                  .append(" > :offset_id or (").append(concatGroupByString)
+                  .append(" = :offset_id and mes.time_stamp > :offset_id)) ");
 
         } else {
 
-          sb.append(" and mes.time_stamp > :offset_timestamp ");
+          endtimeAndOffsetSql.append(" and mes.time_stamp > :offset_timestamp ");
 
         }
 
@@ -122,17 +128,23 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
       String orderById = "";
       if (Boolean.FALSE.equals(mergeMetricsFlag)) {
 
-        orderById = "mes.definition_dimensions_id,";
-
+        for (int i = 0; i < groupBy.size(); i++) {
+          orderById += "gb" + i + ".value,";
+        }
+        if (orderById.isEmpty())
+          orderById += "mes.definition_dimensions_id,";
       }
 
+      String sql = String.format(
+              FIND_BY_METRIC_DEF_SQL,
+              this.dbHint,
+              concatGroupByString,
+              MetricQueries.buildGroupBySql(groupBy),
+              endtimeAndOffsetSql,
+              MetricQueries.buildMetricDefinitionSubSql(name, dimensions, null, null),
+              orderById);
 
-      String sql = String.format(FIND_BY_METRIC_DEF_SQL,
-                                 this.dbHint,
-                                 sb,
-                                 MetricQueries.buildMetricDefinitionSubSql(name, dimensions,
-                                                                           null, null),
-                                 orderById);
+      logger.debug(sql);
 
       Query<Map<String, Object>> query = h.createQuery(sql)
               .bind("tenantId", tenantId)
@@ -152,6 +164,12 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
 
       }
 
+      if (!groupBy.isEmpty()) {
+        logger.debug("binding groupBy: {}", groupBy);
+
+        MetricQueries.bindGroupBy(query, groupBy);
+      }
+
       if (offset != null && !offset.isEmpty()) {
         logger.debug("binding offset: {}", offset);
 
@@ -165,7 +183,7 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
         return new ArrayList<>();
       }
 
-      if ("*".equals(groupBy)) {
+      if (!groupBy.isEmpty() && "*".equals(groupBy.get(0))) {
 
         String currentDefId = null;
 
@@ -185,6 +203,31 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
         }
 
         MetricQueries.addDefsToResults(results, h, this.dbHint);
+
+      } else if (!groupBy.isEmpty()) {
+
+        String currentId = null;
+
+        for (Map<String, Object> row : rows) {
+
+          String dimensionValues = (String) row.get("dimension_values");
+
+          if (dimensionValues != null && !dimensionValues.equals(currentId)) {
+            currentId = dimensionValues;
+
+            Measurements tmp = new Measurements();
+            tmp.setId(dimensionValues);
+            tmp.setName(name);
+            tmp.setDimensions(MetricQueries.combineGroupByAndValues(groupBy, dimensionValues));
+
+            results.put(dimensionValues, tmp);
+          }
+
+          List<Object> measurement = parseRow(row);
+
+          results.get(dimensionValues).addMeasurement(measurement);
+
+        }
 
       } else {
 
@@ -216,7 +259,10 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
 
       }
 
-      return new ArrayList<>(results.values());
+      List<Measurements> returnValue = new ArrayList<>(results.values());
+      Collections.sort(returnValue);
+
+      return returnValue;
     }
   }
 
