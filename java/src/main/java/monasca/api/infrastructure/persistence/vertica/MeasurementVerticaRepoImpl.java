@@ -86,7 +86,9 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
       @Nullable String offset,
       int limit,
       Boolean mergeMetricsFlag,
-      String groupBy) throws MultipleMetricsException {
+      List<String> groupByList) throws MultipleMetricsException {
+
+    String groupBy = groupByList.get(0);
 
     try (Handle h = db.open()) {
 

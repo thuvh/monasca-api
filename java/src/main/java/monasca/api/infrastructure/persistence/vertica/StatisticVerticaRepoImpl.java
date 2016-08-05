@@ -68,7 +68,9 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
       String offset,
       int limit,
       Boolean mergeMetricsFlag,
-      String groupBy) throws MultipleMetricsException {
+      List<String> groupByList) throws MultipleMetricsException {
+
+    String groupBy = groupByList.get(0);
 
     Map<String, Statistics> statisticsMap = new HashMap<>();
 
