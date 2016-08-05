@@ -13,6 +13,8 @@
  */
 package monasca.api.infrastructure.persistence.influxdb;
 
+import com.google.common.base.Joiner;
+import com.google.common.base.Strings;
 import com.google.inject.Inject;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -42,6 +44,7 @@ public class InfluxV9MeasurementRepo implements MeasurementRepo {
       .getLogger(InfluxV9MeasurementRepo.class);
 
   private final static TypeReference VALUE_META_TYPE = new TypeReference<Map<String, String>>() {};
+  private final static Joiner COMMA_JOINER = Joiner.on(',');
 
   private final ApiConfig config;
   private final String region;
@@ -69,7 +72,7 @@ public class InfluxV9MeasurementRepo implements MeasurementRepo {
   public List<Measurements> find(String tenantId, String name, Map<String, String> dimensions,
                                  DateTime startTime, @Nullable DateTime endTime,
                                  @Nullable String offset, int limit, Boolean mergeMetricsFlag,
-                                 String groupBy)
+                                 List<String> groupBy)
       throws Exception {
 
     String q = buildQuery(tenantId, name, dimensions, startTime, endTime,
@@ -79,7 +82,7 @@ public class InfluxV9MeasurementRepo implements MeasurementRepo {
 
     Series series = this.objectMapper.readValue(r, Series.class);
 
-    List<Measurements> measurementsList = measurementsList(series, offset, limit);
+    List<Measurements> measurementsList = measurementsList(series, groupBy, offset, limit);
 
     logger.debug("Found {} metrics matching query", measurementsList.size());
 
@@ -88,7 +91,7 @@ public class InfluxV9MeasurementRepo implements MeasurementRepo {
 
   private String buildQuery(String tenantId, String name, Map<String, String> dimensions,
                             DateTime startTime, DateTime endTime, String offset, int limit,
-                            Boolean mergeMetricsFlag, String groupBy) throws Exception {
+                            Boolean mergeMetricsFlag, List<String> groupBy) throws Exception {
 
     String q;
     if (Boolean.TRUE.equals(mergeMetricsFlag)) {
@@ -105,7 +108,7 @@ public class InfluxV9MeasurementRepo implements MeasurementRepo {
 
     } else {
 
-      if (!"*".equals(groupBy) &&
+      if (groupBy.isEmpty() &&
           !this.influxV9MetricDefinitionRepo.isAtMostOneSeries(tenantId, name, dimensions)) {
 
         throw new MultipleMetricsException(name, dimensions);
@@ -120,7 +123,7 @@ public class InfluxV9MeasurementRepo implements MeasurementRepo {
                         this.influxV9Utils.startTimePart(startTime),
                         this.influxV9Utils.dimPart(dimensions),
                         this.influxV9Utils.endTimePart(endTime),
-                        this.influxV9Utils.groupByPart());
+                        this.influxV9Utils.groupByPart(groupBy));
     }
 
     logger.debug("Measurements query: {}", q);
@@ -128,7 +131,7 @@ public class InfluxV9MeasurementRepo implements MeasurementRepo {
     return q;
   }
 
-  private List<Measurements> measurementsList(Series series, String offsetStr, int limit) {
+  private List<Measurements> measurementsList(Series series, List<String> groupBy, String offsetStr, int limit) {
     List<Measurements> measurementsList = new LinkedList<>();
 
     if (!series.isEmpty()) {
@@ -155,10 +158,31 @@ public class InfluxV9MeasurementRepo implements MeasurementRepo {
           continue;
         }
 
-        Measurements measurements =
-            new Measurements(serie.getName(),
-                             influxV9Utils.filterPrivateTags(serie.getTags()));
-        measurements.setId(Integer.toString(index));
+        Measurements lastMeasurements = null;
+        Measurements measurements = null;
+
+        if (!groupBy.isEmpty()) {
+          Map<String, String> dimensions = influxV9Utils.filterGroupByTags(
+                  influxV9Utils.filterPrivateTags(serie.getTags()),
+                  groupBy);
+
+          lastMeasurements = measurementsList.size() > 0 ?
+                  measurementsList.get(measurementsList.size() - 1) : null;
+
+
+          if (lastMeasurements != null && lastMeasurements.getDimensions().equals(dimensions))
+            measurements = measurementsList.get(measurementsList.size() - 1);
+
+        }
+
+        if (measurements == null){
+          measurements = new Measurements(serie.getName(),
+                  influxV9Utils.filterPrivateTags(serie.getTags()));
+
+          measurements.setId(Integer.toString(index));
+        }
+
+
 
         for (String[] values : serie.getValues()) {
           if (remaining_limit <= 0) {
@@ -174,7 +198,7 @@ public class InfluxV9MeasurementRepo implements MeasurementRepo {
           }
         }
 
-        if (measurements.getMeasurements().size() > 0) {
+        if (measurements != lastMeasurements && measurements.getMeasurements().size() > 0) {
           measurementsList.add(measurements);
         }
         index++;

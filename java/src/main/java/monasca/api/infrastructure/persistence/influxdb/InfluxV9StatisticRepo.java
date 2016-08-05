@@ -13,6 +13,7 @@
  */
 package monasca.api.infrastructure.persistence.influxdb;
 
+import com.google.common.base.Strings;
 import com.google.inject.Inject;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -68,7 +69,7 @@ public class InfluxV9StatisticRepo implements StatisticRepo {
   public List<Statistics> find(String tenantId, String name, Map<String, String> dimensions,
                                DateTime startTime, @Nullable DateTime endTime,
                                List<String> statistics, int period, String offset, int limit,
-                               Boolean mergeMetricsFlag, String groupBy) throws Exception {
+                               Boolean mergeMetricsFlag, List<String> groupBy) throws Exception {
 
     String q = buildQuery(tenantId, name, dimensions, startTime, endTime,
                    statistics, period, offset, limit, mergeMetricsFlag, groupBy);
@@ -88,7 +89,7 @@ public class InfluxV9StatisticRepo implements StatisticRepo {
   private String buildQuery(String tenantId, String name, Map<String, String> dimensions,
                             DateTime startTime, DateTime endTime, List<String> statistics,
                             int period, String offset, int limit, Boolean mergeMetricsFlag,
-                            String groupBy)
+                            List<String> groupBy)
       throws Exception {
 
     String q;
@@ -109,7 +110,7 @@ public class InfluxV9StatisticRepo implements StatisticRepo {
 
     } else {
 
-      if (!"*".equals(groupBy) &&
+      if (groupBy.isEmpty() &&
           !this.influxV9MetricDefinitionRepo.isAtMostOneSeries(tenantId, name, dimensions)) {
 
         throw new MultipleMetricsException(name, dimensions);
