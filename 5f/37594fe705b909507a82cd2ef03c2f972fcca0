@@ -1,0 +1,8 @@
+Code-Review+2: Bradley Klein <bradley.klein@twcable.com>
+Workflow+1: Bradley Klein <bradley.klein@twcable.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Fri, 05 Aug 2016 02:03:37 +0000
+Reviewed-on: https://review.openstack.org/347481
+Project: openstack/monasca-api
+Branch: refs/heads/master
