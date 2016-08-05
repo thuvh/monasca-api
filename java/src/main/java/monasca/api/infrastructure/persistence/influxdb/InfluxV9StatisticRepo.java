@@ -13,6 +13,7 @@
  */
 package monasca.api.infrastructure.persistence.influxdb;
 
+import com.google.common.base.Strings;
 import com.google.inject.Inject;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -68,7 +69,7 @@ public class InfluxV9StatisticRepo implements StatisticRepo {
   public List<Statistics> find(String tenantId, String name, Map<String, String> dimensions,
                                DateTime startTime, @Nullable DateTime endTime,
                                List<String> statistics, int period, String offset, int limit,
-                               Boolean mergeMetricsFlag, String groupBy) throws Exception {
+                               Boolean mergeMetricsFlag, List<String> groupBy) throws Exception {
 
     String q = buildQuery(tenantId, name, dimensions, startTime, endTime,
                    statistics, period, offset, limit, mergeMetricsFlag, groupBy);
@@ -88,33 +89,12 @@ public class InfluxV9StatisticRepo implements StatisticRepo {
   private String buildQuery(String tenantId, String name, Map<String, String> dimensions,
                             DateTime startTime, DateTime endTime, List<String> statistics,
                             int period, String offset, int limit, Boolean mergeMetricsFlag,
-                            String groupBy)
+                            List<String> groupBy)
       throws Exception {
 
     String q;
 
-    if (Boolean.TRUE.equals(mergeMetricsFlag)) {
-
-      q = String.format("select %1$s %2$s "
-                        + "where %3$s %4$s %5$s %6$s %7$s %8$s %9$s",
-                        funcPart(statistics),
-                        this.influxV9Utils.namePart(name, true),
-                        this.influxV9Utils.privateTenantIdPart(tenantId),
-                        this.influxV9Utils.privateRegionPart(this.region),
-                        this.influxV9Utils.startTimePart(startTime),
-                        this.influxV9Utils.dimPart(dimensions),
-                        this.influxV9Utils.endTimePart(endTime),
-                        this.influxV9Utils.periodPart(period),
-                        this.influxV9Utils.limitPart(limit));
-
-    } else {
-
-      if (!"*".equals(groupBy) &&
-          !this.influxV9MetricDefinitionRepo.isAtMostOneSeries(tenantId, name, dimensions)) {
-
-        throw new MultipleMetricsException(name, dimensions);
-
-      }
+     if (!groupBy.isEmpty()) {
 
       q = String.format("select %1$s %2$s "
                         + "where %3$s %4$s %5$s %6$s %7$s %8$s",
@@ -125,7 +105,28 @@ public class InfluxV9StatisticRepo implements StatisticRepo {
                         this.influxV9Utils.startTimePart(startTime),
                         this.influxV9Utils.dimPart(dimensions),
                         this.influxV9Utils.endTimePart(endTime),
-                        this.influxV9Utils.periodPartWithGroupBy(period));
+                        this.influxV9Utils.periodPartWithGroupBy(period, groupBy));
+    } else {
+
+       if (Boolean.FALSE.equals(mergeMetricsFlag) &&
+               !this.influxV9MetricDefinitionRepo.isAtMostOneSeries(tenantId, name, dimensions)) {
+
+         throw new MultipleMetricsException(name, dimensions);
+
+       }
+
+      q = String.format("select %1$s %2$s "
+                      + "where %3$s %4$s %5$s %6$s %7$s %8$s %9$s",
+              funcPart(statistics),
+              this.influxV9Utils.namePart(name, true),
+              this.influxV9Utils.privateTenantIdPart(tenantId),
+              this.influxV9Utils.privateRegionPart(this.region),
+              this.influxV9Utils.startTimePart(startTime),
+              this.influxV9Utils.dimPart(dimensions),
+              this.influxV9Utils.endTimePart(endTime),
+              this.influxV9Utils.periodPart(period, mergeMetricsFlag),
+              this.influxV9Utils.limitPart(limit));
+
     }
 
     logger.debug("Statistics query: {}", q);

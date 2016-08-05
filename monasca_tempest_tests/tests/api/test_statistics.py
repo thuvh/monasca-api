@@ -66,19 +66,51 @@ class TestStatistics(base.BaseMonascaTest):
             resp, response_body = cls.monasca_client.\
                 list_measurements(query_param)
             elements = response_body['elements']
-            for element in elements:
-                if str(element['name']) == name:
-                    if len(element['measurements']) >= MIN_REQUIRED_MEASUREMENTS:
-                        cls._end_timestamp = cls._start_timestamp + 1000 * 3
-                        cls._end_time_iso = helpers.timestamp_to_iso(
-                            cls._end_timestamp)
-                        return
-                    else:
-                        num_measurements = len(element['measurements'])
-                        break
+            if len(elements) > 0:
+                num_measurements = len(elements[0]['measurements'])
+                if num_measurements >= MIN_REQUIRED_MEASUREMENTS:
+                    break
             time.sleep(constants.RETRY_WAIT_SECS)
 
-        assert False, "Required {} measurements, found {}".format(MIN_REQUIRED_MEASUREMENTS, num_measurements)
+        if num_measurements < MIN_REQUIRED_MEASUREMENTS:
+            assert False, "Required {} measurements, found {}".format(MIN_REQUIRED_MEASUREMENTS, num_measurements)
+
+        cls._end_timestamp = cls._start_timestamp + 1000 * 3
+        cls._end_time_iso = helpers.timestamp_to_iso(cls._end_timestamp)
+
+        name2 = data_utils.rand_name("group-by")
+        cls._group_by_metric_name = name2
+
+        group_by_metrics = [
+            helpers.create_metric(name=name2, dimensions={'key1': 'value1', 'key2': 'value5', 'key3': 'value7'},
+                                  timestamp=cls._start_timestamp + 1000, value=metric_value2),
+            helpers.create_metric(name=name2, dimensions={'key1': 'value2', 'key2': 'value5', 'key3': 'value7'},
+                                  timestamp=cls._start_timestamp + 1000, value=metric_value2),
+            helpers.create_metric(name=name2, dimensions={'key1': 'value3', 'key2': 'value6', 'key3': 'value7'},
+                                  timestamp=cls._start_timestamp + 1000, value=metric_value2),
+            helpers.create_metric(name=name2, dimensions={'key1': 'value4', 'key2': 'value6', 'key3': 'value8'},
+                                  timestamp=cls._start_timestamp + 1000, value=metric_value2),
+        ]
+
+        cls.monasca_client.create_metrics(group_by_metrics)
+        query_param = '?name=' + str(name2) + \
+                      '&start_time=' + start_time_iso + \
+                      '&merge_metrics=true' + \
+                      '&end_time=' + cls._end_time_iso
+
+        num_measurements = 0
+        for i in xrange(constants.MAX_RETRIES):
+            resp, response_body = cls.monasca_client. \
+                list_measurements(query_param)
+            elements = response_body['elements']
+            if len(elements) > 0:
+                num_measurements = len(elements[0]['measurements'])
+                if num_measurements >= 4:
+                    break
+            time.sleep(constants.RETRY_WAIT_SECS)
+
+        if num_measurements < 4:
+            assert False, "Required {} measurements, found {}".format(4, num_measurements)
 
     @classmethod
     def resource_cleanup(cls):
@@ -273,6 +305,50 @@ class TestStatistics(base.BaseMonascaTest):
                 if limit > 1:
                     self.assertEqual(expected_elements, new_elements)
 
+    @test.attr(type="gate")
+    def test_list_statistics_with_group_by_one(self):
+        query_parms = '?name=' + self._group_by_metric_name + \
+                      '&group_by=key2' + \
+                      '&statistics=max,avg,min' + \
+                      '&start_time=' + str(self._start_time_iso) + \
+                      '&end_time=' + str(self._end_time_iso)
+        resp, response_body = self.monasca_client.list_statistics(
+            query_parms)
+        self.assertEqual(200, resp.status)
+        elements = response_body['elements']
+        self.assertEqual(len(elements), 2)
+        for statistics in elements:
+            self.assertEqual(1, len(statistics['dimensions'].keys()))
+            self.assertEqual([u'key2'], statistics['dimensions'].keys())
+
+    @test.attr(type="gate")
+    def test_list_statistics_with_group_by_multiple(self):
+        query_parms = '?name=' + self._group_by_metric_name + \
+                      '&group_by=key2,key3' + \
+                      '&statistics=max,avg,min' + \
+                      '&start_time=' + str(self._start_time_iso) + \
+                      '&end_time=' + str(self._end_time_iso)
+        resp, response_body = self.monasca_client.list_statistics(
+            query_parms)
+        self.assertEqual(200, resp.status)
+        elements = response_body['elements']
+        self.assertEqual(len(elements), 3)
+        for statistics in elements:
+            self.assertEqual(2, len(statistics['dimensions'].keys()))
+            self.assertEqual({u'key2', u'key3'}, set(statistics['dimensions'].keys()))
+
+    @test.attr(type="gate")
+    def test_list_statistics_with_group_by_all(self):
+        query_parms = '?name=' + self._group_by_metric_name + \
+                      '&group_by=*' + \
+                      '&statistics=max,avg,min' + \
+                      '&start_time=' + str(self._start_time_iso) + \
+                      '&end_time=' + str(self._end_time_iso)
+        resp, response_body = self.monasca_client.list_statistics(
+            query_parms)
+        self.assertEqual(200, resp.status)
+        elements = response_body['elements']
+        self.assertEqual(len(elements), 4)
 
     @test.attr(type="gate")
     @test.attr(type=['negative'])
