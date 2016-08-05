@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bacf61ea_c70d7590",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-08-05T16:02:26Z",
+      "side": 1,
+      "message": "s/effected/affected",
+      "range": {
+        "startLine": 7,
+        "startChar": 33,
+        "endLine": 7,
+        "endChar": 41
+      },
+      "revId": "d54a3986b143be99fea54782e415fb0d07d58f53",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_671f69b7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-08-05T16:02:26Z",
+      "side": 1,
+      "message": "any?",
+      "range": {
+        "startLine": 9,
+        "startChar": 32,
+        "endLine": 9,
+        "endChar": 35
+      },
+      "revId": "d54a3986b143be99fea54782e415fb0d07d58f53",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bacf61ea_c7e9f580",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 1201,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-08-05T16:02:26Z",
+      "side": 1,
+      "message": "Should this be monasca-statsd?",
+      "range": {
+        "startLine": 1201,
+        "startChar": 53,
+        "endLine": 1201,
+        "endChar": 66
+      },
+      "revId": "d54a3986b143be99fea54782e415fb0d07d58f53",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
