@@ -131,6 +131,30 @@
     },
     {
       "key": {
+        "uuid": "9ad45d7e_b893e1a2",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9StatisticRepo.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-08-08T21:17:54Z",
+      "side": 1,
+      "message": "Ok. I see it now",
+      "parentUuid": "9ad45d7e_17e640b4",
+      "range": {
+        "startLine": 199,
+        "startChar": 67,
+        "endLine": 199,
+        "endChar": 68
+      },
+      "revId": "1c42a182716a1378cb7db38cacb9267c12c7a4c9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bacf61ea_865534fb",
         "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
         "patchSetId": 4
@@ -166,6 +190,30 @@
       "side": 1,
       "message": "The id_date must not get caught by the gate, but yes it is incorrect. The else however should result in a datetime not an int. Are you sure it\u0027s an int?",
       "parentUuid": "bacf61ea_865534fb",
+      "range": {
+        "startLine": 94,
+        "startChar": 25,
+        "endLine": 94,
+        "endChar": 69
+      },
+      "revId": "1c42a182716a1378cb7db38cacb9267c12c7a4c9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad45d7e_184cad6f",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-08-08T21:17:54Z",
+      "side": 1,
+      "message": "You are right, it is a date time",
+      "parentUuid": "9ad45d7e_17dc8011",
       "range": {
         "startLine": 94,
         "startChar": 25,
