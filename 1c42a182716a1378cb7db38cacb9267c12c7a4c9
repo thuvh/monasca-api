@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9ad45d7e_77885ce8",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9StatisticRepo.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-08-08T21:12:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bacf61ea_7b36d951",
+      "range": {
+        "startLine": 2,
+        "startChar": 56,
+        "endLine": 2,
+        "endChar": 63
+      },
+      "revId": "1c42a182716a1378cb7db38cacb9267c12c7a4c9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bacf61ea_5b14b59e",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9StatisticRepo.java",
         "patchSetId": 4
@@ -36,6 +60,24 @@
       "writtenOn": "2016-08-05T20:28:52Z",
       "side": 1,
       "message": "Add space after if",
+      "revId": "1c42a182716a1378cb7db38cacb9267c12c7a4c9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad45d7e_37654445",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9StatisticRepo.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-08-08T21:12:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bacf61ea_5b14b59e",
       "revId": "1c42a182716a1378cb7db38cacb9267c12c7a4c9",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "9ad45d7e_17e640b4",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9StatisticRepo.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-08-08T21:12:09Z",
+      "side": 1,
+      "message": "I\u0027m now adding the period to the offset, so the new statistic block could have a timestamp equal to the offset plus one period instead of always being greater.",
+      "parentUuid": "bacf61ea_db2705c8",
+      "range": {
+        "startLine": 199,
+        "startChar": 67,
+        "endLine": 199,
+        "endChar": 68
+      },
+      "revId": "1c42a182716a1378cb7db38cacb9267c12c7a4c9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bacf61ea_865534fb",
         "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
         "patchSetId": 4
@@ -76,6 +142,30 @@
       "writtenOn": "2016-08-05T20:28:52Z",
       "side": 1,
       "message": "Does influxdb understand id_date? That is what offset ends as. The offset in the else part is an integer",
+      "range": {
+        "startLine": 94,
+        "startChar": 25,
+        "endLine": 94,
+        "endChar": 69
+      },
+      "revId": "1c42a182716a1378cb7db38cacb9267c12c7a4c9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad45d7e_17dc8011",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-08-08T21:12:09Z",
+      "side": 1,
+      "message": "The id_date must not get caught by the gate, but yes it is incorrect. The else however should result in a datetime not an int. Are you sure it\u0027s an int?",
+      "parentUuid": "bacf61ea_865534fb",
       "range": {
         "startLine": 94,
         "startChar": 25,
