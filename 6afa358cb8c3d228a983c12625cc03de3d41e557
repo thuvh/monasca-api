@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ad45d7e_d4abc1d4",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 1217,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2016-08-09T22:11:28Z",
+      "side": 1,
+      "message": "This should probably just be a \"pip_install $MONASCA_STATSD_SRC_DIST\" to apply standard constraints to the monasca-statsd install.\n\nI think we would also want to do this before we install the monasca notification package because we want it available before before pip attempts to install the requirements for monasca notification.",
+      "range": {
+        "startLine": 1217,
+        "startChar": 4,
+        "endLine": 1217,
+        "endChar": 78
+      },
+      "revId": "6afa358cb8c3d228a983c12625cc03de3d41e557",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
