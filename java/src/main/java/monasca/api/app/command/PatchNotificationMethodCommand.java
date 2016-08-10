@@ -83,6 +83,10 @@ public class PatchNotificationMethodCommand {
         this.convertedPeriod = period;
     }
 
+    public void setType(String type){
+        this.type = type.toUpperCase();
+    }
+
     public int getConvertedPeriod(){
         return this.convertedPeriod;
     }

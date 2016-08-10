@@ -88,6 +88,10 @@ public class UpdateNotificationMethodCommand {
         this.convertedPeriod = Validation.parseAndValidateNumber(period, "period");
     }
 
+    public void setType(String type){
+        this.type = type.toUpperCase();
+    }
+
     public int getConvertedPeriod(){
         return this.convertedPeriod;
     }
