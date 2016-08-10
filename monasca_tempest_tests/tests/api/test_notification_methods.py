@@ -150,6 +150,61 @@ class TestNotificationMethods(base.BaseMonascaTest):
         self.assertRaises((exceptions.BadRequest, exceptions.UnprocessableEntity),
                           self.monasca_client.create_notifications,
                           notification)
+    @test.attr(type="gate")
+    @test.attr(type=['negative'])
+    def test_create_notification_method_with_invalid_email_address(self):
+        notification = helpers.create_notification(address="name@domain.")
+        self.assertRaises((exceptions.BadRequest, exceptions.UnprocessableEntity),
+                          self.monasca_client.create_notifications,
+                          notification)
+
+    @test.attr(type="gate")
+    @test.attr(type=['negative'])
+    def test_create_notification_method_with_invalid_email_address_type_all_lower_case(self):
+        notification = helpers.create_notification(type="email", address="name@domain.")
+        self.assertRaises((exceptions.BadRequest, exceptions.UnprocessableEntity),
+                          self.monasca_client.create_notifications,
+                          notification)
+
+    @test.attr(type="gate")
+    @test.attr(type=['negative'])
+    def test_create_notification_method_with_invalid_email_address_type_all_mixed_case(self):
+        notification = helpers.create_notification(type="EmAil", address="name@domain.")
+        self.assertRaises((exceptions.BadRequest, exceptions.UnprocessableEntity),
+                          self.monasca_client.create_notifications,
+                          notification)
+
+    @test.attr(type="gate")
+    @test.attr(type=['negative'])
+    def test_create_notification_method_with_invalid_scheme_webhook(self):
+        notification = helpers.create_notification(type="WEBHOOK", address="ftp://localhost")
+        self.assertRaises((exceptions.BadRequest, exceptions.UnprocessableEntity),
+                          self.monasca_client.create_notifications,
+                          notification)
+
+    @test.attr(type="gate")
+    @test.attr(type=['negative'])
+    def test_create_notification_method_with_invalid_webhook_address(self):
+        notification = helpers.create_notification(type="WEBHOOK", address="localhost:123")
+        self.assertRaises((exceptions.BadRequest, exceptions.UnprocessableEntity),
+                          self.monasca_client.create_notifications,
+                          notification)
+
+    @test.attr(type="gate")
+    @test.attr(type=['negative'])
+    def test_create_notification_method_with_invalid_webhook_address_type_mixed_case(self):
+        notification = helpers.create_notification(type="WebHook", address="localhost:123")
+        self.assertRaises((exceptions.BadRequest, exceptions.UnprocessableEntity),
+                          self.monasca_client.create_notifications,
+                          notification)
+
+    @test.attr(type="gate")
+    @test.attr(type=['negative'])
+    def test_create_notification_method_with_invalid_webhook_address_type_lower_case(self):
+        notification = helpers.create_notification(type="webhook", address="localhost:123")
+        self.assertRaises((exceptions.BadRequest, exceptions.UnprocessableEntity),
+                          self.monasca_client.create_notifications,
+                          notification)
 
     @test.attr(type="gate")
     @test.attr(type=['negative'])
