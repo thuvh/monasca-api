@@ -25,6 +25,98 @@
     },
     {
       "key": {
+        "uuid": "9ad45d7e_380bac25",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MeasurementVerticaRepoImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-08-11T22:33:40Z",
+      "side": 1,
+      "message": "do we need this comment here?",
+      "range": {
+        "startLine": 220,
+        "startChar": 24,
+        "endLine": 220,
+        "endChar": 25
+      },
+      "revId": "24c19f4ba8ec7852b7379e664f1eafb758c63187",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad45d7e_ddf36271",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MeasurementVerticaRepoImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-08-11T22:33:40Z",
+      "side": 1,
+      "message": "should we print the date and time value here?",
+      "range": {
+        "startLine": 224,
+        "startChar": 60,
+        "endLine": 224,
+        "endChar": 64
+      },
+      "revId": "24c19f4ba8ec7852b7379e664f1eafb758c63187",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad45d7e_1dd33ad6",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MeasurementVerticaRepoImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-08-11T22:33:40Z",
+      "side": 1,
+      "message": "in this case it would really help to know the error message from vertica even if it is only some of it. Would it be worth it to include some of the exception?",
+      "range": {
+        "startLine": 228,
+        "startChar": 56,
+        "endLine": 228,
+        "endChar": 64
+      },
+      "revId": "24c19f4ba8ec7852b7379e664f1eafb758c63187",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad45d7e_3db55e7d",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MetricDefinitionVerticaRepoImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-08-11T22:33:40Z",
+      "side": 1,
+      "message": "same comments",
+      "range": {
+        "startLine": 311,
+        "startChar": 48,
+        "endLine": 311,
+        "endChar": 53
+      },
+      "revId": "24c19f4ba8ec7852b7379e664f1eafb758c63187",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9ad45d7e_dde242d4",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/StatisticVerticaRepoImpl.java",
         "patchSetId": 4
@@ -41,6 +133,29 @@
         "startChar": 6,
         "endLine": 113,
         "endChar": 54
+      },
+      "revId": "24c19f4ba8ec7852b7379e664f1eafb758c63187",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad45d7e_dd1d2274",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/StatisticVerticaRepoImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-08-11T22:33:40Z",
+      "side": 1,
+      "message": "same here",
+      "range": {
+        "startLine": 177,
+        "startChar": 54,
+        "endLine": 177,
+        "endChar": 59
       },
       "revId": "24c19f4ba8ec7852b7379e664f1eafb758c63187",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
