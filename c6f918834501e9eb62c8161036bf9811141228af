@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ad45d7e_11edb58e",
+        "filename": "monasca_tempest_tests/tests/api/test_notification_methods.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-08-12T16:25:11Z",
+      "side": 1,
+      "message": "Add a blank line before this one",
+      "range": {
+        "startLine": 153,
+        "startChar": 0,
+        "endLine": 153,
+        "endChar": 27
+      },
+      "revId": "c6f918834501e9eb62c8161036bf9811141228af",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad45d7e_3148b987",
+        "filename": "monasca_tempest_tests/tests/api/test_notification_methods.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-08-12T16:25:11Z",
+      "side": 1,
+      "message": "See below",
+      "range": {
+        "startLine": 169,
+        "startChar": 0,
+        "endLine": 175,
+        "endChar": 39
+      },
+      "revId": "c6f918834501e9eb62c8161036bf9811141228af",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad45d7e_f14d819a",
+        "filename": "monasca_tempest_tests/tests/api/test_notification_methods.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-08-12T16:25:11Z",
+      "side": 1,
+      "message": "I don\u0027t see the point of these. The API could be rejecting them because they aren\u0027t WEBHOOK, but you can\u0027t tell that from being rejected from the Address. Instead you should ensure the different capitalizations work for creation",
+      "range": {
+        "startLine": 193,
+        "startChar": 0,
+        "endLine": 207,
+        "endChar": 39
+      },
+      "revId": "c6f918834501e9eb62c8161036bf9811141228af",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
