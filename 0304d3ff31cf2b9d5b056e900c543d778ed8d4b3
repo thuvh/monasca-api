@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "9ad45d7e_823dcbbd",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 1299,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-08-12T20:10:13Z",
+      "side": 1,
+      "message": "Thank you for explaining this. I didn\u0027t know why we need an ID here that\u0027s why I put null there.",
+      "parentUuid": "9ad45d7e_ef48f0ce",
+      "revId": "0304d3ff31cf2b9d5b056e900c543d778ed8d4b3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9ad45d7e_78ecc98f",
         "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionNames.java",
         "patchSetId": 12
@@ -185,6 +203,30 @@
       "writtenOn": "2016-08-12T19:37:13Z",
       "side": 1,
       "message": "Don\u0027t do this. Treat the offset as an opaque value and only use the one returned by the API.",
+      "range": {
+        "startLine": 163,
+        "startChar": 12,
+        "endLine": 163,
+        "endChar": 39
+      },
+      "revId": "0304d3ff31cf2b9d5b056e900c543d778ed8d4b3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad45d7e_22e85f16",
+        "filename": "monasca_tempest_tests/tests/api/test_dimensions.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-08-12T20:10:13Z",
+      "side": 1,
+      "message": "Will fix it! Thanks!!",
+      "parentUuid": "9ad45d7e_4c394a41",
       "range": {
         "startLine": 163,
         "startChar": 12,
