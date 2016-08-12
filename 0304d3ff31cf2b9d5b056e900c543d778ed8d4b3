@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "9ad45d7e_0f93c450",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 8126
+      },
+      "writtenOn": "2016-08-12T20:01:22Z",
+      "side": 1,
+      "message": "these anchors are the same as above -- need to run doctoc to regenerate...",
+      "revId": "0304d3ff31cf2b9d5b056e900c543d778ed8d4b3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad45d7e_ef48f0ce",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 1299,
+      "author": {
+        "id": 8126
+      },
+      "writtenOn": "2016-08-12T20:01:22Z",
+      "side": 1,
+      "message": "Will need some id here for grafana to piece batches together when paginating.",
+      "revId": "0304d3ff31cf2b9d5b056e900c543d778ed8d4b3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9ad45d7e_78ecc98f",
         "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionNames.java",
         "patchSetId": 12
