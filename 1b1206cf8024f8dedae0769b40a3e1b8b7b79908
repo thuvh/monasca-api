@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7ac969e8_9a99dd22",
+        "filename": "monasca_tempest_tests/tests/api/base.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 21264
+      },
+      "writtenOn": "2016-08-12T23:20:38Z",
+      "side": 1,
+      "message": "What if the resp.status is not 200 ? I believe those cases should be handled or at least logged.",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 30
+      },
+      "revId": "1b1206cf8024f8dedae0769b40a3e1b8b7b79908",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7ac969e8_9a16fda5",
+        "filename": "monasca_tempest_tests/tests/api/test_read_only_role.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 21264
+      },
+      "writtenOn": "2016-08-12T23:20:38Z",
+      "side": 1,
+      "message": "Minor thing, just wanted to point out. These comments are not pythonic. See https://www.python.org/dev/peps/pep-0008/#comments",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 9
+      },
+      "revId": "1b1206cf8024f8dedae0769b40a3e1b8b7b79908",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
