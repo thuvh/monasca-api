@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ad45d7e_78ecc98f",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionNames.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-08-12T19:37:13Z",
+      "side": 1,
+      "message": "This is set, but never used",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 55
+      },
+      "revId": "0304d3ff31cf2b9d5b056e900c543d778ed8d4b3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad45d7e_3899b120",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionNames.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-08-12T19:37:13Z",
+      "side": 1,
+      "message": "This should be getNames and its format should be consistent with getMetricName()",
+      "range": {
+        "startLine": 41,
+        "startChar": 24,
+        "endLine": 41,
+        "endChar": 41
+      },
+      "revId": "0304d3ff31cf2b9d5b056e900c543d778ed8d4b3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad45d7e_3799c420",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionRepo.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-08-12T19:37:13Z",
+      "side": 1,
+      "message": "Need a comment for this one",
+      "range": {
+        "startLine": 33,
+        "startChar": 2,
+        "endLine": 33,
+        "endChar": 45
+      },
+      "revId": "0304d3ff31cf2b9d5b056e900c543d778ed8d4b3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad45d7e_7d02fb70",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9DimensionRepo.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-08-12T19:37:13Z",
+      "side": 1,
+      "message": "metricName isn\u0027t used",
+      "range": {
+        "startLine": 167,
+        "startChar": 44,
+        "endLine": 167,
+        "endChar": 62
+      },
+      "revId": "0304d3ff31cf2b9d5b056e900c543d778ed8d4b3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad45d7e_b285c2ae",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9DimensionRepo.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-08-12T19:37:13Z",
+      "side": 1,
+      "message": "Using com.google.common.base.Strings.isNullOrEmpty would be better here. Also, remember offset.isEmpty() where you only need to check if it is \"\"",
+      "range": {
+        "startLine": 170,
+        "startChar": 25,
+        "endLine": 170,
+        "endChar": 64
+      },
+      "revId": "0304d3ff31cf2b9d5b056e900c543d778ed8d4b3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad45d7e_8cc6a247",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-08-12T19:37:13Z",
+      "side": 1,
+      "message": "This doesn\u0027t handle offset or limit",
+      "range": {
+        "startLine": 260,
+        "startChar": 20,
+        "endLine": 260,
+        "endChar": 26
+      },
+      "revId": "0304d3ff31cf2b9d5b056e900c543d778ed8d4b3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad45d7e_4c394a41",
+        "filename": "monasca_tempest_tests/tests/api/test_dimensions.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-08-12T19:37:13Z",
+      "side": 1,
+      "message": "Don\u0027t do this. Treat the offset as an opaque value and only use the one returned by the API.",
+      "range": {
+        "startLine": 163,
+        "startChar": 12,
+        "endLine": 163,
+        "endChar": 39
+      },
+      "revId": "0304d3ff31cf2b9d5b056e900c543d778ed8d4b3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
