@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3ac371cc_1fd44645",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9StatisticRepo.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-08-16T20:37:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ac371cc_c94040a8",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 2
+      },
+      "revId": "6f3e991fba4736de72ffa0398a2394d7a38a59af",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3ac371cc_e91c1cc3",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9StatisticRepo.java",
         "patchSetId": 9
@@ -36,6 +60,30 @@
       "writtenOn": "2016-08-16T20:04:00Z",
       "side": 1,
       "message": "could you use a better name then i?",
+      "range": {
+        "startLine": 79,
+        "startChar": 10,
+        "endLine": 79,
+        "endChar": 11
+      },
+      "revId": "6f3e991fba4736de72ffa0398a2394d7a38a59af",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ac371cc_7fcbbaa5",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9StatisticRepo.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-08-16T20:37:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ac371cc_e91c1cc3",
       "range": {
         "startLine": 79,
         "startChar": 10,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "3ac371cc_bfc5328f",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9StatisticRepo.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-08-16T20:37:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ac371cc_69878cd7",
+      "range": {
+        "startLine": 112,
+        "startChar": 10,
+        "endLine": 112,
+        "endChar": 11
+      },
+      "revId": "6f3e991fba4736de72ffa0398a2394d7a38a59af",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3ac371cc_e94a5cab",
         "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
         "patchSetId": 9
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "3ac371cc_9fc0367e",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-08-16T20:37:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ac371cc_e94a5cab",
+      "range": {
+        "startLine": 3,
+        "startChar": 65,
+        "endLine": 3,
+        "endChar": 72
+      },
+      "revId": "6f3e991fba4736de72ffa0398a2394d7a38a59af",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3ac371cc_49ef3087",
         "filename": "monasca_tempest_tests/tests/api/base.py",
         "patchSetId": 9
@@ -105,6 +201,30 @@
       "writtenOn": "2016-08-16T20:04:00Z",
       "side": 1,
       "message": "same",
+      "range": {
+        "startLine": 1,
+        "startChar": 65,
+        "endLine": 1,
+        "endChar": 72
+      },
+      "revId": "6f3e991fba4736de72ffa0398a2394d7a38a59af",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ac371cc_3f3822a0",
+        "filename": "monasca_tempest_tests/tests/api/base.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-08-16T20:37:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ac371cc_49ef3087",
       "range": {
         "startLine": 1,
         "startChar": 65,
@@ -151,6 +271,30 @@
       "writtenOn": "2016-08-16T20:04:00Z",
       "side": 1,
       "message": "here",
+      "range": {
+        "startLine": 1,
+        "startChar": 65,
+        "endLine": 1,
+        "endChar": 72
+      },
+      "revId": "6f3e991fba4736de72ffa0398a2394d7a38a59af",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ac371cc_bf4c1243",
+        "filename": "monasca_tempest_tests/tests/api/test_statistics.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-08-16T20:37:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ac371cc_c9032041",
       "range": {
         "startLine": 1,
         "startChar": 65,
