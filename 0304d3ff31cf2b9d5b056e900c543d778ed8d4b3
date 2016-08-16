@@ -240,6 +240,30 @@
     },
     {
       "key": {
+        "uuid": "3ac371cc_f2eef889",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-08-16T15:08:05Z",
+      "side": 1,
+      "message": "Offset and limit are handled in monasca_api/v2/reference/metrics.py line 389 when it calls helpers.paginate_dimension_names()",
+      "parentUuid": "9ad45d7e_8cc6a247",
+      "range": {
+        "startLine": 260,
+        "startChar": 20,
+        "endLine": 260,
+        "endChar": 26
+      },
+      "revId": "0304d3ff31cf2b9d5b056e900c543d778ed8d4b3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9ad45d7e_4c394a41",
         "filename": "monasca_tempest_tests/tests/api/test_dimensions.py",
         "patchSetId": 12
