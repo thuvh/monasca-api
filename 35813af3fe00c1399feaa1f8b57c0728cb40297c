@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ac371cc_11f44084",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2016-08-16T18:50:42Z",
+      "side": 1,
+      "message": "This is the wrong version of kafka-python.  The agent should only be compatible with kafka-python 0.9.5 now.  Luckily this used to be installed after the monasca-agent library and since the kafka-python requirement was satisfied by the monasca-agent install this install was ignored.  Doing it prior to the agent install would be bad so we should get rid of this.",
+      "range": {
+        "startLine": 462,
+        "startChar": 21,
+        "endLine": 462,
+        "endChar": 40
+      },
+      "revId": "35813af3fe00c1399feaa1f8b57c0728cb40297c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}

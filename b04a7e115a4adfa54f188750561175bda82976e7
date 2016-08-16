@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ac371cc_d1dc68e6",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 835,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2016-08-16T18:50:42Z",
+      "side": 0,
+      "message": "I\u0027m not seeing where this code ended up.  Did it get removed?",
+      "range": {
+        "startLine": 835,
+        "startChar": 0,
+        "endLine": 835,
+        "endChar": 78
+      },
+      "revId": "b04a7e115a4adfa54f188750561175bda82976e7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
