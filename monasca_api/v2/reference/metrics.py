@@ -131,7 +131,9 @@ class Metrics(metrics_api_v2.MetricsV2API):
 
     def on_get(self, req, res):
         helpers.validate_authorization(req, self._get_metrics_authorized_roles)
-        tenant_id = helpers.get_tenant_id(req)
+        tenant_id = (
+            helpers.get_x_tenant_or_tenant_id(req,
+                                              self._delegate_authorized_roles))
         name = helpers.get_query_name(req)
         helpers.validate_query_name(name)
         dimensions = helpers.get_query_dimensions(req)
@@ -227,7 +229,9 @@ class MetricsStatistics(metrics_api_v2.MetricsStatisticsV2API):
 
     def on_get(self, req, res):
         helpers.validate_authorization(req, self._get_metrics_authorized_roles)
-        tenant_id = helpers.get_tenant_id(req)
+        tenant_id = (
+            helpers.get_x_tenant_or_tenant_id(req,
+                                              self._delegate_authorized_roles))
         name = helpers.get_query_name(req, True)
         helpers.validate_query_name(name)
         dimensions = helpers.get_query_dimensions(req)
