@@ -29,6 +29,8 @@ MONASCA_PERSISTER_IMPLEMENTATION_LANG=${MONASCA_PERSISTER_IMPLEMENTATION_LANG:-p
 # MONASCA_METRICS_DB=${MONASCA_METRICS_DB:-cassandra}
 MONASCA_METRICS_DB=${MONASCA_METRICS_DB:-influxdb}
 
+MONASCA_DATABASE_USE_ORM=false
+
 # Turn on all the Monasca services by default. Currently enabling specific services
 # has no effect. All services are enabled by default. There is currently no mechanism
 # implemented to turn off specific Monasca services.
