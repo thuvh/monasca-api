@@ -90,6 +90,9 @@ LOGFILE=$DEST/logs/stack.sh.log
 LOGDIR=$DEST/logs
 LOG_COLOR=False
 
+# Check database backend for devstack
+MONASCA_DATABASE_USE_ORM=${MONASCA_DATABASE_USE_ORM:-false}
+
 disable_all_services
 enable_service rabbit mysql key tempest horizon
 
