@@ -20,7 +20,7 @@ storm.local.dir: "/var/storm"
 
 ### zookeeper.*
 storm.zookeeper.servers:
-    - "127.0.0.1"
+    - "%ZOOKEEPER_HOST%"
 storm.zookeeper.port: 2181
 storm.zookeeper.retry.interval: 5000
 storm.zookeeper.retry.times: 60
