@@ -16,11 +16,7 @@
 * limitations under the License.
 */
 
-DROP DATABASE IF EXISTS `mon`;
-
-CREATE DATABASE IF NOT EXISTS `mon` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE `mon`;
-
 SET foreign_key_checks = 0;
 
 /*
