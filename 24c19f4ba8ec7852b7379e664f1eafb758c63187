@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3ac371cc_b77ef216",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MeasurementVerticaRepoImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-08-17T17:38:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ad45d7e_fddf460a",
+      "range": {
+        "startLine": 163,
+        "startChar": 6,
+        "endLine": 164,
+        "endChar": 54
+      },
+      "revId": "24c19f4ba8ec7852b7379e664f1eafb758c63187",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9ad45d7e_380bac25",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MeasurementVerticaRepoImpl.java",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2016-08-11T22:33:40Z",
       "side": 1,
       "message": "do we need this comment here?",
+      "range": {
+        "startLine": 220,
+        "startChar": 24,
+        "endLine": 220,
+        "endChar": 25
+      },
+      "revId": "24c19f4ba8ec7852b7379e664f1eafb758c63187",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad45d7e_42b473d0",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MeasurementVerticaRepoImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-08-17T17:38:34Z",
+      "side": 1,
+      "message": "I think so. Because usually we just throw the original error message from the exception but here we can\u0027t do that.",
+      "parentUuid": "9ad45d7e_380bac25",
       "range": {
         "startLine": 220,
         "startChar": 24,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "3ac371cc_f7ab4a73",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MeasurementVerticaRepoImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-08-17T17:38:34Z",
+      "side": 1,
+      "message": "Agree!",
+      "parentUuid": "9ad45d7e_ddf36271",
+      "range": {
+        "startLine": 224,
+        "startChar": 60,
+        "endLine": 224,
+        "endChar": 64
+      },
+      "revId": "24c19f4ba8ec7852b7379e664f1eafb758c63187",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9ad45d7e_1dd33ad6",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MeasurementVerticaRepoImpl.java",
         "patchSetId": 4
@@ -82,6 +154,30 @@
       "writtenOn": "2016-08-11T22:33:40Z",
       "side": 1,
       "message": "in this case it would really help to know the error message from vertica even if it is only some of it. Would it be worth it to include some of the exception?",
+      "range": {
+        "startLine": 228,
+        "startChar": 56,
+        "endLine": 228,
+        "endChar": 64
+      },
+      "revId": "24c19f4ba8ec7852b7379e664f1eafb758c63187",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ac371cc_1ea36fb3",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MeasurementVerticaRepoImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-08-17T17:38:34Z",
+      "side": 1,
+      "message": "Agree!",
+      "parentUuid": "9ad45d7e_1dd33ad6",
       "range": {
         "startLine": 228,
         "startChar": 56,
@@ -128,6 +224,30 @@
       "writtenOn": "2016-08-11T22:24:32Z",
       "side": 1,
       "message": "This would be a lot clear if it only included the query.list() in the try block",
+      "range": {
+        "startLine": 112,
+        "startChar": 6,
+        "endLine": 113,
+        "endChar": 54
+      },
+      "revId": "24c19f4ba8ec7852b7379e664f1eafb758c63187",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ac371cc_378a021c",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/StatisticVerticaRepoImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-08-17T17:38:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ad45d7e_dde242d4",
       "range": {
         "startLine": 112,
         "startChar": 6,
