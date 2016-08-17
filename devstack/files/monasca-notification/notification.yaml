@@ -16,7 +16,7 @@
 #
 
 kafka:
-    url: "127.0.0.1:9092"
+    url: "%KAFKA_HOST%:9092"
     group: "monasca-notification"
     alarm_topic: "alarm-state-transitions"
     notification_topic: "alarm-notifications"
@@ -25,11 +25,26 @@ kafka:
         60: 60-seconds-notifications
     max_offset_lag: 600  # In seconds, undefined for none
 
+database:
+# repo_driver: monasca_notification.common.repositories.postgres.pgsql_repo:PostgresqlRepo
+# repo_driver: monasca_notification.common.repositories.orm.orm_repo:OrmRepo
+# repo_driver: monasca_notification.common.repositories.mysql.mysql_repo:MysqlRepo
+  repo_driver: %MONASCA_NOTIFICATION_DB_DRIVER%
+  orm:
+    url: %MONASCA_API_DB_ENGINE%://notification:password@%DATABASE_HOST%:%DATABASE_PORT%/mon
+
 mysql:
-    host: "127.0.0.1"
-    user: "notification"
-    passwd: "password"
-    db: "mon"
+    host: %MYSQL_HOST%
+    user: notification
+    passwd: password
+    db: mon
+
+postgresql:
+  host: %DATABASE_HOST%
+  port: %DATABASE_PORT%
+  user: notification
+  password: password
+  database: mon
 
 notification_types:
 
@@ -66,7 +81,7 @@ queues:
     sent_notifications_size: 50  # limiting this size reduces potential # of re-sent notifications after a failure
 
 zookeeper:
-    url: "127.0.0.1:2181"
+    url: "%ZOOKEEPER_HOST%:2181"
     notification_path: "/notification/alarms"
     notification_retry_path: "/notification/retry"
     periodic_path:
