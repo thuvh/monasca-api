@@ -1,0 +1,10 @@
+Code-Review+1: Kaiyan Sheng <kaiyan.sheng@hp.com>
+Code-Review+1: Cindy O'Neill <cindy.o-neill@hp.com>
+Code-Review+2: Ryan Brandt <ryan.brandt@hpe.com>
+Workflow+1: Ryan Brandt <ryan.brandt@hpe.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Wed, 17 Aug 2016 22:13:44 +0000
+Reviewed-on: https://review.openstack.org/353772
+Project: openstack/monasca-api
+Branch: refs/heads/master
