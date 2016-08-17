@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3ac371cc_55014f05",
+        "filename": "monasca_tempest_tests/tests/api/base.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1921
+      },
+      "writtenOn": "2016-08-17T15:22:13Z",
+      "side": 1,
+      "message": "In case the error is not a 2xx an error will be raised.\nIn general the response status should be validated using expected_success in the service client itself: http://git.openstack.org/cgit/openstack/tempest/tree/tempest/lib/common/rest_client.py#n218\n\nThis is not something that I touched in this patch, so this should be addressed by a separate patch.",
+      "parentUuid": "7ac969e8_9a99dd22",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 30
+      },
+      "revId": "1b1206cf8024f8dedae0769b40a3e1b8b7b79908",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7ac969e8_9a16fda5",
         "filename": "monasca_tempest_tests/tests/api/test_read_only_role.py",
         "patchSetId": 7
@@ -36,6 +60,30 @@
       "writtenOn": "2016-08-12T23:20:38Z",
       "side": 1,
       "message": "Minor thing, just wanted to point out. These comments are not pythonic. See https://www.python.org/dev/peps/pep-0008/#comments",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 9
+      },
+      "revId": "1b1206cf8024f8dedae0769b40a3e1b8b7b79908",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ac371cc_383c8ac7",
+        "filename": "monasca_tempest_tests/tests/api/test_read_only_role.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1921
+      },
+      "writtenOn": "2016-08-17T15:22:13Z",
+      "side": 1,
+      "message": "I agree. Not something I touched though, so it should be addressed in a different patch.",
+      "parentUuid": "7ac969e8_9a16fda5",
       "range": {
         "startLine": 53,
         "startChar": 0,
