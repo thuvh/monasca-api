@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ac371cc_f532fb5c",
+        "filename": "monasca_api/expression_parser/alarm_expr_parser.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-08-17T15:17:50Z",
+      "side": 1,
+      "message": "copyright",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 24
+      },
+      "revId": "4df1dd5412d9194624902fbd51ab6353f993fbba",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
