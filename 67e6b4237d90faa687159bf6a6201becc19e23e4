@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ac371cc_79aefde6",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MeasurementVerticaRepoImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-08-17T17:43:47Z",
+      "side": 1,
+      "message": "This whole try catch block is used in multiple places, might be worth pulling it out to a shared method call",
+      "range": {
+        "startLine": 164,
+        "startChar": 6,
+        "endLine": 166,
+        "endChar": 29
+      },
+      "revId": "67e6b4237d90faa687159bf6a6201becc19e23e4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ac371cc_1976e9a3",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MeasurementVerticaRepoImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-08-17T17:43:47Z",
+      "side": 1,
+      "message": "Is this check really necessary? We could easily allow everything to flow through one path I think.",
+      "range": {
+        "startLine": 169,
+        "startChar": 9,
+        "endLine": 169,
+        "endChar": 35
+      },
+      "revId": "67e6b4237d90faa687159bf6a6201becc19e23e4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
