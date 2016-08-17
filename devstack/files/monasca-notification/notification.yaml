@@ -25,11 +25,25 @@ kafka:
         60: 60-seconds-notifications
     max_offset_lag: 600  # In seconds, undefined for none
 
+database:
+#  repo_driver: monasca_notification.common.repositories.postgres.pgsql_repo:PostgresqlRepo
+#  repo_driver: monasca_notification.common.repositories.orm.orm_repo:OrmRepo
+  repo_driver: monasca_notification.common.repositories.mysql.mysql_repo:MysqlRepo
+  orm:
+    url: 'postgres://notification:password@127.0.0.1:5432/mon'
+
 mysql:
     host: "127.0.0.1"
     user: "notification"
     passwd: "password"
     db: "mon"
+
+postgresql:
+  host: "127.0.0.1"
+  port: 5432
+  user: "notification"
+  password: "password"
+  database: "mon"
 
 notification_types:
 
