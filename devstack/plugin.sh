@@ -48,7 +48,9 @@ set -o errexit
 export MONASCA_API_IMPLEMENTATION_LANG=${MONASCA_API_IMPLEMENTATION_LANG:-python}
 export MONASCA_PERSISTER_IMPLEMENTATION_LANG=${MONASCA_PERSISTER_IMPLEMENTATION_LANG:-python}
 
-# Set default metrics DB to InfluxDB
+# Set default persistent layer settings
+export MONASCA_DATABASE_BACKEND=${MONASCA_DATABASE_BACKEND:-mysql}
+export MONASCA_DATABASE_USE_ORM=${MONASCA_DATABASE_USE_ORM:-false}
 export MONASCA_METRICS_DB=${MONASCA_METRICS_DB:-influxdb}
 
 # Determine if we are running in devstack-gate or devstack.
@@ -62,6 +64,13 @@ else
     # We are running in devstack.
     export MONASCA_BASE=${MONASCA_BASE:-"/opt/stack"}
 
+fi
+
+# Set ORM for databases
+if [[ "${MONASCA_DATABASE_BACKEND,,}" == 'mysql' ]]; then
+    export MONASCA_DATABASE_USE_ORM=${MONASCA_DATABASE_USE_ORM:-false}
+elif [[ "${MONASCA_DATABASE_BACKEND,,}" == 'postgresql' ]]; then
+    export MONASCA_DATABASE_USE_ORM=true
 fi
 
 function pre_install_monasca {
@@ -712,7 +721,7 @@ function clean_cli_creds {
 
 function install_schema {
 
-    echo_summary "Install Monasca Schema"
+    echo_summary "Install Monasca Schema [${MONASCA_DATABASE_BACKEND}]"
 
     sudo mkdir -p /opt/monasca/sqls || true
 
@@ -730,23 +739,20 @@ function install_schema {
 
     fi
 
-    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/schema/mon_mysql.sql /opt/monasca/sqls/mon.sql
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/schema/mon_"${MONASCA_DATABASE_BACKEND}".sql /opt/monasca/sqls/mon.sql
 
     sudo chmod 0644 /opt/monasca/sqls/mon.sql
 
     sudo chown root:root /opt/monasca/sqls/mon.sql
 
-    # must login as root@localhost
-    sudo mysql -h "127.0.0.1" -uroot -psecretmysql < /opt/monasca/sqls/mon.sql || echo "Did the schema change? This process will fail on schema changes."
-
-    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/schema/winchester.sql /opt/monasca/sqls/winchester.sql
-
-    sudo chmod 0644 /opt/monasca/sqls/winchester.sql
-
-    sudo chown root:root /opt/monasca/sqls/winchester.sql
+    recreate_database "mon"
 
     # must login as root@localhost
-    sudo mysql -h "127.0.0.1" -uroot -psecretmysql < /opt/monasca/sqls/winchester.sql || echo "Did the schema change? This process will fail on schema changes."
+    if [[ "${MONASCA_DATABASE_BACKEND,,}" == 'mysql' ]]; then
+        sudo mysql -h "127.0.0.1" -uroot -psecretmysql < /opt/monasca/sqls/mon.sql || echo "Did the schema change? This process will fail on schema changes."
+    elif [[ "${MONASCA_DATABASE_BACKEND,,}" == 'postgresql' ]]; then
+        sudo -u postgres psql -d mon -f /opt/monasca/sqls/mon.sql || echo "Did the schema change? This process will fail on schema changes."
+    fi
 
     sudo mkdir -p /opt/kafka/logs || true
 
@@ -768,9 +774,11 @@ function clean_schema {
     echo_summary "Clean Monasca Schema"
 
     sudo echo "drop database winchester;" | mysql -uroot -ppassword
-
-    sudo echo "drop database mon;" | mysql -uroot -ppassword
-
+    if [[ "${MONASCA_DATABASE_BACKEND}" == 'mysql' ]]; then
+      sudo echo "drop database mon;" | mysql -uroot -ppassword
+    elif [[ "${MONASCA_DATABASE_BACKEND}" ]]; then
+      sudo -u postgres psql -c "DROP DATABASE mon;"
+    fi
     sudo rm -f /opt/monasca/sqls/winchester.sql
 
     sudo rm -f /opt/monasca/sqls/mon.sql
