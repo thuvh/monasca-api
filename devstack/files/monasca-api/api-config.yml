@@ -107,6 +107,7 @@ middleware:
   defaultAuthorizedRoles: [user, domainuser, domainadmin, monasca-user, admin]
   readOnlyAuthorizedRoles: [monasca-read-only-user]
   agentAuthorizedRoles: [monasca-agent]
+  delegateAuthorizedRole: admin
   adminAuthMethod: password
   adminUser: "admin"
   adminPassword: "secretadmin"
