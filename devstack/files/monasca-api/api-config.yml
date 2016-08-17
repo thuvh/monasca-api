@@ -51,6 +51,20 @@ mysql:
   checkConnectionWhileIdle: false
   checkConnectionOnBorrow: true
 
+hibernate:
+  supportEnabled: false
+  providerClass: com.zaxxer.hikari.hibernate.HikariConnectionProvider
+  dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
+  dataSourceUrl: jdbc:mysql://127.0.0.1:3306/mon
+  serverName: 127.0.0.1
+  portNumber: 3306
+  databaseName: mon
+  user: monapi
+  password: password
+  initialConnections: 25
+  maxConnections: 100
+  autoConfig: validate
+
 databaseConfiguration:
   databaseType: "influxdb"
 
