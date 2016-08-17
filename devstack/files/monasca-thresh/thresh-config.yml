@@ -123,6 +123,22 @@ database:
   minSize: 8
 
   # the maximum number of connections to keep open
-
-
   maxSize: 41
+
+  # flag indicates if Hibernate support enabled
+  hibernateSupport: false
+
+  # hibernate provider class
+  providerClass: com.zaxxer.hikari.hibernate.HikariConnectionProvider
+
+  #Database name
+  databaseName: mon
+
+  #Server name/address
+  serverName: 127.0.0.1
+
+  #Server port number
+  portNumber: 3306
+
+  #Hibernate auto configuretion parameter
+  autoConfig: validate
