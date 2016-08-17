@@ -89,6 +89,10 @@ LOGFILE=$DEST/logs/stack.sh.log
 LOGDIR=$DEST/logs
 LOG_COLOR=False
 
+# Is ORM enabled ?
+# HINT: If postgresql service is enabled, ORM is enforced
+MONASCA_DATABASE_USE_ORM=${MONASCA_DATABASE_USE_ORM:-false}
+
 disable_all_services
 enable_service rabbit mysql key tempest horizon
 
