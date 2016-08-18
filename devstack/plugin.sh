@@ -129,7 +129,7 @@ function install_monasca {
 
     install_maven
 
-    install_monasca_common
+    download_monasca_libraries
 
     if [[ "${MONASCA_API_IMPLEMENTATION_LANG,,}" == 'java' ]]; then
 
@@ -822,9 +822,9 @@ function install_git {
 
 }
 
-function install_monasca_common {
+function download_monasca_libraries {
 
-    echo_summary "Install Monasca monasca_common"
+    echo_summary "Download Monasca monasca_common and monasca_notification"
 
     if [[ ! -d "${MONASCA_BASE}"/monasca-common ]]; then
 
@@ -833,6 +833,19 @@ function install_monasca_common {
     fi
 
     (cd "${MONASCA_BASE}"/monasca-common ; sudo mvn clean install -DskipTests)
+
+    export MONASCA_COMMON_SRC_DIST=$(ls -td "$MONASCA_BASE"/monasca-common/dist/monasca-common*.tar.gz | head -1)
+
+    if [[ ! -d "${MONASCA_BASE}"/monasca-statsd ]]; then
+
+        sudo git clone https://git.openstack.org/openstack/monasca-statsd "${MONASCA_BASE}"/monasca-statsd
+
+    fi
+
+    (cd "${MONASCA_BASE}"/monasca-statsd ; sudo python setup.py sdist)
+
+    export MONASCA_STATSD_SRC_DIST=$(ls -td "$MONASCA_BASE"/monasca-statsd/dist/monasca-statsd*.tar.gz | head -1)
+
 
 }
 
@@ -936,6 +949,10 @@ function install_monasca_api_python {
     (cd /opt/monasca-api; virtualenv .)
 
     PIP_VIRTUAL_ENV=/opt/monasca-api
+
+    sudo pip install $MONASCA_COMMON_SRC_DIST
+
+    sudo pip install $MONASCA_STATSD_SRC_DIST
 
     pip_install gunicorn
     pip_install PyMySQL
@@ -1163,6 +1180,10 @@ function install_monasca_persister_python {
 
     PIP_VIRTUAL_ENV=/opt/monasca-persister
 
+    sudo pip install $MONASCA_COMMON_SRC_DIST
+
+    sudo pip install $MONASCA_STATSD_SRC_DIST
+
     pip_install $MONASCA_PERSISTER_SRC_DIST
     pip_install influxdb==2.8.0
     pip_install cassandra-driver>=2.1.4,!=3.6.0
@@ -1302,6 +1323,10 @@ function install_monasca_notification {
     MONASCA_NOTIFICATION_SRC_DIST=$(ls -td "${MONASCA_BASE}"/monasca-notification/dist/monasca-notification-*.tar.gz | head -1)
 
     PIP_VIRTUAL_ENV=/opt/monasca
+
+    sudo pip install $MONASCA_COMMON_SRC_DIST
+
+    sudo pip install $MONASCA_STATSD_SRC_DIST
 
     pip_install $MONASCA_NOTIFICATION_SRC_DIST
 
@@ -1623,6 +1648,10 @@ function install_monasca_agent {
     sudo mkdir -p /opt/monasca-agent/
 
     (cd /opt/monasca-agent ; sudo virtualenv .)
+
+    (cd /opt/monasca-agent ; sudo ./bin/pip install $MONASCA_COMMON_SRC_DIST)
+
+    (cd /opt/monasca-agent ; sudo ./bin/pip install $MONASCA_STATSD_SRC_DIST)
 
     (cd /opt/monasca-agent ; sudo ./bin/pip install $MONASCA_AGENT_SRC_DIST)
 
