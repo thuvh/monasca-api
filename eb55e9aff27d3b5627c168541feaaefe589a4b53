@@ -45,6 +45,30 @@
       "revId": "eb55e9aff27d3b5627c168541feaaefe589a4b53",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ac371cc_8ceb79db",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/VerticaUtils.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-08-18T15:12:27Z",
+      "side": 1,
+      "message": "Vertica throws SERVER_ERROR with message \"Date/time field value out of range\u0027. Do you think it\u0027s better to map this specific one to UnprocessableEntity and then report the other exceptions as itself is better?",
+      "parentUuid": "3ac371cc_170b3b2b",
+      "range": {
+        "startLine": 27,
+        "startChar": 17,
+        "endLine": 27,
+        "endChar": 26
+      },
+      "revId": "eb55e9aff27d3b5627c168541feaaefe589a4b53",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
