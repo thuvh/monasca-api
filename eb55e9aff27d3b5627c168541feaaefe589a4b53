@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ac371cc_97f44b5b",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/StatisticVerticaRepoImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-08-18T03:34:47Z",
+      "side": 1,
+      "message": "This import isn\u0027t used",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 49
+      },
+      "revId": "eb55e9aff27d3b5627c168541feaaefe589a4b53",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ac371cc_170b3b2b",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/VerticaUtils.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-08-18T03:34:47Z",
+      "side": 1,
+      "message": "What exception is thrown by Vertica in the bad time case? Mapping all Exceptions to an UnprocessableEntity seems too much",
+      "range": {
+        "startLine": 27,
+        "startChar": 17,
+        "endLine": 27,
+        "endChar": 26
+      },
+      "revId": "eb55e9aff27d3b5627c168541feaaefe589a4b53",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
