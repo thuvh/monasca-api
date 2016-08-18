@@ -129,7 +129,7 @@ function install_monasca {
 
     install_maven
 
-    install_monasca_common
+    download_monasca_libraries
 
     if [[ "${MONASCA_API_IMPLEMENTATION_LANG,,}" == 'java' ]]; then
 
@@ -822,9 +822,9 @@ function install_git {
 
 }
 
-function install_monasca_common {
+function download_monasca_libraries {
 
-    echo_summary "Install Monasca monasca_common"
+    echo_summary "Download Monasca monasca_common and monasca_notification"
 
     if [[ ! -d "${MONASCA_BASE}"/monasca-common ]]; then
 
@@ -833,6 +833,21 @@ function install_monasca_common {
     fi
 
     (cd "${MONASCA_BASE}"/monasca-common ; sudo mvn clean install -DskipTests)
+
+    (cd "${MONASCA_BASE}"/monasca-common ; sudo python setup.py sdist)
+
+    MONASCA_COMMON_SRC_DIST=$(ls -td "$MONASCA_BASE"/monasca-common/dist/monasca-common*.tar.gz | head -1)
+
+    if [[ ! -d "${MONASCA_BASE}"/monasca-statsd ]]; then
+
+        sudo git clone https://git.openstack.org/openstack/monasca-statsd "${MONASCA_BASE}"/monasca-statsd
+
+    fi
+
+    (cd "${MONASCA_BASE}"/monasca-statsd ; sudo python setup.py sdist)
+
+    MONASCA_STATSD_SRC_DIST=$(ls -td "$MONASCA_BASE"/monasca-statsd/dist/monasca-statsd*.tar.gz | head -1)
+
 
 }
 
@@ -936,6 +951,10 @@ function install_monasca_api_python {
     (cd /opt/monasca-api; virtualenv .)
 
     PIP_VIRTUAL_ENV=/opt/monasca-api
+
+    pip_install $MONASCA_COMMON_SRC_DIST
+
+    pip_install $MONASCA_STATSD_SRC_DIST
 
     pip_install gunicorn
     pip_install PyMySQL
@@ -1163,6 +1182,10 @@ function install_monasca_persister_python {
 
     PIP_VIRTUAL_ENV=/opt/monasca-persister
 
+    pip_install $MONASCA_COMMON_SRC_DIST
+
+    pip_install $MONASCA_STATSD_SRC_DIST
+
     pip_install $MONASCA_PERSISTER_SRC_DIST
     pip_install influxdb==2.8.0
     pip_install cassandra-driver>=2.1.4,!=3.6.0
@@ -1303,9 +1326,16 @@ function install_monasca_notification {
 
     PIP_VIRTUAL_ENV=/opt/monasca
 
+    pip_install $MONASCA_COMMON_SRC_DIST
+
+    pip_install $MONASCA_STATSD_SRC_DIST
+
     pip_install $MONASCA_NOTIFICATION_SRC_DIST
 
     pip_install mysql-python
+
+    # Debug line ~ Need to Remove ~ #
+    (cd $PIP_VIRTUAL_ENV ; ./bin/pip list)
 
     unset PIP_VIRTUAL_ENV
 
@@ -1623,6 +1653,10 @@ function install_monasca_agent {
     sudo mkdir -p /opt/monasca-agent/
 
     (cd /opt/monasca-agent ; sudo virtualenv .)
+
+    pip_install $MONASCA_COMMON_SRC_DIST
+
+    pip_install $MONASCA_STATSD_SRC_DIST
 
     (cd /opt/monasca-agent ; sudo ./bin/pip install $MONASCA_AGENT_SRC_DIST)
 
