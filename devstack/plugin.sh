@@ -737,7 +737,7 @@ function install_schema {
     sudo chown root:root /opt/monasca/sqls/mon.sql
 
     # must login as root@localhost
-    sudo mysql -h "127.0.0.1" -uroot -psecretmysql < /opt/monasca/sqls/mon.sql || echo "Did the schema change? This process will fail on schema changes."
+    sudo mysql -h "127.0.0.1" -uroot -p${MYSQL_PASSWORD} < /opt/monasca/sqls/mon.sql || echo "Did the schema change? This process will fail on schema changes."
 
     sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/schema/winchester.sql /opt/monasca/sqls/winchester.sql
 
@@ -746,7 +746,7 @@ function install_schema {
     sudo chown root:root /opt/monasca/sqls/winchester.sql
 
     # must login as root@localhost
-    sudo mysql -h "127.0.0.1" -uroot -psecretmysql < /opt/monasca/sqls/winchester.sql || echo "Did the schema change? This process will fail on schema changes."
+    sudo mysql -h "127.0.0.1" -uroot -p${MYSQL_PASSWORD} < /opt/monasca/sqls/winchester.sql || echo "Did the schema change? This process will fail on schema changes."
 
     sudo mkdir -p /opt/kafka/logs || true
 
