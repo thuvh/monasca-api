@@ -46,6 +46,30 @@
       "revId": "e8be9caf7b82e87b4022158ce49522ff746aa352",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ac06dbe_bc6ff529",
+        "filename": "monasca_tempest_tests/tests/api/test_dimensions.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-08-22T18:48:58Z",
+      "side": 1,
+      "message": "I haven\u0027t seen it, but if you think it\u0027s necessary I\u0027m fine with it.\n\nMaybe it\u0027s worth investigating why it takes so long rather than increasing the timeout? It really shouldn\u0027t be that long",
+      "parentUuid": "1ac06dbe_5cea41ad",
+      "range": {
+        "startLine": 66,
+        "startChar": 45,
+        "endLine": 66,
+        "endChar": 49
+      },
+      "revId": "e8be9caf7b82e87b4022158ce49522ff746aa352",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
