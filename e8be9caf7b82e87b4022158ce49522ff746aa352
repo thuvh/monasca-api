@@ -2,6 +2,75 @@
   "comments": [
     {
       "key": {
+        "uuid": "1ac06dbe_07acf68a",
+        "filename": "java/src/main/java/monasca/api/resource/Links.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-08-22T19:20:46Z",
+      "side": 1,
+      "message": "Any way this could be combined with the one above? They are very similar",
+      "range": {
+        "startLine": 381,
+        "startChar": 22,
+        "endLine": 381,
+        "endChar": 44
+      },
+      "revId": "e8be9caf7b82e87b4022158ce49522ff746aa352",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ac06dbe_67e04afb",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-08-22T19:20:46Z",
+      "side": 1,
+      "message": "Any way to combine this with the one above? They are extremely similar",
+      "range": {
+        "startLine": 447,
+        "startChar": 4,
+        "endLine": 447,
+        "endChar": 28
+      },
+      "revId": "e8be9caf7b82e87b4022158ce49522ff746aa352",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ac06dbe_c7fbfebf",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 492,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-08-22T19:20:46Z",
+      "side": 1,
+      "message": "Nit: This could be called _truncate_string_list or something more general",
+      "range": {
+        "startLine": 492,
+        "startChar": 4,
+        "endLine": 492,
+        "endChar": 39
+      },
+      "revId": "e8be9caf7b82e87b4022158ce49522ff746aa352",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1ac06dbe_1cda894c",
         "filename": "monasca_tempest_tests/tests/api/test_dimensions.py",
         "patchSetId": 17
@@ -66,6 +135,52 @@
         "startChar": 45,
         "endLine": 66,
         "endChar": 49
+      },
+      "revId": "e8be9caf7b82e87b4022158ce49522ff746aa352",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ac06dbe_277bf28d",
+        "filename": "monasca_tempest_tests/tests/api/test_dimensions.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-08-22T19:20:46Z",
+      "side": 1,
+      "message": "can this be combined with the one above? They are very similar",
+      "range": {
+        "startLine": 227,
+        "startChar": 8,
+        "endLine": 227,
+        "endChar": 35
+      },
+      "revId": "e8be9caf7b82e87b4022158ce49522ff746aa352",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ac06dbe_479d4ebb",
+        "filename": "monasca_tempest_tests/tests/api/test_dimensions.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-08-22T19:20:46Z",
+      "side": 1,
+      "message": "this method seems like it might not be necessary",
+      "range": {
+        "startLine": 247,
+        "startChar": 8,
+        "endLine": 247,
+        "endChar": 27
       },
       "revId": "e8be9caf7b82e87b4022158ce49522ff746aa352",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
