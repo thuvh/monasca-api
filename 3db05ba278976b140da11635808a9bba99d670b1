@@ -22,6 +22,30 @@
       "revId": "3db05ba278976b140da11635808a9bba99d670b1",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ac06dbe_0d92629e",
+        "filename": "monasca_tempest_tests/tests/api/test_notification_methods.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-08-22T16:13:29Z",
+      "side": 1,
+      "message": "good call",
+      "parentUuid": "1ac06dbe_cd420a3e",
+      "range": {
+        "startLine": 223,
+        "startChar": 57,
+        "endLine": 223,
+        "endChar": 64
+      },
+      "revId": "3db05ba278976b140da11635808a9bba99d670b1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
