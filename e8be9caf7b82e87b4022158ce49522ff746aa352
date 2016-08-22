@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1ac06dbe_1cda894c",
+        "filename": "monasca_tempest_tests/tests/api/test_dimensions.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-08-22T18:42:42Z",
+      "side": 1,
+      "message": "why does this need double the number of retries?",
+      "range": {
+        "startLine": 66,
+        "startChar": 45,
+        "endLine": 66,
+        "endChar": 49
+      },
+      "revId": "e8be9caf7b82e87b4022158ce49522ff746aa352",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
