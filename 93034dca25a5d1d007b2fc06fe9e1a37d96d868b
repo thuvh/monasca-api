@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1ac06dbe_5243e16b",
+        "filename": "devstack/Vagrantfile",
+        "patchSetId": 7
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2016-08-24T07:02:33Z",
+      "side": 1,
+      "message": "Ok, but the problem is we need to know which database is used and which should be configured.\nIn devstack documentation it is written that if we want to use postgresql, mysql shouldn\u0027t be installed.",
+      "parentUuid": "1ac06dbe_21d379d6",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 37
+      },
+      "revId": "93034dca25a5d1d007b2fc06fe9e1a37d96d868b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1ac06dbe_77236fbd",
         "filename": "devstack/plugin.sh",
         "patchSetId": 7
