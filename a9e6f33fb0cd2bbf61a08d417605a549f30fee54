@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "1ac06dbe_15ec928e",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-08-24T15:32:57Z",
+      "side": 1,
+      "message": "As discussed during weekly meeting, winchester schema is not used anymore and can be safely removed as technical debt.",
+      "parentUuid": "1ac06dbe_2b0b4b7e",
+      "range": {
+        "startLine": 764,
+        "startChar": 15,
+        "endLine": 764,
+        "endChar": 16
+      },
+      "revId": "a9e6f33fb0cd2bbf61a08d417605a549f30fee54",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1ac06dbe_c5042816",
         "filename": "devstack/plugin.sh",
         "patchSetId": 8
