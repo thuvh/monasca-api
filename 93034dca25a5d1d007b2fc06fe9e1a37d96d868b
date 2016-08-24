@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1ac06dbe_21d379d6",
+        "filename": "devstack/Vagrantfile",
+        "patchSetId": 7
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-08-24T06:49:07Z",
+      "side": 1,
+      "message": "Why don\u0027t you show options we can select as comment?",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 37
+      },
+      "revId": "93034dca25a5d1d007b2fc06fe9e1a37d96d868b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ac06dbe_77236fbd",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 753,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-08-24T06:49:07Z",
+      "side": 1,
+      "message": "Upper case \u0027US\u0027 works in my environment.",
+      "range": {
+        "startLine": 753,
+        "startChar": 85,
+        "endLine": 753,
+        "endChar": 87
+      },
+      "revId": "93034dca25a5d1d007b2fc06fe9e1a37d96d868b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
