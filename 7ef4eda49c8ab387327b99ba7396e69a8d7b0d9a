@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1ac06dbe_10adae88",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 745,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-08-24T20:36:43Z",
+      "side": 1,
+      "message": "Actually both host and user could be substituted with variables.",
+      "revId": "7ef4eda49c8ab387327b99ba7396e69a8d7b0d9a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
