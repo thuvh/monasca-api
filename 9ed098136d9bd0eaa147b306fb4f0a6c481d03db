@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1ac06dbe_cb8f2473",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionValues.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-08-24T03:35:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ac06dbe_f4576223",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 3
+      },
+      "revId": "9ed098136d9bd0eaa147b306fb4f0a6c481d03db",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1ac06dbe_e804a615",
         "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionValues.java",
         "patchSetId": 19
@@ -36,6 +60,30 @@
       "writtenOn": "2016-08-24T03:01:47Z",
       "side": 1,
       "message": "This part is super.equals() so replace it with that",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 19
+      },
+      "revId": "9ed098136d9bd0eaa147b306fb4f0a6c481d03db",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ac06dbe_ab8aa861",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionValues.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-08-24T03:35:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ac06dbe_e804a615",
       "range": {
         "startLine": 74,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "1ac06dbe_ebee6020",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionValues.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-08-24T03:35:23Z",
+      "side": 1,
+      "message": "Thank you Craig!",
+      "parentUuid": "1ac06dbe_481fba5a",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 81
+      },
+      "revId": "9ed098136d9bd0eaa147b306fb4f0a6c481d03db",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1ac06dbe_1464beb6",
         "filename": "monasca_tempest_tests/tests/api/test_dimensions.py",
         "patchSetId": 19
@@ -82,6 +154,30 @@
       "writtenOn": "2016-08-24T03:01:47Z",
       "side": 1,
       "message": "_get_offset() only takes response_body as an argument",
+      "range": {
+        "startLine": 197,
+        "startChar": 55,
+        "endLine": 197,
+        "endChar": 68
+      },
+      "revId": "9ed098136d9bd0eaa147b306fb4f0a6c481d03db",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ac06dbe_cb4a8454",
+        "filename": "monasca_tempest_tests/tests/api/test_dimensions.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-08-24T03:35:23Z",
+      "side": 1,
+      "message": "Yes I was using my old get_offset function. Forgot to change it after rebase. Thanks!",
+      "parentUuid": "1ac06dbe_1464beb6",
       "range": {
         "startLine": 197,
         "startChar": 55,
