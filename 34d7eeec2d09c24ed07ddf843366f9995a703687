@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1ac06dbe_94f70ed2",
+        "filename": "monasca_tempest_tests/tests/api/base.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-08-24T03:01:47Z",
+      "side": 0,
+      "message": "This line is required, it returns the offset",
+      "range": {
+        "startLine": 97,
+        "startChar": 8,
+        "endLine": 97,
+        "endChar": 40
+      },
+      "revId": "34d7eeec2d09c24ed07ddf843366f9995a703687",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
