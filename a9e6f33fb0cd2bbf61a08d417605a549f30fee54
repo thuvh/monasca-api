@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1ac06dbe_ba05c714",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 14123
+      },
+      "writtenOn": "2016-08-24T09:03:45Z",
+      "side": 1,
+      "message": "If I understood correctly we don\u0027t have mysql installed so we cannot use mysql. Winchester looks like to use SQLAlchemy so should work with any SQL",
+      "range": {
+        "startLine": 764,
+        "startChar": 15,
+        "endLine": 764,
+        "endChar": 16
+      },
+      "revId": "a9e6f33fb0cd2bbf61a08d417605a549f30fee54",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ac06dbe_c5042816",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 785,
+      "author": {
+        "id": 14123
+      },
+      "writtenOn": "2016-08-24T09:03:45Z",
+      "side": 1,
+      "message": "Same as before",
+      "range": {
+        "startLine": 785,
+        "startChar": 4,
+        "endLine": 785,
+        "endChar": 8
+      },
+      "revId": "a9e6f33fb0cd2bbf61a08d417605a549f30fee54",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
