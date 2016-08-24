@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1ac06dbe_2b0b4b7e",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-08-24T09:15:30Z",
+      "side": 1,
+      "message": "That\u0027s actually a good question, but I am not even sure if that winchester (whatever that is) is used, I mean if the tables that are defined there are used anywhere.\n\nMaybe that\u0027s actually a point to put in agenda of the weekly meeting and see if that\u0027s available to be removed.",
+      "parentUuid": "1ac06dbe_ba05c714",
+      "range": {
+        "startLine": 764,
+        "startChar": 15,
+        "endLine": 764,
+        "endChar": 16
+      },
+      "revId": "a9e6f33fb0cd2bbf61a08d417605a549f30fee54",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1ac06dbe_c5042816",
         "filename": "devstack/plugin.sh",
         "patchSetId": 8
