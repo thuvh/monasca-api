@@ -1,0 +1,274 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1ac06dbe_6fd32560",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 22
+      },
+      "lineNbr": 1254,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-08-25T15:54:04Z",
+      "side": 1,
+      "message": "take out",
+      "range": {
+        "startLine": 1254,
+        "startChar": 55,
+        "endLine": 1254,
+        "endChar": 57
+      },
+      "revId": "a6fae4c94abcb49a4a885171c69af044683df72e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ac06dbe_cff33909",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 22
+      },
+      "lineNbr": 1254,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-08-25T15:54:04Z",
+      "side": 1,
+      "message": "take out",
+      "range": {
+        "startLine": 1254,
+        "startChar": 278,
+        "endLine": 1254,
+        "endChar": 281
+      },
+      "revId": "a6fae4c94abcb49a4a885171c69af044683df72e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ac06dbe_0f7d511c",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 22
+      },
+      "lineNbr": 1256,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-08-25T15:54:04Z",
+      "side": 1,
+      "message": "will",
+      "range": {
+        "startLine": 1256,
+        "startChar": 138,
+        "endLine": 1256,
+        "endChar": 140
+      },
+      "revId": "a6fae4c94abcb49a4a885171c69af044683df72e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ac06dbe_0fb1d18f",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionNames.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-08-25T15:54:04Z",
+      "side": 1,
+      "message": "should there be a space between these?",
+      "revId": "a6fae4c94abcb49a4a885171c69af044683df72e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ac06dbe_6f34c5fa",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionNames.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-08-25T15:54:04Z",
+      "side": 1,
+      "message": "just out of curiosity what does this mean? just looking at the code it is confusing to me as this is marked as non null but you say above optional metric name",
+      "range": {
+        "startLine": 30,
+        "startChar": 17,
+        "endLine": 30,
+        "endChar": 28
+      },
+      "revId": "a6fae4c94abcb49a4a885171c69af044683df72e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ac06dbe_8f63011a",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionRepo.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-08-25T15:54:04Z",
+      "side": 1,
+      "message": "an",
+      "range": {
+        "startLine": 34,
+        "startChar": 32,
+        "endLine": 34,
+        "endChar": 33
+      },
+      "revId": "a6fae4c94abcb49a4a885171c69af044683df72e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ac06dbe_980505c4",
+        "filename": "java/src/main/java/monasca/api/resource/Links.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-08-25T15:54:04Z",
+      "side": 1,
+      "message": "confusing that this class is DimensionNames but the variable name is dimNamesOrValues",
+      "range": {
+        "startLine": 363,
+        "startChar": 53,
+        "endLine": 363,
+        "endChar": 67
+      },
+      "revId": "a6fae4c94abcb49a4a885171c69af044683df72e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ac06dbe_581b8d1b",
+        "filename": "monasca_api/api/metrics_api_v2.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-08-25T15:54:04Z",
+      "side": 1,
+      "message": "we should get rid of this and add it to the below copyright. At least that is what we have been doing in other files.",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 24
+      },
+      "revId": "a6fae4c94abcb49a4a885171c69af044683df72e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ac06dbe_83d3da5e",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-08-25T15:54:04Z",
+      "side": 1,
+      "message": "seems more like you are generating a id off of the metric_name not dimensions names",
+      "range": {
+        "startLine": 250,
+        "startChar": 8,
+        "endLine": 250,
+        "endChar": 36
+      },
+      "revId": "a6fae4c94abcb49a4a885171c69af044683df72e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ac06dbe_a38ff621",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-08-25T15:54:04Z",
+      "side": 1,
+      "message": "what is this id for in relation to influxdb?",
+      "range": {
+        "startLine": 260,
+        "startChar": 28,
+        "endLine": 260,
+        "endChar": 30
+      },
+      "revId": "a6fae4c94abcb49a4a885171c69af044683df72e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ac06dbe_0347ea1d",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-08-25T15:54:04Z",
+      "side": 1,
+      "message": "same here",
+      "range": {
+        "startLine": 1,
+        "startChar": 12,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "a6fae4c94abcb49a4a885171c69af044683df72e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ac06dbe_83bd9ad9",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-08-25T15:54:04Z",
+      "side": 1,
+      "message": "dimension_names or dim_names",
+      "range": {
+        "startLine": 447,
+        "startChar": 29,
+        "endLine": 447,
+        "endChar": 37
+      },
+      "revId": "a6fae4c94abcb49a4a885171c69af044683df72e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
