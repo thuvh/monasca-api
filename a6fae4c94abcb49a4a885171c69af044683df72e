@@ -111,6 +111,30 @@
     },
     {
       "key": {
+        "uuid": "1ac06dbe_e9feed69",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionNames.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-08-25T16:54:46Z",
+      "side": 1,
+      "message": "NON_NULL: Value that indicates that only properties with non-null values are to be included. So I think this will make sure to get the metric-name  if we pass in a non-null one.",
+      "parentUuid": "1ac06dbe_6f34c5fa",
+      "range": {
+        "startLine": 30,
+        "startChar": 17,
+        "endLine": 30,
+        "endChar": 28
+      },
+      "revId": "a6fae4c94abcb49a4a885171c69af044683df72e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1ac06dbe_8f63011a",
         "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionRepo.java",
         "patchSetId": 22
@@ -157,6 +181,30 @@
     },
     {
       "key": {
+        "uuid": "1ac06dbe_c9d4d1be",
+        "filename": "java/src/main/java/monasca/api/resource/Links.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-08-25T16:54:46Z",
+      "side": 1,
+      "message": "Yeah I agree... But if I change DimensionNames class name to DimensionNamesOrValues that would be wrong too hmm",
+      "parentUuid": "1ac06dbe_980505c4",
+      "range": {
+        "startLine": 363,
+        "startChar": 53,
+        "endLine": 363,
+        "endChar": 67
+      },
+      "revId": "a6fae4c94abcb49a4a885171c69af044683df72e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1ac06dbe_581b8d1b",
         "filename": "monasca_api/api/metrics_api_v2.py",
         "patchSetId": 22
@@ -168,6 +216,30 @@
       "writtenOn": "2016-08-25T15:54:04Z",
       "side": 1,
       "message": "we should get rid of this and add it to the below copyright. At least that is what we have been doing in other files.",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 24
+      },
+      "revId": "a6fae4c94abcb49a4a885171c69af044683df72e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ac06dbe_29b12590",
+        "filename": "monasca_api/api/metrics_api_v2.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-08-25T16:54:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ac06dbe_581b8d1b",
       "range": {
         "startLine": 2,
         "startChar": 17,
