@@ -79,8 +79,9 @@ public class InfluxV9StatisticRepo implements StatisticRepo {
       int indexOfUnderscore = offset.indexOf('_');
       if (indexOfUnderscore > -1) {
         offsetTimePart = offset.substring(indexOfUnderscore + 1);
-        // Add the period to the offset to ensure only the next group of points are returned
-        DateTime offsetDateTime = DateTime.parse(offsetTimePart).plusSeconds(period);
+        // Add the period minus one millisecond to the offset
+        // to ensure only the next group of points are returned
+        DateTime offsetDateTime = DateTime.parse(offsetTimePart).plusSeconds(period).minusMillis(1);
         // leave out any ID, as influx doesn't understand it
         offset = offsetDateTime.toString();
       }
