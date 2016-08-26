@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014,2016 Hewlett-Packard Development Company, L.P.
+ * (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -80,10 +80,12 @@ public class StatisticResource {
       @QueryParam("limit") String limit,
       @QueryParam("tenant_id") String crossTenantId,
       @QueryParam("merge_metrics") String mergeMetricsFlag,
-      @QueryParam("group_by") String groupBy) throws Exception {
+      @QueryParam("group_by") String groupBy,
+      @QueryParam("metric_ids") String metricIdsStr) throws Exception {
 
     // Validate query parameters
-    Validation.validateNotNullOrEmpty(name, "name");
+    boolean metricNameRequired = (metricIdsStr == null || metricIdsStr.isEmpty());
+    MetricNameValidation.validate(name, metricNameRequired);
     DateTime startTime = Validation.parseAndValidateDate(startTimeStr, "start_time", true);
     DateTime endTime = Validation.parseAndValidateDate(endTimeStr, "end_time", false);
     Validation.validateTimes(startTime, endTime);
@@ -94,15 +96,15 @@ public class StatisticResource {
     Map<String, String> dimensions =
         Strings.isNullOrEmpty(dimensionsStr) ? null : Validation
             .parseAndValidateDimensions(dimensionsStr);
-    MetricNameValidation.validate(name, true);
+    List<String> metricIds = Validation.validateAndParseMetricsIds(metricIdsStr);
     Boolean mergeMetricsFlagBool = Validation.validateAndParseMergeMetricsFlag(mergeMetricsFlag);
     Validation.validateMetricsGroupBy(groupBy);
 
     String queryTenantId = Validation.getQueryProject(roles, crossTenantId, tenantId, admin_role);
 
     return Links.paginateMeasurements(this.persistUtils.getLimit(limit),
-                                      repo.find(queryTenantId, name, dimensions, startTime, endTime,
-                                                statistics, period, offset,
+                                      repo.find(queryTenantId, name, dimensions, metricIds,
+                                                startTime, endTime, statistics, period, offset,
                                                 this.persistUtils.getLimit(limit),
                                                 mergeMetricsFlagBool, groupBy),
                                       uriInfo);

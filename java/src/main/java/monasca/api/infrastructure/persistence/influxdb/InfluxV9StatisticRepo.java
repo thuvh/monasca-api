@@ -1,5 +1,5 @@
 /*
- * (C) Copyright 2014, 2016 Hewlett-Packard Development LP
+ * (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -70,9 +70,10 @@ public class InfluxV9StatisticRepo implements StatisticRepo {
 
   @Override
   public List<Statistics> find(String tenantId, String name, Map<String, String> dimensions,
-                               DateTime startTime, @Nullable DateTime endTime,
-                               List<String> statistics, int period, String offset, int limit,
-                               Boolean mergeMetricsFlag, String groupBy) throws Exception {
+                               List<String> metricIds, DateTime startTime,
+                               @Nullable DateTime endTime, List<String> statistics, int period,
+                               String offset, int limit, Boolean mergeMetricsFlag,
+                               String groupBy) throws Exception {
 
     String offsetTimePart = "";
     if (!Strings.isNullOrEmpty(offset)) {
@@ -86,14 +87,14 @@ public class InfluxV9StatisticRepo implements StatisticRepo {
       }
     }
 
-    String q = buildQuery(tenantId, name, dimensions, startTime, endTime,
+    String q = buildQuery(tenantId, name, dimensions, metricIds, startTime, endTime,
                    statistics, period, offset, limit, mergeMetricsFlag, groupBy);
 
     String r = this.influxV9RepoReader.read(q);
 
     Series series = this.objectMapper.readValue(r, Series.class);
 
-    List<Statistics> statisticsList = statisticslist(series, offset, limit);
+    List<Statistics> statisticsList = statisticsList(series, offset, limit);
 
     logger.debug("Found {} metric definitions matching query", statisticsList.size());
 
@@ -102,9 +103,9 @@ public class InfluxV9StatisticRepo implements StatisticRepo {
   }
 
   private String buildQuery(String tenantId, String name, Map<String, String> dimensions,
-                            DateTime startTime, DateTime endTime, List<String> statistics,
-                            int period, String offset, int limit, Boolean mergeMetricsFlag,
-                            String groupBy)
+                            List<String> metricIds, DateTime startTime, DateTime endTime,
+                            List<String> statistics, int period, String offset, int limit,
+                            Boolean mergeMetricsFlag, String groupBy)
       throws Exception {
 
     String offsetTimePart = "";
@@ -132,15 +133,17 @@ public class InfluxV9StatisticRepo implements StatisticRepo {
 
     } else {
 
-      if (!"*".equals(groupBy) &&
-          !this.influxV9MetricDefinitionRepo.isAtMostOneSeries(tenantId, name, dimensions)) {
+      if (!"*".equals(groupBy) && metricIds == null &&
+              !this.influxV9MetricDefinitionRepo.isAtMostOneSeries(tenantId, name, dimensions)) {
 
         throw new MultipleMetricsException(name, dimensions);
 
       }
-
+      if (metricIds != null && !metricIds.isEmpty()) {
+        name = "/.*/";
+      }
       q = String.format("select %1$s %2$s "
-                        + "where %3$s %4$s %5$s %6$s %7$s %8$s",
+                        + "where %3$s %4$s %5$s %6$s %7$s %8$s %9$s",
                         funcPart(statistics),
                         this.influxV9Utils.namePart(name, true),
                         this.influxV9Utils.privateTenantIdPart(tenantId),
@@ -148,6 +151,7 @@ public class InfluxV9StatisticRepo implements StatisticRepo {
                         this.influxV9Utils.startTimePart(startTime),
                         this.influxV9Utils.dimPart(dimensions),
                         this.influxV9Utils.endTimePart(endTime),
+                        this.influxV9Utils.metricIdsPart(metricIds),
                         this.influxV9Utils.periodPartWithGroupBy(period));
     }
 
@@ -156,7 +160,7 @@ public class InfluxV9StatisticRepo implements StatisticRepo {
     return q;
   }
 
-  private List<Statistics> statisticslist(Series series, String offsetStr, int limit) {
+  private List<Statistics> statisticsList(Series series, String offsetStr, int limit) {
 
     int offsetId = 0;
     String offsetTimestamp = "1970-01-01T00:00:00.000Z";
@@ -183,11 +187,11 @@ public class InfluxV9StatisticRepo implements StatisticRepo {
           index++;
           continue;
         }
-
-        Statistics statistics = new Statistics(serie.getName(),
-                                               this.influxV9Utils.filterPrivateTags(serie.getTags()),
+        Map<String, String> filteredTagMap = influxV9Utils.filterPrivateTags(serie.getTags());
+        String id = filteredTagMap.remove("_definition_dimension_id");
+        Statistics statistics = new Statistics(serie.getName(), filteredTagMap,
                                                Arrays.asList(translateNames(serie.getColumns())));
-        statistics.setId(Integer.toString(index));
+        statistics.setId(id);
 
 
         for (Object[] valueObjects : serie.getValues()) {

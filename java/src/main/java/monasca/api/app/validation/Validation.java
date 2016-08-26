@@ -288,4 +288,17 @@ public final class Validation {
     }
     return sortByList;
   }
+
+  public static List<String> validateAndParseMetricsIds(String metricIdsStr) {
+    List<String> metricIds = null;
+    if(metricIdsStr != null && !metricIdsStr.isEmpty()) {
+      metricIds = Lists.newArrayList(COMMA_SPLITTER.split(metricIdsStr));
+      for (String metricId : metricIds) {
+        if (!metricId.matches("[a-fA-F0-9]{40}")) {
+          throw Exceptions.unprocessableEntity(String.format("Metric_id %s is not a valid SHA1 value", metricId));
+        }
+      }
+    }
+    return metricIds;
+  }
 }

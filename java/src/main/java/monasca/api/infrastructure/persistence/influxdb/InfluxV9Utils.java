@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015,2016 Hewlett Packard Enterprise Development Company, L.P.
+ * (C) Copyright 2015-2016 Hewlett Packard Enterprise Development LP
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -101,6 +101,8 @@ public class InfluxV9Utils {
 
     if (name == null || name.isEmpty()) {
       return "";
+    } else if (name.equals("/.*/")) {
+      return " from /.*/";
     } else {
       return String.format(" from \"%1$s\"", sanitize(name));
     }
@@ -185,6 +187,21 @@ public class InfluxV9Utils {
       }
     }
 
+    return sb.toString();
+  }
+
+  public String metricIdsPart(List<String> metricIds) {
+    StringBuilder sb = new StringBuilder();
+    for (String metricId : metricIds) {
+      if (sb.length() > 0) {
+        sb.append(" or ");
+      }
+      sb.append(String.format(" _definition_dimension_id = '%1$s' ", metricId));
+    }
+    if (sb.length() > 0) {
+      sb.insert(0, " and (");
+      sb.insert(sb.length(), ")");
+    }
     return sb.toString();
   }
 

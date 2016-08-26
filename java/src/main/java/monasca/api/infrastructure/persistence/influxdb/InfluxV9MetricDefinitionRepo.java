@@ -81,7 +81,7 @@ public class InfluxV9MetricDefinitionRepo implements MetricDefinitionRepo {
 
     logger.debug("Found {} metric definitions matching query", metricDefinitionList.size());
 
-    return metricDefinitionList.size() > 1 ? false : true;
+    return metricDefinitionList.size() <= 1;
 
   }
 
@@ -160,20 +160,15 @@ public class InfluxV9MetricDefinitionRepo implements MetricDefinitionRepo {
 
     if (!series.isEmpty()) {
 
-      int index = startIndex;
-
       for (Serie serie : series.getSeries()) {
 
         for (String[] values : serie.getValues()) {
-
-          MetricDefinition m = new MetricDefinition(serie.getName(),
-                                                    this.influxV9Utils.getDimensions(values, serie.getColumns()));
+          MetricDefinition m = createMetricDefinition(serie.getName(), values, serie.getColumns());
           //
           // If start/end time are specified, ensure we've got measurements
           // for this definition before we add to the return list
           //
           if (hasMeasurements(m, tenantId, startTime, endTime)) {
-            m.setId(String.valueOf(index++));
             metricDefinitionList.add(m);
           }
         }
@@ -201,6 +196,33 @@ public class InfluxV9MetricDefinitionRepo implements MetricDefinitionRepo {
     }
 
     return metricNameList;
+  }
+
+
+  private MetricDefinition createMetricDefinition(String name, String[] vals, String[] cols) {
+    String id = "";
+    Map<String, String> dims = new HashMap<>();
+
+    for (int i = 0; i < cols.length; ++i) {
+
+      // Dimension names that start with underscore are reserved. I.e., _key, _region, _tenant_id.
+      // Influxdb inserts _key.
+      // Monasca Persister inserts _region, _tenant_id, and _definition_dimension_id.
+
+      if (!cols[i].startsWith("_")) {
+
+        if (!vals[i].equalsIgnoreCase("null")) {
+
+          dims.put(cols[i], vals[i]);
+        }
+      }
+      else if (cols[i].equals("_definition_dimension_id")){
+        id = vals[i];
+      }
+    }
+    MetricDefinition m = new MetricDefinition(name, dims);
+    m.setId(id);
+    return m;
   }
 
   private boolean hasMeasurements(MetricDefinition m,
@@ -236,7 +258,7 @@ public class InfluxV9MetricDefinitionRepo implements MetricDefinitionRepo {
       // checking if there are current measurements, default to
       // existing behavior and return the definition.
       //
-      logger.error("Failed to query for measuremnts for: {}", m.name, e);
+      logger.error("Failed to query for measurements for: {}", m.name, e);
       hasMeasurements = true;
     }
 

@@ -281,4 +281,21 @@ final class MetricQueries {
 
     }
   }
+
+  public static String buildMetricIdInClause(List<String> metricIds) {
+    StringBuilder sbIn = new StringBuilder();
+    for (int i = 0; i < metricIds.size(); i++) {
+      sbIn.append(":metric_id").append(i);
+      if (i < metricIds.size() - 1) {
+        sbIn.append(",");
+      }
+    }
+    return sbIn.toString();
+  }
+
+  public static void bindMetricIdsToQuery(Query query, List<String> metricIds) {
+    for (int i = 0; i < metricIds.size(); i++) {
+      query.bind("metric_id" + String.valueOf(i), metricIds.get(i));
+    }
+  }
 }

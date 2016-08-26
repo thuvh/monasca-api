@@ -42,7 +42,7 @@ public class MeasurementVerticaRepositoryImplTest {
   @BeforeClass
   protected void setupClass() throws Exception {
     Class.forName("com.vertica.jdbc.Driver");
-    db = new DBI("jdbc:vertica://192.168.10.4/mon", "dbadmin", "password");
+    db = new DBI("jdbc:vertica://192.168.10.6/mon", "dbadmin", "password");
     handle = db.open();
     config = new ApiConfig();
     repo = new MeasurementVerticaRepoImpl(db, config);
@@ -90,7 +90,7 @@ public class MeasurementVerticaRepositoryImplTest {
 
   public void shouldFindWithoutDimensions() throws Exception {
     Collection<Measurements> measurements =
-        repo.find("bob", "cpu_utilization", null, new DateTime(2014, 1, 1, 0, 0, 0), null, null, 1,
+        repo.find("bob", "cpu_utilization", null, null, new DateTime(2014, 1, 1, 0, 0, 0), null, null, 1,
                   false, null);
     assertEquals(measurements.size(), 3);
   }
@@ -101,12 +101,12 @@ public class MeasurementVerticaRepositoryImplTest {
     dims.put("instance_id", "123");
 
     Collection<Measurements> measurements =
-        repo.find("bob", "cpu_utilization", dims, new DateTime(2014, 1, 1, 0, 0), null, null, 1,
+        repo.find("bob", "cpu_utilization", dims, null, new DateTime(2014, 1, 1, 0, 0), null, null, 1,
                   false, null);
     assertEquals(measurements.size(), 2);
 
     dims.put("flavor_id", "2");
-    measurements = repo.find("bob", "cpu_utilization", dims, new DateTime(2014, 1, 1, 0, 0), null, null, 1,
+    measurements = repo.find("bob", "cpu_utilization", dims, null, new DateTime(2014, 1, 1, 0, 0), null, null, 1,
                              false, null);
     assertEquals(measurements.size(), 1);
   }
