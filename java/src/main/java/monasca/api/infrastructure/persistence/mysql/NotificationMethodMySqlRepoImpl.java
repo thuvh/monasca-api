@@ -54,7 +54,8 @@ public class NotificationMethodMySqlRepoImpl implements NotificationMethodRepo {
   @Override
   public NotificationMethod create(String tenantId, String name,
       String notificationMethodType, String address, int period) {
-    try (Handle h = db.open()) {
+    Handle h = db.open();
+    try {
       h.begin();
       if (getNotificationIdForTenantIdAndName(h,tenantId, name) != null)
         throw new EntityExistsException(
@@ -72,6 +73,11 @@ public class NotificationMethodMySqlRepoImpl implements NotificationMethodRepo {
       LOG.debug("Creating notification method {} for {}", name, tenantId);
       h.commit();
       return new NotificationMethod(id, name, notificationMethodType, address, period);
+    } catch (RuntimeException e) {
+      h.rollback();
+      throw e;
+    } finally {
+      h.close();
     }
   }
 
@@ -196,7 +202,8 @@ public class NotificationMethodMySqlRepoImpl implements NotificationMethodRepo {
   @Override
   public NotificationMethod update(String tenantId, String notificationMethodId, String name,
       String notificationMethodType, String address, int period) {
-    try (Handle h = db.open()) {
+    Handle h = db.open();
+    try {
       h.begin();
       String notificationID = getNotificationIdForTenantIdAndName(h,tenantId, name);
       if (notificationID != null && !notificationID.equalsIgnoreCase(notificationMethodId)) {
@@ -217,6 +224,11 @@ public class NotificationMethodMySqlRepoImpl implements NotificationMethodRepo {
             notificationMethodId);
       h.commit();
       return new NotificationMethod(notificationMethodId, name, notificationMethodType, address, period);
+    } catch (RuntimeException e) {
+      h.rollback();
+      throw e;
+    } finally {
+      h.close();
     }
   }
 }
