@@ -92,8 +92,11 @@ final class MetricQueries {
 
     StringBuilder sb = new StringBuilder();
     sb.append(" and ").append(tableToJoinName).append(
-              ".dimension_set_id in ( "
-              + "SELECT dimension_set_id FROM MonMetrics.Dimensions WHERE (");
+              ".id in ( "
+              + "SELECT defDimsSub2.id FROM MonMetrics.Dimensions AS dimSub " +
+                "JOIN MonMetrics.DefinitionDimensions AS defDimsSub2 " +
+                "ON defDimsSub2.dimension_set_id = dimSub.dimension_set_id" +
+                " WHERE (");
 
     int i = 0;
     for (Iterator<Map.Entry<String, String>> it = dimensions.entrySet().iterator(); it.hasNext(); i++) {
@@ -128,7 +131,7 @@ final class MetricQueries {
       }
     }
 
-    sb.append(") GROUP BY dimension_set_id HAVING count(*) = ").append(dimensions.size()).append(") ");
+    sb.append(") GROUP BY defDimsSub2.id,dimSub.dimension_set_id HAVING count(*) = ").append(dimensions.size()).append(") ");
 
 
     return sb.toString();
