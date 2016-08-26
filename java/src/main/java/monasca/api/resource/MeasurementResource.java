@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014, 2016 Hewlett-Packard Development Company, L.P.
+ * (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -74,7 +74,8 @@ public class MeasurementResource {
       @QueryParam("limit") String limit,
       @QueryParam("tenant_id") String crossTenantId,
       @QueryParam("merge_metrics") String mergeMetricsFlag,
-      @QueryParam("group_by") String groupBy) throws Exception {
+      @QueryParam("group_by") String groupBy,
+      @QueryParam("metric_ids") String metricIdsStr) throws Exception {
 
     // Validate query parameters
     DateTime startTime = Validation.parseAndValidateDate(startTimeStr, "start_time", true);
@@ -84,8 +85,11 @@ public class MeasurementResource {
         dimensions =
           Strings.isNullOrEmpty(dimensionsStr) ? null : Validation
               .parseAndValidateDimensions(dimensionsStr);
-    MetricNameValidation.validate(name, true);
+    boolean metricNameRequired = (metricIdsStr == null || metricIdsStr.isEmpty());
+    MetricNameValidation.validate(name, metricNameRequired);
     Boolean mergeMetricsFlagBool = Validation.validateAndParseMergeMetricsFlag(mergeMetricsFlag);
+    List<String> metricIds = Validation.validateAndParseMetricsIds(metricIdsStr);
+
     Validation.validateMetricsGroupBy(groupBy);
 
     String queryTenantId = Validation.getQueryProject(roles, crossTenantId, tenantId, admin_role);
@@ -93,7 +97,7 @@ public class MeasurementResource {
     final int paging_limit = this.persistUtils.getLimit(limit);
     final List<Measurements> resources = repo.find(queryTenantId,
         name,
-        dimensions,
+        dimensions, metricIds,
         startTime,
         endTime,
         offset,

@@ -101,6 +101,8 @@ public class InfluxV9Utils {
 
     if (name == null || name.isEmpty()) {
       return "";
+    } else if (name.equals("/.*/")) {
+      return " from /.*/";
     } else {
       return String.format(" from \"%1$s\"", sanitize(name));
     }
@@ -185,6 +187,21 @@ public class InfluxV9Utils {
       }
     }
 
+    return sb.toString();
+  }
+
+  public String metricIdsPart(List<String> metricIds) {
+    StringBuilder sb = new StringBuilder();
+    for (String metricId : metricIds) {
+      if (sb.length() > 0) {
+        sb.append(" or ");
+      }
+      sb.append(String.format(" _definition_dimension_id = '%1$s' ", metricId));
+    }
+    if (sb.length() > 0) {
+      sb.insert(0, " and (");
+      sb.insert(sb.length(), ")");
+    }
     return sb.toString();
   }
 

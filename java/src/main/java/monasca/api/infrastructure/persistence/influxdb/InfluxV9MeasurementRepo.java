@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014, 2016 Hewlett-Packard Development Company, L.P.
+ * (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -67,12 +67,12 @@ public class InfluxV9MeasurementRepo implements MeasurementRepo {
 
   @Override
   public List<Measurements> find(String tenantId, String name, Map<String, String> dimensions,
-                                 DateTime startTime, @Nullable DateTime endTime,
-                                 @Nullable String offset, int limit, Boolean mergeMetricsFlag,
-                                 String groupBy)
+                                 List<String> metricIds, DateTime startTime,
+                                 @Nullable DateTime endTime, @Nullable String offset, int limit,
+                                 Boolean mergeMetricsFlag, String groupBy)
       throws Exception {
 
-    String q = buildQuery(tenantId, name, dimensions, startTime, endTime,
+    String q = buildQuery(tenantId, name, dimensions, metricIds, startTime, endTime,
                           offset, limit, mergeMetricsFlag, groupBy);
 
     String r = this.influxV9RepoReader.read(q);
@@ -87,8 +87,9 @@ public class InfluxV9MeasurementRepo implements MeasurementRepo {
   }
 
   private String buildQuery(String tenantId, String name, Map<String, String> dimensions,
-                            DateTime startTime, DateTime endTime, String offset, int limit,
-                            Boolean mergeMetricsFlag, String groupBy) throws Exception {
+                            List<String> metricIds, DateTime startTime, DateTime endTime,
+                            String offset, int limit, Boolean mergeMetricsFlag,
+                            String groupBy) throws Exception {
 
     String q;
     if (Boolean.TRUE.equals(mergeMetricsFlag)) {
@@ -105,21 +106,25 @@ public class InfluxV9MeasurementRepo implements MeasurementRepo {
 
     } else {
 
-      if (!"*".equals(groupBy) &&
+      if (!"*".equals(groupBy) && metricIds == null &&
           !this.influxV9MetricDefinitionRepo.isAtMostOneSeries(tenantId, name, dimensions)) {
 
         throw new MultipleMetricsException(name, dimensions);
 
       }
+      if (metricIds != null && !metricIds.isEmpty()) {
+        name = "/.*/";
+      }
       // The time column is automatically included in the results before all other columns.
       q = String.format("select value, value_meta %1$s "
-                        + "where %2$s %3$s %4$s %5$s %6$s %7$s", //slimit 1
+                        + "where %2$s %3$s %4$s %5$s %6$s %7$s %8$s", //slimit 1
                         this.influxV9Utils.namePart(name, true),
                         this.influxV9Utils.privateTenantIdPart(tenantId),
                         this.influxV9Utils.privateRegionPart(this.region),
                         this.influxV9Utils.startTimePart(startTime),
                         this.influxV9Utils.dimPart(dimensions),
                         this.influxV9Utils.endTimePart(endTime),
+                        this.influxV9Utils.metricIdsPart(metricIds),
                         this.influxV9Utils.groupByPart());
     }
 
@@ -154,11 +159,12 @@ public class InfluxV9MeasurementRepo implements MeasurementRepo {
           index++;
           continue;
         }
+        Map<String, String> filteredTagMap = influxV9Utils.filterPrivateTags(serie.getTags());
+        String id = filteredTagMap.remove("_definition_dimension_id");
 
         Measurements measurements =
-            new Measurements(serie.getName(),
-                             influxV9Utils.filterPrivateTags(serie.getTags()));
-        measurements.setId(Integer.toString(index));
+            new Measurements(serie.getName(), filteredTagMap);
+        measurements.setId(id);
 
         for (String[] values : serie.getValues()) {
           if (remaining_limit <= 0) {

@@ -1,4 +1,4 @@
-/* Copyright (c) 2014, 2016 Hewlett-Packard Development Company, L.P.
+/* (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -81,6 +81,7 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
       String tenantId,
       String name,
       Map<String, String> dimensions,
+      List<String> metricIds,
       DateTime startTime,
       @Nullable DateTime endTime,
       @Nullable String offset,
@@ -92,7 +93,7 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
 
       Map<String, Measurements> results = new HashMap<>();
 
-      if (!"*".equals(groupBy) && !Boolean.TRUE.equals(mergeMetricsFlag)) {
+      if (!"*".equals(groupBy) && !Boolean.TRUE.equals(mergeMetricsFlag) && metricIds == null) {
         MetricQueries.checkForMultipleDefinitions(h, tenantId, name, dimensions);
       }
  
@@ -126,12 +127,18 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
 
       }
 
+      String metricSubQuery;
+      if (metricIds != null) {
+        metricSubQuery = MetricQueries.buildMetricIdInClause(metricIds);
+      } else {
+        metricSubQuery = MetricQueries.buildMetricDefinitionSubSql(name, dimensions, null, null);
+      }
+
 
       String sql = String.format(FIND_BY_METRIC_DEF_SQL,
                                  this.dbHint,
                                  sb,
-                                 MetricQueries.buildMetricDefinitionSubSql(name, dimensions,
-                                                                           null, null),
+                                 metricSubQuery,
                                  orderById);
 
       Query<Map<String, Object>> query = h.createQuery(sql)
@@ -159,13 +166,20 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
 
       }
 
+      if (metricIds != null) {
+        logger.debug("binding metric_ids: {}", metricIds);
+
+        MetricQueries.bindMetricIdsToQuery(query, metricIds);
+
+      }
+
       List<Map<String, Object>> rows = query.list();
 
       if (rows.size() == 0) {
         return new ArrayList<>();
       }
 
-      if ("*".equals(groupBy)) {
+      if ("*".equals(groupBy) || (metricIds != null && metricIds.size() > 1)) {
 
         String currentDefId = null;
 

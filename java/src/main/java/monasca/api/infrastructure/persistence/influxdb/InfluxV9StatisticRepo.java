@@ -1,5 +1,5 @@
 /*
- * (C) Copyright 2014, 2016 Hewlett-Packard Development LP
+ * (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -70,9 +70,10 @@ public class InfluxV9StatisticRepo implements StatisticRepo {
 
   @Override
   public List<Statistics> find(String tenantId, String name, Map<String, String> dimensions,
-                               DateTime startTime, @Nullable DateTime endTime,
-                               List<String> statistics, int period, String offset, int limit,
-                               Boolean mergeMetricsFlag, String groupBy) throws Exception {
+                               List<String> metricIds, DateTime startTime,
+                               @Nullable DateTime endTime, List<String> statistics, int period,
+                               String offset, int limit, Boolean mergeMetricsFlag,
+                               String groupBy) throws Exception {
 
     String offsetTimePart = "";
     if (!Strings.isNullOrEmpty(offset)) {
@@ -93,7 +94,7 @@ public class InfluxV9StatisticRepo implements StatisticRepo {
 
     Series series = this.objectMapper.readValue(r, Series.class);
 
-    List<Statistics> statisticsList = statisticslist(series, offset, limit);
+    List<Statistics> statisticsList = statisticsList(series, offset, limit);
 
     logger.debug("Found {} metric definitions matching query", statisticsList.size());
 
@@ -156,7 +157,7 @@ public class InfluxV9StatisticRepo implements StatisticRepo {
     return q;
   }
 
-  private List<Statistics> statisticslist(Series series, String offsetStr, int limit) {
+  private List<Statistics> statisticsList(Series series, String offsetStr, int limit) {
 
     int offsetId = 0;
     String offsetTimestamp = "1970-01-01T00:00:00.000Z";
