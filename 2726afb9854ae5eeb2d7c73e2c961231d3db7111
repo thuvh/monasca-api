@@ -16,6 +16,24 @@
       "revId": "2726afb9854ae5eeb2d7c73e2c961231d3db7111",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa7ab95a_c75fb770",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/NotificationMethodMySqlRepoImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-08-26T16:19:42Z",
+      "side": 1,
+      "message": "I tried, but the driver used for the unit tests must not have the same behavior as the real mysql driver. I tried using assertFalse(db.open().isInTransaction()) with the old code, but it did not fail. I hesitate to add a test that doesn\u0027t actually validate the bug.",
+      "parentUuid": "fa7ab95a_9af9accb",
+      "revId": "2726afb9854ae5eeb2d7c73e2c961231d3db7111",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
