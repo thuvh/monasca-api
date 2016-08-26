@@ -152,7 +152,7 @@ public class InfluxV9Utils {
       offset = Conversions.variantToDateTime(convertible).toString(ISODateTimeFormat.dateTime());
     }
 
-    return String.format(" and time > '%1$s'", offset);
+    return String.format(" and time >= '%1$s'", offset);
   }
 
   public String privateRegionPart(String region) {
