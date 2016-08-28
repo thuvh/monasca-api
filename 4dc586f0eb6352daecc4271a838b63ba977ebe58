@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa7ab95a_047a6ff1",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MetricQueries.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-08-28T16:35:09Z",
+      "side": 1,
+      "message": "Whole copyright is wrong",
+      "range": {
+        "startLine": 2,
+        "startChar": 1,
+        "endLine": 2,
+        "endChar": 79
+      },
+      "revId": "4dc586f0eb6352daecc4271a838b63ba977ebe58",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa7ab95a_731cc377",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/vertica/MetricQueriesTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-08-28T16:35:09Z",
+      "side": 1,
+      "message": "Whole copyright is wrong",
+      "range": {
+        "startLine": 2,
+        "startChar": 1,
+        "endLine": 2,
+        "endChar": 79
+      },
+      "revId": "4dc586f0eb6352daecc4271a838b63ba977ebe58",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
