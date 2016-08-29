@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa7ab95a_ac6faf29",
+        "filename": "devstack/Vagrantfile",
+        "patchSetId": 12
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-08-29T11:58:48Z",
+      "side": 1,
+      "message": "MONASCA_DATABASE_BACKEND needs to be removed actually.",
+      "revId": "4d63f17ccb7978f919e83779a668cd1474dedbcd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa7ab95a_4c9c630f",
+        "filename": "devstack/Vagrantfile",
+        "patchSetId": 12
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-08-29T11:58:48Z",
+      "side": 1,
+      "message": "This one I will revert in the next patch set.",
+      "revId": "4d63f17ccb7978f919e83779a668cd1474dedbcd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
