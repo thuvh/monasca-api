@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa7ab95a_ff3851a2",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionNames.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-08-29T22:35:27Z",
+      "side": 1,
+      "message": "Should all the protected members above have been declared as private. This would also apply to the pre-existing DimensionValues class that you in-part derived this code from.\n\nThe metric name and dimensionInfo are only supplied in the constructor, there aren\u0027t any setters, and the id, which I mention down below, I believe could have been assigned in the constructor.\n\nI don\u0027t think this class will ever be inherited.",
+      "range": {
+        "startLine": 32,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 13
+      },
+      "revId": "55cc63ffe2695a9d379efd6e35fcd499fb1990e1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa7ab95a_bac25ae7",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionNames.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-08-29T22:35:27Z",
+      "side": 1,
+      "message": "I didn\u0027t comment on this in the DimensionValues review, bit why is this assignment being deferred. Could the ID have been assigned in the constructor and if yes, would that have been a better location?",
+      "range": {
+        "startLine": 51,
+        "startChar": 8,
+        "endLine": 51,
+        "endChar": 9
+      },
+      "revId": "55cc63ffe2695a9d379efd6e35fcd499fb1990e1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa7ab95a_7a7c52b5",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionNames.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-08-29T22:35:27Z",
+      "side": 1,
+      "message": "Should we make a DimensionHelpers class that has public static generateId in it for both the DimensionNames and DimensionValues. This method is just replicated from that class.",
+      "revId": "55cc63ffe2695a9d379efd6e35fcd499fb1990e1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa7ab95a_3cf1e701",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionRepo.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-08-29T22:35:27Z",
+      "side": 1,
+      "message": "Is the tabbing off here?",
+      "range": {
+        "startLine": 30,
+        "startChar": 23,
+        "endLine": 30,
+        "endChar": 26
+      },
+      "revId": "55cc63ffe2695a9d379efd6e35fcd499fb1990e1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa7ab95a_9ff825c5",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionRepo.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-08-29T22:35:27Z",
+      "side": 1,
+      "message": "and here too?",
+      "revId": "55cc63ffe2695a9d379efd6e35fcd499fb1990e1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
