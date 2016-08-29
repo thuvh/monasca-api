@@ -16,6 +16,24 @@
       "revId": "be0b5874b131bbf3eeaae9ac43d0a5ade3103fba",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa7ab95a_15a97024",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/mysql/NotificationMethodMySqlRepositoryImplTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-08-29T15:41:49Z",
+      "side": 1,
+      "message": "It is a little more complex than that because the tests that can do a rollback actually open two handles: one to do the create or update, and another one to read from the database to ensure the object was stored correctly. So, in the successful case, spyhandle is actually the second handle, not the one that had the commit or rollback.\n\nI could change the code to make that test in the doAnswer above, but that is already hard to follow and adding more to it would make it harder yet to understand. I think we are getting the past the point of diminishing returns.",
+      "parentUuid": "fa7ab95a_93ba1c6d",
+      "revId": "be0b5874b131bbf3eeaae9ac43d0a5ade3103fba",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
