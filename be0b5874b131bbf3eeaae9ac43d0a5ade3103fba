@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa7ab95a_93ba1c6d",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/mysql/NotificationMethodMySqlRepositoryImplTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-08-29T06:48:43Z",
+      "side": 1,
+      "message": "Otherwise that would be\n\n verify(spyHandler, times(0)).rollback();\n\nright ?\n\nMaybe a better idea would be to have code like:\n\n verify(spyHandler, times(shouldRollback ? 1 : 0)).rollback()\n\nto make sure code did not reach rollback block.",
+      "revId": "be0b5874b131bbf3eeaae9ac43d0a5ade3103fba",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
