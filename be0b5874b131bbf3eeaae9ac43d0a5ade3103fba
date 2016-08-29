@@ -34,6 +34,24 @@
       "revId": "be0b5874b131bbf3eeaae9ac43d0a5ade3103fba",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa7ab95a_a4bddf69",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/mysql/NotificationMethodMySqlRepositoryImplTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-08-29T21:18:25Z",
+      "side": 1,
+      "message": "Oh yeah...I already got confused by that answer ;).",
+      "parentUuid": "fa7ab95a_15a97024",
+      "revId": "be0b5874b131bbf3eeaae9ac43d0a5ade3103fba",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
