@@ -52,6 +52,24 @@
       "revId": "2726afb9854ae5eeb2d7c73e2c961231d3db7111",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa7ab95a_a75b5e2d",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/mysql/NotificationMethodMySqlRepoImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-08-29T03:58:12Z",
+      "side": 1,
+      "message": "I used Mockito.spy() to verify the transaction is closed. That was interesting to figure out how to do it.",
+      "parentUuid": "fa7ab95a_4f9d7558",
+      "revId": "2726afb9854ae5eeb2d7c73e2c961231d3db7111",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
