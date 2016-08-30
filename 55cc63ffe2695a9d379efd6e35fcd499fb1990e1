@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fa7ab95a_90ae52e4",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionNames.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-08-30T00:09:01Z",
+      "side": 1,
+      "message": "This class is inherited with protected variables hmmm",
+      "parentUuid": "fa7ab95a_ff3851a2",
+      "range": {
+        "startLine": 32,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 13
+      },
+      "revId": "55cc63ffe2695a9d379efd6e35fcd499fb1990e1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa7ab95a_bac25ae7",
         "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionNames.java",
         "patchSetId": 24
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "fa7ab95a_7098eec0",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionNames.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-08-30T00:09:01Z",
+      "side": 1,
+      "message": "I don\u0027t think we can assign id in constructor because ID is different for dimension values and dimension names. Generating ID also needs metric name and/or dimension name as input.",
+      "parentUuid": "fa7ab95a_bac25ae7",
+      "range": {
+        "startLine": 51,
+        "startChar": 8,
+        "endLine": 51,
+        "endChar": 9
+      },
+      "revId": "55cc63ffe2695a9d379efd6e35fcd499fb1990e1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa7ab95a_7a7c52b5",
         "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionNames.java",
         "patchSetId": 24
@@ -59,6 +107,24 @@
       "writtenOn": "2016-08-29T22:35:27Z",
       "side": 1,
       "message": "Should we make a DimensionHelpers class that has public static generateId in it for both the DimensionNames and DimensionValues. This method is just replicated from that class.",
+      "revId": "55cc63ffe2695a9d379efd6e35fcd499fb1990e1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa7ab95a_a58876c6",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionNames.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-08-30T00:09:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa7ab95a_7a7c52b5",
       "revId": "55cc63ffe2695a9d379efd6e35fcd499fb1990e1",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
