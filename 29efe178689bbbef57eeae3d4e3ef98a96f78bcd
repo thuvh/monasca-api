@@ -53,6 +53,24 @@
     },
     {
       "key": {
+        "uuid": "fa7ab95a_bb2bf680",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionHelpers.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-08-30T20:48:14Z",
+      "side": 1,
+      "message": "I will post two patch sets: one with DimensionBase another one without DimensionBase.",
+      "parentUuid": "fa7ab95a_a1b8312b",
+      "revId": "29efe178689bbbef57eeae3d4e3ef98a96f78bcd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa7ab95a_a352f932",
         "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionNames.java",
         "patchSetId": 26
