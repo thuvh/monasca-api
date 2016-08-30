@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa7ab95a_700a7927",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionHelpers.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-08-30T16:47:09Z",
+      "side": 1,
+      "message": "I don\u0027t think I would have coded it this way with both parameters being supplied, metricName and dimensionName, and one ignored if it isn\u0027t provided.\n\nI think what I would have done is just have one parameter and have the caller, in this case a method in either DimensionNames or DimensionValues, supply either \"metricName\u003d\" + metricName or \"metricName\u003d\" + metricName + \"dimensionName\u003d\" + dimensionName.",
+      "revId": "29efe178689bbbef57eeae3d4e3ef98a96f78bcd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa7ab95a_c3d53d1c",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionHelpers.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-08-30T16:47:09Z",
+      "side": 1,
+      "message": "I would prefer calling this method createId. In Java is is highly idiomatic that get/set are assoicated with either returning a private variable, or setting it via getter and setter methods. In this method, you aren\u0027t setting or getting a private variable, you are generating a dimension ID.\n\nAlso, do you really need this method at all, since all getId does is call generateDimensionId. Could you just have one static method called createDimensionId?",
+      "revId": "29efe178689bbbef57eeae3d4e3ef98a96f78bcd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa7ab95a_a1b8312b",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionHelpers.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-08-30T16:47:09Z",
+      "side": 1,
+      "message": "Since you\u0027ve introduced the new helpers class that I mentioned, I\u0027m wondering if a better alternative would have been create a base class DimensionsBase that inherits from AbstractEntity, and then derive DimensionsNames and DimensionsValues from DimensionsBase. That would resolve the inheritance of DimensionsValues from DimensionsBase, but I\u0027m not sure if you will end-up with as much code sharing.",
+      "revId": "29efe178689bbbef57eeae3d4e3ef98a96f78bcd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa7ab95a_a352f932",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionNames.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-08-30T16:47:09Z",
+      "side": 1,
+      "message": "So, you invoke the helper in DimensionHelpers, which generates the ID if it is null and returns the ID. However, id is never assigned, so it will always be null right?\n\nHow about if the helper just generates the ID. it should depend on whether something passed into it is null or not. That test can be done here.\n\nif this.id \u003d\u003d null {\n    this.id \u003d helper.generateId(\"metricName\u003d\" + metricName)\n}\nreturn this.id\n\nAnd since the only thing that the id depends on is the metricName, and that is known in the constructor, you could easily just assign id there and not test if it is null here.",
+      "range": {
+        "startLine": 47,
+        "startChar": 15,
+        "endLine": 47,
+        "endChar": 31
+      },
+      "revId": "29efe178689bbbef57eeae3d4e3ef98a96f78bcd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa7ab95a_2628b732",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionValues.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-08-30T16:47:09Z",
+      "side": 1,
+      "message": "dimensionName is assigned in the contructor as well as metricName. Those are the only two variables that are required for generating the ID. There is not reason that this needs to be deferred. If you create a help called, generateId(String)\n\nyou could assign this.id in the constructor and avoid this small amount of complexity at this point testing for null.",
+      "revId": "29efe178689bbbef57eeae3d4e3ef98a96f78bcd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
