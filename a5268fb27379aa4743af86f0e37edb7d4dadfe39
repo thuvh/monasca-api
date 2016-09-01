@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa7ab95a_7fb9d678",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/VerticaUtils.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-09-01T15:34:26Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be declared as static? There isn\u0027t any state in this class, and the one method, queryList, just evaluates based on the parameters that are passed to it.\n\nSee, http://stackoverflow.com/questions/7486012/static-classes-in-java, for an example.",
+      "range": {
+        "startLine": 25,
+        "startChar": 4,
+        "endLine": 25,
+        "endChar": 10
+      },
+      "revId": "a5268fb27379aa4743af86f0e37edb7d4dadfe39",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa7ab95a_ff532637",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/vertica/MeasurementVerticaRepositoryImplTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-09-01T15:34:26Z",
+      "side": 1,
+      "message": "If the method is declared static, you won\u0027t need to create an instance.",
+      "revId": "a5268fb27379aa4743af86f0e37edb7d4dadfe39",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa7ab95a_3f1bce81",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/vertica/MetricDefinitionVerticaRepositoryImplTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-09-01T15:34:26Z",
+      "side": 1,
+      "message": "Same comment as previous file.",
+      "range": {
+        "startLine": 49,
+        "startChar": 4,
+        "endLine": 49,
+        "endChar": 16
+      },
+      "revId": "a5268fb27379aa4743af86f0e37edb7d4dadfe39",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
