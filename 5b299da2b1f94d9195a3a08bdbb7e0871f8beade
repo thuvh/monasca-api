@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa7ab95a_fc9086ef",
+        "filename": "monasca_tempest_tests/tests/api/test_monascastatsd.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2016-09-01T19:08:23Z",
+      "side": 1,
+      "message": "Don\u0027t forget that you still need to query the API for the new metric and verify that it was accepted.  It will take a bit of time to show up so I think we typically loop and sleep for a length of time waiting for it to arrive.",
+      "range": {
+        "startLine": 34,
+        "startChar": 12,
+        "endLine": 34,
+        "endChar": 16
+      },
+      "revId": "5b299da2b1f94d9195a3a08bdbb7e0871f8beade",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
