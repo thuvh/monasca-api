@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a89bdaa_e80e87e4",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/VerticaUtils.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-09-02T20:51:16Z",
+      "side": 1,
+      "message": "Will do! Thank you Roland.",
+      "parentUuid": "fa7ab95a_7fb9d678",
+      "range": {
+        "startLine": 25,
+        "startChar": 4,
+        "endLine": 25,
+        "endChar": 10
+      },
+      "revId": "a5268fb27379aa4743af86f0e37edb7d4dadfe39",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa7ab95a_ff532637",
         "filename": "java/src/test/java/monasca/api/infrastructure/persistence/vertica/MeasurementVerticaRepositoryImplTest.java",
         "patchSetId": 8
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "9a89bdaa_08148bf3",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/vertica/MeasurementVerticaRepositoryImplTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-09-02T20:51:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa7ab95a_ff532637",
+      "revId": "a5268fb27379aa4743af86f0e37edb7d4dadfe39",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa7ab95a_3f1bce81",
         "filename": "java/src/test/java/monasca/api/infrastructure/persistence/vertica/MetricDefinitionVerticaRepositoryImplTest.java",
         "patchSetId": 8
@@ -53,6 +95,30 @@
       "writtenOn": "2016-09-01T15:34:26Z",
       "side": 1,
       "message": "Same comment as previous file.",
+      "range": {
+        "startLine": 49,
+        "startChar": 4,
+        "endLine": 49,
+        "endChar": 16
+      },
+      "revId": "a5268fb27379aa4743af86f0e37edb7d4dadfe39",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_28f94fc9",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/vertica/MetricDefinitionVerticaRepositoryImplTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-09-02T20:51:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa7ab95a_3f1bce81",
       "range": {
         "startLine": 49,
         "startChar": 4,
