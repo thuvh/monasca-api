@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a89bdaa_b348592f",
+        "filename": "devstack/files/monasca-api/python/api-logging.conf",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-09-04T21:21:01Z",
+      "side": 1,
+      "message": "The only problem I see with this approach is that it does not support rolling of the file ? Maybe RollingFileHandler would be better idea.",
+      "revId": "4d9789b8d1cc7cc7232d61d6b2f89e8a33e77e3d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
