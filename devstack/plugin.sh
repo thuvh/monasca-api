@@ -105,7 +105,7 @@ function install_monasca {
 
     install_monasca_virtual_env
 
-    install_openjdk_7_jdk
+    install_openjdk_8_jdk
 
     install_zookeeper
 
@@ -191,7 +191,9 @@ function update_maven {
 }
 
 function post_config_monasca {
-:
+
+    sudo systemctl restart monasca-notification
+
 }
 
 function extra_monasca {
@@ -219,26 +221,27 @@ function extra_monasca {
 
 function unstack_monasca {
 
+    sudo systemctl stop grafana-server || true
 
     sudo service monasca-agent stop || true
 
-    sudo service monasca-thresh stop || true
+    sudo systemctl stop monasca-thresh || true
 
-    sudo stop storm-supervisor || true
+    sudo systemctl stop storm-supervisor || true
 
-    sudo stop storm-nimbus || true
+    sudo systemctl stop storm-nimbus || true
 
-    sudo stop monasca-notification || true
+    sudo systemctl stop monasca-notification || true
 
-    sudo stop monasca-persister || true
+    sudo systemctl stop monasca-persister || true
 
-    sudo stop monasca-api || true
+    sudo systemctl stop monasca-api || true
 
-    sudo stop kafka || true
+    sudo systemctl stop kafka || true
 
-    sudo stop zookeeper || true
+    sudo systemctl stop zookeeper || true
 
-    sudo /etc/init.d/influxdb stop || true
+    sudo systemctl stop influxdb || true
 
     sudo service verticad stop || true
 
@@ -347,7 +350,7 @@ function clean_monasca {
 
     clean_zookeeper
 
-    clean_openjdk_7_jdk
+    clean_openjdk_8_jdk
 
     clean_monasca_virtual_env
 
@@ -402,7 +405,9 @@ function install_zookeeper {
 
     sudo cp "${MONASCA_BASE}"/monasca-api/devstack/files/zookeeper/log4j.properties /etc/zookeeper/conf/log4j.properties
 
-    sudo start zookeeper || sudo restart zookeeper
+    sudo systemctl enable zookeeper
+
+    sudo systemctl start zookeeper || sudo systemctl restart zookeeper
 
 }
 
@@ -441,11 +446,11 @@ function install_kafka {
 
     sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/kafka/kafka-server-start.sh /opt/kafka_${KAFKA_VERSION}/bin/kafka-server-start.sh
 
-    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/kafka/kafka.conf /etc/init/kafka.conf
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/kafka/kafka.service /etc/systemd/system/kafka.service
 
-    sudo chown root:root /etc/init/kafka.conf
+    sudo chown root:root /etc/systemd/system/kafka.service
 
-    sudo chmod 644 /etc/init/kafka.conf
+    sudo chmod 644 /etc/systemd/system/kafka.service
 
     sudo mkdir -p /var/kafka || true
 
@@ -482,7 +487,9 @@ function install_kafka {
 
     fi
 
-    sudo start kafka || sudo restart kafka
+    sudo systemctl enable kafka
+
+    sudo systemctl start kafka || sudo systemctl restart kafka
 
 }
 
@@ -498,7 +505,9 @@ function clean_kafka {
 
     sudo rm -rf /opt/kafka
 
-    sudo rm -rf /etc/init/kafka.conf
+    sudo systemctl disable kafka
+
+    sudo rm -rf /etc/systemd/system/kafka.service
 
     sudo userdel kafka
 
@@ -534,7 +543,7 @@ function install_monasca_influxdb {
 
     sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/influxdb/influxdb /etc/default/influxdb
 
-    sudo /etc/init.d/influxdb start || sudo /etc/init.d/influxdb restart
+    sudo systemctl start influxdb || sudo systemctl restart influxdb
 
     echo "Sleep for 60 seconds to let Influxdb elect a leader and start listening for connections"
 
@@ -579,12 +588,6 @@ function install_monasca_cassandra {
 
     echo_summary "Install Monasca Cassandra"
 
-    # Recent Cassandra needs Java 8
-    sudo add-apt-repository ppa:openjdk-r/ppa
-    REPOS_UPDATED=False
-    apt_get_update
-    apt_get -y install openjdk-8-jre
-
     if [[ "$OFFLINE" != "True" ]]; then
         sudo sh -c "echo 'deb http://www.apache.org/dist/cassandra/debian ${CASSANDRA_VERSION} main' > /etc/apt/sources.list.d/cassandra.list"
         REPOS_UPDATED=False
@@ -609,12 +612,13 @@ function install_monasca_cassandra {
 
     sudo sed -i "s/^batch_size_fail_threshold_in_kb: 50/batch_size_fail_threshold_in_kb: 500/g" /etc/cassandra/cassandra.yaml
 
-    sudo sh -c "echo 'JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64' >> /etc/default/cassandra"
-
     sudo service cassandra restart
 
     echo "Sleep for 15 seconds to wait starting up Cassandra"
     sleep 15s
+
+    export CQLSH_NO_BUNDLED=true
+    pip_install 'cassandra-driver>=2.1.4,!=3.6.0'
 
     if [[ ${SERVICE_HOST} ]]; then
 
@@ -623,6 +627,7 @@ function install_monasca_cassandra {
     else
 
         /usr/bin/cqlsh -f "${MONASCA_BASE}"/monasca-api/devstack/files/cassandra/cassandra_schema.cql
+
     fi
 
 }
@@ -687,11 +692,9 @@ function clean_monasca_cassandra {
 
     sudo rm -rf /etc/cassandra
 
-    apt_get -y purge openjdk-8-jre cassandra
+    apt_get -y purge cassandra
 
     apt_get -y autoremove
-
-    sudo add-apt-repository -r ppa:openjdk-r/ppa
 
     sudo rm -f /etc/apt/sources.list.d/cassandra.list
 
@@ -702,7 +705,23 @@ function install_cli_creds {
 
     echo_summary "Install Monasca CLI Creds"
 
-    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/env.sh /etc/profile.d/monasca_cli.sh
+    if [[ "${MONASCA_METRICS_DB,,}" == 'cassandra' ]]; then
+
+        sudo sh -c "cat ${MONASCA_BASE}/monasca-api/devstack/files/env.sh \
+                        ${MONASCA_BASE}/monasca-api/devstack/files/cassandra/env_cassandra.sh \
+                        > /etc/profile.d/monasca_cli.sh"
+
+    else
+
+        sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/env.sh /etc/profile.d/monasca_cli.sh
+
+    fi
+
+    if [[ ${SERVICE_HOST} ]]; then
+
+        sudo sed -i "s/127\.0\.0\.1/${SERVICE_HOST}/g" /etc/profile.d/monasca_cli.sh
+
+    fi
 
     sudo chown root:root /etc/profile.d/monasca_cli.sh
 
@@ -789,19 +808,19 @@ function clean_schema {
 
 }
 
-function install_openjdk_7_jdk {
+function install_openjdk_8_jdk {
 
-    echo_summary "Install Monasca openjdk_7_jdk"
+    echo_summary "Install Monasca openjdk_8_jdk"
 
-    apt_get -y install openjdk-7-jdk
+    apt_get -y install openjdk-8-jdk
 
 }
 
-function clean_openjdk_7_jdk {
+function clean_openjdk_8_jdk {
 
-    echo_summary "Clean Monasca openjdk_7_jdk"
+    echo_summary "Clean Monasca openjdk_8_jdk"
 
-    apt_get -y purge openjdk-7-jdk
+    apt_get -y purge openjdk-8-jdk
 
     apt_get -y autoremove
 
@@ -862,18 +881,20 @@ function install_monasca_api_java {
 
     sudo useradd --system -g monasca mon-api || true
 
-    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/monasca-api/monasca-api.conf /etc/init/monasca-api.conf
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/monasca-api/monasca-api.service /etc/systemd/system/monasca-api.service
 
     if [[ "${MONASCA_METRICS_DB,,}" == 'vertica' ]]; then
 
         # Add the Vertica JDBC to the class path.
-        sudo sed -i "s/-cp \/opt\/monasca\/monasca-api.jar/-cp \/opt\/monasca\/monasca-api.jar:\/opt\/monasca\/vertica-jdbc-${VERTICA_VERSION}.jar/g" /etc/init/monasca-api.conf
+        sudo sed -i "s/-cp \/opt\/monasca\/monasca-api.jar/-cp \/opt\/monasca\/monasca-api.jar:\/opt\/monasca\/vertica-jdbc-${VERTICA_VERSION}.jar/g" /etc/systemd/system/monasca-api.service
+
+        sudo sed -i "s/influxdb.service/vertica.service/g" /etc/systemd/system/monasca-api.service
 
     fi
 
-    sudo chown root:root /etc/init/monasca-api.conf
+    sudo chown root:root /etc/systemd/system/monasca-api.service
 
-    sudo chmod 0744 /etc/init/monasca-api.conf
+    sudo chmod 0644 /etc/systemd/system/monasca-api.service
 
     sudo mkdir -p /var/log/monasca || true
 
@@ -926,7 +947,9 @@ function install_monasca_api_java {
 
     fi
 
-    sudo start monasca-api || sudo restart monasca-api
+    sudo systemctl enable monasca-api
+
+    sudo systemctl start monasca-api || sudo systemctl restart monasca-api
 
 }
 
@@ -948,7 +971,7 @@ function install_monasca_api_python {
     pip_install gunicorn
     pip_install PyMySQL
     pip_install influxdb==2.8.0
-    pip_install cassandra-driver>=2.1.4,!=3.6.0
+    pip_install 'cassandra-driver>=2.1.4,!=3.6.0'
 
     (cd "${MONASCA_BASE}"/monasca-api ; sudo python setup.py sdist)
 
@@ -960,11 +983,17 @@ function install_monasca_api_python {
 
     sudo useradd --system -g monasca mon-api || true
 
-    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/monasca-api/python/monasca-api.conf /etc/init/monasca-api.conf
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/monasca-api/python/monasca-api.service /etc/systemd/system/monasca-api.service
 
-    sudo chown root:root /etc/init/monasca-api.conf
+    if [[ "${MONASCA_METRICS_DB,,}" == 'cassandra' ]]; then
 
-    sudo chmod 0744 /etc/init/monasca-api.conf
+        sudo sed -i "s/influxdb.service/cassandra.service/g" /etc/systemd/system/monasca-api.service
+
+    fi
+
+    sudo chown root:root /etc/systemd/system/monasca-api.service
+
+    sudo chmod 0644 /etc/systemd/system/monasca-api.service
 
     sudo mkdir -p /var/log/monasca || true
 
@@ -1030,7 +1059,9 @@ function install_monasca_api_python {
 
     sudo ln -sf /etc/monasca/api-config.ini /etc/api-config.ini
 
-    sudo start monasca-api || sudo restart monasca-api
+    sudo systemctl enable monasca-api
+
+    sudo systemctl start monasca-api || sudo systemctl restart monasca-api
 }
 
 function clean_monasca_api_java {
@@ -1043,7 +1074,9 @@ function clean_monasca_api_java {
 
     sudo rm -rf /var/log/monasca/api
 
-    sudo rm /etc/init/monasca-api.conf
+    sudo systemctl disable monasca-api
+
+    sudo rm /etc/systemd/system/monasca-api.service
 
     sudo rm /opt/monasca/monasca-api.jar
 
@@ -1056,7 +1089,9 @@ function clean_monasca_api_python {
 
     echo_summary "Clean Monasca monasca_api_python"
 
-    sudo rm /etc/init/monasca-api.conf
+    sudo systemctl disable monasca-api
+
+    sudo rm /etc/systemd/system/monasca-api.service
 
     sudo rm /etc/api-config.conf
 
@@ -1132,20 +1167,24 @@ function install_monasca_persister_java {
 
     fi
 
-    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/monasca-persister/monasca-persister.conf /etc/init/monasca-persister.conf
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/monasca-persister/monasca-persister.service /etc/systemd/system/monasca-persister.service
 
     if [[ "${MONASCA_METRICS_DB,,}" == 'vertica' ]]; then
 
         # Add the Vertica JDBC to the class path.
-        sudo sed -i "s/-cp \/opt\/monasca\/monasca-persister.jar/-cp \/opt\/monasca\/monasca-persister.jar:\/opt\/monasca\/vertica-jdbc-${VERTICA_VERSION}.jar/g" /etc/init/monasca-persister.conf
+        sudo sed -i "s/-cp \/opt\/monasca\/monasca-persister.jar/-cp \/opt\/monasca\/monasca-persister.jar:\/opt\/monasca\/vertica-jdbc-${VERTICA_VERSION}.jar/g" /etc/systemd/system/monasca-persister.service
+
+        sudo sed -i "s/influxdb.service/vertica.service/g" /etc/systemd/system/monasca-persister.service
 
     fi
 
-    sudo chown root:root /etc/init/monasca-persister.conf
+    sudo chown root:root /etc/systemd/system/monasca-persister.service
 
-    sudo chmod 0744 /etc/init/monasca-persister.conf
+    sudo chmod 0644 /etc/systemd/system/monasca-persister.service
 
-    sudo start monasca-persister || sudo restart monasca-persister
+    sudo systemctl enable monasca-persister
+
+    sudo systemctl start monasca-persister || sudo systemctl restart monasca-persister
 
 }
 
@@ -1173,7 +1212,7 @@ function install_monasca_persister_python {
 
     pip_install $MONASCA_PERSISTER_SRC_DIST
     pip_install influxdb==2.8.0
-    pip_install cassandra-driver>=2.1.4,!=3.6.0
+    pip_install 'cassandra-driver>=2.1.4,!=3.6.0'
 
     unset PIP_VIRTUAL_ENV
 
@@ -1242,13 +1281,21 @@ function install_monasca_persister_python {
 
     fi
 
-    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/monasca-persister/python/monasca-persister.conf /etc/init/monasca-persister.conf
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/monasca-persister/python/monasca-persister.service /etc/systemd/system/monasca-persister.service
 
-    sudo chown root:root /etc/init/monasca-persister.conf
+    if [[ "${MONASCA_METRICS_DB,,}" == 'cassandra' ]]; then
 
-    sudo chmod 0744 /etc/init/monasca-persister.conf
+        sudo sed -i "s/influxdb.service/cassandra.service/g" /etc/systemd/system/monasca-persister.service
 
-    sudo start monasca-persister || sudo restart monasca-persister
+    fi
+
+    sudo chown root:root /etc/systemd/system/monasca-persister.service
+
+    sudo chmod 0644 /etc/systemd/system/monasca-persister.service
+
+    sudo systemctl enable monasca-persister
+
+    sudo systemctl start monasca-persister || sudo systemctl restart monasca-persister
 
 }
 
@@ -1258,7 +1305,9 @@ function clean_monasca_persister_java {
 
     (cd "${MONASCA_BASE}"/monasca-persister ; sudo mvn clean)
 
-    sudo rm /etc/init/monasca-persister.conf
+    sudo systemctl disable monasca-persister
+
+    sudo rm /etc/systemd/system/monasca-persister.service
 
     sudo rm /etc/monasca/persister-config.yml
 
@@ -1275,7 +1324,9 @@ function clean_monasca_persister_python {
 
     echo_summary "Clean Monasca monasca_persister_python"
 
-    sudo rm /etc/init/monasca-persister.conf
+    sudo systemctl disable monasca-persister
+
+    sudo rm /etc/systemd/system/monasca-persister.service
 
     sudo rm /etc/monasca/persister.conf
 
@@ -1313,8 +1364,6 @@ function install_monasca_notification {
 
     pip_install $MONASCA_NOTIFICATION_SRC_DIST
 
-    pip_install mysql-python
-
     unset PIP_VIRTUAL_ENV
 
     sudo useradd --system -g monasca mon-notification || true
@@ -1348,11 +1397,11 @@ function install_monasca_notification {
 
     fi
 
-    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/monasca-notification/monasca-notification.conf /etc/init/monasca-notification.conf
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/monasca-notification/monasca-notification.service /etc/systemd/system/monasca-notification.service
 
-    sudo chown root:root /etc/init/monasca-notification.conf
+    sudo chown root:root /etc/systemd/system/monasca-notification.service
 
-    sudo chmod 0744 /etc/init/monasca-notification.conf
+    sudo chmod 0644 /etc/systemd/system/monasca-notification.service
 
     sudo debconf-set-selections <<< "postfix postfix/mailname string localhost"
 
@@ -1360,7 +1409,9 @@ function install_monasca_notification {
 
     apt_get -y install mailutils
 
-    sudo start monasca-notification || sudo restart monasca-notification
+    sudo systemctl enable monasca-notification
+
+    sudo systemctl start monasca-notification || sudo systemctl restart monasca-notification
 
 }
 
@@ -1368,7 +1419,9 @@ function clean_monasca_notification {
 
     echo_summary "Clean Monasca monasca_notification"
 
-    sudo rm /etc/init/monasca-notification.conf
+    sudo systemctl disable monasca-notification
+
+    sudo rm /etc/systemd/system/monasca-notification.service
 
     sudo rm /etc/monasca/notification.yaml
 
@@ -1439,21 +1492,25 @@ function install_storm {
 
     fi
 
-    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/storm/storm-nimbus.conf /etc/init/storm-nimbus.conf
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/storm/storm-nimbus.service /etc/systemd/system/storm-nimbus.service
 
-    sudo chown root:root /etc/init/storm-nimbus.conf
+    sudo chown root:root /etc/systemd/system/storm-nimbus.service
 
-    sudo chmod 0644 /etc/init/storm-nimbus.conf
+    sudo chmod 0644 /etc/systemd/system/storm-nimbus.service
 
-    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/storm/storm-supervisor.conf /etc/init/storm-supervisor.conf
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/storm/storm-supervisor.service /etc/systemd/system/storm-supervisor.service
 
-    sudo chown root:root /etc/init/storm-supervisor.conf
+    sudo chown root:root /etc/systemd/system/storm-supervisor.service
 
-    sudo chmod 0644 /etc/init/storm-supervisor.conf
+    sudo chmod 0644 /etc/systemd/system/storm-supervisor.service
 
-    sudo start storm-nimbus || sudo restart storm-nimbus
+    sudo systemctl enable storm-nimbus
 
-    sudo start storm-supervisor || sudo restart storm-supervisor
+    sudo systemctl enable storm-supervisor
+
+    sudo systemctl start storm-nimbus || sudo systemctl restart storm-nimbus
+
+    sudo systemctl start storm-supervisor || sudo systemctl restart storm-supervisor
 
 }
 
@@ -1461,9 +1518,13 @@ function clean_storm {
 
     echo_summary "Clean Monasca Storm"
 
-    sudo rm /etc/init/storm-supervisor.conf
+    sudo systemctl disable storm-supervisor
 
-    sudo rm /etc/init/storm-nimbus.conf
+    sudo systemctl disable storm-nimbus
+
+    sudo rm /etc/systemd/system/storm-supervisor.service
+
+    sudo rm /etc/systemd/system/storm-nimbus.service
 
     sudo rm /opt/storm/apache-storm-${STORM_VERSION}/conf/storm.yaml
 
@@ -1529,7 +1590,9 @@ function install_monasca_thresh {
 
     sudo chmod 0744 /etc/init.d/monasca-thresh
 
-    sudo service monasca-thresh start || sudo service monasca-thresh restart
+    sudo systemctl enable monasca-thresh
+
+    sudo systemctl start monasca-thresh || sudo systemctl restart monasca-thresh
 
 }
 
@@ -1538,6 +1601,8 @@ function clean_monasca_thresh {
     echo_summary "Clean Monasca monasca_thresh"
 
     (cd "${MONASCA_BASE}"/monasca-thresh/thresh ; sudo mvn clean)
+
+    sudo systemctl disable monasca-thresh
 
     sudo rm /etc/init.d/monasca-thresh
 
@@ -1888,7 +1953,8 @@ function install_monasca_grafana {
     sudo sed -i "s#/usr/sbin#"${MONASCA_BASE}"/grafana-build/src/github.com/grafana/grafana/bin#g" /etc/init.d/grafana-server
     sudo sed -i "s#/usr/share#"${MONASCA_BASE}"/grafana-build/src/github.com/grafana#g" /etc/init.d/grafana-server
 
-    sudo service grafana-server start
+    sudo systemctl enable grafana-server
+    sudo systemctl start grafana-server
 }
 
 function clean_node_nvm {
@@ -1898,6 +1964,8 @@ function clean_node_nvm {
 function clean_monasca_grafana {
 
     sudo rm -f "${MONASCA_BASE}"/grafana-build
+
+    sudo systemctl disable grafana-server
 
     sudo rm /etc/init.d/grafana-server
 
