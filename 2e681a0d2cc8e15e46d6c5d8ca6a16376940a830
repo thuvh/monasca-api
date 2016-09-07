@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a89bdaa_fd3859a2",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9MeasurementRepo.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-09-07T15:14:04Z",
+      "side": 1,
+      "message": "forgot enterprise",
+      "range": {
+        "startLine": 2,
+        "startChar": 36,
+        "endLine": 2,
+        "endChar": 43
+      },
+      "revId": "2e681a0d2cc8e15e46d6c5d8ca6a16376940a830",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_3d3f2188",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9StatisticRepo.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-09-07T15:14:04Z",
+      "side": 1,
+      "message": "same here",
+      "range": {
+        "startLine": 2,
+        "startChar": 44,
+        "endLine": 2,
+        "endChar": 55
+      },
+      "revId": "2e681a0d2cc8e15e46d6c5d8ca6a16376940a830",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
