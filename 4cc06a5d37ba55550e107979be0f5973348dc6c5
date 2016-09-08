@@ -69,6 +69,30 @@
       "revId": "4cc06a5d37ba55550e107979be0f5973348dc6c5",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_91e61b42",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9Utils.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-09-08T14:57:58Z",
+      "side": 1,
+      "message": "Yes, it is... I must have mistyped at some point. It does work this way as well, but I will change it.",
+      "parentUuid": "9a89bdaa_765c2d4b",
+      "range": {
+        "startLine": 262,
+        "startChar": 39,
+        "endLine": 262,
+        "endChar": 46
+      },
+      "revId": "4cc06a5d37ba55550e107979be0f5973348dc6c5",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
