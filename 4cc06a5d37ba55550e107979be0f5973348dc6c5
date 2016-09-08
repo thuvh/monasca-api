@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "9a89bdaa_b1523f33",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9MeasurementRepo.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-09-08T15:05:21Z",
+      "side": 1,
+      "message": "I feel like this method could be written a lot simpler then. \n\ngroupByStr \u003d \"\"\nif (\"*\".equals(groupBy))  {\n\tgroupByStr \u003d this.influxV9Utils.groupByPart();\n}\nelse if (Boolean.FALSE.equals(mergeMetricsFlag)){\n\tif (!this.influxV9MetricDefinitionRepo.isAtMostOneSeries(tenantId, name, dimensions)){\n\t\tthrow new MultipleMetricsException(name, dimensions);\n\t}\n\tgroupByStr \u003d this.influxV9Utils.groupByPart();\n}\nq \u003d String.format(\"select value, value_meta %1$s where %2$s %3$s %4$s %5$s %6$s %7$s\", \n              this.influxV9Utils.namePart(name, true),\n              this.influxV9Utils.privateTenantIdPart(tenantId),\n              this.influxV9Utils.privateRegionPart(this.region),\n              this.influxV9Utils.startTimePart(startTime),\n              this.influxV9Utils.dimPart(dimensions),\n              this.influxV9Utils.endTimePart(endTime),\n              this.influxV9Utils.groupByPart());\n\nwhat do you think",
+      "parentUuid": "9a89bdaa_d184235f",
+      "range": {
+        "startLine": 130,
+        "startChar": 14,
+        "endLine": 130,
+        "endChar": 24
+      },
+      "revId": "4cc06a5d37ba55550e107979be0f5973348dc6c5",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a89bdaa_765c2d4b",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9Utils.java",
         "patchSetId": 20
