@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a89bdaa_5670090b",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9MeasurementRepo.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2016-09-08T14:48:59Z",
+      "side": 1,
+      "message": "why do you have group by here if merge metrics is false or null the group by will be  \"group by *\" which i dont think you want is it  since you are already doing group by above",
+      "range": {
+        "startLine": 130,
+        "startChar": 14,
+        "endLine": 130,
+        "endChar": 24
+      },
+      "revId": "4cc06a5d37ba55550e107979be0f5973348dc6c5",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
