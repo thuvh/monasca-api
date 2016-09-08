@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a89bdaa_7608bf28",
+        "filename": "monasca_tempest_tests/tests/api/test_statistics.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-09-08T10:21:12Z",
+      "side": 0,
+      "message": "Could you leave a comment why these values were incrememted by 1 ?",
+      "revId": "f061013fdf0fbf990493cbddc1fb4b5e06553d60",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
