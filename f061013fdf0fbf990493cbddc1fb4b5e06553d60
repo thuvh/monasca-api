@@ -16,6 +16,24 @@
       "revId": "f061013fdf0fbf990493cbddc1fb4b5e06553d60",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_f60afdd0",
+        "filename": "monasca_tempest_tests/tests/api/test_statistics.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-09-08T14:53:21Z",
+      "side": 0,
+      "message": "The time parameters in the API are not inclusive. This prevents the first metric from being excluded.",
+      "parentUuid": "9a89bdaa_7608bf28",
+      "revId": "f061013fdf0fbf990493cbddc1fb4b5e06553d60",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
