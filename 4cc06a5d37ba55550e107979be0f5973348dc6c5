@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a89bdaa_d184235f",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9MeasurementRepo.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-09-08T14:56:02Z",
+      "side": 1,
+      "message": "If I don\u0027t include the \u0027group by *\u0027 here then the returned data doesn\u0027t include the set of dimensions. It should only happen if the query will return a single result.",
+      "parentUuid": "9a89bdaa_5670090b",
+      "range": {
+        "startLine": 130,
+        "startChar": 14,
+        "endLine": 130,
+        "endChar": 24
+      },
+      "revId": "4cc06a5d37ba55550e107979be0f5973348dc6c5",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a89bdaa_765c2d4b",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9Utils.java",
         "patchSetId": 20
