@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a89bdaa_bed5a71c",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 39
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-09-08T15:47:48Z",
+      "side": 1,
+      "message": "This boolean is for after truncate_dimension.",
+      "parentUuid": "9a89bdaa_5b93cd5a",
+      "range": {
+        "startLine": 420,
+        "startChar": 8,
+        "endLine": 420,
+        "endChar": 17
+      },
+      "revId": "40345cf6bcba703e661d874ce4f992c95b7159f7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a89bdaa_db319da3",
         "filename": "monasca_api/v2/reference/helpers.py",
         "patchSetId": 39
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "9a89bdaa_7e6b1f85",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 39
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-09-08T15:47:48Z",
+      "side": 1,
+      "message": "How about truncate_dimension_info_with_offset_limit?",
+      "parentUuid": "9a89bdaa_db319da3",
+      "range": {
+        "startLine": 447,
+        "startChar": 4,
+        "endLine": 447,
+        "endChar": 39
+      },
+      "revId": "40345cf6bcba703e661d874ce4f992c95b7159f7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a89bdaa_dbeefd20",
         "filename": "monasca_api/v2/reference/helpers.py",
         "patchSetId": 39
@@ -59,6 +107,30 @@
       "writtenOn": "2016-09-08T15:37:05Z",
       "side": 1,
       "message": "this can be replaced with\n\nfor item in dim_info_list:\n    names_or_values.extend(item.values())\n\nwhich doesn\u0027t require \u0027dim_key\u0027.",
+      "range": {
+        "startLine": 462,
+        "startChar": 4,
+        "endLine": 463,
+        "endChar": 57
+      },
+      "revId": "40345cf6bcba703e661d874ce4f992c95b7159f7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_fe0d6fe8",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 39
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-09-08T15:47:48Z",
+      "side": 1,
+      "message": "Good one!",
+      "parentUuid": "9a89bdaa_dbeefd20",
       "range": {
         "startLine": 462,
         "startChar": 4,
