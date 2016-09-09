@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a89bdaa_601175af",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionBase.java",
+        "patchSetId": 40
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-09-09T20:23:17Z",
+      "side": 1,
+      "message": "Is the ID still used?",
+      "revId": "529dd7992acb994171d9a2a9c6999ee093b68931",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_801679a5",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionBase.java",
+        "patchSetId": 40
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-09-09T20:23:17Z",
+      "side": 1,
+      "message": "Is the ID still used?",
+      "revId": "529dd7992acb994171d9a2a9c6999ee093b68931",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_5b5d40eb",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionValues.java",
+        "patchSetId": 40
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-09-09T20:23:17Z",
+      "side": 1,
+      "message": "Should this be declared final?",
+      "revId": "529dd7992acb994171d9a2a9c6999ee093b68931",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_1b2f38a2",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionValues.java",
+        "patchSetId": 40
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-09-09T20:23:17Z",
+      "side": 1,
+      "message": "Why did you do this in the order of metricName, dimensionValues, dimensionName instead of metricName, dimensionName and dimensionValues? The latter seems more in order and striaght-forward.",
+      "revId": "529dd7992acb994171d9a2a9c6999ee093b68931",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_80ed9927",
+        "filename": "java/src/main/java/monasca/api/resource/DimensionResource.java",
+        "patchSetId": 40
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-09-09T20:23:17Z",
+      "side": 1,
+      "message": "I think se missed this on some prior reviews, but the variable names in Java should be camel case. For example, pagingLimit.",
+      "revId": "529dd7992acb994171d9a2a9c6999ee093b68931",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_00da6978",
+        "filename": "java/src/main/java/monasca/api/resource/DimensionResource.java",
+        "patchSetId": 40
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-09-09T20:23:17Z",
+      "side": 1,
+      "message": "Similar for admin_role as adminRole.",
+      "revId": "529dd7992acb994171d9a2a9c6999ee093b68931",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_c0b881e8",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-09-09T20:23:17Z",
+      "side": 1,
+      "message": "I think you should change the comment block to use the Python triple quotes., ```comment```",
+      "revId": "529dd7992acb994171d9a2a9c6999ee093b68931",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
