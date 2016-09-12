@@ -355,6 +355,46 @@ def paginate(resource, uri, limit):
     return resource
 
 
+def paginate_metric_names(name_list, uri, offset, limit):
+    parsed_uri = urlparse.urlparse(uri)
+    self_link = build_base_uri(parsed_uri)
+    old_query_params = _get_old_query_params(parsed_uri)
+
+    if old_query_params:
+        self_link += '?' + '&'.join(old_query_params)
+
+    metric_names = _abstract_dictionary_values(name_list)
+
+    if metric_names:
+        # Truncate metric names list with offset first
+        truncated_list_offset = _truncate_with_offset(name_list, offset)
+
+        # Then truncate it with limit
+        truncated_list_offset_limit = truncated_list_offset[:limit]
+
+        links = [{u'rel': u'self', u'href': self_link.decode('utf8')}]
+        if len(truncated_list_offset) > limit:
+            new_offset = truncated_list_offset_limit[limit - 1].values()[0]
+            next_link = build_base_uri(parsed_uri)
+            new_query_params = [u'offset' + '=' + new_offset]
+
+            _get_old_query_params_except_offset(new_query_params, parsed_uri)
+
+            if new_query_params:
+                next_link += '?' + '&'.join(new_query_params)
+
+            links.append({u'rel': u'next', u'href': next_link.decode('utf8')})
+
+        resource = {u'links': links,
+                    u'elements': truncated_list_offset_limit}
+    else:
+        resource = {u'links': ([{u'rel': u'self',
+                                 u'href': self_link.decode('utf8')}]),
+                    u'elements': name_list}
+
+    return resource
+
+
 def paginate_alarming(resource, uri, limit):
     parsed_uri = urlparse.urlparse(uri)
 
@@ -692,3 +732,28 @@ def get_limit(req):
                                                "be a positive integer")
     else:
         return constants.PAGE_LIMIT
+
+
+def _abstract_dictionary_values(dictionary_list):
+    """Abstract the dictionary values from a list of dictionaries and put them
+       into a separate list.
+    """
+    value_list = []
+    for item in dictionary_list:
+        value_list.extend(item.values())
+    return value_list
+
+
+def _truncate_with_offset(resource, offset):
+    """Truncate a list of dictionaries with a given offset.
+    """
+    value_list = _abstract_dictionary_values(resource)
+    if offset:
+        next_value_pos = 0
+        for i, j in enumerate(value_list):
+            if j >= offset:
+                next_value_pos = i + 1
+                break
+        resource = resource[next_value_pos:]
+
+    return resource
