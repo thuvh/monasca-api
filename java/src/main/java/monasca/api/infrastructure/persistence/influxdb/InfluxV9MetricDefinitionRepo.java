@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 Hewlett-Packard Development Company, L.P.
+ * (C) Copyright 2014, 2016 Hewlett Packard Enterprise Development LP
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -22,12 +22,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import monasca.api.ApiConfig;
-import monasca.api.domain.model.measurement.Measurements;
 import monasca.api.domain.model.metric.MetricDefinitionRepo;
 import monasca.api.domain.model.metric.MetricName;
 import monasca.common.model.metric.MetricDefinition;
@@ -141,7 +139,7 @@ public class InfluxV9MetricDefinitionRepo implements MetricDefinitionRepo {
 
     Series series = this.objectMapper.readValue(r, Series.class);
 
-    List<MetricName> metricNameList = metricNameList(series, startIndex);
+    List<MetricName> metricNameList = metricNameList(series);
 
     logger.debug("Found {} metric definitions matching query", metricNameList.size());
 
@@ -183,18 +181,15 @@ public class InfluxV9MetricDefinitionRepo implements MetricDefinitionRepo {
     return metricDefinitionList;
   }
 
-  private List<MetricName> metricNameList(Series series, int startIndex) {
+  private List<MetricName> metricNameList(Series series) {
     List<MetricName> metricNameList = new ArrayList<>();
 
     if (!series.isEmpty()) {
 
-      int index = startIndex;
-
       Serie serie = series.getSeries()[0];
 
       for (String[] values : serie.getValues()) {
-        MetricName m =
-            new MetricName(String.valueOf(index++), values[0]);
+        MetricName m = new MetricName(values[0]);
         metricNameList.add(m);
       }
 
@@ -236,7 +231,7 @@ public class InfluxV9MetricDefinitionRepo implements MetricDefinitionRepo {
       // checking if there are current measurements, default to
       // existing behavior and return the definition.
       //
-      logger.error("Failed to query for measuremnts for: {}", m.name, e);
+      logger.error("Failed to query for measurements for: {}", m.name, e);
       hasMeasurements = true;
     }
 
