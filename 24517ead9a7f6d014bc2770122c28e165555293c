@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a89bdaa_9632e85c",
+        "filename": "monasca_tempest_tests/tests/api/test_dimensions.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-09-12T22:02:29Z",
+      "side": 1,
+      "message": "I realize you didn\u0027t write this test but to really validate your changes, you need to have a complete test like test_list_dimension_names_limit_and_offset below",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 52
+      },
+      "revId": "24517ead9a7f6d014bc2770122c28e165555293c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_76f4845a",
+        "filename": "monasca_tempest_tests/tests/api/test_dimensions.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-09-12T22:02:29Z",
+      "side": 1,
+      "message": "Is this method used?",
+      "range": {
+        "startLine": 206,
+        "startChar": 4,
+        "endLine": 211,
+        "endChar": 20
+      },
+      "revId": "24517ead9a7f6d014bc2770122c28e165555293c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}

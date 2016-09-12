@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a89bdaa_160178af",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionValues.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-09-12T22:02:29Z",
+      "side": 0,
+      "message": "You want to keep these. Without them you will get a NPE if you call equals with \"null\" which is valid",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 19
+      },
+      "revId": "16156d7b7dfd6ffe1e40016eb0265919d893f42d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
