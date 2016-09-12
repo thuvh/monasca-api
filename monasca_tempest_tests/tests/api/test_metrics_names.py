@@ -88,7 +88,7 @@ class TestMetricsNames(base.BaseMonascaTest):
     def _is_name_in_list(self, response_body):
         elements = response_body['elements']
         for element in elements:
-            self.assertTrue(set(['id', 'name']) == set(element))
+            self.assertEquals(element.keys(), [u'name'])
             if str(element['name']) == self._test_metric['name']:
                 return True
         return False
