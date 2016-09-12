@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a89bdaa_aa95c033",
+        "filename": "monasca_tempest_tests/tests/api/test_dimensions.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-09-12T23:07:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a89bdaa_9632e85c",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 52
+      },
+      "revId": "24517ead9a7f6d014bc2770122c28e165555293c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a89bdaa_76f4845a",
         "filename": "monasca_tempest_tests/tests/api/test_dimensions.py",
         "patchSetId": 42
@@ -36,6 +60,30 @@
       "writtenOn": "2016-09-12T22:02:29Z",
       "side": 1,
       "message": "Is this method used?",
+      "range": {
+        "startLine": 206,
+        "startChar": 4,
+        "endLine": 211,
+        "endChar": 20
+      },
+      "revId": "24517ead9a7f6d014bc2770122c28e165555293c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_4a743435",
+        "filename": "monasca_tempest_tests/tests/api/test_dimensions.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-09-12T23:07:37Z",
+      "side": 1,
+      "message": "No. I will delete it.",
+      "parentUuid": "9a89bdaa_76f4845a",
       "range": {
         "startLine": 206,
         "startChar": 4,
