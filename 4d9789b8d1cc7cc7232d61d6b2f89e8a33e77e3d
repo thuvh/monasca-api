@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "9a89bdaa_8042863c",
+        "filename": "devstack/files/monasca-api/python/api-logging.conf",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-09-13T10:10:24Z",
+      "side": 1,
+      "message": "AFAIK, monasca-api uses kafka too, so I\u0027d add another section here for kafka, to control also that setting. Without that logs may be overwhelmed with huge kafka output - and it may be that\u0027s not the case someone wants.",
+      "revId": "4d9789b8d1cc7cc7232d61d6b2f89e8a33e77e3d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a89bdaa_b348592f",
         "filename": "devstack/files/monasca-api/python/api-logging.conf",
         "patchSetId": 6
