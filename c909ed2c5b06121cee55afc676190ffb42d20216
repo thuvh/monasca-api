@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a89bdaa_24a1b394",
+        "filename": "monasca_tempest_tests/tests/api/test_dimensions.py",
+        "patchSetId": 43
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-09-13T16:07:14Z",
+      "side": 1,
+      "message": "Are these still used?",
+      "range": {
+        "startLine": 243,
+        "startChar": 0,
+        "endLine": 257,
+        "endChar": 20
+      },
+      "revId": "c909ed2c5b06121cee55afc676190ffb42d20216",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
