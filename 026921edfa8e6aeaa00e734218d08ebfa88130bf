@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a8ec9b2_8c25ecac",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9Utils.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-09-14T10:55:19Z",
+      "side": 1,
+      "message": "Why adding character here ?",
+      "revId": "026921edfa8e6aeaa00e734218d08ebfa88130bf",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
