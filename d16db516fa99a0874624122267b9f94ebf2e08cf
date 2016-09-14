@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a8ec9b2_820e9332",
+        "filename": "AUTHORS",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-09-14T11:26:11Z",
+      "side": 1,
+      "message": "We do not commit this file AFAIK.\nThis is automatically done during tagging.",
+      "revId": "d16db516fa99a0874624122267b9f94ebf2e08cf",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
