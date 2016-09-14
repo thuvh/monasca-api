@@ -16,6 +16,24 @@
       "revId": "026921edfa8e6aeaa00e734218d08ebfa88130bf",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8ec9b2_d0f857e8",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9Utils.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-09-14T15:00:22Z",
+      "side": 1,
+      "message": "You mean adding the \u0027 \u0027 at the end? I just needed space at the end, no specific reason to use a char vs string.",
+      "parentUuid": "7a8ec9b2_8c25ecac",
+      "revId": "026921edfa8e6aeaa00e734218d08ebfa88130bf",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
