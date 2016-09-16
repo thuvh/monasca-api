@@ -22,6 +22,30 @@
       "revId": "d4152b32e6d26c12475bce86c6b7f4bb8d59e8db",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8ec9b2_d011a905",
+        "filename": "java/src/test/java/monasca/api/resource/LinksTest.java",
+        "patchSetId": 46
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-09-16T20:46:33Z",
+      "side": 0,
+      "message": "In this code, dimensionName and dimensionValue are both calling Links.paginate() to do pagination. This function Links.paginate()  is tested in checkSelfNextLinks.",
+      "parentUuid": "7a8ec9b2_4d50a2d4",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 182,
+        "endChar": 3
+      },
+      "revId": "d4152b32e6d26c12475bce86c6b7f4bb8d59e8db",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }

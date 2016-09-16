@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7a8ec9b2_b01fbd59",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionBase.java",
+        "patchSetId": 46
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-09-16T20:46:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a8ec9b2_6d02be0b",
+      "range": {
+        "startLine": 28,
+        "startChar": 25,
+        "endLine": 28,
+        "endChar": 42
+      },
+      "revId": "5589119205ba3bd7ea6e537ede135a371c5e9e27",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a8ec9b2_2d1d1666",
         "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionName.java",
         "patchSetId": 46
@@ -36,6 +60,30 @@
       "writtenOn": "2016-09-16T20:13:15Z",
       "side": 1,
       "message": "Not anymore :)",
+      "range": {
+        "startLine": 17,
+        "startChar": 20,
+        "endLine": 17,
+        "endChar": 43
+      },
+      "revId": "5589119205ba3bd7ea6e537ede135a371c5e9e27",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8ec9b2_7050d50b",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionName.java",
+        "patchSetId": 46
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-09-16T20:46:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a8ec9b2_2d1d1666",
       "range": {
         "startLine": 17,
         "startChar": 20,
@@ -65,6 +113,24 @@
     },
     {
       "key": {
+        "uuid": "7a8ec9b2_3062cdd8",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionName.java",
+        "patchSetId": 46
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-09-16T20:46:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a8ec9b2_0d393ad7",
+      "revId": "5589119205ba3bd7ea6e537ede135a371c5e9e27",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a8ec9b2_ed16ce4a",
         "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionName.java",
         "patchSetId": 46
@@ -76,6 +142,30 @@
       "writtenOn": "2016-09-16T20:13:15Z",
       "side": 1,
       "message": "DimensionName",
+      "range": {
+        "startLine": 57,
+        "startChar": 30,
+        "endLine": 57,
+        "endChar": 44
+      },
+      "revId": "5589119205ba3bd7ea6e537ede135a371c5e9e27",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8ec9b2_709e15ba",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionName.java",
+        "patchSetId": 46
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-09-16T20:46:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a8ec9b2_ed16ce4a",
       "range": {
         "startLine": 57,
         "startChar": 30,
@@ -111,6 +201,30 @@
     },
     {
       "key": {
+        "uuid": "7a8ec9b2_f0b2254b",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionValue.java",
+        "patchSetId": 46
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-09-16T20:46:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a8ec9b2_8d88ea72",
+      "range": {
+        "startLine": 17,
+        "startChar": 19,
+        "endLine": 17,
+        "endChar": 44
+      },
+      "revId": "5589119205ba3bd7ea6e537ede135a371c5e9e27",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a8ec9b2_8d7aaa86",
         "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionValue.java",
         "patchSetId": 46
@@ -122,6 +236,24 @@
       "writtenOn": "2016-09-16T20:13:15Z",
       "side": 1,
       "message": "You should add:\n        if (getClass() !\u003d obj.getClass())\n            return false;",
+      "revId": "5589119205ba3bd7ea6e537ede135a371c5e9e27",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8ec9b2_30b9ed2e",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionValue.java",
+        "patchSetId": 46
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-09-16T20:46:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a8ec9b2_8d7aaa86",
       "revId": "5589119205ba3bd7ea6e537ede135a371c5e9e27",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -151,6 +283,30 @@
     },
     {
       "key": {
+        "uuid": "7a8ec9b2_d0f529ed",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionValue.java",
+        "patchSetId": 46
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-09-16T20:46:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a8ec9b2_ada4c607",
+      "range": {
+        "startLine": 60,
+        "startChar": 4,
+        "endLine": 60,
+        "endChar": 89
+      },
+      "revId": "5589119205ba3bd7ea6e537ede135a371c5e9e27",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a8ec9b2_2db9962e",
         "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionValue.java",
         "patchSetId": 46
@@ -162,6 +318,30 @@
       "writtenOn": "2016-09-16T20:13:15Z",
       "side": 1,
       "message": "DimensionValue",
+      "range": {
+        "startLine": 66,
+        "startChar": 26,
+        "endLine": 66,
+        "endChar": 41
+      },
+      "revId": "5589119205ba3bd7ea6e537ede135a371c5e9e27",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8ec9b2_b0f25d04",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionValue.java",
+        "patchSetId": 46
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-09-16T20:46:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a8ec9b2_2db9962e",
       "range": {
         "startLine": 66,
         "startChar": 26,
