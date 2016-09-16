@@ -22,6 +22,30 @@
       "revId": "c82944d6da657f7bc74d0a9be973d69068e4dbf3",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8ec9b2_5cf77258",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9MetricDefinitionRepo.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-09-16T23:21:14Z",
+      "side": 1,
+      "message": "Will remove it in next patch set. Thank you!",
+      "parentUuid": "7a8ec9b2_831ef96d",
+      "range": {
+        "startLine": 217,
+        "startChar": 0,
+        "endLine": 232,
+        "endChar": 3
+      },
+      "revId": "c82944d6da657f7bc74d0a9be973d69068e4dbf3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
