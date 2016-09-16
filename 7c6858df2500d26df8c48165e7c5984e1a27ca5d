@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7a8ec9b2_36a2d34b",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionBase.java",
+        "patchSetId": 45
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-09-16T17:55:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a8ec9b2_b969b627",
+      "revId": "7c6858df2500d26df8c48165e7c5984e1a27ca5d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a8ec9b2_f9edfeef",
         "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionBase.java",
         "patchSetId": 45
@@ -30,6 +48,24 @@
       "writtenOn": "2016-09-15T16:34:28Z",
       "side": 1,
       "message": "result should be a prime like 17. 1 is not a prime number.",
+      "revId": "7c6858df2500d26df8c48165e7c5984e1a27ca5d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8ec9b2_7688dbc5",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionBase.java",
+        "patchSetId": 45
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-09-16T17:55:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a8ec9b2_f9edfeef",
       "revId": "7c6858df2500d26df8c48165e7c5984e1a27ca5d",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "7a8ec9b2_36b9f379",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionNames.java",
+        "patchSetId": 45
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-09-16T17:55:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a8ec9b2_ae4a4724",
+      "revId": "7c6858df2500d26df8c48165e7c5984e1a27ca5d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a8ec9b2_1490af42",
         "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionNames.java",
         "patchSetId": 45
@@ -64,6 +118,24 @@
       "writtenOn": "2016-09-15T16:34:28Z",
       "side": 1,
       "message": "Let\u0027s put the dimensionNames attribute in this class.\n\nNeed haashCode method. Need equals method.",
+      "revId": "7c6858df2500d26df8c48165e7c5984e1a27ca5d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8ec9b2_76affb29",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionNames.java",
+        "patchSetId": 45
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-09-16T17:55:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a8ec9b2_1490af42",
       "revId": "7c6858df2500d26df8c48165e7c5984e1a27ca5d",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "7a8ec9b2_f6506b34",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionValues.java",
+        "patchSetId": 45
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-09-16T17:55:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a8ec9b2_8eb10b4a",
+      "revId": "7c6858df2500d26df8c48165e7c5984e1a27ca5d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a8ec9b2_6ee03ffb",
         "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionValues.java",
         "patchSetId": 45
@@ -104,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "7a8ec9b2_36473378",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionValues.java",
+        "patchSetId": 45
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-09-16T17:55:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a8ec9b2_6ee03ffb",
+      "revId": "7c6858df2500d26df8c48165e7c5984e1a27ca5d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a8ec9b2_ee2a8f8f",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9DimensionRepo.java",
         "patchSetId": 45
@@ -115,6 +223,24 @@
       "writtenOn": "2016-09-15T16:34:28Z",
       "side": 1,
       "message": "This is an unbounded query. Need to use offset and limit to ensure that there are bounds on the size of the result set.",
+      "revId": "7c6858df2500d26df8c48165e7c5984e1a27ca5d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8ec9b2_f12cf59a",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9DimensionRepo.java",
+        "patchSetId": 45
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-09-16T17:55:27Z",
+      "side": 1,
+      "message": "Cant find a proper way to paginate diemnsion names and dimension values inside influx database. Will keep this part for now.",
+      "parentUuid": "7a8ec9b2_ee2a8f8f",
       "revId": "7c6858df2500d26df8c48165e7c5984e1a27ca5d",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
