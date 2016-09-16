@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a8ec9b2_4d50a2d4",
+        "filename": "java/src/test/java/monasca/api/resource/LinksTest.java",
+        "patchSetId": 46
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-09-16T20:13:15Z",
+      "side": 0,
+      "message": "I\u0027m not sure you should delete this test. I think you should modify it to use DimensionValue and DimensionName and make sure it works. Unless that is tested elsewhere",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 182,
+        "endChar": 3
+      },
+      "revId": "d4152b32e6d26c12475bce86c6b7f4bb8d59e8db",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
