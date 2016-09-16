@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a8ec9b2_0199017c",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MeasurementVerticaRepoImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-09-16T22:28:52Z",
+      "side": 1,
+      "message": "Coding standards don\u0027t allow import *",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 19
+      },
+      "revId": "3231900614681c22c5cc195de81fc9f7505e4bfc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8ec9b2_419f895e",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MeasurementVerticaRepoImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-09-16T22:28:52Z",
+      "side": 1,
+      "message": "Remove this trailing blank as long as you are in this file",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 1
+      },
+      "revId": "3231900614681c22c5cc195de81fc9f7505e4bfc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8ec9b2_01a741aa",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MetricQueries.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-09-16T22:28:52Z",
+      "side": 1,
+      "message": "Expland",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 19
+      },
+      "revId": "3231900614681c22c5cc195de81fc9f7505e4bfc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8ec9b2_61bf25aa",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MetricQueries.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-09-16T22:28:52Z",
+      "side": 1,
+      "message": "This is a different expression than you use other places. Maybe pull this out into an utility method?",
+      "range": {
+        "startLine": 295,
+        "startChar": 7,
+        "endLine": 295,
+        "endChar": 56
+      },
+      "revId": "3231900614681c22c5cc195de81fc9f7505e4bfc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
