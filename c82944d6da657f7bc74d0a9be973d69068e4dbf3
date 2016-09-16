@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a8ec9b2_831ef96d",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9MetricDefinitionRepo.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-09-16T21:52:44Z",
+      "side": 1,
+      "message": "This method is not used anywhere",
+      "range": {
+        "startLine": 217,
+        "startChar": 0,
+        "endLine": 232,
+        "endChar": 3
+      },
+      "revId": "c82944d6da657f7bc74d0a9be973d69068e4dbf3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
