@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "7a8ec9b2_70a455b9",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionBase.java",
+        "patchSetId": 46
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-09-16T20:50:02Z",
+      "side": 1,
+      "message": "Actually, we want to change the inheritance of this. DimensionBase is not an Entity, if is a pure value object. Therefore, id should be removed completely. Currently, @JsonIgnore is use to remove the id from the output when returning the http response object. But, the better solution is to not inherit from AbstractEntity.\n\nI gave a waiver on doing that because the pagination code currently depends on AbstractEntity. For code charing, and getting this review done, that change wasn\u0027t made.",
+      "parentUuid": "7a8ec9b2_6d02be0b",
+      "range": {
+        "startLine": 28,
+        "startChar": 25,
+        "endLine": 28,
+        "endChar": 42
+      },
+      "revId": "5589119205ba3bd7ea6e537ede135a371c5e9e27",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a8ec9b2_2d1d1666",
         "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionName.java",
         "patchSetId": 46
