@@ -91,6 +91,29 @@
       "revId": "3231900614681c22c5cc195de81fc9f7505e4bfc",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8ec9b2_db48a18d",
+        "filename": "monasca_tempest_tests/tests/api/test_measurements.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-09-19T17:37:40Z",
+      "side": 1,
+      "message": "Can you add tempest tests for group_by with offset limit please?",
+      "range": {
+        "startLine": 277,
+        "startChar": 0,
+        "endLine": 277,
+        "endChar": 60
+      },
+      "revId": "3231900614681c22c5cc195de81fc9f7505e4bfc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
