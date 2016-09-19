@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a8ec9b2_e1b4cad5",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 36
+      },
+      "lineNbr": 827,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-09-19T18:08:04Z",
+      "side": 1,
+      "message": "Do you mean monasca-statsd?",
+      "range": {
+        "startLine": 827,
+        "startChar": 58,
+        "endLine": 827,
+        "endChar": 74
+      },
+      "revId": "0f2efc4da3a5a82ecd3d3bb44bdd3eb584180dff",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
