@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "7a8ec9b2_9f723e10",
+        "filename": "devstack/files/monasca-api/python/api-config.conf",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-09-20T18:40:38Z",
+      "side": 1,
+      "message": "I\u0027m fine with removing it. It just doesn\u0027t make sense here.",
+      "parentUuid": "7a8ec9b2_a45d2d17",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 28
+      },
+      "revId": "4d9789b8d1cc7cc7232d61d6b2f89e8a33e77e3d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a89bdaa_8042863c",
         "filename": "devstack/files/monasca-api/python/api-logging.conf",
         "patchSetId": 6
