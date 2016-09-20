@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "7a8ec9b2_a45d2d17",
+        "filename": "devstack/files/monasca-api/python/api-config.conf",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-09-20T18:03:50Z",
+      "side": 1,
+      "message": "Can be removed IMHO. That should go without saying that owner of the process has the rights to write into log directory.",
+      "parentUuid": "7a8ec9b2_5c11c0ae",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 28
+      },
+      "revId": "4d9789b8d1cc7cc7232d61d6b2f89e8a33e77e3d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a89bdaa_8042863c",
         "filename": "devstack/files/monasca-api/python/api-logging.conf",
         "patchSetId": 6
