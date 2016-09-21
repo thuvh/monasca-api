@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a8ec9b2_f11b601a",
+        "filename": "devstack/files/monasca-api/python/api-logging.conf",
+        "patchSetId": 10
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 14123
+      },
+      "writtenOn": "2016-09-21T07:10:19Z",
+      "side": 1,
+      "message": "Even if I appreciate adding a comment will clarify to the user I would prefer INFO for production and find another way to distinguish between the 2 ways of logging SQL queries",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 1
+      },
+      "revId": "682d0d773c5e0e460866691bb9b61ef968004ef0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
