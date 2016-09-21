@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a8ec9b2_eb6d3233",
+        "filename": "devstack/files/monasca-api/python/api-logging.conf",
+        "patchSetId": 9
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-09-21T05:21:09Z",
+      "side": 1,
+      "message": "Actually, shouldn\u0027t that be set to DEBUG for the purpose of the devstack ?",
+      "revId": "b85805384daec1fc5e3cfdba85279c24bdb5f4f1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
