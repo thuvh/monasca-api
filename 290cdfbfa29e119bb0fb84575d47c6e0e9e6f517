@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a8ec9b2_f05e0144",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/influxdb/InfluxV9Utils.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-09-21T05:02:59Z",
+      "side": 1,
+      "message": "Generally, concatenating strings in Java is not something that is considered a best practice. AFAIK this is equivalent to using StringBuilder, so I think I\u0027d see that here.",
+      "revId": "290cdfbfa29e119bb0fb84575d47c6e0e9e6f517",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
