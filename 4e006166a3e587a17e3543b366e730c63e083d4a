@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a8bc5a2_6bbd1b01",
+        "filename": "java/src/main/java/monasca/api/domain/model/dimension/DimensionValue.java",
+        "patchSetId": 48
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 12512
+      },
+      "writtenOn": "2016-09-27T14:47:22Z",
+      "side": 1,
+      "message": "Does dimensionValue become the id of DimensionBase? Not sure why it would be done that way.",
+      "revId": "4e006166a3e587a17e3543b366e730c63e083d4a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
