@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a8bc5a2_f1ae7080",
+        "filename": "monasca_tempest_tests/tests/api/test_metrics_names.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-09-27T19:08:41Z",
+      "side": 1,
+      "message": "Does this still need to be skipped?",
+      "revId": "4201778e3c851f5e10988271fac61ed3449edeb2",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
