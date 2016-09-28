@@ -309,7 +309,7 @@ public class AlarmSqlRepositoryImplTest {
           .setReadOnly(true)
           .list();
 
-      assertEquals(rows.size(), 1, "Alarm Definition was deleted as well");
+      assertEqual(rows.size(), 1, "Alarm Definition was deleted as well");
 
     } finally {
       if (session != null) {
@@ -326,20 +326,20 @@ public class AlarmSqlRepositoryImplTest {
   @Test(groups = "orm")
   public void shouldFindAlarmSubExpressions() {
     final Map<String, AlarmSubExpression> subExpressionMap = repo.findAlarmSubExpressions(ALARM_ID);
-    assertEquals(subExpressionMap.size(), 2);
-    assertEquals(subExpressionMap.get("4343"), AlarmSubExpression.of("avg(cpu.sys_mem{service=monitoring}) > 20"));
-    assertEquals(subExpressionMap.get("4242"), AlarmSubExpression.of("avg(cpu.idle_perc{service=monitoring}) < 10"));
+    assertEqual(subExpressionMap.size(), 2);
+    assertEqual(subExpressionMap.get("4343"), AlarmSubExpression.of("avg(cpu.sys_mem{service=monitoring}) > 20"));
+    assertEqual(subExpressionMap.get("4242"), AlarmSubExpression.of("avg(cpu.idle_perc{service=monitoring}) < 10"));
   }
 
   @Test(groups = "orm")
   public void shouldAlarmSubExpressionsForAlarmDefinition() {
     final Map<String, Map<String, AlarmSubExpression>> alarmSubExpressionMap =
         repo.findAlarmSubExpressionsForAlarmDefinition(alarm1.getAlarmDefinition().getId());
-    assertEquals(alarmSubExpressionMap.size(), 3);
+    assertEqual(alarmSubExpressionMap.size(), 3);
     long subAlarmId = 42;
     for (int alarmId = 1; alarmId <= 3; alarmId++) {
       final Map<String, AlarmSubExpression> subExpressionMap = alarmSubExpressionMap.get(String.valueOf(alarmId));
-      assertEquals(subExpressionMap.get(String.valueOf(subAlarmId)),
+      assertEqual(subExpressionMap.get(String.valueOf(subAlarmId)),
           AlarmSubExpression.of("avg(cpu.idle_perc{flavor_id=777, image_id=888, device=1}) > 10"));
       subAlarmId++;
     }
@@ -407,12 +407,12 @@ public class AlarmSqlRepositoryImplTest {
 
     final Alarm alarm = repo.findById(TENANT_ID, compoundAlarm.getId());
 
-    assertEquals(alarm.getId(), compoundAlarm.getId());
-    assertEquals(alarm.getAlarmDefinition(), compoundAlarm.getAlarmDefinition());
-    assertEquals(alarm.getCreatedTimestamp(), compoundAlarm.getCreatedTimestamp());
-    assertEquals(alarm.getStateUpdatedTimestamp(), compoundAlarm.getStateUpdatedTimestamp());
-    assertEquals(alarm.getState(), compoundAlarm.getState());
-    assertEquals(alarm.getMetrics().size(), compoundAlarm.getMetrics().size());
+    assertEqual(alarm.getId(), compoundAlarm.getId());
+    assertEqual(alarm.getAlarmDefinition(), compoundAlarm.getAlarmDefinition());
+    assertEqual(alarm.getCreatedTimestamp(), compoundAlarm.getCreatedTimestamp());
+    assertEqual(alarm.getStateUpdatedTimestamp(), compoundAlarm.getStateUpdatedTimestamp());
+    assertEqual(alarm.getState(), compoundAlarm.getState());
+    assertEqual(alarm.getMetrics().size(), compoundAlarm.getMetrics().size());
     assertTrue(CollectionUtils.isEqualCollection(alarm.getMetrics(), compoundAlarm.getMetrics()), "Metrics not equal");
   }
 
@@ -427,7 +427,7 @@ public class AlarmSqlRepositoryImplTest {
     final Alarm originalAlarm = repo.findById(TENANT_ID, ALARM_ID);
     final DateTime originalStateUpdatedAt = getAlarmStateUpdatedDate(ALARM_ID);
     final DateTime originalUpdatedAt = getAlarmUpdatedDate(ALARM_ID);
-    assertEquals(originalAlarm.getState(), AlarmState.UNDETERMINED);
+    assertEqual(originalAlarm.getState(), AlarmState.UNDETERMINED);
 
     Thread.sleep(1000);
     final Alarm newAlarm = repo.update(TENANT_ID, ALARM_ID, AlarmState.OK, null, null);
@@ -438,20 +438,20 @@ public class AlarmSqlRepositoryImplTest {
     assertNotEquals(newUpdatedAt.getMillis(), originalUpdatedAt.getMillis(),
         "updated_at did not change");
 
-    assertEquals(newAlarm, originalAlarm);
+    assertEqual(newAlarm, originalAlarm);
 
     newAlarm.setState(AlarmState.OK);
     newAlarm.setStateUpdatedTimestamp(newStateUpdatedAt);
     newAlarm.setUpdatedTimestamp(newUpdatedAt);
 
     // Make sure it was updated in the DB
-    assertEquals(repo.findById(TENANT_ID, ALARM_ID), newAlarm);
+    assertEqual(repo.findById(TENANT_ID, ALARM_ID), newAlarm);
 
     Thread.sleep(1000);
     final Alarm unchangedAlarm = repo.update(TENANT_ID, ALARM_ID, AlarmState.OK, "OPEN", null);
     assertTrue(getAlarmStateUpdatedDate(ALARM_ID).equals(newStateUpdatedAt), "state_updated_at did change");
     assertNotEquals(getAlarmUpdatedDate(ALARM_ID).getMillis(), newStateUpdatedAt, "updated_at did not change");
-    assertEquals(unchangedAlarm, newAlarm);
+    assertEqual(unchangedAlarm, newAlarm);
   }
 
   @Test(groups = "orm", expectedExceptions = EntityNotFoundException.class)
@@ -505,7 +505,7 @@ public class AlarmSqlRepositoryImplTest {
   }
 
   private void checkUnsortedList(List<Alarm> found, boolean sorted, Alarm... expected) {
-    assertEquals(found.size(), expected.length);
+    assertEqual(found.size(), expected.length);
     Alarm actual;
     int actualIndex;
 
@@ -525,9 +525,9 @@ public class AlarmSqlRepositoryImplTest {
       actual = alarmOptional.get();
       if (sorted) {
         actualIndex = found.indexOf(actual);
-        assertEquals(expectedIndex, actualIndex);
+        assertEqual(expectedIndex, actualIndex);
       }
-      assertEquals(actual, alarm, String.format("%s not equal to %s", actual, alarm));
+      assertEqual(actual, alarm, String.format("%s not equal to %s", actual, alarm));
     }
 
   }

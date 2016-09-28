@@ -124,26 +124,26 @@ public class AlarmHibernateUtilsTest {
 
     List<String> result = repo.findAlarmIds(null, null);
 
-    assertEquals(result.size(), 0, "No alarms");
+    assertEqual(result.size(), 0, "No alarms");
   }
 
   public void testWithTenantIdNoExist() {
 
     List<String> result = repo.findAlarmIds("fake_id", null);
 
-    assertEquals(result.size(), 0, "No alarms");
+    assertEqual(result.size(), 0, "No alarms");
   }
 
   public void testWithTenantId() {
 
     List<String> result = repo.findAlarmIds(BOB_TENANT_ID, new HashMap<String, String>());
 
-    assertEquals(result.size(), 1, "Alarm found");
-    assertEquals(result.get(0), "1", "Alarm with id 1 found");
+    assertEqual(result.size(), 1, "Alarm found");
+    assertEqual(result.get(0), "1", "Alarm with id 1 found");
 
     result = repo.findAlarmIds(LUK_TENANT_ID, new HashMap<String, String>());
-    assertEquals(result.size(), 1, "Alarm found");
-    assertEquals(result.get(0), "2", "Alarm with id 2 found");
+    assertEqual(result.size(), 1, "Alarm found");
+    assertEqual(result.get(0), "2", "Alarm with id 2 found");
   }
 
   public void testWithDimensions() {
@@ -153,8 +153,8 @@ public class AlarmHibernateUtilsTest {
 
     List<String> result = repo.findAlarmIds(BOB_TENANT_ID, dimensions);
 
-    assertEquals(result.size(), 1, "Alarm found");
-    assertEquals(result.get(0), "1", "Alarm with id 1 found");
+    assertEqual(result.size(), 1, "Alarm found");
+    assertEqual(result.get(0), "1", "Alarm with id 1 found");
   }
 
   public void testWithNotExixtingDimensions() {
@@ -164,6 +164,6 @@ public class AlarmHibernateUtilsTest {
 
     List<String> result = repo.findAlarmIds(BOB_TENANT_ID, dimensions);
 
-    assertEquals(result.size(), 0, "Alarm not found");
+    assertEqual(result.size(), 0, "Alarm not found");
   }
 }

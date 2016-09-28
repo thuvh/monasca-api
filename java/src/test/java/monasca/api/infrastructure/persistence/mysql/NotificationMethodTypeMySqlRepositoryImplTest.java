@@ -72,7 +72,7 @@ public class NotificationMethodTypeMySqlRepositoryImplTest {
 
   public void shouldListNotificationMethodTypes() {
        List<String>  notification_method_types = repo.listNotificationMethodTypes();
-       assertEquals(notification_method_types, DEFAULT_NOTIFICATION_METHODS);
+       assertEqual(notification_method_types, DEFAULT_NOTIFICATION_METHODS);
   }
 
 }

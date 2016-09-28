@@ -137,10 +137,10 @@ public class AlarmIntegrationTest extends AbstractMonApiResourceTest {
 
     AlarmDefinition newAlarm = response.getEntity(AlarmDefinition.class);
     String location = response.getHeaders().get("Location").get(0);
-    assertEquals(response.getStatus(), 201);
-    assertEquals(location, "/v2.0/alarms/" + newAlarm.getId());
-    assertEquals(alarm.getExpression(), newAlarm.getExpression());
-    assertEquals(alarm.getAlarmActions(), newAlarm.getAlarmActions());
+    assertEqual(response.getStatus(), 201);
+    assertEqual(location, "/v2.0/alarms/" + newAlarm.getId());
+    assertEqual(alarm.getExpression(), newAlarm.getExpression());
+    assertEqual(alarm.getAlarmActions(), newAlarm.getAlarmActions());
   }
 
   public void shouldCreateCaseInsensitiveAndKeywords() throws Exception {
@@ -161,10 +161,10 @@ public class AlarmIntegrationTest extends AbstractMonApiResourceTest {
 
     AlarmDefinition newAlarm = response.getEntity(AlarmDefinition.class);
     String location = response.getHeaders().get("Location").get(0);
-    assertEquals(response.getStatus(), 201);
-    assertEquals(location, "/v2.0/alarms/" + newAlarm.getId());
-    assertEquals(alarm_local.getExpression(), newAlarm.getExpression());
-    assertEquals(alarm_local.getAlarmActions(), newAlarm.getAlarmActions());
+    assertEqual(response.getStatus(), 201);
+    assertEqual(location, "/v2.0/alarms/" + newAlarm.getId());
+    assertEqual(alarm_local.getExpression(), newAlarm.getExpression());
+    assertEqual(alarm_local.getAlarmActions(), newAlarm.getAlarmActions());
   }
 
   public void shouldDelete() {
@@ -177,7 +177,7 @@ public class AlarmIntegrationTest extends AbstractMonApiResourceTest {
     ClientResponse response =
         client().resource("/v2.0/alarms/" + newAlarm.getId()).header("X-Tenant-Id", TENANT_ID)
             .delete(ClientResponse.class);
-    assertEquals(response.getStatus(), 204);
+    assertEqual(response.getStatus(), 204);
 
     try {
       assertNull(repo.findById(TENANT_ID, newAlarm.getId()));

@@ -230,7 +230,7 @@ public class AlarmMySqlRepositoryImplTest {
     repo.deleteById(TENANT_ID, ALARM_ID);
 
     List<Map<String, Object>> rows = handle.createQuery("select * from alarm_definition where id='234'").list();
-    assertEquals(rows.size(), 1, "Alarm Definition was deleted as well");
+    assertEqual(rows.size(), 1, "Alarm Definition was deleted as well");
   }
 
   @Test(groups = "database", expectedExceptions=EntityNotFoundException.class)
@@ -241,10 +241,10 @@ public class AlarmMySqlRepositoryImplTest {
   @Test(groups = "database")
   public void shouldFindAlarmSubExpressions() {
     final Map<String, AlarmSubExpression> subExpressionMap = repo.findAlarmSubExpressions(ALARM_ID);
-    assertEquals(subExpressionMap.size(), 2);
-    assertEquals(subExpressionMap.get("4343"),
+    assertEqual(subExpressionMap.size(), 2);
+    assertEqual(subExpressionMap.get("4343"),
         AlarmSubExpression.of("avg(cpu.sys_mem{service=monitoring}) > 20"));
-    assertEquals(subExpressionMap.get("4242"),
+    assertEqual(subExpressionMap.get("4242"),
         AlarmSubExpression.of("avg(cpu.idle_perc{service=monitoring}) < 10"));
   }
 
@@ -252,19 +252,19 @@ public class AlarmMySqlRepositoryImplTest {
   public void shouldAlarmSubExpressionsForAlarmDefinition() {
     final Map<String, Map<String, AlarmSubExpression>> alarmSubExpressionMap =
         repo.findAlarmSubExpressionsForAlarmDefinition(alarm1.getAlarmDefinition().getId());
-    assertEquals(alarmSubExpressionMap.size(), 3);
+    assertEqual(alarmSubExpressionMap.size(), 3);
     long subAlarmId = 42;
     for (int alarmId = 1; alarmId <= 3; alarmId++) {
       final Map<String, AlarmSubExpression> subExpressionMap =
           alarmSubExpressionMap.get(String.valueOf(alarmId));
-      assertEquals(subExpressionMap.get(String.valueOf(subAlarmId)),
+      assertEqual(subExpressionMap.get(String.valueOf(subAlarmId)),
           AlarmSubExpression.of("avg(cpu.idle_perc{flavor_id=777, image_id=888, device=1}) > 10"));
       subAlarmId++;
     }
   }
   
   private void checkList(List<Alarm> found, Alarm ... expected) {
-    assertEquals(found.size(), expected.length);
+    assertEqual(found.size(), expected.length);
     for (Alarm alarm : expected) {
       assertTrue(found.contains(alarm));
     }
@@ -356,7 +356,7 @@ public class AlarmMySqlRepositoryImplTest {
     final Alarm originalAlarm = repo.findById(TENANT_ID, ALARM_ID);
     final DateTime originalStateUpdatedAt = getAlarmStateUpdatedDate(ALARM_ID);
     final DateTime originalUpdatedAt = getAlarmUpdatedDate(ALARM_ID);
-    assertEquals(originalAlarm.getState(), AlarmState.UNDETERMINED);
+    assertEqual(originalAlarm.getState(), AlarmState.UNDETERMINED);
 
     Thread.sleep(1000);
     final Alarm newAlarm = repo.update(TENANT_ID, ALARM_ID, AlarmState.OK, null, null);
@@ -367,20 +367,20 @@ public class AlarmMySqlRepositoryImplTest {
     assertNotEquals(newUpdatedAt.getMillis(), originalUpdatedAt.getMillis(),
                     "updated_at did not change");
 
-    assertEquals(newAlarm, originalAlarm);
+    assertEqual(newAlarm, originalAlarm);
 
     newAlarm.setState(AlarmState.OK);
     newAlarm.setStateUpdatedTimestamp(newStateUpdatedAt);
     newAlarm.setUpdatedTimestamp(newUpdatedAt);
 
     // Make sure it was updated in the DB
-    assertEquals(repo.findById(TENANT_ID, ALARM_ID), newAlarm);
+    assertEqual(repo.findById(TENANT_ID, ALARM_ID), newAlarm);
 
     Thread.sleep(1000);
     final Alarm unchangedAlarm = repo.update(TENANT_ID, ALARM_ID, AlarmState.OK, "OPEN", null);
     assertTrue(getAlarmStateUpdatedDate(ALARM_ID).equals(newStateUpdatedAt), "state_updated_at did change");
     assertNotEquals(getAlarmUpdatedDate(ALARM_ID).getMillis(), newStateUpdatedAt, "updated_at did not change");
-    assertEquals(unchangedAlarm, newAlarm);
+    assertEqual(unchangedAlarm, newAlarm);
   }
 
   @Test(groups = "database", expectedExceptions=EntityNotFoundException.class)
@@ -394,7 +394,7 @@ public class AlarmMySqlRepositoryImplTest {
 
     final Alarm alarm = repo.findById(TENANT_ID, compoundAlarm.getId());
 
-    assertEquals(alarm, compoundAlarm);
+    assertEqual(alarm, compoundAlarm);
   }
 
   @Test(groups = "database", expectedExceptions=EntityNotFoundException.class)

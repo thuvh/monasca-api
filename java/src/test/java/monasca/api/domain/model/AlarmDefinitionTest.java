@@ -46,6 +46,6 @@ public class AlarmDefinitionTest extends AbstractModelTest {
 
   public void shouldSerializeToJson() throws Exception {
     String json = toJson(alarm);
-    assertEquals(json, jsonFixture("fixtures/alarm.json"));
+    assertEqual(json, jsonFixture("fixtures/alarm.json"));
   }
 }

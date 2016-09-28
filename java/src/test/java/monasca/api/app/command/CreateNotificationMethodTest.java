@@ -59,7 +59,7 @@ public class CreateNotificationMethodTest extends AbstractModelTest {
 
     String json = jsonFixture("fixtures/newNotificationMethod.json");
     CreateNotificationMethodCommand other = fromJson(json, CreateNotificationMethodCommand.class);
-    assertEquals(other, newNotificationMethod);
+    assertEqual(other, newNotificationMethod);
   }
 
   public void shouldDeserializeFromJsonLowerCaseEnum() throws Exception {
@@ -68,7 +68,7 @@ public class CreateNotificationMethodTest extends AbstractModelTest {
 
     String json = jsonFixture("fixtures/newNotificationMethodWithLowercaseEnum.json");
     CreateNotificationMethodCommand other = fromJson(json, CreateNotificationMethodCommand.class);
-    assertEquals(other, newNotificationMethod);
+    assertEqual(other, newNotificationMethod);
   }
 
   public void shouldDeserializeFromJsonDefinedPeriod() throws Exception {
@@ -77,7 +77,7 @@ public class CreateNotificationMethodTest extends AbstractModelTest {
 
     String json = jsonFixture("fixtures/newNotificationMethodWithPeriod.json");
     CreateNotificationMethodCommand other = fromJson(json, CreateNotificationMethodCommand.class);
-    assertEquals(other, newNotificationMethod);
+    assertEqual(other, newNotificationMethod);
   }
 
   @Test(expectedExceptions = java.lang.AssertionError.class)
@@ -87,7 +87,7 @@ public class CreateNotificationMethodTest extends AbstractModelTest {
 
     String json = jsonFixture("fixtures/newNotificationMethodWithInvalidEnum.json");
     CreateNotificationMethodCommand other = fromJson(json, CreateNotificationMethodCommand.class);
-    assertEquals(other, newNotificationMethod);
+    assertEqual(other, newNotificationMethod);
   }
 
   public void testValidationForEmail() {
@@ -184,40 +184,40 @@ public class CreateNotificationMethodTest extends AbstractModelTest {
 
   public void testValidationForMaxNameAddress() {
     String name = StringUtils.repeat("A", 250);
-    assertEquals(name.length(), 250);
+    assertEqual(name.length(), 250);
     String address = "http://" + StringUtils.repeat("A", 502) + ".io";
-    assertEquals(address.length(), 512);
+    assertEqual(address.length(), 512);
     CreateNotificationMethodCommand newNotificationMethod =
         new CreateNotificationMethodCommand(name, NOTIFICATION_METHOD_WEBHOOK, address, "0");
     Set<ConstraintViolation<CreateNotificationMethodCommand>> constraintViolations =
         validator.validate(newNotificationMethod);
 
-    assertEquals(constraintViolations.size(), 0);
+    assertEqual(constraintViolations.size(), 0);
   }
 
   public void testValidationExceptionForExceededNameLength() {
     String name = StringUtils.repeat("A", 251);
-    assertEquals(name.length(), 251);
+    assertEqual(name.length(), 251);
     CreateNotificationMethodCommand newNotificationMethod =
         new CreateNotificationMethodCommand(name, NOTIFICATION_METHOD_WEBHOOK, "http://somedomain.com", "0");
     Set<ConstraintViolation<CreateNotificationMethodCommand>> constraintViolations =
         validator.validate(newNotificationMethod);
 
-    assertEquals(constraintViolations.size(), 1);
-    assertEquals(constraintViolations.iterator().next().getMessage(),
+    assertEqual(constraintViolations.size(), 1);
+    assertEqual(constraintViolations.iterator().next().getMessage(),
         "size must be between 1 and 250");
   }
 
   public void testValidationExceptionForExceededAddressLength() {
     String address = "http://" + StringUtils.repeat("A", 503) + ".io";
-    assertEquals(address.length(), 513);
+    assertEqual(address.length(), 513);
     CreateNotificationMethodCommand newNotificationMethod =
         new CreateNotificationMethodCommand("MyWebhook", NOTIFICATION_METHOD_WEBHOOK, address, "0");
     Set<ConstraintViolation<CreateNotificationMethodCommand>> constraintViolations =
         validator.validate(newNotificationMethod);
 
-    assertEquals(constraintViolations.size(), 1);
-    assertEquals(constraintViolations.iterator().next().getMessage(),
+    assertEqual(constraintViolations.size(), 1);
+    assertEqual(constraintViolations.iterator().next().getMessage(),
         "size must be between 1 and 512");
   }
 

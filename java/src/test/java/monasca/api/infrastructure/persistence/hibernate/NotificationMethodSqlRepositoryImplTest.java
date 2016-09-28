@@ -109,7 +109,7 @@ public class NotificationMethodSqlRepositoryImplTest {
     NotificationMethod nmA = repo.create("555", "MyEmail", NOTIFICATION_METHOD_EMAIL, "a@b", 0);
     NotificationMethod nmB = repo.findById("555", nmA.getId());
 
-    assertEquals(nmA, nmB);
+    assertEqual(nmA, nmB);
   }
 
   @Test(groups = "orm")
@@ -123,12 +123,12 @@ public class NotificationMethodSqlRepositoryImplTest {
   public void shouldFind() {
     List<NotificationMethod> nms1 = repo.find("444", null, null, 1);
 
-    assertEquals(nms1, Arrays.asList(new NotificationMethod("123", "MyEmail", NOTIFICATION_METHOD_EMAIL, "a@b", 0), new NotificationMethod("124",
+    assertEqual(nms1, Arrays.asList(new NotificationMethod("123", "MyEmail", NOTIFICATION_METHOD_EMAIL, "a@b", 0), new NotificationMethod("124",
         "OtherEmail", NOTIFICATION_METHOD_EMAIL, "a@b", 0)));
 
     List<NotificationMethod> nms2 = repo.find("444", null, "123", 1);
 
-    assertEquals(nms2, Collections.singletonList(new NotificationMethod("124", "OtherEmail", NOTIFICATION_METHOD_EMAIL, "a@b", 0)));
+    assertEqual(nms2, Collections.singletonList(new NotificationMethod("124", "OtherEmail", NOTIFICATION_METHOD_EMAIL, "a@b", 0)));
   }
 
   @Test(groups = "orm")
@@ -136,7 +136,7 @@ public class NotificationMethodSqlRepositoryImplTest {
     repo.update("444", "123", "Foo", NOTIFICATION_METHOD_EMAIL, "abc", 0);
     NotificationMethod nm = repo.findById("444", "123");
 
-    assertEquals(nm, new NotificationMethod("123", "Foo", NOTIFICATION_METHOD_EMAIL, "abc", 0));
+    assertEqual(nm, new NotificationMethod("123", "Foo", NOTIFICATION_METHOD_EMAIL, "abc", 0));
   }
 
   @Test(groups = "orm")
@@ -144,7 +144,7 @@ public class NotificationMethodSqlRepositoryImplTest {
     NotificationMethod nm = repo.update("444", "123", "Foo", NOTIFICATION_METHOD_EMAIL, "abc", 0);
 
     NotificationMethod foundNotificationMethod = repo.findById("444", "123");
-    assertEquals(nm, foundNotificationMethod);
+    assertEqual(nm, foundNotificationMethod);
   }
 
   @Test(groups = "orm")
@@ -163,7 +163,7 @@ public class NotificationMethodSqlRepositoryImplTest {
     repo.update("444", "123", "Foo", NOTIFICATION_METHOD_EMAIL, "abc", 0);
     NotificationMethod nm = repo.findById("444", "123");
 
-    assertEquals(nm, new NotificationMethod("123", "Foo", NOTIFICATION_METHOD_EMAIL, "abc", 0));
+    assertEqual(nm, new NotificationMethod("123", "Foo", NOTIFICATION_METHOD_EMAIL, "abc", 0));
   }
 
   @Test(groups = "orm", expectedExceptions = EntityExistsException.class)

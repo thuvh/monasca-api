@@ -32,8 +32,8 @@ public class AlarmExpressionsTest {
             .validateNormalizeAndGet("avg(hpcs.compute.net_out_bytes{instance_id=5, instance_uuid=0ff588fc-d298-482f-bb11-4b52d56801a4, az=1}) > 4");
     MetricDefinition metricDef = expr.getSubExpressions().get(0).getMetricDefinition();
 
-    assertEquals(metricDef.name, "hpcs.compute.net_out_bytes");
-    assertEquals(
+    assertEqual(metricDef.name, "hpcs.compute.net_out_bytes");
+    assertEqual(
         metricDef.dimensions,
         ImmutableMap.builder().put("instance_id", "5")
             .put("instance_uuid", "0ff588fc-d298-482f-bb11-4b52d56801a4").put("az", "1").build());

@@ -95,6 +95,6 @@ public class MetricIntegrationTest extends AbstractMonApiResourceTest {
             .post(ClientResponse.class,
                 new CreateMetricCommand("test_namespace", dimensions, timestamp, 22.0, valueMeta));
 
-    assertEquals(response.getStatus(), 204);
+    assertEqual(response.getStatus(), 204);
   }
 }

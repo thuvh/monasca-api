@@ -90,7 +90,7 @@ public class MetricDefinitionVerticaRepositoryImplTest {
 
   public void shouldFindWithoutDimensions() throws Exception {
     List<MetricDefinition> defs = repo.find("bob", "cpu_utilization", null, null, null, null, 1);
-    assertEquals(defs.size(), 3);
+    assertEqual(defs.size(), 3);
   }
 
   public void shouldFindWithStartTime() throws Exception {
@@ -101,7 +101,7 @@ public class MetricDefinitionVerticaRepositoryImplTest {
                                             null,
                                             null,
                                             1);
-    assertEquals(defs.size(), 3);
+    assertEqual(defs.size(), 3);
   }
 
   public void shouldExcludeWithStartTime() throws Exception {
@@ -112,7 +112,7 @@ public class MetricDefinitionVerticaRepositoryImplTest {
                                             null,
                                             null,
                                             1);
-    assertEquals(defs.size(), 0);
+    assertEqual(defs.size(), 0);
   }
 
   public void shouldFindWithEndTime() throws Exception {
@@ -123,7 +123,7 @@ public class MetricDefinitionVerticaRepositoryImplTest {
                                             new DateTime(2014, 1, 1, 0, 1, 1),
                                             null,
                                             1);
-    assertEquals(defs.size(), 3);
+    assertEqual(defs.size(), 3);
   }
 
   public void shouldExcludeWithEndTime() throws Exception {
@@ -134,7 +134,7 @@ public class MetricDefinitionVerticaRepositoryImplTest {
                                             new DateTime(2013, 12, 31, 0, 0, 0),
                                             null,
                                             1);
-    assertEquals(defs.size(), 0);
+    assertEqual(defs.size(), 0);
   }
 
   public void shouldFindWithDimensions() throws Exception {
@@ -143,10 +143,10 @@ public class MetricDefinitionVerticaRepositoryImplTest {
     dims.put("instance_id", "123");
 
     List<MetricDefinition> defs = repo.find("bob", "cpu_utilization", dims, null, null, null, 1);
-    assertEquals(defs.size(), 2);
+    assertEqual(defs.size(), 2);
 
     dims.put("flavor_id", "2");
     defs = repo.find("bob", "cpu_utilization", dims, null, null, null, 1);
-    assertEquals(defs.size(), 1);
+    assertEqual(defs.size(), 1);
   }
 }

@@ -82,7 +82,7 @@ public class NotificationMethodTypesSqlRepositoryImplTest {
   public void shouldList() {
     List<String> result  = repo.listNotificationMethodTypes();
 
-    assertEquals(DEFAULT_NOTIFICATION_METHODS, result);
+    assertEqual(DEFAULT_NOTIFICATION_METHODS, result);
   }
 
 }

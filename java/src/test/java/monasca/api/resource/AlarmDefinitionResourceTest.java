@@ -115,11 +115,11 @@ public class AlarmDefinitionResourceTest extends AbstractMonApiResourceTest {
         createResponseFor(new CreateAlarmDefinitionCommand("Disk Exceeds 1k Operations", null,
             expression, Arrays.asList("service", "instance_id"), "LOW", alarmActions, null, null));
 
-    assertEquals(response.getStatus(), 201);
+    assertEqual(response.getStatus(), 201);
     AlarmDefinition newAlarm = response.getEntity(AlarmDefinition.class);
     String location = response.getHeaders().get("Location").get(0);
-    assertEquals(location, "/v2.0/alarm-definitions/" + newAlarm.getId());
-    assertEquals(newAlarm, alarm);
+    assertEqual(location, "/v2.0/alarm-definitions/" + newAlarm.getId());
+    assertEqual(newAlarm, alarm);
     verify(service).create(eq("abc"), eq("Disk Exceeds 1k Operations"), any(String.class),
                            eq("LOW"), eq(expression), eq(AlarmExpression.of(expression)),
                            eq(Arrays.asList("service", "instance_id")), any(List.class),
@@ -139,11 +139,11 @@ public class AlarmDefinitionResourceTest extends AbstractMonApiResourceTest {
     );
     final ClientResponse response = this.createResponseFor(request);
 
-    assertEquals(response.getStatus(), 201);
+    assertEqual(response.getStatus(), 201);
     AlarmDefinition newAlarm = response.getEntity(AlarmDefinition.class);
     String location = response.getHeaders().get("Location").get(0);
-    assertEquals(location, "/v2.0/alarm-definitions/" + newAlarm.getId());
-    assertEquals(newAlarm, detAlarm);
+    assertEqual(location, "/v2.0/alarm-definitions/" + newAlarm.getId());
+    assertEqual(newAlarm, detAlarm);
 
     verify(service).create(eq("abc"), eq("log.error"), any(String.class),
         eq("LOW"), eq(detExpression), eq(AlarmExpression.of(detExpression)),
@@ -166,7 +166,7 @@ public class AlarmDefinitionResourceTest extends AbstractMonApiResourceTest {
                                                   true, alarmActions, new ArrayList<String>(),
                                                   new ArrayList<String>()));
 
-    assertEquals(response.getStatus(), 200);
+    assertEqual(response.getStatus(), 200);
     verify(service).update(eq("abc"), eq("123"), any(AlarmExpression.class),
         any(UpdateAlarmDefinitionCommand.class));
   }
@@ -193,7 +193,7 @@ public class AlarmDefinitionResourceTest extends AbstractMonApiResourceTest {
     ClientResponse response =
         createResponseFor(new CreateAlarmDefinitionCommand("Disk Exceeds 1k Operations", null,
             expression, Arrays.asList("service", "instance_id"), "LOW", alarmActions, null, null));
-    assertEquals(response.getStatus(), 201);
+    assertEqual(response.getStatus(), 201);
   }
 
   public void shouldErrorOnCreateWithInvalidJson() {
@@ -316,7 +316,7 @@ public class AlarmDefinitionResourceTest extends AbstractMonApiResourceTest {
 
     List<AlarmDefinition> alarms = Arrays.asList(ad);
 
-    assertEquals(alarms, Arrays.asList(alarmItem));
+    assertEqual(alarms, Arrays.asList(alarmItem));
 
     verify(repo).find(eq("abc"), anyString(), (Map<String, String>) anyMap(), anyListOf(AlarmSeverity.class),
                       (List<String>) anyList(),
@@ -350,13 +350,13 @@ public class AlarmDefinitionResourceTest extends AbstractMonApiResourceTest {
 
     List<AlarmDefinition> alarms = Arrays.asList(ad);
 
-    assertEquals(alarms, Arrays.asList(alarmItem));
+    assertEqual(alarms, Arrays.asList(alarmItem));
     verify(repo).find(eq("abc"), eq("foo bar baz"), (Map<String, String>) anyMap(), anyListOf(AlarmSeverity.class), (List<String>) anyList(),
                       anyString(), anyInt());
   }
 
   public void shouldGet() {
-    assertEquals(
+    assertEqual(
         client().resource("/v2.0/alarm-definitions/123").header("X-Tenant-Id", "abc")
             .get(AlarmDefinition.class), alarm);
     verify(repo).findById(eq("abc"), eq("123"));
@@ -378,7 +378,7 @@ public class AlarmDefinitionResourceTest extends AbstractMonApiResourceTest {
     ClientResponse response =
         client().resource("/v2.0/alarm-definitions/123").header("X-Tenant-Id", "abc")
             .delete(ClientResponse.class);
-    assertEquals(response.getStatus(), 204);
+    assertEqual(response.getStatus(), 204);
     verify(service).delete(eq("abc"), eq("123"));
   }
 
@@ -418,13 +418,13 @@ public class AlarmDefinitionResourceTest extends AbstractMonApiResourceTest {
     List<Map<String, String>> links = (List<Map<String, String>>) lhm.get("links");
 
     List<Link> actual = Arrays.asList(new Link(links.get(0).get("rel"), links.get(0).get("href")));
-    assertEquals(actual, expected);
+    assertEqual(actual, expected);
   }
 
   public void shouldHydateLinksOnGet() {
     List<Link> links =
         Arrays.asList(new Link("self", "/v2.0/alarm-definitions/123"));
-    assertEquals(
+    assertEqual(
         client().resource("/v2.0/alarm-definitions/123").header("X-Tenant-Id", "abc")
             .get(AlarmDefinition.class).getLinks(), links);
   }

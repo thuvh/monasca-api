@@ -49,6 +49,6 @@ public class PersistUtilsTest {
   }
 
   private void checkParseTimestamp(final String start, final String expected) throws ParseException {
-    assertEquals(persistUtils.parseTimestamp(start).getTime(), persistUtils.parseTimestamp(expected).getTime());
+    assertEqual(persistUtils.parseTimestamp(start).getTime(), persistUtils.parseTimestamp(expected).getTime());
   }
 }

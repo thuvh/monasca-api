@@ -38,12 +38,12 @@ public class NotificationMethodTest extends AbstractModelTest {
 
   public void shouldSerializeToJson() throws Exception {
     String json = toJson(notificationMethod);
-    assertEquals(json, jsonFixture("fixtures/notificationMethod.json"));
+    assertEqual(json, jsonFixture("fixtures/notificationMethod.json"));
   }
 
   public void shouldDeserializeFromJson() throws Exception {
     String json = jsonFixture("fixtures/notificationMethod.json");
     NotificationMethod detail = fromJson(json, NotificationMethod.class);
-    assertEquals(notificationMethod, detail);
+    assertEqual(notificationMethod, detail);
   }
 }

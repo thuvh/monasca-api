@@ -121,7 +121,7 @@ public class NotificationMethodMySqlRepositoryImplTest {
     verify(spyHandle, times(1)).commit();
     NotificationMethod nmB = repo.findById("555", nmA.getId());
 
-    assertEquals(nmA, nmB);
+    assertEqual(nmA, nmB);
   }
 
   @Test(expectedExceptions = EntityExistsException.class)
@@ -135,7 +135,7 @@ public class NotificationMethodMySqlRepositoryImplTest {
     verify(spyHandle, times(1)).commit();
     NotificationMethod nmB = repo.findById("555", nmA.getId());
 
-    assertEquals(nmA, nmB);
+    assertEqual(nmA, nmB);
   }
 
   public void shouldExistForTenantAndNotificationMethod() {
@@ -147,15 +147,15 @@ public class NotificationMethodMySqlRepositoryImplTest {
   public void shouldFindById() {
     NotificationMethod nm = repo.findById("444", "123");
 
-    assertEquals(nm.getId(), "123");
-    assertEquals(nm.getType(), NOTIFICATION_METHOD_EMAIL);
-    assertEquals(nm.getAddress(), "a@b");
+    assertEqual(nm.getId(), "123");
+    assertEqual(nm.getType(), NOTIFICATION_METHOD_EMAIL);
+    assertEqual(nm.getAddress(), "a@b");
   }
 
   public void shouldFind() {
     List<NotificationMethod> nms = repo.find("444", null, null, 1);
 
-    assertEquals(nms, Arrays.asList(new NotificationMethod("123", "MyEmail",
+    assertEqual(nms, Arrays.asList(new NotificationMethod("123", "MyEmail",
             NOTIFICATION_METHOD_EMAIL, "a@b", 0),new NotificationMethod("124", "OtherEmail",
               NOTIFICATION_METHOD_EMAIL, "a@b", 0)));
   }
@@ -165,7 +165,7 @@ public class NotificationMethodMySqlRepositoryImplTest {
     verify(spyHandle, times(1)).commit();
     NotificationMethod nm = repo.findById("444", "123");
 
-    assertEquals(nm, new NotificationMethod("123", "Foo", NOTIFICATION_METHOD_EMAIL, "abc", 0));
+    assertEqual(nm, new NotificationMethod("123", "Foo", NOTIFICATION_METHOD_EMAIL, "abc", 0));
   }
 
   public void shouldUpdateWebhookWithNonZeroPeriod() {
@@ -174,7 +174,7 @@ public class NotificationMethodMySqlRepositoryImplTest {
     verify(spyHandle, times(1)).commit();
     NotificationMethod nmUpdated = repo.findById("555", nmOriginal.getId());
 
-    assertEquals(nmUpdated.getPeriod(), 60);
+    assertEqual(nmUpdated.getPeriod(), 60);
   }
 
   public void shouldDeleteById() {
@@ -192,7 +192,7 @@ public class NotificationMethodMySqlRepositoryImplTest {
       verify(spyHandle, times(1)).commit();
       NotificationMethod nm = repo.findById("444", "123");
 
-      assertEquals(nm, new NotificationMethod("123", "Foo", NOTIFICATION_METHOD_EMAIL, "abc", 0));
+      assertEqual(nm, new NotificationMethod("123", "Foo", NOTIFICATION_METHOD_EMAIL, "abc", 0));
     }
 
   @Test(expectedExceptions = EntityExistsException.class)

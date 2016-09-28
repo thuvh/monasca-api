@@ -92,7 +92,7 @@ public class MeasurementVerticaRepositoryImplTest {
     Collection<Measurements> measurements =
         repo.find("bob", "cpu_utilization", null, new DateTime(2014, 1, 1, 0, 0, 0), null, null, 1,
                   false, null);
-    assertEquals(measurements.size(), 3);
+    assertEqual(measurements.size(), 3);
   }
 
   public void shouldFindWithDimensions() throws Exception {
@@ -103,11 +103,11 @@ public class MeasurementVerticaRepositoryImplTest {
     Collection<Measurements> measurements =
         repo.find("bob", "cpu_utilization", dims, new DateTime(2014, 1, 1, 0, 0), null, null, 1,
                   false, null);
-    assertEquals(measurements.size(), 2);
+    assertEqual(measurements.size(), 2);
 
     dims.put("flavor_id", "2");
     measurements = repo.find("bob", "cpu_utilization", dims, new DateTime(2014, 1, 1, 0, 0), null, null, 1,
                              false, null);
-    assertEquals(measurements.size(), 1);
+    assertEqual(measurements.size(), 1);
   }
 }

@@ -88,9 +88,9 @@ public class NotificationMethodResourceTest extends AbstractMonApiResourceTest {
 
     NotificationMethod newNotificationMethod = response.getEntity(NotificationMethod.class);
     String location = response.getHeaders().get("Location").get(0);
-    assertEquals(response.getStatus(), 201);
-    assertEquals(location, "/v2.0/notification-methods/" + newNotificationMethod.getId());
-    assertEquals(newNotificationMethod, notificationMethod);
+    assertEqual(response.getStatus(), 201);
+    assertEqual(location, "/v2.0/notification-methods/" + newNotificationMethod.getId());
+    assertEqual(newNotificationMethod, notificationMethod);
     verify(repo).create(eq("abc"), eq("MyEmail"), eq(NOTIFICATION_METHOD_EMAIL), anyString(), eq(0));
   }
 
@@ -106,7 +106,7 @@ public class NotificationMethodResourceTest extends AbstractMonApiResourceTest {
             .put(ClientResponse.class,
                 new CreateNotificationMethodCommand("Foo", NOTIFICATION_METHOD_EMAIL, "a@a.com", "0"));
 
-    assertEquals(response.getStatus(), 200);
+    assertEqual(response.getStatus(), 200);
     verify(repo).update(eq("abc"), eq("123"), eq("Foo"), eq(NOTIFICATION_METHOD_EMAIL),
         eq("a@a.com"), eq(0));
   }
@@ -268,12 +268,12 @@ public class NotificationMethodResourceTest extends AbstractMonApiResourceTest {
                                (String) lhm.get("address"), 0);
 
     List<NotificationMethod> notificationMethods = Arrays.asList(nm);
-    assertEquals(notificationMethods, Arrays.asList(notificationMethod));
+    assertEqual(notificationMethods, Arrays.asList(notificationMethod));
     verify(repo).find(eq("abc"), (List<String>) anyList(), anyString(), anyInt());
   }
 
   public void shouldGet() {
-    assertEquals(client().resource("/v2.0/notification-methods/123").header("X-Tenant-Id", "abc")
+    assertEqual(client().resource("/v2.0/notification-methods/123").header("X-Tenant-Id", "abc")
         .get(NotificationMethod.class), notificationMethod);
     verify(repo).findById(eq("abc"), eq("123"));
   }
@@ -294,7 +294,7 @@ public class NotificationMethodResourceTest extends AbstractMonApiResourceTest {
     ClientResponse response =
         client().resource("/v2.0/notification-methods/123").header("X-Tenant-Id", "abc")
             .delete(ClientResponse.class);
-    assertEquals(response.getStatus(), 204);
+    assertEqual(response.getStatus(), 204);
     verify(repo).deleteById(eq("abc"), eq("123"));
   }
 
@@ -358,9 +358,9 @@ public class NotificationMethodResourceTest extends AbstractMonApiResourceTest {
     NotificationMethod newNotificationMethod = response.getEntity(NotificationMethod.class);
     String location = response.getHeaders().get("Location").get(0);
 
-    assertEquals(response.getStatus(), 201);
-    assertEquals(location, "/v2.0/notification-methods/" + newNotificationMethod.getId());
-    assertEquals(newNotificationMethod, notificationMethodWebhook);
+    assertEqual(response.getStatus(), 201);
+    assertEqual(location, "/v2.0/notification-methods/" + newNotificationMethod.getId());
+    assertEqual(newNotificationMethod, notificationMethodWebhook);
     verify(repo).create(eq("abc"), eq("MyWh"), eq(NOTIFICATION_METHOD_WEBHOOK), anyString(), eq(0));
   }
 
@@ -376,9 +376,9 @@ public class NotificationMethodResourceTest extends AbstractMonApiResourceTest {
     NotificationMethod newNotificationMethod = response.getEntity(NotificationMethod.class);
     String location = response.getHeaders().get("Location").get(0);
 
-    assertEquals(response.getStatus(), 201);
-    assertEquals(location, "/v2.0/notification-methods/" + newNotificationMethod.getId());
-    assertEquals(newNotificationMethod, notificationMethodWebhook);
+    assertEqual(response.getStatus(), 201);
+    assertEqual(location, "/v2.0/notification-methods/" + newNotificationMethod.getId());
+    assertEqual(newNotificationMethod, notificationMethodWebhook);
     verify(repo).create(eq("abc"), eq("MyWh"), eq(NOTIFICATION_METHOD_WEBHOOK), anyString(), eq(60));
   }
 
@@ -394,9 +394,9 @@ public class NotificationMethodResourceTest extends AbstractMonApiResourceTest {
     NotificationMethod newNotificationMethod = response.getEntity(NotificationMethod.class);
     String location = response.getHeaders().get("Location").get(0);
 
-    assertEquals(response.getStatus(), 201);
-    assertEquals(location, "/v2.0/notification-methods/" + newNotificationMethod.getId());
-    assertEquals(newNotificationMethod, notificationMethodPagerduty);
+    assertEqual(response.getStatus(), 201);
+    assertEqual(location, "/v2.0/notification-methods/" + newNotificationMethod.getId());
+    assertEqual(newNotificationMethod, notificationMethodPagerduty);
     verify(repo).create(eq("abc"), eq("MyPd"), eq(NOTIFICATION_METHOD_PAGERDUTY), anyString(), eq(0));
   }
 }

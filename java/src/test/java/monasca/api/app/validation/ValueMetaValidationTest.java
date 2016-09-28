@@ -34,7 +34,7 @@ public class ValueMetaValidationTest {
     final String value2_with_spaces = "do re mi   ";
     valueMeta.put(" ezaz", value2_with_spaces);
 
-    assertEquals(ValueMetaValidation.normalize(valueMeta), new HashMap<String, String>() {
+    assertEqual(ValueMetaValidation.normalize(valueMeta), new HashMap<String, String>() {
       {
         put("abc", value1_with_spaces);
         put("ezaz", value2_with_spaces);
@@ -74,7 +74,7 @@ public class ValueMetaValidationTest {
       }
     };
     ValueMetaValidation.validate(emptyValue);
-    assertEquals(ValueMetaValidation.normalize(emptyValue), new HashMap<String, String>() {
+    assertEqual(ValueMetaValidation.normalize(emptyValue), new HashMap<String, String>() {
       {
         put(key, "");
       }

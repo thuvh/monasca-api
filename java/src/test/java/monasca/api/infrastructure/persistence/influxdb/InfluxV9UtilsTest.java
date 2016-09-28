@@ -39,54 +39,54 @@ public class InfluxV9UtilsTest {
     final String ts = "1443009555969";
     final String tsDt = "2015-09-23T11:59:15.969Z";
 
-    assertEquals(String.format(" and time > '%1$s'", tsDt), this.instance.timeOffsetPart(ts));
+    assertEqual(String.format(" and time > '%1$s'", tsDt), this.instance.timeOffsetPart(ts));
   }
 
   @Test(groups = {"functional", "timeOffsetPart"})
   public void testTimeOffsetPart_DateTime() throws Exception {
     final String ts = "2015-09-23T11:59:15.969Z";
-    assertEquals(String.format(" and time > '%1$s'", ts), this.instance.timeOffsetPart(ts));
+    assertEqual(String.format(" and time > '%1$s'", ts), this.instance.timeOffsetPart(ts));
   }
 
   @Test(groups = {"functional", "timeOffsetPart"})
   public void testTimeOffsetPart_EmptyString() throws Exception {
-    assertEquals(StringUtils.EMPTY, this.instance.timeOffsetPart(StringUtils.EMPTY));
+    assertEqual(StringUtils.EMPTY, this.instance.timeOffsetPart(StringUtils.EMPTY));
   }
 
   @Test(groups = {"functional", "timeOffsetPart"})
   public void testTimeOffsetPart_NullString() throws Exception {
-    assertEquals(StringUtils.EMPTY, this.instance.timeOffsetPart(null));
+    assertEqual(StringUtils.EMPTY, this.instance.timeOffsetPart(null));
   }
 
   @Test(groups = {"functional", "timeOffsetPart"})
   public void testTimeOffsetPart_0() throws Exception {
     final String offset = "0";
-    assertEquals(String.format(" and time > '%1$s'", offset), this.instance.timeOffsetPart(offset));
+    assertEqual(String.format(" and time > '%1$s'", offset), this.instance.timeOffsetPart(offset));
   }
 
   @Test(groups = {"threeDigitMillisTimestamp"})
   public void testThreeDigitMillisTimestamp_with_3digit() throws Exception {
     final String origTimestamp = "2016-01-11T16:10:34.472Z";
-    assertEquals(this.instance.threeDigitMillisTimestamp(origTimestamp), origTimestamp);
+    assertEqual(this.instance.threeDigitMillisTimestamp(origTimestamp), origTimestamp);
   }
 
   @Test(groups = {"threeDigitMillisTimestamp"})
   public void testThreeDigitMillisTimestamp_with_2digit() throws Exception {
     final String origTimestamp_1 = "2016-01-11T16:10:34.47Z";
-    assertEquals(this.instance.threeDigitMillisTimestamp(origTimestamp_1), "2016-01-11T16:10:34.470Z");
+    assertEqual(this.instance.threeDigitMillisTimestamp(origTimestamp_1), "2016-01-11T16:10:34.470Z");
     final String origTimestamp_2 = "2016-01-11T16:10:34.40Z";
-    assertEquals(this.instance.threeDigitMillisTimestamp(origTimestamp_2), "2016-01-11T16:10:34.400Z");
+    assertEqual(this.instance.threeDigitMillisTimestamp(origTimestamp_2), "2016-01-11T16:10:34.400Z");
   }
 
   @Test(groups = {"threeDigitMillisTimestamp"})
   public void testThreeDigitMillisTimestamp_with_1digit() throws Exception {
     final String origTimestamp = "2016-01-11T16:10:34.4Z";
-    assertEquals(this.instance.threeDigitMillisTimestamp(origTimestamp), "2016-01-11T16:10:34.400Z");
+    assertEqual(this.instance.threeDigitMillisTimestamp(origTimestamp), "2016-01-11T16:10:34.400Z");
   }
 
   @Test(groups = {"threeDigitMillisTimestamp"})
   public void testThreeDigitMillisTimestamp_with_0digit() throws Exception {
     final String origTimestamp = "2016-01-11T16:10:34Z";
-    assertEquals(this.instance.threeDigitMillisTimestamp(origTimestamp), "2016-01-11T16:10:34.000Z");
+    assertEqual(this.instance.threeDigitMillisTimestamp(origTimestamp), "2016-01-11T16:10:34.000Z");
   }
 }

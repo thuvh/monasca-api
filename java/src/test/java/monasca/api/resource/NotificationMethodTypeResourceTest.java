@@ -76,7 +76,7 @@ public class NotificationMethodTypeResourceTest extends AbstractMonApiResourceTe
 
       Set<String> responseGot = getNotificationMethods(pages);
       Set<String>  expectedNotificationMethodTypes = new TreeSet<String>(Arrays.asList("EMAIL", "WEBHOOK", "PAGERDUTY"));
-      assertEquals(responseGot, expectedNotificationMethodTypes);
+      assertEqual(responseGot, expectedNotificationMethodTypes);
 
       // Change the config to have one notification type
 
@@ -88,7 +88,7 @@ public class NotificationMethodTypeResourceTest extends AbstractMonApiResourceTe
       responseGot = getNotificationMethods(pages);
 
       expectedNotificationMethodTypes = new TreeSet<String>(Arrays.asList("EMAIL"));
-      assertEquals(responseGot, expectedNotificationMethodTypes);
+      assertEqual(responseGot, expectedNotificationMethodTypes);
 
 
       // Change the config to have more than one notification type
@@ -100,7 +100,7 @@ public class NotificationMethodTypeResourceTest extends AbstractMonApiResourceTe
 
       responseGot = getNotificationMethods(pages);
       expectedNotificationMethodTypes = new TreeSet<String>(Arrays.asList("EMAIL", "TYPE1", "TYPE2", "TYPE3"));
-      assertEquals(responseGot, expectedNotificationMethodTypes);
+      assertEqual(responseGot, expectedNotificationMethodTypes);
 
 
   }

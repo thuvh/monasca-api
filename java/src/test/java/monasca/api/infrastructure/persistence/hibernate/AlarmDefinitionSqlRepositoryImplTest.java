@@ -238,9 +238,9 @@ public class AlarmDefinitionSqlRepositoryImplTest {
             Arrays.asList("flavor_id", "image_id"), alarmActions, null, null);
     AlarmDefinition alarmB = repo.findById("555", alarmA.getId());
 
-    assertEquals(alarmA.getId(), alarmB.getId());
-    assertEquals(alarmA.getName(), alarmB.getName());
-    assertEquals(alarmA.getAlarmActions().size(), alarmB.getAlarmActions().size());
+    assertEqual(alarmA.getId(), alarmB.getId());
+    assertEqual(alarmA.getName(), alarmB.getName());
+    assertEqual(alarmA.getAlarmActions().size(), alarmB.getAlarmActions().size());
 
     for (String alarmAction : alarmA.getAlarmActions()) {
       assertTrue(alarmB.getAlarmActions().contains(alarmAction));
@@ -266,8 +266,8 @@ public class AlarmDefinitionSqlRepositoryImplTest {
         session.close();
       }
     }
-    assertEquals(subAlarmSize, (long) 1);
-    assertEquals(subAlarmDimensionSize, (long) 3);
+    assertEqual(subAlarmSize, (long) 1);
+    assertEqual(subAlarmDimensionSize, (long) 3);
   }
 
   @Test(groups = "orm")
@@ -288,27 +288,27 @@ public class AlarmDefinitionSqlRepositoryImplTest {
         new AlarmDefinition("234", "90% CPU", null, "LOW", "avg(foo{flavor_id=777}) > 333 and avg(hpcs.compute) <= 200", Arrays.asList("flavor_id",
             "image_id"), false, alarmActions, Collections.<String>emptyList(), Collections.<String>emptyList());
 
-    assertEquals(expected.getId(), alarm.getId());
-    assertEquals(expected.getName(), alarm.getName());
-    assertEquals(expected.getExpressionData(), alarm.getExpressionData());
-    assertEquals(expected.getAlarmActions().size(), alarm.getAlarmActions().size());
+    assertEqual(expected.getId(), alarm.getId());
+    assertEqual(expected.getName(), alarm.getName());
+    assertEqual(expected.getExpressionData(), alarm.getExpressionData());
+    assertEqual(expected.getAlarmActions().size(), alarm.getAlarmActions().size());
     for (String alarmAction : expected.getAlarmActions()) {
       assertTrue(alarm.getAlarmActions().contains(alarmAction));
     }
 
     Map<String, AlarmSubExpression> subExpressions = repo.findSubExpressions("234");
-    assertEquals(subExpressions.get("223"), changedSubExpression);
-    assertEquals(subExpressions.get("555"), newSubExpression);
+    assertEqual(subExpressions.get("223"), changedSubExpression);
+    assertEqual(subExpressions.get("555"), newSubExpression);
   }
 
   @Test(groups = "orm")
   public void shouldFindById() {
     Session session = null;
     AlarmDefinition alarmDef_123_repo = repo.findById("bob", "123");
-    assertEquals(alarmDef_123.getDescription(), alarmDef_123_repo.getDescription());
-    assertEquals(alarmDef_123.getExpression(), alarmDef_123_repo.getExpression());
-    assertEquals(alarmDef_123.getExpressionData(), alarmDef_123_repo.getExpressionData());
-    assertEquals(alarmDef_123.getName(), alarmDef_123_repo.getName());
+    assertEqual(alarmDef_123.getDescription(), alarmDef_123_repo.getDescription());
+    assertEqual(alarmDef_123.getExpression(), alarmDef_123_repo.getExpression());
+    assertEqual(alarmDef_123.getExpressionData(), alarmDef_123_repo.getExpressionData());
+    assertEqual(alarmDef_123.getName(), alarmDef_123_repo.getName());
     // Make sure it still finds AlarmDefinitions with no notifications
     try {
       session = sessionFactory.openSession();
@@ -321,16 +321,16 @@ public class AlarmDefinitionSqlRepositoryImplTest {
       }
     }
     alarmDef_123.setAlarmActions(new ArrayList<String>(0));
-    assertEquals(alarmDef_123, repo.findById("bob", "123"));
+    assertEqual(alarmDef_123, repo.findById("bob", "123"));
   }
 
   @Test(groups = "orm")
   public void shouldFindSubAlarmMetricDefinitions() {
 
-    assertEquals(repo.findSubAlarmMetricDefinitions("123").get("111"), new MetricDefinition("hpcs.compute", ImmutableMap.<String, String>builder()
+    assertEqual(repo.findSubAlarmMetricDefinitions("123").get("111"), new MetricDefinition("hpcs.compute", ImmutableMap.<String, String>builder()
         .put("flavor_id", "777").put("image_id", "888").put("metric_name", "cpu").put("device", "1").build()));
 
-    assertEquals(repo.findSubAlarmMetricDefinitions("234").get("222"), new MetricDefinition("hpcs.compute", ImmutableMap.<String, String>builder()
+    assertEqual(repo.findSubAlarmMetricDefinitions("234").get("222"), new MetricDefinition("hpcs.compute", ImmutableMap.<String, String>builder()
         .put("flavor_id", "777").put("image_id", "888").put("metric_name", "mem").build()));
 
     assertTrue(repo.findSubAlarmMetricDefinitions("asdfasdf").isEmpty());
@@ -339,11 +339,11 @@ public class AlarmDefinitionSqlRepositoryImplTest {
   @Test(groups = "orm")
   public void shouldFindSubExpressions() {
 
-    assertEquals(repo.findSubExpressions("123").get("111"), new AlarmSubExpression(AggregateFunction.AVG, new MetricDefinition("hpcs.compute",
+    assertEqual(repo.findSubExpressions("123").get("111"), new AlarmSubExpression(AggregateFunction.AVG, new MetricDefinition("hpcs.compute",
         ImmutableMap.<String, String>builder().put("flavor_id", "777").put("image_id", "888").put("metric_name", "cpu").put("device", "1").build()),
         AlarmOperator.GT, 10, 60, 1));
 
-    assertEquals(repo.findSubExpressions("234").get("223"), new AlarmSubExpression(AggregateFunction.AVG, new MetricDefinition("hpcs.compute",
+    assertEqual(repo.findSubExpressions("234").get("223"), new AlarmSubExpression(AggregateFunction.AVG, new MetricDefinition("hpcs.compute",
         new HashMap<String, String>()), AlarmOperator.LT, 100, 60, 1));
 
     assertTrue(repo.findSubAlarmMetricDefinitions("asdfasdf").isEmpty());
@@ -351,7 +351,7 @@ public class AlarmDefinitionSqlRepositoryImplTest {
 
   @Test(groups = "orm")
   public void testExists() {
-    assertEquals(repo.exists("bob", "90% CPU"), "123");
+    assertEqual(repo.exists("bob", "90% CPU"), "123");
 
     // Negative
     assertNull(repo.exists("bob", "999% CPU"));
@@ -366,7 +366,7 @@ public class AlarmDefinitionSqlRepositoryImplTest {
       fail();
     } catch (EntityNotFoundException expected) {
     }
-    assertEquals(Arrays.asList(alarmDef_234), repo.find("bob", null, null, null, null, null, 1));
+    assertEqual(Arrays.asList(alarmDef_234), repo.find("bob", null, null, null, null, null, 1));
   }
 
   public void shouldFindByDimension() {
@@ -375,15 +375,15 @@ public class AlarmDefinitionSqlRepositoryImplTest {
 
     List<AlarmDefinition> result = repo.find("bob", null, dimensions, null, null, null, 1);
 
-    assertEquals(Arrays.asList(alarmDef_123, alarmDef_234), result);
+    assertEqual(Arrays.asList(alarmDef_123, alarmDef_234), result);
 
     dimensions.clear();
     dimensions.put("device", "1");
-    assertEquals(Arrays.asList(alarmDef_123), repo.find("bob", null, dimensions, null, null, null, 1));
+    assertEqual(Arrays.asList(alarmDef_123), repo.find("bob", null, dimensions, null, null, null, 1));
 
     dimensions.clear();
     dimensions.put("Not real", "AA");
-    assertEquals(0, repo.find("bob", null, dimensions, null, null, null, 1).size());
+    assertEqual(0, repo.find("bob", null, dimensions, null, null, null, 1).size());
   }
 
   public void shouldFindByName() {
@@ -392,7 +392,7 @@ public class AlarmDefinitionSqlRepositoryImplTest {
 
     List<AlarmDefinition> result = repo.find("bob", "90% CPU", dimensions, null, null, null, 1);
 
-    assertEquals(Arrays.asList(alarmDef_123), result);
+    assertEqual(Arrays.asList(alarmDef_123), result);
 
   }
 
@@ -474,7 +474,7 @@ public class AlarmDefinitionSqlRepositoryImplTest {
   }
 
   private void checkList(List<AlarmDefinition> found, AlarmDefinition... expected) {
-    assertEquals(found.size(), expected.length);
+    assertEqual(found.size(), expected.length);
     AlarmDefinition actual;
 
     for (final AlarmDefinition alarmDefinition : expected) {
@@ -490,7 +490,7 @@ public class AlarmDefinitionSqlRepositoryImplTest {
       assertTrue(alarmOptional.isPresent());
 
       actual = alarmOptional.get();
-      assertEquals(actual, alarmDefinition, String.format("%s not equal to %s", actual, alarmDefinition));
+      assertEqual(actual, alarmDefinition, String.format("%s not equal to %s", actual, alarmDefinition));
     }
 
   }

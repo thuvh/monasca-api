@@ -92,11 +92,11 @@ public class NotificationMethodIntegrationTest extends AbstractMonApiResourceTes
     NotificationMethod newNotificationMethod = response.getEntity(NotificationMethod.class);
     String location = response.getHeaders().get("Location").get(0);
 
-    assertEquals(response.getStatus(), 201);
-    assertEquals(location, "/v2.0/notification-methods/" + newNotificationMethod.getId());
-    assertEquals(newNotificationMethod.getName(), notificationMethod.getName());
-    assertEquals(newNotificationMethod.getAddress(), notificationMethod.getAddress());
-    assertEquals(repo.findById(TENANT_ID, newNotificationMethod.getId()), newNotificationMethod);
+    assertEqual(response.getStatus(), 201);
+    assertEqual(location, "/v2.0/notification-methods/" + newNotificationMethod.getId());
+    assertEqual(newNotificationMethod.getName(), notificationMethod.getName());
+    assertEqual(newNotificationMethod.getAddress(), notificationMethod.getAddress());
+    assertEqual(repo.findById(TENANT_ID, newNotificationMethod.getId()), newNotificationMethod);
   }
 
   public void shouldConflict() throws Exception {
@@ -108,7 +108,7 @@ public class NotificationMethodIntegrationTest extends AbstractMonApiResourceTes
             .post(ClientResponse.class,
                 new CreateNotificationMethodCommand("MyEmail", "EMAIL", "a@b", "0"));
 
-    assertEquals(response.getStatus(), 409);
+    assertEqual(response.getStatus(), 409);
   }
 
   public void shouldDelete() {
@@ -120,7 +120,7 @@ public class NotificationMethodIntegrationTest extends AbstractMonApiResourceTes
     ClientResponse response =
         client().resource("/v2.0/notification-methods/" + newMethod.getId())
             .header("X-Tenant-Id", TENANT_ID).delete(ClientResponse.class);
-    assertEquals(response.getStatus(), 204);
+    assertEqual(response.getStatus(), 204);
 
     try {
       assertNull(repo.findById(TENANT_ID, newMethod.getId()));

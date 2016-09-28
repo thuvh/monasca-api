@@ -159,13 +159,13 @@ public class AlarmDefinitionMySqlRepositoryImplTest {
             Arrays.asList("flavor_id", "image_id"), alarmActions, null, null);
     AlarmDefinition alarmB = repo.findById("555", alarmA.getId());
 
-    assertEquals(alarmA, alarmB);
+    assertEqual(alarmA, alarmB);
 
     // Assert that sub-alarm and sub-alarm-dimensions made it to the db
-    assertEquals(
+    assertEqual(
         handle.createQuery("select count(*) from sub_alarm_definition where id = 4433")
             .map(StringMapper.FIRST).first(), "1");
-    assertEquals(
+    assertEqual(
         handle.createQuery("select count(*) from sub_alarm_definition_dimension where sub_alarm_definition_id = 4433")
             .map(StringMapper.FIRST).first(), "3");
   }
@@ -198,20 +198,20 @@ public class AlarmDefinitionMySqlRepositoryImplTest {
             "avg(foo{flavor_id=777}) > 333 and avg(hpcs.compute) <= 200", Arrays.asList(
                 "flavor_id", "image_id"), false, alarmActions, Collections.<String>emptyList(),
             Collections.<String>emptyList());
-    assertEquals(expected, alarm);
+    assertEqual(expected, alarm);
 
     Map<String, AlarmSubExpression> subExpressions = repo.findSubExpressions("234");
-    assertEquals(subExpressions.get("223"), changedSubExpression);
-    assertEquals(subExpressions.get("555"), newSubExpression);
+    assertEqual(subExpressions.get("223"), changedSubExpression);
+    assertEqual(subExpressions.get("555"), newSubExpression);
   }
 
   public void shouldFindById() {
-    assertEquals(alarmDef_123, repo.findById("bob", "123"));
+    assertEqual(alarmDef_123, repo.findById("bob", "123"));
 
     // Make sure it still finds AlarmDefinitions with no notifications
     handle.execute("delete from alarm_action");
     alarmDef_123.setAlarmActions(new ArrayList<String>(0));
-    assertEquals(alarmDef_123, repo.findById("bob", "123"));    
+    assertEqual(alarmDef_123, repo.findById("bob", "123"));    
   }
 
   @Test(groups = "database")
@@ -223,13 +223,13 @@ public class AlarmDefinitionMySqlRepositoryImplTest {
     repo = new AlarmDefinitionMySqlRepoImpl(db, new PersistUtils());
     beforeMethod();
 
-    assertEquals(
+    assertEqual(
         repo.findSubAlarmMetricDefinitions("123").get("111"),
         new MetricDefinition("hpcs.compute", ImmutableMap.<String, String>builder()
             .put("flavor_id", "777").put("image_id", "888").put("metric_name", "cpu")
             .put("device", "1").build()));
 
-    assertEquals(
+    assertEqual(
         repo.findSubAlarmMetricDefinitions("234").get("222"),
         new MetricDefinition("hpcs.compute", ImmutableMap.<String, String>builder()
             .put("flavor_id", "777").put("image_id", "888").put("metric_name", "mem").build()));
@@ -246,13 +246,13 @@ public class AlarmDefinitionMySqlRepositoryImplTest {
     repo = new AlarmDefinitionMySqlRepoImpl(db, new PersistUtils());
     beforeMethod();
 
-    assertEquals(
+    assertEqual(
         repo.findSubExpressions("123").get("111"),
         new AlarmSubExpression(AggregateFunction.AVG, new MetricDefinition("hpcs.compute",
             ImmutableMap.<String, String>builder().put("flavor_id", "777").put("image_id", "888")
                 .put("metric_name", "cpu").put("device", "1").build()), AlarmOperator.GT, 10, 60, 1));
 
-    assertEquals(repo.findSubExpressions("234").get("223"), new AlarmSubExpression(
+    assertEqual(repo.findSubExpressions("234").get("223"), new AlarmSubExpression(
         AggregateFunction.AVG, new MetricDefinition("hpcs.compute", new HashMap<String, String>()), AlarmOperator.LT, 100,
         60, 1));
 
@@ -260,57 +260,57 @@ public class AlarmDefinitionMySqlRepositoryImplTest {
   }
 
   public void testExists() {
-    assertEquals(repo.exists("bob", "90% CPU"),"123");
+    assertEqual(repo.exists("bob", "90% CPU"),"123");
 
     // Negative
     assertNull(repo.exists("bob", "999% CPU"));
   }
 
   public void shouldFind() {
-    assertEquals(Arrays.asList(alarmDef_123, alarmDef_234), repo.find("bob", null, null, null, null, null, 1));
+    assertEqual(Arrays.asList(alarmDef_123, alarmDef_234), repo.find("bob", null, null, null, null, null, 1));
 
     // Make sure it still finds AlarmDefinitions with no notifications
     handle.execute("delete from alarm_action");
     alarmDef_123.setAlarmActions(new ArrayList<String>(0));
     alarmDef_234.setAlarmActions(new ArrayList<String>(0));
-    assertEquals(Arrays.asList(alarmDef_123, alarmDef_234), repo.find("bob", null, null, null, null, null, 1));
+    assertEqual(Arrays.asList(alarmDef_123, alarmDef_234), repo.find("bob", null, null, null, null, null, 1));
 
-    assertEquals(0, repo.find("bill", null, null, null, null, null, 1).size());
+    assertEqual(0, repo.find("bill", null, null, null, null, null, 1).size());
 
-    assertEquals(Arrays.asList(alarmDef_234, alarmDef_123),
+    assertEqual(Arrays.asList(alarmDef_234, alarmDef_123),
                  repo.find("bob", null, null, null, Arrays.asList("name"), null, 1));
 
-    assertEquals(Arrays.asList(alarmDef_234, alarmDef_123),
+    assertEqual(Arrays.asList(alarmDef_234, alarmDef_123),
                  repo.find("bob", null, null, null, Arrays.asList("id desc"), null, 1));
   }
 
   public void shouldFindByDimension() {
     final Map<String, String> dimensions = new HashMap<>();
     dimensions.put("image_id", "888");
-    assertEquals(Arrays.asList(alarmDef_123, alarmDef_234),
+    assertEqual(Arrays.asList(alarmDef_123, alarmDef_234),
                  repo.find("bob", null, dimensions, null, null, null, 1));
 
     dimensions.clear();
     dimensions.put("device", "1");
-    assertEquals(Arrays.asList(alarmDef_123), repo.find("bob", null, dimensions, null, null, null, 1));
+    assertEqual(Arrays.asList(alarmDef_123), repo.find("bob", null, dimensions, null, null, null, 1));
 
     dimensions.clear();
     dimensions.put("Not real", "AA");
-    assertEquals(0, repo.find("bob", null, dimensions, null, null, null, 1).size());
+    assertEqual(0, repo.find("bob", null, dimensions, null, null, null, 1).size());
   }
 
   public void shouldFindByName() {
-    assertEquals(Arrays.asList(alarmDef_123), repo.find("bob", "90% CPU", null, null, null, null, 1));
+    assertEqual(Arrays.asList(alarmDef_123), repo.find("bob", "90% CPU", null, null, null, null, 1));
 
-    assertEquals(0, repo.find("bob", "Does not exist", null, null, null, null, 1).size());
+    assertEqual(0, repo.find("bob", "Does not exist", null, null, null, null, 1).size());
   }
 
   public void shouldFindBySeverity() {
-    assertEquals(Arrays.asList(alarmDef_234), repo.find("bob", null, null, Lists.newArrayList(AlarmSeverity.HIGH), null, null, 1));
+    assertEqual(Arrays.asList(alarmDef_234), repo.find("bob", null, null, Lists.newArrayList(AlarmSeverity.HIGH), null, null, 1));
 
-    assertEquals(0, repo.find("bob", null, null, Lists.newArrayList(AlarmSeverity.CRITICAL), null, null, 1).size());
+    assertEqual(0, repo.find("bob", null, null, Lists.newArrayList(AlarmSeverity.CRITICAL), null, null, 1).size());
 
-    assertEquals(Arrays.asList(alarmDef_234, alarmDef_345),
+    assertEqual(Arrays.asList(alarmDef_234, alarmDef_345),
                  repo.find("bob", null, null, Lists.newArrayList(AlarmSeverity.HIGH, AlarmSeverity.CRITICAL),
                            null, null, 2));
   }
@@ -323,6 +323,6 @@ public class AlarmDefinitionMySqlRepositoryImplTest {
       fail();
     } catch (EntityNotFoundException expected) {
     }
-    assertEquals(Arrays.asList(alarmDef_234), repo.find("bob", null, null, null, null, null, 1));
+    assertEqual(Arrays.asList(alarmDef_234), repo.find("bob", null, null, null, null, null, 1));
   }
 }

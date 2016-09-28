@@ -24,15 +24,15 @@ import java.util.Map;
 public class ValidationTest {
   public void testSimpleParseAndValidateDimensions() {
     final Map<String, String> dimensions = Validation.parseAndValidateDimensions("aa:bb,cc:dd");
-    assertEquals(dimensions.size(), 2);
-    assertEquals(dimensions.get("aa"), "bb");
-    assertEquals(dimensions.get("cc"), "dd");
+    assertEqual(dimensions.size(), 2);
+    assertEqual(dimensions.get("aa"), "bb");
+    assertEqual(dimensions.get("cc"), "dd");
   }
 
   public void testParseAndValidateDimensionsWithColon() {
     final Map<String, String> dimensions = Validation.parseAndValidateDimensions("aa:bb,url:http://localhost:8081/healthcheck");
-    assertEquals(dimensions.size(), 2);
-    assertEquals(dimensions.get("aa"), "bb");
-    assertEquals(dimensions.get("url"), "http://localhost:8081/healthcheck");
+    assertEqual(dimensions.size(), 2);
+    assertEqual(dimensions.get("aa"), "bb");
+    assertEqual(dimensions.get("url"), "http://localhost:8081/healthcheck");
   }
 }

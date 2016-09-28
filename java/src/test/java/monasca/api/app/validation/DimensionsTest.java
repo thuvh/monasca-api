@@ -33,7 +33,7 @@ public class DimensionsTest {
     dimensions.put(" ezaz", "do re mi   ");
     dimensions.put("  ", "   ");
 
-    assertEquals(DimensionValidation.normalize(dimensions), new HashMap<String, String>() {
+    assertEqual(DimensionValidation.normalize(dimensions), new HashMap<String, String>() {
       {
         put("abc", "1 2 3");
         put("ezaz", "do re mi");

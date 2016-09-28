@@ -73,7 +73,7 @@ public class MetricResourceTest extends AbstractMonApiResourceTest {
         createResponseFor(new CreateMetricCommand("test_metrictype", dimensions, timestamp, 22.0,
             valueMeta));
 
-    assertEquals(response.getStatus(), 204);
+    assertEqual(response.getStatus(), 204);
     verify(service).create(any(List.class), eq("abc"), anyString());
   }
 
@@ -85,7 +85,7 @@ public class MetricResourceTest extends AbstractMonApiResourceTest {
     metrics[1].timestamp = timestamp;
     ClientResponse response = createResponseFor(metrics);
 
-    assertEquals(response.getStatus(), 204);
+    assertEqual(response.getStatus(), 204);
     verify(service).create(any(List.class), eq("abc"), anyString());
   }
 
@@ -98,7 +98,7 @@ public class MetricResourceTest extends AbstractMonApiResourceTest {
         createResponseFor(new CreateMetricCommand("test_metrictype", dims, timestamp, 22.0,
             valueMeta));
 
-    assertEquals(response.getStatus(), 204);
+    assertEqual(response.getStatus(), 204);
     verify(service).create(any(List.class), eq("abc"), anyString());
   }
 
@@ -118,7 +118,7 @@ public class MetricResourceTest extends AbstractMonApiResourceTest {
         createResponseFor(new CreateMetricCommand("test_metrictype", null, timestamp, 22.0,
             valueMeta));
 
-    assertEquals(response.getStatus(), 204);
+    assertEqual(response.getStatus(), 204);
     verify(service).create(any(List.class), eq("abc"), anyString());
   }
 
@@ -128,7 +128,7 @@ public class MetricResourceTest extends AbstractMonApiResourceTest {
         createResponseFor(new CreateMetricCommand("test_metrictype", dimensions, timestamp, 0.0,
             valueMeta));
 
-    assertEquals(response.getStatus(), 204);
+    assertEqual(response.getStatus(), 204);
     verify(service).create(any(List.class), eq("abc"), anyString());
   }
 
@@ -138,7 +138,7 @@ public class MetricResourceTest extends AbstractMonApiResourceTest {
         createResponseFor(new CreateMetricCommand("test_metrictype", dimensions, timestamp, -1.0,
             valueMeta));
 
-    assertEquals(response.getStatus(), 204);
+    assertEqual(response.getStatus(), 204);
     verify(service).create(any(List.class), eq("abc"), anyString());
   }
 

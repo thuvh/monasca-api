@@ -77,12 +77,12 @@ public class VersionResourceTest extends AbstractMonApiResourceTest {
 
     actual.setLinks(linksList);
 
-    assertEquals(actual, version);
+    assertEqual(actual, version);
     verify(repo).find();
   }
 
   public void shouldGet() {
-    assertEquals(client().resource("/v2.0").get(Version.class), version);
+    assertEqual(client().resource("/v2.0").get(Version.class), version);
     verify(repo).findById(eq("v2.0"));
   }
 

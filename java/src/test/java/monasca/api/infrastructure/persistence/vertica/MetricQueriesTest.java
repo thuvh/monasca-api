@@ -39,19 +39,19 @@ public class MetricQueriesTest {
     dimsMap.put("biz", "baz");
 
     String s = MetricQueries.buildDimensionAndClause(dimsMap, TABLE_TO_JOIN_DIMENSIONS_ON);
-    assertEquals(expectedResult, s);
+    assertEqual(expectedResult, s);
   }
 
   public void metricQueriesBuildDimensionAndClauseTest2() {
     String expectedResult = "";
     Map<String, String> dimsMap = new HashMap<>();
-    assertEquals(expectedResult, MetricQueries.buildDimensionAndClause(dimsMap, TABLE_TO_JOIN_DIMENSIONS_ON));
+    assertEqual(expectedResult, MetricQueries.buildDimensionAndClause(dimsMap, TABLE_TO_JOIN_DIMENSIONS_ON));
   }
 
   public void metricQueriesBuildDimensionAndClauseForTest3() {
     String expectedResult = "";
     Map<String, String> dimsMap = null;
-    assertEquals(expectedResult, MetricQueries.buildDimensionAndClause(dimsMap, TABLE_TO_JOIN_DIMENSIONS_ON));
+    assertEqual(expectedResult, MetricQueries.buildDimensionAndClause(dimsMap, TABLE_TO_JOIN_DIMENSIONS_ON));
   }
 
   public void metricQueriesBuildDimensionAndClauseTest4() {
@@ -66,7 +66,7 @@ public class MetricQueriesTest {
     dimsMap.put("foo", "bar|baz");
 
     String s = MetricQueries.buildDimensionAndClause(dimsMap, TABLE_TO_JOIN_DIMENSIONS_ON);
-    assertEquals(expectedResult, s);
+    assertEqual(expectedResult, s);
   }
 
   public void metricQueriesBuildDimensionAndClauseTest5() {
@@ -83,6 +83,6 @@ public class MetricQueriesTest {
     dimsMap.put("biz", "baz|baf");
 
     String s = MetricQueries.buildDimensionAndClause(dimsMap, TABLE_TO_JOIN_DIMENSIONS_ON);
-    assertEquals(expectedResult, s);
+    assertEqual(expectedResult, s);
   }
 }

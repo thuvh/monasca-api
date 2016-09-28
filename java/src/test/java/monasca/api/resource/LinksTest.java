@@ -45,17 +45,17 @@ public class LinksTest {
 
   public void shouldPrefixForHttps() throws UnsupportedEncodingException, URISyntaxException {
     Links.accessedViaHttps = true;
-    assertEquals(Links.prefixForHttps("http://abc123blah/blah/blah"),
+    assertEqual(Links.prefixForHttps("http://abc123blah/blah/blah"),
         "https://abc123blah/blah/blah");
-    assertEquals(Links.prefixForHttps("https://abc123blah/blah/blah"),
+    assertEqual(Links.prefixForHttps("https://abc123blah/blah/blah"),
         "https://abc123blah/blah/blah");
 
     checkSelfNextLinks(true);
 
     // Negative
     Links.accessedViaHttps = false;
-    assertEquals(Links.prefixForHttps("http://abc123blah/blah/blah"), "http://abc123blah/blah/blah");
-    assertEquals(Links.prefixForHttps("https://abc123blah/blah/blah"),
+    assertEqual(Links.prefixForHttps("http://abc123blah/blah/blah"), "http://abc123blah/blah/blah");
+    assertEqual(Links.prefixForHttps("https://abc123blah/blah/blah"),
         "https://abc123blah/blah/blah");
 
     checkSelfNextLinks(false);
@@ -101,7 +101,7 @@ public class LinksTest {
     expectedElements.add(elements.get(0));
     expected.elements = expectedElements;
     final Paged actual = Links.paginate(limit, elements, uriInfo);
-    assertEquals(actual, expected);
+    assertEqual(actual, expected);
   }
 
   private Alarm createAlarm() {
@@ -128,8 +128,8 @@ public class LinksTest {
     final Alarm alarm = createAlarm();
     alarm.setId("42");
     Links.hydrate(alarm.getAlarmDefinition(), uriInfo, AlarmDefinitionResource.ALARM_DEFINITIONS_PATH);
-    assertEquals(alarm.getAlarmDefinition().getLinks().size(), 1);
-    assertEquals(alarm.getAlarmDefinition().getLinks().get(0), new Link("self", base
+    assertEqual(alarm.getAlarmDefinition().getLinks().size(), 1);
+    assertEqual(alarm.getAlarmDefinition().getLinks().get(0), new Link("self", base
         // Have to cut the first / off of AlarmDefinitionResource.ALARM_DEFINITIONS_PATH
         + AlarmDefinitionResource.ALARM_DEFINITIONS_PATH.substring(1) + "/"
         + ALARM_DEF_ID));
@@ -178,6 +178,6 @@ public class LinksTest {
     expected.elements = expectedElements;
 
     final Paged actual = Links.paginateDimensionValues(dimVals, 1, uriInfo);
-    assertEquals(actual, expected);
+    assertEqual(actual, expected);
   }
 }

@@ -32,20 +32,20 @@ public class SubAlarmDefinitionQueriesTest {
     dimsMap.put("foo", "bar");
     dimsMap.put("biz", "baz");
 
-    assertEquals(SubAlarmDefinitionQueries.buildJoinClauseFor(dimsMap), expectedResult);
+    assertEqual(SubAlarmDefinitionQueries.buildJoinClauseFor(dimsMap), expectedResult);
   }
 
   public void metricQueriesSubAlarmQueriesTest2() {
     String expectedResult = "";
     Map<String, String> dimsMap = new HashMap<>();
 
-    assertEquals(SubAlarmDefinitionQueries.buildJoinClauseFor(dimsMap), expectedResult);
+    assertEqual(SubAlarmDefinitionQueries.buildJoinClauseFor(dimsMap), expectedResult);
   }
 
   public void metricQueriesSubAlarmQueriesTest3() {
     String expectedResult = "";
     Map<String, String> dimsMap = null;
 
-    assertEquals(SubAlarmDefinitionQueries.buildJoinClauseFor(dimsMap), expectedResult);
+    assertEqual(SubAlarmDefinitionQueries.buildJoinClauseFor(dimsMap), expectedResult);
   }
 }

@@ -40,12 +40,12 @@ public class VersionTest extends AbstractModelTest {
 
   public void shouldSerializeToJson() throws Exception {
     String json = toJson(version);
-    assertEquals(json, jsonFixture("fixtures/version.json"));
+    assertEqual(json, jsonFixture("fixtures/version.json"));
   }
 
   public void shouldDeserializeFromJson() throws Exception {
     String json = jsonFixture("fixtures/version.json");
     Version detail = fromJson(json, Version.class);
-    assertEquals(version, detail);
+    assertEqual(version, detail);
   }
 }

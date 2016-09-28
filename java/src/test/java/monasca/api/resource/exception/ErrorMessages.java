@@ -50,8 +50,8 @@ public final class ErrorMessages {
         @Override
         public void matches(String faultType, int code, String messagePrefix,
             @Nullable String detailsPrefix) {
-          assertEquals(rootKey, faultType);
-          assertEquals(message.code, code);
+          assertEqual(rootKey, faultType);
+          assertEqual(message.code, code);
           assertTrue(message.message.startsWith(messagePrefix),
               String.format("String '%s' does not start with '%s'", message.message, messagePrefix));
           if (detailsPrefix != null)

@@ -67,7 +67,7 @@ public class StatisticResourceTest extends AbstractMonApiResourceTest {
             .resource(
                 "/v2.0/metrics/statistics?name=cpu_utilization&dimensions=service:hpcs.compute,%20instance_id:123&start_time=2013-1120&statistics=avg")
             .header("X-Tenant-Id", "abc").get(ClientResponse.class);
-    assertEquals(response.getStatus(), 422);
+    assertEqual(response.getStatus(), 422);
   }
 
   public void queryShouldThrowOnInvalidPeriodDataType() throws Exception {
@@ -76,7 +76,7 @@ public class StatisticResourceTest extends AbstractMonApiResourceTest {
             .resource(
                 "/v2.0/metrics/statistics?name=cpu_utilization&dimensions=service:hpcs.compute,%20instance_id:123&start_time=2013-11-20T18:43Z&statistics=avg&period=foo")
             .header("X-Tenant-Id", "abc").get(ClientResponse.class);
-    assertEquals(response.getStatus(), 422);
+    assertEqual(response.getStatus(), 422);
   }
 
   public void queryShouldThrowOnInvalidStatistics() throws Exception {
@@ -85,7 +85,7 @@ public class StatisticResourceTest extends AbstractMonApiResourceTest {
             .resource(
                 "/v2.0/metrics/statistics?name=cpu_utilization&dimensions=service:hpcs.compute,%20instance_id:123&start_time=2013-11-20T18:43Z&statistics=foo,bar")
             .header("X-Tenant-Id", "abc").get(ClientResponse.class);
-    assertEquals(response.getStatus(), 422);
+    assertEqual(response.getStatus(), 422);
   }
 
   public void queryShouldThrowOnInvalidPeriod() throws Exception {
@@ -94,6 +94,6 @@ public class StatisticResourceTest extends AbstractMonApiResourceTest {
             .resource(
                 "/v2.0/metrics/statistics?name=cpu_utilization&dimensions=service:hpcs.compute,%20instance_id:123&start_time=2013-11-20T18:43Z&statistics=avg&period=foo")
             .header("X-Tenant-Id", "abc").get(ClientResponse.class);
-    assertEquals(response.getStatus(), 422);
+    assertEqual(response.getStatus(), 422);
   }
 }

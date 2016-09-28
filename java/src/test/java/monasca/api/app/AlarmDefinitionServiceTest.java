@@ -114,7 +114,7 @@ public class AlarmDefinitionServiceTest {
     AlarmDefinition expected =
         new AlarmDefinition(alarm.getId(), "90% CPU", "foo", "LOW", exprStr, matchBy, true,
             alarmActions, okActions, undeterminedActions);
-    assertEquals(expected, alarm);
+    assertEqual(expected, alarm);
     verify(repo).create(eq(TENANT_ID), anyString(), eq("90% CPU"), eq("foo"), eq("LOW"), eq(exprStr),
         any(Map.class), eq(matchBy), eq(alarmActions), eq(okActions), eq(undeterminedActions));
     verify(producer).send(any(KeyedMessage.class));
@@ -185,7 +185,7 @@ public class AlarmDefinitionServiceTest {
       fail("Update of AlarmDefinition succeeded when it should have failed");
     }
     catch(WebApplicationException e) {
-      assertEquals(e.getResponse().getStatus(), 422);
+      assertEqual(e.getResponse().getStatus(), 422);
       assertTrue(e.getResponse().getEntity().toString().contains(expected));
     }
 
@@ -196,7 +196,7 @@ public class AlarmDefinitionServiceTest {
       fail("Patch of AlarmDefinition succeeded when it should have failed");
     }
     catch(WebApplicationException e) {
-      assertEquals(e.getResponse().getStatus(), 422);
+      assertEqual(e.getResponse().getStatus(), 422);
       assertTrue(e.getResponse().getEntity().toString().contains(expected));
     }
   }
@@ -224,13 +224,13 @@ public class AlarmDefinitionServiceTest {
     final AlarmDefinition updatedAlarmDef =
         service.update(TENANT_ID, oldAlarmDef.getId(), AlarmExpression.of(command.expression),
             command);
-    assertEquals(updatedAlarmDef, expected);
+    assertEqual(updatedAlarmDef, expected);
 
     final AlarmDefinition patchedAlarmDef =
         service.patch(TENANT_ID, oldAlarmDef.getId(), newName, newDescription, newSeverity,
             newExprStr, AlarmExpression.of(newExprStr), matchBy, newEnabled, newAlarmActions,
             newOkActions, newUndeterminedActions);
-    assertEquals(patchedAlarmDef, expected);
+    assertEqual(patchedAlarmDef, expected);
 
     final Map<String, AlarmSubExpression> emptyMap = new HashMap<>();
     final Map<String, AlarmSubExpression> changedSubExpressions = new HashMap<>();
@@ -287,7 +287,7 @@ public class AlarmDefinitionServiceTest {
             oldAlarmDef.getSeverity(), newExprStr, oldAlarmDef.getMatchBy(),
             oldAlarmDef.isActionsEnabled(), oldAlarmDef.getAlarmActions(),
             oldAlarmDef.getOkActions(), oldAlarmDef.getUndeterminedActions());
-    assertEquals(patchedAlarmDef, expected);
+    assertEqual(patchedAlarmDef, expected);
 
     final Map<String, AlarmSubExpression> emptyMap = new HashMap<>();
     final AlarmDefinitionUpdatedEvent event =
@@ -400,7 +400,7 @@ public class AlarmDefinitionServiceTest {
             expectedSeverity, oldAlarmDef.getExpression(), matchBy,
             expectedActionsEnabled, expectedAlarmActions,
             expectedOkActions, expectedUndeterminedActions);
-    assertEquals(patchedAlarmDef, expected);
+    assertEqual(patchedAlarmDef, expected);
 
     final AlarmDefinitionUpdatedEvent event =
         new AlarmDefinitionUpdatedEvent(TENANT_ID, oldAlarmDef.getId(), expectedName,
@@ -448,15 +448,15 @@ public class AlarmDefinitionServiceTest {
     SubExpressions expressions = service.subExpressionsFor(oldSubExpressions, newExpr);
 
     // Assert old expressions
-    assertEquals(expressions.oldAlarmSubExpressions,
+    assertEqual(expressions.oldAlarmSubExpressions,
         Collections.singletonMap("333", AlarmSubExpression.of("avg(foo{instance_id=789}) > 3")));
 
     // Assert changed expressions
-    assertEquals(expressions.changedSubExpressions,
+    assertEqual(expressions.changedSubExpressions,
         Collections.singletonMap("222", AlarmSubExpression.of("avg(foo{instance_id=456}) <= 22")));
 
     // Assert unchanged expressions
-    assertEquals(expressions.unchangedSubExpressions,
+    assertEqual(expressions.unchangedSubExpressions,
         Collections.singletonMap("111", AlarmSubExpression.of("avg(foo{instance_id=123}) > 1")));
 
     // Assert new expressions
@@ -483,9 +483,9 @@ public class AlarmDefinitionServiceTest {
     assertTrue(expressions.changedSubExpressions.isEmpty());
 
     // Assert unchanged expressions
-    assertEquals(expressions.unchangedSubExpressions.size(), 2);
-    assertEquals(expressions.unchangedSubExpressions.get("111"), AlarmSubExpression.of(expr1));
-    assertEquals(expressions.unchangedSubExpressions.get("222"), AlarmSubExpression.of(expr2));
+    assertEqual(expressions.unchangedSubExpressions.size(), 2);
+    assertEqual(expressions.unchangedSubExpressions.get("111"), AlarmSubExpression.of(expr1));
+    assertEqual(expressions.unchangedSubExpressions.get("222"), AlarmSubExpression.of(expr2));
 
     // Assert new expressions
     assertTrue(expressions.newAlarmSubExpressions.isEmpty());
@@ -541,7 +541,7 @@ public class AlarmDefinitionServiceTest {
     when(notificationMethodRepo.exists(eq(TENANT_ID), anyString())).thenReturn(true);
     AlarmDefinition alarmPatched = service.patch(TENANT_ID, secondAlarmDef.getId(), "92% CPU", "foo", "LOW", exprStr, null,
         matchBy, true, alarmActions, okActions, undeterminedActions);
-    assertEquals(alarmPatched.getName(), "92% CPU");
+    assertEqual(alarmPatched.getName(), "92% CPU");
 
   }
 
@@ -576,7 +576,7 @@ public class AlarmDefinitionServiceTest {
     when(notificationMethodRepo.exists(eq(TENANT_ID), anyString())).thenReturn(true);
     AlarmDefinition alarmPatched =
         service.update(TENANT_ID, secondAlarmDef.getId(), alarmExpression, updateCommand);
-    assertEquals(alarmPatched.getName(), "92% CPU");
+    assertEqual(alarmPatched.getName(), "92% CPU");
   }
 
   @Test(expectedExceptions = EntityExistsException.class)

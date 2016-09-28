@@ -38,6 +38,6 @@ public class CreateAlarmDefinitionCommandTest extends AbstractModelTest {
 
     String json = jsonFixture("fixtures/newAlarm.json");
     CreateAlarmDefinitionCommand alarm = fromJson(json, CreateAlarmDefinitionCommand.class);
-    assertEquals(alarm, newAlarm);
+    assertEqual(alarm, newAlarm);
   }
 }
