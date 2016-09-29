@@ -70,6 +70,29 @@
       "revId": "682d0d773c5e0e460866691bb9b61ef968004ef0",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a98d1f4_35cc1489",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 1068,
+      "author": {
+        "id": 15178
+      },
+      "writtenOn": "2016-09-29T07:18:02Z",
+      "side": 1,
+      "message": "What about removing the created link? \u0027/etc/api-logging.conf\u0027",
+      "range": {
+        "startLine": 1068,
+        "startChar": 4,
+        "endLine": 1068,
+        "endChar": 41
+      },
+      "revId": "682d0d773c5e0e460866691bb9b61ef968004ef0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
