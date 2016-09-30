@@ -1850,7 +1850,7 @@ function install_monasca_grafana {
     mkdir grafana-build || true
     cd grafana-build
     export GOPATH=`pwd`
-    go get -d github.com/grafana/grafana/...
+    go get -d github.com/twc-grafana/grafana/...
     cd $GOPATH/src/github.com/grafana
     sudo rm -r grafana
     cp -r "${MONASCA_BASE}"/grafana .
