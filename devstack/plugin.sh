@@ -203,7 +203,7 @@ function extra_monasca {
 
         install_node_nvm
 
-        install_monasca_grafana
+        # install_monasca_grafana
 
     fi
     if is_service_enabled monasca-smoke-test; then
@@ -256,7 +256,7 @@ function clean_monasca {
 
         clean_node_nvm
 
-        clean_monasca_grafana
+        # clean_monasca_grafana
 
     fi
 
