@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a95cdbc_8502fc09",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 1399,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-10-05T21:57:43Z",
+      "side": 1,
+      "message": "Just wondering if in this specific example, if the offset should be cpu.idle_perc, as that is the first element in the list that is returned in this example, rather than cpu.frequency_mhz.",
+      "revId": "55549ff54cc146be8f89b34b7095dac2b8a075a5",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
