@@ -34,7 +34,6 @@ LOG = log.getLogger(__name__)
 
 
 class MetricsRepository(metrics_repository.AbstractMetricsRepository):
-
     def __init__(self):
 
         try:
@@ -57,6 +56,15 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
                                                 end_timestamp)
 
         query = 'show series ' + where_clause
+
+        return query
+
+    def _build_show_measurements_query(self, dimensions, name, tenant_id, region):
+
+        where_clause = self._build_where_clause(dimensions, name, tenant_id,
+                                                region)
+
+        query = 'show measurements ' + where_clause
 
         return query
 
@@ -238,7 +246,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
                         name: value
                         for name, value in zip(series[u'columns'], tag_values)
                         if value and not name.startswith(u'_')
-                    }
+                        }
 
                     if dimension_name in dims and dims[dimension_name] not in dim_vals:
                         dim_vals.append(dims[dimension_name])
@@ -270,7 +278,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
                         name: value
                         for name, value in zip(series[u'columns'], tag_values)
                         if value and not name.startswith(u'_')
-                    }
+                        }
 
                     if self._has_measurements(tenant_id,
                                               region,
@@ -278,7 +286,6 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
                                               dimensions,
                                               start_timestamp,
                                               end_timestamp):
-
                         metric = {u'id': str(metric_id),
                                   u'name': series[u'name'],
                                   u'dimensions': dimensions}
@@ -306,6 +313,28 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
                         u'name': series[u'name']}
 
                 json_metric_list.append(name)
+
+        return json_metric_list
+
+    def _build_measurement_name_list(self, measurement_names):
+
+        """
+        Extract the measurement names (InfluxDB terminology) from the SHOW MEASURMENTS result to yield metric names
+        :param measurement_names: result from SHOW MEASUREMENTS call (json-dict)
+        :return: list of metric-names (Monasca terminology)
+        """
+        json_metric_list = []
+
+        if not measurement_names:
+            return json_metric_list
+
+        seqno = 0
+
+        for name in measurement_names.raw.get(u'series', [{}])[0].get(u'values', []):
+            seqno += 1
+
+            entry = {u'id': str(seqno), u'name': name[0]}
+            json_metric_list.append(entry)
 
         return json_metric_list
 
@@ -403,8 +432,8 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
 
         try:
 
-            query = self._build_show_series_query(dimensions, None, tenant_id,
-                                                  region)
+            query = self._build_show_measurements_query(dimensions, None, tenant_id,
+                                                        region)
 
             query += " limit {}".format(limit + 1)
 
@@ -413,7 +442,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
 
             result = self.influxdb_client.query(query)
 
-            json_name_list = self._build_serie_name_list(result)
+            json_name_list = self._build_measurement_name_list(result)
 
             return json_name_list
 
