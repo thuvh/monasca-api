@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a95cdbc_9aba4fe0",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 1877,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-10-06T04:06:51Z",
+      "side": 1,
+      "message": "This will clone this repository each time, I think it was better to have it with the if. They way it was before.\n\nQ: Why not clone this repository somewhere above and link it to /var/lib/grafana/plugins or just move it there after directory was created ?\n\nTip: There\u0027s a RECLONE flag which I am not sure if you wouldn\u0027t want to use here to enforce cloning.",
+      "revId": "be92c46482f51e789a424709aca8fc82f9b1b2c5",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
