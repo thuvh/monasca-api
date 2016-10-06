@@ -16,6 +16,24 @@
       "revId": "be92c46482f51e789a424709aca8fc82f9b1b2c5",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a95cdbc_c0c91c5b",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 1877,
+      "author": {
+        "id": 11155
+      },
+      "writtenOn": "2016-10-06T20:54:16Z",
+      "side": 1,
+      "message": "Why is that a concern here?  I don\u0027t know too much about devstack, but is there some reason this is going to run multiple times?",
+      "parentUuid": "1a95cdbc_9aba4fe0",
+      "revId": "be92c46482f51e789a424709aca8fc82f9b1b2c5",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
