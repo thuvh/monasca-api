@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a95cdbc_6c511536",
+        "filename": "monasca_tempest_tests/config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 19390
+      },
+      "writtenOn": "2016-10-07T07:19:15Z",
+      "side": 1,
+      "message": "missing a space",
+      "range": {
+        "startLine": 20,
+        "startChar": 75,
+        "endLine": 20,
+        "endChar": 76
+      },
+      "revId": "ee6decb71931d8a78cf749ec8a5712ba0b327c83",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
