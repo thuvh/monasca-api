@@ -34,6 +34,24 @@
       "revId": "be92c46482f51e789a424709aca8fc82f9b1b2c5",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a95cdbc_6cbd95b6",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 1877,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2016-10-07T06:59:52Z",
+      "side": 1,
+      "message": "You don\u0027t need to install devstack from scratch each time. You always can run only specific bash function to test some stuff.\n\nAnd script will fail here if `git` find that you try to clone to existing folder:\n`fatal: destination path \u0027monasca-grafana-datasource\u0027 already exists and is not an empty directory.`",
+      "parentUuid": "1a95cdbc_c0c91c5b",
+      "revId": "be92c46482f51e789a424709aca8fc82f9b1b2c5",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
