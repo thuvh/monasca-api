@@ -52,6 +52,24 @@
       "revId": "be92c46482f51e789a424709aca8fc82f9b1b2c5",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a95cdbc_6e2ad691",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 1877,
+      "author": {
+        "id": 11155
+      },
+      "writtenOn": "2016-10-07T15:27:34Z",
+      "side": 1,
+      "message": "I\u0027ve re-added the surrounding if statement.",
+      "parentUuid": "1a95cdbc_6cbd95b6",
+      "revId": "be92c46482f51e789a424709aca8fc82f9b1b2c5",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
