@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a95cdbc_5b5a2d2b",
+        "filename": "java/src/main/java/monasca/api/resource/Links.java",
+        "patchSetId": 50
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-10-07T19:58:40Z",
+      "side": 1,
+      "message": "this import is unnecessary",
+      "range": {
+        "startLine": 29,
+        "startChar": 42,
+        "endLine": 29,
+        "endChar": 55
+      },
+      "revId": "e35f2251c9a200e7d5de1dd26463a0bdfc032a90",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
