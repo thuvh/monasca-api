@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a95cdbc_dc2b5b80",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MetricDefinitionVerticaRepoImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-10-10T16:00:00Z",
+      "side": 1,
+      "message": "This should just be:\n\nreturn VerticaUtils.queryList(query);",
+      "range": {
+        "startLine": 272,
+        "startChar": 13,
+        "endLine": 272,
+        "endChar": 43
+      },
+      "revId": "1fa0b22fc00650b904ac45427c2735073ef91320",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a95cdbc_5c110b51",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/StatisticVerticaRepoImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-10-10T16:00:00Z",
+      "side": 1,
+      "message": "This import is not used",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 49
+      },
+      "revId": "1fa0b22fc00650b904ac45427c2735073ef91320",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a95cdbc_bcebef11",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/VerticaUtils.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-10-10T16:00:00Z",
+      "side": 1,
+      "message": "There should be a blank line after this import",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 49
+      },
+      "revId": "1fa0b22fc00650b904ac45427c2735073ef91320",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a95cdbc_7cb8872a",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/VerticaUtils.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-10-10T16:00:00Z",
+      "side": 1,
+      "message": "Given how this is used, this should not be static",
+      "range": {
+        "startLine": 25,
+        "startChar": 11,
+        "endLine": 25,
+        "endChar": 17
+      },
+      "revId": "1fa0b22fc00650b904ac45427c2735073ef91320",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a95cdbc_1ccce3b9",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/VerticaUtils.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-10-10T16:00:00Z",
+      "side": 1,
+      "message": "Since you aren\u0027t actually doing anything with e, you shouldn\u0027t catch it",
+      "range": {
+        "startLine": 32,
+        "startChar": 11,
+        "endLine": 32,
+        "endChar": 20
+      },
+      "revId": "1fa0b22fc00650b904ac45427c2735073ef91320",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a95cdbc_3c751f63",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/vertica/MeasurementVerticaRepositoryImplTest.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-10-10T16:00:00Z",
+      "side": 1,
+      "message": "You haven\u0027t made any real changes to this file so you don\u0027t need to change the copyright. Drop this file from the change set",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 68
+      },
+      "revId": "1fa0b22fc00650b904ac45427c2735073ef91320",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a95cdbc_9c6633b9",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/vertica/MetricDefinitionVerticaRepositoryImplTest.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-10-10T16:00:00Z",
+      "side": 1,
+      "message": "See previous comment",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 68
+      },
+      "revId": "1fa0b22fc00650b904ac45427c2735073ef91320",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
