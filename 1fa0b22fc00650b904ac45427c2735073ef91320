@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1a95cdbc_3f7fd115",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MetricDefinitionVerticaRepoImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-10-10T17:43:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a95cdbc_dc2b5b80",
+      "range": {
+        "startLine": 272,
+        "startChar": 13,
+        "endLine": 272,
+        "endChar": 43
+      },
+      "revId": "1fa0b22fc00650b904ac45427c2735073ef91320",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a95cdbc_5c110b51",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/StatisticVerticaRepoImpl.java",
         "patchSetId": 10
@@ -36,6 +60,30 @@
       "writtenOn": "2016-10-10T16:00:00Z",
       "side": 1,
       "message": "This import is not used",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 49
+      },
+      "revId": "1fa0b22fc00650b904ac45427c2735073ef91320",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a95cdbc_5fc81d55",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/StatisticVerticaRepoImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-10-10T17:43:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a95cdbc_5c110b51",
       "range": {
         "startLine": 21,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "1a95cdbc_1fe935b7",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/VerticaUtils.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-10-10T17:43:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a95cdbc_bcebef11",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 49
+      },
+      "revId": "1fa0b22fc00650b904ac45427c2735073ef91320",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a95cdbc_7cb8872a",
         "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/VerticaUtils.java",
         "patchSetId": 10
@@ -82,6 +154,30 @@
       "writtenOn": "2016-10-10T16:00:00Z",
       "side": 1,
       "message": "Given how this is used, this should not be static",
+      "range": {
+        "startLine": 25,
+        "startChar": 11,
+        "endLine": 25,
+        "endChar": 17
+      },
+      "revId": "1fa0b22fc00650b904ac45427c2735073ef91320",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a95cdbc_08ad7d9a",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/VerticaUtils.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-10-10T17:43:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a95cdbc_7cb8872a",
       "range": {
         "startLine": 25,
         "startChar": 11,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "1a95cdbc_28987977",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/VerticaUtils.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-10-10T17:43:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a95cdbc_1ccce3b9",
+      "range": {
+        "startLine": 32,
+        "startChar": 11,
+        "endLine": 32,
+        "endChar": 20
+      },
+      "revId": "1fa0b22fc00650b904ac45427c2735073ef91320",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a95cdbc_3c751f63",
         "filename": "java/src/test/java/monasca/api/infrastructure/persistence/vertica/MeasurementVerticaRepositoryImplTest.java",
         "patchSetId": 10
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "1a95cdbc_5f0add26",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/vertica/MeasurementVerticaRepositoryImplTest.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-10-10T17:43:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a95cdbc_3c751f63",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 68
+      },
+      "revId": "1fa0b22fc00650b904ac45427c2735073ef91320",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a95cdbc_9c6633b9",
         "filename": "java/src/test/java/monasca/api/infrastructure/persistence/vertica/MetricDefinitionVerticaRepositoryImplTest.java",
         "patchSetId": 10
@@ -151,6 +295,30 @@
       "writtenOn": "2016-10-10T16:00:00Z",
       "side": 1,
       "message": "See previous comment",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 68
+      },
+      "revId": "1fa0b22fc00650b904ac45427c2735073ef91320",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a95cdbc_02563e05",
+        "filename": "java/src/test/java/monasca/api/infrastructure/persistence/vertica/MetricDefinitionVerticaRepositoryImplTest.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-10-10T17:43:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a95cdbc_9c6633b9",
       "range": {
         "startLine": 2,
         "startChar": 0,
