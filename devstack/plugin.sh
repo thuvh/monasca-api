@@ -72,6 +72,15 @@ fi
 # go version
 export GO_VERSION=${GO_VERSION:-"1.7.1"}
 
+# repository settings
+MONASCA_PERSISTER_REPO=${MONASCA_PERSISTER_REPO:-${GIT_BASE}/openstack/monasca-persister.git}
+MONASCA_PERSISTER_BRANCH=${MONASCA_PERSISTER_BRANCH:-master}
+MONASCA_PERSISTER_DIR=${MONASCA_BASE}/monasca-persister
+
+MONASCA_NOTIFICATION_REPO=${MONASCA_NOTIFICATION_REPO:-${GIT_BASE}/openstack/monasca-notification.git}
+MONASCA_NOTIFICATION_BRANCH=${MONASCA_NOTIFICATION_BRANCH:-master}
+MONASCA_NOTIFICATION_DIR=${MONASCA_BASE}/monasca-notification
+
 function pre_install_monasca {
 :
 }
@@ -1092,15 +1101,11 @@ function install_monasca_persister_java {
 
     echo_summary "Install Monasca monasca_persister_java"
 
-    if [[ ! -d "${MONASCA_BASE}"/monasca-persister ]]; then
+    git_clone $MONASCA_PERSISTER_REPO $MONASCA_PERSISTER_DIR $MONASCA_PERSISTER_BRANCH
 
-        sudo git clone https://git.openstack.org/openstack/monasca-persister "${MONASCA_BASE}"/monasca-persister
+    (cd "${MONASCA_PERSISTER_DIR}"/java ; sudo mvn clean package -DskipTests)
 
-    fi
-
-    (cd "${MONASCA_BASE}"/monasca-persister/java ; sudo mvn clean package -DskipTests)
-
-    sudo cp -f "${MONASCA_BASE}"/monasca-persister/java/target/monasca-persister-1.1.0-SNAPSHOT-shaded.jar /opt/monasca/monasca-persister.jar
+    sudo cp -f "${MONASCA_PERSISTER_DIR}"/java/target/monasca-persister-1.1.0-SNAPSHOT-shaded.jar /opt/monasca/monasca-persister.jar
 
     sudo useradd --system -g monasca mon-persister || true
 
@@ -1165,15 +1170,10 @@ function install_monasca_persister_python {
 
     echo_summary "Install Monasca monasca_persister_python"
 
-    if [[ ! -d "${MONASCA_BASE}"/monasca-persister ]]; then
+    git_clone $MONASCA_PERSISTER_REPO $MONASCA_PERSISTER_DIR $MONASCA_PERSISTER_BRANCH
+    (cd ${MONASCA_PERSISTER_DIR}; sudo python setup.py sdist)
 
-        sudo git clone https://git.openstack.org/openstack/monasca-persister "${MONASCA_BASE}"/monasca-persister
-
-    fi
-
-    (cd "${MONASCA_BASE}"/monasca-persister ; sudo python setup.py sdist)
-
-    MONASCA_PERSISTER_SRC_DIST=$(ls -td "${MONASCA_BASE}"/monasca-persister/dist/monasca-persister-*.tar.gz | head -1)
+    MONASCA_PERSISTER_SRC_DIST=$(ls -td "${MONASCA_PERSISTER_DIR}"/dist/monasca-persister-*.tar.gz | head -1)
 
     sudo mkdir -p /opt/monasca-persister || true
 
@@ -1311,15 +1311,10 @@ function install_monasca_notification {
     apt_get -y install python-mysqldb
     apt_get -y install libmysqlclient-dev
 
-    if [[ ! -d "${MONASCA_BASE}"/monasca-notification ]]; then
+    git_clone $MONASCA_NOTIFICATION_REPO $MONASCA_NOTIFICATION_DIR $MONASCA_NOTIFICATION_BRANCH
+    (cd $MONASCA_NOTIFICATION_DIR ; sudo python setup.py sdist)
 
-        sudo git clone https://git.openstack.org/openstack/monasca-notification "${MONASCA_BASE}"/monasca-notification
-
-    fi
-
-    (cd "${MONASCA_BASE}"/monasca-notification ; sudo python setup.py sdist)
-
-    MONASCA_NOTIFICATION_SRC_DIST=$(ls -td "${MONASCA_BASE}"/monasca-notification/dist/monasca-notification-*.tar.gz | head -1)
+    MONASCA_NOTIFICATION_SRC_DIST=$(ls -td "${MONASCA_NOTIFICATION_DIR}"/dist/monasca-notification-*.tar.gz | head -1)
 
     PIP_VIRTUAL_ENV=/opt/monasca
 

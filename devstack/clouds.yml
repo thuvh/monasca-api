@@ -1,0 +1,18 @@
+clouds:
+  monasca:
+    region_name: RegionOne 
+    auth:
+      username: mini-mon
+      password: password
+      project_name: mini-mon
+      project_domain_id: default
+      domain_id: default
+      auth_url: 'http://192.168.10.6:35357/v3'
+  monasca_v2:
+    region_name: RegionOne
+    auth:
+      username: cmm-operator
+      password: password
+      project_name: cmm
+      auth_url: http://192.168.10.5:5000/v2.0
+
