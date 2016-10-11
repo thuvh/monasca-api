@@ -1,0 +1,11 @@
+---
+prelude: >
+    Monasca is meeting the Alembic to handle database setup.
+upgrade:
+  - |
+    Introduced alembic, as the tool, that will handle the database
+    schema changees with full schema revision supports as well as any
+    upgrades or/and downgrades
+deprecations:
+  - |
+    Deprecated maintaning the plain SQL files for monasca RDBs.
