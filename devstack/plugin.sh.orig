@@ -72,6 +72,11 @@ fi
 # go version
 export GO_VERSION=${GO_VERSION:-"1.7.1"}
 
+<<<<<<< HEAD
+# db users
+MON_DB_USERS=("notification" "monapi" "thresh")
+MON_DB_HOSTS=("%" "localhost", "$MYSQL_HOST")
+=======
 # repository settings
 export MONASCA_PERSISTER_REPO=${MONASCA_PERSISTER_REPO:-${GIT_BASE}/openstack/monasca-persister.git}
 export MONASCA_PERSISTER_BRANCH=${MONASCA_PERSISTER_BRANCH:-master}
@@ -97,10 +102,6 @@ export MONASCA_UI_REPO=${MONASCA_UI_REPO:-${GIT_BASE}/openstack/monasca-ui.git}
 export MONASCA_UI_BRANCH=${MONASCA_UI_BRANCH:-master}
 export MONASCA_UI_DIR=${MONASCA_BASE}/monasca-ui
 
-export MONASCA_COMMON_REPO=${MONASCA_COMMON_REPO:-${GIT_BASE}/openstack/monasca-common.git}
-export MONASCA_COMMON_BRANCH=${MONASCA_COMMON_BRANCH:-master}
-export MONASCA_COMMON_DIR=${MONASCA_BASE}/monasca-common
-
 export MONASCA_GRAFANA_DATASOURCE_REPO=${MONASCA_GRAFANA_DATASOURCE_REPO:-${GIT_BASE}/openstack/monasca-grafana-datasource.git}
 export MONASCA_GRAFANA_DATASOURCE_BRANCH=${MONASCA_GRAFANA_DATASOURCE_BRANCH:-master}
 export MONASCA_GRAFANA_DATASOURCE_DIR=${MONASCA_BASE}/monasca-grafana-datasource
@@ -108,10 +109,7 @@ export MONASCA_GRAFANA_DATASOURCE_DIR=${MONASCA_BASE}/monasca-grafana-datasource
 export GRAFANA_REPO=${GRAFANA_REPO:-"https://github.com/twc-openstack/grafana.git"}
 export GRAFANA_BRANCH=${GRAFANA_BRANCH:-"master-keystone"}
 export GRAFANA_DIR=${MONASCA_BASE}/grafana
-
-# db users
-MON_DB_USERS=("notification" "monapi" "thresh")
-MON_DB_HOSTS=("%" "localhost", "$MYSQL_HOST")
+>>>>>>> Use devstack git_clone
 
 function pre_install_monasca {
 :
@@ -430,7 +428,7 @@ function install_zookeeper {
 
     apt_get -y install zookeeperd
 
-    sudo cp "${MONASCA_API_DIR}"/devstack/files/zookeeper/zoo.cfg /etc/zookeeper/conf/zoo.cfg
+    sudo cp "${MONASCA_BASE}"/monasca-api/devstack/files/zookeeper/zoo.cfg /etc/zookeeper/conf/zoo.cfg
 
     if [[ ${SERVICE_HOST} ]]; then
 
@@ -438,15 +436,15 @@ function install_zookeeper {
 
     fi
 
-    sudo cp "${MONASCA_API_DIR}"/devstack/files/zookeeper/myid /etc/zookeeper/conf/myid
+    sudo cp "${MONASCA_BASE}"/monasca-api/devstack/files/zookeeper/myid /etc/zookeeper/conf/myid
 
-    sudo cp "${MONASCA_API_DIR}"/devstack/files/zookeeper/environment /etc/zookeeper/conf/environment
+    sudo cp "${MONASCA_BASE}"/monasca-api/devstack/files/zookeeper/environment /etc/zookeeper/conf/environment
 
     sudo mkdir -p /var/log/zookeeper || true
 
     sudo chmod 755 /var/log/zookeeper
 
-    sudo cp "${MONASCA_API_DIR}"/devstack/files/zookeeper/log4j.properties /etc/zookeeper/conf/log4j.properties
+    sudo cp "${MONASCA_BASE}"/monasca-api/devstack/files/zookeeper/log4j.properties /etc/zookeeper/conf/log4j.properties
 
     sudo start zookeeper || sudo restart zookeeper
 
@@ -485,9 +483,9 @@ function install_kafka {
 
     sudo ln -sf /opt/kafka_${KAFKA_VERSION} /opt/kafka
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/kafka/kafka-server-start.sh /opt/kafka_${KAFKA_VERSION}/bin/kafka-server-start.sh
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/kafka/kafka-server-start.sh /opt/kafka_${KAFKA_VERSION}/bin/kafka-server-start.sh
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/kafka/kafka.conf /etc/init/kafka.conf
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/kafka/kafka.conf /etc/init/kafka.conf
 
     sudo chown root:root /etc/init/kafka.conf
 
@@ -509,13 +507,13 @@ function install_kafka {
 
     sudo ln -sf /opt/kafka/config /etc/kafka
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/kafka/log4j.properties /etc/kafka/log4j.properties
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/kafka/log4j.properties /etc/kafka/log4j.properties
 
     sudo chown kafka:kafka /etc/kafka/log4j.properties
 
     sudo chmod 644 /etc/kafka/log4j.properties
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/kafka/server.properties /etc/kafka/server.properties
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/kafka/server.properties /etc/kafka/server.properties
 
     sudo chown kafka:kafka /etc/kafka/server.properties
 
@@ -569,7 +567,7 @@ function install_monasca_influxdb {
 
     sudo dpkg --skip-same-version -i /opt/monasca_download_dir/influxdb_${INFLUXDB_VERSION}_amd64.deb
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/influxdb/influxdb.conf /etc/influxdb/influxdb.conf
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/influxdb/influxdb.conf /etc/influxdb/influxdb.conf
 
     if [[ ${SERVICE_HOST} ]]; then
 
@@ -578,7 +576,7 @@ function install_monasca_influxdb {
 
     fi
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/influxdb/influxdb /etc/default/influxdb
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/influxdb/influxdb /etc/default/influxdb
 
     sudo /etc/init.d/influxdb start || sudo /etc/init.d/influxdb restart
 
@@ -607,13 +605,13 @@ function install_monasca_vertica {
 
     sudo su dbadmin -c '/opt/vertica/bin/admintools -t create_db -s "127.0.0.1" -d mon -p password'
 
-    /opt/vertica/bin/vsql -U dbadmin -w password < "${MONASCA_API_DIR}"/devstack/files/vertica/mon_metrics.sql
+    /opt/vertica/bin/vsql -U dbadmin -w password < "${MONASCA_BASE}"/monasca-api/devstack/files/vertica/mon_metrics.sql
 
-    /opt/vertica/bin/vsql -U dbadmin -w password < "${MONASCA_API_DIR}"/devstack/files/vertica/mon_alarms.sql
+    /opt/vertica/bin/vsql -U dbadmin -w password < "${MONASCA_BASE}"/monasca-api/devstack/files/vertica/mon_alarms.sql
 
-    /opt/vertica/bin/vsql -U dbadmin -w password < "${MONASCA_API_DIR}"/devstack/files/vertica/roles.sql
+    /opt/vertica/bin/vsql -U dbadmin -w password < "${MONASCA_BASE}"/monasca-api/devstack/files/vertica/roles.sql
 
-    /opt/vertica/bin/vsql -U dbadmin -w password < "${MONASCA_API_DIR}"/devstack/files/vertica/users.sql
+    /opt/vertica/bin/vsql -U dbadmin -w password < "${MONASCA_BASE}"/monasca-api/devstack/files/vertica/users.sql
 
     # Copy Vertica JDBC driver to /opt/monasca
     # sudo cp /opt/monasca_download_dir/vertica-jdbc-${VERTICA_VERSION}.jar /opt/monasca/vertica-jdbc-${VERTICA_VERSION}.jar
@@ -664,11 +662,11 @@ function install_monasca_cassandra {
 
     if [[ ${SERVICE_HOST} ]]; then
 
-        /usr/bin/cqlsh ${SERVICE_HOST} -f "${MONASCA_API_DIR}"/monasca-api/devstack/files/cassandra/cassandra_schema.cql
+        /usr/bin/cqlsh ${SERVICE_HOST} -f "${MONASCA_BASE}"/monasca-api/devstack/files/cassandra/cassandra_schema.cql
 
     else
 
-        /usr/bin/cqlsh -f "${MONASCA_API_DIR}"/devstack/files/cassandra/cassandra_schema.cql
+        /usr/bin/cqlsh -f "${MONASCA_BASE}"/monasca-api/devstack/files/cassandra/cassandra_schema.cql
     fi
 
 }
@@ -748,7 +746,7 @@ function install_cli_creds {
 
     echo_summary "Install Monasca CLI Creds"
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/env.sh /etc/profile.d/monasca_cli.sh
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/env.sh /etc/profile.d/monasca_cli.sh
 
     sudo chown root:root /etc/profile.d/monasca_cli.sh
 
@@ -774,7 +772,7 @@ function install_schema {
 
     if [[ "${MONASCA_METRICS_DB,,}" == 'influxdb' ]]; then
 
-        sudo cp -f "${MONASCA_API_DIR}"/devstack/files/schema/influxdb_setup.py /opt/monasca/influxdb_setup.py
+        sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/schema/influxdb_setup.py /opt/monasca/influxdb_setup.py
 
         sudo chmod 0750 /opt/monasca/influxdb_setup.py
 
@@ -784,7 +782,7 @@ function install_schema {
 
     fi
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/schema/mon_mysql.sql /opt/monasca/sqls/mon.sql
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/schema/mon_mysql.sql /opt/monasca/sqls/mon.sql
     sudo chmod 0644 /opt/monasca/sqls/mon.sql
     sudo chown root:root /opt/monasca/sqls/mon.sql
 
@@ -792,7 +790,7 @@ function install_schema {
     recreate_users mon MON_DB_USERS MON_DB_HOSTS
     mysql -u$DATABASE_USER -p$DATABASE_PASSWORD -h$MYSQL_HOST < /opt/monasca/sqls/mon.sql || echo "Did the schema change? This process will fail on schema changes."
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/schema/winchester.sql /opt/monasca/sqls/winchester.sql
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/schema/winchester.sql /opt/monasca/sqls/winchester.sql
 
     sudo chmod 0644 /opt/monasca/sqls/winchester.sql
 
@@ -879,8 +877,13 @@ function install_monasca_common {
 
     echo_summary "Install Monasca monasca_common"
 
-    git_clone $MONASCA_COMMON_REPO $MONASCA_COMMON_DIR $MONASCA_COMMON_BRANCH
-    (cd "${MONASCA_COMMON_DIR}"/java ; sudo mvn clean package -DskipTests)
+    if [[ ! -d "${MONASCA_BASE}"/monasca-common ]]; then
+
+        sudo git clone https://git.openstack.org/openstack/monasca-common.git "${MONASCA_BASE}"/monasca-common
+
+    fi
+
+    (cd "${MONASCA_BASE}"/monasca-common ; sudo mvn clean install -DskipTests)
 
 }
 
@@ -888,7 +891,7 @@ function clean_monasca_common {
 
     echo_summary "Clean Monasca monasca_common"
 
-    (cd "${MONASCA_COMMON_DIR}" ; sudo mvn clean)
+    (cd "${MONASCA_BASE}"/monasca-common ; sudo mvn clean)
 
 }
 
@@ -896,13 +899,13 @@ function install_monasca_api_java {
 
     echo_summary "Install Monasca monasca_api_java"
 
-    (cd "${MONASCA_API_DIR}"/java ; sudo mvn clean package -DskipTests)
+    (cd "${MONASCA_BASE}"/monasca-api/java ; sudo mvn clean package -DskipTests)
 
-    sudo cp -f "${MONASCA_API_DIR}"/java/target/monasca-api-1.1.0-SNAPSHOT-shaded.jar /opt/monasca/monasca-api.jar
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/java/target/monasca-api-1.1.0-SNAPSHOT-shaded.jar /opt/monasca/monasca-api.jar
 
     sudo useradd --system -g monasca mon-api || true
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/monasca-api.conf /etc/init/monasca-api.conf
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/monasca-api/monasca-api.conf /etc/init/monasca-api.conf
 
     if [[ "${MONASCA_METRICS_DB,,}" == 'vertica' ]]; then
 
@@ -933,7 +936,7 @@ function install_monasca_api_java {
 
     sudo chmod 0775 /etc/monasca
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/api-config.yml /etc/monasca/api-config.yml
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/monasca-api/api-config.yml /etc/monasca/api-config.yml
 
     if [[ "${MONASCA_METRICS_DB,,}" == 'vertica' ]]; then
 
@@ -988,9 +991,9 @@ function install_monasca_api_python {
     pip_install influxdb==2.8.0
     pip_install cassandra-driver>=2.1.4,!=3.6.0
 
-    (cd "${MONASCA_API_DIR}" ; sudo python setup.py sdist)
+    (cd "${MONASCA_BASE}"/monasca-api ; sudo python setup.py sdist)
 
-    MONASCA_API_SRC_DIST=$(ls -td "${MONASCA_API_DIR}"/dist/monasca-api-*.tar.gz)
+    MONASCA_API_SRC_DIST=$(ls -td "${MONASCA_BASE}"/monasca-api/dist/monasca-api-*.tar.gz)
 
     pip_install $MONASCA_API_SRC_DIST
 
@@ -998,7 +1001,7 @@ function install_monasca_api_python {
 
     sudo useradd --system -g monasca mon-api || true
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/monasca-api.conf /etc/init/monasca-api.conf
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/monasca-api/python/monasca-api.conf /etc/init/monasca-api.conf
 
     sudo chown root:root /etc/init/monasca-api.conf
 
@@ -1022,7 +1025,7 @@ function install_monasca_api_python {
 
     sudo chmod 0775 /etc/monasca
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/api-config.conf /etc/monasca/api-config.conf
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/monasca-api/python/api-config.conf /etc/monasca/api-config.conf
 
     sudo chown mon-api:root /etc/monasca/api-config.conf
 
@@ -1053,7 +1056,7 @@ function install_monasca_api_python {
 
     sudo ln -sf /etc/monasca/api-config.conf /etc/api-config.conf
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/api-config.ini /etc/monasca/api-config.ini
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/monasca-api/python/api-config.ini /etc/monasca/api-config.ini
 
     sudo chown mon-api:root /etc/monasca/api-config.ini
 
@@ -1068,7 +1071,7 @@ function install_monasca_api_python {
 
     sudo ln -sf /etc/monasca/api-config.ini /etc/api-config.ini
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/api-logging.conf /etc/monasca/api-logging.conf
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/monasca-api/python/api-logging.conf /etc/monasca/api-logging.conf
 
     sudo chown mon-api:root /etc/monasca/api-logging.conf
 
@@ -1081,7 +1084,7 @@ function clean_monasca_api_java {
 
     echo_summary "Clean Monasca monasca_api_java"
 
-    (cd "${MONASCA_API_DIR}" ; sudo mvn clean)
+    (cd "${MONASCA_BASE}"/monasca-api ; sudo mvn clean)
 
     sudo rm /etc/monasca/api-config.yml
 
@@ -1129,6 +1132,7 @@ function install_monasca_persister_java {
     echo_summary "Install Monasca monasca_persister_java"
 
     git_clone $MONASCA_PERSISTER_REPO $MONASCA_PERSISTER_DIR $MONASCA_PERSISTER_BRANCH
+
     (cd "${MONASCA_PERSISTER_DIR}"/java ; sudo mvn clean package -DskipTests)
 
     sudo cp -f "${MONASCA_PERSISTER_DIR}"/java/target/monasca-persister-1.1.0-SNAPSHOT-shaded.jar /opt/monasca/monasca-persister.jar
@@ -1151,7 +1155,7 @@ function install_monasca_persister_java {
 
     sudo chown root:monasca /etc/monasca
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-persister/persister-config.yml /etc/monasca/persister-config.yml
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/monasca-persister/persister-config.yml /etc/monasca/persister-config.yml
 
     sudo chown mon-persister:monasca /etc/monasca/persister-config.yml
 
@@ -1175,7 +1179,7 @@ function install_monasca_persister_java {
 
     fi
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-persister/monasca-persister.conf /etc/init/monasca-persister.conf
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/monasca-persister/monasca-persister.conf /etc/init/monasca-persister.conf
 
     if [[ "${MONASCA_METRICS_DB,,}" == 'vertica' ]]; then
 
@@ -1231,7 +1235,7 @@ function install_monasca_persister_python {
 
     sudo chown root:monasca /etc/monasca
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-persister/python/persister.conf /etc/monasca/persister.conf
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/monasca-persister/python/persister.conf /etc/monasca/persister.conf
 
     sudo chown mon-persister:monasca /etc/monasca/persister.conf
 
@@ -1261,7 +1265,7 @@ function install_monasca_persister_python {
     fi
 
     # /etc/monasca/persister-config.yml is needed for the Monasca Agent configuration.
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-persister/persister-config.yml /etc/monasca/persister-config.yml
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/monasca-persister/persister-config.yml /etc/monasca/persister-config.yml
 
     sudo chown mon-persister:monasca /etc/monasca/persister-config.yml
 
@@ -1278,7 +1282,7 @@ function install_monasca_persister_python {
 
     fi
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-persister/python/monasca-persister.conf /etc/init/monasca-persister.conf
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/monasca-persister/python/monasca-persister.conf /etc/init/monasca-persister.conf
 
     sudo chown root:root /etc/init/monasca-persister.conf
 
@@ -1360,7 +1364,7 @@ function install_monasca_notification {
 
     sudo chmod 0775 /etc/monasca
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-notification/notification.yaml /etc/monasca/notification.yaml
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/monasca-notification/notification.yaml /etc/monasca/notification.yaml
 
     sudo chown mon-notification:monasca /etc/monasca/notification.yaml
 
@@ -1377,7 +1381,7 @@ function install_monasca_notification {
 
     fi
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-notification/monasca-notification.conf /etc/init/monasca-notification.conf
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/monasca-notification/monasca-notification.conf /etc/init/monasca-notification.conf
 
     sudo chown root:root /etc/init/monasca-notification.conf
 
@@ -1453,7 +1457,7 @@ function install_storm {
 
     sudo ln -sf /var/log/storm /opt/storm/current/logs
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/storm/storm.yaml /opt/storm/apache-storm-${STORM_VERSION}/conf/storm.yaml
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/storm/storm.yaml /opt/storm/apache-storm-${STORM_VERSION}/conf/storm.yaml
 
     sudo chown storm:storm /opt/storm/apache-storm-${STORM_VERSION}/conf/storm.yaml
 
@@ -1466,13 +1470,13 @@ function install_storm {
 
     fi
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/storm/storm-nimbus.conf /etc/init/storm-nimbus.conf
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/storm/storm-nimbus.conf /etc/init/storm-nimbus.conf
 
     sudo chown root:root /etc/init/storm-nimbus.conf
 
     sudo chmod 0644 /etc/init/storm-nimbus.conf
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/storm/storm-supervisor.conf /etc/init/storm-supervisor.conf
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/storm/storm-supervisor.conf /etc/init/storm-supervisor.conf
 
     sudo chown root:root /etc/init/storm-supervisor.conf
 
@@ -1529,7 +1533,7 @@ function install_monasca_thresh {
 
     sudo chmod 0775 /etc/monasca
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-thresh/thresh-config.yml /etc/monasca/thresh-config.yml
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/monasca-thresh/thresh-config.yml /etc/monasca/thresh-config.yml
 
     sudo chown root:monasca /etc/monasca/thresh-config.yml
 
@@ -1545,7 +1549,7 @@ function install_monasca_thresh {
         sudo sed -i "s/jdbc:mysql:\/\/127\.0\.0\.1/jdbc:mysql:\/\/${SERVICE_HOST}/g" /etc/monasca/thresh-config.yml
     fi
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-thresh/monasca-thresh /etc/init.d/monasca-thresh
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/monasca-thresh/monasca-thresh /etc/init.d/monasca-thresh
 
     sudo chown root:root /etc/init.d/monasca-thresh
 
@@ -1583,7 +1587,7 @@ function install_monasca_keystone_client {
 
     unset PIP_VIRTUAL_ENV
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/keystone/create_monasca_service.py /usr/local/bin/create_monasca_service.py
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/keystone/create_monasca_service.py /usr/local/bin/create_monasca_service.py
 
     sudo chmod 0700 /usr/local/bin/create_monasca_service.py
 
@@ -1660,9 +1664,9 @@ function install_monasca_agent {
 
     sudo chmod 0755 /usr/lib/monasca/agent/custom_detect.d
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-agent/host_alive.yaml /etc/monasca/agent/conf.d/host_alive.yaml
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/monasca-agent/host_alive.yaml /etc/monasca/agent/conf.d/host_alive.yaml
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-agent/monasca-reconfigure /usr/local/bin/monasca-reconfigure
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/monasca-agent/monasca-reconfigure /usr/local/bin/monasca-reconfigure
 
     sudo chown root:root /usr/local/bin/monasca-reconfigure
 
@@ -1743,7 +1747,7 @@ function install_monasca_smoke_test {
 
     (cd /opt/monasca ; sudo -H ./bin/pip install influxdb)
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-smoke-test/smoke2_configs.py ${HPCLOUD_MON_MONASCA_CI_DIR}/tests/smoke/smoke2_configs.py
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/monasca-smoke-test/smoke2_configs.py ${HPCLOUD_MON_MONASCA_CI_DIR}/tests/smoke/smoke2_configs.py
 
     if [[ ${SERVICE_HOST} ]]; then
 
@@ -1845,9 +1849,7 @@ function install_monasca_grafana {
     export PATH=$PATH:/usr/local/go/bin
 
     if [ ! -e $GRAFANA_DIR ]; then
-        # grafana is large repository, so just clone what is actually needed
-        # which is recent commit
-        git_timed clone $GRAFANA_REPO $GRAFANA_DIR --depth 1
+        git_timed clone $GRAFANA_REPO $GRAFANA_DIR
     fi
     cd $GRAFANA_DIR
     git checkout $GRAFANA_BRANCH
@@ -1890,8 +1892,8 @@ function install_monasca_grafana {
 
     sudo chown -R grafana:grafana /var/lib/grafana /var/log/grafana
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/grafana/grafana.ini /etc/grafana/grafana.ini
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/grafana/grafana-server /etc/init.d/grafana-server
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/grafana/grafana.ini /etc/grafana/grafana.ini
+    sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/grafana/grafana-server /etc/init.d/grafana-server
     sudo sed -i "s#/usr/sbin#"${MONASCA_BASE}"/grafana-build/src/github.com/grafana/grafana/bin#g" /etc/init.d/grafana-server
     sudo sed -i "s#/usr/share#"${MONASCA_BASE}"/grafana-build/src/github.com/grafana#g" /etc/init.d/grafana-server
 
