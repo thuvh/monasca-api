@@ -29,7 +29,7 @@ test-output/
 logs/
 log/
 *config*.yml
-db/config.yml
+monasca_api/common/_db/config.yml
 virtenv/*
 .vagrant
 AUTHORS
