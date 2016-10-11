@@ -72,6 +72,39 @@ fi
 # go version
 export GO_VERSION=${GO_VERSION:-"1.7.1"}
 
+# repository settings
+MONASCA_PERSISTER_REPO=${MONASCA_PERSISTER_REPO:-${GIT_BASE}/openstack/monasca-persister.git}
+MONASCA_PERSISTER_BRANCH=${MONASCA_PERSISTER_BRANCH:-master}
+MONASCA_PERSISTER_DIR=${MONASCA_BASE}/monasca-persister
+
+MONASCA_NOTIFICATION_REPO=${MONASCA_NOTIFICATION_REPO:-${GIT_BASE}/openstack/monasca-notification.git}
+MONASCA_NOTIFICATION_BRANCH=${MONASCA_NOTIFICATION_BRANCH:-master}
+MONASCA_NOTIFICATION_DIR=${MONASCA_BASE}/monasca-notification
+
+MONASCA_THRESH_REPO=${MONASCA_THRESH_REPO:-${GIT_BASE}/openstack/monasca-thresh.git}
+MONASCA_THRESH_BRANCH=${MONASCA_THRESH_BRANCH:-master}
+MONASCA_THRESH_DIR=${MONASCA_BASE}/monasca-thresh
+
+MONASCA_CLIENT_REPO=${MONASCA_CLIENT_REPO:-${GIT_BASE}/openstack/python-monascaclient.git}
+MONASCA_CLIENT_BRANCH=${MONASCA_CLIENT_BRANCH:-master}
+MONASCA_CLIENT_DIR=${MONASCA_BASE}/python-monascaclient
+
+MONASCA_AGENT_REPO=${MONASCA_AGENT_REPO:-${GIT_BASE}/openstack/monasca-agent.git}
+MONASCA_AGENT_BRANCH=${MONASCA_AGENT_BRANCH:-master}
+MONASCA_AGENT_DIR=${MONASCA_BASE}/monasca-agent
+
+MONASCA_UI_REPO=${MONASCA_UI_REPO:-${GIT_BASE}/openstack/monasca-ui.git}
+MONASCA_UI_BRANCH=${MONASCA_UI_BRANCH:-master}
+MONASCA_UI_DIR=${MONASCA_BASE}/monasca-ui
+
+# dir not needed for datasource, it is cloned directly in plugins directory
+MONASCA_GRAFANA_DATASOURCE_REPO=${MONASCA_GRAFANA_DATASOURCE_REPO:-${GIT_BASE}/openstack/monasca-grafana-datasource.git}
+MONASCA_GRAFANA_DATASOURCE_BRANCH=${MONASCA_GRAFANA_DATASOURCE_BRANCH:-master}
+
+GRAFANA_REPO=${GRAFANA_REPO:-${GIT_BASE}/twc-openstack/grafana.git}
+GRAFANA_BRANCH=${GRAFANA_REPO:-"master-keystone"}
+GRAFANA_DIR=${GRAFANA_DIR}/grafana
+
 function pre_install_monasca {
 :
 }
@@ -1092,15 +1125,11 @@ function install_monasca_persister_java {
 
     echo_summary "Install Monasca monasca_persister_java"
 
-    if [[ ! -d "${MONASCA_BASE}"/monasca-persister ]]; then
+    git_clone $MONASCA_PERSISTER_REPO $MONASCA_PERSISTER_DIR $MONASCA_PERSISTER_BRANCH
 
-        sudo git clone https://git.openstack.org/openstack/monasca-persister "${MONASCA_BASE}"/monasca-persister
+    (cd "${MONASCA_PERSISTER_DIR}"/java ; sudo mvn clean package -DskipTests)
 
-    fi
-
-    (cd "${MONASCA_BASE}"/monasca-persister/java ; sudo mvn clean package -DskipTests)
-
-    sudo cp -f "${MONASCA_BASE}"/monasca-persister/java/target/monasca-persister-1.1.0-SNAPSHOT-shaded.jar /opt/monasca/monasca-persister.jar
+    sudo cp -f "${MONASCA_PERSISTER_DIR}"/java/target/monasca-persister-1.1.0-SNAPSHOT-shaded.jar /opt/monasca/monasca-persister.jar
 
     sudo useradd --system -g monasca mon-persister || true
 
@@ -1165,15 +1194,10 @@ function install_monasca_persister_python {
 
     echo_summary "Install Monasca monasca_persister_python"
 
-    if [[ ! -d "${MONASCA_BASE}"/monasca-persister ]]; then
+    git_clone $MONASCA_PERSISTER_REPO $MONASCA_PERSISTER_DIR $MONASCA_PERSISTER_BRANCH
+    (cd ${MONASCA_PERSISTER_DIR}; sudo python setup.py sdist)
 
-        sudo git clone https://git.openstack.org/openstack/monasca-persister "${MONASCA_BASE}"/monasca-persister
-
-    fi
-
-    (cd "${MONASCA_BASE}"/monasca-persister ; sudo python setup.py sdist)
-
-    MONASCA_PERSISTER_SRC_DIST=$(ls -td "${MONASCA_BASE}"/monasca-persister/dist/monasca-persister-*.tar.gz | head -1)
+    MONASCA_PERSISTER_SRC_DIST=$(ls -td "${MONASCA_PERSISTER_DIR}"/dist/monasca-persister-*.tar.gz | head -1)
 
     sudo mkdir -p /opt/monasca-persister || true
 
@@ -1268,7 +1292,7 @@ function clean_monasca_persister_java {
 
     echo_summary "Clean Monasca monasca_persister_java"
 
-    (cd "${MONASCA_BASE}"/monasca-persister ; sudo mvn clean)
+    (cd $MONASCA_PERSISTER_DIR ; sudo mvn clean)
 
     sudo rm /etc/init/monasca-persister.conf
 
@@ -1311,15 +1335,10 @@ function install_monasca_notification {
     apt_get -y install python-mysqldb
     apt_get -y install libmysqlclient-dev
 
-    if [[ ! -d "${MONASCA_BASE}"/monasca-notification ]]; then
+    git_clone $MONASCA_NOTIFICATION_REPO $MONASCA_NOTIFICATION_DIR $MONASCA_NOTIFICATION_BRANCH
+    (cd $MONASCA_NOTIFICATION_DIR ; sudo python setup.py sdist)
 
-        sudo git clone https://git.openstack.org/openstack/monasca-notification "${MONASCA_BASE}"/monasca-notification
-
-    fi
-
-    (cd "${MONASCA_BASE}"/monasca-notification ; sudo python setup.py sdist)
-
-    MONASCA_NOTIFICATION_SRC_DIST=$(ls -td "${MONASCA_BASE}"/monasca-notification/dist/monasca-notification-*.tar.gz | head -1)
+    MONASCA_NOTIFICATION_SRC_DIST=$(ls -td "${MONASCA_NOTIFICATION_DIR}"/dist/monasca-notification-*.tar.gz | head -1)
 
     PIP_VIRTUAL_ENV=/opt/monasca
 
@@ -1501,15 +1520,10 @@ function install_monasca_thresh {
 
     echo_summary "Install Monasca monasca_thresh"
 
-    if [[ ! -d "${MONASCA_BASE}"/monasca-thresh ]]; then
+    git_clone $MONASCA_THRESH_REPO $MONASCA_THRESH_DIR $MONASCA_THRESH_BRANCH
+    (cd "${MONASCA_THRESH_DIR}"/thresh ; sudo mvn clean package -DskipTests)
 
-      sudo git clone https://git.openstack.org/openstack/monasca-thresh.git "${MONASCA_BASE}"/monasca-thresh
-
-    fi
-
-    (cd "${MONASCA_BASE}"/monasca-thresh/thresh ; sudo mvn clean package -DskipTests)
-
-    sudo cp -f "${MONASCA_BASE}"/monasca-thresh/thresh/target/monasca-thresh-2.0.0-SNAPSHOT-shaded.jar /opt/monasca/monasca-thresh.jar
+    sudo cp -f "${MONASCA_THRESH_DIR}"/thresh/target/monasca-thresh-2.0.0-SNAPSHOT-shaded.jar /opt/monasca/monasca-thresh.jar
 
     sudo useradd --system -g monasca mon-thresh || true
 
@@ -1549,7 +1563,7 @@ function clean_monasca_thresh {
 
     echo_summary "Clean Monasca monasca_thresh"
 
-    (cd "${MONASCA_BASE}"/monasca-thresh/thresh ; sudo mvn clean)
+    (cd "${MONASCA_THRESH_DIR}"/thresh ; sudo mvn clean)
 
     sudo rm /etc/init.d/monasca-thresh
 
@@ -1611,26 +1625,16 @@ function install_monasca_agent {
     apt_get -y install build-essential
     apt_get -y install libxml2-dev
     apt_get -y install libxslt1-dev
+    
+    git_clone $MONASCA_CLIENT_REPO $MONASCA_CLIENT_DIR $MONASCA_CLIENT_BRANCH
+    (cd $MONASCA_CLIENT_DIR ; sudo python setup.py sdist)
 
-    if [[ ! -d "${MONASCA_BASE}"/python-monascaclient ]]; then
+    MONASCA_CLIENT_SRC_DIST=$(ls -td "${MONASCA_CLIENT_DIR}"/dist/python-monascaclient*.tar.gz | head -1)
 
-        sudo git clone https://git.openstack.org/openstack/python-monascaclient "${MONASCA_BASE}"/python-monascaclient
+    git_clone $MONASCA_AGENT_REPO $MONASCA_AGENT_DIR $MONASCA_AGENT_BRANCH
+    (cd $MONASCA_AGENT_DIR ; sudo python setup.py sdist)
 
-    fi
-
-    (cd "${MONASCA_BASE}"/python-monascaclient ; sudo python setup.py sdist)
-
-    MONASCA_CLIENT_SRC_DIST=$(ls -td "${MONASCA_BASE}"/python-monascaclient/dist/python-monascaclient*.tar.gz | head -1)
-
-    if [[ ! -d "${MONASCA_BASE}"/monasca-agent ]]; then
-
-        sudo git clone https://git.openstack.org/openstack/monasca-agent "${MONASCA_BASE}"/monasca-agent
-
-    fi
-
-    (cd "${MONASCA_BASE}"/monasca-agent ; sudo python setup.py sdist)
-
-    MONASCA_AGENT_SRC_DIST=$(ls -td "${MONASCA_BASE}"/monasca-agent/dist/monasca-agent-*.tar.gz | head -1)
+    MONASCA_AGENT_SRC_DIST=$(ls -td "${MONASCA_AGENT_DIR}"/dist/monasca-agent-*.tar.gz | head -1)
 
     sudo mkdir -p /opt/monasca-agent/
 
@@ -1786,17 +1790,14 @@ function install_monasca_horizon_ui {
 
     echo_summary "Install Monasca Horizon UI"
 
-    if [ ! -e "${MONASCA_BASE}"/monasca-ui ]; then
-
-        sudo git clone https://git.openstack.org/openstack/monasca-ui.git "${MONASCA_BASE}"/monasca-ui
-
-    fi
+    git_clone $MONASCA_UI_REPO $MONASCA_UI_DIR $MONASCA_UI_BRANCH
+    (cd $MONASCA_UI_DIR ; sudo python setup.py sdist)
 
     sudo pip install python-monascaclient
 
-    sudo ln -sf "${MONASCA_BASE}"/monasca-ui/monitoring/enabled/_50_admin_add_monitoring_panel.py "${MONASCA_BASE}"/horizon/openstack_dashboard/local/enabled/_50_admin_add_monitoring_panel.py
+    sudo ln -sf "${MONASCA_UI_DIR}"/monitoring/enabled/_50_admin_add_monitoring_panel.py "${MONASCA_BASE}"/horizon/openstack_dashboard/local/enabled/_50_admin_add_monitoring_panel.py
 
-    sudo ln -sf "${MONASCA_BASE}"/monasca-ui/monitoring "${MONASCA_BASE}"/horizon/monitoring
+    sudo ln -sf "${MONASCA_UI_DIR}"/monitoring "${MONASCA_BASE}"/horizon/monitoring
 
     if [[ ${SERVICE_HOST} ]]; then
 
@@ -1824,7 +1825,7 @@ function clean_monasca_horizon_ui {
 
     sudo rm -f "${MONASCA_BASE}"/horizon/monitoring
 
-    sudo rm -rf "${MONASCA_BASE}"/monasca-ui
+    sudo rm -rf "${MONASCA_UI_DIR}"
 
 }
 
@@ -1851,22 +1852,19 @@ function install_monasca_grafana {
     sudo tar -C /usr/local -xzf go${GO_VERSION}.linux-amd64.tar.gz
     export PATH=$PATH:/usr/local/go/bin
 
+    git_clone $GRAFANA_REPO $GRAFANA_DIR $GRAFANA_BRANCH
+    
     cd "${MONASCA_BASE}"
-    if [ ! -e grafana ]; then
-        git clone https://github.com/twc-openstack/grafana.git
-    fi
-    cd grafana
-    git checkout master-keystone
-    cd "${MONASCA_BASE}"
-
+    
     mkdir grafana-build || true
     cd grafana-build
     export GOPATH=`pwd`
     mkdir -p $GOPATH/src/github.com/grafana
     cd $GOPATH/src/github.com/grafana
-    cp -r "${MONASCA_BASE}"/grafana .
+    cp -r "${GRAFANA_DIR}" .
+    
     cd grafana
-    cp "${MONASCA_BASE}"/monasca-ui/grafana-dashboards/* ./public/dashboards/
+    cp "${MONASCA_UI_DIR}"/grafana-dashboards/* ./public/dashboards/
 
     go run build.go build
 
@@ -1889,10 +1887,8 @@ function install_monasca_grafana {
     sudo mkdir /var/lib/grafana/plugins || true
     sudo mkdir /var/log/grafana || true
 
-    cd /var/lib/grafana/plugins
-    if [ ! -e monasca-grafana-datasource ]; then
-        sudo git clone https://github.com/openstack/monasca-grafana-datasource.git
-    fi
+    MONASCA_GRAFANA_DATASOURCE_DIR=/var/lib/grafana/plugins/monasca-grafana-datasource
+    git_clone $MONASCA_GRAFANA_DATASOURCE_REPO $MONASCA_GRAFANA_DATASOURCE_DIR $MONASCA_GRAFANA_DATASOURCE_BRANCH
     sudo chown -R grafana:grafana /var/lib/grafana /var/log/grafana
 
     sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/grafana/grafana.ini /etc/grafana/grafana.ini
