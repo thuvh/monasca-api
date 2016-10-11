@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa6399be_27add6e9",
+        "filename": "devstack/files/kafka/kafka.service",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-10-11T18:05:40Z",
+      "side": 1,
+      "message": "Shouldn\u0027t also include network here ?",
+      "revId": "68536e4b647ddfb6cad362fd2cc5acf0be914ef3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa6399be_c70c1a97",
+        "filename": "devstack/files/monasca-api/monasca-api.service",
+        "patchSetId": 4
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-10-11T18:05:40Z",
+      "side": 1,
+      "message": "Hmm...monasca api needs network, kafka and specific database. Maybe that\u0027s not needed in devstack at all, but given the somehow exemplary status of it (IMHO) maybe we should define those units here.",
+      "revId": "68536e4b647ddfb6cad362fd2cc5acf0be914ef3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa6399be_671eeebb",
+        "filename": "devstack/files/monasca-api/python/monasca-api.service",
+        "patchSetId": 4
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-10-11T18:05:40Z",
+      "side": 1,
+      "message": "Same as in other monasca api service file.",
+      "revId": "68536e4b647ddfb6cad362fd2cc5acf0be914ef3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa6399be_877942ff",
+        "filename": "devstack/files/monasca-notification/monasca-notification.service",
+        "patchSetId": 4
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-10-11T18:05:40Z",
+      "side": 1,
+      "message": "Kafka, database and zookeeper + network ?",
+      "revId": "68536e4b647ddfb6cad362fd2cc5acf0be914ef3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
