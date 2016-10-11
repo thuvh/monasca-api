@@ -67,6 +67,11 @@ fi
 # go version
 export GO_VERSION=${GO_VERSION:-"1.7.1"}
 
+# repository settings
+MONASCA_PERSISTER_REPO=${MONASCA_PERSISTER_REPO:-${GIT_BASE}/openstack/monasca-persister.git}
+MONASCA_PERSISTER_BRANCH=${MONASCA_PERSISTER_BRANCH:-master}
+MONASCA_PERSISTER_DIR=${MONASCA_BASE}/monasca-persister
+
 function pre_install_monasca {
 :
 }
@@ -1074,16 +1079,12 @@ function clean_monasca_api_python {
 function install_monasca_persister_java {
 
     echo_summary "Install Monasca monasca_persister_java"
+    
+    git_clone $MONASCA_PERSISTER_REPO $MONASCA_PERSISTER_DIR $MONASCA_PERSISTER_BRANCH
 
-    if [[ ! -d "${MONASCA_BASE}"/monasca-persister ]]; then
+    (cd "${MONASCA_PERSISTER_DIR}"/java ; sudo mvn clean package -DskipTests)
 
-        sudo git clone https://git.openstack.org/openstack/monasca-persister "${MONASCA_BASE}"/monasca-persister
-
-    fi
-
-    (cd "${MONASCA_BASE}"/monasca-persister/java ; sudo mvn clean package -DskipTests)
-
-    sudo cp -f "${MONASCA_BASE}"/monasca-persister/java/target/monasca-persister-1.1.0-SNAPSHOT-shaded.jar /opt/monasca/monasca-persister.jar
+    sudo cp -f "${MONASCA_PERSISTER_DIR}"/java/target/monasca-persister-1.1.0-SNAPSHOT-shaded.jar /opt/monasca/monasca-persister.jar
 
     sudo useradd --system -g monasca mon-persister || true
 
@@ -1147,16 +1148,11 @@ function install_monasca_persister_java {
 function install_monasca_persister_python {
 
     echo_summary "Install Monasca monasca_persister_python"
+    
+    git_clone $MONASCA_PERSISTER_REPO $MONASCA_PERSISTER_DIR $MONASCA_PERSISTER_BRANCH
+    (cd "${MONASCA_PERSISTER_DIR}"/monasca-persister ; sudo python setup.py sdist)
 
-    if [[ ! -d "${MONASCA_BASE}"/monasca-persister ]]; then
-
-        sudo git clone https://git.openstack.org/openstack/monasca-persister "${MONASCA_BASE}"/monasca-persister
-
-    fi
-
-    (cd "${MONASCA_BASE}"/monasca-persister ; sudo python setup.py sdist)
-
-    MONASCA_PERSISTER_SRC_DIST=$(ls -td "${MONASCA_BASE}"/monasca-persister/dist/monasca-persister-*.tar.gz | head -1)
+    MONASCA_PERSISTER_SRC_DIST=$(ls -td "${MONASCA_PERSISTER_DIR}"/dist/monasca-persister-*.tar.gz | head -1)
 
     sudo mkdir -p /opt/monasca-persister || true
 
