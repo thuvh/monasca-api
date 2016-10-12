@@ -190,7 +190,7 @@ RBRACE = pyparsing.Suppress(pyparsing.Literal("}"))
 
 # Initialize non-ascii unicode code points in the Basic Multilingual Plane.
 unicode_printables = u''.join(
-    unichr(c) for c in xrange(128, 65536) if not unichr(c).isspace())
+    unichr(c) for c in range(128, 65536) if not unichr(c).isspace())
 
 # Does not like comma. No Literals from above allowed.
 valid_identifier_chars = (

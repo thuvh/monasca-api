@@ -63,7 +63,7 @@ class TestStatistics(base.BaseMonascaTest):
         cls._start_time_iso = start_time_iso
 
         num_measurements = 0
-        for i in xrange(constants.MAX_RETRIES):
+        for i in range(constants.MAX_RETRIES):
             resp, response_body = cls.monasca_client.\
                 list_measurements(query_param)
             elements = response_body['elements']
@@ -202,7 +202,7 @@ class TestStatistics(base.BaseMonascaTest):
         num_metrics = len(metric)
         self.monasca_client.create_metrics(metric)
         query_parms = '?name=' + name
-        for i in xrange(constants.MAX_RETRIES):
+        for i in range(constants.MAX_RETRIES):
             resp, response_body = self.monasca_client.list_metrics(query_parms)
             self.assertEqual(200, resp.status)
             elements = response_body['elements']
@@ -233,7 +233,7 @@ class TestStatistics(base.BaseMonascaTest):
         self.assertEqual(num_metrics, len(elements))
         self.assertEqual(first_element, elements[0])
 
-        for limit in xrange(1, num_metrics):
+        for limit in range(1, num_metrics):
             start_index = 0
             params = [('name', name),
                       ('merge_metrics', 'true'),
@@ -287,7 +287,7 @@ class TestStatistics(base.BaseMonascaTest):
             timestamp_to_iso(self._start_timestamp + 1000 * 4) + \
                       '&merge_metrics=True'
 
-        for i in xrange(constants.MAX_RETRIES):
+        for i in range(constants.MAX_RETRIES):
             resp, response_body = self.monasca_client.\
                 list_measurements(query_param)
             elements = response_body['elements']

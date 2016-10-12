@@ -666,8 +666,8 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
         self.assertEqual(first_element, elements[0])
         self.assertEqual(last_element, elements[1])
 
-        for offset in xrange(0, 2):
-            for limit in xrange(1, 3 - offset):
+        for offset in range(0, 2):
+            for limit in range(1, 3 - offset):
                 query_parms = '?offset=' + str(offset) + '&limit=' + str(limit)
                 resp, response_body = self.monasca_client.list_alarm_definitions(query_parms)
                 self.assertEqual(200, resp.status)
@@ -916,7 +916,7 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
         if expression is None:
             expression = "max(cpu.system_perc) > 0"
         response_body_list = []
-        for i in xrange(number_of_definitions):
+        for i in range(number_of_definitions):
             alarm_definition = helpers.create_alarm_definition(
                 name=data_utils.rand_name('alarm_definition'),
                 description=data_utils.rand_name('description'),
@@ -936,7 +936,7 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
 
     def _verify_alarm_definitions_list(self, observed, reference):
         self.assertEqual(len(reference), len(observed))
-        for i in xrange(len(reference)):
+        for i in range(len(reference)):
             self._verify_alarm_definitions_element(
                 reference[i], observed[i])
 

@@ -382,7 +382,7 @@ class TestNotificationMethods(base.BaseMonascaTest):
         self.assertEqual(first_element, elements[0])
 
         timeout = time.time() + 60 * 1   # 1 minute timeout
-        for limit in xrange(1, 5):
+        for limit in range(1, 5):
             next_element = elements[limit - 1]
             while True:
                 if time.time() < timeout:

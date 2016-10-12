@@ -305,7 +305,7 @@ class AlarmsRepository(mysql_repository.MySQLRepository,
                 elif '|' in parsed_dimension[1]:
                     values = parsed_dimension[1].encode('utf8').split('|')
                     value_sql = " and ("
-                    value_sql += " or ".join(["value = %s" for j in xrange(len(values))])
+                    value_sql += " or ".join(["value = %s" for j in range(len(values))])
                     value_sql += ') '
                 else:
                     values = [parsed_dimension[1]]
