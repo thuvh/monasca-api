@@ -53,7 +53,7 @@ class TestMetrics(base.BaseMonascaTest):
         self.assertEqual(204, resp.status)
         query_param = '?name=' + name + '&start_time=' + time_iso + \
                       '&end_time=' + end_time_iso
-        for i in xrange(constants.MAX_RETRIES):
+        for i in range(constants.MAX_RETRIES):
             resp, response_body = self.monasca_client.\
                 list_measurements(query_param)
             self.assertEqual(200, resp.status)
@@ -148,7 +148,7 @@ class TestMetrics(base.BaseMonascaTest):
         self.assertEqual(204, resp.status)
         query_param = '?name=' + name + '&start_time=' + str(time_iso) + \
                       '&end_time=' + str(end_time_iso)
-        for i in xrange(constants.MAX_RETRIES):
+        for i in range(constants.MAX_RETRIES):
             resp, response_body = self.monasca_client.\
                 list_measurements(query_param)
             self.assertEqual(200, resp.status)
@@ -229,7 +229,7 @@ class TestMetrics(base.BaseMonascaTest):
         self.assertEqual(204, resp.status)
         query_param = '?name=' + str(name) + '&start_time=' + str(time_iso) \
                       + '&end_time=' + str(end_time_iso)
-        for i in xrange(constants.MAX_RETRIES):
+        for i in range(constants.MAX_RETRIES):
             resp, response_body = self.monasca_client.\
                 list_measurements(query_param)
             self.assertEqual(200, resp.status)
@@ -398,7 +398,7 @@ class TestMetrics(base.BaseMonascaTest):
         resp, response_body = self.monasca_client.create_metrics(metric)
         self.assertEqual(204, resp.status)
         query_param = '?dimensions=' + key + ':' + value
-        for i in xrange(constants.MAX_RETRIES):
+        for i in range(constants.MAX_RETRIES):
             resp, response_body = self.monasca_client.list_metrics(query_param)
             self.assertEqual(200, resp.status)
             elements = response_body['elements']
@@ -466,7 +466,7 @@ class TestMetrics(base.BaseMonascaTest):
         resp, response_body = self.monasca_client.create_metrics(metric)
         self.assertEqual(204, resp.status)
         query_param = '?name=' + str(name)
-        for i in xrange(constants.MAX_RETRIES):
+        for i in range(constants.MAX_RETRIES):
             resp, response_body = self.monasca_client.list_metrics(query_param)
             self.assertEqual(200, resp.status)
             elements = response_body['elements']
@@ -533,7 +533,7 @@ class TestMetrics(base.BaseMonascaTest):
         ]
         self.monasca_client.create_metrics(metrics)
         query_param = '?name=' + name
-        for i in xrange(constants.MAX_RETRIES):
+        for i in range(constants.MAX_RETRIES):
             resp, response_body = self.monasca_client.list_metrics(query_param)
             elements = response_body['elements']
             if elements and len(elements) == 4:
@@ -554,11 +554,11 @@ class TestMetrics(base.BaseMonascaTest):
         self.assertEqual(4, len(elements))
         self.assertEqual(first_element, elements[0])
 
-        for metric_index in xrange(len(elements) - 1):
+        for metric_index in range(len(elements) - 1):
             metric = elements[metric_index]
             max_limit = 3 - metric_index
 
-            for limit in xrange(1, max_limit):
+            for limit in range(1, max_limit):
                 first_index = metric_index + 1
                 last_index = first_index + limit
                 expected_elements = elements[first_index:last_index]
@@ -572,7 +572,7 @@ class TestMetrics(base.BaseMonascaTest):
                 new_elements = response_body['elements']
 
                 self.assertEqual(limit, len(new_elements))
-                for i in xrange(len(expected_elements)):
+                for i in range(len(expected_elements)):
                     self.assertEqual(expected_elements[i], new_elements[i])
 
     def _verify_list_measurements_element(self, element, test_key, test_value):
@@ -645,7 +645,7 @@ class TestMetrics(base.BaseMonascaTest):
                                        timestamp=now)
 
         self.monasca_client.create_metrics(metric)
-        for timer in xrange(constants.MAX_RETRIES):
+        for timer in range(constants.MAX_RETRIES):
             query_parms = '?name=' + name + '&start_time=' + start_iso + '&end_time=' + end_iso
             resp, response_body = self.monasca_client.list_metrics(query_parms)
             self.assertEqual(200, resp.status)
@@ -678,7 +678,7 @@ class TestMetrics(base.BaseMonascaTest):
         return metric_dimensions
 
     def _verify_dimensions(self, query_param, metric_dimensions):
-        for i in xrange(constants.MAX_RETRIES):
+        for i in range(constants.MAX_RETRIES):
             resp, response_body = self.monasca_client.list_metrics(query_param)
             self.assertEqual(200, resp.status)
             elements = response_body['elements']
