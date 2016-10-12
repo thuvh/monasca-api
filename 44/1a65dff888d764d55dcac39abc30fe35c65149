@@ -1,0 +1,10 @@
+Code-Review+1: Jakub Wachowski <jakub.wachowski@ts.fujitsu.com>
+Code-Review+1: Kamil Choroba <kamil.choroba@est.fujitsu.com>
+Code-Review+2: Tomasz Trębski <tomasz.trebski@ts.fujitsu.com>
+Workflow+1: Tomasz Trębski <tomasz.trebski@ts.fujitsu.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Wed, 12 Oct 2016 08:12:33 +0000
+Reviewed-on: https://review.openstack.org/286782
+Project: openstack/monasca-api
+Branch: refs/heads/master
