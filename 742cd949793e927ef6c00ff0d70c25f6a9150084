@@ -22,6 +22,30 @@
       "revId": "742cd949793e927ef6c00ff0d70c25f6a9150084",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa6399be_f8ddd8e0",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 767,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-10-13T17:29:13Z",
+      "side": 1,
+      "message": "That\u0027s because uploading the schema is in wrong place. I addressed this issue in my change for Postgres -\u003e https://review.openstack.org/#/c/356403/",
+      "parentUuid": "fa6399be_4c91ad46",
+      "range": {
+        "startLine": 767,
+        "startChar": 55,
+        "endLine": 767,
+        "endChar": 64
+      },
+      "revId": "742cd949793e927ef6c00ff0d70c25f6a9150084",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
