@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa6399be_4c91ad46",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 767,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-10-13T15:16:13Z",
+      "side": 1,
+      "message": "MySQL in xenial does not allow connection except 127.0.0.1 in this process.\nAfter installation monasca process, it is able to connect other than 127.0.0.1.",
+      "range": {
+        "startLine": 767,
+        "startChar": 55,
+        "endLine": 767,
+        "endChar": 64
+      },
+      "revId": "742cd949793e927ef6c00ff0d70c25f6a9150084",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
