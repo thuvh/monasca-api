@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa6399be_149dd709",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 36
+      },
+      "lineNbr": 1903,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-10-14T10:50:34Z",
+      "side": 1,
+      "message": "This line \u003d bad merge",
+      "range": {
+        "startLine": 1902,
+        "startChar": 25,
+        "endLine": 1903,
+        "endChar": 43
+      },
+      "revId": "7847058fa880be62a28034041a2406b49ca9583f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
