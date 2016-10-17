@@ -248,7 +248,7 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
       sb.append(", 'SECOND', 'START') AS time_interval");
     }
 
-    sb.append(" FROM MonMetrics.Measurements ");
+    sb.append(" FROM MonMetrics.Measurements /*+projs('MonMetrics.Measurements_DBD_1_rep_MonMetrics')*/");
     sb.append("WHERE TO_HEX(definition_dimensions_id) IN (")
         .append(MetricQueries.buildMetricDefinitionSubSql(name, dimensions, null, null))
         .append(") ");

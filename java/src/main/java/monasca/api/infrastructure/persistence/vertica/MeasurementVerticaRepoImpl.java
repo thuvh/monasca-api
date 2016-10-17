@@ -52,7 +52,7 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
   private static final String FIND_BY_METRIC_DEF_SQL =
       "SELECT %s to_hex(mes.definition_dimensions_id) as def_dims_id, "
       + "mes.time_stamp, mes.value, mes.value_meta "
-      + "FROM MonMetrics.Measurements mes "
+      + "FROM MonMetrics.Measurements mes /*+projs('MonMetrics.Measurements_DBD_1_rep_MonMetrics')*/"
       + "WHERE mes.time_stamp >= :startTime "
       + "%s " // endtime and offset here
       + "AND TO_HEX(definition_dimensions_id) IN (%s) " // id subquery here
