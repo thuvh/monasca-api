@@ -1,4 +1,4 @@
-/* Copyright (c) 2014, 2016 Hewlett-Packard Development Company, L.P.
+/* (C) Copyright 2014,2016 Hewlett Packard Enterprise Development LP
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -52,7 +52,7 @@ public class MeasurementVerticaRepoImpl implements MeasurementRepo {
   private static final String FIND_BY_METRIC_DEF_SQL =
       "SELECT %s to_hex(mes.definition_dimensions_id) as def_dims_id, "
       + "mes.time_stamp, mes.value, mes.value_meta "
-      + "FROM MonMetrics.Measurements mes "
+      + "FROM MonMetrics.Measurements mes /*+projs('MonMetrics.Measurements_DBD_1_rep_MonMetrics')*/"
       + "WHERE mes.time_stamp >= :startTime "
       + "%s " // endtime and offset here
       + "AND TO_HEX(definition_dimensions_id) IN (%s) " // id subquery here

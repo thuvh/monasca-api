@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 Hewlett-Packard Development Company, L.P.
+ * (C) Copyright 2014,2016 Hewlett Packard Enterprise Development LP
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -248,7 +248,7 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
       sb.append(", 'SECOND', 'START') AS time_interval");
     }
 
-    sb.append(" FROM MonMetrics.Measurements ");
+    sb.append(" FROM MonMetrics.Measurements /*+projs('MonMetrics.Measurements_DBD_1_rep_MonMetrics')*/");
     sb.append("WHERE TO_HEX(definition_dimensions_id) IN (")
         .append(MetricQueries.buildMetricDefinitionSubSql(name, dimensions, null, null))
         .append(") ");
