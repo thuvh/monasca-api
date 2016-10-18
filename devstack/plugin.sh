@@ -72,6 +72,15 @@ fi
 # go version
 export GO_VERSION=${GO_VERSION:-"1.7.1"}
 
+# db users
+MON_DB_USERS=("notification" "monapi" "thresh")
+MON_DB_HOSTS=("%" "localhost")
+
+# if MYSQL_HOST has been set to sth else than local address add this to MON_DB_HOSTS
+if [ ${MYSQL_HOST} != 'localhost' ] || [ ${MYSQL_HOST} != "127.0.0.1" ]; then
+    MON_DB_HOSTS+=($MYSQL_HOST)
+fi
+
 function pre_install_monasca {
 :
 }
@@ -739,13 +748,12 @@ function install_schema {
     fi
 
     sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/schema/mon_mysql.sql /opt/monasca/sqls/mon.sql
-
     sudo chmod 0644 /opt/monasca/sqls/mon.sql
-
     sudo chown root:root /opt/monasca/sqls/mon.sql
 
-    # must login as root@localhost
-    sudo mysql -u$DATABASE_USER -p$DATABASE_PASSWORD -h$MYSQL_HOST < /opt/monasca/sqls/mon.sql || echo "Did the schema change? This process will fail on schema changes."
+    recreate_database mon
+    recreate_users mon $MON_DB_USERS $MON_DB_HOSTS
+    mysql -u$DATABASE_USER -p$DATABASE_PASSWORD -h$MYSQL_HOST < /opt/monasca/sqls/mon.sql || echo "Did the schema change? This process will fail on schema changes."
 
     sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/schema/winchester.sql /opt/monasca/sqls/winchester.sql
 
@@ -1919,6 +1927,26 @@ function clean_monasca_grafana {
 
     sudo rm -r /var/log/grafana
 
+}
+
+###### extra functions
+function recreate_users {
+  local db=$1
+  local users=$2
+  local hosts=$3
+  recreate_users_$DATABASE_TYPE $db $users $hosts
+}
+
+function recreate_users_mysql {
+  local db=$1
+  for user in ${users[*]}; do
+    for host in ${hosts[*]}; do
+      # loading grants needs to be done from localhost and by root at this very point
+      # after loading schema is moved to post-config it could be possible to this as
+      # DATABASE_USER
+      mysql -uroot -p$DATABASE_PASSWORD -h127.0.0.1 -e "GRANT ALL PRIVILEGES ON $db.* TO '$user'@'$host' identified by 'password';"
+    done
+  done
 }
 
 # Allows this script to be called directly outside of
