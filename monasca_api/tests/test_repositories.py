@@ -271,18 +271,14 @@ class TestRepoMetricsCassandra(testtools.TestCase):
                 "hostname": "host0",
                 "hosttype": "native",
                 "mount_point": "/",
-                "device": "rootfs"},
-            offset=None,
-            limit=1)
+                "device": "rootfs"})
 
         self.assertEqual([
             {
-                u'name': u'disk.space_used_perc',
-                u'id': u'01d39f19798ed27bbf458300bf843edd17654614'
+                u'name': u'cpu.idle_perc'
             },
             {
-                u'name': u'cpu.idle_perc',
-                u'id': u'042da8f7445d779f4bb7214aaf744e512d897ac7'
+                u'name': u'disk.space_used_perc'
             }
         ], result)
 

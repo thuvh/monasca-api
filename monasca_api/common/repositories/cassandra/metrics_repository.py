@@ -318,7 +318,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
 
         return metrics_list[0]['dimensions']
 
-    def list_metric_names(self, tenant_id, region, dimensions, offset, limit):
+    def list_metric_names(self, tenant_id, region, dimensions):
 
         try:
 
@@ -333,16 +333,6 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
             dimension_clause = self._build_dimensions_clause(dimensions, parms)
 
             select_stmt += dimension_clause
-
-            if offset:
-                select_stmt += ' and metric_hash > %s '
-                parms.append(bytearray(offset.decode('hex')))
-
-            if limit:
-                select_stmt += ' limit %s '
-                parms.append(limit + 1)
-
-            select_stmt += ' allow filtering'
 
             json_name_list = []
 
@@ -367,10 +357,10 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
 
                         break
 
-                metric[u'id'] = binascii.hexlify(bytearray(metric_hash))
+                if metric not in json_name_list:
+                    json_name_list.append(metric)
 
-                json_name_list.append(metric)
-
+            json_name_list = sorted(json_name_list)
             return json_name_list
 
         except Exception as ex:
