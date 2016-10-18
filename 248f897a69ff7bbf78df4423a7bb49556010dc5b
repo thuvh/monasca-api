@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa6399be_9cab451e",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-10-18T23:37:48Z",
+      "side": 1,
+      "message": "It doesn\u0027t look like metric_hash is used anymore.",
+      "range": {
+        "startLine": 326,
+        "startChar": 21,
+        "endLine": 326,
+        "endChar": 32
+      },
+      "revId": "248f897a69ff7bbf78df4423a7bb49556010dc5b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
