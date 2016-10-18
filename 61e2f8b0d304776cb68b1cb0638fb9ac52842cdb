@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa6399be_450e5be6",
+        "filename": "monasca_tempest_tests/tests/api/test_measurements.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-10-18T01:36:41Z",
+      "side": 1,
+      "message": "I think it should be URL encoded because it includes comma.",
+      "range": {
+        "startLine": 279,
+        "startChar": 33,
+        "endLine": 279,
+        "endChar": 42
+      },
+      "revId": "61e2f8b0d304776cb68b1cb0638fb9ac52842cdb",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
