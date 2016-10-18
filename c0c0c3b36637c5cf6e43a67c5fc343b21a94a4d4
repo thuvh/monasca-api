@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa6399be_24814990",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-10-18T17:49:28Z",
+      "side": 1,
+      "message": "something?",
+      "range": {
+        "startLine": 79,
+        "startChar": 32,
+        "endLine": 79,
+        "endChar": 35
+      },
+      "revId": "c0c0c3b36637c5cf6e43a67c5fc343b21a94a4d4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa6399be_3f5f960f",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 1940,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-10-18T17:49:28Z",
+      "side": 1,
+      "message": "Do you need a postgres version of this?",
+      "range": {
+        "startLine": 1940,
+        "startChar": 9,
+        "endLine": 1940,
+        "endChar": 29
+      },
+      "revId": "c0c0c3b36637c5cf6e43a67c5fc343b21a94a4d4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
