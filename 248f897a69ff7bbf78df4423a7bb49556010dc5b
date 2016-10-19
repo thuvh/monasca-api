@@ -22,6 +22,30 @@
       "revId": "248f897a69ff7bbf78df4423a7bb49556010dc5b",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa6399be_d7bf56a8",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-10-19T00:31:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa6399be_9cab451e",
+      "range": {
+        "startLine": 326,
+        "startChar": 21,
+        "endLine": 326,
+        "endChar": 32
+      },
+      "revId": "248f897a69ff7bbf78df4423a7bb49556010dc5b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
