@@ -56,19 +56,6 @@ if [ -n "$MYSQL_PASSWORD" ]; then
     DATABASE_PASSWORD=$MYSQL_PASSWORD
 fi
 
-# Determine if we are running in devstack-gate or devstack.
-if [[ $DEST ]]; then
-
-    # We are running in devstack-gate.
-    export MONASCA_BASE=${MONASCA_BASE:-"${DEST}"}
-
-else
-
-    # We are running in devstack.
-    export MONASCA_BASE=${MONASCA_BASE:-"/opt/stack"}
-
-fi
-
 # go version
 export GO_VERSION=${GO_VERSION:-"1.7.1"}
 
