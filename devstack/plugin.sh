@@ -1737,6 +1737,8 @@ function install_monasca_smoke_test {
     sudo sed -i "s/'hostname', '-f'/'hostname'/g" ${HPCLOUD_MON_MONASCA_CI_DIR}/tests/smoke/smoke_configs.py
 
     (cd /opt/monasca ; sudo -H ./bin/pip install influxdb)
+    (cd /opt/monasca ; sudo -H ./bin/pip install kafka)
+    (cd /opt/monasca ; sudo -H ./bin/pip install psutil)
 
     sudo cp -f "${MONASCA_BASE}"/monasca-api/devstack/files/monasca-smoke-test/smoke2_configs.py ${HPCLOUD_MON_MONASCA_CI_DIR}/tests/smoke/smoke2_configs.py
 
