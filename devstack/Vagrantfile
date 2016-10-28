@@ -80,8 +80,6 @@ GIT_DEPTH=1
 
 SERVICE_HOST=192.168.10.6
 HOST_IP=192.168.10.6
-DATABASE_HOST=192.168.10.6
-MYSQL_HOST=192.168.10.6
 HOST_IP_IFACE=eth1
 
 DATABASE_PASSWORD=secretdatabase
@@ -94,6 +92,9 @@ LOGDIR=$DEST/logs
 LOG_COLOR=False
 
 DEST=/opt/stack
+
+# HINT: If postgresql service is enabled, ORM is enforced
+MONASCA_DATABASE_USE_ORM=${MONASCA_DATABASE_USE_ORM:-false}
 
 disable_all_services
 enable_service rabbit mysql key tempest horizon
