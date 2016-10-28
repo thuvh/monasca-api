@@ -17,7 +17,6 @@
 */
 
 USE `mon`;
-
 SET foreign_key_checks = 0;
 
 /*
