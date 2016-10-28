@@ -29,6 +29,8 @@ MONASCA_PERSISTER_IMPLEMENTATION_LANG=${MONASCA_PERSISTER_IMPLEMENTATION_LANG:-p
 # MONASCA_METRICS_DB=${MONASCA_METRICS_DB:-cassandra}
 MONASCA_METRICS_DB=${MONASCA_METRICS_DB:-influxdb}
 
+MONASCA_DATABASE_USE_ORM=false
+
 # Turn on all the Monasca services by default. Currently enabling specific services
 # has no effect. All services are enabled by default. There is currently no mechanism
 # implemented to turn off specific Monasca services.
@@ -139,3 +141,8 @@ MONASCA_GRAFANA_DATASOURCE_DIR=${MONASCA_BASE}/monasca-grafana-datasource
 GRAFANA_REPO=${GRAFANA_REPO:-"https://github.com/twc-openstack/grafana.git"}
 GRAFANA_BRANCH=${GRAFANA_BRANCH:-"master-keystone"}
 GRAFANA_DIR=${MONASCA_BASE}/grafana
+
+# Database users
+MONASCA_API_DATABASE_USER="monapi"
+MONASCA_THRESH_DATABASE_USER="thresh"
+MONASCA_NOTIFICATION_DATABASE_USER="notification"

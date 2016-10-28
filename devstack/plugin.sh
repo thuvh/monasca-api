@@ -48,14 +48,6 @@ set -o errexit
 export MONASCA_API_IMPLEMENTATION_LANG=${MONASCA_API_IMPLEMENTATION_LANG:-python}
 export MONASCA_PERSISTER_IMPLEMENTATION_LANG=${MONASCA_PERSISTER_IMPLEMENTATION_LANG:-python}
 
-# Set default metrics DB to InfluxDB
-export MONASCA_METRICS_DB=${MONASCA_METRICS_DB:-influxdb}
-
-# Determine password for database (copied from devstack/lib/database)
-if [ -n "$MYSQL_PASSWORD" ]; then
-    DATABASE_PASSWORD=$MYSQL_PASSWORD
-fi
-
 # Determine if we are running in devstack-gate or devstack.
 if [[ $DEST ]]; then
 
@@ -69,131 +61,92 @@ else
 
 fi
 
+# Set default persistent layer settings
+export MONASCA_METRICS_DB=${MONASCA_METRICS_DB:-influxdb}
+# Make sure we use ORM mapping as default if postgresql is enabled
+if is_service_enabled mysql; then
+  export MONASCA_DATABASE_USE_ORM=${MONASCA_DATABASE_USE_ORM:-false}
+elif is_service_enabled postgresql; then
+  export MONASCA_DATABASE_USE_ORM=true
+fi
+
 # db users
-MON_DB_USERS=("notification" "monapi" "thresh")
+MON_DB_USERS=($MONASCA_API_DATABASE_USER $MONASCA_THRESH_DATABASE_USER $MONASCA_NOTIFICATION_DATABASE_USER)
 MON_DB_HOSTS=("%" "localhost" "$MYSQL_HOST")
 
 function pre_install_monasca {
-:
+  echo_summary "Pre-Installing Monasca Components"
+  install_git
+  install_maven
+  install_openjdk_7_jdk
+
+  install_zookeeper
+  install_kafka
+
+  if is_service_enabled monasca-storm; then
+      install_storm
+  fi
+
+  install_monasca_$MONASCA_METRICS_DB
 }
 
 function install_monasca {
-    if [[ -n ${SCREEN_LOGDIR} ]]; then
-        sudo ln -sf /var/log/influxdb/influxd.log ${SCREEN_LOGDIR}/screen-influxdb.log
 
-        sudo ln -sf /var/log/monasca/api/monasca-api.log ${SCREEN_LOGDIR}/screen-monasca-api.log
-
-        sudo ln -sf /var/log/monasca/persister/persister.log ${SCREEN_LOGDIR}/screen-monasca-persister.log || true
-
-        sudo ln -sf /var/log/monasca/notification/notification.log ${SCREEN_LOGDIR}/screen-monasca-notification.log || true
-
-        sudo ln -sf /var/log/monasca/agent/statsd.log ${SCREEN_LOGDIR}/screen-monasca-agent-statsd.log
-        sudo ln -sf /var/log/monasca/agent/supervisor.log ${SCREEN_LOGDIR}/screen-monasca-agent-supervisor.log
-        sudo ln -sf /var/log/monasca/agent/collector.log ${SCREEN_LOGDIR}/screen-monasca-agent-collector.log
-        sudo ln -sf /var/log/monasca/agent/forwarder.log ${SCREEN_LOGDIR}/screen-monasca-agent-forwarder.log
-
-        sudo ln -sf /var/log/storm/access.log ${SCREEN_LOGDIR}/screen-monasca-thresh-access.log
-        sudo ln -sf /var/log/storm/supervisor.log ${SCREEN_LOGDIR}/screen-monasca-thresh-supervisor.log
-        sudo ln -sf /var/log/storm/metrics.log ${SCREEN_LOGDIR}/screen-monasca-thresh-metrics.log
-        sudo ln -sf /var/log/storm/nimbus.log  ${SCREEN_LOGDIR}/screen-monasca-thresh-nimbus.log
-        sudo ln -sf /var/log/storm/worker-6701.log ${SCREEN_LOGDIR}/screen-monasca-thresh-worker-6701.log
-        sudo ln -sf /var/log/storm/worker-6702.log ${SCREEN_LOGDIR}/screen-monasca-thresh-worker-6702.log
-    fi
-
-    install_git
-
-    update_maven
+    echo_summary "Installing Monasca"
 
     install_monasca_virtual_env
-
-    install_openjdk_7_jdk
-
-    install_zookeeper
-
-    install_kafka
-
-    if [[ "${MONASCA_METRICS_DB,,}" == 'influxdb' ]]; then
-
-        install_monasca_influxdb
-
-    elif [[ "${MONASCA_METRICS_DB,,}" == 'vertica' ]]; then
-
-        install_monasca_vertica
-
-    elif [[ "${MONASCA_METRICS_DB,,}" == 'cassandra' ]]; then
-
-        install_monasca_cassandra
-
-    else
-
-        echo "Found invalid value for variable MONASCA_METRICS_DB: $MONASCA_METRICS_DB"
-        echo "Valid values for MONASCA_METRICS_DB are \"influxdb\", \"vertica\" and \"cassandra\""
-        die "Please set MONASCA_METRICS_DB to either \"influxdb\", \"vertica\" or \"cassandra\""
-
-    fi
-
     install_cli_creds
-
-    install_maven
-
     install_monasca_common
 
-    if [[ "${MONASCA_API_IMPLEMENTATION_LANG,,}" == 'java' ]]; then
-
-        install_monasca_api_java
-
-    elif [[ "${MONASCA_API_IMPLEMENTATION_LANG,,}" == 'python' ]]; then
-
-        install_monasca_api_python
-
-    else
-
-        echo "Found invalid value for variable MONASCA_API_IMPLEMENTATION_LANG: $MONASCA_API_IMPLEMENTATION_LANG"
-        echo "Valid values for MONASCA_API_IMPLEMENTATION_LANG are \"java\" and \"python\""
-        die "Please set MONASCA_API_IMPLEMENTATION_LANG to either \"java'' or \"python\""
-
-    fi
     if is_service_enabled monasca-persister; then
-        if [[ "${MONASCA_PERSISTER_IMPLEMENTATION_LANG,,}" == 'java' ]]; then
-
-            install_monasca_persister_java
-
-        elif [[ "${MONASCA_PERSISTER_IMPLEMENTATION_LANG,,}" == 'python' ]]; then
-
-            install_monasca_persister_python
-
-        else
-
-            echo "Found invalid value for varible MONASCA_PERSISTER_IMPLEMENTATION_LANG: $MONASCA_PERSISTER_IMPLEMENTATION_LANG"
-            echo "Valid values for MONASCA_PERSISTER_IMPLEMENTATION_LANG are \"java\" and \"python\""
-            die "Please set MONASCA_PERSISTER_IMPLEMENTATION_LANG to either \"java\" or \"python\""
-
-        fi
+      install_monasca_persister_$MONASCA_PERSISTER_IMPLEMENTATION_LANG
     fi
     if is_service_enabled monasca-notification; then
         install_monasca_notification
     fi
-
     if is_service_enabled monasca-thresh; then
-        install_storm
         install_monasca_thresh
+    fi
+    if is_service_enabled monasca-api; then
+      install_monasca_api_$MONASCA_API_IMPLEMENTATION_LANG
     fi
 
 }
 
-function update_maven {
-
-    apt_get -y remove maven2
-
-    apt_get -y install maven
-
+function post_config_monasca {
+  echo_summary "Configuring Monasca"
+  #(trebskit) Installing should happen in post-config phase
+  # at this point databases is already configured
+  install_schema
+  configure_screen
 }
 
-function post_config_monasca {
-    install_schema
+function configure_screen {
+  if [[ -n ${SCREEN_LOGDIR} ]]; then
+    sudo ln -sf /var/log/influxdb/influxd.log ${SCREEN_LOGDIR}/screen-influxdb.log || true
+
+    sudo ln -sf /var/log/monasca/api/monasca-api.log ${SCREEN_LOGDIR}/screen-monasca-api.log || true
+
+    sudo ln -sf /var/log/monasca/persister/persister.log ${SCREEN_LOGDIR}/screen-monasca-persister.log || true
+
+    sudo ln -sf /var/log/monasca/notification/notification.log ${SCREEN_LOGDIR}/screen-monasca-notification.log || true
+
+    sudo ln -sf /var/log/monasca/agent/statsd.log ${SCREEN_LOGDIR}/screen-monasca-agent-statsd.log || true
+    sudo ln -sf /var/log/monasca/agent/supervisor.log ${SCREEN_LOGDIR}/screen-monasca-agent-supervisor.log || true
+    sudo ln -sf /var/log/monasca/agent/collector.log ${SCREEN_LOGDIR}/screen-monasca-agent-collector.log || true
+    sudo ln -sf /var/log/monasca/agent/forwarder.log ${SCREEN_LOGDIR}/screen-monasca-agent-forwarder.log || true
+
+    sudo ln -sf /var/log/storm/access.log ${SCREEN_LOGDIR}/screen-monasca-thresh-access.log || true
+    sudo ln -sf /var/log/storm/supervisor.log ${SCREEN_LOGDIR}/screen-monasca-thresh-supervisor.log || true
+    sudo ln -sf /var/log/storm/metrics.log ${SCREEN_LOGDIR}/screen-monasca-thresh-metrics.log || true
+    sudo ln -sf /var/log/storm/nimbus.log  ${SCREEN_LOGDIR}/screen-monasca-thresh-nimbus.log || true
+    sudo ln -sf /var/log/storm/worker-6701.log ${SCREEN_LOGDIR}/screen-monasca-thresh-worker-6701.log || true
+    sudo ln -sf /var/log/storm/worker-6702.log ${SCREEN_LOGDIR}/screen-monasca-thresh-worker-6702.log || true
+  fi
 }
 
 function extra_monasca {
+    echo_summary "Installing additional monasca components"
 
     install_monasca_keystone_client
 
@@ -285,46 +238,18 @@ function clean_monasca {
 
     if is_service_enabled monasca-thresh; then
         clean_monasca_thresh
+    fi
+    if is_service_enabled monasca-storm; then
         clean_storm
     fi
-
-
     if is_service_enabled monasca-notification; then
         clean_monasca_notification
     fi
-
     if is_service_enabled monasca-persister; then
-        if [[ "${MONASCA_PERSISTER_IMPLEMENTATION_LANG,,}" == 'java' ]]; then
-
-            clean_monasca_persister_java
-
-        elif [[ "${MONASCA_PERSISTER_IMPLEMENTATION_LANG,,}" == 'python' ]]; then
-
-            clean_monasca_persister_python
-
-        else
-
-            echo "Found invalid value for varible MONASCA_PERSISTER_IMPLEMENTATION_LANG: $MONASCA_PERSISTER_IMPLEMENTATION_LANG"
-            echo "Valid values for MONASCA_PERSISTER_IMPLEMENTATION_LANG are \"java\" and \"python\""
-            die "Please set MONASCA_PERSISTER_IMPLEMENTATION_LANG to either \"java\" or \"python\""
-
-        fi
+        clean_monasca_persister_$MONASCA_PERSISTER_IMPLEMENTATION_LANG
     fi
-
-    if [[ "${MONASCA_API_IMPLEMENTATION_LANG,,}" == 'java' ]]; then
-
-        clean_monasca_api_java
-
-    elif [[ "${MONASCA_API_IMPLEMENTATION_LANG,,}" == 'python' ]]; then
-
-        clean_monasca_api_python
-
-    else
-
-        echo "Found invalid value for variable MONASCA_API_IMPLEMENTATION_LANG: $MONASCA_API_IMPLEMENTATION_LANG"
-        echo "Valid values for MONASCA_API_IMPLEMENTATION_LANG are \"java\" and \"python\""
-        die "Please set MONASCA_API_IMPLEMENTATION_LANG to either \"java\" or \"python\""
-
+    if is_service_enabled monasca-api; then
+        clean_monasca_api_$MONASCA_API_IMPLEMENTATION_LANG
     fi
 
     clean_monasca_common
@@ -335,25 +260,7 @@ function clean_monasca {
 
     clean_cli_creds
 
-    if [[ "${MONASCA_METRICS_DB,,}" == 'influxdb' ]]; then
-
-        clean_monasca_influxdb
-
-    elif [[ "${MONASCA_METRICS_DB,,}" == 'vertica' ]]; then
-
-        clean_monasca_vertica
-
-    elif [[ "${MONASCA_METRICS_DB,,}" == 'cassandra' ]]; then
-
-        clean_monasca_cassandra
-
-    else
-
-        echo "Found invalid value for variable MONASCA_METRICS_DB: $MONASCA_METRICS_DB"
-        echo "Valid values for MONASCA_METRICS_DB are \"influxdb\", \"vertica\" and \"cassandra\""
-        die "Please set MONASCA_METRICS_DB to either \"influxdb\", \"vertica\" or \"cassandra\""
-
-    fi
+    clean_monasca_$MONASCA_METRICS_DB
 
     clean_kafka
 
@@ -625,8 +532,8 @@ function install_monasca_cassandra {
 
     sudo service cassandra restart
 
-    echo "Sleep for 15 seconds to wait starting up Cassandra"
-    sleep 15s
+    echo "Sleep for 60 seconds to wait starting up Cassandra"
+    sleep 60s
 
     if [[ ${SERVICE_HOST} ]]; then
 
@@ -734,8 +641,9 @@ function install_schema {
 
     echo_summary "Install Monasca Schema"
 
-    sudo mkdir -p /opt/monasca/sqls || true
+    local databaseName="mon"
 
+    sudo mkdir -p /opt/monasca/sqls || true
     sudo chmod 0755 /opt/monasca/sqls
 
     if [[ "${MONASCA_METRICS_DB,,}" == 'influxdb' ]]; then
@@ -747,25 +655,21 @@ function install_schema {
         sudo chown root:root /opt/monasca/influxdb_setup.py
 
         sudo /opt/monasca/influxdb_setup.py
-
     fi
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/schema/mon_mysql.sql /opt/monasca/sqls/mon.sql
+    # copy the file with the $DATABASE_TYPE to just know what DB is used
+    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/schema/mon_$DATABASE_TYPE.sql /opt/monasca/sqls/mon_$DATABASE_TYPE.sql
+    sudo ln -sf /opt/monasca/sqls/mon_$DATABASE_TYPE.sql /opt/monasca/sqls/mon.sql
     sudo chmod 0644 /opt/monasca/sqls/mon.sql
     sudo chown root:root /opt/monasca/sqls/mon.sql
 
-    recreate_database mon
-    recreate_users mon MON_DB_USERS MON_DB_HOSTS
-    mysql -u$DATABASE_USER -p$DATABASE_PASSWORD -h$MYSQL_HOST < /opt/monasca/sqls/mon.sql || echo "Did the schema change? This process will fail on schema changes."
-
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/schema/winchester.sql /opt/monasca/sqls/winchester.sql
-
-    sudo chmod 0644 /opt/monasca/sqls/winchester.sql
-
-    sudo chown root:root /opt/monasca/sqls/winchester.sql
-
-    # must login as root@localhost
-    mysql -u$DATABASE_USER -p$DATABASE_PASSWORD -h$MYSQL_HOST < /opt/monasca/sqls/winchester.sql || echo "Did the schema change? This process will fail on schema changes."
+    recreate_database $databaseName
+    recreate_users $databaseName MON_DB_USERS MON_DB_HOSTS
+    if is_service_enabled mysql; then
+        sudo mysql -u$DATABASE_USER -p$DATABASE_PASSWORD -h$MYSQL_HOST < /opt/monasca/sqls/mon.sql || echo "Did the schema change? This process will fail on schema changes."
+    elif is_service_enabled postgresql; then
+        sudo -u postgres psql -d $databaseName -f /opt/monasca/sqls/mon.sql || echo "Did the schema change? This process will fail on schema changes."
+    fi
 
     sudo mkdir -p /opt/kafka/logs || true
 
@@ -786,12 +690,13 @@ function clean_schema {
 
     echo_summary "Clean Monasca Schema"
 
-    sudo echo "drop database winchester;" | mysql -u$DATABASE_USER -p$DATABASE_PASSWORD
+    if is_service_enabled mysql; then
+      sudo echo "drop database mon;" | mysql -u$DATABASE_USER -p$DATABASE_PASSWORD
+    elif is_service_enabled postgresql; then
+      sudo -u postgres psql -c "DROP DATABASE mon;"
+    fi
 
-    sudo echo "drop database mon;" | mysql -u$DATABASE_USER -p$DATABASE_PASSWORD
-
-    sudo rm -f /opt/monasca/sqls/winchester.sql
-
+    sudo rm -f /opt/monasca/sqls/mon_$DATABASE_TYPE.sql
     sudo rm -f /opt/monasca/sqls/mon.sql
 
     sudo rm -f /opt/monasca/influxdb_setup.py
@@ -819,11 +724,10 @@ function clean_openjdk_7_jdk {
 }
 
 function install_maven {
-
     echo_summary "Install Monasca Maven"
 
+    apt_get -y remove maven2
     apt_get -y install maven
-
 }
 
 function clean_maven {
@@ -899,38 +803,38 @@ function install_monasca_api_java {
 
     sudo chmod 0775 /etc/monasca
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/api-config.yml /etc/monasca/api-config.yml
+    local dbEngine="com.mysql.jdbc.jdbc2.optional.MysqlDataSource"
+    local dbPort=3306
 
-    if [[ "${MONASCA_METRICS_DB,,}" == 'vertica' ]]; then
-
-        # Switch databaseType from influxdb to vertica
-        sudo sed -i "s/databaseType: \"influxdb\"/databaseType: \"vertica\"/g" /etc/monasca/api-config.yml
-
+    if [[ ${MONASCA_DATABASE_USE_ORM} = true ]]; then
+      if is_service_enabled postgresql; then
+        dbEngine="org.postgresql.ds.PGPoolingDataSource"
+        dbPort=5432
+      fi
     fi
 
+    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/api-config.yml /etc/monasca/api-config.yml
     sudo chown mon-api:root /etc/monasca/api-config.yml
-
     sudo chmod 0640 /etc/monasca/api-config.yml
 
-    if [[ ${SERVICE_HOST} ]]; then
-
-        if [[ "${MONASCA_METRICS_DB,,}" == 'influxdb' ]]; then
-
-            # set influxdb ip address
-            sudo sed -i "s/url: \"http:\/\/127\.0\.0\.1:8086\"/url: \"http:\/\/${SERVICE_HOST}:8086\"/g" /etc/monasca/api-config.yml
-
-        fi
-
-        # set kafka ip address
-        sudo sed -i "s/127\.0\.0\.1:9092/${SERVICE_HOST}:9092/g" /etc/monasca/api-config.yml
-        # set zookeeper ip address
-        sudo sed -i "s/127\.0\.0\.1:2181/${SERVICE_HOST}:2181/g" /etc/monasca/api-config.yml
-        # set monasca api server listening ip address
-        sudo sed -i "s/bindHost: 127\.0\.0\.1/bindHost: ${SERVICE_HOST}/g" /etc/monasca/api-config.yml
-        # set mysql ip address
-        sudo sed -i "s/127\.0\.0\.1:3306/${SERVICE_HOST}:3306/g" /etc/monasca/api-config.yml
-
-    fi
+    sudo sed -e "
+      s|%KAFKA_HOST%|$SERVICE_HOST|g;
+      s|%ZOOKEEPER_HOST%|$SERVICE_HOST|g;
+      s|%MONASCA_DATABASE_USE_ORM%|$MONASCA_DATABASE_USE_ORM|g;
+      s|%MONASCA_API_DATABASE_ENGINE%|$dbEngine|g;
+      s|%MONASCA_API_DATABASE_USER%|$MONASCA_API_DATABASE_USER|g;
+      s|%DATABASE_HOST%|$DATABASE_HOST|g;
+      s|%DATABASE_PORT%|$dbPort|g;
+      s|%DATABASE_PASSWORD%|$DATABASE_PASSWORD|g;
+      s|%MONASCA_METRICS_DB%|$MONASCA_METRICS_DB|g;
+      s|%INFLUXDB_HOST%|$SERVICE_HOST|g;
+      s|%INFLUXDB_PORT%|8086|g;
+      s|%VERTICA_HOST%|$SERVICE_HOST|g;
+      s|%SERVICE_HOST%|$SERVICE_HOST|g;
+      s|%ADMIN_PASSWORD%|$ADMIN_PASSWORD|g;
+      s|%KEYSTONE_SERVICE_PORT%|$KEYSTONE_SERVICE_PORT|g;
+      s|%KEYSTONE_SERVICE_HOST%|$KEYSTONE_SERVICE_HOST|g;
+    " -i /etc/monasca/api-config.yml
 
 }
 
@@ -939,7 +843,6 @@ function install_monasca_api_python {
     echo_summary "Install Monasca monasca_api_python"
 
     apt_get -y install python-dev
-    apt_get -y install libmysqlclient-dev
 
     sudo mkdir -p /opt/monasca-api
 
@@ -950,9 +853,19 @@ function install_monasca_api_python {
     PIP_VIRTUAL_ENV=/opt/monasca-api
 
     pip_install gunicorn
-    pip_install PyMySQL
-    pip_install influxdb==2.8.0
-    pip_install cassandra-driver>=2.1.4,!=3.6.0
+    if [[ "${MONASCA_METRICS_DB,,}" == 'influxdb' ]]; then
+        pip_install influxdb==2.8.0
+    fi
+    if [[ "${MONASCA_METRICS_DB,,}" == 'cassandra' ]]; then
+        pip_install cassandra-driver>=2.1.4,!=3.6.0
+    fi
+    if is_service_enabled postgresql; then
+      apt_get -y install libpq-dev
+      pip_install psycopg2==2.6.2
+    elif is_service_enabled mysql; then
+      apt_get -y install libmysqlclient-dev
+      pip_install PyMySQL
+    fi
 
     (cd "${MONASCA_API_DIR}" ; sudo python setup.py sdist)
     MONASCA_API_SRC_DIST=$(ls -td "${MONASCA_API_DIR}"/dist/monasca-api-*.tar.gz)
@@ -987,59 +900,54 @@ function install_monasca_api_python {
 
     sudo chmod 0775 /etc/monasca
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/api-config.conf /etc/monasca/api-config.conf
-
-    sudo chown mon-api:root /etc/monasca/api-config.conf
-
-    sudo chmod 0660 /etc/monasca/api-config.conf
-
-    if [[ ${SERVICE_HOST} ]]; then
-
-        # set influxdb ip address
-        sudo sed -i "s/ip_address = 127\.0\.0\.1/ip_address = ${SERVICE_HOST}/g" /etc/monasca/api-config.conf
-        # set kafka ip address
-        sudo sed -i "s/127\.0\.0\.1:9092/${SERVICE_HOST}:9092/g" /etc/monasca/api-config.conf
-        # set mysql ip address
-        sudo sed -i "s/hostname = 127\.0\.0\.1/hostname = ${SERVICE_HOST}/g" /etc/monasca/api-config.conf
-        # set keystone ip address
-        sudo sed -i "s/identity_uri = http:\/\/127\.0\.0\.1:35357/identity_uri = http:\/\/${SERVICE_HOST}:35357/g" /etc/monasca/api-config.conf
-        # set cassandra ip address
-        sudo sed -i "s/cluster_ip_addresses: 127\.0\.0\.1/cluster_ip_addresses: ${SERVICE_HOST}/g" /etc/monasca/api-config.conf
-
+    # if monasca devstack would use DATABASE_USER everywhere, following line
+    # might be replaced with database_connection_url call
+    local dbEncoding="charset=utf8"
+    if is_service_enabled postgresql; then
+      dbEncoding="client_encoding=utf8"
     fi
-
+    local dbAlarmUrl=`get_database_type_$DATABASE_TYPE`://$MONASCA_API_DATABASE_USER:$DATABASE_PASSWORD@$DATABASE_HOST/mon?$dbEncoding
+    local dbMetricDriver="monasca_api.common.repositories.influxdb.metrics_repository:MetricsRepository"
     if [[ "${MONASCA_METRICS_DB,,}" == 'cassandra' ]]; then
-
-        # Switch databaseType from influxdb to cassandra
-        sudo sed -i "s/metrics_driver = monasca_api\.common\.repositories\.influxdb/#metrics_driver = monasca_api.common.repositories.influxdb/g" /etc/monasca/api-config.conf
-        sudo sed -i "s/#metrics_driver = monasca_api\.common\.repositories\.cassandra/metrics_driver = monasca_api.common.repositories.cassandra/g" /etc/monasca/api-config.conf
-
+      dbMetricDriver="monasca_api.common.repositories.cassandra.metrics_repository:MetricsRepository"
     fi
 
+    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/api-config.conf /etc/monasca/api-config.conf
+    sudo chown mon-api:root /etc/monasca/api-config.conf
+    sudo chmod 0660 /etc/monasca/api-config.conf
     sudo ln -sf /etc/monasca/api-config.conf /etc/api-config.conf
 
+    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/api-logging.conf /etc/monasca/api-logging.conf
+    sudo chown mon-api:root /etc/monasca/api-logging.conf
+    sudo chmod 0660 /etc/monasca/api-logging.conf
+    sudo ln -sf /etc/monasca/api-logging.conf /etc/api-logging.conf
+
     sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/api-config.ini /etc/monasca/api-config.ini
-
     sudo chown mon-api:root /etc/monasca/api-config.ini
-
     sudo chmod 0660 /etc/monasca/api-config.ini
-
-    if [[ ${SERVICE_HOST} ]]; then
-
-        # set monasca api server listening ip address
-        sudo sed -i "s/host = 127\.0\.0\.1/host = ${SERVICE_HOST}/g"  /etc/monasca/api-config.ini
-
-    fi
-
     sudo ln -sf /etc/monasca/api-config.ini /etc/api-config.ini
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/api-logging.conf /etc/monasca/api-logging.conf
+    sudo sed -e "
+      s|%KEYSTONE_AUTH_HOST%|$KEYSTONE_AUTH_HOST|g;
+      s|%KEYSTONE_AUTH_PORT%|$KEYSTONE_AUTH_PORT|g;
+      s|%KEYSTONE_SERVICE_HOST%|$KEYSTONE_SERVICE_HOST|g;
+      s|%KEYSTONE_SERVICE_PORT%|$KEYSTONE_SERVICE_PORT|g;
+      s|%DATABASE_HOST%|$DATABASE_HOST|g;
+      s|%DATABASE_PASSWORD%|$DATABASE_PASSWORD|g;
+      s|%MONASCA_API_DATABASE_USER%|$MONASCA_API_DATABASE_USER|g;
+      s|%CASSANDRA_HOST%|$SERVICE_HOST|g;
+      s|%INFLUXDB_HOST%|$SERVICE_HOST|g;
+      s|%INFLUXDB_PORT%|8086|g;
+      s|%KAFKA_HOST%|$SERVICE_HOST|g;
+      s|%MONASCA_API_DB_URL%|$dbAlarmUrl|g;
+      s|%MONASCA_METRIC_DB_DRIVER%|$dbMetricDriver|g;
+      s|%ADMIN_PASSWORD%|$ADMIN_PASSWORD|g;
+    " -i /etc/monasca/api-config.conf
 
-    sudo chown mon-api:root /etc/monasca/api-logging.conf
+    sudo sed -e "
+      s|%SERVICE_HOST%|$SERVICE_HOST|g;
+    " -i /etc/monasca/api-config.ini
 
-    sudo chmod 0660 /etc/monasca/api-logging.conf
-
-    sudo ln -sf /etc/monasca/api-logging.conf /etc/api-logging.conf
 }
 
 function clean_monasca_api_java {
@@ -1086,6 +994,13 @@ function clean_monasca_api_python {
     sudo rm -rf /opt/monasca-api
 
     sudo userdel mon-api
+
+    if is_service_enabled postgresql; then
+      apt_get -y purge libpq-dev
+    elif is_service_enabled mysql; then
+      apt_get -y purge libpq-dev
+      apt_get -y purge libmysqlclient-dev
+    fi
 
 }
 
@@ -1295,8 +1210,6 @@ function install_monasca_notification {
 
     apt_get -y install python-dev
     apt_get -y install build-essential
-    apt_get -y install python-mysqldb
-    apt_get -y install libmysqlclient-dev
 
     git_clone $MONASCA_NOTIFICATION_REPO $MONASCA_NOTIFICATION_DIR $MONASCA_NOTIFICATION_BRANCH
     (cd "${MONASCA_NOTIFICATION_DIR}" ; sudo python setup.py sdist)
@@ -1305,9 +1218,20 @@ function install_monasca_notification {
 
     PIP_VIRTUAL_ENV=/opt/monasca
 
-    pip_install $MONASCA_NOTIFICATION_SRC_DIST
+    if is_service_enabled postgresql; then
+      apt_get -y install libpq-dev
+      pip_install psycopg2==2.6.2
+    elif is_service_enabled mysql; then
+      apt_get -y install python-mysqldb
+      apt_get -y install libmysqlclient-dev
+      pip_install PyMySQL
+      pip_install mysql-python
+    fi
+    if [[ ${MONASCA_DATABASE_USE_ORM} == true ]]; then
+      pip_install sqlalchemy
+    fi
 
-    pip_install mysql-python
+    pip_install $MONASCA_NOTIFICATION_SRC_DIST
 
     unset PIP_VIRTUAL_ENV
 
@@ -1331,16 +1255,32 @@ function install_monasca_notification {
 
     sudo chmod 0660 /etc/monasca/notification.yaml
 
-     if [[ ${SERVICE_HOST} ]]; then
-
-        # set kafka ip address
-        sudo sed -i "s/url: \"127\.0\.0\.1:9092\"/url: \"${SERVICE_HOST}:9092\"/g" /etc/monasca/notification.yaml
-        # set zookeeper ip address
-        sudo sed -i "s/url: \"127\.0\.0\.1:2181\"/url: \"${SERVICE_HOST}:2181\"/g" /etc/monasca/notification.yaml
-        # set mysql ip address
-        sudo sed -i "s/host: \"127\.0\.0\.1\"/host: \"${SERVICE_HOST}\"/g" /etc/monasca/notification.yaml
-
+    local dbDriver
+    local dbEngine
+    local dbPort
+    if is_service_enabled postgresql; then
+      dbDriver="monasca_notification.common.repositories.postgres.pgsql_repo:PostgresqlRepo"
+      dbEngine="postgres"
+      dbPort=5432
+    else
+      dbDriver="monasca_notification.common.repositories.mysql.mysql_repo:MysqlRepo"
+      dbEngine="mysql"
+      dbPort=3306
     fi
+    if [[ ${MONASCA_DATABASE_USE_ORM} == true ]]; then
+      dbDriver="monasca_notification.common.repositories.orm.orm_repo:OrmRepo"
+    fi
+
+    sudo sed -e "
+      s|%DATABASE_HOST%|$DATABASE_HOST|g;
+      s|%DATABASE_PORT%|$dbPort|g;
+      s|%DATABASE_PASSWORD%|$DATABASE_PASSWORD|g;
+      s|%MONASCA_NOTIFICATION_DATABASE_USER%|$MONASCA_NOTIFICATION_DATABASE_USER|g;
+      s|%MONASCA_NOTIFICATION_DATABASE_DRIVER%|$dbDriver|g;
+      s|%MONASCA_NOTIFICATION_DATABASE_ENGINE%|$dbEngine|g;
+      s|%KAFKA_HOST%|$SERVICE_HOST|g;
+      s|%ZOOKEEPER_HOST%|$SERVICE_HOST|g;
+    " -i /etc/monasca/notification.yaml
 
     sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-notification/monasca-notification.conf /etc/init/monasca-notification.conf
 
@@ -1372,12 +1312,16 @@ function clean_monasca_notification {
 
     sudo rm /var/log/upstart/monasca-notification.log*
 
-    apt_get -y purge libmysqlclient-dev
-    apt_get -y purge python-mysqldb
     apt_get -y purge build-essential
     apt_get -y purge python-dev
-
     apt_get -y purge mailutils
+
+    if is_service_enabled postgresql; then
+      apt_get -y purge libpq-dev
+    elif is_service_enabled mysql; then
+      apt_get -y purge libmysqlclient-dev
+      apt_get -y purge python-mysqldb
+    fi
 
 }
 
@@ -1424,12 +1368,9 @@ function install_storm {
 
     sudo chmod 0644 /opt/storm/apache-storm-${STORM_VERSION}/conf/storm.yaml
 
-    if [[ ${SERVICE_HOST} ]]; then
-
-        # set zookeeper ip address
-        sudo sed -i "s/127\.0\.0\.1/${SERVICE_HOST}/g" /opt/storm/apache-storm-${STORM_VERSION}/conf/storm.yaml
-
-    fi
+    sudo sed -e "
+      s|%ZOOKEEPER_HOST%|$SERVICE_HOST|g;
+    " -i /opt/storm/apache-storm-${STORM_VERSION}/conf/storm.yaml
 
     sudo cp -f "${MONASCA_API_DIR}"/devstack/files/storm/storm-nimbus.conf /etc/init/storm-nimbus.conf
 
@@ -1495,20 +1436,30 @@ function install_monasca_thresh {
     sudo chmod 0775 /etc/monasca
 
     sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-thresh/thresh-config.yml /etc/monasca/thresh-config.yml
-
     sudo chown root:monasca /etc/monasca/thresh-config.yml
-
     sudo chmod 0640 /etc/monasca/thresh-config.yml
 
-    if [[ ${SERVICE_HOST} ]]; then
+    local dbEngine="com.mysql.jdbc.jdbc2.optional.MysqlDataSource"
+    local dbPort=3306
 
-        # set kafka ip address
-        sudo sed -i "s/metadataBrokerList: \"127\.0\.0\.1:9092\"/metadataBrokerList: \"${SERVICE_HOST}:9092\"/g" /etc/monasca/thresh-config.yml
-        # set zookeeper ip address
-        sudo sed -i "s/zookeeperConnect: \"127\.0\.0\.1:2181\"/zookeeperConnect: \"${SERVICE_HOST}:2181\"/g" /etc/monasca/thresh-config.yml
-        # set mysql ip address
-        sudo sed -i "s/jdbc:mysql:\/\/127\.0\.0\.1/jdbc:mysql:\/\/${SERVICE_HOST}/g" /etc/monasca/thresh-config.yml
+    if [[ ${MONASCA_DATABASE_USE_ORM} = true ]]; then
+      if is_service_enabled postgresql; then
+        dbEngine="org.postgresql.ds.PGPoolingDataSource"
+        dbPort=5432
+      fi
     fi
+
+    sudo sed -e "
+      s|%ZOOKEEPER_HOST%|$SERVICE_HOST|g;
+      s|%KAFKA_HOST%|$SERVICE_HOST|g;
+      s|%MONASCA_THRESH_DATABASE_ENGINE%|$dbEngine|g;
+      s|%MONASCA_DATABASE_USE_ORM%|$MONASCA_DATABASE_USE_ORM|g;
+      s|%MONASCA_THRESH_DATABASE_USER%|$MONASCA_THRESH_DATABASE_USER|g;
+      s|%DATABASE_TYPE%|$DATABASE_TYPE|g;
+      s|%DATABASE_HOST%|$DATABASE_HOST|g;
+      s|%DATABASE_PASSWORD%|$DATABASE_PASSWORD|g;
+      s|%DATABASE_PORT%|$dbPort|g;
+    " -i /etc/monasca/thresh-config.yml
 
     sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-thresh/monasca-thresh /etc/init.d/monasca-thresh
 
@@ -1641,7 +1592,6 @@ function install_monasca_agent {
         sudo sed -i "s/--monasca_url 'http:\/\/127\.0\.0\.1:8070\/v2\.0'/--monasca_url 'http:\/\/${SERVICE_HOST}:8070\/v2\.0'/" /usr/local/bin/monasca-reconfigure
         sudo sed -i "s/--keystone_url 'http:\/\/127\.0\.0\.1:35357\/v3'/--keystone_url 'http:\/\/${SERVICE_HOST}:35357\/v3'/" /usr/local/bin/monasca-reconfigure
     fi
-
 }
 
 function clean_monasca_agent {
@@ -1895,11 +1845,22 @@ function recreate_users_mysql {
       # loading grants needs to be done from localhost and by root at this very point
       # after loading schema is moved to post-config it could be possible to this as
       # DATABASE_USER
-      mysql -uroot -p$DATABASE_PASSWORD -h127.0.0.1 -e "GRANT ALL PRIVILEGES ON $db.* TO '$user'@'$host' identified by 'password';"
+      mysql -uroot -p$DATABASE_PASSWORD -h127.0.0.1 -e "GRANT ALL PRIVILEGES ON $db.* TO '$user'@'$host' identified by '$DATABASE_PASSWORD';"
     done
   done
 }
 
+function recreate_users_postgresql {
+  local db=$1
+  local -n users=$2
+  local dbPermissions="SELECT, UPDATE, INSERT, DELETE, REFERENCES, CONNECT"
+
+  for user in "${users[@]}"; do
+    sudo -u root sudo -u postgres -i psql -c "CREATE USER $user WITH PASSWORD '$DATABASE_PASSWORD'"
+    sudo -u root sudo -u postgres -i psql -c "GRANT ALL PRIVILEGES ON $db TO $user"
+    sudo -u root sudo -u postgres -i psql -c "GRANT $dbPermissions ON ALL TABLES IN SCHEMA public TO $user"
+  done
+}
 # Allows this script to be called directly outside of
 # the devstack infrastructure code. Uncomment to use.
 #if [[ $(type -t is_service_enabled) != 'function' ]]; then
