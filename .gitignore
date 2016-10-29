@@ -33,3 +33,6 @@ db/config.yml
 virtenv/*
 .vagrant
 AUTHORS
+
+# do not commit any log file from devstack
+devstack/*.log
