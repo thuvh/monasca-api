@@ -53,7 +53,7 @@ class Alarms(alarms_api_v2.AlarmsV2API,
 
         helpers.validate_authorization(req, self._default_authorized_roles)
 
-        tenant_id = helpers.get_tenant_id(req)
+        tenant_id = req.project_id
 
         alarm = helpers.read_http_resource(req)
         schema_alarm.validate(alarm)
@@ -81,7 +81,7 @@ class Alarms(alarms_api_v2.AlarmsV2API,
 
         helpers.validate_authorization(req, self._default_authorized_roles)
 
-        tenant_id = helpers.get_tenant_id(req)
+        tenant_id = req.project_id
 
         alarm = helpers.read_http_resource(req)
         schema_alarm.validate(alarm)
@@ -108,7 +108,7 @@ class Alarms(alarms_api_v2.AlarmsV2API,
 
         helpers.validate_authorization(req, self._default_authorized_roles)
 
-        tenant_id = helpers.get_tenant_id(req)
+        tenant_id = req.project_id
 
         self._alarm_delete(tenant_id, alarm_id)
 
@@ -116,7 +116,7 @@ class Alarms(alarms_api_v2.AlarmsV2API,
 
     def on_get(self, req, res, alarm_id=None):
         helpers.validate_authorization(req, self._get_alarms_authorized_roles)
-        tenant_id = helpers.get_tenant_id(req)
+        tenant_id = req.project_id
 
         if alarm_id is None:
             query_parms = falcon.uri.parse_query_string(req.query_string)
@@ -399,7 +399,7 @@ class AlarmsCount(alarms_api_v2.AlarmsCountV2API, alarming.Alarming):
 
     def on_get(self, req, res):
         helpers.validate_authorization(req, self._get_alarms_authorized_roles)
-        tenant_id = helpers.get_tenant_id(req)
+        tenant_id = req.project_id
         query_parms = falcon.uri.parse_query_string(req.query_string)
 
         if 'state' in query_parms:
@@ -507,7 +507,7 @@ class AlarmsStateHistory(alarms_api_v2.AlarmsStateHistoryV2API,
 
         if alarm_id is None:
             helpers.validate_authorization(req, self._get_alarms_authorized_roles)
-            tenant_id = helpers.get_tenant_id(req)
+            tenant_id = req.project_id
             start_timestamp = helpers.get_query_starttime_timestamp(req, False)
             end_timestamp = helpers.get_query_endtime_timestamp(req, False)
             query_parms = falcon.uri.parse_query_string(req.query_string)
@@ -523,7 +523,7 @@ class AlarmsStateHistory(alarms_api_v2.AlarmsStateHistoryV2API,
 
         else:
             helpers.validate_authorization(req, self._get_alarms_authorized_roles)
-            tenant_id = helpers.get_tenant_id(req)
+            tenant_id = req.project_id
             offset = helpers.get_query_param(req, 'offset')
             limit = helpers.get_limit(req)
 

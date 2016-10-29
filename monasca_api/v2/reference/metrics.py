@@ -131,7 +131,7 @@ class Metrics(metrics_api_v2.MetricsV2API):
 
     def on_get(self, req, res):
         helpers.validate_authorization(req, self._get_metrics_authorized_roles)
-        tenant_id = helpers.get_tenant_id(req)
+        tenant_id = req.project_id
         name = helpers.get_query_name(req)
         helpers.validate_query_name(name)
         dimensions = helpers.get_query_dimensions(req)
@@ -171,7 +171,7 @@ class MetricsMeasurements(metrics_api_v2.MetricsMeasurementsV2API):
 
     def on_get(self, req, res):
         helpers.validate_authorization(req, self._get_metrics_authorized_roles)
-        tenant_id = helpers.get_tenant_id(req)
+        tenant_id = req.project_id
         name = helpers.get_query_name(req, True)
         helpers.validate_query_name(name)
         dimensions = helpers.get_query_dimensions(req)
@@ -230,7 +230,7 @@ class MetricsStatistics(metrics_api_v2.MetricsStatisticsV2API):
 
     def on_get(self, req, res):
         helpers.validate_authorization(req, self._get_metrics_authorized_roles)
-        tenant_id = helpers.get_tenant_id(req)
+        tenant_id = req.project_id
         name = helpers.get_query_name(req, True)
         helpers.validate_query_name(name)
         dimensions = helpers.get_query_dimensions(req)
@@ -292,7 +292,7 @@ class MetricsNames(metrics_api_v2.MetricsNamesV2API):
 
     def on_get(self, req, res):
         helpers.validate_authorization(req, self._get_metrics_authorized_roles)
-        tenant_id = helpers.get_tenant_id(req)
+        tenant_id = req.project_id
         dimensions = helpers.get_query_dimensions(req)
         helpers.validate_query_dimensions(dimensions)
         offset = helpers.get_query_param(req, 'offset')
@@ -331,7 +331,7 @@ class DimensionValues(metrics_api_v2.DimensionValuesV2API):
 
     def on_get(self, req, res):
         helpers.validate_authorization(req, self._get_metrics_authorized_roles)
-        tenant_id = helpers.get_tenant_id(req)
+        tenant_id = req.project_id
         metric_name = helpers.get_query_param(req, 'metric_name')
         dimension_name = helpers.get_query_param(req, 'dimension_name',
                                                  required=True)
@@ -372,7 +372,7 @@ class DimensionNames(metrics_api_v2.DimensionNamesV2API):
 
     def on_get(self, req, res):
         helpers.validate_authorization(req, self._get_metrics_authorized_roles)
-        tenant_id = helpers.get_tenant_id(req)
+        tenant_id = req.project_id
         metric_name = helpers.get_query_param(req, 'metric_name')
         offset = helpers.get_query_param(req, 'offset')
         limit = helpers.get_limit(req)
