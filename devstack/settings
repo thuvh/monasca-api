@@ -42,8 +42,8 @@ enable_service monasca
 # Monasca infrastructure services
 #
 
-# devstack zookeeper
-enable_service zookeeper
+# devstack kafka/zookeeper
+enable_service devstack-plugin-kafka
 
 # Monasca databases
 # MySQL is already enabled in devstack
@@ -52,23 +52,20 @@ enable_service monasca-influxdb
 # Apache Storm
 enable_service monasca-storm
 
-# monasca-kafka depends on devstack-dlm-zookeeper
-enable_service monasca-kafka
-
 #
 # Monasca core services
 #
 
-# monasca-api depends on monasca-influxdb, MySQL, monasca-kafka
+# monasca-api depends on monasca-influxdb, MySQL, kafka
 enable_service monasca-api
 
-# monasca-persister depends on monasca-influxdb, monasca-kafka
+# monasca-persister depends on monasca-influxdb, kafka
 enable_service monasca-persister
 
-# monasca-notification depends on MySQL, monasca-kafka
+# monasca-notification depends on MySQL, kafka
 enable_service monasca-notification
 
-# monasca-thresh depends on MySQL, monasca-kafka, monasca-storm
+# monasca-thresh depends on MySQL, kafka, monasca-storm
 enable_service monasca-thresh
 
 # monasca-agent depends on monasca-api
@@ -84,10 +81,6 @@ enable_service monasca-cli
 INFLUXDB_VERSION=${INFLUXDB_VERSION:-0.9.5}
 VERTICA_VERSION=${VERTICA_VERSION:-7.2.1-0}
 CASSANDRA_VERSION=${CASSANDRA_VERSION:-37x}
-# Kafka deb consists of the version of scala plus the version of kafka
-BASE_KAFKA_VERSION=${BASE_KAFKA_VERSION:-0.8.1.1}
-SCALA_VERSION=${SCALA_VERSION:-2.9.2}
-KAFKA_VERSION=${KAFKA_VERSION:-${SCALA_VERSION}-${BASE_KAFKA_VERSION}}
 STORM_VERSION=${STORM_VERSION:-1.0.2}
 GO_VERSION=${GO_VERSION:-"1.7.1"}
 NODE_JS_VERSION=${NODE_JS_VERSION:-"4.0.0"}
