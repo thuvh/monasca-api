@@ -95,8 +95,6 @@ function install_monasca {
 
     install_openjdk_7_jdk
 
-    install_kafka
-
     if [[ "${MONASCA_METRICS_DB,,}" == 'influxdb' ]]; then
 
         install_monasca_influxdb
@@ -240,8 +238,6 @@ function unstack_monasca {
 
     stop_service monasca-api || true
 
-    stop_service kafka || true
-
     sudo /etc/init.d/influxdb stop || true
 
     stop_service verticad || true
@@ -347,8 +343,6 @@ function clean_monasca {
 
     fi
 
-    clean_kafka
-
     clean_openjdk_7_jdk
 
     clean_monasca_virtual_env
@@ -377,91 +371,6 @@ function clean_monasca_virtual_env {
     sudo rm -rf /opt/monasca
 
     sudo groupdel monasca
-
-}
-
-function install_kafka {
-
-    echo_summary "Install Monasca Kafka"
-
-    if [[ "$OFFLINE" != "True" ]]; then
-        sudo curl http://apache.mirrors.tds.net/kafka/${BASE_KAFKA_VERSION}/kafka_${KAFKA_VERSION}.tgz \
-            -o /root/kafka_${KAFKA_VERSION}.tgz
-    fi
-
-    sudo groupadd --system kafka || true
-
-    sudo useradd --system -g kafka kafka || true
-
-    sudo tar -xzf /root/kafka_${KAFKA_VERSION}.tgz -C /opt
-
-    sudo ln -sf /opt/kafka_${KAFKA_VERSION} /opt/kafka
-
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/kafka/kafka-server-start.sh /opt/kafka_${KAFKA_VERSION}/bin/kafka-server-start.sh
-
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/kafka/kafka.conf /etc/init/kafka.conf
-
-    sudo chown root:root /etc/init/kafka.conf
-
-    sudo chmod 644 /etc/init/kafka.conf
-
-    sudo mkdir -p /var/kafka || true
-
-    sudo chown kafka:kafka /var/kafka
-
-    sudo chmod 755 /var/kafka
-
-    sudo rm -rf /var/kafka/lost+found
-
-    sudo mkdir -p /var/log/kafka || true
-
-    sudo chown kafka:kafka /var/log/kafka
-
-    sudo chmod 755 /var/log/kafka
-
-    sudo ln -sf /opt/kafka/config /etc/kafka
-
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/kafka/log4j.properties /etc/kafka/log4j.properties
-
-    sudo chown kafka:kafka /etc/kafka/log4j.properties
-
-    sudo chmod 644 /etc/kafka/log4j.properties
-
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/kafka/server.properties /etc/kafka/server.properties
-
-    sudo chown kafka:kafka /etc/kafka/server.properties
-
-    sudo chmod 644 /etc/kafka/server.properties
-
-    if [[ ${SERVICE_HOST} ]]; then
-        sudo sed -i "s/host\.name=127\.0\.0\.1/host.name=${SERVICE_HOST}/g" /etc/kafka/server.properties
-    fi
-
-    sudo start kafka || sudo restart kafka
-
-}
-
-function clean_kafka {
-
-    echo_summary "Clean Monasca Kafka"
-
-    sudo rm -rf /var/kafka
-
-    sudo rm -rf /var/log/kafka
-
-    sudo rm -rf /etc/kafka
-
-    sudo rm -rf /opt/kafka
-
-    sudo rm -rf /etc/init/kafka.conf
-
-    sudo userdel kafka
-
-    sudo groupdel kafka
-
-    sudo rm -rf /opt/kafka_${KAFKA_VERSION}
-
-    sudo rm -rf /root/kafka_${KAFKA_VERSION}.tgz
 
 }
 
@@ -706,12 +615,6 @@ function install_schema {
     # must login as root@localhost
     mysql -u$DATABASE_USER -p$DATABASE_PASSWORD -h$MYSQL_HOST < /opt/monasca/sqls/winchester.sql || echo "Did the schema change? This process will fail on schema changes."
 
-    sudo mkdir -p /opt/kafka/logs || true
-
-    sudo chown kafka:kafka /opt/kafka/logs
-
-    sudo chmod 0766 /opt/kafka/logs
-
     /opt/kafka/bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 64 --topic metrics
     /opt/kafka/bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 12 --topic events
     /opt/kafka/bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 12 --topic alarm-state-transitions
@@ -860,8 +763,6 @@ function install_monasca_api_java {
 
         fi
 
-        # set kafka ip address
-        sudo sed -i "s/127\.0\.0\.1:9092/${SERVICE_HOST}:9092/g" /etc/monasca/api-config.yml
         # set monasca api server listening ip address
         sudo sed -i "s/bindHost: 127\.0\.0\.1/bindHost: ${SERVICE_HOST}/g" /etc/monasca/api-config.yml
         # set mysql ip address
@@ -934,8 +835,6 @@ function install_monasca_api_python {
 
         # set influxdb ip address
         sudo sed -i "s/ip_address = 127\.0\.0\.1/ip_address = ${SERVICE_HOST}/g" /etc/monasca/api-config.conf
-        # set kafka ip address
-        sudo sed -i "s/127\.0\.0\.1:9092/${SERVICE_HOST}:9092/g" /etc/monasca/api-config.conf
         # set mysql ip address
         sudo sed -i "s/hostname = 127\.0\.0\.1/hostname = ${SERVICE_HOST}/g" /etc/monasca/api-config.conf
         # set keystone ip address
@@ -1139,8 +1038,6 @@ function install_monasca_persister_python {
 
     if [[ ${SERVICE_HOST} ]]; then
 
-        # set kafka ip address
-        sudo sed -i "s/uri = 127\.0\.0\.1:9092/uri = ${SERVICE_HOST}:9092/g" /etc/monasca/persister.conf
         # set influxdb ip address
         sudo sed -i "s/ip_address = 127\.0\.0\.1/ip_address = ${SERVICE_HOST}/g" /etc/monasca/persister.conf
         # set cassandra ip address
@@ -1264,8 +1161,6 @@ function install_monasca_notification {
 
      if [[ ${SERVICE_HOST} ]]; then
 
-        # set kafka ip address
-        sudo sed -i "s/url: \"127\.0\.0\.1:9092\"/url: \"${SERVICE_HOST}:9092\"/g" /etc/monasca/notification.yaml
         # set mysql ip address
         sudo sed -i "s/host: \"127\.0\.0\.1\"/host: \"${SERVICE_HOST}\"/g" /etc/monasca/notification.yaml
 
@@ -1424,8 +1319,6 @@ function install_monasca_thresh {
 
     if [[ ${SERVICE_HOST} ]]; then
 
-        # set kafka ip address
-        sudo sed -i "s/metadataBrokerList: \"127\.0\.0\.1:9092\"/metadataBrokerList: \"${SERVICE_HOST}:9092\"/g" /etc/monasca/thresh-config.yml
         # set mysql ip address
         sudo sed -i "s/jdbc:mysql:\/\/127\.0\.0\.1/jdbc:mysql:\/\/${SERVICE_HOST}/g" /etc/monasca/thresh-config.yml
     fi
@@ -1526,7 +1419,7 @@ function install_monasca_agent {
 
     (cd /opt/monasca-agent ; sudo ./bin/pip install $MONASCA_CLIENT_SRC_DIST)
 
-    (cd /opt/monasca-agent ; sudo ./bin/pip install kafka-python==0.9.2)
+    (cd /opt/monasca-agent ; sudo ./bin/pip install kafka-python)
 
     sudo chown $STACK_USER:monasca /opt/monasca-agent
 
@@ -1631,15 +1524,7 @@ function install_monasca_smoke_test {
 
     sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-smoke-test/smoke2_configs.py ${HPCLOUD_MON_MONASCA_CI_DIR}/tests/smoke/smoke2_configs.py
 
-    if [[ ${SERVICE_HOST} ]]; then
-
-        sudo /opt/monasca/bin/python ${HPCLOUD_MON_MONASCA_CI_DIR}/tests/smoke/smoke2.py --monapi ${SERVICE_HOST} --kafka ${SERVICE_HOST} --zoo ${SERVICE_HOST} --mysql ${SERVICE_HOST} || true
-
-    else
-
-        sudo /opt/monasca/bin/python ${HPCLOUD_MON_MONASCA_CI_DIR}/tests/smoke/smoke2.py --monapi "127.0.0.1" --kafka "127.0.0.1" --zoo "127.0.0.1" --mysql "127.0.0.1" || true
-
-    fi
+    sudo /opt/monasca/bin/python ${HPCLOUD_MON_MONASCA_CI_DIR}/tests/smoke/smoke2.py --monapi "127.0.0.1" --kafka "127.0.0.1" --zoo "127.0.0.1" --mysql "127.0.0.1" || true
 
     (cd /opt/monasca ; LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 OS_USERNAME=admin OS_PASSWORD=secretadmin OS_PROJECT_NAME=test OS_AUTH_URL=http://127.0.0.1:35357/v3 bash -c "sudo /opt/monasca/bin/python ${HPCLOUD_MON_MONASCA_CI_DIR}/tests/smoke/smoke.py" || true)
 }
