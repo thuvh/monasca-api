@@ -60,7 +60,7 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
 
         self._validate_alarm_definition(alarm_definition)
 
-        tenant_id = helpers.get_tenant_id(req)
+        tenant_id = req.project_id
         name = get_query_alarm_definition_name(alarm_definition)
         expression = get_query_alarm_definition_expression(alarm_definition)
         description = get_query_alarm_definition_description(alarm_definition)
@@ -85,7 +85,7 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
     def on_get(self, req, res, alarm_definition_id=None):
         if alarm_definition_id is None:
             helpers.validate_authorization(req, self._get_alarmdefs_authorized_roles)
-            tenant_id = helpers.get_tenant_id(req)
+            tenant_id = req.project_id
             name = helpers.get_query_name(req)
             dimensions = helpers.get_query_dimensions(req)
             severity = helpers.get_query_param(req, "severity", default_val=None)
@@ -118,7 +118,7 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
 
         else:
             helpers.validate_authorization(req, self._get_alarmdefs_authorized_roles)
-            tenant_id = helpers.get_tenant_id(req)
+            tenant_id = req.project_id
 
             result = self._alarm_definition_show(tenant_id,
                                                  alarm_definition_id)
@@ -137,7 +137,7 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
 
         self._validate_alarm_definition(alarm_definition, require_all=True)
 
-        tenant_id = helpers.get_tenant_id(req)
+        tenant_id = req.project_id
 
         name = get_query_alarm_definition_name(alarm_definition)
         expression = get_query_alarm_definition_expression(alarm_definition)
@@ -174,7 +174,7 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
 
         alarm_definition = helpers.read_json_msg_body(req)
 
-        tenant_id = helpers.get_tenant_id(req)
+        tenant_id = req.project_id
 
         # Optional args
         name = get_query_alarm_definition_name(alarm_definition,
@@ -217,7 +217,7 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
     def on_delete(self, req, res, alarm_definition_id):
 
         helpers.validate_authorization(req, self._default_authorized_roles)
-        tenant_id = helpers.get_tenant_id(req)
+        tenant_id = req.project_id
         self._alarm_definition_delete(tenant_id, alarm_definition_id)
         res.status = falcon.HTTP_204
 
