@@ -112,8 +112,6 @@ function install_monasca {
 
     install_openjdk_8_jdk
 
-    install_kafka
-
     if [[ "${MONASCA_METRICS_DB,,}" == 'influxdb' ]]; then
 
         install_monasca_influxdb
@@ -262,8 +260,6 @@ function unstack_monasca {
 
     stop_service monasca-api || true
 
-    stop_service kafka || true
-
     stop_service influxdb || true
 
     stop_service verticad || true
@@ -369,8 +365,6 @@ function clean_monasca {
 
     fi
 
-    clean_kafka
-
     clean_openjdk_8_jdk
 
     clean_monasca_virtual_env
@@ -399,92 +393,6 @@ function clean_monasca_virtual_env {
     sudo rm -rf /opt/monasca
 
     sudo groupdel monasca
-
-}
-
-function install_kafka {
-
-    echo_summary "Install Monasca Kafka"
-
-    local kafka_tarball=kafka_${KAFKA_VERSION}.tgz
-    local kafka_tarball_url=http://apache.mirrors.tds.net/kafka/${BASE_KAFKA_VERSION}/${kafka_tarball}
-    local kafka_tarball_dest=${FILES}/${kafka_tarball}
-
-    download_file ${kafka_tarball_url} ${kafka_tarball_dest}
-
-    sudo groupadd --system kafka || true
-
-    sudo useradd --system -g kafka kafka || true
-
-    sudo tar -xzf ${kafka_tarball_dest} -C /opt
-
-    sudo ln -sf /opt/kafka_${KAFKA_VERSION} /opt/kafka
-
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/kafka/kafka-server-start.sh /opt/kafka_${KAFKA_VERSION}/bin/kafka-server-start.sh
-
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/kafka/kafka.service /etc/systemd/system/kafka.service
-
-    sudo chown root:root /etc/systemd/system/kafka.service
-
-    sudo chmod 644 /etc/systemd/system/kafka.service
-
-    sudo mkdir -p /var/kafka || true
-
-    sudo chown kafka:kafka /var/kafka
-
-    sudo chmod 755 /var/kafka
-
-    sudo rm -rf /var/kafka/lost+found
-
-    sudo mkdir -p /var/log/kafka || true
-
-    sudo chown kafka:kafka /var/log/kafka
-
-    sudo chmod 755 /var/log/kafka
-
-    sudo ln -sf /opt/kafka/config /etc/kafka
-
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/kafka/log4j.properties /etc/kafka/log4j.properties
-
-    sudo chown kafka:kafka /etc/kafka/log4j.properties
-
-    sudo chmod 644 /etc/kafka/log4j.properties
-
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/kafka/server.properties /etc/kafka/server.properties
-
-    sudo chown kafka:kafka /etc/kafka/server.properties
-
-    sudo chmod 644 /etc/kafka/server.properties
-
-    sudo systemctl enable kafka
-
-    sudo systemctl start kafka || sudo systemctl restart kafka
-
-}
-
-function clean_kafka {
-
-    echo_summary "Clean Monasca Kafka"
-
-    sudo rm -rf /var/kafka
-
-    sudo rm -rf /var/log/kafka
-
-    sudo rm -rf /etc/kafka
-
-    sudo rm -rf /opt/kafka
-
-    sudo systemctl disable kafka
-
-    sudo rm -rf /etc/systemd/system/kafka.service
-
-    sudo userdel kafka
-
-    sudo groupdel kafka
-
-    sudo rm -rf /opt/kafka_${KAFKA_VERSION}
-
-    sudo rm -rf ${FILES}/kafka_${KAFKA_VERSION}.tgz
 
 }
 
