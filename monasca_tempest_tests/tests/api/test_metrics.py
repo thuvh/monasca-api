@@ -574,7 +574,7 @@ class TestMetrics(base.BaseMonascaTest):
             resp, response_body = self.monasca_client.list_metrics(query_param)
             self.assertEqual(200, resp.status)
             elements = response_body['elements']
-            if len(elements) == 2:
+            if len(elements) >= 2:
                 dimension_sets = []
                 for element in elements:
                     dimension_sets.append(element['dimensions'])
@@ -586,7 +586,7 @@ class TestMetrics(base.BaseMonascaTest):
             if i == constants.MAX_RETRIES - 1:
                 error_msg = "Timeout on waiting for metrics: at least " \
                             "2 metrics are needed. Current number of " \
-                            "metrics = 0"
+                            "metrics = {}".format(len(elements))
                 self.fail(error_msg)
 
     def _create_metrics_with_different_dimensions(self, same_name=True):
