@@ -16,6 +16,7 @@
 
 from oslo_config import cfg
 from oslo_config import types
+from oslo_db import options
 
 
 """Configurations for reference implementation
@@ -152,16 +153,14 @@ mysql_group = cfg.OptGroup(name='mysql', title='mysql')
 cfg.CONF.register_group(mysql_group)
 cfg.CONF.register_opts(mysql_opts, mysql_group)
 
-sql_opts = [cfg.StrOpt('url', default=None),
-            cfg.StrOpt('host', default=None),
-            cfg.StrOpt('username', default=None),
-            cfg.StrOpt('password', default=None, secret=True),
-            cfg.StrOpt('drivername', default=None),
-            cfg.IntOpt('port', default=None),
-            cfg.StrOpt('database', default=None),
-            cfg.StrOpt('query', default=None)]
-sql_group = cfg.OptGroup(name='database', title='sql')
 
+def set_db_defaults():
+    # Update the default QueuePool parameters. These can be tweaked by the
+    # conf variables - max_pool_size, max_overflow and pool_timeout
+    options.set_defaults(
+        cfg.CONF,
+        connection='sqlite://',
+        sqlite_db='', max_pool_size=10,
+        max_overflow=20, pool_timeout=10)
 
-cfg.CONF.register_group(sql_group)
-cfg.CONF.register_opts(sql_opts, sql_group)
+set_db_defaults()
