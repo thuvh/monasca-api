@@ -16,7 +16,6 @@
 from oslo_config import cfg
 from oslo_log import log
 
-from sqlalchemy.engine.url import URL, make_url
 from sqlalchemy import MetaData
 
 from monasca_api.common.repositories import exceptions
@@ -34,23 +33,30 @@ class SQLRepository(object):
 
             self.conf = cfg.CONF
             url = None
+            oslo_options = ["mysql_sql_mode", "idle_timeout", "max_pool_size",
+                            "max_retries", "retry_interval", "max_overflow",
+                            "pool_timeout"]
+            engine_args = {}
             if self.conf.mysql.database_name is not None:
                 settings_db = (self.conf.mysql.username,
                                self.conf.mysql.password,
                                self.conf.mysql.hostname,
                                self.conf.mysql.database_name)
-                url = make_url("mysql+pymysql://%s:%s@%s/%s" % settings_db)
+                url = "mysql+pymysql://%s:%s@%s/%s" % settings_db
             else:
+                database_conf = dict(self.conf.database)
+                for option in oslo_options:
+                    if option in database_conf:
+                        engine_args[option] = database_conf.pop(option)
                 if self.conf.database.url is not None:
-                    url = make_url(self.conf.database.url)
+                    url = self.conf.database.url
                 else:
-                    database_conf = dict(self.conf.database)
                     if 'url' in database_conf:
                         del database_conf['url']
-                    url = URL(**database_conf)
+                    url = str(URL(**database_conf))
 
-            from sqlalchemy import create_engine
-            self._db_engine = create_engine(url)
+            from oslo_db.sqlalchemy.engines import create_engine
+            self._db_engine = create_engine(url, **engine_args)
 
             self.metadata = MetaData()
 

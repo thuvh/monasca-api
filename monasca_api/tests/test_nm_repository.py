@@ -30,9 +30,9 @@ CONF = cfg.CONF
 class TestNotificationMethodRepoDB(testtools.TestCase, fixtures.TestWithFixtures):
     @classmethod
     def setUpClass(cls):
-        from sqlalchemy import engine_from_config
+        from oslo_db.sqlalchemy.engines import create_engine
 
-        engine = engine_from_config({'url': 'sqlite://'}, prefix='')
+        engine = create_engine('sqlite://')
 
         qry = open('monasca_api/tests/sqlite_alarm.sql', 'r').read()
         sconn = engine.raw_connection()
