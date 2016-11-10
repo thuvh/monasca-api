@@ -84,7 +84,25 @@ enable_service monasca-smoke-test
 # Dependent Software Versions
 #
 
-INFLUXDB_VERSION=${INFLUXDB_VERSION:-0.9.5}
+if [[ "${MONASCA_API_IMPLEMENTATION_LANG,,}" == 'java' ]]; then
+
+    INFLUXDB_VERSION=${INFLUXDB_VERSION:-0.9.5}
+
+elif [[ "${MONASCA_API_IMPLEMENTATION_LANG,,}" == 'python' ]]; then
+
+    INFLUXDB_VERSION=${INFLUXDB_VERSION:-1.1.0}
+    # INFLUXDB_VERSION=${INFLUXDB_VERSION:-1.0.2}
+    # INFLUXDB_VERSION=${INFLUXDB_VERSION:-0.11.1-1}
+    # INFLUXDB_VERSION=${INFLUXDB_VERSION:-0.9.5}
+
+else
+
+    echo "Found invalid value for variable MONASCA_API_IMPLEMENTATION_LANG: $MONASCA_API_IMPLEMENTATION_LANG"
+    echo "Valid values for MONASCA_API_IMPLEMENTATION_LANG are \"java\" and \"python\""
+    die "Please set MONASCA_API_IMPLEMENTATION_LANG to either \"java'' or \"python\""
+
+fi
+
 VERTICA_VERSION=${VERTICA_VERSION:-7.2.1-0}
 CASSANDRA_VERSION=${CASSANDRA_VERSION:-37x}
 # Kafka deb consists of the version of scala plus the version of kafka
