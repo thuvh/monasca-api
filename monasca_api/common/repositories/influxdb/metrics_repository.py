@@ -278,24 +278,52 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
 
                 for tag_values in series[u'values']:
 
-                    dimensions = {
-                        name: value
-                        for name, value in zip(series[u'columns'], tag_values)
-                        if value and not name.startswith(u'_')
-                    }
+                    if u'name' in series:
 
-                    if self._has_measurements(tenant_id,
-                                              region,
-                                              series[u'name'],
-                                              dimensions,
-                                              start_timestamp,
-                                              end_timestamp):
-                        metric = {u'id': str(metric_id),
-                                  u'name': series[u'name'],
-                                  u'dimensions': dimensions}
-                        metric_id += 1
+                        dimensions = {
+                            name: value
+                            for name, value in zip(series[u'columns'], tag_values)
+                            if value and not name.startswith(u'_')
+                        }
 
-                        json_metric_list.append(metric)
+                        if self._has_measurements(tenant_id,
+                                                  region,
+                                                  series[u'name'],
+                                                  dimensions,
+                                                  start_timestamp,
+                                                  end_timestamp):
+                            metric = {u'id': str(metric_id),
+                                      u'name': series[u'name'],
+                                      u'dimensions': dimensions}
+                            metric_id += 1
+
+                            json_metric_list.append(metric)
+
+                    else:
+
+                        split_tag_values = tag_values[0].split(',')
+                        metric_name = split_tag_values[0]
+
+                        dimensions = {}
+                        for tag_value in split_tag_values[1:]:
+                            name_value = tag_value.split('=')
+                            name = name_value[0]
+                            value = name_value[1]
+                            if value and not name.startswith(u'_'):
+                                dimensions[name] = value
+
+                        if self._has_measurements(tenant_id,
+                                                  region,
+                                                  metric_name,
+                                                  dimensions,
+                                                  start_timestamp,
+                                                  end_timestamp):
+                            metric = {u'id': str(metric_id),
+                                      u'name': metric_name,
+                                      u'dimensions': dimensions}
+                            metric_id += 1
+
+                            json_metric_list.append(metric)
 
         return json_metric_list
 
