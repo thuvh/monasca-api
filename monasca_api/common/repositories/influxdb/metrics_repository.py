@@ -15,6 +15,7 @@
 # under the License.
 from datetime import datetime
 from datetime import timedelta
+from distutils import version
 import json
 
 from influxdb import client
@@ -35,12 +36,12 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
     def __init__(self):
 
         try:
-
             self.conf = cfg.CONF
             self.influxdb_client = client.InfluxDBClient(
                 self.conf.influxdb.ip_address, self.conf.influxdb.port,
                 self.conf.influxdb.user, self.conf.influxdb.password,
                 self.conf.influxdb.database_name)
+            self._influxdb_version = self._get_influxdb_version()
 
         except Exception as ex:
             LOG.exception(ex)
@@ -222,24 +223,62 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
     def _build_serie_dimension_values(self, series_names, dimension_name):
         dim_values = []
         json_dim_value_list = []
+
         if not series_names:
             return json_dim_value_list
+        if 'series' not in series_names.raw:
+            return json_dim_value_list
+        if not dimension_name:
+            return json_dim_value_list
 
-        if 'series' in series_names.raw:
+        # In InfluxDB v0.11.0 the SHOW SERIES output changed.
+        # See, https://github.com/influxdata/influxdb/blob/master/CHANGELOG.md#v0110-2016-03-22
+        if self._influxdb_version < version.StrictVersion('0.11.0'):
+            if 'series' in series_names.raw:
+                for series in series_names.raw['series']:
+                    for tag_values in series[u'values']:
+
+                        dims = {
+                            name: value
+                            for name, value in zip(series[u'columns'], tag_values)
+                            if value and not name.startswith(u'_')
+                        }
+
+                        if dimension_name in dims and dims[dimension_name] not in\
+                                dim_values:
+                            dim_values.append(dims[dimension_name])
+                            json_dim_value_list.append({u'dimension_value':
+                                                       dims[dimension_name]})
+
+        else:
+            dim_value_set = set()
+
             for series in series_names.raw['series']:
-                for tag_values in series[u'values']:
+                if 'columns' not in series:
+                    continue
+                columns = series['columns']
+                if 'key' not in columns:
+                    continue
+                key_index = columns.index('key')
+                if u'values' not in series:
+                    continue
+                for value in series[u'values']:
+                    split_value = value[key_index].split(',')
+                    if len(split_value) < 2:
+                        continue
+                    for tag in split_value[1:]:
+                        tag_key_value = tag.split('=')
+                        if len(tag_key_value) < 2:
+                            continue
+                        tag_key = tag_key_value[0]
+                        tag_value = tag_key_value[1]
+                        if tag_key.startswith(u'_'):
+                            continue
+                        if tag_key == dimension_name:
+                            dim_value_set.add(tag_value)
 
-                    dims = {
-                        name: value
-                        for name, value in zip(series[u'columns'], tag_values)
-                        if value and not name.startswith(u'_')
-                    }
-
-                    if dimension_name in dims and dims[dimension_name] not in\
-                            dim_values:
-                        dim_values.append(dims[dimension_name])
-                        json_dim_value_list.append({u'dimension_value':
-                                                   dims[dimension_name]})
+            for value in dim_value_set:
+                json_dim_value_list.append({u'dimension_value': value})
 
         json_dim_value_list = sorted(json_dim_value_list)
         return json_dim_value_list
@@ -249,13 +288,46 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
         json_dim_name_list = []
         if not series_names:
             return json_dim_name_list
+        if 'series' not in series_names.raw:
+            return json_dim_name_list
 
-        if 'series' in series_names.raw:
+        # In InfluxDB v0.11.0 the SHOW SERIES output changed.
+        # See, https://github.com/influxdata/influxdb/blob/master/CHANGELOG.md#v0110-2016-03-22
+        if self._influxdb_version < version.StrictVersion('0.11.0'):
+            if 'series' in series_names.raw:
+                for series in series_names.raw['series']:
+                    for name in series[u'columns']:
+                        if name not in dim_names and not name.startswith(u'_'):
+                            dim_names.append(name)
+                            json_dim_name_list.append({u'dimension_name': name})
+        else:
+            dim_name_set = set()
+
             for series in series_names.raw['series']:
-                for name in series[u'columns']:
-                    if name not in dim_names and not name.startswith(u'_'):
-                        dim_names.append(name)
-                        json_dim_name_list.append({u'dimension_name': name})
+                if 'columns' not in series:
+                    continue
+                columns = series['columns']
+                if 'key' not in columns:
+                    continue
+                key_index = columns.index('key')
+                if u'values' not in series:
+                    continue
+                for value in series[u'values']:
+                    split_value = value[key_index].split(',')
+                    if len(split_value) < 2:
+                        continue
+                    for tag in split_value[1:]:
+                        tag_key_value = tag.split('=')
+                        if len(tag_key_value) < 2:
+                            continue
+                        tag_key = tag_key_value[0]
+                        if tag_key.startswith(u'_'):
+                            continue
+                        dim_name_set.add(tag_key)
+
+            for name in dim_name_set:
+                json_dim_name_list.append({u'dimension_name': name})
+
         json_dim_name_list = sorted(json_dim_name_list)
         return json_dim_name_list
 
@@ -268,12 +340,17 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
         if not series_names:
             return json_metric_list
 
-        if 'series' in series_names.raw:
+        if 'series' not in series_names.raw:
+            return json_metric_list
 
-            metric_id = 0
-            if offset:
-                metric_id = int(offset) + 1
 
+        metric_id = 0
+        if offset:
+            metric_id = int(offset) + 1
+
+        # In InfluxDB v0.11.0 the SHOW SERIES output changed.
+        # See, https://github.com/influxdata/influxdb/blob/master/CHANGELOG.md#v0110-2016-03-22
+        if self._influxdb_version < version.StrictVersion('0.11.0'):
             for series in series_names.raw['series']:
 
                 for tag_values in series[u'values']:
@@ -296,6 +373,44 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
                         metric_id += 1
 
                         json_metric_list.append(metric)
+
+        else:
+            for series in series_names.raw['series']:
+                if 'columns' not in series:
+                    continue
+                columns = series['columns']
+                if 'key' not in columns:
+                    continue
+                key_index = columns.index('key')
+                if u'values' not in series:
+                    continue
+                for value in series[u'values']:
+                    split_value = value[key_index].split(',')
+                    if len(split_value) < 2:
+                        continue
+                    serie_name = split_value[0]
+                    dimensions = {}
+                    for tag in split_value[1:]:
+                        tag_key_value = tag.split('=')
+                        if len(tag_key_value) < 2:
+                            continue
+                        tag_key = tag_key_value[0]
+                        tag_value = tag_key_value[1]
+                        if tag_key.startswith(u'_'):
+                            continue
+                        dimensions[tag_key] = tag_value
+                    if not self._has_measurements(tenant_id,
+                          region,
+                          serie_name,
+                          dimensions,
+                          start_timestamp,
+                          end_timestamp):
+                        continue
+                    metric = {u'id': str(metric_id),
+                              u'name': serie_name,
+                              u'dimensions': dimensions}
+                    metric_id += 1
+                    json_metric_list.append(metric)
 
         return json_metric_list
 
@@ -702,3 +817,22 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
         except Exception as ex:
             LOG.exception(ex)
             raise exceptions.RepositoryException(ex)
+
+    def _get_influxdb_version(self):
+        influxdb_version = version.StrictVersion('0.0.0')
+        result = self.influxdb_client.query('SHOW DIAGNOSTICS')
+        if 'series' not in result.raw:
+            return influxdb_version
+        for series in result.raw['series']:
+            if 'columns' not in series:
+                continue
+            columns = series['columns']
+            if u'Version' not in series['columns']:
+                continue
+            if u'values' not in series:
+                continue
+            for value in series[u'values']:
+                version_index = columns.index(u'Version')
+                version_str = value[version_index]
+                return version.StrictVersion(version_str)
+        return influxdb_version
