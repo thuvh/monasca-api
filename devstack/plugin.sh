@@ -60,6 +60,37 @@ fi
 MON_DB_USERS=("notification" "monapi" "thresh")
 MON_DB_HOSTS=("%" "localhost" "$MYSQL_HOST")
 
+function compare_versions () {
+    if [[ $1 == $2 ]]
+    then
+        return 0
+    fi
+    local IFS=.
+    local i ver1=($1) ver2=($2)
+    # fill empty fields in ver1 with zeros
+    for ((i=${#ver1[@]}; i<${#ver2[@]}; i++))
+    do
+        ver1[i]=0
+    done
+    for ((i=0; i<${#ver1[@]}; i++))
+    do
+        if [[ -z ${ver2[i]} ]]
+        then
+            # fill empty fields in ver2 with zeros
+            ver2[i]=0
+        fi
+        if ((10#${ver1[i]} > 10#${ver2[i]}))
+        then
+            return 1
+        fi
+        if ((10#${ver1[i]} < 10#${ver2[i]}))
+        then
+            return 2
+        fi
+    done
+    return 0
+}
+
 function pre_install_monasca {
 :
 }
@@ -470,13 +501,18 @@ function install_monasca_influxdb {
     sudo mkdir -p /opt/monasca_download_dir || true
 
     if [[ "$OFFLINE" != "True" ]]; then
-        sudo curl http://s3.amazonaws.com/influxdb/influxdb_${INFLUXDB_VERSION}_amd64.deb \
+        sudo curl https://dl.influxdata.com/influxdb/releases/influxdb_${INFLUXDB_VERSION}_amd64.deb \
             -o /opt/monasca_download_dir/influxdb_${INFLUXDB_VERSION}_amd64.deb
     fi
 
     sudo dpkg --skip-same-version -i /opt/monasca_download_dir/influxdb_${INFLUXDB_VERSION}_amd64.deb
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/influxdb/influxdb.conf /etc/influxdb/influxdb.conf
+    compare_versions ${INFLUXDB_VERSION} "1.0.0"
+    if [[ "$?" -eq 2 ]]; then
+        sudo cp -f "${MONASCA_API_DIR}"/devstack/files/influxdb/influxdb.conf /etc/influxdb/influxdb.conf
+    else
+        sudo cp -f "${MONASCA_API_DIR}"/devstack/files/influxdb/influxdb-1.0.0.conf /etc/influxdb/influxdb.conf
+    fi
 
     if [[ ${SERVICE_HOST} ]]; then
 
