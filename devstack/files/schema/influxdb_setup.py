@@ -65,6 +65,29 @@ def influxdb_get(uri, query, db=None):
         print "Query returned a non-successful result: {0}".format(json_value['results'])
         sys.exit(1)
 
+def influxdb_post(uri, query, db=None):
+    """Runs a query via HTTP POST and returns the response as a Python list."""
+
+    query_params = {"q": query}
+    if db:
+        query_params['db'] = db
+
+    try:
+        encoded_params = urlparse.urlencode(query_params)
+        uri = "{}".format(uri)
+        req = urllib2.urlopen(uri, encoded_params)
+        json_value = json.loads(req.read())
+
+        if (len(json_value['results'][0]) > 0 and
+           'values' in json_value['results'][0]['series'][0]):
+            return json_value['results'][0]['series'][0]['values']
+        else:
+            return []
+
+    except KeyError:
+        print "Query returned a non-successful result: {0}".format(json_value['results'])
+        sys.exit(1)
+
 
 def main(argv=None):
     """If necessary, create the database, retention policy, and users"""
@@ -75,7 +98,7 @@ def main(argv=None):
     dbs = influxdb_get(uri=api_uri, query="SHOW DATABASES")
     if [DBNAME] not in dbs:
         print "Creating database '{}'".format(DBNAME)
-        influxdb_get(uri=api_uri, query="CREATE DATABASE {0}".format(DBNAME))
+        influxdb_post(uri=api_uri, query="CREATE DATABASE {0}".format(DBNAME))
         print "...created!"
 
 #   Check retention policy
@@ -87,13 +110,13 @@ def main(argv=None):
                                                                                           DBNAME,
                                                                                           RETENTION,
                                                                                           REPLICATION)
-        influxdb_get(uri=api_uri, db=DBNAME, query=policy)
+        influxdb_post(uri=api_uri, db=DBNAME, query=policy)
 
 #   Create the users
     users = influxdb_get(uri=api_uri, query="SHOW USERS", db=DBNAME)
     for name, password in USERS.iteritems():
         if not any(user[0] == name for user in users):
-            influxdb_get(uri=api_uri,
+            influxdb_post(uri=api_uri,
                          query=unicode("CREATE USER {0} WITH PASSWORD '{1}'".format(name, password)),
                          db=DBNAME)
 
