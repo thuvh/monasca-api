@@ -30,9 +30,9 @@ CONF = cfg.CONF
 class TestNotificationMethodRepoDB(testtools.TestCase, fixtures.TestWithFixtures):
     @classmethod
     def setUpClass(cls):
-        from sqlalchemy import engine_from_config
+        from oslo_db.sqlalchemy.engines import create_engine
 
-        engine = engine_from_config({'url': 'sqlite://'}, prefix='')
+        engine = create_engine('sqlite://')
 
         qry = open('monasca_api/tests/sqlite_alarm.sql', 'r').read()
         sconn = engine.raw_connection()
@@ -71,7 +71,7 @@ class TestNotificationMethodRepoDB(testtools.TestCase, fixtures.TestWithFixtures
 
         self._fixture_config = self.useFixture(
             fixture_config.Config(cfg.CONF))
-        self._fixture_config.config(url='sqlite://',
+        self._fixture_config.config(connection='sqlite://',
                                     group='database')
 
         from monasca_api.common.repositories.sqla import notifications_repository as nr

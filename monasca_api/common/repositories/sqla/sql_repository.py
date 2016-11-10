@@ -14,14 +14,55 @@
 # under the License.
 
 from oslo_config import cfg
+from oslo_db.sqlalchemy import enginefacade
 from oslo_log import log
 
-from sqlalchemy.engine.url import URL, make_url
-from sqlalchemy import MetaData
+import sqlalchemy
 
 from monasca_api.common.repositories import exceptions
 
 LOG = log.getLogger(__name__)
+CONF = cfg.CONF
+
+
+def _get_db_conf(conf_group, connection=None):
+    kw = dict(
+        connection=connection or conf_group.connection,
+        slave_connection=conf_group.slave_connection,
+        sqlite_fk=False,
+        __autocommit=True,
+        expire_on_commit=False,
+        mysql_sql_mode=conf_group.mysql_sql_mode,
+        idle_timeout=conf_group.idle_timeout,
+        connection_debug=conf_group.connection_debug,
+        max_pool_size=conf_group.max_pool_size,
+        max_overflow=conf_group.max_overflow,
+        pool_timeout=conf_group.pool_timeout,
+        sqlite_synchronous=conf_group.sqlite_synchronous,
+        connection_trace=conf_group.connection_trace,
+        max_retries=conf_group.max_retries,
+        retry_interval=conf_group.retry_interval)
+    return kw
+
+
+def create_context_manager(connection=None):
+    """Create a database context manager object.
+
+    :param connection: The database connection string
+    """
+    ctxt_mgr = enginefacade.transaction_context()
+    ctxt_mgr.configure(**_get_db_conf(CONF.database, connection=connection))
+    return ctxt_mgr
+
+
+def get_engine(use_slave=False, connection=None):
+    """Get a database engine object.
+
+    :param use_slave: Whether to use the slave connection
+    :param connection: The database connection string
+    """
+    ctxt_mgr = create_context_manager(connection=connection)
+    return ctxt_mgr.get_legacy_facade().get_engine(use_slave=use_slave)
 
 
 class SQLRepository(object):
@@ -32,27 +73,18 @@ class SQLRepository(object):
 
             super(SQLRepository, self).__init__()
 
-            self.conf = cfg.CONF
+            self.conf = CONF
             url = None
             if self.conf.mysql.database_name is not None:
                 settings_db = (self.conf.mysql.username,
                                self.conf.mysql.password,
                                self.conf.mysql.hostname,
                                self.conf.mysql.database_name)
-                url = make_url("mysql+pymysql://%s:%s@%s/%s" % settings_db)
-            else:
-                if self.conf.database.url is not None:
-                    url = make_url(self.conf.database.url)
-                else:
-                    database_conf = dict(self.conf.database)
-                    if 'url' in database_conf:
-                        del database_conf['url']
-                    url = URL(**database_conf)
+                url = "mysql+pymysql://%s:%s@%s/%s" % settings_db
 
-            from sqlalchemy import create_engine
-            self._db_engine = create_engine(url)
+            self._db_engine = get_engine(connection=url)
 
-            self.metadata = MetaData()
+            self.metadata = sqlalchemy.MetaData()
 
         except Exception as ex:
             LOG.exception(ex)
