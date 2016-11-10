@@ -470,7 +470,7 @@ function install_monasca_influxdb {
     sudo mkdir -p /opt/monasca_download_dir || true
 
     if [[ "$OFFLINE" != "True" ]]; then
-        sudo curl http://s3.amazonaws.com/influxdb/influxdb_${INFLUXDB_VERSION}_amd64.deb \
+        sudo curl https://dl.influxdata.com/influxdb/releases/influxdb_${INFLUXDB_VERSION}_amd64.deb \
             -o /opt/monasca_download_dir/influxdb_${INFLUXDB_VERSION}_amd64.deb
     fi
 
