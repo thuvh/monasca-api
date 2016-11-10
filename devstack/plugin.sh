@@ -60,6 +60,43 @@ fi
 MON_DB_USERS=("notification" "monapi" "thresh")
 MON_DB_HOSTS=("%" "localhost" "$MYSQL_HOST")
 
+# Compares two program version strings.
+# Returns "lt" if $1 is less than $2, "eq" if equal, and "gt" if greater than
+function compare_versions {
+    if [[ $1 == $2 ]]
+    then
+        echo eq
+        return
+    fi
+    local IFS=.
+    local i ver1=($1) ver2=($2)
+    # fill empty fields in ver1 with zeros
+    for ((i=${#ver1[@]}; i<${#ver2[@]}; i++))
+    do
+        ver1[i]=0
+    done
+    for ((i=0; i<${#ver1[@]}; i++))
+    do
+        if [[ -z ${ver2[i]} ]]
+        then
+            # fill empty fields in ver2 with zeros
+            ver2[i]=0
+        fi
+        if ((10#${ver1[i]} > 10#${ver2[i]}))
+        then
+            echo gt
+            return
+        fi
+        if ((10#${ver1[i]} < 10#${ver2[i]}))
+        then
+            echo lt
+            return
+        fi
+    done
+    echo eq
+    return
+}
+
 function pre_install_monasca {
 :
 }
@@ -470,13 +507,21 @@ function install_monasca_influxdb {
     sudo mkdir -p /opt/monasca_download_dir || true
 
     if [[ "$OFFLINE" != "True" ]]; then
-        sudo curl http://s3.amazonaws.com/influxdb/influxdb_${INFLUXDB_VERSION}_amd64.deb \
+        sudo curl https://dl.influxdata.com/influxdb/releases/influxdb_${INFLUXDB_VERSION}_amd64.deb \
             -o /opt/monasca_download_dir/influxdb_${INFLUXDB_VERSION}_amd64.deb
     fi
 
     sudo dpkg --skip-same-version -i /opt/monasca_download_dir/influxdb_${INFLUXDB_VERSION}_amd64.deb
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/influxdb/influxdb.conf /etc/influxdb/influxdb.conf
+    # In InfluxDB v1.0.0 the config options cluster, collectd and opentsdb changed. As a result
+    # a different config file is deployed. See,
+    # https://github.com/influxdata/influxdb/blob/master/CHANGELOG.md#v100-2016-09-08, for more details.
+    retval=$(compare_versions ${INFLUXDB_VERSION} "1.0.0")
+    if [[ "$retval" == "lt" ]]; then
+        sudo cp -f "${MONASCA_API_DIR}"/devstack/files/influxdb/influxdb.conf /etc/influxdb/influxdb.conf
+    else
+        sudo cp -f "${MONASCA_API_DIR}"/devstack/files/influxdb/influxdb-1.0.0.conf /etc/influxdb/influxdb.conf
+    fi
 
     if [[ ${SERVICE_HOST} ]]; then
 
