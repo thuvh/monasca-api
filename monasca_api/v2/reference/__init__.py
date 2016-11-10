@@ -152,14 +152,17 @@ mysql_group = cfg.OptGroup(name='mysql', title='mysql')
 cfg.CONF.register_group(mysql_group)
 cfg.CONF.register_opts(mysql_opts, mysql_group)
 
-sql_opts = [cfg.StrOpt('url', default=None),
-            cfg.StrOpt('host', default=None),
-            cfg.StrOpt('username', default=None),
-            cfg.StrOpt('password', default=None, secret=True),
-            cfg.StrOpt('drivername', default=None),
-            cfg.IntOpt('port', default=None),
-            cfg.StrOpt('database', default=None),
-            cfg.StrOpt('query', default=None)]
+sql_opts = [cfg.StrOpt('url'), cfg.StrOpt('host'),
+            cfg.StrOpt('username'), cfg.StrOpt('password', secret=True),
+            cfg.StrOpt('drivername'), cfg.IntOpt('port'),
+            cfg.StrOpt('database'), cfg.StrOpt('query'),
+            cfg.StrOpt('mysql_sql_mode', default='TRADITIONAL'),
+            cfg.IntOpt('idle_timeout', default=3600),
+            cfg.IntOpt('max_pool_size'),
+            cfg.IntOpt('max_retries', default=10),
+            cfg.IntOpt('retry_interval', default=10),
+            cfg.IntOpt('max_overflow', default=50),
+            cfg.IntOpt('pool_timeout')]
 sql_group = cfg.OptGroup(name='database', title='sql')
 
 
