@@ -385,7 +385,8 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
                     monasca_api.expression_parser.alarm_expr_parser.
                     AlarmExprParser(expression).sub_expr_list)
 
-            except pyparsing.ParseException as ex:
+            except (pyparsing.ParseException,
+                    pyparsing.ParseFatalException) as ex:
                 LOG.exception(ex)
                 title = "Invalid alarm expression".encode('utf8')
                 msg = "parser failed on expression '{}' at column {}".format(
@@ -491,7 +492,8 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
                 monasca_api.expression_parser.alarm_expr_parser.
                 AlarmExprParser(expression).sub_expr_list)
 
-        except pyparsing.ParseException as ex:
+        except (pyparsing.ParseException,
+                pyparsing.ParseFatalException) as ex:
             LOG.exception(ex)
             title = "Invalid alarm expression".encode('utf8')
             msg = "parser failed on expression '{}' at column {}".format(
