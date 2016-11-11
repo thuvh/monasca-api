@@ -331,7 +331,7 @@ class TestAlarmDefinition(AlarmTestBase):
         self.alarm_def_repo_mock.return_value.update_or_patch_alarm_definition.return_value = (
             {u'alarm_actions': [],
              u'ok_actions': [],
-             u'description': u'Non-ASCII character: \u2603'.encode('utf-8'),
+             u'description': u'Non-ASCII character: \u2603',
              u'match_by': u'hostname',
              u'name': u'Test Alarm',
              u'actions_enabled': True,
@@ -411,7 +411,7 @@ class TestAlarmDefinition(AlarmTestBase):
         self.alarm_def_repo_mock.return_value.update_or_patch_alarm_definition.return_value = (
             {u'alarm_actions': [],
              u'ok_actions': [],
-             u'description': u'Non-ASCII character: \u2603'.encode('utf-8'),
+             u'description': u'Non-ASCII character: \u2603',
              u'match_by': u'hostname',
              u'name': u'Test Alarm',
              u'actions_enabled': True,
@@ -501,7 +501,7 @@ class TestAlarmDefinition(AlarmTestBase):
         self.alarm_def_repo_mock.return_value.get_alarm_definition.return_value = {
             'alarm_actions': None,
             'ok_actions': None,
-            'description': b'Non-ASCII character: \xe2\x98\x83',
+            'description': b'Non-ASCII character: \xe2\x98\x83'.decode('utf8'),
             'match_by': u'hostname',
             'name': u'Test Alarm',
             'actions_enabled': 1,
