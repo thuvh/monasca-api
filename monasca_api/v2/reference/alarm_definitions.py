@@ -265,7 +265,7 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
         undetermined_actions_list = get_comma_separated_str_as_list(
             alarm_definition_row['undetermined_actions'])
 
-        description = (alarm_definition_row['description'].decode('utf8')
+        description = (alarm_definition_row['description']
                        if alarm_definition_row['description'] is not None else None)
 
         expression = alarm_definition_row['expression'].decode('utf8')
@@ -281,7 +281,7 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
             u'deterministic': is_deterministic,
             u'id': alarm_definition_row['id'].decode('utf8'),
             u'match_by': match_by,
-            u'name': alarm_definition_row['name'].decode('utf8'),
+            u'name': alarm_definition_row['name'],
             u'severity': alarm_definition_row['severity'].decode(
                 'utf8').upper()}
 
