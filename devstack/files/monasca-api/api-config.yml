@@ -41,7 +41,7 @@ kafka:
 
 mysql:
   driverClass: com.mysql.jdbc.Driver
-  url: "jdbc:mysql://127.0.0.1:3306/mon?connectTimeout=5000&autoReconnect=true&useSSL=true&useLegacyDatetimeCode=false&serverTimezone=UTC"
+  url: "jdbc:mysql://127.0.0.1:3306/mon?connectTimeout=5000&autoReconnect=true&useSSL=true&useLegacyDatetimeCode=false&serverTimezone=UTC&characterEncoding=utf8"
   user: "monapi"
   password: "password"
   maxWaitForConnection: 1s
