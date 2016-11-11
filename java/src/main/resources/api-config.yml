@@ -27,7 +27,7 @@ kafka:
 
 mysql:
   driverClass: com.mysql.jdbc.Driver
-  url: jdbc:mysql://192.168.10.6:3306/mon?connectTimeout=5000&autoReconnect=true&useLegacyDatetimeCode=false
+  url: jdbc:mysql://192.168.10.6:3306/mon?connectTimeout=5000&autoReconnect=true&useLegacyDatetimeCode=false&characterEncoding=utf8
   user: monapi
   password: password
   maxWaitForConnection: 1s
@@ -99,6 +99,9 @@ middleware:
 server:
   applicationConnectors:
     - type: http
+      port: 8070
+      bindHost: 127.0.0.1
+      idleTimeout: 300 seconds
       maxRequestHeaderSize: 16KiB  # Allow large headers used by keystone tokens
 
 # Logging settings.
