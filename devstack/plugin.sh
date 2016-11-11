@@ -906,7 +906,7 @@ function install_monasca_api_python {
     pip_install PyMySQL
     if [[ "${MONASCA_METRICS_DB,,}" == 'influxdb' ]]; then
 
-        pip_install influxdb==2.8.0
+        pip_install influxdb==3.0.0
 
     elif [[ "${MONASCA_METRICS_DB,,}" == 'cassandra' ]]; then
 
@@ -1145,7 +1145,7 @@ function install_monasca_persister_python {
     pip_install $MONASCA_PERSISTER_SRC_DIST
     if [[ "${MONASCA_METRICS_DB,,}" == 'influxdb' ]]; then
 
-        pip_install influxdb==2.8.0
+        pip_install influxdb==3.0.0
 
     elif [[ "${MONASCA_METRICS_DB,,}" == 'cassandra' ]]; then
 
