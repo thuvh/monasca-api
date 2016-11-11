@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a629dbe_8e69c6fb",
+        "filename": "java/src/main/java/monasca/api/resource/MetricResource.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-11-11T00:28:56Z",
+      "side": 1,
+      "message": "just command.validate(!isAdmin) would be clearer",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 7
+      },
+      "revId": "e85d6c4896903f118cac5f41e4b4c0f16a52c672",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
