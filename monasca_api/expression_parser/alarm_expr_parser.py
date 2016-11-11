@@ -189,6 +189,28 @@ EQUAL = pyparsing.Literal("=")
 LBRACE = pyparsing.Suppress(pyparsing.Literal("{"))
 RBRACE = pyparsing.Suppress(pyparsing.Literal("}"))
 
+
+def periodValidation(instr, loc, tokens):
+    period = int(tokens[0])
+    if period == 0:
+        raise pyparsing.ParseFatalException(instr, loc,
+                                            "Period must be 0")
+
+    if (period % 60) != 0:
+        raise pyparsing.ParseFatalException(instr, loc,
+                                            "Period {} must be a multiple of 60"
+                                            .format(period))
+    return period
+
+
+def periodsValidation(instr, loc, tokens):
+    periods = int(tokens[0])
+    if periods < 1:
+        raise pyparsing.ParseFatalException(instr, loc,
+                                            "Periods {} must be 1 or greater"
+                                            .format(periods))
+    return periods
+
 # Initialize non-ascii unicode code points in the Basic Multilingual Plane.
 unicode_printables = u''.join(
     unichr(c) for c in xrange(128, 65536) if not unichr(c).isspace())
@@ -244,9 +266,9 @@ dimension_list = pyparsing.Group((LBRACE + pyparsing.Optional(
     RBRACE))("dimensions_list")
 
 metric = metric_name + pyparsing.Optional(dimension_list)
-period = integer_number("period")
+period = integer_number.copy().addParseAction(periodValidation)("period")
 threshold = decimal_number("threshold")
-periods = integer_number("periods")
+periods = integer_number.copy().addParseAction(periodsValidation)("periods")
 
 deterministic = (
     pyparsing.CaselessLiteral('deterministic')
