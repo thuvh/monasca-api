@@ -80,6 +80,48 @@ class TestMetrics(base.BaseMonascaTest):
                 self.fail(error_msg)
 
     @test.attr(type='gate')
+    def test_create_metric_with_multibyte_character(self):
+        name = data_utils.rand_name('ｎａｍｅ').decode('utf8')
+        key = data_utils.rand_name('ｋｅｙ').decode('utf8')
+        value = data_utils.rand_name('ｖａｌｕｅ').decode('utf8')
+        timestamp = int(round(time.time() * 1000))
+        time_iso = helpers.timestamp_to_iso(timestamp)
+        end_timestamp = int(round((time.time() + 3600 * 24) * 1000))
+        end_time_iso = helpers.timestamp_to_iso(end_timestamp)
+        value_meta_key = data_utils.rand_name('value_meta_ｋｅｙ').decode('utf8')
+        value_meta_value = data_utils.rand_name('value_meta_ｖａｌｕｅ').decode('utf8')
+        metric = helpers.create_metric(name=name,
+                                       dimensions={key: value},
+                                       timestamp=timestamp,
+                                       value=1.23,
+                                       value_meta={
+                                           value_meta_key: value_meta_value
+                                       })
+        resp, response_body = self.monasca_client.create_metrics(metric)
+        self.assertEqual(204, resp.status)
+        query_param = '?name=' + urlparse.quote(name.encode('utf8')) + \
+                      '&start_time=' + time_iso + '&end_time=' + end_time_iso
+        for i in xrange(constants.MAX_RETRIES):
+            resp, response_body = self.monasca_client.\
+                list_measurements(query_param)
+            self.assertEqual(200, resp.status)
+            elements = response_body['elements']
+            for element in elements:
+                if element['name'] == name:
+                    self._verify_list_measurements_element(element, key, value)
+                    measurement = element['measurements'][0]
+                    self._verify_list_measurements_measurement(
+                        measurement, metric, value_meta_key, value_meta_value)
+                    return
+            time.sleep(constants.RETRY_WAIT_SECS)
+            if i == constants.MAX_RETRIES - 1:
+                error_msg = "Failed test_create_metric: " \
+                            "timeout on waiting for metrics: at least " \
+                            "one metric is needed. Current number of " \
+                            "metrics = 0"
+                self.fail(error_msg)
+
+    @test.attr(type='gate')
     def test_create_metrics(self):
         name = data_utils.rand_name('name')
         key = data_utils.rand_name('key')

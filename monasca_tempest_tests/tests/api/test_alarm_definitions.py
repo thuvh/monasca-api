@@ -346,6 +346,28 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
         self._verify_list_alarm_definitions_links(links)
 
     @test.attr(type="gate")
+    def test_list_alarm_definitions_with_multibyte_character(self):
+        name = data_utils.rand_name('ａｌａｒｍ＿ｄｅｆｉｎｉｔｉｏｎ').decode('utf8')
+        expression = 'max(cpu.system_perc) > 0'
+        alarm_definition = helpers.create_alarm_definition(
+            name=name, description='ｄｅｓｃｒｉｐｔｉｏｎ'.decode('utf8'),
+            expression=expression, match_by=['hostname'], severity='MEDIUM')
+        resp, response_body = self.monasca_client.create_alarm_definitions(
+            alarm_definition)
+        alarm_definition['id'] = response_body['id']
+        alarm_definition['deterministic'] = False
+        query_param = '?name=' + urlparse.quote(name.encode('utf8'))
+        resp, response_body = self.monasca_client.list_alarm_definitions(
+            query_param)
+        self._verify_list_alarm_definitions_response_body(resp, response_body)
+
+        # Test list alarm definition response body
+        elements = response_body['elements']
+        self._verify_alarm_definitions_list(elements, [alarm_definition])
+        links = response_body['links']
+        self._verify_list_alarm_definitions_links(links)
+
+    @test.attr(type="gate")
     def test_list_alarm_definitions_with_name(self):
         name = data_utils.rand_name('alarm_definition')
         alarm_definition = helpers.create_alarm_definition(
@@ -698,6 +720,27 @@ class TestAlarmDefinitions(base.BaseMonascaTest):
         self._verify_element_set(response_body)
         self._verify_alarm_definitions_element(response_body,
                                                response_body_list[0])
+        links = response_body['links']
+        self._verify_list_alarm_definitions_links(links)
+
+    @test.attr(type="gate")
+    def test_get_alarm_definition_with_multibyte_character(self):
+        # Create an alarm definition
+        name = data_utils.rand_name('ａｌａｒｍ＿ｄｅｆｉｎｉｔｉｏｎ').decode('utf8')
+        expression = 'max(cpu.system_perc) > 0'
+        alarm_definition = helpers.create_alarm_definition(
+            name=name, description='ｄｅｓｃｒｉｐｔｉｏｎ'.decode('utf8'),
+            expression=expression, match_by=['hostname'], severity='MEDIUM')
+        resp, response_body = self.monasca_client.create_alarm_definitions(
+            alarm_definition)
+        alarm_definition['id'] = response_body['id']
+        alarm_definition['deterministic'] = False
+        resp, response_body = self.monasca_client.get_alarm_definition(
+            alarm_definition['id'])
+        self.assertEqual(200, resp.status)
+        self._verify_element_set(response_body)
+        self._verify_alarm_definitions_element(response_body,
+                                               alarm_definition)
         links = response_body['links']
         self._verify_list_alarm_definitions_links(links)
 
