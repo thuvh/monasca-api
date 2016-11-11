@@ -927,7 +927,7 @@ function install_monasca_api_python {
     else
         dbMetricDriver="monasca_api.common.repositories.influxdb.metrics_repository:MetricsRepository"
     fi
-    dbAlarmUrl=`get_database_type_$DATABASE_TYPE`://$MONASCA_API_DATABASE_USER:$DATABASE_PASSWORD@$DATABASE_HOST/mon
+    dbAlarmUrl=`get_database_type_$DATABASE_TYPE`://$MONASCA_API_DATABASE_USER:$DATABASE_PASSWORD@$DATABASE_HOST/mon?charset=utf8mb4
 
     sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/api-config.conf /etc/monasca/api-config.conf
     sudo chown mon-api:root /etc/monasca/api-config.conf
