@@ -266,7 +266,7 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
         description = (alarm_definition_row['description']
                        if alarm_definition_row['description'] is not None else None)
 
-        expression = alarm_definition_row['expression'].decode('utf8')
+        expression = alarm_definition_row['expression']
         is_deterministic = is_definition_deterministic(expression)
 
         result = {
@@ -277,11 +277,11 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
             u'description': description,
             u'expression': expression,
             u'deterministic': is_deterministic,
-            u'id': alarm_definition_row['id'].decode('utf8'),
+            u'id': alarm_definition_row['id'],
             u'match_by': match_by,
-            u'name': alarm_definition_row['name'].decode('utf8'),
-            u'severity': alarm_definition_row['severity'].decode(
-                'utf8').upper()}
+            u'name': alarm_definition_row['name'],
+            u'severity': alarm_definition_row['severity'].upper()
+        }
 
         return result
 
