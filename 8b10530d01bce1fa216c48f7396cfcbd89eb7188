@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a629dbe_45258908",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 60
+      },
+      "lineNbr": 1799,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2016-11-14T08:35:05Z",
+      "side": 1,
+      "message": "You should use -d parameter (use database). Without it user monapi cannot use schema in database mon. It will throw an error.\n\nudo -u root sudo -u postgres -i psql -d $db -c \"GRANT $dbPermissions ON ALL TABLES IN SCHEMA public TO $user;\"",
+      "range": {
+        "startLine": 1799,
+        "startChar": 0,
+        "endLine": 1799,
+        "endChar": 108
+      },
+      "revId": "8b10530d01bce1fa216c48f7396cfcbd89eb7188",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
