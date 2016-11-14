@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a77a97e_7d06a821",
+        "filename": "monasca_api/v2/common/schemas/alarm_definition_request_body_schema.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-11-14T22:16:04Z",
+      "side": 1,
+      "message": "Could make this a set instead of a list, but the difference is probably not significant.",
+      "range": {
+        "startLine": 36,
+        "startChar": 15,
+        "endLine": 36,
+        "endChar": 17
+      },
+      "revId": "750cdc12c2d0a44eda21c50a27323b58cdc3f716",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
