@@ -741,6 +741,12 @@ function install_openjdk_7_jdk {
 
     echo_summary "Install Monasca openjdk_7_jdk"
 
+    if [ "`lsb_release -c | awk '{ print $2 }'`" = "xenial" ];then
+        sudo add-apt-repository -y ppa:openjdk-r/ppa
+        REPOS_UPDATED=False
+        apt_get_update
+    fi
+
     apt_get -y install openjdk-7-jdk
 
 }
@@ -752,6 +758,12 @@ function clean_openjdk_7_jdk {
     apt_get -y purge openjdk-7-jdk
 
     apt_get -y autoremove
+
+    if [ "`lsb_release -c | awk '{ print $2 }'`" = "xenial" ];then
+        sudo add-apt-repository -r ppa:openjdk-r/ppa
+        sudo rm -f /etc/apt/sources.list.d/openjdk-r-ubuntu-ppa-xenial.list
+        sudo rm -f /etc/apt/trusted.gpg.d/openjdk-r_ubuntu_ppa.gpg
+    fi
 
 }
 
