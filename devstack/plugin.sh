@@ -212,7 +212,7 @@ function start_monasca_services {
     if is_service_enabled monasca-thresh; then
         start_service monasca-thresh || restart_service monasca-thresh
     fi
-    if is_service_enabled grafana-server; then
+    if is_service_enabled horizon; then
         start_service grafana-server || restart_service grafana-server
     fi
     _start_monasca_agent
