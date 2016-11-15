@@ -93,7 +93,7 @@ function install_monasca {
 
     install_monasca_virtual_env
 
-    install_openjdk_7_jdk
+    install_openjdk_jdk
 
     install_kafka
 
@@ -347,7 +347,7 @@ function clean_monasca {
 
     clean_kafka
 
-    clean_openjdk_7_jdk
+    clean_openjdk_jdk
 
     clean_monasca_virtual_env
 
@@ -737,21 +737,33 @@ function clean_schema {
 
 }
 
-function install_openjdk_7_jdk {
+function install_openjdk_jdk {
 
-    echo_summary "Install Monasca openjdk_7_jdk"
+    if [ "`lsb_release -c | awk '{ print $2 }'`" = "trusty" ];then
+        echo_summary "Install Monasca openjdk_7_jdk"
+        apt_get -y install openjdk-7-jdk
+    fi
 
-    apt_get -y install openjdk-7-jdk
+    if [ "`lsb_release -c | awk '{ print $2 }'`" = "xenial" ];then
+        echo_summary "Install Monasca openjdk_8_jdk"
+        apt_get -y install openjdk-8-jdk
+    fi
 
 }
 
-function clean_openjdk_7_jdk {
+function clean_openjdk_jdk {
 
-    echo_summary "Clean Monasca openjdk_7_jdk"
+    if [ "`lsb_release -c | awk '{ print $2 }'`" = "trusty" ];then
+        echo_summary "Clean Monasca openjdk_7_jdk"
+        apt_get -y purge openjdk-7-jdk
+        apt_get -y autoremove
+    fi
 
-    apt_get -y purge openjdk-7-jdk
-
-    apt_get -y autoremove
+    if [ "`lsb_release -c | awk '{ print $2 }'`" = "xenial" ];then
+        echo_summary "Clean Monasca openjdk_8_jdk"
+        apt_get -y purge openjdk-8-jdk
+        apt_get -y autoremove
+    fi
 
 }
 
