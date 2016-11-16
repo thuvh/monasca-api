@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a77a97e_f7a3564d",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 740,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-11-16T15:36:42Z",
+      "side": 1,
+      "message": "I think it might make more sense to install jdk 8 on xenial instead of jdk 7. So change this function to install_openjdk_jdk and just choose the right one based on lsb_release -c",
+      "range": {
+        "startLine": 740,
+        "startChar": 9,
+        "endLine": 740,
+        "endChar": 30
+      },
+      "revId": "8ee84af20d1300370cf7b0817e7e67fac417bee6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
