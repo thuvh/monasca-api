@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a77a97e_301303ba",
+        "filename": "devstack/settings",
+        "patchSetId": 13
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-11-16T22:28:33Z",
+      "side": 1,
+      "message": "I think that sort of check should go the plugin.sh and be executed on top the file before first function. Here you could just specify the version for the python and later alter the gate setup to override it for the java.",
+      "revId": "e7a81b2778f4016f26cde56748515252e0fb3f61",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a77a97e_70d2dbd3",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-11-16T22:28:33Z",
+      "side": 1,
+      "message": "Maybe instead of checking this every time, let\u0027s create two functions in this class or in the module (private) and pick just one depending on the version.",
+      "revId": "e7a81b2778f4016f26cde56748515252e0fb3f61",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a77a97e_b0dc73e5",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-11-16T22:28:33Z",
+      "side": 1,
+      "message": "same here",
+      "revId": "e7a81b2778f4016f26cde56748515252e0fb3f61",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a77a97e_90ecd790",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-11-16T22:28:33Z",
+      "side": 1,
+      "message": "and here",
+      "revId": "e7a81b2778f4016f26cde56748515252e0fb3f61",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
