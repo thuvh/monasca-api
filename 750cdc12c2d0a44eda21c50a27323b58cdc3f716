@@ -22,6 +22,30 @@
       "revId": "750cdc12c2d0a44eda21c50a27323b58cdc3f716",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a77a97e_d4bf51f9",
+        "filename": "monasca_api/v2/common/schemas/alarm_definition_request_body_schema.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-11-16T07:21:46Z",
+      "side": 1,
+      "message": "I don\u0027t this that would matter here. Variable is scoped to only this function and function is meant to verify just a single type of the action. I am cool with that.",
+      "parentUuid": "7a77a97e_7d06a821",
+      "range": {
+        "startLine": 36,
+        "startChar": 15,
+        "endLine": 36,
+        "endChar": 17
+      },
+      "revId": "750cdc12c2d0a44eda21c50a27323b58cdc3f716",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
