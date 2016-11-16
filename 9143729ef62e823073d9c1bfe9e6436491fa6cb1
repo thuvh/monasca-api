@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a77a97e_6f5b062f",
+        "filename": "devstack/Vagrantfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-11-16T07:53:13Z",
+      "side": 1,
+      "message": "https://git.openstack.org/openstack/devstack-plugin-kafka is better.",
+      "range": {
+        "startLine": 119,
+        "startChar": 36,
+        "endLine": 119,
+        "endChar": 90
+      },
+      "revId": "9143729ef62e823073d9c1bfe9e6436491fa6cb1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
