@@ -60,6 +60,11 @@ fi
 MON_DB_USERS=("notification" "monapi" "thresh")
 MON_DB_HOSTS=("%" "localhost" "$MYSQL_HOST")
 
+# check ubuntu family
+if  [[ "$os_VENDOR" == "Ubuntu" ]] && [[ "$os_RELEASE" -ge "14.04" ]]; then
+    export JDK_VERSION=7
+fi
+
 function pre_install_monasca {
 :
 }
@@ -93,7 +98,7 @@ function install_monasca {
 
     install_monasca_virtual_env
 
-    install_openjdk_8_jdk
+    install_openjdk_jdk
 
     install_kafka
 
@@ -201,8 +206,9 @@ function extra_monasca {
 
     start_monasca_services
 }
+
 function start_monasca_services {
-    start_service monasca-api || restart_service monasca-api
+    _start_monasca_api
     if is_service_enabled monasca-persister; then
         start_service monasca-persister || restart_service monasca-persister
     fi
@@ -216,6 +222,20 @@ function start_monasca_services {
         start_service grafana-server || restart_service grafana-server
     fi
     _start_monasca_agent
+}
+
+function _start_monasca_api {
+
+    local cmd
+    local service="monasca"
+    local sub_service="api"
+
+    if [[ "${MONASCA_API_IMPLEMENTATION_LANG,,}" == 'java' ]]; then
+        cmd="/usr/bin/java -Dfile.encoding=UTF-8 -Xmx128m -cp /opt/monasca/monasca-api.jar monasca.api.MonApiApplication server /etc/monasca/api-config.yml"
+    else
+        cmd="/opt/monasca-api/bin/gunicorn -n monasca-api -k eventlet --worker-connections=2000 --backlog=1000 --paste /etc/monasca/api-config.ini -w 9"
+    fi
+    run_process $service $cmd "" $sub_service
 }
 
 function _start_monasca_agent {
@@ -238,7 +258,7 @@ function unstack_monasca {
 
     stop_service monasca-persister || true
 
-    stop_service monasca-api || true
+    stop_process monasca-api || true
 
     stop_service kafka || true
 
@@ -349,7 +369,7 @@ function clean_monasca {
 
     clean_kafka
 
-    clean_openjdk_8_jdk
+    clean_openjdk_jdk
 
     clean_monasca_virtual_env
 
@@ -753,19 +773,19 @@ function clean_schema {
 
 }
 
-function install_openjdk_8_jdk {
+function install_openjdk_jdk {
 
-    echo_summary "Install Monasca openjdk_8_jdk"
+    echo_summary "Install Monasca openjdk_${JDK_VERSION}_jdk"
 
-    apt_get -y install openjdk-8-jdk
+    apt_get -y install openjdk-${JDK_VERSION}-jdk
 
 }
 
-function clean_openjdk_8_jdk {
+function clean_openjdk_jdk {
 
-    echo_summary "Clean Monasca openjdk_8_jdk"
+    echo_summary "Clean Monasca openjdk_${JDK_VERSION}_jdk"
 
-    apt_get -y purge openjdk-8-jdk
+    apt_get -y purge openjdk-${JDK_VERSION}-jdk
 
     apt_get -y autoremove
 
@@ -820,21 +840,6 @@ function install_monasca_api_java {
     sudo cp -f "${MONASCA_API_DIR}"/java/target/monasca-api-1.1.0-SNAPSHOT-shaded.jar /opt/monasca/monasca-api.jar
 
     sudo useradd --system -g monasca mon-api || true
-
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/monasca-api.service /etc/systemd/system/monasca-api.service
-
-    if [[ "${MONASCA_METRICS_DB,,}" == 'vertica' ]]; then
-
-        # Add the Vertica JDBC to the class path.
-        sudo sed -i "s/-cp \/opt\/monasca\/monasca-api.jar/-cp \/opt\/monasca\/monasca-api.jar:\/opt\/monasca\/vertica-jdbc-${VERTICA_VERSION}.jar/g" /etc/systemd/system/monasca-api.service
-
-        sudo sed -i "s/influxdb.service/vertica.service/g" /etc/systemd/system/monasca-api.service
-
-    fi
-
-    sudo chown root:root /etc/systemd/system/monasca-api.service
-
-    sudo chmod 0644 /etc/systemd/system/monasca-api.service
 
     sudo mkdir -p /var/log/monasca || true
 
@@ -922,18 +927,6 @@ function install_monasca_api_python {
     unset PIP_VIRTUAL_ENV
 
     sudo useradd --system -g monasca mon-api || true
-
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/monasca-api.service /etc/systemd/system/monasca-api.service
-
-    if [[ "${MONASCA_METRICS_DB,,}" == 'cassandra' ]]; then
-
-        sudo sed -i "s/influxdb.service/cassandra.service/g" /etc/systemd/system/monasca-api.service
-
-    fi
-
-    sudo chown root:root /etc/systemd/system/monasca-api.service
-
-    sudo chmod 0644 /etc/systemd/system/monasca-api.service
 
     sudo mkdir -p /var/log/monasca || true
 
