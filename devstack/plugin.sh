@@ -60,6 +60,16 @@ fi
 MON_DB_USERS=("notification" "monapi" "thresh")
 MON_DB_HOSTS=("%" "localhost" "$MYSQL_HOST")
 
+# check ubuntu family
+if  [[ "$os_VENDOR" == "Ubuntu" ]] && [[ "$os_RELEASE" < "16.04" ]]; then
+    export JDK_VERSION=7
+fi
+
+# run commands
+MONASCA_API_RUN_CMD=""
+MONASCA_PERSISTER_RUN_CMD=""
+MONASCA_NOTIFICATION_RUN_CMD=""
+
 function pre_install_monasca {
 :
 }
@@ -67,12 +77,6 @@ function pre_install_monasca {
 function install_monasca {
     if [[ -n ${SCREEN_LOGDIR} ]]; then
         sudo ln -sf /var/log/influxdb/influxd.log ${SCREEN_LOGDIR}/screen-influxdb.log
-
-        sudo ln -sf /var/log/monasca/api/monasca-api.log ${SCREEN_LOGDIR}/screen-monasca-api.log
-
-        sudo ln -sf /var/log/monasca/persister/persister.log ${SCREEN_LOGDIR}/screen-monasca-persister.log || true
-
-        sudo ln -sf /var/log/monasca/notification/notification.log ${SCREEN_LOGDIR}/screen-monasca-notification.log || true
 
         sudo ln -sf /var/log/monasca/agent/statsd.log ${SCREEN_LOGDIR}/screen-monasca-agent-statsd.log
         sudo ln -sf /var/log/monasca/agent/supervisor.log ${SCREEN_LOGDIR}/screen-monasca-agent-supervisor.log
@@ -93,7 +97,7 @@ function install_monasca {
 
     install_monasca_virtual_env
 
-    install_openjdk_8_jdk
+    install_openjdk_jdk
 
     install_kafka
 
@@ -124,13 +128,9 @@ function install_monasca {
     install_monasca_common
 
     if [[ "${MONASCA_API_IMPLEMENTATION_LANG,,}" == 'java' ]]; then
-
         install_monasca_api_java
-
     elif [[ "${MONASCA_API_IMPLEMENTATION_LANG,,}" == 'python' ]]; then
-
         install_monasca_api_python
-
     else
 
         echo "Found invalid value for variable MONASCA_API_IMPLEMENTATION_LANG: $MONASCA_API_IMPLEMENTATION_LANG"
@@ -140,13 +140,9 @@ function install_monasca {
     fi
     if is_service_enabled monasca-persister; then
         if [[ "${MONASCA_PERSISTER_IMPLEMENTATION_LANG,,}" == 'java' ]]; then
-
             install_monasca_persister_java
-
         elif [[ "${MONASCA_PERSISTER_IMPLEMENTATION_LANG,,}" == 'python' ]]; then
-
             install_monasca_persister_python
-
         else
 
             echo "Found invalid value for varible MONASCA_PERSISTER_IMPLEMENTATION_LANG: $MONASCA_PERSISTER_IMPLEMENTATION_LANG"
@@ -201,14 +197,25 @@ function extra_monasca {
 
     start_monasca_services
 }
+
 function start_monasca_services {
-    start_service monasca-api || restart_service monasca-api
-    if is_service_enabled monasca-persister; then
-        start_service monasca-persister || restart_service monasca-persister
+    # code here is dirty, but need to check if it works, will remove it after confirming it works
+    # dirt block
+    if [[ "${MONASCA_API_IMPLEMENTATION_LANG,,}" == 'java' ]]; then
+        MONASCA_API_RUN_CMD="/usr/bin/java -Dfile.encoding=UTF-8 -Xmx128m -cp /opt/monasca/monasca-api.jar monasca.api.MonApiApplication server /etc/monasca/api-config.yml"
+    else
+        MONASCA_API_RUN_CMD="/opt/monasca-api/bin/gunicorn -n monasca-api -k eventlet --worker-connections=2000 --backlog=1000 --paste /etc/monasca/api-config.ini -w 9"
     fi
-    if is_service_enabled monasca-notification; then
-        start_service monasca-notification || restart_service monasca-notification
+    if [[ "${MONASCA_PERSISTER_IMPLEMENTATION_LANG,,}" == 'java' ]]; then
+        MONASCA_PERSISTER_RUN_CMD="/usr/bin/java -Dfile.encoding=UTF-8 -Xmx128m -cp /opt/monasca/monasca-persister.jar monasca.persister.PersisterApplication server /etc/monasca/persister-config.yml"
+    else
+        MONASCA_PERSISTER_RUN_CMD="/opt/monasca-persister/bin/python /opt/monasca-persister/lib/python2.7/site-packages/monasca_persister/persister.py --config-file /etc/monasca/persister.conf"
     fi
+    MONASCA_NOTIFICATION_RUN_CMD="/opt/monasca/bin/monasca-notification"
+    # dirty block
+    run_process "monasca" "$MONASCA_API_RUN_CMD" "" "api"
+    run_process "monasca" "$MONASCA_PERSISTER_RUN_CMD" "" "persister"
+    run_process "monasca" "$MONASCA_NOTIFICATION_RUN_CMD" "" "notification"
     if is_service_enabled monasca-thresh; then
         start_service monasca-thresh || restart_service monasca-thresh
     fi
@@ -234,11 +241,11 @@ function unstack_monasca {
 
     stop_service storm-nimbus || true
 
-    stop_service monasca-notification || true
+    stop_process monasca-notification || true
 
-    stop_service monasca-persister || true
+    stop_process monasca-persister || true
 
-    stop_service monasca-api || true
+    stop_process monasca-api || true
 
     stop_service kafka || true
 
@@ -349,7 +356,7 @@ function clean_monasca {
 
     clean_kafka
 
-    clean_openjdk_8_jdk
+    clean_openjdk_jdk
 
     clean_monasca_virtual_env
 
@@ -753,19 +760,19 @@ function clean_schema {
 
 }
 
-function install_openjdk_8_jdk {
+function install_openjdk_jdk {
 
-    echo_summary "Install Monasca openjdk_8_jdk"
+    echo_summary "Install Monasca openjdk_${JDK_VERSION}_jdk"
 
-    apt_get -y install openjdk-8-jdk
+    apt_get -y install openjdk-${JDK_VERSION}-jdk
 
 }
 
-function clean_openjdk_8_jdk {
+function clean_openjdk_jdk {
 
-    echo_summary "Clean Monasca openjdk_8_jdk"
+    echo_summary "Clean Monasca openjdk_${JDK_VERSION}_jdk"
 
-    apt_get -y purge openjdk-8-jdk
+    apt_get -y purge openjdk-${JDK_VERSION}-jdk
 
     apt_get -y autoremove
 
@@ -820,21 +827,6 @@ function install_monasca_api_java {
     sudo cp -f "${MONASCA_API_DIR}"/java/target/monasca-api-1.1.0-SNAPSHOT-shaded.jar /opt/monasca/monasca-api.jar
 
     sudo useradd --system -g monasca mon-api || true
-
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/monasca-api.service /etc/systemd/system/monasca-api.service
-
-    if [[ "${MONASCA_METRICS_DB,,}" == 'vertica' ]]; then
-
-        # Add the Vertica JDBC to the class path.
-        sudo sed -i "s/-cp \/opt\/monasca\/monasca-api.jar/-cp \/opt\/monasca\/monasca-api.jar:\/opt\/monasca\/vertica-jdbc-${VERTICA_VERSION}.jar/g" /etc/systemd/system/monasca-api.service
-
-        sudo sed -i "s/influxdb.service/vertica.service/g" /etc/systemd/system/monasca-api.service
-
-    fi
-
-    sudo chown root:root /etc/systemd/system/monasca-api.service
-
-    sudo chmod 0644 /etc/systemd/system/monasca-api.service
 
     sudo mkdir -p /var/log/monasca || true
 
@@ -923,18 +915,6 @@ function install_monasca_api_python {
 
     sudo useradd --system -g monasca mon-api || true
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/monasca-api.service /etc/systemd/system/monasca-api.service
-
-    if [[ "${MONASCA_METRICS_DB,,}" == 'cassandra' ]]; then
-
-        sudo sed -i "s/influxdb.service/cassandra.service/g" /etc/systemd/system/monasca-api.service
-
-    fi
-
-    sudo chown root:root /etc/systemd/system/monasca-api.service
-
-    sudo chmod 0644 /etc/systemd/system/monasca-api.service
-
     sudo mkdir -p /var/log/monasca || true
 
     sudo chown root:monasca /var/log/monasca
@@ -1018,10 +998,6 @@ function clean_monasca_api_java {
 
     sudo rm -rf /var/log/monasca/api
 
-    sudo systemctl disable monasca-api
-
-    sudo rm /etc/systemd/system/monasca-api.service
-
     sudo rm /opt/monasca/monasca-api.jar
 
     sudo rm /var/log/upstart/monasca-api.log*
@@ -1032,10 +1008,6 @@ function clean_monasca_api_java {
 function clean_monasca_api_python {
 
     echo_summary "Clean Monasca monasca_api_python"
-
-    sudo systemctl disable monasca-api
-
-    sudo rm /etc/systemd/system/monasca-api.service
 
     sudo rm /etc/api-config.conf
 
@@ -1107,21 +1079,6 @@ function install_monasca_persister_java {
         sudo sed -i "s/bindHost: 127\.0\.0\.1/bindHost: ${SERVICE_HOST}/g" /etc/monasca/persister-config.yml
 
     fi
-
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-persister/monasca-persister.service /etc/systemd/system/monasca-persister.service
-
-    if [[ "${MONASCA_METRICS_DB,,}" == 'vertica' ]]; then
-
-        # Add the Vertica JDBC to the class path.
-        sudo sed -i "s/-cp \/opt\/monasca\/monasca-persister.jar/-cp \/opt\/monasca\/monasca-persister.jar:\/opt\/monasca\/vertica-jdbc-${VERTICA_VERSION}.jar/g" /etc/systemd/system/monasca-persister.service
-
-        sudo sed -i "s/influxdb.service/vertica.service/g" /etc/systemd/system/monasca-persister.service
-
-    fi
-
-    sudo chown root:root /etc/systemd/system/monasca-persister.service
-
-    sudo chmod 0644 /etc/systemd/system/monasca-persister.service
 
 }
 
@@ -1216,18 +1173,6 @@ function install_monasca_persister_python {
 
     fi
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-persister/python/monasca-persister.service /etc/systemd/system/monasca-persister.service
-
-    if [[ "${MONASCA_METRICS_DB,,}" == 'cassandra' ]]; then
-
-        sudo sed -i "s/influxdb.service/cassandra.service/g" /etc/systemd/system/monasca-persister.service
-
-    fi
-
-    sudo chown root:root /etc/systemd/system/monasca-persister.service
-
-    sudo chmod 0644 /etc/systemd/system/monasca-persister.service
-
 }
 
 function clean_monasca_persister_java {
@@ -1235,10 +1180,6 @@ function clean_monasca_persister_java {
     echo_summary "Clean Monasca monasca_persister_java"
 
     (cd "${MONASCA_PERSISTER_DIR}" ; sudo mvn clean)
-
-    sudo systemctl disable monasca-persister
-
-    sudo rm /etc/systemd/system/monasca-persister.service
 
     sudo rm /etc/monasca/persister-config.yml
 
@@ -1254,10 +1195,6 @@ function clean_monasca_persister_java {
 function clean_monasca_persister_python {
 
     echo_summary "Clean Monasca monasca_persister_python"
-
-    sudo systemctl disable monasca-persister
-
-    sudo rm /etc/systemd/system/monasca-persister.service
 
     sudo rm /etc/monasca/persister.conf
 
@@ -1321,12 +1258,6 @@ function install_monasca_notification {
 
     fi
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-notification/monasca-notification.service /etc/systemd/system/monasca-notification.service
-
-    sudo chown root:root /etc/systemd/system/monasca-notification.service
-
-    sudo chmod 0644 /etc/systemd/system/monasca-notification.service
-
     sudo debconf-set-selections <<< "postfix postfix/mailname string localhost"
 
     sudo debconf-set-selections <<< "postfix postfix/main_mailer_type string 'Local only'"
@@ -1338,10 +1269,6 @@ function install_monasca_notification {
 function clean_monasca_notification {
 
     echo_summary "Clean Monasca monasca_notification"
-
-    sudo systemctl disable monasca-notification
-
-    sudo rm /etc/systemd/system/monasca-notification.service
 
     sudo rm /etc/monasca/notification.yaml
 
