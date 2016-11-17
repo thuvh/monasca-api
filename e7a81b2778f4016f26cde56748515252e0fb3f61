@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "7a77a97e_5bdb374f",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-11-17T05:01:38Z",
+      "side": 1,
+      "message": "Yeah, pretty much.\n\nPersonally I always go for early check and saving function ptr if that is possible (at least this JS pattern works in Python ;-) ). Here, influx version while application is already running won\u0027t change so we can easily do this. Another approach would be subclassing this one and writing new portion of code specifically for newer influx. However that would require admin knowledge and some extra documentation IMHO.",
+      "parentUuid": "7a77a97e_01031710",
+      "revId": "e7a81b2778f4016f26cde56748515252e0fb3f61",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a77a97e_b0dc73e5",
         "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
         "patchSetId": 13
