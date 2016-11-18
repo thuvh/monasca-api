@@ -22,6 +22,30 @@
       "revId": "cfa4e8781b426597058a37a56fd1ecd4322147d1",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a77a97e_84f0d592",
+        "filename": "monasca_api/v2/reference/alarm_definitions.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-11-18T05:46:19Z",
+      "side": 1,
+      "message": "Expression has only ascii character so it is safe to decode(\u0027utf8\u0027), but description which has non-ascii character is failed to decode(\u0027utf8\u0027).\nI think it is meaningless to decode(\u0027utf8\u0027) ascii character, so I will remove decode next patch set.",
+      "parentUuid": "7a77a97e_0d8f932a",
+      "range": {
+        "startLine": 268,
+        "startChar": 44,
+        "endLine": 268,
+        "endChar": 57
+      },
+      "revId": "cfa4e8781b426597058a37a56fd1ecd4322147d1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
