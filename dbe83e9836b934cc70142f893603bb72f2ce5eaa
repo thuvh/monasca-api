@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a77a97e_a2aa1e83",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 18
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-11-18T08:28:35Z",
+      "side": 1,
+      "message": "I started putting functions like this in the bottom of the file, do you think you could do the same ?",
+      "revId": "dbe83e9836b934cc70142f893603bb72f2ce5eaa",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
