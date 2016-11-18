@@ -1,0 +1,11 @@
+Code-Review+1: Ryan Bak <ryan.bak@twcable.com>
+Code-Review+1: Roland Hochmuth <roland.hochmuth@hpe.com>
+Code-Review+1: Craig Bryant <craig.bryant@hpe.com>
+Code-Review+2: Bradley Klein <bradley.klein@charter.com>
+Workflow+1: Bradley Klein <bradley.klein@charter.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Fri, 18 Nov 2016 17:29:24 +0000
+Reviewed-on: https://review.openstack.org/395798
+Project: openstack/monasca-api
+Branch: refs/heads/master
