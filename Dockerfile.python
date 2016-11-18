@@ -1,0 +1,15 @@
+FROM python:2.7
+
+COPY . /source/
+
+WORKDIR /source
+RUN pip install gunicorn influxdb
+RUN pip install -r requirements.txt
+RUN python setup.py install
+
+COPY docker/api-config.conf /etc/monasca/
+COPY docker/api-logging.conf /etc/monasca/
+RUN mkdir /config
+COPY docker/api-config.ini /config/
+
+ENTRYPOINT ["gunicorn", "--capture-output", "-n", "monasca-api", "-k", "eventlet", "--worker-connections=2000", "--backlog=1000", "--paste", "/config/api-config.ini", "-w", "9"]

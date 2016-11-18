@@ -119,6 +119,13 @@ directory of this project
     $ tox -e py27   (or -e py26, -e py33)
 
 
+# Docker build
+
+Create a new docker container with the python api by running:
+
+    $ docker build -t monasca-api -f Dockerfile.python .
+
+
 # License
 
 Copyright (c) 2014 Hewlett-Packard Development Company, L.P.
