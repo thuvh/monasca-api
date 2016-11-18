@@ -46,6 +46,30 @@
       "revId": "cfa4e8781b426597058a37a56fd1ecd4322147d1",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a77a97e_460bfe7c",
+        "filename": "monasca_api/v2/reference/alarm_definitions.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-11-18T21:15:36Z",
+      "side": 1,
+      "message": "expression can have non-ascii characters in it since the metric name and dimensions names/values can be non-ascii.",
+      "parentUuid": "7a77a97e_84f0d592",
+      "range": {
+        "startLine": 268,
+        "startChar": 44,
+        "endLine": 268,
+        "endChar": 57
+      },
+      "revId": "cfa4e8781b426597058a37a56fd1ecd4322147d1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
