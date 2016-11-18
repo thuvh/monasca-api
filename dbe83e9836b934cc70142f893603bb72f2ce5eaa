@@ -126,6 +126,29 @@
       "revId": "dbe83e9836b934cc70142f893603bb72f2ce5eaa",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a77a97e_0792e04b",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2016-11-18T23:17:47Z",
+      "side": 1,
+      "message": "I think it would be worthwhile to log a message whenever skipping a series.",
+      "range": {
+        "startLine": 71,
+        "startChar": 16,
+        "endLine": 71,
+        "endChar": 24
+      },
+      "revId": "dbe83e9836b934cc70142f893603bb72f2ce5eaa",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
