@@ -803,7 +803,10 @@ function install_monasca_api_java {
 
     (cd "${MONASCA_API_DIR}"/java ; sudo mvn clean package -DskipTests)
 
-    sudo cp -f "${MONASCA_API_DIR}"/java/target/monasca-api-1.1.0-SNAPSHOT-shaded.jar /opt/monasca/monasca-api.jar
+    local version="$(get_version_from_pom)"
+
+    sudo cp -f "${MONASCA_API_DIR}"/java/target/monasca-api-${version}-shaded.jar \
+      /opt/monasca/monasca-api.jar
 
     sudo useradd --system -g monasca mon-api || true
 
@@ -1033,7 +1036,10 @@ function install_monasca_persister_java {
     git_clone $MONASCA_PERSISTER_REPO $MONASCA_PERSISTER_DIR $MONASCA_PERSISTER_BRANCH
     (cd "${MONASCA_PERSISTER_DIR}"/java ; sudo mvn clean package -DskipTests)
 
-    sudo cp -f "${MONASCA_PERSISTER_DIR}"/java/target/monasca-persister-1.1.0-SNAPSHOT-shaded.jar /opt/monasca/monasca-persister.jar
+    local version="$(get_version_from_pom)"
+
+    sudo cp -f "${MONASCA_PERSISTER_DIR}"/java/target/monasca-persister-${version}-shaded.jar \
+      /opt/monasca/monasca-persister.jar
 
     sudo useradd --system -g monasca mon-persister || true
 
@@ -1406,7 +1412,10 @@ function install_monasca_thresh {
     git_clone $MONASCA_THRESH_REPO $MONASCA_THRESH_DIR $MONASCA_THRESH_BRANCH
     (cd "${MONASCA_THRESH_DIR}"/thresh ; sudo mvn clean package -DskipTests)
 
-    sudo cp -f "${MONASCA_THRESH_DIR}"/thresh/target/monasca-thresh-2.0.0-SNAPSHOT-shaded.jar /opt/monasca/monasca-thresh.jar
+    local version="$(get_version_from_pom)"
+
+    sudo cp -f "${MONASCA_THRESH_DIR}"/thresh/target/monasca-thresh-${version}-shaded.jar \
+      /opt/monasca/monasca-thresh.jar
 
     sudo useradd --system -g monasca mon-thresh || true
 
@@ -1818,6 +1827,13 @@ function recreate_users_mysql {
       mysql -uroot -p$DATABASE_PASSWORD -h127.0.0.1 -e "GRANT ALL PRIVILEGES ON $db.* TO '$user'@'$host' identified by 'password';"
     done
   done
+}
+
+# Prints the version specified in the pom.xml file in the local directory
+function get_version_from_pom {
+  python -c "import xml.etree.ElementTree as ET; \
+    print(ET.parse(open('pom.xml')).getroot().find( \
+    '{http://maven.apache.org/POM/4.0.0}version').text)"
 }
 
 # Allows this script to be called directly outside of
