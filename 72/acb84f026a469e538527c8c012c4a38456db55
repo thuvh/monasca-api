@@ -1,0 +1,11 @@
+Code-Review+1: Jakub Wachowski <jakub.wachowski@ts.fujitsu.com>
+Code-Review+1: Shinya Kawabata <s-kawabata@wx.jp.nec.com>
+Code-Review+2: Tomasz Trębski <tomasz.trebski@ts.fujitsu.com>
+Code-Review+1: Craig Bryant <craig.bryant@hpe.com>
+Workflow+1: Witold Bedyk <witold.bedyk@est.fujitsu.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Tue, 22 Nov 2016 17:28:16 +0000
+Reviewed-on: https://review.openstack.org/366024
+Project: openstack/monasca-api
+Branch: refs/heads/master
