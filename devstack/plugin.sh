@@ -1490,11 +1490,11 @@ function install_monasca_thresh {
         sudo sed -i "s/jdbc:mysql:\/\/127\.0\.0\.1/jdbc:mysql:\/\/${SERVICE_HOST}/g" /etc/monasca/thresh-config.yml
     fi
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-thresh/monasca-thresh /etc/init.d/monasca-thresh
+    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-thresh/monasca-thresh.service /etc/systemd/system/monasca-thresh.service
 
-    sudo chown root:root /etc/init.d/monasca-thresh
+    sudo chown root:root /etc/systemd/system/monasca-thresh.service
 
-    sudo chmod 0744 /etc/init.d/monasca-thresh
+    sudo chmod 0744 /etc/systemd/system/monasca-thresh.service
 
 }
 
@@ -1506,7 +1506,7 @@ function clean_monasca_thresh {
 
     sudo systemctl disable monasca-thresh
 
-    sudo rm /etc/init.d/monasca-thresh
+    sudo rm /etc/systemd/system/monasca-thresh.service
 
     sudo rm /etc/monasca/thresh-config.yml
 
