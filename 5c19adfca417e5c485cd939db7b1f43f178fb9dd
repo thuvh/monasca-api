@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a74a57a_c52fcf9f",
+        "filename": "devstack/files/monasca-thresh/monasca-thresh.service",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 22044
+      },
+      "writtenOn": "2016-11-23T12:44:27Z",
+      "side": 1,
+      "message": "2016 needs adding.",
+      "range": {
+        "startLine": 2,
+        "startChar": 20,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "5c19adfca417e5c485cd939db7b1f43f178fb9dd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
