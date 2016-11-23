@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a74a57a_a831d6ee",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 22
+      },
+      "lineNbr": 1848,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2016-11-23T08:04:18Z",
+      "side": 1,
+      "message": "I still would like to see removing leading `v` from input versions in this function.",
+      "revId": "d76e5b9e2ba3518e098e5e1b97b08f0774bc3f72",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
