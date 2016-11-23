@@ -16,6 +16,24 @@
       "revId": "d76e5b9e2ba3518e098e5e1b97b08f0774bc3f72",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a74a57a_d9925757",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 22
+      },
+      "lineNbr": 1848,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-11-23T14:01:56Z",
+      "side": 1,
+      "message": "I think the leading \"v\" is not valid input and therefore, shouldn\u0027t be allowed. I\u0027m not of any place in the code where a leading \"v\" is supplied. If you look at the settings file, there are no loading \"v\u0027s\". So, instead of stripping off what is essentially invalid input, I\u0027ve added a function to validate that the program version string is of the correct form. That is, something like \"1.0.0\".\n\nIf there is a place where a leading \"v\" is used or should be allowed, let me know, but I\u0027m not going to change it because you want to see it added. If it is valid input somewhere and used somewhere, that would be a justified reason.\n\nKeep in mind that this function is just being used to configure the proper config file for InfluxDB versions right now. We\u0027re not talking about something that needs to handle all current and future potential cases.",
+      "parentUuid": "5a74a57a_a831d6ee",
+      "revId": "d76e5b9e2ba3518e098e5e1b97b08f0774bc3f72",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
