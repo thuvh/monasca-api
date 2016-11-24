@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a74a57a_4a270c12",
+        "filename": "devstack/files/influxdb/influxdb-1.0.0.conf",
+        "patchSetId": 25
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2016-11-24T14:47:17Z",
+      "side": 1,
+      "message": "I think port number for binding meta data should be 8088 which is default port. When you try to restore backup of influxdb database and influx is working on different port it will thrown an error. \nPort 8088 is hard coded for restore command:\nhttps://github.com/influxdata/influxdb/blob/0.11/cmd/influxd/restore/restore.go#L125\nand,\nhttps://github.com/influxdata/influxdb/blob/v0.11.0/services/meta/config.go#L82",
+      "range": {
+        "startLine": 30,
+        "startChar": 19,
+        "endLine": 30,
+        "endChar": 23
+      },
+      "revId": "2741716c6fe253649f7223eaa8f48e56a81e25d4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
