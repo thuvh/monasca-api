@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7a77a97e_dd012606",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 18
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-11-24T17:39:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a77a97e_d78c3edc",
+      "range": {
+        "startLine": 16,
+        "startChar": 42,
+        "endLine": 16,
+        "endChar": 43
+      },
+      "revId": "dbe83e9836b934cc70142f893603bb72f2ce5eaa",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a77a97e_e27a56bc",
         "filename": "devstack/files/schema/influxdb_setup.py",
         "patchSetId": 18
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "7a77a97e_3d4bfa2c",
+        "filename": "devstack/files/schema/influxdb_setup.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-11-24T17:39:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a77a97e_e27a56bc",
+      "range": {
+        "startLine": 91,
+        "startChar": 8,
+        "endLine": 91,
+        "endChar": 15
+      },
+      "revId": "dbe83e9836b934cc70142f893603bb72f2ce5eaa",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a77a97e_22db6e1c",
         "filename": "devstack/files/schema/influxdb_setup.py",
         "patchSetId": 18
@@ -59,6 +107,30 @@
       "writtenOn": "2016-11-18T09:27:15Z",
       "side": 1,
       "message": "I think POST should be tried first if it\u0027s in newer version otherwise the more client will update InfluxDB the more unnecessary requests will happen.",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 25
+      },
+      "revId": "dbe83e9836b934cc70142f893603bb72f2ce5eaa",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a77a97e_9d2fae87",
+        "filename": "devstack/files/schema/influxdb_setup.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-11-24T17:39:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a77a97e_22db6e1c",
       "range": {
         "startLine": 82,
         "startChar": 0,
@@ -106,6 +178,42 @@
     },
     {
       "key": {
+        "uuid": "7a77a97e_3d413a3a",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 18
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-11-24T17:39:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a77a97e_a2aa1e83",
+      "revId": "dbe83e9836b934cc70142f893603bb72f2ce5eaa",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a77a97e_dd84c65e",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 18
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-11-24T17:39:33Z",
+      "side": 1,
+      "message": "Not sure why you suggest removing leading v\u0027s. The versions should not have a v as the prefix. Is there a \"v\" that is being added as the prefix to a program version string? Keep in mind, we are only talking about a small utility function that is being used to just select the correct version of InfluxDB that should be deployed in DevStack.",
+      "parentUuid": "7a77a97e_9de747ab",
+      "revId": "dbe83e9836b934cc70142f893603bb72f2ce5eaa",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a77a97e_5d1bef80",
         "filename": "devstack/settings",
         "patchSetId": 18
@@ -129,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "7a77a97e_7d901296",
+        "filename": "devstack/settings",
+        "patchSetId": 18
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-11-24T17:39:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a77a97e_5d1bef80",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 59
+      },
+      "revId": "dbe83e9836b934cc70142f893603bb72f2ce5eaa",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a77a97e_0792e04b",
         "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
         "patchSetId": 18
@@ -140,6 +272,30 @@
       "writtenOn": "2016-11-18T23:17:47Z",
       "side": 1,
       "message": "I think it would be worthwhile to log a message whenever skipping a series.",
+      "range": {
+        "startLine": 71,
+        "startChar": 16,
+        "endLine": 71,
+        "endChar": 24
+      },
+      "revId": "dbe83e9836b934cc70142f893603bb72f2ce5eaa",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a74a57a_2723e206",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-11-24T17:39:33Z",
+      "side": 1,
+      "message": "I would happily log at this point and other spots in this code if I knew what the result set was supposed to be. It isn\u0027t like I didn\u0027t think about doing that.\n\nHowever, I don\u0027t know if \"columns\" should always be provided or not. Look at the documentation that InfluxDB provides at, https://docs.influxdata.com/influxdb/v1.1/troubleshooting/statistics/#show-stats. Not much there. If they documented the schema explicitly, I could start to write code that handles what are expected cases, warning cases and error cases, rather than proceeding with guessing/assuming.\n\nSo, right now the code in this location does several checks for columns, keys and values, as well as checks to see if it has the appropriate number of tokens after splitting. In all cases, the code just continues on. This isn\u0027t what I wanted to do. \n\nThere are really a couple of choices:\n\n1. Remove the checks, for example, in this case remove the check for whether columns exists along with the continue. At least in that case an exception will occur which can be debugged. That might improve the performance too, but at the same time, I\u0027m not sure what is in the result set, and what is valid. If I let an exception occur when the code trys to resolve columns, could it possibly be ignoring valid input that follows? I\u0027m assuming, yes. It seems unlikely, but I don\u0027t like coding to what seems likely/unlikely in this case.\n\n2. Keep the check, add a log statement and then do what? Continue silently or raise an exception. Since I don\u0027t know, I\u0027m not sure what to do. And, I don\u0027t even know what log statement should be logged. Should it be a warning, error, debug, or info.\n\nIf you come across a schema for InfluxDB that I can code too, then I can start to think about an appropriate strategy.\n\nWhat I\u0027ve chosen as my strategy in this case is that since it is JSON, and I don\u0027t have a documented schema, to continue on silently, ignoring results that don\u0027t have the key that I\u0027m looking for, rather than logging or letting an exception occur. \n\nWhat is the downside? Well, if InfluxDB happens to throw some results that don\u0027t match the explicit structure I\u0027m looking for they will be ignored. I think that is unlikely, and if InfluxDB starts to do that, wouldn\u0027t that be considered the appropriate choice?",
+      "parentUuid": "7a77a97e_0792e04b",
       "range": {
         "startLine": 71,
         "startChar": 16,
