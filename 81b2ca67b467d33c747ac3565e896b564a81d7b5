@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a74a57a_8d077e1b",
+        "filename": "devstack/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2016-11-24T15:02:05Z",
+      "side": 1,
+      "message": "Please remove white spaces.",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 1
+      },
+      "revId": "81b2ca67b467d33c747ac3565e896b564a81d7b5",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
