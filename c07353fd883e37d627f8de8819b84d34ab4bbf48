@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a74a57a_1721c19f",
+        "filename": "devstack/files/monasca-thresh/monasca-thresh.service",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2016-11-24T14:12:47Z",
+      "side": 1,
+      "message": "Ok this gonna work only to start monasca-thresh and upload the topology to the Storm.\nWith this script if you execute: systemctl stop monasca-thresh you will only disable the service.\nYou need to use ExecStop and kill the \"thresh-cluster\" topology inside Storm.\nThere is also a question how to check the status of monasca-thresh because you need to list topologies inside storm and check if \"thresh-cluster\" topology is there.",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 9
+      },
+      "revId": "c07353fd883e37d627f8de8819b84d34ab4bbf48",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
