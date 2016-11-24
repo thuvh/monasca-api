@@ -14,10 +14,9 @@
 
 """RequestContext: context for requests that persist through monasca."""
 
-import uuid
-
 from oslo_log import log
 from oslo_utils import timeutils
+from oslo_utils import uuidutils
 
 LOG = log.getLogger(__name__)
 
@@ -80,4 +79,4 @@ class RequestContext(object):
                 'user': self._user}
 
     def generate_request_id(self):
-        return b'req-' + str(uuid.uuid4()).encode('ascii')
+        return b'req-' + uuidutils.generate_uuid().encode('ascii')
