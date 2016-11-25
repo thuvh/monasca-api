@@ -885,6 +885,8 @@ function install_monasca_api_java {
 
     fi
 
+    sudo systemctl enable monasca-api
+
 }
 
 function install_monasca_api_python {
@@ -1006,6 +1008,9 @@ function install_monasca_api_python {
     sudo chmod 0660 /etc/monasca/api-logging.conf
 
     sudo ln -sf /etc/monasca/api-logging.conf /etc/api-logging.conf
+
+    sudo systemctl enable monasca-api
+
 }
 
 function clean_monasca_api_java {
@@ -1123,6 +1128,8 @@ function install_monasca_persister_java {
 
     sudo chmod 0644 /etc/systemd/system/monasca-persister.service
 
+    sudo systemctl enable monasca-persister
+
 }
 
 function install_monasca_persister_python {
@@ -1228,6 +1235,8 @@ function install_monasca_persister_python {
 
     sudo chmod 0644 /etc/systemd/system/monasca-persister.service
 
+    sudo systemctl enable monasca-persister
+
 }
 
 function clean_monasca_persister_java {
@@ -1326,6 +1335,8 @@ function install_monasca_notification {
     sudo chown root:root /etc/systemd/system/monasca-notification.service
 
     sudo chmod 0644 /etc/systemd/system/monasca-notification.service
+
+    sudo systemctl enable monasca-notification
 
     sudo debconf-set-selections <<< "postfix postfix/mailname string localhost"
 
@@ -1495,6 +1506,8 @@ function install_monasca_thresh {
     sudo chown root:root /etc/init.d/monasca-thresh
 
     sudo chmod 0744 /etc/init.d/monasca-thresh
+
+    sudo systemctl enable monasca-thresh
 
 }
 
