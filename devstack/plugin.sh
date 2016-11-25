@@ -1123,6 +1123,8 @@ function install_monasca_persister_java {
 
     sudo chmod 0644 /etc/systemd/system/monasca-persister.service
 
+    sudo systemctl enable monasca-persister
+
 }
 
 function install_monasca_persister_python {
@@ -1228,6 +1230,8 @@ function install_monasca_persister_python {
 
     sudo chmod 0644 /etc/systemd/system/monasca-persister.service
 
+    sudo systemctl enable monasca-persister
+
 }
 
 function clean_monasca_persister_java {
@@ -1326,6 +1330,8 @@ function install_monasca_notification {
     sudo chown root:root /etc/systemd/system/monasca-notification.service
 
     sudo chmod 0644 /etc/systemd/system/monasca-notification.service
+
+    sudo systemctl enable monasca-notification
 
     sudo debconf-set-selections <<< "postfix postfix/mailname string localhost"
 
@@ -1496,6 +1502,8 @@ function install_monasca_thresh {
 
     sudo chmod 0744 /etc/init.d/monasca-thresh
 
+    sudo systemctl enable monasca-thresh
+
 }
 
 function clean_monasca_thresh {
@@ -1623,6 +1631,8 @@ function install_monasca_agent {
         sudo sed -i "s/--monasca_url 'http:\/\/127\.0\.0\.1:8070\/v2\.0'/--monasca_url 'http:\/\/${SERVICE_HOST}:8070\/v2\.0'/" /usr/local/bin/monasca-reconfigure
         sudo sed -i "s/--keystone_url 'http:\/\/127\.0\.0\.1:35357\/v3'/--keystone_url 'http:\/\/${SERVICE_HOST}:35357\/v3'/" /usr/local/bin/monasca-reconfigure
     fi
+
+    sudo systemctl enable monasca-agent
 
 }
 
