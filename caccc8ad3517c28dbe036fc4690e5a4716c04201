@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a74a57a_a6b7a238",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 1391,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2016-11-28T11:35:54Z",
+      "side": 1,
+      "message": "should be ${storm_tarball_dest}",
+      "range": {
+        "startLine": 1391,
+        "startChar": 20,
+        "endLine": 1391,
+        "endChar": 33
+      },
+      "revId": "caccc8ad3517c28dbe036fc4690e5a4716c04201",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a74a57a_eb4b2385",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 1940,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2016-11-28T11:35:54Z",
+      "side": 1,
+      "message": "devstack cookie monster :)",
+      "range": {
+        "startLine": 1940,
+        "startChar": 3,
+        "endLine": 1940,
+        "endChar": 55
+      },
+      "revId": "caccc8ad3517c28dbe036fc4690e5a4716c04201",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
