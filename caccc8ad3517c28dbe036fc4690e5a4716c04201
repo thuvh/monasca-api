@@ -93,6 +93,30 @@
       "revId": "caccc8ad3517c28dbe036fc4690e5a4716c04201",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a74a57a_e3bb47e3",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 1940,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-11-28T12:54:10Z",
+      "side": 1,
+      "message": "Invented that....not inverted... :(",
+      "parentUuid": "5a74a57a_a09dc567",
+      "range": {
+        "startLine": 1940,
+        "startChar": 3,
+        "endLine": 1940,
+        "endChar": 55
+      },
+      "revId": "caccc8ad3517c28dbe036fc4690e5a4716c04201",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
