@@ -22,6 +22,30 @@
       "revId": "c19714612731f116db25c6671f8e3ce114a53dba",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a74a57a_49ebe3b0",
+        "filename": "monasca_api/expression_parser/alarm_expr_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-11-29T22:48:38Z",
+      "side": 1,
+      "message": "Good catch. Fixed.",
+      "parentUuid": "5a74a57a_83d79cbe",
+      "range": {
+        "startLine": 196,
+        "startChar": 44,
+        "endLine": 196,
+        "endChar": 63
+      },
+      "revId": "c19714612731f116db25c6671f8e3ce114a53dba",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
