@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a74a57a_6f133a0e",
+        "filename": "monasca_api/expression_parser/alarm_expr_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2016-11-30T02:46:19Z",
+      "side": 1,
+      "message": "It should return string type object.\nIt is failed to create alarm-definition including period and periods.",
+      "range": {
+        "startLine": 202,
+        "startChar": 4,
+        "endLine": 202,
+        "endChar": 17
+      },
+      "revId": "a1c503a86eb548776a8b141b7ffa89eddd68f388",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
