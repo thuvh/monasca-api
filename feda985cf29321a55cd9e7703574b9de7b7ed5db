@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a71b18c_f599e020",
+        "filename": "devstack/Vagrantfile",
+        "patchSetId": 6
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 9276
+      },
+      "writtenOn": "2016-12-01T14:18:07Z",
+      "side": 1,
+      "message": "Doesn\u0027t kafka need zookeeper?",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 14
+      },
+      "revId": "feda985cf29321a55cd9e7703574b9de7b7ed5db",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a71b18c_15e81c7c",
+        "filename": "devstack/ubuntu-xenial-16.04-cloudimg-console.log",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 9276
+      },
+      "writtenOn": "2016-12-01T14:18:07Z",
+      "side": 1,
+      "message": "Add this file to .gitignore?",
+      "range": {
+        "startLine": 1,
+        "startChar": 1,
+        "endLine": 1,
+        "endChar": 5
+      },
+      "revId": "feda985cf29321a55cd9e7703574b9de7b7ed5db",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
