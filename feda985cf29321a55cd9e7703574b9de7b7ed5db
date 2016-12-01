@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3a71b18c_4073b4b1",
+        "filename": "devstack/Vagrantfile",
+        "patchSetId": 6
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-12-01T14:21:59Z",
+      "side": 1,
+      "message": "Well, unfortunately (or not) this (devstack-plugin-kafka) particular plugin comes with zookeeper embedded. I addressed this little fact here (a.k.a. if zookeeper was installed from devstack, don\u0027t start it from kafka plugin).\n\nFor details see here: https://review.openstack.org/#/c/405133/",
+      "parentUuid": "3a71b18c_f599e020",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 14
+      },
+      "revId": "feda985cf29321a55cd9e7703574b9de7b7ed5db",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a71b18c_15e81c7c",
         "filename": "devstack/ubuntu-xenial-16.04-cloudimg-console.log",
         "patchSetId": 6
@@ -36,6 +60,30 @@
       "writtenOn": "2016-12-01T14:18:07Z",
       "side": 1,
       "message": "Add this file to .gitignore?",
+      "range": {
+        "startLine": 1,
+        "startChar": 1,
+        "endLine": 1,
+        "endChar": 5
+      },
+      "revId": "feda985cf29321a55cd9e7703574b9de7b7ed5db",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a71b18c_20a5d803",
+        "filename": "devstack/ubuntu-xenial-16.04-cloudimg-console.log",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-12-01T14:21:59Z",
+      "side": 1,
+      "message": "LOL. How did I do this...shame on me... ;-(",
+      "parentUuid": "3a71b18c_15e81c7c",
       "range": {
         "startLine": 1,
         "startChar": 1,
