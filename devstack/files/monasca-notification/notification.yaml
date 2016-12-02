@@ -100,5 +100,5 @@ logging: # Used in logging.dictConfig
             - file
         level: WARN
 statsd:
-    host: 'localhost'
-    port: 8125
+    host: '%MONASCA_STATSD_HOST%'
+    port: %MONASCA_STATSD_PORT%
