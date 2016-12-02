@@ -136,3 +136,7 @@ MONASCA_GRAFANA_DATASOURCE_DIR=${MONASCA_BASE}/monasca-grafana-datasource
 GRAFANA_REPO=${GRAFANA_REPO:-"https://github.com/twc-openstack/grafana.git"}
 GRAFANA_BRANCH=${GRAFANA_BRANCH:-"master-keystone"}
 GRAFANA_DIR=${MONASCA_BASE}/grafana
+
+# Public configuration
+MONASCA_STATSD_HOST=${MONASCA_STATSD_HOST:-${SERVICE_HOST}}
+MONASCA_STATSD_PORT=${MONASCA_STATSD_PORT:-8125}
