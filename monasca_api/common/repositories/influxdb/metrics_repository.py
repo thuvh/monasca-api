@@ -402,7 +402,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
 
                 LOG.exception(ex)
 
-                raise ex
+                raise
 
         except InfluxDBClientError as ex:
 
@@ -509,7 +509,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
 
                 LOG.exception(ex)
 
-                raise ex
+                raise
 
         except InfluxDBClientError as ex:
 
