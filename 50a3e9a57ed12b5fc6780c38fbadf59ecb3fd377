@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a71b18c_f73221a6",
+        "filename": "monasca_api/v2/reference/alarm_definitions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-12-06T04:27:17Z",
+      "side": 1,
+      "message": "I\u0027m just wondering when the description was not of test_type? The previous code never tested for a test_type, it would just decode if the string was not None. But this change only does the decoding if the description is not of text_type. If the description is not None, then it should always be of a text_type. Was there a case that it wasn\u0027t text_type?",
+      "revId": "50a3e9a57ed12b5fc6780c38fbadf59ecb3fd377",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
