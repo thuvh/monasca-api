@@ -1735,6 +1735,15 @@ function install_node_nvm {
         curl https://raw.githubusercontent.com/creationix/nvm/v${NVM_VERSION}/install.sh | bash
     fi
     (source "${HOME}"/.nvm/nvm.sh >> /dev/null; nvm install ${NODE_JS_VERSION}; nvm use ${NODE_JS_VERSION})
+
+    # Make sure proxy is set in the npm
+    if [[ -n $HTTP_PROXY ]]; then
+      npm config set proxy $HTTP_PROXY
+    fi
+    if [[ -n $HTTPS_PROXY ]]; then
+      npm config set https-proxy $HTTPS_PROXY
+    fi
+
     set +i
 }
 
