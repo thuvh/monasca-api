@@ -16,6 +16,24 @@
       "revId": "50a3e9a57ed12b5fc6780c38fbadf59ecb3fd377",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a71b18c_f5c05952",
+        "filename": "monasca_api/v2/reference/alarm_definitions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 4428
+      },
+      "writtenOn": "2016-12-06T06:06:31Z",
+      "side": 1,
+      "message": "The test is: https://github.com/openstack/monasca-api/blob/master/monasca_api/tests/test_alarms.py#L504, not sure if it\u0027s a right case..",
+      "parentUuid": "3a71b18c_f73221a6",
+      "revId": "50a3e9a57ed12b5fc6780c38fbadf59ecb3fd377",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
