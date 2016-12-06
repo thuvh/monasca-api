@@ -1739,7 +1739,15 @@ function install_node_nvm {
 
     set -i
     bash ${nvm_dest}
-    (source "${HOME}"/.nvm/nvm.sh >> /dev/null; nvm install ${NODE_JS_VERSION}; nvm use ${NODE_JS_VERSION})
+    (
+      source "${HOME}"/.nvm/nvm.sh >> /dev/null; \
+        nvm install ${NODE_JS_VERSION}; \
+        nvm use ${NODE_JS_VERSION}; \
+        npm config set registry "http://registry.npmjs.org/"; \
+        npm config set http-proxy "${HTTP_PROXY}"; \
+        npm config set https-proxy "${HTTPS_PROXY}"; \
+        npm set strict-ssl false;
+    )
     set +i
 }
 
