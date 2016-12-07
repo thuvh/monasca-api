@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a71b18c_c6f8c44c",
+        "filename": "devstack/files/monasca-thresh/thresh-config.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2016-12-07T16:59:55Z",
+      "side": 1,
+      "message": "Does this need to be quoted?",
+      "range": {
+        "startLine": 21,
+        "startChar": 9,
+        "endLine": 21,
+        "endChar": 28
+      },
+      "revId": "679722e83bd0a6e6ebc82000cf86a01964b817c5",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
