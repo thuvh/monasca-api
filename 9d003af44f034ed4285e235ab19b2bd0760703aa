@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a71b18c_4c386ed3",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 1748,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-12-07T09:24:28Z",
+      "side": 1,
+      "message": "Interestingly enough if I set https-proxy with $HTTP_PROXY :/\nAfter I\u0027ve done that PhantomJS was downloaded, maybe we should it done.",
+      "revId": "9d003af44f034ed4285e235ab19b2bd0760703aa",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
