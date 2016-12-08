@@ -16,6 +16,24 @@
       "revId": "af9ff80e979cd94793dcd3ffbceca07823325732",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a71b18c_a4dc8375",
+        "filename": "devstack/files/monasca-thresh/thresh-config.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2016-12-08T09:15:18Z",
+      "side": 1,
+      "message": "Right",
+      "parentUuid": "3a71b18c_c4ab3fd5",
+      "revId": "af9ff80e979cd94793dcd3ffbceca07823325732",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
