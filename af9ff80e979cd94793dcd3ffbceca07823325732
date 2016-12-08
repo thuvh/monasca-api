@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a71b18c_c4ab3fd5",
+        "filename": "devstack/files/monasca-thresh/thresh-config.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-12-08T09:13:25Z",
+      "side": 1,
+      "message": "There\u0027s no point right now to have this line changed, right ?",
+      "revId": "af9ff80e979cd94793dcd3ffbceca07823325732",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
