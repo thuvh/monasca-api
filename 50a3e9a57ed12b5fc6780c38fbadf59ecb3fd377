@@ -34,6 +34,24 @@
       "revId": "50a3e9a57ed12b5fc6780c38fbadf59ecb3fd377",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a71b18c_ed1d3467",
+        "filename": "monasca_api/v2/reference/alarm_definitions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-12-09T17:41:03Z",
+      "side": 1,
+      "message": "So, I think the problem is that the description was not properly encoded to utf8 when the alarm definition was created. \n\nI think the function\n\ndef get_query_alarm_definition_description(alarm_definition,\n                                           return_none\u003dFalse):\n    if \u0027description\u0027 in alarm_definition:\n        return alarm_definition[\u0027description\u0027]\n    else:\n        if return_none:\n            return None\n        else:\n            return \u0027\u0027\n\nis missing a conversion to utf8 on it. Should the function be written as\n\ndef get_query_alarm_definition_description(alarm_definition,\n                                           return_none\u003dFalse):\n    if \u0027description\u0027 in alarm_definition:\n        return alarm_definition[\u0027description\u0027].decode(\u0027utf8\u0027)\n    else:\n        if return_none:\n            return None\n        else:\n            return \u0027\u0027\n\nwith the conversion to utf8.\n\nThere are other functions in this file that do the following:\n\ndef get_query_alarm_definition_severity(alarm_definition, return_none\u003dFalse):\n    if \u0027severity\u0027 in alarm_definition:\n        severity \u003d alarm_definition[\u0027severity\u0027]\n        severity \u003d severity.decode(\u0027utf8\u0027).upper()\n        if severity not in [\u0027LOW\u0027, \u0027MEDIUM\u0027, \u0027HIGH\u0027, \u0027CRITICAL\u0027]:\n            raise HTTPUnprocessableEntityError(\u0027Unprocessable Entity\u0027, \u0027Invalid severity\u0027)\n        return severity\n    else:\n        if return_none:\n            return None\n        else:\n            return \u0027LOW\u0027",
+      "parentUuid": "3a71b18c_f5c05952",
+      "revId": "50a3e9a57ed12b5fc6780c38fbadf59ecb3fd377",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
