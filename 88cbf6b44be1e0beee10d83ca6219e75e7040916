@@ -22,6 +22,30 @@
       "revId": "88cbf6b44be1e0beee10d83ca6219e75e7040916",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a71b18c_e4148da0",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 34
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-12-09T05:41:36Z",
+      "side": 1,
+      "message": "Hi Ryan, I think you found a bug. Dimensions are optional, although I pity the soul who provides metrics without dimensions. I\u0027ll address this bug in another patch set, as well as create a Tempest test to try and catch this.",
+      "parentUuid": "3a71b18c_e34499b8",
+      "range": {
+        "startLine": 486,
+        "startChar": 16,
+        "endLine": 486,
+        "endChar": 40
+      },
+      "revId": "88cbf6b44be1e0beee10d83ca6219e75e7040916",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
