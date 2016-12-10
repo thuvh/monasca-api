@@ -46,6 +46,30 @@
       "revId": "88cbf6b44be1e0beee10d83ca6219e75e7040916",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a71b18c_1960ddce",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 34
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2016-12-10T13:12:33Z",
+      "side": 1,
+      "message": "Hi Ryan, We are OK. There are always a few private values, _region and _tenant_id, supplied. So, in theory the split_value should always be \u003e\u003d 2.\n\nI tested manually, and there are tempest tests that test this condition that are passing, so it looks like this is ready to go again.",
+      "parentUuid": "3a71b18c_e4148da0",
+      "range": {
+        "startLine": 486,
+        "startChar": 16,
+        "endLine": 486,
+        "endChar": 40
+      },
+      "revId": "88cbf6b44be1e0beee10d83ca6219e75e7040916",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
