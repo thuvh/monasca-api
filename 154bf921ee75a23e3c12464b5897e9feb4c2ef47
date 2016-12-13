@@ -22,6 +22,30 @@
       "revId": "154bf921ee75a23e3c12464b5897e9feb4c2ef47",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a6eadb0_5a3f1f25",
+        "filename": "monasca_api/v2/reference/metrics.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 4428
+      },
+      "writtenOn": "2016-12-13T01:04:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a6eadb0_615b5d55",
+      "range": {
+        "startLine": 301,
+        "startChar": 28,
+        "endLine": 301,
+        "endChar": 41
+      },
+      "revId": "154bf921ee75a23e3c12464b5897e9feb4c2ef47",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
