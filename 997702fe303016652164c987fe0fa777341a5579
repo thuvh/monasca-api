@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a6eadb0_a4771039",
+        "filename": "monasca_api/v2/reference/metrics.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2016-12-13T18:28:33Z",
+      "side": 1,
+      "message": "_delegate_authorized_roles is set in __init__ but not used. I think get_x_tenant_or_tenant_id should also be used here. Sorry, missed that one on the last review.",
+      "range": {
+        "startLine": 176,
+        "startChar": 28,
+        "endLine": 176,
+        "endChar": 41
+      },
+      "revId": "997702fe303016652164c987fe0fa777341a5579",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
