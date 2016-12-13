@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a6eadb0_36098d96",
+        "filename": "monasca_api/v2/reference/__init__.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2016-12-13T10:29:31Z",
+      "side": 1,
+      "message": "Aren\u0027t those values coming from the oslo.db package ?\nI am not sure this is a good idea to redefine them.",
+      "revId": "74da74220102d811b51b47bd87452f4a2199f60f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
