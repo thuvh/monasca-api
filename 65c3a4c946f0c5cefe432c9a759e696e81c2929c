@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a6eadb0_e0dc4b75",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2016-12-15T00:08:50Z",
+      "side": 1,
+      "message": "Do we need to check if tenant_id and region is not None here?",
+      "range": {
+        "startLine": 203,
+        "startChar": 45,
+        "endLine": 203,
+        "endChar": 62
+      },
+      "revId": "65c3a4c946f0c5cefe432c9a759e696e81c2929c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
