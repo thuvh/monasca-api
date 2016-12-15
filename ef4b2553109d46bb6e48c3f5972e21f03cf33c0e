@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a6eadb0_c93e7c8a",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 1974,
+      "author": {
+        "id": 23043
+      },
+      "writtenOn": "2016-12-15T14:02:00Z",
+      "side": 1,
+      "message": "Theoretically the problem here could be, that it is possible to inherit version form parent pom.xml. In other words, if version is not defined, then parent/version should be taken.\n\nBut I\u0027m not sure if this is worth the effort, as it seems that all the components have the version defined directly.",
+      "range": {
+        "startLine": 1974,
+        "startChar": 5,
+        "endLine": 1974,
+        "endChar": 48
+      },
+      "revId": "ef4b2553109d46bb6e48c3f5972e21f03cf33c0e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
