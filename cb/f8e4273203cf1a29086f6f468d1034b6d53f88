@@ -1,0 +1,9 @@
+Code-Review+2: Witold Bedyk <witold.bedyk@est.fujitsu.com>
+Code-Review+1: Roland Hochmuth <roland.hochmuth@hpe.com>
+Workflow+1: Tomasz Trębski <tomasz.trebski@ts.fujitsu.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Thu, 15 Dec 2016 07:21:11 +0000
+Reviewed-on: https://review.openstack.org/410224
+Project: openstack/monasca-api
+Branch: refs/heads/master
