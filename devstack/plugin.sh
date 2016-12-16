@@ -407,7 +407,7 @@ function install_kafka {
     echo_summary "Install Monasca Kafka"
 
     local kafka_tarball=kafka_${KAFKA_VERSION}.tgz
-    local kafka_tarball_url=http://apache.mirrors.tds.net/kafka/${BASE_KAFKA_VERSION}/${kafka_tarball}
+    local kafka_tarball_url=http://download.nextag.com/apache/kafka/${BASE_KAFKA_VERSION}/${kafka_tarball}
     local kafka_tarball_dest=${FILES}/${kafka_tarball}
 
     download_file ${kafka_tarball_url} ${kafka_tarball_dest}
@@ -1420,7 +1420,7 @@ function install_storm {
     echo_summary "Install Monasca Storm"
 
     local storm_tarball=apache-storm-${STORM_VERSION}.tar.gz
-    local storm_tarball_url=http://apache.mirrors.tds.net/storm/apache-storm-${STORM_VERSION}/${storm_tarball}
+    local storm_tarball_url=http://mirror.nexcess.net/apache/storm/apache-storm-${STORM_VERSION}/${storm_tarball}
     local storm_tarball_dest=${FILES}/${storm_tarball}
 
     download_file ${storm_tarball_url} ${storm_tarball_dest}
