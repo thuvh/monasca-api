@@ -1,0 +1,11 @@
+Code-Review+2: Fabio Giannetti <fgiannet@cisco.com>
+Code-Review+1: Iury Gregory Melo Ferreira <iurygregory@gmail.com>
+Code-Review+1: Igor Natanael <igornsa@lsd.ufcg.edu.br>
+Code-Review+1: Kamil Choroba <kamil.choroba@est.fujitsu.com>
+Workflow+1: Fabio Giannetti <fgiannet@cisco.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Wed, 21 Dec 2016 17:10:16 +0000
+Reviewed-on: https://review.openstack.org/412557
+Project: openstack/monasca-api
+Branch: refs/heads/master
