@@ -17,6 +17,7 @@ import datetime
 import json
 
 import falcon
+import monasca_common.validation.metrics as metric_validation
 from oslo_log import log
 from oslo_utils import timeutils
 import simplejson
@@ -24,9 +25,6 @@ import six
 import six.moves.urllib.parse as urlparse
 
 from monasca_api.v2.common.exceptions import HTTPUnprocessableEntityError
-from monasca_api.v2.common.schemas import dimensions_schema
-from monasca_api.v2.common.schemas import exceptions as schemas_exceptions
-from monasca_api.v2.common.schemas import metric_name_schema
 
 LOG = log.getLogger(__name__)
 
@@ -285,8 +283,8 @@ def validate_query_name(name):
     :raises falcon.HTTPBadRequest: If name is not valid.
     """
     try:
-        metric_name_schema.validate(name)
-    except schemas_exceptions.ValidationException as ex:
+        metric_validation.validate_name(name)
+    except Exception as ex:
         LOG.debug(ex)
         raise HTTPUnprocessableEntityError('Unprocessable Entity', ex.message)
 
@@ -298,8 +296,8 @@ def validate_query_dimensions(dimensions):
     :raises falcon.HTTPBadRequest: If dimensions are not valid.
     """
     try:
-        dimensions_schema.validate(dimensions)
-    except schemas_exceptions.ValidationException as ex:
+        metric_validation.validate_dimensions(dimensions)
+    except Exception as ex:
         LOG.debug(ex)
         raise HTTPUnprocessableEntityError('Unprocessable Entity', ex.message)
 
