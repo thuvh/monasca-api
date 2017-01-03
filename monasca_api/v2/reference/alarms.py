@@ -130,10 +130,8 @@ class Alarms(alarms_api_v2.AlarmsV2API,
                                    'state_updated_timestamp', 'updated_timestamp', 'created_timestamp'}
                 validation.validate_sort_by(query_parms['sort_by'], allowed_sort_by)
 
-            # ensure metric_dimensions is a list
-            if 'metric_dimensions' in query_parms and isinstance(query_parms['metric_dimensions'], str):
-                query_parms['metric_dimensions'] = query_parms['metric_dimensions'].split(',')
-                self._validate_dimensions(query_parms['metric_dimensions'])
+            query_parms['metric_dimensions'] = helpers.get_query_dimensions(req, 'metric_dimensions')
+            helpers.validate_query_dimensions(query_parms['metric_dimensions'])
 
             offset = helpers.get_query_param(req, 'offset')
             if offset is not None and not isinstance(offset, int):
@@ -156,23 +154,6 @@ class Alarms(alarms_api_v2.AlarmsV2API,
 
             res.body = helpers.dumpit_utf8(result)
             res.status = falcon.HTTP_200
-
-    @staticmethod
-    def _validate_dimensions(dimensions):
-        try:
-            assert isinstance(dimensions, list)
-            for dimension in dimensions:
-                name_value = dimension.split(':')
-                validation.dimension_key(name_value[0])
-                if len(name_value) > 1:
-                    if '|' in name_value[1]:
-                        values = name_value[1].split('|')
-                        for value in values:
-                            validation.dimension_value(value)
-                    else:
-                        validation.dimension_value(name_value[1])
-        except Exception as e:
-            raise HTTPUnprocessableEntityError("Unprocessable Entity", str(e))
 
     @resource.resource_try_catch_block
     def _alarm_update(self, tenant_id, alarm_id, new_state, lifecycle_state,
@@ -498,6 +479,7 @@ class AlarmsStateHistory(alarms_api_v2.AlarmsStateHistoryV2API,
             end_timestamp = helpers.get_query_endtime_timestamp(req, False)
             query_parms = falcon.uri.parse_query_string(req.query_string)
             offset = helpers.get_query_param(req, 'offset')
+            query_parms['dimensions'] = helpers.get_query_dimensions(req)
 
             result = self._alarm_history_list(req.project_id, start_timestamp,
                                               end_timestamp, query_parms,
@@ -510,7 +492,7 @@ class AlarmsStateHistory(alarms_api_v2.AlarmsStateHistoryV2API,
             helpers.validate_authorization(req, self._get_alarms_authorized_roles)
             offset = helpers.get_query_param(req, 'offset')
 
-            result = self._alarm_history(req.project_id, [alarm_id],
+            result = self._alarm_history(req.project_id, alarm_id,
                                          req.uri, offset,
                                          req.limit)
 
@@ -525,8 +507,6 @@ class AlarmsStateHistory(alarms_api_v2.AlarmsStateHistoryV2API,
         # get_alarms expects 'metric_dimensions' for dimensions key.
         if 'dimensions' in query_parms:
             dimensions = query_parms['dimensions']
-            if not isinstance(dimensions, list):
-                dimensions = [dimensions]
             new_query_parms = {'metric_dimensions': dimensions}
         else:
             new_query_parms = {}
@@ -545,7 +525,7 @@ class AlarmsStateHistory(alarms_api_v2.AlarmsStateHistoryV2API,
     @resource.resource_try_catch_block
     def _alarm_history(self, tenant_id, alarm_id, req_uri, offset, limit):
 
-        result = self._metrics_repo.alarm_history(tenant_id, alarm_id, offset,
+        result = self._metrics_repo.alarm_history(tenant_id, [alarm_id], offset,
                                                   limit)
 
         return helpers.paginate(result, req_uri, limit)
