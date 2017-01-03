@@ -1,4 +1,4 @@
-# (C) Copyright 2014, 2016 Hewlett Packard Enterprise Development LP
+# (C) Copyright 2014, 2016-2017 Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -11,6 +11,8 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
+
+import math
 
 import falcon
 from monasca_common.simport import simport
@@ -85,7 +87,8 @@ class Metrics(metrics_api_v2.MetricsV2API):
     def _validate_single_metric(self, metric):
         validation.metric_name(metric['name'])
         assert isinstance(metric['timestamp'], (int, float)), "Timestamp must be a number"
-        assert isinstance(metric['value'], (int, long, float)), "Value must be a number"
+        assert (isinstance(metric['value'], (int, long, float)) and
+                not math.isnan(metric['value'])), "Value must be a number"
         if "dimensions" in metric:
             for dimension_key in metric['dimensions']:
                 validation.dimension_key(dimension_key)
