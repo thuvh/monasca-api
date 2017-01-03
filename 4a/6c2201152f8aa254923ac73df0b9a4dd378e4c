@@ -1,0 +1,12 @@
+Code-Review+1: monika <monikaparkar25@gmail.com>
+Code-Review+1: Roland Hochmuth <roland.hochmuth@hpe.com>
+Code-Review+1: Kaiyan Sheng <kaiyan.sheng@hpe.com>
+Code-Review+1: iswarya vakati <v.iswarya@nectechnologies.in>
+Code-Review+2: Joe Keen <joe.keen@hpe.com>
+Workflow+1: Joe Keen <joe.keen@hpe.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Tue, 03 Jan 2017 21:03:28 +0000
+Reviewed-on: https://review.openstack.org/381756
+Project: openstack/monasca-api
+Branch: refs/heads/master
