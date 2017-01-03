@@ -1,4 +1,4 @@
-# Copyright 2014-2016 Hewlett Packard Enterprise Development Company LP
+# Copyright 2014-2017 Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -16,6 +16,7 @@ import re
 
 import falcon
 from monasca_common.simport import simport
+from monasca_common.validation import metrics as metric_validation
 from oslo_config import cfg
 from oslo_log import log
 
@@ -175,16 +176,16 @@ class Alarms(alarms_api_v2.AlarmsV2API,
             assert isinstance(dimensions, list)
             for dimension in dimensions:
                 name_value = dimension.split(':')
-                validation.dimension_key(name_value[0])
+                metric_validation.validate_dimension_key(name_value[0])
                 if len(name_value) > 1:
                     if '|' in name_value[1]:
                         values = name_value[1].split('|')
                         for value in values:
-                            validation.dimension_value(value)
+                            metric_validation.validate_dimension_value(value)
                     else:
-                        validation.dimension_value(name_value[1])
-        except Exception as e:
-            raise HTTPUnprocessableEntityError("Unprocessable Entity", str(e))
+                        metric_validation.validate_dimension_value(name_value[1])
+        except Exception as ex:
+            raise HTTPUnprocessableEntityError("Unprocessable Entity", ex.message)
 
     @resource.resource_try_catch_block
     def _alarm_update(self, tenant_id, alarm_id, new_state, lifecycle_state,
