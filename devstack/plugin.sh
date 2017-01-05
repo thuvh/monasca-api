@@ -1050,6 +1050,8 @@ function install_monasca_api_python {
 
     sudo ln -sf /etc/monasca/api-logging.conf /etc/api-logging.conf
 
+    sudo mkdir /tmp/prometheus_multiproc
+
 }
 
 function clean_monasca_api_java {
@@ -1100,6 +1102,8 @@ function clean_monasca_api_python {
     sudo rm -rf /opt/monasca-api
 
     sudo userdel mon-api
+
+    sudo rm -rf /tmp/prometheus_muiltiproc
 
 }
 
