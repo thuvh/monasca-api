@@ -24,6 +24,7 @@ User=mon-api
 Group=monasca
 ExecStart=/opt/monasca-api/bin/gunicorn -n monasca-api -k eventlet --worker-connections=2000 --backlog=1000 --paste /etc/monasca/api-config.ini -w 9
 Restart=on-failure
+Environment=prometheus_multiproc_dir=/tmp/prometheus_multiproc
 
 [Install]
 WantedBy=multi-user.target
