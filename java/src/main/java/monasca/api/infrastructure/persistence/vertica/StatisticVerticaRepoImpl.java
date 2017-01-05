@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 Hewlett-Packard Development Company, L.P.
+ * (C) Copyright 2014-2017 Hewlett Packard Enterprise Development LP
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -17,6 +17,8 @@ import monasca.api.domain.exception.MultipleMetricsException;
 import monasca.api.domain.model.statistic.StatisticRepo;
 import monasca.api.domain.model.statistic.Statistics;
 import monasca.api.ApiConfig;
+
+import com.google.common.base.Strings;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
@@ -69,6 +71,18 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
       int limit,
       Boolean mergeMetricsFlag,
       List<String> groupBy) throws MultipleMetricsException {
+
+    if (!Strings.isNullOrEmpty(offset)) {
+      final int indexOfUnderscore = offset.indexOf('_');
+      if (indexOfUnderscore > -1) {
+        final String offsetTimePart = offset.substring(indexOfUnderscore + 1);
+        // Add the period minus one millisecond to the offset
+        // to ensure only the next group of points are returned
+        final DateTime offsetDateTime = DateTime.parse(offsetTimePart).plusSeconds(period).minusMillis(1);
+        // Add back on any ID
+        offset = offset.substring(0, indexOfUnderscore+1) + offsetDateTime.toString();
+      }
+    }
 
     Map<String, Statistics> statisticsMap = new HashMap<>();
 
@@ -351,10 +365,10 @@ public class StatisticVerticaRepoImpl implements StatisticRepo {
 
     if (offset != null && !offset.isEmpty()) {
 
-      if (!groupBy.isEmpty()) {
+      if (!groupBy.isEmpty() && groupBy.contains("*")) {
         s += " AND (TO_HEX(definition_dimensions_id) > :offset_id "
              + "OR (TO_HEX(definition_dimensions_id) = :offset_id AND time_stamp > :offset_timestamp)) ";
-      } else if (!groupBy.isEmpty()){
+      } else if (!groupBy.isEmpty()) {
 
         String concatGroupByString = MetricQueries.buildGroupByConcatString(groupBy);
 

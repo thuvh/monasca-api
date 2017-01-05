@@ -1,4 +1,4 @@
-# (C) Copyright 2015-2016 Hewlett Packard Enterprise Development LP
+# (C) Copyright 2015-2017 Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -12,6 +12,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+import copy
 import time
 
 import six.moves.urllib.parse as urlparse
@@ -294,7 +295,7 @@ class TestStatistics(base.BaseMonascaTest):
                 new_elements = response_body['elements'][0]['statistics']
 
                 self.assertEqual(num_expected_elements, len(new_elements))
-                expected_elements = elements[start_index:start_index+limit]
+                expected_elements = elements[start_index:start_index+num_expected_elements]
                 self.assertEqual(expected_elements, new_elements)
                 start_index += num_expected_elements
                 if start_index >= num_metrics:
@@ -357,31 +358,62 @@ class TestStatistics(base.BaseMonascaTest):
                       '&period=1'
         resp, response_body = self.monasca_client.list_statistics(query_parms)
         self.assertEqual(200, resp.status)
-        all_expected_elements = response_body['elements']
+        elements = response_body['elements']
+        # Because two statistics (avg,max) are being returned for each metric,
+        # there are really twice as many entries as metrics
+        num_entries = len(elements) * 2
 
-        for limit in xrange(1, 4):
+        for limit in xrange(1, num_entries):
             offset = None
-            for i in xrange(4 - limit):
-                query_parms = '?name=' + str(self._group_by_metric_name) + \
-                              '&group_by=key2' + \
-                              '&statistics=avg,max' + \
-                              '&start_time=' + str(self._start_time_iso) + \
-                              '&end_time=' + str(self._group_by_end_time_iso) + \
-                              '&period=1' + \
-                              '&limit=' + str(limit)
-                if i > 0:
-                    offset = self._get_offset(response_body)
-                    query_parms += "&offset=" + offset
+            start_index = 0
+            while True:
+                params = [('name', str(self._group_by_metric_name)),
+                          ('group_by', 'key2'),
+                          ('statistics', 'avg,max'),
+                          ('start_time', str(self._start_time_iso)),
+                          ('end_time', str(self._group_by_end_time_iso)),
+                          ('period', 1),
+                          ('limit', limit)]
+                num_expected_entries = limit
+                if (num_expected_entries + start_index) > num_entries:
+                    num_expected_entries = num_entries - start_index
 
-                expected_elements = helpers.get_expected_elements_inner_offset_limit(
-                    all_expected_elements,
-                    offset,
-                    limit,
-                    'statistics')
-
+                # If not the first call, use the offset returned by the last call
+                if offset:
+                    params.extend([('offset', str(offset))])
+                query_parms = '?' + urlencode(params)
                 resp, response_body = self.monasca_client.list_statistics(query_parms)
                 self.assertEqual(200, resp.status)
-                self.assertEqual(expected_elements, response_body['elements'])
+                if not response_body['elements']:
+                    self.fail("No metrics returned")
+                if not response_body['elements'][0]['statistics']:
+                    self.fail("No statistics returned")
+                new_elements = response_body['elements']
+
+                expected_elements = []
+                # 0 based index of the last entry
+                end_index = start_index + num_expected_entries - 1
+                i = start_index / 2
+                while i <= end_index / 2:
+                    # Need to make a deep copy because we may change
+                    # the entries in 'statistics'
+                    expected_elements.append(copy.deepcopy(elements[i]))
+                    i += 1
+                if start_index % 2:
+                    # Only want the second statistic in the first metric
+                    del(expected_elements[0]['statistics'][0])
+                if end_index % 2 == 0:
+                    # Only want the first statistic in the last metric
+                    last_element = expected_elements[len(expected_elements) - 1]
+                    del(last_element['statistics'][1])
+
+                self.assertEqual(expected_elements, new_elements)
+
+                start_index += num_expected_entries
+                if start_index >= num_entries:
+                    break
+                # Get the next set
+                offset = self._get_offset(response_body)
 
     @test.attr(type="gate")
     @test.attr(type=['negative'])
