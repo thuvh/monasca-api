@@ -17,15 +17,19 @@ import os
 from wsgiref import simple_server
 
 import falcon
+from monasca_api.api import prometheus_registry
 from monasca_common.simport import simport
 from oslo_config import cfg
 from oslo_log import log
 import paste.deploy
+from prometheus_client import Gauge
 
 dispatcher_opts = [cfg.StrOpt('versions', default=None,
                               help='Versions'),
                    cfg.StrOpt('version_2_0', default=None,
                               help='Version 2.0'),
+                   cfg.StrOpt('prometheus_metrics', default=None,
+                              help='Prometheus metrics'),
                    cfg.StrOpt('metrics', default=None,
                               help='Metrics'),
                    cfg.StrOpt('metrics_measurements', default=None,
@@ -66,6 +70,8 @@ def launch(conf, config_file="/etc/monasca/api-config.conf"):
              default_config_files=[config_file])
     log.setup(cfg.CONF, 'monasca_api')
 
+    prometheus_registry.init()
+
     app = falcon.API()
 
     versions = simport.load(cfg.CONF.dispatcher.versions)()
@@ -76,6 +82,12 @@ def launch(conf, config_file="/etc/monasca/api-config.conf"):
     # which causes the path '/v2.0' to not route to the versions resource
     version_2_0 = simport.load(cfg.CONF.dispatcher.version_2_0)()
     app.add_route("/v2.0", version_2_0)
+
+    # the agent's Prometheus metric scraping assumes that the metrics endpoint
+    # is always /metrics, so we'll use that here for our internal metric
+    # reporting in spite of the name duplication
+    prometheus_metrics = simport.load(cfg.CONF.dispatcher.prometheus_metrics)()
+    app.add_route('/metrics', prometheus_metrics)
 
     metrics = simport.load(cfg.CONF.dispatcher.metrics)()
     app.add_route("/v2.0/metrics", metrics)
