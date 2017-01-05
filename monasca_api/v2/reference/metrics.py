@@ -26,8 +26,18 @@ from monasca_api.v2.common.exceptions import HTTPUnprocessableEntityError
 from monasca_api.v2.common import validation
 from monasca_api.v2.reference import helpers
 from monasca_api.v2.reference import resource
+from prometheus_client import Counter
+from prometheus_client import Summary
 
 LOG = log.getLogger(__name__)
+
+METRICS_API_PERF = Summary('metrics_api_perf',
+                           'Summary of API request performance',
+                           ['method', 'endpoint'])
+
+METRIC_VALIDATE_PERF = Summary('metric_validate_perf', 'Batch validation time')
+METRIC_BATCH_PERF = Summary('metric_batch_perf', 'Kafka batch insert time')
+METRIC_COUNT = Counter('metric_count', 'Metric inserts into kafka')
 
 
 def get_merge_metrics_flag(req):
@@ -71,16 +81,16 @@ class Metrics(metrics_api_v2.MetricsV2API):
                                                  ex.message)
 
     def _validate_metrics(self, metrics):
-
-        try:
-            if isinstance(metrics, list):
-                for metric in metrics:
-                    self._validate_single_metric(metric)
-            else:
-                self._validate_single_metric(metrics)
-        except Exception as ex:
-            LOG.exception(ex)
-            raise HTTPUnprocessableEntityError('Unprocessable Entity', ex.message)
+        with METRIC_VALIDATE_PERF.time():
+            try:
+                if isinstance(metrics, list):
+                    for metric in metrics:
+                        self._validate_single_metric(metric)
+                else:
+                    self._validate_single_metric(metrics)
+            except Exception as ex:
+                LOG.exception(ex)
+                raise HTTPUnprocessableEntityError('Unprocessable Entity', ex.message)
 
     def _validate_single_metric(self, metric):
         validation.metric_name(metric['name'])
@@ -95,7 +105,10 @@ class Metrics(metrics_api_v2.MetricsV2API):
 
     def _send_metrics(self, metrics):
         try:
-            self._message_queue.send_message_batch(metrics)
+            with METRIC_BATCH_PERF.time():
+                self._message_queue.send_message_batch(metrics)
+
+            METRIC_COUNT.inc(len(metrics))
         except message_queue_exceptions.MessageQueueException as ex:
             LOG.exception(ex)
             raise falcon.HTTPServiceUnavailable('Service unavailable',
@@ -116,36 +129,38 @@ class Metrics(metrics_api_v2.MetricsV2API):
         return helpers.paginate(result, req_uri, limit)
 
     def on_post(self, req, res):
-        helpers.validate_json_content_type(req)
-        helpers.validate_authorization(req,
-                                       self._post_metrics_authorized_roles)
-        metrics = helpers.read_http_resource(req)
-        self._validate_metrics(metrics)
-        tenant_id = (
-            helpers.get_x_tenant_or_tenant_id(req,
-                                              self._delegate_authorized_roles))
-        transformed_metrics = metrics_message.transform(
-            metrics, tenant_id, self._region)
-        self._send_metrics(transformed_metrics)
-        res.status = falcon.HTTP_204
+        with METRICS_API_PERF.labels('post', 'metrics').time():
+            helpers.validate_json_content_type(req)
+            helpers.validate_authorization(req,
+                                           self._post_metrics_authorized_roles)
+            metrics = helpers.read_http_resource(req)
+            self._validate_metrics(metrics)
+            tenant_id = (
+                helpers.get_x_tenant_or_tenant_id(req,
+                                                  self._delegate_authorized_roles))
+            transformed_metrics = metrics_message.transform(
+                metrics, tenant_id, self._region)
+            self._send_metrics(transformed_metrics)
+            res.status = falcon.HTTP_204
 
     def on_get(self, req, res):
-        helpers.validate_authorization(req, self._get_metrics_authorized_roles)
-        tenant_id = helpers.get_tenant_id(req)
-        name = helpers.get_query_name(req)
-        helpers.validate_query_name(name)
-        dimensions = helpers.get_query_dimensions(req)
-        helpers.validate_query_dimensions(dimensions)
-        offset = helpers.get_query_param(req, 'offset')
-        limit = helpers.get_limit(req)
-        start_timestamp = helpers.get_query_starttime_timestamp(req, False)
-        end_timestamp = helpers.get_query_endtime_timestamp(req, False)
-        helpers.validate_start_end_timestamps(start_timestamp, end_timestamp)
-        result = self._list_metrics(tenant_id, name, dimensions,
-                                    req.uri, offset, limit,
-                                    start_timestamp, end_timestamp)
-        res.body = helpers.dumpit_utf8(result)
-        res.status = falcon.HTTP_200
+        with METRICS_API_PERF.labels('get', 'metrics').time():
+            helpers.validate_authorization(req, self._get_metrics_authorized_roles)
+            tenant_id = helpers.get_tenant_id(req)
+            name = helpers.get_query_name(req)
+            helpers.validate_query_name(name)
+            dimensions = helpers.get_query_dimensions(req)
+            helpers.validate_query_dimensions(dimensions)
+            offset = helpers.get_query_param(req, 'offset')
+            limit = helpers.get_limit(req)
+            start_timestamp = helpers.get_query_starttime_timestamp(req, False)
+            end_timestamp = helpers.get_query_endtime_timestamp(req, False)
+            helpers.validate_start_end_timestamps(start_timestamp, end_timestamp)
+            result = self._list_metrics(tenant_id, name, dimensions,
+                                        req.uri, offset, limit,
+                                        start_timestamp, end_timestamp)
+            res.body = helpers.dumpit_utf8(result)
+            res.status = falcon.HTTP_200
 
 
 class MetricsMeasurements(metrics_api_v2.MetricsMeasurementsV2API):
@@ -170,28 +185,29 @@ class MetricsMeasurements(metrics_api_v2.MetricsMeasurementsV2API):
                                                  ex.message)
 
     def on_get(self, req, res):
-        helpers.validate_authorization(req, self._get_metrics_authorized_roles)
-        tenant_id = helpers.get_tenant_id(req)
-        name = helpers.get_query_name(req, True)
-        helpers.validate_query_name(name)
-        dimensions = helpers.get_query_dimensions(req)
-        helpers.validate_query_dimensions(dimensions)
-        start_timestamp = helpers.get_query_starttime_timestamp(req)
-        end_timestamp = helpers.get_query_endtime_timestamp(req, False)
-        helpers.validate_start_end_timestamps(start_timestamp, end_timestamp)
-        offset = helpers.get_query_param(req, 'offset')
-        limit = helpers.get_limit(req)
-        merge_metrics_flag = get_merge_metrics_flag(req)
-        group_by = helpers.get_query_group_by(req)
+        with METRICS_API_PERF.labels('get', 'measurements').time():
+            helpers.validate_authorization(req, self._get_metrics_authorized_roles)
+            tenant_id = helpers.get_tenant_id(req)
+            name = helpers.get_query_name(req, True)
+            helpers.validate_query_name(name)
+            dimensions = helpers.get_query_dimensions(req)
+            helpers.validate_query_dimensions(dimensions)
+            start_timestamp = helpers.get_query_starttime_timestamp(req)
+            end_timestamp = helpers.get_query_endtime_timestamp(req, False)
+            helpers.validate_start_end_timestamps(start_timestamp, end_timestamp)
+            offset = helpers.get_query_param(req, 'offset')
+            limit = helpers.get_limit(req)
+            merge_metrics_flag = get_merge_metrics_flag(req)
+            group_by = helpers.get_query_group_by(req)
 
-        result = self._measurement_list(tenant_id, name, dimensions,
-                                        start_timestamp, end_timestamp,
-                                        req.uri, offset,
-                                        limit, merge_metrics_flag,
-                                        group_by)
+            result = self._measurement_list(tenant_id, name, dimensions,
+                                            start_timestamp, end_timestamp,
+                                            req.uri, offset,
+                                            limit, merge_metrics_flag,
+                                            group_by)
 
-        res.body = helpers.dumpit_utf8(result)
-        res.status = falcon.HTTP_200
+            res.body = helpers.dumpit_utf8(result)
+            res.status = falcon.HTTP_200
 
     @resource.resource_try_catch_block
     def _measurement_list(self, tenant_id, name, dimensions, start_timestamp,
@@ -229,30 +245,31 @@ class MetricsStatistics(metrics_api_v2.MetricsStatisticsV2API):
                                                  ex.message)
 
     def on_get(self, req, res):
-        helpers.validate_authorization(req, self._get_metrics_authorized_roles)
-        tenant_id = helpers.get_tenant_id(req)
-        name = helpers.get_query_name(req, True)
-        helpers.validate_query_name(name)
-        dimensions = helpers.get_query_dimensions(req)
-        helpers.validate_query_dimensions(dimensions)
-        start_timestamp = helpers.get_query_starttime_timestamp(req)
-        end_timestamp = helpers.get_query_endtime_timestamp(req, False)
-        helpers.validate_start_end_timestamps(start_timestamp, end_timestamp)
-        statistics = helpers.get_query_statistics(req)
-        period = helpers.get_query_period(req)
-        offset = helpers.get_query_param(req, 'offset')
-        limit = helpers.get_limit(req)
-        merge_metrics_flag = get_merge_metrics_flag(req)
-        group_by = helpers.get_query_group_by(req)
+        with METRICS_API_PERF.labels('get', 'metrics_statistics').time():
+            helpers.validate_authorization(req, self._get_metrics_authorized_roles)
+            tenant_id = helpers.get_tenant_id(req)
+            name = helpers.get_query_name(req, True)
+            helpers.validate_query_name(name)
+            dimensions = helpers.get_query_dimensions(req)
+            helpers.validate_query_dimensions(dimensions)
+            start_timestamp = helpers.get_query_starttime_timestamp(req)
+            end_timestamp = helpers.get_query_endtime_timestamp(req, False)
+            helpers.validate_start_end_timestamps(start_timestamp, end_timestamp)
+            statistics = helpers.get_query_statistics(req)
+            period = helpers.get_query_period(req)
+            offset = helpers.get_query_param(req, 'offset')
+            limit = helpers.get_limit(req)
+            merge_metrics_flag = get_merge_metrics_flag(req)
+            group_by = helpers.get_query_group_by(req)
 
-        result = self._metric_statistics(tenant_id, name, dimensions,
-                                         start_timestamp, end_timestamp,
-                                         statistics, period, req.uri,
-                                         offset, limit, merge_metrics_flag,
-                                         group_by)
+            result = self._metric_statistics(tenant_id, name, dimensions,
+                                             start_timestamp, end_timestamp,
+                                             statistics, period, req.uri,
+                                             offset, limit, merge_metrics_flag,
+                                             group_by)
 
-        res.body = helpers.dumpit_utf8(result)
-        res.status = falcon.HTTP_200
+            res.body = helpers.dumpit_utf8(result)
+            res.status = falcon.HTTP_200
 
     @resource.resource_try_catch_block
     def _metric_statistics(self, tenant_id, name, dimensions, start_timestamp,
@@ -291,16 +308,17 @@ class MetricsNames(metrics_api_v2.MetricsNamesV2API):
                                                  ex.message)
 
     def on_get(self, req, res):
-        helpers.validate_authorization(req, self._get_metrics_authorized_roles)
-        tenant_id = helpers.get_tenant_id(req)
-        dimensions = helpers.get_query_dimensions(req)
-        helpers.validate_query_dimensions(dimensions)
-        offset = helpers.get_query_param(req, 'offset')
-        limit = helpers.get_limit(req)
-        result = self._list_metric_names(tenant_id, dimensions,
-                                         req.uri, offset, limit)
-        res.body = helpers.dumpit_utf8(result)
-        res.status = falcon.HTTP_200
+        with METRICS_API_PERF.labels('get', 'metrics_names').time():
+            helpers.validate_authorization(req, self._get_metrics_authorized_roles)
+            tenant_id = helpers.get_tenant_id(req)
+            dimensions = helpers.get_query_dimensions(req)
+            helpers.validate_query_dimensions(dimensions)
+            offset = helpers.get_query_param(req, 'offset')
+            limit = helpers.get_limit(req)
+            result = self._list_metric_names(tenant_id, dimensions,
+                                             req.uri, offset, limit)
+            res.body = helpers.dumpit_utf8(result)
+            res.status = falcon.HTTP_200
 
     @resource.resource_try_catch_block
     def _list_metric_names(self, tenant_id, dimensions, req_uri, offset,
@@ -330,17 +348,18 @@ class DimensionValues(metrics_api_v2.DimensionValuesV2API):
                                                  ex.message)
 
     def on_get(self, req, res):
-        helpers.validate_authorization(req, self._get_metrics_authorized_roles)
-        tenant_id = helpers.get_tenant_id(req)
-        metric_name = helpers.get_query_param(req, 'metric_name')
-        dimension_name = helpers.get_query_param(req, 'dimension_name',
-                                                 required=True)
-        offset = helpers.get_query_param(req, 'offset')
-        limit = helpers.get_limit(req)
-        result = self._dimension_values(tenant_id, req.uri, metric_name,
-                                        dimension_name, offset, limit)
-        res.body = helpers.dumpit_utf8(result)
-        res.status = falcon.HTTP_200
+        with METRICS_API_PERF.labels('get', 'dimension_values').time():
+            helpers.validate_authorization(req, self._get_metrics_authorized_roles)
+            tenant_id = helpers.get_tenant_id(req)
+            metric_name = helpers.get_query_param(req, 'metric_name')
+            dimension_name = helpers.get_query_param(req, 'dimension_name',
+                                                     required=True)
+            offset = helpers.get_query_param(req, 'offset')
+            limit = helpers.get_limit(req)
+            result = self._dimension_values(tenant_id, req.uri, metric_name,
+                                            dimension_name, offset, limit)
+            res.body = helpers.dumpit_utf8(result)
+            res.status = falcon.HTTP_200
 
     @resource.resource_try_catch_block
     def _dimension_values(self, tenant_id, req_uri, metric_name,
@@ -371,15 +390,16 @@ class DimensionNames(metrics_api_v2.DimensionNamesV2API):
                                                  ex.message)
 
     def on_get(self, req, res):
-        helpers.validate_authorization(req, self._get_metrics_authorized_roles)
-        tenant_id = helpers.get_tenant_id(req)
-        metric_name = helpers.get_query_param(req, 'metric_name')
-        offset = helpers.get_query_param(req, 'offset')
-        limit = helpers.get_limit(req)
-        result = self._dimension_names(tenant_id, req.uri, metric_name,
-                                       offset, limit)
-        res.body = helpers.dumpit_utf8(result)
-        res.status = falcon.HTTP_200
+        with METRICS_API_PERF.labels('get', 'dimension_names').time():
+            helpers.validate_authorization(req, self._get_metrics_authorized_roles)
+            tenant_id = helpers.get_tenant_id(req)
+            metric_name = helpers.get_query_param(req, 'metric_name')
+            offset = helpers.get_query_param(req, 'offset')
+            limit = helpers.get_limit(req)
+            result = self._dimension_names(tenant_id, req.uri, metric_name,
+                                           offset, limit)
+            res.body = helpers.dumpit_utf8(result)
+            res.status = falcon.HTTP_200
 
     @resource.resource_try_catch_block
     def _dimension_names(self, tenant_id, req_uri, metric_name, offset, limit):

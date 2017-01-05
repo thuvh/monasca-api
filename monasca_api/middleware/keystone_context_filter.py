@@ -12,10 +12,12 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-import falcon
 from oslo_log import log
 from oslo_middleware import request_id
 from oslo_serialization import jsonutils
+from webob import Request
+from webob.exc import HTTPForbidden
+from webob.exc import HTTPInternalServerError
 
 from monasca_api.middleware import context
 
@@ -37,14 +39,29 @@ class KeystoneContextFilter(object):
         self._conf = conf
 
     def __call__(self, env, start_response):
+        # get a ref to the falcon endpoint for this request
+        # if `skip_keystone_auth = True` is defined in the handler class,
+        # bypass remaining authentication logic
+        req = Request(env)
+        endpoint = self._app._router.find(req.path)
+        if endpoint:
+            instance, _, _, _ = endpoint
+            if hasattr(instance, 'skip_keystone_auth') \
+                    and instance.skip_keystone_auth is True:
+                LOG.debug('Skipping keystone auth for endpoint %r', req.path)
+                return self._app(env, start_response)
 
         LOG.debug("Creating Keystone Context Object.")
+
+        identity_status = env.get('HTTP_X_IDENTITY_STATUS')
+        if identity_status == 'Invalid':
+            raise HTTPForbidden()
 
         user_id = env.get('HTTP_X_USER_ID', env.get('HTTP_X_USER'))
         if user_id is None:
             msg = "Neither X_USER_ID nor X_USER found in request"
             LOG.error(msg)
-            raise falcon.HTTPUnauthorized(title='Forbidden', description=msg)
+            raise HTTPForbidden(msg)
 
         roles = self._get_roles(env)
 
@@ -70,7 +87,7 @@ class KeystoneContextFilter(object):
             except ValueError:
                 msg = "Invalid service catalog json."
                 LOG.error(msg)
-                raise falcon.HTTPInternalServerError(msg)
+                raise HTTPInternalServerError(msg)
 
         # NOTE(jamielennox): This is a full auth plugin set by auth_token
         # middleware in newer versions.
