@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba5201f7_6caa7f87",
+        "filename": "monasca_api/api/server.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7052
+      },
+      "writtenOn": "2017-01-09T21:01:55Z",
+      "side": 1,
+      "message": "this seems very confusing. A client may thing this is either V1 metrics or it is the latest version and V2 is deprecated. I would qualify the endpoint stating that these are Prometheus metrics, something like /prometheus/metrics",
+      "range": {
+        "startLine": 89,
+        "startChar": 4,
+        "endLine": 89,
+        "endChar": 49
+      },
+      "revId": "caf9541d76503dfcf199f74837da0a90cd47e5ac",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
