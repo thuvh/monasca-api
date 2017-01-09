@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba5201f7_a61ae97a",
+        "filename": "tox.ini",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-01-09T06:48:24Z",
+      "side": 1,
+      "message": "If you do execute this with testr, I presume at least, so this constant NOSE_WITH_COVERAGE is likely not needed right ?",
+      "revId": "8dba8ffc52d14004bdd368cff3d985b68712cc76",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
