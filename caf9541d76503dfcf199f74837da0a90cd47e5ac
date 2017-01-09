@@ -22,6 +22,30 @@
       "revId": "caf9541d76503dfcf199f74837da0a90cd47e5ac",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba5201f7_ccac4b38",
+        "filename": "monasca_api/api/server.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 17001
+      },
+      "writtenOn": "2017-01-09T21:25:50Z",
+      "side": 1,
+      "message": "I agree that it is confusing, but it\u0027s a somewhat hard requirement for automatic scraping as implemented in https://review.openstack.org/#/c/401413/\n\nThe simplest ways around this I can see are:\n\n* (1) We could add monasca-specific configuration options to our  prometheus client plugin that would allow us to provide an alternate scrape path in k8s metadata. This would break compatibility with other Prometheus-compatible scrapers\n* (2) We keep it as-is and document the ambiguity\n\nA possible option #3 would be to offload metric serving to another external component. This would solve a number of other issues but has some major complexity penalties. Still something we are investigating :)",
+      "parentUuid": "ba5201f7_6caa7f87",
+      "range": {
+        "startLine": 89,
+        "startChar": 4,
+        "endLine": 89,
+        "endChar": 49
+      },
+      "revId": "caf9541d76503dfcf199f74837da0a90cd47e5ac",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
