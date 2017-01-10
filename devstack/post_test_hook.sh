@@ -22,10 +22,10 @@ source $BASE/new/tempest/.venv/bin/activate
 sudo pip install nose
 sudo pip install numpy
 
-(cd $BASE/new/tempest/; sudo oslo-config-generator --config-file  tempest/cmd/config-generator.tempest.conf  --output-file etc/tempest.conf)
-(cd $BASE/new/; sudo sh -c 'cat monasca-api/devstack/files/tempest/tempest.conf >> tempest/etc/tempest.conf')
+(cd $BASE/new/tempest/; sudo oslo-config-generator --config-file  tempest/cmd/config-generator.tempest.conf  --output-file etc/tempest.conf.sample)
 
 sudo cp $BASE/new/tempest/etc/logging.conf.sample $BASE/new/tempest/etc/logging.conf
+sudo cp $BASE/new/tempest/etc/tempest.conf.sample $BASE/new/tempest/etc/tempest.conf
 
 (cd $BASE/new/monasca-api/; sudo pip install -r requirements.txt -r test-requirements.txt)
 (cd $BASE/new/monasca-api/; sudo python setup.py install)
