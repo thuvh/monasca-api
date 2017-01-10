@@ -34,6 +34,24 @@
       "revId": "8dba8ffc52d14004bdd368cff3d985b68712cc76",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba5201f7_722b2234",
+        "filename": "tox.ini",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-01-10T09:11:37Z",
+      "side": 1,
+      "message": "If you want you can also use ostestr for running tests, that would align monasca-api to main openstack projects IMHO.",
+      "parentUuid": "ba5201f7_52b61e3e",
+      "revId": "8dba8ffc52d14004bdd368cff3d985b68712cc76",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
