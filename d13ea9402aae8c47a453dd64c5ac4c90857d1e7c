@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba5201f7_204d8172",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-01-11T12:32:41Z",
+      "side": 1,
+      "message": "Any reason to have those changed ?",
+      "revId": "d13ea9402aae8c47a453dd64c5ac4c90857d1e7c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba5201f7_4050c50a",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-01-11T12:32:41Z",
+      "side": 1,
+      "message": "Any reason to have those changed ?",
+      "revId": "d13ea9402aae8c47a453dd64c5ac4c90857d1e7c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
