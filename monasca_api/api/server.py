@@ -17,6 +17,7 @@ import os
 from wsgiref import simple_server
 
 import falcon
+from monasca_api.api import prometheus_registry
 from monasca_common.simport import simport
 from oslo_config import cfg
 from oslo_log import log
@@ -65,6 +66,8 @@ def launch(conf, config_file="/etc/monasca/api-config.conf"):
              project='monasca_api',
              default_config_files=[config_file])
     log.setup(cfg.CONF, 'monasca_api')
+
+    prometheus_registry.init()
 
     app = falcon.API()
 
