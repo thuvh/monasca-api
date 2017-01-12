@@ -22,6 +22,30 @@
       "revId": "421fe123b7d959082fde5cecc20c6caf890e804c",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba5201f7_4527cc11",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-01-12T05:02:03Z",
+      "side": 1,
+      "message": "Whoops ;-). I will leave it as it it, don\u0027t really want to run entire pipeline just for this typo. I mean if you\u0027re fine, otherwise let me know.",
+      "parentUuid": "ba5201f7_9ea108fb",
+      "range": {
+        "startLine": 13,
+        "startChar": 9,
+        "endLine": 13,
+        "endChar": 15
+      },
+      "revId": "421fe123b7d959082fde5cecc20c6caf890e804c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
