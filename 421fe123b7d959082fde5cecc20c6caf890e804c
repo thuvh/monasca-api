@@ -46,6 +46,30 @@
       "revId": "421fe123b7d959082fde5cecc20c6caf890e804c",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba5201f7_0b96b53d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 4428
+      },
+      "writtenOn": "2017-01-12T06:23:19Z",
+      "side": 1,
+      "message": "Hmm, i\u0027m fine with it",
+      "parentUuid": "ba5201f7_4527cc11",
+      "range": {
+        "startLine": 13,
+        "startChar": 9,
+        "endLine": 13,
+        "endChar": 15
+      },
+      "revId": "421fe123b7d959082fde5cecc20c6caf890e804c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
