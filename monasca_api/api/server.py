@@ -17,6 +17,7 @@
 import os
 
 import falcon
+from monasca_api.api import prometheus_registry
 from monasca_common.simport import simport
 from oslo_config import cfg
 from oslo_log import log
@@ -81,6 +82,7 @@ def launch(conf):
     else:
         LOG.debug('Configuration has already been loaded')
 
+    prometheus_registry.init()
     app = falcon.API(request_type=request.Request)
 
     versions = simport.load(cfg.CONF.dispatcher.versions)()
