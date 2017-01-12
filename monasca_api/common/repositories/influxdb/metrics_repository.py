@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
+# (C) Copyright 2014-2017 Hewlett Packard Enterprise Development LP
 # Copyright 2015 Cray Inc. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
@@ -690,9 +690,14 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
                         timestamp = stats[0]
                         if '.' in timestamp:
                             stats[0] = str(timestamp)[:19] + 'Z'
+                        # Only add row if there is a valid value in the row
+                        found_one = False
                         for stat in stats[1:]:
                             if stat is not None:
-                                stats_list.append(stats)
+                                found_one = True
+                                break
+                        if found_one:
+                            stats_list.append(stats)
 
                     statistic = {u'name': serie['name'],
                                  u'id': str(index),
