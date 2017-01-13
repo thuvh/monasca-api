@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a3c09a3_6326f969",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 698,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-01-13T17:07:38Z",
+      "side": 1,
+      "message": "I think this can be accomplished by just adding a break after the original append",
+      "range": {
+        "startLine": 698,
+        "startChar": 32,
+        "endLine": 698,
+        "endChar": 37
+      },
+      "revId": "ae97cf1865a35e4f45d0497223a50ff00f5a5603",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
