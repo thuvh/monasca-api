@@ -16,6 +16,24 @@
       "revId": "7d7ded93b3b9a722591ebd8a59166c1b9099a1f9",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a3c09a3_e0dbb1eb",
+        "filename": "monasca_api/tests/test_alarm_expression.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-01-13T23:18:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a3c09a3_10e756e5",
+      "revId": "7d7ded93b3b9a722591ebd8a59166c1b9099a1f9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
