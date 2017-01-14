@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a3c09a3_2cd93222",
+        "filename": "tox.ini",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2017-01-14T03:39:06Z",
+      "side": 1,
+      "message": "Should py34 section be removed?",
+      "revId": "f8383e09681f090fe773ce6a4c5569c08bcffef2",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
