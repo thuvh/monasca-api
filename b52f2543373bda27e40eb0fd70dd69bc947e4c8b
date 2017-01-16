@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a3c09a3_bbbaa2df",
+        "filename": "monasca_api/common/repositories/sqla/sql_repository.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-01-16T05:26:19Z",
+      "side": 1,
+      "message": "I am not a big expert (now :P) in oslo.db, but shouldn\u0027t you pass the engine as bind argument into the sqlalchemy.MetaData() ?",
+      "revId": "b52f2543373bda27e40eb0fd70dd69bc947e4c8b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
