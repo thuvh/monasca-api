@@ -1,0 +1,8 @@
+Code-Review+2: Artur Basiak <artur.basiak@ts.fujitsu.com>
+Workflow+1: Artur Basiak <artur.basiak@ts.fujitsu.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Mon, 16 Jan 2017 08:48:25 +0000
+Reviewed-on: https://review.openstack.org/420527
+Project: openstack/monasca-api
+Branch: refs/heads/master
