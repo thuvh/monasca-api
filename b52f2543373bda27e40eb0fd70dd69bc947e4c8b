@@ -16,6 +16,24 @@
       "revId": "b52f2543373bda27e40eb0fd70dd69bc947e4c8b",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a3c09a3_fdadac84",
+        "filename": "monasca_api/common/repositories/sqla/sql_repository.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 4428
+      },
+      "writtenOn": "2017-01-17T14:56:43Z",
+      "side": 1,
+      "message": "i\u0027m not sure either, i copied it from the original file.",
+      "parentUuid": "7a3c09a3_bbbaa2df",
+      "revId": "b52f2543373bda27e40eb0fd70dd69bc947e4c8b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
