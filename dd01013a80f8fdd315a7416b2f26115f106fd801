@@ -16,6 +16,24 @@
       "revId": "dd01013a80f8fdd315a7416b2f26115f106fd801",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a3c09a3_dde265d4",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-01-18T16:16:16Z",
+      "side": 1,
+      "message": "Yes. \u0027tagKey\u0027 is just the value of [\u0027columns\u0027] in SHOW TAG KEYS result. I have an example of how this series_names.raw[\u0027series\u0027] looks like:\n\nseries_names.raw[\u0027series\u0027] \u003d \n[{u\u0027values\u0027: [[u\u0027_region\u0027], [u\u0027_tenant_id\u0027], [u\u0027name_1\u0027], [u\u0027name_2\u0027]], \nu\u0027name\u0027: u\u0027tempest-1280133362\u0027, \nu\u0027columns\u0027: [u\u0027tagKey\u0027]}, \n{u\u0027values\u0027: [[u\u0027_region\u0027], [u\u0027_tenant_id\u0027], [u\u0027name_1\u0027]], \nu\u0027name\u0027: u\u0027tempest-438635676\u0027, \nu\u0027columns\u0027: [u\u0027tagKey\u0027]}, \n{u\u0027values\u0027: [[u\u0027_region\u0027], [u\u0027_tenant_id\u0027], [u\u0027name_3\u0027]], \nu\u0027name\u0027: u\u0027tempest-657098038\u0027, \nu\u0027columns\u0027: [u\u0027tagKey\u0027]}]",
+      "parentUuid": "7a3c09a3_6059da34",
+      "revId": "dd01013a80f8fdd315a7416b2f26115f106fd801",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
