@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a3c09a3_ee975438",
+        "filename": "monasca_api/v2/common/validation.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-01-18T21:05:40Z",
+      "side": 1,
+      "message": "Need to remove Company",
+      "range": {
+        "startLine": 1,
+        "startChar": 65,
+        "endLine": 1,
+        "endChar": 72
+      },
+      "revId": "ec9a9fcc32c6793cbd4d4b8f69be3393c7d28287",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a3c09a3_8ea9707e",
+        "filename": "monasca_api/v2/reference/alarms.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-01-18T21:05:40Z",
+      "side": 1,
+      "message": "Ditto",
+      "range": {
+        "startLine": 1,
+        "startChar": 61,
+        "endLine": 1,
+        "endChar": 68
+      },
+      "revId": "ec9a9fcc32c6793cbd4d4b8f69be3393c7d28287",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a3c09a3_aec54c0b",
+        "filename": "monasca_api/v2/reference/metrics.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-01-18T21:05:40Z",
+      "side": 1,
+      "message": "In monasca_api/v2/reference/alarms.py, you use str(ex), which is correct?",
+      "range": {
+        "startLine": 103,
+        "startChar": 71,
+        "endLine": 103,
+        "endChar": 81
+      },
+      "revId": "ec9a9fcc32c6793cbd4d4b8f69be3393c7d28287",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
