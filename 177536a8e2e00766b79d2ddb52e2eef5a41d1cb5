@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3905b3_ae8281fe",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MetricDefinitionVerticaRepoImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-01-19T20:07:24Z",
+      "side": 1,
+      "message": "Thinking about this, if we didn\u0027t include this on the query originally it may be better to leave it out.",
+      "range": {
+        "startLine": 127,
+        "startChar": 14,
+        "endLine": 127,
+        "endChar": 26
+      },
+      "revId": "177536a8e2e00766b79d2ddb52e2eef5a41d1cb5",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3905b3_2ec93179",
+        "filename": "java/src/main/java/monasca/api/infrastructure/persistence/vertica/MetricDefinitionVerticaRepoImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-01-19T20:07:24Z",
+      "side": 1,
+      "message": "this from debugging?",
+      "range": {
+        "startLine": 132,
+        "startChar": 6,
+        "endLine": 132,
+        "endChar": 41
+      },
+      "revId": "177536a8e2e00766b79d2ddb52e2eef5a41d1cb5",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
