@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3905b3_6a10ae4f",
+        "filename": "monasca_api/common/repositories/sqla/notifications_repository.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-01-19T08:16:22Z",
+      "side": 1,
+      "message": "This change is not about it I know but there\u0027s also:\n\nhttp://docs.sqlalchemy.org/en/latest/orm/query.html#sqlalchemy.orm.query.Query.limit\n\nand if both are set maybe you can use:\n\nhttp://docs.sqlalchemy.org/en/latest/orm/query.html#sqlalchemy.orm.query.Query.slice\n\n??",
+      "revId": "4119917bb45849b271bf5663be17711fef432ba4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3905b3_cf3534f8",
+        "filename": "monasca_api/common/repositories/sqla/notifications_repository.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-01-19T08:16:22Z",
+      "side": 1,
+      "message": "Why not: http://docs.sqlalchemy.org/en/latest/orm/query.html#sqlalchemy.orm.query.Query.offset ?",
+      "revId": "4119917bb45849b271bf5663be17711fef432ba4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
