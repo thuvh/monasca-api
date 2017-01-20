@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3905b3_386ea995",
+        "filename": "devstack/files/monasca-api/api-config.yml",
+        "patchSetId": 75
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-01-20T15:17:37Z",
+      "side": 1,
+      "message": "Its not clear where these could go. The comment above says \"data sources\" but that doesn\u0027t match any of the names below",
+      "range": {
+        "startLine": 55,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 49
+      },
+      "revId": "45b0c952c9031df351abb7ead9b3059850b9c243",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3905b3_18a00d90",
+        "filename": "devstack/files/monasca-api/python/api-config.conf",
+        "patchSetId": 75
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-01-20T15:17:37Z",
+      "side": 1,
+      "message": "Shouldn\u0027t you just delete the above line?",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 96
+      },
+      "revId": "45b0c952c9031df351abb7ead9b3059850b9c243",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
