@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "5a3905b3_3196b6f0",
+        "filename": "devstack/Vagrantfile",
+        "patchSetId": 75
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-01-20T20:58:38Z",
+      "side": 1,
+      "message": "I would like to see something to uncomment that would bring it up with postgres. It is not obvious how to do that",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 57
+      },
+      "revId": "45b0c952c9031df351abb7ead9b3059850b9c243",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3905b3_386ea995",
         "filename": "devstack/files/monasca-api/api-config.yml",
         "patchSetId": 75
