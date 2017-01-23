@@ -69,6 +69,30 @@
       "revId": "a7dc4d12ba01a183ca2251237ff9cd0cb1e069fe",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3905b3_08069251",
+        "filename": "monasca_api/common/messaging/kafka_publisher.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-01-23T21:53:59Z",
+      "side": 1,
+      "message": "+1 with Roland",
+      "parentUuid": "5a3905b3_01175548",
+      "range": {
+        "startLine": 21,
+        "startChar": 33,
+        "endLine": 21,
+        "endChar": 46
+      },
+      "revId": "a7dc4d12ba01a183ca2251237ff9cd0cb1e069fe",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
