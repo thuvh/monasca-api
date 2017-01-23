@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a3905b3_af3aede4",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-01-23T18:46:15Z",
+      "side": 1,
+      "message": "One thing I can think of is dimension name start with \u0027_\u0027. I should add a check here to make sure dimension_name doesn\u0027t start with \u0027_\u0027. Thanks! Is there any other special character you have in mind?",
+      "parentUuid": "7a3c09a3_0e72e0ad",
+      "range": {
+        "startLine": 139,
+        "startChar": 45,
+        "endLine": 139,
+        "endChar": 47
+      },
+      "revId": "dd01013a80f8fdd315a7416b2f26115f106fd801",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a3c09a3_6059da34",
         "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
         "patchSetId": 10
@@ -72,6 +96,24 @@
       "side": 1,
       "message": "So, in what case would there be no tagKey?",
       "parentUuid": "7a3c09a3_dde265d4",
+      "revId": "dd01013a80f8fdd315a7416b2f26115f106fd801",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3905b3_e75fc7e2",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-01-23T18:46:15Z",
+      "side": 1,
+      "message": "There will be no tagKey when the query is not SHOW TAG KEYS. For example, SHOW TAG VALUES return something like:\nseries_names.raw[\u0027series\u0027] \u003d \n[{u\u0027values\u0027: [[u\u0027value_1\u0027], [u\u0027value_2\u0027], [u\u0027value_3\u0027]], \nu\u0027name\u0027: u\u0027name_1TagValues\u0027, \nu\u0027columns\u0027: [u\u0027name_1\u0027]}]",
+      "parentUuid": "7a3c09a3_ab48de8b",
       "revId": "dd01013a80f8fdd315a7416b2f26115f106fd801",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
