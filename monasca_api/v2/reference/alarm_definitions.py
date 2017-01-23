@@ -423,15 +423,16 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
             self._build_sub_alarm_def_update_dict(sub_alarm_def_dicts[
                 'unchanged']))
 
+        result = self._build_alarm_definition_show_result(alarm_def_row)
         alarm_def_event_dict = (
             {u'tenantId': tenant_id,
              u'alarmDefinitionId': definition_id,
-             u'alarmName': name,
-             u'alarmDescription': description,
-             u'alarmExpression': expression,
-             u'severity': severity,
-             u'matchBy': match_by,
-             u'alarmActionsEnabled': actions_enabled,
+             u'alarmName': result['name'],
+             u'alarmDescription': result['description'],
+             u'alarmExpression': result['expression'],
+             u'severity': result['severity'],
+             u'matchBy': result['match_by'],
+             u'alarmActionsEnabled': result['actions_enabled'],
              u'oldAlarmSubExpressions': old_sub_alarm_def_event_dict,
              u'changedSubExpressions': changed_sub_alarm_def_event_dict,
              u'unchangedSubExpressions': unchanged_sub_alarm_def_event_dict,
@@ -442,8 +443,6 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
 
         self.send_event(self.events_message_queue,
                         alarm_definition_updated_event)
-
-        result = self._build_alarm_definition_show_result(alarm_def_row)
 
         return result
 
