@@ -1,5 +1,5 @@
 #
-# (C) Copyright 2015,2016 Hewlett Packard Enterprise Development LP
+# (C) Copyright 2015-2017 Hewlett Packard Enterprise Development LP
 # Copyright 2016 FUJITSU LIMITED
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -838,7 +838,7 @@ function download_monasca_libraries {
 
     echo_summary "Download Monasca monasca_common and monasca_statsd"
 
-    git_clone $MONASCA_COMMON_REPO $MONASCA_COMMON_DIR $MONASCA_COMMON_BRANCH
+    sudo git_clone $MONASCA_COMMON_REPO $MONASCA_COMMON_DIR $MONASCA_COMMON_BRANCH
     (cd "${MONASCA_COMMON_DIR}"/java ; sudo mvn clean install -DskipTests)
 
     (cd "${MONASCA_BASE}"/monasca-common ; sudo python setup.py sdist)
