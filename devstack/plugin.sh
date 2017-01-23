@@ -1849,7 +1849,7 @@ function install_monasca_grafana {
     export GOPATH=`pwd`
     mkdir -p $GOPATH/src/github.com/grafana
     cd $GOPATH/src/github.com/grafana
-    cp -r "${GRAFANA_DIR}" .
+    cp -rf "${GRAFANA_DIR}" .
 
     cd grafana
     cp "${MONASCA_UI_DIR}"/grafana-dashboards/* ./public/dashboards/
