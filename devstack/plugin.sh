@@ -839,13 +839,13 @@ function download_monasca_libraries {
     echo_summary "Download Monasca monasca_common and monasca_statsd"
 
     git_clone $MONASCA_COMMON_REPO $MONASCA_COMMON_DIR $MONASCA_COMMON_BRANCH
-    (cd "${MONASCA_COMMON_DIR}"/java ; sudo mvn clean install -DskipTests)
+    (cd "${MONASCA_COMMON_DIR}"/java ; mvn clean install -DskipTests)
 
-    (cd "${MONASCA_BASE}"/monasca-common ; sudo python setup.py sdist)
+    (cd "${MONASCA_BASE}"/monasca-common ; python setup.py sdist)
 
     MONASCA_COMMON_SRC_DIST=$(ls -td "$MONASCA_BASE"/monasca-common/dist/monasca-common*.tar.gz | head -1)
 
-    sudo pip install $MONASCA_COMMON_SRC_DIST
+    pip install $MONASCA_COMMON_SRC_DIST
 
     if [[ ! -d "${MONASCA_BASE}"/monasca-statsd ]]; then
 
@@ -853,11 +853,11 @@ function download_monasca_libraries {
 
     fi
 
-    (cd "${MONASCA_BASE}"/monasca-statsd ; sudo python setup.py sdist)
+    (cd "${MONASCA_BASE}"/monasca-statsd ; python setup.py sdist)
 
     MONASCA_STATSD_SRC_DIST=$(ls -td "$MONASCA_BASE"/monasca-statsd/dist/monasca-statsd*.tar.gz | head -1)
 
-    sudo pip install $MONASCA_STATSD_SRC_DIST
+    pip install $MONASCA_STATSD_SRC_DIST
 
 }
 
@@ -963,9 +963,9 @@ function install_monasca_api_python {
 
     PIP_VIRTUAL_ENV=/opt/monasca-api
 
-    (cd /opt/monasca-api ; sudo ./bin/pip install $MONASCA_COMMON_SRC_DIST)
+    (cd /opt/monasca-api ; ./bin/pip install $MONASCA_COMMON_SRC_DIST)
 
-    (cd /opt/monasca-api ; sudo ./bin/pip install $MONASCA_STATSD_SRC_DIST)
+    (cd /opt/monasca-api ; ./bin/pip install $MONASCA_STATSD_SRC_DIST)
 
     pip_install gunicorn
     pip_install PyMySQL
@@ -1211,9 +1211,9 @@ function install_monasca_persister_python {
 
     PIP_VIRTUAL_ENV=/opt/monasca-persister
 
-    (cd /opt/monasca-persister ; sudo ./bin/pip install $MONASCA_COMMON_SRC_DIST)
+    (cd /opt/monasca-persister ; ./bin/pip install $MONASCA_COMMON_SRC_DIST)
 
-    (cd /opt/monasca-persister ; sudo ./bin/pip install $MONASCA_STATSD_SRC_DIST)
+    (cd /opt/monasca-persister ; ./bin/pip install $MONASCA_STATSD_SRC_DIST)
 
     (cd /opt/monasca-persister ; ./bin/pip install $MONASCA_PERSISTER_SRC_DIST)
 
@@ -1362,9 +1362,9 @@ function install_monasca_notification {
 
     PIP_VIRTUAL_ENV=/opt/monasca
 
-    (cd /opt/monasca ; sudo ./bin/pip install $MONASCA_COMMON_SRC_DIST)
+    (cd /opt/monasca ; ./bin/pip install $MONASCA_COMMON_SRC_DIST)
 
-    (cd /opt/monasca ; sudo ./bin/pip install $MONASCA_STATSD_SRC_DIST)
+    (cd /opt/monasca ; ./bin/pip install $MONASCA_STATSD_SRC_DIST)
 
     (cd /opt/monasca ; ./bin/pip install $MONASCA_NOTIFICATION_SRC_DIST)
 
@@ -1618,9 +1618,9 @@ function install_monasca_keystone_client {
 
     PIP_VIRTUAL_ENV=/opt/monasca
 
-    (cd /opt/monasca ; sudo ./bin/pip install python-keystoneclient)
+    (cd /opt/monasca ; ./bin/pip install python-keystoneclient)
 
-    (cd /opt/monasca ; sudo ./bin/pip install keystoneauth1)
+    (cd /opt/monasca ; ./bin/pip install keystoneauth1)
 
     unset PIP_VIRTUAL_ENV
 
