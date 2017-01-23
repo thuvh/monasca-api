@@ -839,25 +839,16 @@ function download_monasca_libraries {
     echo_summary "Download Monasca monasca_common and monasca_statsd"
 
     git_clone $MONASCA_COMMON_REPO $MONASCA_COMMON_DIR $MONASCA_COMMON_BRANCH
-    (cd "${MONASCA_COMMON_DIR}"/java ; sudo mvn clean install -DskipTests)
+    git_clone $MONASCA_STATSD_REPO $MONASCA_STATSD_DIR $MONASCA_STATSD_BRANCH
 
-    (cd "${MONASCA_BASE}"/monasca-common ; sudo python setup.py sdist)
+    (cd "${MONASCA_COMMON_DIR}"/java ; mvn clean install -DskipTests)
+    (cd "${MONASCA_BASE}"/monasca-common ; python setup.py sdist)
+    MONASCA_COMMON_SRC_DIST=$(ls -td "$MONASCA_COMMON_DIR"/dist/monasca-common*.tar.gz | head -1)
+    pip install $MONASCA_COMMON_SRC_DIST
 
-    MONASCA_COMMON_SRC_DIST=$(ls -td "$MONASCA_BASE"/monasca-common/dist/monasca-common*.tar.gz | head -1)
-
-    sudo pip install $MONASCA_COMMON_SRC_DIST
-
-    if [[ ! -d "${MONASCA_BASE}"/monasca-statsd ]]; then
-
-        sudo git clone https://git.openstack.org/openstack/monasca-statsd "${MONASCA_BASE}"/monasca-statsd
-
-    fi
-
-    (cd "${MONASCA_BASE}"/monasca-statsd ; sudo python setup.py sdist)
-
-    MONASCA_STATSD_SRC_DIST=$(ls -td "$MONASCA_BASE"/monasca-statsd/dist/monasca-statsd*.tar.gz | head -1)
-
-    sudo pip install $MONASCA_STATSD_SRC_DIST
+    (cd "${MONASCA_STATSD_DIR}"; python setup.py sdist)
+    MONASCA_STATSD_SRC_DIST=$(ls -td "$MONASCA_STATSD_DIR"/dist/monasca-statsd*.tar.gz | head -1)
+    pip install $MONASCA_STATSD_SRC_DIST
 
 }
 
