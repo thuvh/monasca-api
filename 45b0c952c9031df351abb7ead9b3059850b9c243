@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a3905b3_e1f4325c",
+        "filename": "devstack/Vagrantfile",
+        "patchSetId": 75
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-01-23T06:32:24Z",
+      "side": 1,
+      "message": "Done.\n\nAdded variable MONASCA_RDB_BACKEND which is either mysql or postgresql and it is passed to enable_service call.\nYou will be able to uncomment either line to have postgres or mysql.",
+      "parentUuid": "5a3905b3_3196b6f0",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 57
+      },
+      "revId": "45b0c952c9031df351abb7ead9b3059850b9c243",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3905b3_386ea995",
         "filename": "devstack/files/monasca-api/api-config.yml",
         "patchSetId": 75
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "5a3905b3_e1c272e8",
+        "filename": "devstack/files/monasca-api/api-config.yml",
+        "patchSetId": 75
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-01-23T06:32:24Z",
+      "side": 1,
+      "message": "Done, rewritten to explicitly point at dataSourceClassName property.",
+      "parentUuid": "5a3905b3_386ea995",
+      "range": {
+        "startLine": 55,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 49
+      },
+      "revId": "45b0c952c9031df351abb7ead9b3059850b9c243",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3905b3_18a00d90",
         "filename": "devstack/files/monasca-api/python/api-config.conf",
         "patchSetId": 75
@@ -59,6 +107,30 @@
       "writtenOn": "2017-01-20T15:17:37Z",
       "side": 1,
       "message": "Shouldn\u0027t you just delete the above line?",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 96
+      },
+      "revId": "45b0c952c9031df351abb7ead9b3059850b9c243",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3905b3_a1a5ca47",
+        "filename": "devstack/files/monasca-api/python/api-config.conf",
+        "patchSetId": 75
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-01-23T06:32:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a3905b3_18a00d90",
       "range": {
         "startLine": 47,
         "startChar": 0,
