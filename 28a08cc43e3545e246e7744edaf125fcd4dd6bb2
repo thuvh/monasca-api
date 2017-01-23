@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3905b3_21aff12a",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 850,
+      "author": {
+        "id": 22157
+      },
+      "writtenOn": "2017-01-23T19:52:51Z",
+      "side": 0,
+      "message": "Why take this check out? Do we want to clone the monasca-statsd repo if it is already there or do we want to use the code that is in the local repo?",
+      "range": {
+        "startLine": 850,
+        "startChar": 4,
+        "endLine": 850,
+        "endChar": 56
+      },
+      "revId": "28a08cc43e3545e246e7744edaf125fcd4dd6bb2",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
