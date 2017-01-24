@@ -1,0 +1,9 @@
+Code-Review+1: Ryan Brandt <ryan.brandt@hpe.com>
+Code-Review+2: Tomasz Trębski <tomasz.trebski@ts.fujitsu.com>
+Workflow+1: Tomasz Trębski <tomasz.trebski@ts.fujitsu.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Tue, 24 Jan 2017 13:41:23 +0000
+Reviewed-on: https://review.openstack.org/423882
+Project: openstack/monasca-api
+Branch: refs/heads/master
