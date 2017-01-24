@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3905b3_afd1c831",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 841,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-01-24T21:14:31Z",
+      "side": 1,
+      "message": "And why is that an issue ? Everywhere else it is done like this, don\u0027t quite understand why is that a problem.",
+      "revId": "54e6f937087245decfe09ce7275d2c818100287a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
