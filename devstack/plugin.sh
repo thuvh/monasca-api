@@ -1,5 +1,5 @@
 #
-# (C) Copyright 2015,2016 Hewlett Packard Enterprise Development LP
+# (C) Copyright 2015-2017 Hewlett Packard Enterprise Development LP
 # Copyright 2016 FUJITSU LIMITED
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -838,15 +838,21 @@ function download_monasca_libraries {
 
     echo_summary "Download Monasca monasca_common and monasca_statsd"
 
-    git_clone $MONASCA_COMMON_REPO $MONASCA_COMMON_DIR $MONASCA_COMMON_BRANCH
-    git_clone $MONASCA_STATSD_REPO $MONASCA_STATSD_DIR $MONASCA_STATSD_BRANCH
+    # Use "sudo git clone" instead of "git_clone" because git_clone passes -depth 1 by default which caused a shallow clone with missing history.
+    if [[ ! -d "${MONASCA_BASE}"/monasca-common ]]; then
+        sudo git clone https://git.openstack.org/openstack/monasca-common "${MONASCA_BASE}"/monasca-common
+    fi
+
+    if [[ ! -d "${MONASCA_BASE}"/monasca-statsd ]]; then
+        sudo git clone https://git.openstack.org/openstack/monasca-statsd "${MONASCA_BASE}"/monasca-statsd
+    if
 
     (cd "${MONASCA_COMMON_DIR}"/java ; sudo mvn clean install -DskipTests)
 
-    (cd "${MONASCA_COMMON_DIR}" ; python setup.py sdist)
+    (cd "${MONASCA_COMMON_DIR}" ; sudo python setup.py sdist)
     MONASCA_COMMON_SRC_DIST=$(ls -td "$MONASCA_COMMON_DIR"/dist/monasca-common*.tar.gz | head -1)
 
-    (cd "${MONASCA_STATSD_DIR}"; python setup.py sdist)
+    (cd "${MONASCA_STATSD_DIR}"; sudo python setup.py sdist)
     MONASCA_STATSD_SRC_DIST=$(ls -td "$MONASCA_STATSD_DIR"/dist/monasca-statsd*.tar.gz | head -1)
 
 }
