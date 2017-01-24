@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3905b3_c56b87b5",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 844,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-01-24T05:06:40Z",
+      "side": 1,
+      "message": "MONASCA_COMMON_DIR",
+      "revId": "dac90117e2e757f99b33dbf71efa998de23321ff",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3905b3_0562efd7",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 852,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-01-24T05:06:40Z",
+      "side": 1,
+      "message": "Move this to 842 and use same function git_clone",
+      "revId": "dac90117e2e757f99b33dbf71efa998de23321ff",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3905b3_459eb7b9",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 860,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-01-24T05:06:40Z",
+      "side": 1,
+      "message": "Is it really necessary to install both monasca_common and monasca_statsd in global scope (or monasca virtual env) ? I saw that they are installed anyway in given projects ? So why here ?",
+      "revId": "dac90117e2e757f99b33dbf71efa998de23321ff",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
