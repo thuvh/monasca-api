@@ -22,6 +22,30 @@
       "revId": "03253fd9d55f8cbd24adfcd102dc9c0e3201c4dc",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3905b3_9bee0eb3",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 853,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-01-24T22:43:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a3905b3_9b160ef0",
+      "range": {
+        "startLine": 853,
+        "startChar": 14,
+        "endLine": 853,
+        "endChar": 15
+      },
+      "revId": "03253fd9d55f8cbd24adfcd102dc9c0e3201c4dc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
