@@ -22,6 +22,30 @@
       "revId": "28a08cc43e3545e246e7744edaf125fcd4dd6bb2",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3905b3_e53de32b",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 850,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-01-24T05:31:51Z",
+      "side": 0,
+      "message": "git_clone handles that",
+      "parentUuid": "5a3905b3_21aff12a",
+      "range": {
+        "startLine": 850,
+        "startChar": 4,
+        "endLine": 850,
+        "endChar": 56
+      },
+      "revId": "28a08cc43e3545e246e7744edaf125fcd4dd6bb2",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
