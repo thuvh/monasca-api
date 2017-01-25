@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a461143_340fdbe2",
+        "filename": "devstack/Vagrantfile",
+        "patchSetId": 77
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 22157
+      },
+      "writtenOn": "2017-01-25T23:30:16Z",
+      "side": 1,
+      "message": "Do we need to add any documentation incase the user want to use stack.sh or will it work ok without these variables in local.conf?",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 48
+      },
+      "revId": "6ae503b8a3a986bd51a6bf2ae965c3cf3e26d9d8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
