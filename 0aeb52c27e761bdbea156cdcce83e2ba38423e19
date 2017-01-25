@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a461143_8f231c05",
+        "filename": "monasca_api/v2/reference/metrics.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-01-25T23:29:09Z",
+      "side": 0,
+      "message": "Can we use the validation functions from monasca_common for here too?",
+      "range": {
+        "startLine": 140,
+        "startChar": 8,
+        "endLine": 140,
+        "endChar": 53
+      },
+      "revId": "0aeb52c27e761bdbea156cdcce83e2ba38423e19",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
