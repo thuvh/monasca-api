@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a461143_1069d2be",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2017-01-26T22:58:15Z",
+      "side": 1,
+      "message": "Wouldn\u0027t invalid characters like \"_\" be validated and checked by the API?\n\nUnfortunately, I don\u0027t think we are validating the query in that case. The spec says the following: https://github.com/openstack/monasca-api/blob/master/docs/monasca-api-spec.md#dimensions\n\nSo, I would expect to see the dimension validated in the API, but it wouldn\u0027t or shouldn\u0027t be necessary to validate here, down in the repository.\n\nFor example, see https://github.com/openstack/monasca-api/blob/master/monasca_api/v2/reference/metrics.py#L343, but I\u0027m not seeing any validation on the dimenion name.",
+      "revId": "5e5225e3c6bc5d4fce262118e54760437f42d670",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
