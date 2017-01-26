@@ -16,6 +16,24 @@
       "revId": "5e5225e3c6bc5d4fce262118e54760437f42d670",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a461143_709bf672",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-01-26T23:01:53Z",
+      "side": 1,
+      "message": "I totally agree with you. Joe and I just talked about this and we both think we should add validation in the api for both dimension name and dimension value. Ryan is currently working on that piece of code right now in review https://review.openstack.org/#/c/416325/. I will talk to him about this and resolve it. Thanks!",
+      "parentUuid": "3a461143_1069d2be",
+      "revId": "5e5225e3c6bc5d4fce262118e54760437f42d670",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
