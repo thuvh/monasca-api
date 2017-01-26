@@ -22,6 +22,30 @@
       "revId": "6ae503b8a3a986bd51a6bf2ae965c3cf3e26d9d8",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a461143_0527fa12",
+        "filename": "devstack/Vagrantfile",
+        "patchSetId": 77
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-01-26T10:49:13Z",
+      "side": 1,
+      "message": "You know what, I think I will just add another enable_service line below first one with the same comment that will be better and will not introduce any doubts around new variable.",
+      "parentUuid": "3a461143_340fdbe2",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 48
+      },
+      "revId": "6ae503b8a3a986bd51a6bf2ae965c3cf3e26d9d8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
