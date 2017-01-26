@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a461143_506390b1",
+        "filename": "monasca_api/v2/reference/alarms.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-01-26T00:31:59Z",
+      "side": 1,
+      "message": "Remove Company",
+      "range": {
+        "startLine": 1,
+        "startChar": 61,
+        "endLine": 1,
+        "endChar": 68
+      },
+      "revId": "98edc254b58617ca56b0d20ac0e5be9f13602c24",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
