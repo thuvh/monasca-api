@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a461143_eedc5fe6",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-01-27T08:48:31Z",
+      "side": 1,
+      "message": "It should be\n\n from monasca_common.validation import metrics\n\nor if you prefer it that way\n\n from monasca_common.validation import metrics as metric_validation\n\nso sth like in alarm_definitions.py file",
+      "revId": "a7884bc102f248c78a7bfea341696d1da5c6b262",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
