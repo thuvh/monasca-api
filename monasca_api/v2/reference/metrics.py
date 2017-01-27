@@ -96,7 +96,7 @@ class Metrics(metrics_api_v2.MetricsV2API):
         helpers.validate_json_content_type(req)
         helpers.validate_authorization(req,
                                        self._post_metrics_authorized_roles)
-        metrics = helpers.read_http_resource(req)
+        metrics = helpers.body_from_json(req)
         try:
             metric_validation.validate(metrics)
         except Exception as ex:
@@ -129,7 +129,7 @@ class Metrics(metrics_api_v2.MetricsV2API):
                                     dimensions, req.uri,
                                     offset, req.limit,
                                     start_timestamp, end_timestamp)
-        res.body = helpers.dumpit_utf8(result)
+        res.body = helpers.data_to_json(result)
         res.status = falcon.HTTP_200
 
 
@@ -177,7 +177,7 @@ class MetricsMeasurements(metrics_api_v2.MetricsMeasurementsV2API):
                                         req.limit, merge_metrics_flag,
                                         group_by)
 
-        res.body = helpers.dumpit_utf8(result)
+        res.body = helpers.data_to_json(result)
         res.status = falcon.HTTP_200
 
     def _measurement_list(self, tenant_id, name, dimensions, start_timestamp,
@@ -241,7 +241,7 @@ class MetricsStatistics(metrics_api_v2.MetricsStatisticsV2API):
                                          offset, req.limit, merge_metrics_flag,
                                          group_by)
 
-        res.body = helpers.dumpit_utf8(result)
+        res.body = helpers.data_to_json(result)
         res.status = falcon.HTTP_200
 
     def _metric_statistics(self, tenant_id, name, dimensions, start_timestamp,

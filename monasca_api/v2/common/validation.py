@@ -12,9 +12,11 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-from monasca_api.v2.common.exceptions import HTTPUnprocessableEntityError
-
 import re
+
+from monasca_common.rest import utils as ru
+
+from monasca_api.v2.common.exceptions import HTTPUnprocessableEntityError
 
 VALID_ALARM_STATES = ["ALARM", "OK", "UNDETERMINED"]
 
