@@ -2,6 +2,304 @@
   "comments": [
     {
       "key": {
+        "uuid": "3a461143_eb0d313f",
+        "filename": "devstack/README.md",
+        "patchSetId": 79
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-01-27T10:20:16Z",
+      "side": 1,
+      "message": "MySQL",
+      "range": {
+        "startLine": 102,
+        "startChar": 23,
+        "endLine": 102,
+        "endChar": 28
+      },
+      "revId": "66d48e6f14f8f86e38d4ac55846f9e02e674d6b8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a461143_6b194188",
+        "filename": "devstack/README.md",
+        "patchSetId": 79
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-01-27T10:20:16Z",
+      "side": 1,
+      "message": "PostgreSQL",
+      "range": {
+        "startLine": 104,
+        "startChar": 28,
+        "endLine": 104,
+        "endChar": 37
+      },
+      "revId": "66d48e6f14f8f86e38d4ac55846f9e02e674d6b8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a461143_0e10cb4d",
+        "filename": "devstack/Vagrantfile",
+        "patchSetId": 79
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-01-27T10:20:16Z",
+      "side": 1,
+      "message": "one",
+      "range": {
+        "startLine": 99,
+        "startChar": 12,
+        "endLine": 99,
+        "endChar": 14
+      },
+      "revId": "66d48e6f14f8f86e38d4ac55846f9e02e674d6b8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a461143_aeffb765",
+        "filename": "devstack/files/monasca-api/python/api-config.conf",
+        "patchSetId": 79
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-01-27T10:20:16Z",
+      "side": 1,
+      "message": "InfluxDB",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 10
+      },
+      "revId": "66d48e6f14f8f86e38d4ac55846f9e02e674d6b8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a461143_6e2cef02",
+        "filename": "devstack/files/monasca-notification/notification.yaml",
+        "patchSetId": 79
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-01-27T10:20:16Z",
+      "side": 1,
+      "message": "Should be %MONASCA_NOTIFICATION_DATABASE_USER% ?",
+      "range": {
+        "startLine": 45,
+        "startChar": 8,
+        "endLine": 45,
+        "endChar": 20
+      },
+      "revId": "66d48e6f14f8f86e38d4ac55846f9e02e674d6b8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a461143_0e3c4b2e",
+        "filename": "devstack/files/monasca-thresh/thresh-config.yml",
+        "patchSetId": 79
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-01-27T10:20:16Z",
+      "side": 1,
+      "message": "Add space, stick to the same comment convention.",
+      "revId": "66d48e6f14f8f86e38d4ac55846f9e02e674d6b8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a461143_6e130fb9",
+        "filename": "devstack/files/monasca-thresh/thresh-config.yml",
+        "patchSetId": 79
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-01-27T10:20:16Z",
+      "side": 1,
+      "message": "Add space",
+      "revId": "66d48e6f14f8f86e38d4ac55846f9e02e674d6b8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a461143_8e167ba5",
+        "filename": "devstack/files/monasca-thresh/thresh-config.yml",
+        "patchSetId": 79
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-01-27T10:20:16Z",
+      "side": 1,
+      "message": "Add space",
+      "revId": "66d48e6f14f8f86e38d4ac55846f9e02e674d6b8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a461143_ae0df791",
+        "filename": "devstack/files/monasca-thresh/thresh-config.yml",
+        "patchSetId": 79
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-01-27T10:20:16Z",
+      "side": 1,
+      "message": "Add space",
+      "revId": "66d48e6f14f8f86e38d4ac55846f9e02e674d6b8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a461143_4ea7334f",
+        "filename": "devstack/files/schema/mon_postgresql.sql",
+        "patchSetId": 79
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-01-27T10:20:16Z",
+      "side": 1,
+      "message": "I think default should be `UNDETERMINED`. Change to `OK` only when you are sure it\u0027s OK, not by default.",
+      "range": {
+        "startLine": 108,
+        "startChar": 50,
+        "endLine": 108,
+        "endChar": 52
+      },
+      "revId": "66d48e6f14f8f86e38d4ac55846f9e02e674d6b8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a461143_0e228bb9",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 79
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-01-27T10:20:16Z",
+      "side": 1,
+      "message": "Exit with fail if anything else found.",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 2
+      },
+      "revId": "66d48e6f14f8f86e38d4ac55846f9e02e674d6b8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a461143_71d12e57",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 79
+      },
+      "lineNbr": 682,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-01-27T10:20:16Z",
+      "side": 1,
+      "message": "Exit with fail if anything else found.",
+      "range": {
+        "startLine": 678,
+        "startChar": 0,
+        "endLine": 682,
+        "endChar": 4
+      },
+      "revId": "66d48e6f14f8f86e38d4ac55846f9e02e674d6b8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a461143_17c7fa45",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 79
+      },
+      "lineNbr": 1020,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-01-27T10:20:16Z",
+      "side": 1,
+      "message": "Fail on anything else.",
+      "range": {
+        "startLine": 1015,
+        "startChar": 0,
+        "endLine": 1020,
+        "endChar": 6
+      },
+      "revId": "66d48e6f14f8f86e38d4ac55846f9e02e674d6b8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a461143_77de7e12",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 79
+      },
+      "lineNbr": 1265,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-01-27T10:20:16Z",
+      "side": 1,
+      "message": "Fail on anything else.",
+      "range": {
+        "startLine": 1257,
+        "startChar": 0,
+        "endLine": 1265,
+        "endChar": 6
+      },
+      "revId": "66d48e6f14f8f86e38d4ac55846f9e02e674d6b8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a461143_2e310706",
         "filename": "devstack/settings",
         "patchSetId": 79
