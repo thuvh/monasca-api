@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a461143_2e310706",
+        "filename": "devstack/settings",
+        "patchSetId": 79
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-01-27T08:54:03Z",
+      "side": 1,
+      "message": "Guess this company ought to be removed",
+      "revId": "66d48e6f14f8f86e38d4ac55846f9e02e674d6b8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a461143_6e194f88",
+        "filename": "devstack/settings",
+        "patchSetId": 79
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-01-27T08:54:03Z",
+      "side": 1,
+      "message": "Bad year....although this change has been added last year ;-)",
+      "revId": "66d48e6f14f8f86e38d4ac55846f9e02e674d6b8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
