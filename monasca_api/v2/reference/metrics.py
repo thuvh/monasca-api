@@ -84,7 +84,7 @@ class Metrics(metrics_api_v2.MetricsV2API):
 
     def _validate_single_metric(self, metric):
         validation.metric_name(metric['name'])
-        assert isinstance(metric['timestamp'], (int, float)), "Timestamp must be a number"
+        assert isinstance(metric['timestamp'], (int, long, float)), "Timestamp must be a number"
         assert isinstance(metric['value'], (int, long, float)), "Value must be a number"
         if "dimensions" in metric:
             for dimension_key in metric['dimensions']:
@@ -119,7 +119,7 @@ class Metrics(metrics_api_v2.MetricsV2API):
         helpers.validate_json_content_type(req)
         helpers.validate_authorization(req,
                                        self._post_metrics_authorized_roles)
-        metrics = helpers.read_http_resource(req)
+        metrics = helpers.body_from_json(req)
         self._validate_metrics(metrics)
         tenant_id = (
             helpers.get_x_tenant_or_tenant_id(req,
@@ -146,7 +146,7 @@ class Metrics(metrics_api_v2.MetricsV2API):
                                     dimensions, req.uri,
                                     offset, req.limit,
                                     start_timestamp, end_timestamp)
-        res.body = helpers.dumpit_utf8(result)
+        res.body = helpers.data_to_json(result)
         res.status = falcon.HTTP_200
 
 
@@ -193,7 +193,7 @@ class MetricsMeasurements(metrics_api_v2.MetricsMeasurementsV2API):
                                         req.limit, merge_metrics_flag,
                                         group_by)
 
-        res.body = helpers.dumpit_utf8(result)
+        res.body = helpers.data_to_json(result)
         res.status = falcon.HTTP_200
 
     @resource.resource_try_catch_block
@@ -257,7 +257,7 @@ class MetricsStatistics(metrics_api_v2.MetricsStatisticsV2API):
                                          offset, req.limit, merge_metrics_flag,
                                          group_by)
 
-        res.body = helpers.dumpit_utf8(result)
+        res.body = helpers.data_to_json(result)
         res.status = falcon.HTTP_200
 
     @resource.resource_try_catch_block
@@ -308,7 +308,7 @@ class MetricsNames(metrics_api_v2.MetricsNamesV2API):
         offset = helpers.get_query_param(req, 'offset')
         result = self._list_metric_names(tenant_id, dimensions,
                                          req.uri, offset, req.limit)
-        res.body = helpers.dumpit_utf8(result)
+        res.body = helpers.data_to_json(result)
         res.status = falcon.HTTP_200
 
     @resource.resource_try_catch_block
@@ -351,7 +351,7 @@ class DimensionValues(metrics_api_v2.DimensionValuesV2API):
         offset = helpers.get_query_param(req, 'offset')
         result = self._dimension_values(tenant_id, req.uri, metric_name,
                                         dimension_name, offset, req.limit)
-        res.body = helpers.dumpit_utf8(result)
+        res.body = helpers.data_to_json(result)
         res.status = falcon.HTTP_200
 
     @resource.resource_try_catch_block
@@ -393,7 +393,7 @@ class DimensionNames(metrics_api_v2.DimensionNamesV2API):
         offset = helpers.get_query_param(req, 'offset')
         result = self._dimension_names(tenant_id, req.uri, metric_name,
                                        offset, req.limit)
-        res.body = helpers.dumpit_utf8(result)
+        res.body = helpers.data_to_json(result)
         res.status = falcon.HTTP_200
 
     @resource.resource_try_catch_block
