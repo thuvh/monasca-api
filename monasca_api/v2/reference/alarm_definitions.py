@@ -56,7 +56,7 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
     def on_post(self, req, res):
         helpers.validate_authorization(req, self._default_authorized_roles)
 
-        alarm_definition = helpers.read_json_msg_body(req)
+        alarm_definition = helpers.body_from_json(req)
 
         self._validate_alarm_definition(alarm_definition)
 
@@ -78,7 +78,7 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
                                                ok_actions)
 
         helpers.add_links_to_resource(result, req.uri)
-        res.body = helpers.dumpit_utf8(result)
+        res.body = helpers.data_to_json(result)
         res.status = falcon.HTTP_201
 
     def on_get(self, req, res, alarm_definition_id=None):
@@ -112,7 +112,7 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
                                                  req.uri, sort_by,
                                                  offset, req.limit)
 
-            res.body = helpers.dumpit_utf8(result)
+            res.body = helpers.data_to_json(result)
             res.status = falcon.HTTP_200
 
         else:
@@ -124,14 +124,14 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
             helpers.add_links_to_resource(result,
                                           re.sub('/' + alarm_definition_id, '',
                                                  req.uri))
-            res.body = helpers.dumpit_utf8(result)
+            res.body = helpers.data_to_json(result)
             res.status = falcon.HTTP_200
 
     def on_put(self, req, res, alarm_definition_id):
 
         helpers.validate_authorization(req, self._default_authorized_roles)
 
-        alarm_definition = helpers.read_json_msg_body(req)
+        alarm_definition = helpers.body_from_json(req)
 
         self._validate_alarm_definition(alarm_definition, require_all=True)
 
@@ -161,14 +161,14 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
                                                         patch=False)
 
         helpers.add_links_to_resource(result, req.uri)
-        res.body = helpers.dumpit_utf8(result)
+        res.body = helpers.data_to_json(result)
         res.status = falcon.HTTP_200
 
     def on_patch(self, req, res, alarm_definition_id):
 
         helpers.validate_authorization(req, self._default_authorized_roles)
 
-        alarm_definition = helpers.read_json_msg_body(req)
+        alarm_definition = helpers.body_from_json(req)
 
         # Optional args
         name = get_query_alarm_definition_name(alarm_definition,
@@ -205,7 +205,7 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
                                                         patch=True)
 
         helpers.add_links_to_resource(result, req.uri)
-        res.body = helpers.dumpit_utf8(result)
+        res.body = helpers.data_to_json(result)
         res.status = falcon.HTTP_200
 
     def on_delete(self, req, res, alarm_definition_id):

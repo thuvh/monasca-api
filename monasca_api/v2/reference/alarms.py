@@ -53,7 +53,7 @@ class Alarms(alarms_api_v2.AlarmsV2API,
 
         helpers.validate_authorization(req, self._default_authorized_roles)
 
-        alarm = helpers.read_http_resource(req)
+        alarm = helpers.body_from_json(req)
         schema_alarm.validate(alarm)
 
         # Validator makes state optional, so check it here
@@ -72,14 +72,14 @@ class Alarms(alarms_api_v2.AlarmsV2API,
 
         result = self._alarm_show(req.uri, req.project_id, alarm_id)
 
-        res.body = helpers.dumpit_utf8(result)
+        res.body = helpers.data_to_json(result)
         res.status = falcon.HTTP_200
 
     def on_patch(self, req, res, alarm_id):
 
         helpers.validate_authorization(req, self._default_authorized_roles)
 
-        alarm = helpers.read_http_resource(req)
+        alarm = helpers.body_from_json(req)
         schema_alarm.validate(alarm)
 
         old_alarm = self._alarms_repo.get_alarm(req.project_id, alarm_id)[0]
@@ -97,7 +97,7 @@ class Alarms(alarms_api_v2.AlarmsV2API,
 
         result = self._alarm_show(req.uri, req.project_id, alarm_id)
 
-        res.body = helpers.dumpit_utf8(result)
+        res.body = helpers.data_to_json(result)
         res.status = falcon.HTTP_200
 
     def on_delete(self, req, res, alarm_id):
@@ -148,13 +148,13 @@ class Alarms(alarms_api_v2.AlarmsV2API,
                                       query_parms, offset,
                                       req.limit)
 
-            res.body = helpers.dumpit_utf8(result)
+            res.body = helpers.data_to_json(result)
             res.status = falcon.HTTP_200
 
         else:
             result = self._alarm_show(req.uri, req.project_id, alarm_id)
 
-            res.body = helpers.dumpit_utf8(result)
+            res.body = helpers.data_to_json(result)
             res.status = falcon.HTTP_200
 
     @staticmethod
@@ -417,7 +417,7 @@ class AlarmsCount(alarms_api_v2.AlarmsCountV2API, alarming.Alarming):
 
         result = self._alarms_count(req.uri, req.project_id, query_parms, offset, req.limit)
 
-        res.body = helpers.dumpit_utf8(result)
+        res.body = helpers.data_to_json(result)
         res.status = falcon.HTTP_200
 
     @resource.resource_try_catch_block
@@ -503,7 +503,7 @@ class AlarmsStateHistory(alarms_api_v2.AlarmsStateHistoryV2API,
                                               end_timestamp, query_parms,
                                               req.uri, offset, req.limit)
 
-            res.body = helpers.dumpit_utf8(result)
+            res.body = helpers.data_to_json(result)
             res.status = falcon.HTTP_200
 
         else:
@@ -514,7 +514,7 @@ class AlarmsStateHistory(alarms_api_v2.AlarmsStateHistoryV2API,
                                          req.uri, offset,
                                          req.limit)
 
-            res.body = helpers.dumpit_utf8(result)
+            res.body = helpers.data_to_json(result)
             res.status = falcon.HTTP_200
 
     @resource.resource_try_catch_block
