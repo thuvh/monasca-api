@@ -12,13 +12,12 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-import json
-
 import falcon
 from oslo_log import log
 
 from monasca_api.api import versions_api
 from monasca_api.v2.common.exceptions import HTTPUnprocessableEntityError
+from monasca_api.v2.reference import helpers
 
 LOG = log.getLogger(__name__)
 VERSIONS = {
@@ -51,13 +50,13 @@ class Versions(versions_api.VersionsAPI):
                 VERSIONS[version]['links'][0]['href'] = (
                     req.uri.decode('utf8') + version)
                 result['elements'].append(VERSIONS[version])
-            res.body = json.dumps(result)
+            res.body = helpers.data_to_json(result)
             res.status = falcon.HTTP_200
         else:
             if version_id in VERSIONS:
                 VERSIONS[version_id]['links'][0]['href'] = (
                     req.uri.decode('utf8'))
-                res.body = json.dumps(VERSIONS[version_id])
+                res.body = helpers.data_to_json(VERSIONS[version_id])
                 res.status = falcon.HTTP_200
             else:
                 raise HTTPUnprocessableEntityError('Invalid version',
