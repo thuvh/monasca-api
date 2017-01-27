@@ -34,6 +34,24 @@
       "revId": "5e5225e3c6bc5d4fce262118e54760437f42d670",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a461143_2f272fb7",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2017-01-27T16:57:31Z",
+      "side": 1,
+      "message": "So, I think if we remove this check, then this review should be good to go then. I don\u0027t think we need to wait on Ryan\u0027s review.",
+      "parentUuid": "3a461143_709bf672",
+      "revId": "5e5225e3c6bc5d4fce262118e54760437f42d670",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
