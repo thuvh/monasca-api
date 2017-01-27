@@ -14,22 +14,22 @@
 # under the License.
 
 import datetime
-import json
 
 import falcon
 from monasca_common.validation import metrics as metric_validation
 from oslo_log import log
 from oslo_utils import timeutils
-import simplejson
 import six
 import six.moves.urllib.parse as urlparse
+
+from monasca_common.rest import utils as rest_utils
 
 from monasca_api.v2.common.exceptions import HTTPUnprocessableEntityError
 
 LOG = log.getLogger(__name__)
 
 
-def read_json_msg_body(req):
+def body_from_json(req):
     """Read the json_msg from the http request body and return them as JSON.
 
     :param req: HTTP request object.
@@ -38,12 +38,26 @@ def read_json_msg_body(req):
     """
     try:
         msg = req.stream.read()
-        json_msg = json.loads(msg)
-        return json_msg
-    except ValueError as ex:
-        LOG.debug(ex)
+        return rest_utils.from_json(msg)
+    except Exception as ex:
+        LOG.exception(ex)
         raise falcon.HTTPBadRequest('Bad request',
                                     'Request body is not valid JSON')
+
+
+def data_to_json(data):
+    """Converts data to JSON string.
+
+    :param dict data: data to be transformed to JSON
+    :return: JSON string
+    :rtype: str
+    :raises: Exception
+    """
+    try:
+        return rest_utils.as_json(data)
+    except Exception as ex:
+        LOG.exception(ex)
+        raise
 
 
 def validate_json_content_type(req):
@@ -718,20 +732,6 @@ def add_links_to_resource_list(resourcelist, uri):
     return resourcelist
 
 
-def read_http_resource(req):
-    """Read from http request and return json.
-
-    :param req: the http request.
-    """
-    try:
-        msg = req.stream.read()
-        json_msg = simplejson.loads(msg)
-        return json_msg
-    except ValueError as ex:
-        LOG.debug(ex)
-        raise HTTPUnprocessableEntityError('Unprocessable Entity', 'Request body is not valid JSON')
-
-
 def raise_not_found_exception(resource_name, resource_id, tenant_id):
     """Provides exception for not found requests (update, delete, list).
 
@@ -746,10 +746,6 @@ def raise_not_found_exception(resource_name, resource_id, tenant_id):
         title='Not Found',
         description=msg,
         code=404)
-
-
-def dumpit_utf8(thingy):
-    return json.dumps(thingy, ensure_ascii=False).encode('utf8')
 
 
 def str_2_bool(s):
