@@ -12,10 +12,12 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+import re
+
+from monasca_common.rest import utils as ru
+
 from monasca_api.v2.common.exceptions import HTTPUnprocessableEntityError
 
-import json
-import re
 
 invalid_chars = "<>={}(),\"\\\\|;&"
 restricted_chars = re.compile('[' + invalid_chars + ']')
@@ -96,7 +98,7 @@ def validate_value_meta(value_meta):
     if not value_meta:
         return
 
-    value_meta_string = json.dumps(value_meta)
+    value_meta_string = ru.to_json(value_meta)
     # entries
     assert len(value_meta) <= VALUE_META_MAX_NUMBER, "ValueMeta entries must be {} or less".format(
         VALUE_META_MAX_NUMBER)
