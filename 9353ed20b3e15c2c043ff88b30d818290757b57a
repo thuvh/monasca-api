@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a461143_76e580da",
+        "filename": "monasca_api/tests/test_versions.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2017-01-28T01:16:03Z",
+      "side": 1,
+      "message": "I don\u0027t think this was the right way to resolve this. It result should always be utf-8, independent of whether python 2 or 3 is used. \n\nThe result returned when using Python 3, happens to be utf-8, because the API returns the default for Python 3, which also happens to be utf-8.\n\nBut, I think there is a bug in the Python 2. The Python 2 result happens to be ASCII, because that is the result.\n\nI think the proper case us that both Python 2 and 3, should expect utf-8 as the result.\n\nThe result in the Versions resource, which currently does not specify utf-8, should be modified to always return utf-8.",
+      "revId": "9353ed20b3e15c2c043ff88b30d818290757b57a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a461143_36069886",
+        "filename": "monasca_api/v2/reference/versions.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2017-01-28T01:16:03Z",
+      "side": 1,
+      "message": "I think the request uri should always be encoded as utf-8.",
+      "revId": "9353ed20b3e15c2c043ff88b30d818290757b57a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a461143_161c3cc0",
+        "filename": "monasca_api/v2/reference/versions.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2017-01-28T01:16:03Z",
+      "side": 1,
+      "message": "I think utf-8 should always be specified for the result.\n\nCurrently, the result is dependent on whether python 2 or python 3 is used. But, the result is being sent over http. We should always use utf-8.",
+      "revId": "9353ed20b3e15c2c043ff88b30d818290757b57a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
