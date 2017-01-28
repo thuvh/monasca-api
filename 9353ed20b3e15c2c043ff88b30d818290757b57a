@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "3a461143_a35de97a",
+        "filename": "monasca_api/tests/test_versions.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2017-01-28T03:39:17Z",
+      "side": 1,
+      "message": "Just in case my previous comment wasn\u0027t that readable.\n\nI think there is a bug in the Versions resource. Currently, depending on whether Python 2 or 3 is used, the result that is returned will be ASCII or utf-8. However, the result encoding should be independent of the language and always return utf-8.\n\nThe code that is in this unit test now tries to test for Python 2 or Python 3. I think the code that is in this unit test should always use decode(\u0027utf-8\u0027). So, keep line 37 in this unit test, but delete lines 36, 37 and 39.\n\nAdditionally, the code that is in the Versions resource, should always return a utf-8 encoded result.",
+      "parentUuid": "3a461143_76e580da",
+      "revId": "9353ed20b3e15c2c043ff88b30d818290757b57a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a461143_36069886",
         "filename": "monasca_api/v2/reference/versions.py",
         "patchSetId": 5
