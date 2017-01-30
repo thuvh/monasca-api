@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "3a461143_1a95283e",
+        "filename": "monasca_api/tests/test_versions.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-01-30T09:01:21Z",
+      "side": 1,
+      "message": "yeah, but there\u0027s no decode method for string in Py3, right ? And every string in Python3 is already unicode, so that\u0027s why it should only make sense to decode it if the code is Py2",
+      "parentUuid": "3a461143_a35de97a",
+      "revId": "9353ed20b3e15c2c043ff88b30d818290757b57a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a461143_36069886",
         "filename": "monasca_api/v2/reference/versions.py",
         "patchSetId": 5
