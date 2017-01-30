@@ -46,6 +46,30 @@
       "revId": "caf9541d76503dfcf199f74837da0a90cd47e5ac",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a461143_fa3775fc",
+        "filename": "monasca_api/api/server.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 17244
+      },
+      "writtenOn": "2017-01-30T13:08:43Z",
+      "side": 1,
+      "message": "Prometheus itself already offers an option to specify another scrape-path than \"/metrics\": prometheus.io/path\n\nSee https://github.com/prometheus/prometheus/blob/master/documentation/examples/prometheus-kubernetes.yml#L88",
+      "parentUuid": "ba5201f7_ccac4b38",
+      "range": {
+        "startLine": 89,
+        "startChar": 4,
+        "endLine": 89,
+        "endChar": 49
+      },
+      "revId": "caf9541d76503dfcf199f74837da0a90cd47e5ac",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
