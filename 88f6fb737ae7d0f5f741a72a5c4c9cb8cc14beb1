@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a461143_a6c31e56",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 1878,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-01-30T10:41:31Z",
+      "side": 1,
+      "message": "I know that\u0027s out-of-the-scope but could you add here -f, in other words\n\n  sudo ln -sfF\n\nto enforce creating this symbolic link ?\nI see no point in creating yet another change for just that.\n\nThx",
+      "revId": "88f6fb737ae7d0f5f741a72a5c4c9cb8cc14beb1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
