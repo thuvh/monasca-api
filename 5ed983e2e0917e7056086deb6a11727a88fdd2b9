@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a461143_b7840a0b",
+        "filename": "monasca_api/common/repositories/mysql/alarms_repository.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-01-31T01:51:25Z",
+      "side": 1,
+      "message": "Copyright",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 75
+      },
+      "revId": "5ed983e2e0917e7056086deb6a11727a88fdd2b9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a461143_97af0e7c",
+        "filename": "monasca_api/common/repositories/sqla/alarms_repository.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-01-31T01:51:25Z",
+      "side": 1,
+      "message": "Delete this one",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 28
+      },
+      "revId": "5ed983e2e0917e7056086deb6a11727a88fdd2b9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a461143_b7b24ae3",
+        "filename": "monasca_api/common/repositories/sqla/alarms_repository.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-01-31T01:51:25Z",
+      "side": 1,
+      "message": "Update this one",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 70
+      },
+      "revId": "5ed983e2e0917e7056086deb6a11727a88fdd2b9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a461143_57e046cd",
+        "filename": "monasca_api/tests/test_a_repository.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-01-31T01:51:25Z",
+      "side": 1,
+      "message": "Add Copyright",
+      "revId": "5ed983e2e0917e7056086deb6a11727a88fdd2b9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a461143_97346e4a",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-01-31T01:51:25Z",
+      "side": 1,
+      "message": "Copyright",
+      "range": {
+        "startLine": 2,
+        "startChar": 21,
+        "endLine": 2,
+        "endChar": 25
+      },
+      "revId": "5ed983e2e0917e7056086deb6a11727a88fdd2b9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a461143_17207ef6",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-01-31T01:51:25Z",
+      "side": 1,
+      "message": "I prefer to actually tell them which one is wrong",
+      "range": {
+        "startLine": 306,
+        "startChar": 33,
+        "endLine": 306,
+        "endChar": 43
+      },
+      "revId": "5ed983e2e0917e7056086deb6a11727a88fdd2b9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a461143_d770b60d",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-01-31T01:51:25Z",
+      "side": 1,
+      "message": "Why the change to double quotes?",
+      "range": {
+        "startLine": 317,
+        "startChar": 43,
+        "endLine": 317,
+        "endChar": 44
+      },
+      "revId": "5ed983e2e0917e7056086deb6a11727a88fdd2b9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
