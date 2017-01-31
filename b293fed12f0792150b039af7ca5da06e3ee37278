@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a461143_c8281736",
+        "filename": "devstack/Vagrantfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-01-31T04:40:40Z",
+      "side": 1,
+      "message": "Couldn\u0027t we just remove those lines instead of commenting them out ?",
+      "revId": "b293fed12f0792150b039af7ca5da06e3ee37278",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
