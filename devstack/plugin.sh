@@ -1017,6 +1017,9 @@ function install_monasca_api_python {
 
     sudo chmod 0660 /etc/monasca/api-config.conf
 
+    # set admin password based on the one set by the users
+    sudo sed -i "s/admin_password = secretadmin/admin_password = ${ADMIN_PASSWORD}/g" /etc/monasca/api-config.conf
+
     if [[ ${SERVICE_HOST} ]]; then
 
         # set influxdb ip address
