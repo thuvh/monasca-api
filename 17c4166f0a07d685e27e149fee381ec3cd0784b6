@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "1a430d35_c26e862e",
+        "filename": "monasca_api/common/messaging/message_formats/metrics.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2017-02-06T21:09:16Z",
+      "side": 1,
+      "message": "Tomasz, I have some concern here about the level of overhead that\u0027s bundled in this as_json method.  Have you done any performance analysis between as_json and json.dumps?",
+      "range": {
+        "startLine": 29,
+        "startChar": 42,
+        "endLine": 29,
+        "endChar": 49
+      },
+      "revId": "17c4166f0a07d685e27e149fee381ec3cd0784b6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a430d35_c655c350",
         "filename": "monasca_api/v2/reference/metrics.py",
         "patchSetId": 8
