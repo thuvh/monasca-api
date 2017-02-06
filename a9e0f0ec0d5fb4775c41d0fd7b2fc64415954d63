@@ -22,6 +22,30 @@
       "revId": "a9e0f0ec0d5fb4775c41d0fd7b2fc64415954d63",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a430d35_3aa77450",
+        "filename": "monasca_tempest_tests/tests/api/test_alarms_count.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-02-06T18:29:58Z",
+      "side": 1,
+      "message": "It would be a good test to add, but probably not using this helper method. I\u0027m more worried about a test succeeding because no alarms were returned because the query_string was wrong.",
+      "parentUuid": "1a430d35_5a4e0070",
+      "range": {
+        "startLine": 238,
+        "startChar": 24,
+        "endLine": 238,
+        "endChar": 38
+      },
+      "revId": "a9e0f0ec0d5fb4775c41d0fd7b2fc64415954d63",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
