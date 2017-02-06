@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a430d35_c655c350",
+        "filename": "monasca_api/v2/reference/metrics.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2017-02-06T17:05:32Z",
+      "side": 1,
+      "message": "Good catch!",
+      "range": {
+        "startLine": 87,
+        "startChar": 15,
+        "endLine": 87,
+        "endChar": 25
+      },
+      "revId": "17c4166f0a07d685e27e149fee381ec3cd0784b6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
