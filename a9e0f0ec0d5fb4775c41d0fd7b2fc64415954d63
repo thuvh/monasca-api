@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "1a430d35_621f6408",
+        "filename": "monasca_api/common/repositories/sqla/alarms_repository.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-02-07T17:48:53Z",
+      "side": 1,
+      "message": "Removed. I\u0027m not even sure where that came from. Maybe my PyCharm?",
+      "parentUuid": "1a430d35_da12d456",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 23
+      },
+      "revId": "a9e0f0ec0d5fb4775c41d0fd7b2fc64415954d63",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a430d35_5a4e0070",
         "filename": "monasca_tempest_tests/tests/api/test_alarms_count.py",
         "patchSetId": 2
