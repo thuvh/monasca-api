@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1a430d35_0ee2192f",
+        "filename": "monasca_api/v2/reference/alarms.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-02-08T16:34:48Z",
+      "side": 1,
+      "message": "Good point, I will check for other areas like this as well.",
+      "parentUuid": "3a461143_593849d3",
+      "revId": "0f4ab5fa41875e60acc0ba09cfc045a7e3d41328",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a461143_99455144",
         "filename": "monasca_api/v2/reference/alarms.py",
         "patchSetId": 18
@@ -30,6 +48,24 @@
       "writtenOn": "2017-02-01T06:36:49Z",
       "side": 1,
       "message": "Seems like this if is not redundant + I think since you now want to have dimensions in query_params it might be clearer to just change _alarm_history_list signature to accept one extra param ```dimensions``` which by the mean of call helpers.get_query_dimensions you always assume to be at least empty dictionary.\n\nThough the second comment you might want to leave behind as it seems to be common patter in this resource to add stuff into ```query_params```",
+      "revId": "0f4ab5fa41875e60acc0ba09cfc045a7e3d41328",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a430d35_ae4e6538",
+        "filename": "monasca_api/v2/reference/alarms.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 508,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-02-08T16:34:48Z",
+      "side": 1,
+      "message": "I was hoping not to touch too many things in the patch, but I will take a second look at this. Perhaps it can be simplified.",
+      "parentUuid": "3a461143_99455144",
       "revId": "0f4ab5fa41875e60acc0ba09cfc045a7e3d41328",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "1a430d35_0e8bf968",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-02-08T16:34:48Z",
+      "side": 1,
+      "message": "This could be moved to common, but I\u0027m not sure I see the benefit. The API tends to have different requirements for validation than internal-only components, so having a separate method here makes sense to me.",
+      "parentUuid": "3a461143_396b7db8",
+      "revId": "0f4ab5fa41875e60acc0ba09cfc045a7e3d41328",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a461143_596689ed",
         "filename": "monasca_api/v2/reference/helpers.py",
         "patchSetId": 18
@@ -64,6 +118,24 @@
       "writtenOn": "2017-02-01T06:36:49Z",
       "side": 1,
       "message": "NIT@FutureRequest: maybe we should move it to monasca_common in another change ? and clear code later on here",
+      "revId": "0f4ab5fa41875e60acc0ba09cfc045a7e3d41328",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a430d35_6e563d07",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-02-08T16:34:48Z",
+      "side": 1,
+      "message": "The validation here doesn\u0027t really fit into other components, since it is focused toward outside access of data. Other components will most likely need the basic validation already available in common.",
+      "parentUuid": "3a461143_596689ed",
       "revId": "0f4ab5fa41875e60acc0ba09cfc045a7e3d41328",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
