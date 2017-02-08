@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a430d35_194ef3c0",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 82
+      },
+      "lineNbr": 850,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2017-02-08T11:51:56Z",
+      "side": 1,
+      "message": "sed also variables: MYSQL_HOST and MYSQL_PORT, after installing monasca-api java version config file looks like:\nhibernate:\n  supportEnabled: True\n  providerClass: com.zaxxer.hikari.hibernate.HikariConnectionProvider\n  dataSourceClassName: org.postgresql.ds.PGPoolingDataSource\n  dataSourceUrl: jdbc:mysql://%MYSQL_HOST%:%MYSQL_PORT%/mon",
+      "range": {
+        "startLine": 834,
+        "startChar": 4,
+        "endLine": 850,
+        "endChar": 36
+      },
+      "revId": "0bd46fd8b4d6c49cbac05b5006418fa9669d10e8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
