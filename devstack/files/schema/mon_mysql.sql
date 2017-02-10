@@ -1,5 +1,5 @@
 /*
-* (C) Copyright 2015,2016 Hewlett Packard Enterprise Development LP
+* (C) Copyright 2015-2017 Hewlett Packard Enterprise Development LP
 * Copyright 2017 FUJITSU LIMITED
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -179,6 +179,32 @@ CREATE TABLE `sub_alarm` (
   CONSTRAINT `fk_sub_alarm_state` FOREIGN KEY (`state`) REFERENCES `alarm_state` (`name`),
   CONSTRAINT `fk_sub_alarm_expr` FOREIGN KEY (`sub_expression_id`) REFERENCES `sub_alarm_definition` (`id`)
 );
+
+CREATE TABLE `alarm_group_definition` (
+  `rule_id` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `matchers` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `group_wait` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT '30s',
+  `repeat_interval` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT '2h',
+  PRIMARY KEY (`rule_id`),
+  CONSTRAINT `fk_alarm_group_definition_id` FOREIGN KEY (`rule_id`) REFERENCES `alarm_rule_definition` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `alarm_group_definition_action` (
+  `alarm_group_definition_id` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `alarm_state` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `action_id` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`alarm_group_definition_id`,`alarm_state`,`action_id`),
+  CONSTRAINT `fk_action_alarm_group_definition_id` FOREIGN KEY (`alarm_group_definition_id`) REFERENCES `alarm_rule_definition` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_action_notification_method_id` FOREIGN KEY (`action_id`) REFERENCES `notification_method` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_action_alarm_state` FOREIGN KEY (`alarm_state`) REFERENCES `alarm_state` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `alarm_group_definition_exclusion` (
+  `alarm_group_definition_id` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exclusion_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  CONSTRAINT `fk_exclusion_alarm_group_definition_id` FOREIGN KEY (`alarm_group_definition_id`) REFERENCES `alarm_rule_definition` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 SET foreign_key_checks = 1;
 
