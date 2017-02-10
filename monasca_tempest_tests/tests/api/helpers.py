@@ -92,6 +92,32 @@ def create_alarm_definition(name=None,
         alarm_definition['undetermined_actions'] = undetermined_actions
     return alarm_definition
 
+def create_group_rule_definition(name=None,
+                                 matchers=None,
+                                 exclusions=None,
+                                 group_wait=None,
+                                 repeat_interval=None,
+                                 alarm_actions=None,
+                                 ok_actions=None,
+                                 undetermined_actions=None):
+    group_rule_definition = {}
+    if name:
+        group_rule_definition['name'] = name
+    if matchers:
+        group_rule_definition['matchers'] = matchers
+    if exclusions:
+        group_rule_definition['exclusions'] = exclusions
+    if group_wait:
+        group_rule_definition['group_wait'] = group_wait
+    if repeat_interval:
+        group_rule_definition['repeat_interval'] = repeat_interval
+    if alarm_actions:
+        group_rule_definition['alarm_actions'] = alarm_actions
+    if ok_actions:
+        group_rule_definition['ok_actions'] = ok_actions
+    if undetermined_actions:
+        group_rule_definition['undetermined_actions'] = undetermined_actions
+    return group_rule_definition
 
 def delete_alarm_definitions(monasca_client):
     # Delete alarm definitions
