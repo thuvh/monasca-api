@@ -1,5 +1,6 @@
 ---
 -- # Copyright 2017 FUJITSU LIMITED
+-- # (C) Copyright 2017 Hewlett Packard Enterprise Development LP
 ---
 
 SET statement_timeout = 0;
@@ -128,6 +129,24 @@ CREATE TABLE sub_alarm_definition_dimension (
     sub_alarm_definition_id character varying(36) NOT NULL
 );
 
+CREATE TABLE alarm_group_definition (
+    rule_id character varying(36) NOT NULL,
+    matchers character varying(255) NOT NULL,
+    group_wait character varying(10) NOT NULL,
+    repeat_interval character varying(10) NOT NULL,
+);
+
+CREATE TABLE alarm_group_definition_action (
+    alarm_group_definition_id character varying(36) NOT NULL,
+    alarm_state character varying (36) NOT NULL,
+    action_id character varying(36) NOT NULL
+);
+
+CREATE TABLE alarm_group_definition_exclusion (
+    alarm_group_definition_id character varying(36) NOT NULL,
+    exclusion_name character varying(36) NOT NULL,
+    value character varying(36) NOT NULL
+);
 ---
 -- primary keys
 ---
@@ -160,6 +179,13 @@ ALTER TABLE ONLY sub_alarm_definition
 
 ALTER TABLE ONLY sub_alarm
     ADD CONSTRAINT sub_alarm_pkey PRIMARY KEY (id);
+
+ALTER TABLE ONLY alarm_group_definition
+    ADD CONSTRAINT alarm_group_definition_pkey PRIMARY KEY (rule_id);
+
+ALTER TABLE ONLY alarm_group_definition_action
+    ADD CONSTRAINT alarm_group_definition_action_pkey PRIMARY KEY
+    (alarm_group_definition_id, action_id);
 
 ---
 -- indexes
@@ -209,6 +235,18 @@ ALTER TABLE ONLY alarm_definition
 
 ALTER TABLE ONLY notification_method
     ADD CONSTRAINT fk_alarm_noticication_method_type FOREIGN KEY (type) REFERENCES notification_method_type (name);
+
+ALTER TABLE ONLY alarm_group_definition
+    ADD CONSTRAINT fk_alarm_group_definition_id FOREIGN KEY (alarm_group_definition_id)
+    REFERENCES alarm_rule_definition(id) ON DELETE CASCADE;
+
+ALTER TABLE ONLY alarm_group_definition_action
+    ADD CONSTRAINT fk_action_alarm_group_definition_id FOREIGN KEY (alarm_group_definition_id)
+    REFERENCES alarm_rule_definition(id) ON DELETE CASCADE;
+
+ALTER TABLE ONLY alarm_group_definition_exclusion
+    ADD CONSTRAINT fk_exclusion_alarm_group_definition_id FOREIGN KEY (alarm_group_definition_id)
+    REFERENCES alarm_rule_definition(id) ON DELETE CASCADE;
 
 ---
 -- data for enum tables
