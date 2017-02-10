@@ -1,6 +1,6 @@
 # Copyright 2015 Robin Hood
 # Copyright 2016 FUJITSU LIMITED
-# (C) Copyright 2016 Hewlett Packard Enterprise Development LP
+# (C) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -135,6 +135,35 @@ def create_sad_model(metadata=None):
                  Column('is_deterministic', Boolean),
                  Column('created_at', DateTime),
                  Column('updated_at', DateTime))
+
+
+def create_agd_action_model(metadata=None):
+    return Table('alarm_grouping_manager_action', metadata,
+                 Column('alarm_grouping_manager_id', String(36)),
+                 Column('alarm_state', String(20)),
+                 Column('action_id', String(36)))
+
+
+def create_agd_exclusion_model(metadata=None):
+    return Table('alarm_grouping_manager_exclusion', metadata,
+                 Column('alarm_grouping_manager_id', String(36)),
+                 Column('exclusion_name', String(36)),
+                 Column('value', String(36)))
+
+
+def create_agd_model(metadata=None):
+    return Table('alarm_grouping_manager', metadata,
+                 Column('id', String(36)),
+                 Column('tenant_id', String(36)),
+                 Column('name', String(255)),
+                 Column('matchers', String(255)),
+                 Column('group_wait', String(5)),
+                 Column('repeat_interval', String(5)),
+                 Column('exclusions', String(255)),
+                 Column('actions', String(255)),
+                 Column('created_at', DateTime),
+                 Column('updated_at', DateTime),
+                 Column('deleted_at', DateTime))
 
 
 class group_concat(expression.ColumnElement):
