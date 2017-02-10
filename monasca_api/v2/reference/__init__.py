@@ -1,6 +1,6 @@
 # Copyright 2014 IBM Corp.
 # Copyright 2016 FUJITSU LIMITED
-# (C) Copyright 2016 Hewlett Packard Enterprise Development LP
+# (C) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -83,7 +83,10 @@ repositories_opts = [
     cfg.StrOpt('notifications_driver', default='mysql_notifications_repo',
                help='The repository driver to use for notifications'),
     cfg.StrOpt('notification_method_type_driver', default='mysql_notifications_repo',
-               help='The repository driver to use for notifications')]
+               help='The repository driver to use for notifications'),
+    cfg.StrOpt('alarm_grouping_managers_driver',
+               default='mysql_alarm_grouping_managers_repo',
+               help='The repository driver to use for alarm grouping managers')]
 
 repositories_group = cfg.OptGroup(name='repositories', title='repositories')
 cfg.CONF.register_group(repositories_group)
