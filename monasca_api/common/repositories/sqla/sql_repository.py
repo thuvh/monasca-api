@@ -69,6 +69,4 @@ def sql_try_catch_block(fun):
         except Exception as ex:
             LOG.exception(ex)
             raise
-        # exceptions.RepositoryException(ex)
-
     return try_it
