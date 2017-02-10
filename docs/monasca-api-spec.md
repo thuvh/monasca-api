@@ -357,6 +357,71 @@ Document Version: v2.0
       - [Status Code](#status-code-26)
       - [Response Body](#response-body-28)
       - [Response Examples](#response-examples-24)
+- [Alarm Group Definitions](#alarm-group-definitions)
+  - [Create Alarm Group Definition](#create-alarm-group-definition)
+    - [POST /v2.0/alarm-group-definitions](#post-v20alarm-group-definitions)
+      - [Headers](#headers-29)
+      - [Path Parameters](#path-parameters-28)
+      - [Query Parameters](#query-parameters-29)
+      - [Request Body](#request-body-29)
+      - [Request Examples](#request-examples-25)
+    - [Response](#response-29)
+      - [Status Code](#status-code-27)
+      - [Response Body](#response-body-29)
+      - [Response Examples](#response-examples-25)
+  - [List Alarm Group Definitions](#list-alarm-group-definitions)
+    - [GET /v2.0/alarm-group-definitions](#get-v20alarm-group-definitions)
+      - [Headers](#headers-30)
+      - [Path Parameters](#path-parameters-29)
+      - [Query Parameters](#query-parameters-30)
+      - [Request Body](#request-body-30)
+      - [Request Examples](#request-examples-26)
+    - [Response](#response-30)
+      - [Status Code](#status-code-28)
+      - [Response Body](#response-body-30)
+      - [Response Examples](#response-examples-26)
+  - [Get Alarm Group Definition](#get-alarm-group-definition)
+    - [GET /v2.0/alarm-group-definitions/{alarm_group_definition_id}](#get-v20alarm-group-definitionsalarm_group_definition_id)
+      - [Headers](#headers-31)
+      - [Path Parameters](#path-parameters-30)
+      - [Query Parameters](#query-parameters-31)
+      - [Request Body](#request-body-31)
+    - [Response](#response-31)
+      - [Status Code](#status-code-29)
+      - [Response Body](#response-body-31)
+      - [Response Examples](#response-examples-27)
+  - [Update Alarm Group Definition](#update-alarm-group-definition)
+    - [PUT /v2.0/alarm-group-definitions/{alarm_group_definition_id}](#put-v20alarm-group-definitionsalarm_group_definition_id)
+      - [Headers](#headers-32)
+      - [Path Parameters](#path-parameters-31)
+      - [Query Parameters](#query-parameters-32)
+      - [Request Body](#request-body-32)
+      - [Request Examples](#request-examples-27)
+    - [Response](#response-32)
+      - [Status Code](#status-code-30)
+      - [Response Body](#response-body-32)
+      - [Response Examples](#response-examples-28)
+  - [Patch Alarm Group Definition](#patch-alarm-group-definition)
+    - [PATCH /v2.0/alarm-group-definitions/{alarm_group_definition_id}](#patch-v20alarm-group-definitionsalarm_group_definition_id)
+      - [Headers](#headers-33)
+      - [Path Parameters](#path-parameters-32)
+      - [Query Parameters](#query-parameters-33)
+      - [Request Body](#request-body-33)
+      - [Request Examples](#request-examples-28)
+    - [Response](#response-33)
+      - [Status Code](#status-code-31)
+      - [Response Body](#response-body-33)
+      - [Response Examples](#response-examples-29)
+  - [Delete Alarm Group Definition](#delete-alarm-group-definition)
+    - [DELETE /v2.0/alarm-group-definitions/{alarm_group_definition_id}](#delete-v20alarm-group-definitionsalarm_group_definition_id)
+      - [Headers](#headers-34)
+      - [Path Parameters](#path-parameters-33)
+      - [Query Parameters](#query-parameters-34)
+      - [Request Body](#request-body-34)
+      - [Request Examples](#request-examples-29)
+    - [Response](#response-34)
+      - [Status Code](#status-code-32)
+      - [Response Body](#response-body-34)
 - [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -3547,10 +3612,542 @@ Returns a JSON object with a 'links' array of links and an 'elements' array of a
 }
 
 ```
+
+___
+___
+___
+___
+___
+___
+___
+___
+___
+# Alarm Group Definitions
+Operations for working with alarm group definitions.
+
+## Create Alarm Group Definition
+Create an alarm group definition.
+
+### POST /v2.0/alarm-group-definitions
+
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+* Accept (string) - application/json
+
+#### Path Parameters
+None.
+
+#### Query Parameters
+None.
+
+#### Request Body
+Consists of an alarm group definition. An alarm has the following properties:
+
+* name (string(255), required) - A unique name of the alarm group rule. Note, the name must be unique.
+* description (string(255), optional) - A description of the alarm group rule.
+* matchers ([string(255)], required) - Array of keys by which incoming alarms are grouped together.
+* group_wait (string(10), optional) - Wait time to send the initial notification.
+* repeat_interval (string(10), optional) - Wait time to resend the group notification.
+* exclusions ({string(255): string(255)}, optional) - A dictionary of (key, value) pairs. If an alarm matches all (key, value) pairs then it will not be included in the group.
+* alarm_actions ([string(50)], optional) - Array of notification method IDs that are invoked when the group of alarms transition to the `ALARM` state.
+* ok_actions ([string(50)], optional) - Array of notification method IDs that are invoked when the group of alarms transition to the `OK` state.
+* undetermined_actions ([string(50)], optional) - Array of notification method IDs that are invoked when the group of alarms transition to the `UNDETERMINED` state.
+
+#### Request Examples
+```
+POST /v2.0/alarm-group-definitions HTTP/1.1
+Host: 192.168.10.4:8070
+Content-Type: application/json
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Cache-Control: no-cache
+
+{
+	"name": "alarm_group_definition_1",
+        "description": "Group rule1",
+	"matchers": ["alarmName", "metricName", "__hostname__"],
+	"exclusions": {"alarmName": "cpu_too_high", "__hostname__": "host1"},
+	"group_wait": "10s",
+	"repeat_interval": "1h",
+	"alarm_actions": ["bf718275-a483-43eb-b125-eb31058d3053"],
+	"ok_actions": ["7fa35737-eada-4dd8-8048-8f81adf6feeb"],
+	"undetermined_actions": ["40167dde-a99d-4407-9b1e-02432c1d2de6"]
+}
+
+```
+
+### Response
+#### Status Code
+* 201 - Created
+
+#### Response Body
+Returns a JSON object of alarm group definition objects with the following fields:
+
+* id (string) - ID of alarm group definition.
+* links ([link]) - Links to alarm group definition.
+* description (string) - Description of alarm group rule.
+* name (string) - Name of alarm group definition.
+* matchers ([string]) - Array of keys by which incoming alarms are grouped together.
+* group_wait (string) - Wait time to send the initial notification.
+* repeat_interval (string) - Wait time to resend the group notification.
+* exclusions ({string(255): string(255)}) - A dictionary of (key, value) pairs. If an alarm matches all (key, value) pairs then it will not be included in the group.
+* alarm_actions ([string]) - Array of notification method IDs that are invoked when the group of alarms for this definition transition to the `ALARM` state.
+* ok_actions ([string]) - Array of notification method IDs that are invoked when the group of alarms for this definition transition to the `OK` state.
+* undetermined_actions ([string]) - Array of notification method IDs that are invoked when the group of alarms for this definition transition to the `UNDETERMINED` state.
+
+#### Response Examples
+```
+{
+	"name": "alarm_group_definition_1",
+        "description": "Group rule 1",
+	"matchers": [
+		"alarmName",
+		"metricName",
+		"__hostname__"
+	],
+	"exclusions": {
+		"alarmName": "cpu_too_high",
+		"__hostname__": "host1"
+	},
+	"group_wait": "10s",
+	"repeat_interval": "1h",
+	"alarm_actions": [
+		"bf718275-a483-43eb-b125-eb31058d3053"
+	],
+	"ok_actions": [
+		"7fa35737-eada-4dd8-8048-8f81adf6feeb"
+	],
+	"undetermined_actions": [
+		"40167dde-a99d-4407-9b1e-02432c1d2de6"
+	]
+}
+```
+___
+## List Alarm Group Definitions
+List alarm group definitions.
+
+### GET /v2.0/alarm-group-definitions
+
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+* Accept (string) - application/json
+
+#### Path Parameters
+None.
+
+#### Query Parameters
+* name (string(255), optional) - Name of alarm group definition to filter by.
+* offset (integer, optional)
+* limit (integer, optional)
+
+#### Request Body
+None.
+
+#### Request Examples
+```
+GET /v2.0/alarm-group-definitions?name=alarm_group_definition HTTP/1.1
+Host: 192.168.10.4:8070
+Content-Type: application/json
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Cache-Control: no-cache
+```
+
+### Response
+#### Status Code
+* 200 - OK
+
+#### Response Body
+Returns a JSON object with a 'links' array of links and an 'elements' array of alarm group definition objects with the following fields:
+
+* id (string) - ID of alarm group definition.
+* links ([link]) - Links to alarm group definition.
+* name (string) - Name of alarm group definition.
+* description (string) - A description of the alarm group rule.
+* matchers ([string]) - Array of keys by which incoming alarms are grouped together.
+* group_wait (string) - Wait time to send the initial notification.
+* repeat_interval (string) - Wait time to resend the group notification.
+* exclusions ({string:string}) - A dictionary of (key, value) pairs. If an alarm matches all (key, value) pairs then it will not be included in the group.
+* alarm_actions ([string]) - Array of notification method IDs that are invoked when the group of alarms for this definition transition to the `ALARM` state.
+* ok_actions ([string]) - Array of notification method IDs that are invoked when the group of alarms for this definition transition to the `OK` state.
+* undetermined_actions ([string]) - Array of notification method IDs that are invoked when the group of alarms for this definition transition to the `UNDETERMINED` state.
+
+#### Response Examples
+```
+{
+  "links": [
+    {
+      "href": "http://192.168.10.6:8070/v2.0/alarm-group-definitions/1dfe8b9a-7210-44f1-91f7-2f503b983b35",
+      "rel": "self"
+    },
+    {
+      "href": "http://192.168.10.6:8070/v2.0/alarm-group-definitions/6812962c-5424-44d1-a39e-6c3b424f1efb",
+      "rel": "self"
+    }
+  ],
+  "elements": [
+    {
+      "matchers": [
+        "alarmName",
+        "metricName",
+        "__hostname__"
+      ],
+      "alarm_actions": [
+        "bf718275-a483-43eb-b125-eb31058d3053"
+      ],
+      "ok_actions": [
+        "7fa35737-eada-4dd8-8048-8f81adf6feeb"
+      ],
+      "name": "alarm_group_definition_2",
+      "description": "Group Rule 1",
+      "undetermined_actions": [
+        "40167dde-a99d-4407-9b1e-02432c1d2de6"
+      ],
+      "exclusions": {
+          "__hostname__": "host2"
+      },
+      "repeat_interval": "2h",
+      "id": "1dfe8b9a-7210-44f1-91f7-2f503b983b35",
+      "group_wait": "20s"
+    },
+    {
+      "matchers": [
+        "__hostname__"
+      ],
+      "alarm_actions": [
+        "bf718275-a483-43eb-b125-eb31058d3053"
+      ],
+      "ok_actions": [
+        "7fa35737-eada-4dd8-8048-8f81adf6feeb"
+      ],
+      "name": "alarm_group_definition_4",
+      "undetermined_actions": [
+        "40167dde-a99d-4407-9b1e-02432c1d2de6"
+      ],
+      "exclusions": {
+          "__hostname__": "host4"
+      },
+      "repeat_interval": "4h",
+      "id": "6812962c-5424-44d1-a39e-6c3b424f1efb",
+      "group_wait": "40s"
+    }
+  ]
+}
+```
 ___
 
+## Get Alarm Group Definition
+Get the specified alarm group definition.
+
+### GET /v2.0/alarm-group-definitions/{alarm_group_definition_id}
+
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+* Accept (string) - application/json
+
+#### Path Parameters
+* alarm_group_definition_id (string, required) - Alarm Group Definition ID
+
+#### Query Parameters
+None.
+
+#### Request Body
+None.
+
+### Response
+#### Status Code
+* 200 - OK
+
+#### Response Body
+Returns a JSON object of alarm group definition objects with the following fields:
+
+* id (string) - ID of alarm group definition.
+* links ([link]) - Links to alarm group definition.
+* name (string) - Name of alarm group definition.
+* description (string) - Description of alarm group rule.
+* matchers ([string]) - Array of keys by which incoming alarms are grouped together.
+* group_wait (string) - Wait time to send the initial notification.
+* repeat_interval (string) - Wait time to resend the group notification.
+* exclusions ({string:string}) - A dictionary of (key, value) pairs. If an alarm matches all (key, value) pairs then it will not be included in the group.
+* alarm_actions ([string]) - Array of notification method IDs that are invoked when the group of alarms for this definition transition to the `ALARM` state.
+* ok_actions ([string]) - Array of notification method IDs that are invoked when the group of alarms for this definition transition to the `OK` state.
+* undetermined_actions ([string]) - Array of notification method IDs that are invoked when the group of alarms for this definition transition to the `UNDETERMINED` state.
+
+#### Response Examples
+```
+{
+  "matchers": [
+    "alarmName",
+    "metricName",
+    "__hostname__"
+  ],
+  "alarm_actions": [
+    "bf718275-a483-43eb-b125-eb31058d3053"
+  ],
+  "undetermined_actions": [
+    "40167dde-a99d-4407-9b1e-02432c1d2de6"
+  ],
+  "name": "alarm_group_definition_2",
+  "description": "Group Rule 1",
+  "group_wait": "20s",
+  "ok_actions": [
+    "7fa35737-eada-4dd8-8048-8f81adf6feeb"
+  ],
+  "links": [
+    {
+      "href": "http://192.168.10.6:8070/v2.0/alarm-group-definitions/1dfe8b9a-7210-44f1-91f7-2f503b983b35",
+      "rel": "self"
+    }
+  ],
+  "repeat_interval": "2h",
+  "exclusions": {
+    "__hostname__": "host2"
+  },
+  "id": "1dfe8b9a-7210-44f1-91f7-2f503b983b35"
+}
+```
+___
+
+## Update Alarm Group Definition
+Update/Replace the specified alarm group definition.
+
+### PUT /v2.0/alarm-group-definitions/{alarm_group_definition_id}
+
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+* Content-Type (string, required) - application/json
+* Accept (string) - application/json
+
+#### Path Parameters
+* alarm_group_definition_id (string, required)
+
+#### Query Parameters
+None.
+
+#### Request Body
+An alarm group definition has the following properties:
+
+* name (string()255), required) - Name of alarm group definition.
+* description (string(255), required) - A description of the alarm group rule.
+* matchers ([string(255)], required) - Array of keys by which incoming alarms are grouped together. This MUST be the same as the existing value for matchers.
+* group_wait (string(10), required) - Wait time to send the initial notification.
+* repeat_interval (string(10), required) - Wait time to resend the group notification.
+* exclusions ({string(255):string(255)}, required) - A dictionary (key, value) pairs. If an alarm matches the (key, value) pair then it will not be included in the group. This MUST be the same as the existing value for exclusions.
+* alarm_actions ([string(50)], required) - Array of notification method IDs that are invoked when the group of alarms transition to the `ALARM` state.
+* ok_actions ([string(50)], required) - Array of notification method IDs that are invoked when the group of alarms transition to the `OK` state.
+* undetermined_actions ([string(50)], required) - Array of notification method IDs that are invoked when the group of alarms transition to the `UNDETERMINED` state.
+
+#### Request Examples
+```
+PUT /v2.0/alarm-group-definitions/f9935bcc-9641-4cbf-8224-0993a947ea83 HTTP/1.1
+Host: 192.168.10.4:8070
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+	"name": "updated_alarm_group_definition_1",
+        "description": "Updated Group rule1",
+        "matchers": ["alarmName", "metricName", "__hostname__"],
+        "exclusions": {"__hostname__": "host2"},
+	"group_wait": "10s",
+	"repeat_interval": "1h",
+	"alarm_actions": ["40167dde-a99d-4407-9b1e-02432c1d2de6"],
+	"ok_actions": ["bf718275-a483-43eb-b125-eb31058d3053"],
+	"undetermined_actions": ["7fa35737-eada-4dd8-8048-8f81adf6feeb"]
+}
+```
+
+### Response
+#### Status Code
+* 200 - OK
+
+#### Response Body
+Returns a JSON object of alarm group definition objects with the following fields:
+
+* id (string) - ID of alarm definition.
+* links ([link]) - Links to alarm definition.
+* name (string) - Name of alarm definition.
+* description (string) - Description of alarm group rule.
+* matchers ([string]) - Array of keys by which incoming alarms are grouped together.
+* group_wait (string) - Wait time to send the initial notification.
+* repeat_interval (string) - Wait time to resend the group notification.
+* exclusions ({string:string}) - A dictionary (key, value) pairs. If an alarm matches the (key, value) pair then it will not be included in the group. This MUST be the same as the existing value for exclusions.
+* alarm_actions ([string]) - Array of notification method IDs that are invoked when the group of alarms for this definition transition to the `ALARM` state.
+* ok_actions ([string]) - Array of notification method IDs that are invoked when the group of alarms for this definition transition to the `OK` state.
+* undetermined_actions ([string]) - Array of notification method IDs that are invoked when the group of alarms for this definition transition to the `UNDETERMINED` state.
+
+#### Response Examples
+```
+{
+  "id": 'u1dfe8b9a-7210-44f1-91f7-2f503b983b35',
+  "alarm_actions": [
+    "40167dde-a99d-4407-9b1e-02432c1d2de6"
+  ],
+  "ok_actions": [
+    "bf718275-a483-43eb-b125-eb31058d3053"
+  ],
+  "links": [
+    {
+      "href": "http://192.168.10.6:8070/v2.0/alarm-group-definitions/1dfe8b9a-7210-44f1-91f7-2f503b983b35",
+      "rel": "self"
+    }
+  ]
+  "name": "updated_alarm_group_definition_1",
+  "description": "Patched Group Rule 1"
+  "undetermined_actions": [
+    "7fa35737-eada-4dd8-8048-8f81adf6feeb"
+  ],
+  "matchers": [
+    "alarmName",
+    "metricName",
+    "__hostname__"
+  ],
+  "exclusions": {
+    "__hostname__": "host2"
+  },
+  "group_wait": "10s",
+  "repeat_interval: "1h"
+}
+```
+
+___
+
+## Patch Alarm Group Definition
+### PATCH /v2.0/alarm-group-definitions/{alarm_group_definition_id}
+Update selected parameters of the specified alarm group definition.
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+* Content-Type (string, required) - application/json
+* Accept (string) - application/json
+
+#### Path Parameters
+* alarm_group_definition_id (string, required) - Alarm Group Definition ID
+
+#### Query Parameters
+None.
+
+#### Request Body
+Consists of an alarm group definition with the following properties:
+
+* name (string(255), optional) - Name of alarm group definition.
+* description (string(255), optional) - A description of the alarm group rule.
+* matchers ([string(255)], optional) - Array of keys by which incoming alarms are grouped together. If specified, this MUST be the same as the existing value for matchers.
+* group_wait (string(10), optional) - Wait time to send the initial notification.
+* repeat_interval (string(10), optional) - Wait time to resend the group notification.
+* exclusions ({string(255):string(255)}, optional) - A dictionary (key, value) pairs. If an alarm matches the (key, value) pair then it will not be included in the group. This MUST be the same as the existing value for exclusions.
+* alarm_actions ([string], optional) - Array of notification method IDs that are invoked when the group of alarms for this definition transition to the `ALARM` state.
+* ok_actions ([string], optional) - Array of notification method IDs that are invoked when the group of alarms for this definition transition to the `OK` state.
+* undetermined_actions ([string], optional) - Array of notification method IDs that are invoked when the group of alarms for this definition transition to the `UNDETERMINED` state.
+
+Only the parameters that are specified will be updated.
+
+#### Request Examples
+```
+PATCH /v2.0/alarm-group-definitions/f9935bcc-9641-4cbf-8224-0993a947ea83 HTTP/1.1
+Host: 192.168.10.4:8070
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+	"name": "patched_alarm_group_definition_1",
+        "description": "Patched Group rule1",
+	"group_wait": "10s",
+	"repeat_interval": "1h",
+	"alarm_actions": ["40167dde-a99d-4407-9b1e-02432c1d2de6"],
+	"ok_actions": ["bf718275-a483-43eb-b125-eb31058d3053"],
+	"undetermined_actions": ["7fa35737-eada-4dd8-8048-8f81adf6feeb"]
+}
+```
+
+### Response
+#### Status Code
+* 200 - OK
+
+#### Response Body
+Returns a JSON alarm group definition object with the following fields:
+
+* id (string) - ID of alarm definition.
+* links ([link]) - Links to alarm definition.
+* name (string) - Name of alarm definition.
+* description (string) - Description of alarm group rule.
+* matchers ([string]) - Array of keys by which incoming alarms are grouped together.
+* group_wait (string) - Wait time to send the initial notification.
+* repeat_interval (string) - Wait time to resend the group notification.
+* exclusions ({string:string}) - A dictionary (key, value) pairs. If an alarm matches the (key, value) pair then it will not be included in the group. This MUST be the same as the existing value for exclusions.
+* alarm_actions ([string]) - Array of notification method IDs that are invoked when the group of alarms for this definition transition to the `ALARM` state.
+* ok_actions ([string]) - Array of notification method IDs that are invoked when the group of alarms for this definition transition to the `OK` state.
+* undetermined_actions ([string]) - Array of notification method IDs that are invoked when the group of alarms for this definition transition to the `UNDETERMINED` state.
+
+#### Response Examples
+```
+{
+  "id": 'u1dfe8b9a-7210-44f1-91f7-2f503b983b35',
+  "alarm_actions": [
+    "40167dde-a99d-4407-9b1e-02432c1d2de6"
+  ],
+  "ok_actions": [
+    "bf718275-a483-43eb-b125-eb31058d3053"
+  ],
+  "links": [
+    {
+      "href": "http://192.168.10.6:8070/v2.0/alarm-group-definitions/1dfe8b9a-7210-44f1-91f7-2f503b983b35",
+      "rel": "self"
+    }
+  ]
+  "name": "patched_alarm_group_definition_1",
+  "description": "Patched Group Rule 1",
+  "undetermined_actions": [
+    "7fa35737-eada-4dd8-8048-8f81adf6feeb"
+  ],
+  'matchers": [
+    "alarmName",
+    "metricName",
+    "__hostname__"
+  ],
+  "exclusions": {
+    "__hostname__": "host2"
+  },
+  "group_wait": "10s",
+  "repeat_interval: "1h"
+}
+```
+___
+
+## Delete Alarm Group Definition
+Delete the specified alarm group definition.
+
+### DELETE /v2.0/alarm-group-definitions/{alarm_group_definition_id}
+
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+
+#### Path Parameters
+* alarm_group_definition_id (string, required) - Alarm Group Definition ID
+
+#### Query Parameters
+None.
+
+#### Request Body
+None.
+
+#### Request Examples
+```
+DELETE /v2.0/alarm-group-definitions/b461d659-577b-4d63-9782-a99194d4a472 HTTP/1.1
+Host: 192.168.10.4:8070
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Cache-Control: no-cache
+```
+
+### Response
+#### Status Code
+* 204 - No content
+
+#### Response Body
+None.
+
+
 # License
-(C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
+(C) Copyright 2014-2017 Hewlett Packard Enterprise Development LP
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
