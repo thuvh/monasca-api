@@ -1,5 +1,6 @@
 ---
 -- # Copyright 2017 FUJITSU LIMITED
+-- # (C) Copyright 2017 Hewlett Packard Enterprise Development LP
 ---
 
 SET statement_timeout = 0;
@@ -128,6 +129,28 @@ CREATE TABLE sub_alarm_definition_dimension (
     sub_alarm_definition_id character varying(36) NOT NULL
 );
 
+CREATE TABLE alarm_grouping_manager (
+    id character varying(36) NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    deleted_at timestamp without time zone,
+    name character varying(255) NOT NULL,
+    matchers character varying(255) NOT NULL,
+    group_wait character varying(5) NOT NULL,
+    repeat_interval character varying(5) NOT NULL,
+    tenant_id character varying(36) NOT NULL
+);
+
+CREATE TABLE alarm_grouping_manager_action (
+    alarm_grouping_manager_id character varying(36) NOT NULL,
+    action_id character varying(36) NOT NULL
+);
+
+CREATE TABLE alarm_grouping_manager_exclusion (
+    alarm_grouping_manager_id character varying(36) NOT NULL,
+    exclusion_name character varying(36) NOT NULL,
+    value character varying(36) NOT NULL
+);
 ---
 -- primary keys
 ---
@@ -161,6 +184,13 @@ ALTER TABLE ONLY sub_alarm_definition
 ALTER TABLE ONLY sub_alarm
     ADD CONSTRAINT sub_alarm_pkey PRIMARY KEY (id);
 
+ALTER TABLE ONLY alarm_grouping_manager
+    ADD CONSTRAINT alarm_grouping_manager_pkey PRIMARY KEY (id);
+
+ALTER TABLE ONLY alarm_grouping_manager_action
+    ADD CONSTRAINT alarm_grouping_manager_action_pkey PRIMARY KEY
+    (alarm_grouping_manager_id, action_id);
+
 ---
 -- indexes
 ---
@@ -177,6 +207,15 @@ CREATE INDEX tenant_id ON alarm_definition USING btree (tenant_id);
 ---
 -- foreign key constraints
 ---
+ALTER TABLE ONLY alarm_grouping_manager_action
+    ADD CONSTRAINT fk_action_alarm_grouping_manager_id FOREIGN KEY
+    (alarm_grouping_manager_id)
+    REFERENCES alarm_grouping_manager(id);
+
+ALTER TABLE ONLY alarm_grouping_manager_exclusion
+    ADD CONSTRAINT fk_exclusion_alarm_grouping_manager_id FOREIGN KEY (alarm_grouping_manager_id)
+    REFERENCES alarm_grouping_manager(id);
+
 ALTER TABLE ONLY alarm_action
     ADD CONSTRAINT fk_alarm_action_alarm_definition FOREIGN KEY (alarm_definition_id) REFERENCES alarm_definition(id);
 
