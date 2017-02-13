@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa31d9ce_59219a9e",
+        "filename": "monasca_tempest_tests/tests/api/test_monascastatsd.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-02-13T17:20:31Z",
+      "side": 1,
+      "message": "2017",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "3b7bf73b18f138a6f4f98fce32c640405d8fc96d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa31d9ce_9914f244",
+        "filename": "monasca_tempest_tests/tests/api/test_monascastatsd.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-02-13T17:20:31Z",
+      "side": 1,
+      "message": "Can you change this variable name please?",
+      "range": {
+        "startLine": 36,
+        "startChar": 8,
+        "endLine": 36,
+        "endChar": 11
+      },
+      "revId": "3b7bf73b18f138a6f4f98fce32c640405d8fc96d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
