@@ -22,6 +22,13 @@ from oslo_config import cfg
 from oslo_log import log
 import paste.deploy
 
+import monasca_api.v3.metrics as v3metrics
+import monasca_api.v3.version_3 as v3version
+import monasca_api.v3.alarms as v3alarms
+import monasca_api.v3.alarm_definitions as v3alarm_definitions
+import monasca_api.v3.notifications as v3notifications
+import monasca_api.v3.notification_types as v3notification_types
+
 from monasca_api.api.core import request
 
 dispatcher_opts = [cfg.StrOpt('versions', default=None,
@@ -102,7 +109,7 @@ def launch(conf, config_file="/etc/monasca/api-config.conf"):
     app.add_route("/v2.0/alarms/{alarm_id}", alarms)
 
     alarm_count = simport.load(cfg.CONF.dispatcher.alarms_count)()
-    app.add_route("/v2.0/alarms/count/", alarm_count)
+    app.add_route("/v2.0/alarms/count", alarm_count)
 
     alarms_state_history = simport.load(
         cfg.CONF.dispatcher.alarms_state_history)()
@@ -125,6 +132,34 @@ def launch(conf, config_file="/etc/monasca/api-config.conf"):
     notification_method_types = simport.load(
         cfg.CONF.dispatcher.notification_method_types)()
     app.add_route("/v2.0/notification-methods/types", notification_method_types)
+
+    app.add_route("/v3", v3version.Version3())
+    app.add_route("/v3/metrics", v3metrics.Metrics())
+    app.add_route("/v3/metrics/names", v3metrics.MetricsNames())
+    app.add_route("/v3/metrics/dimensions/names/values", v3metrics.DimensionValues())
+    app.add_route("/v3/metrics/dimensions/names", v3metrics.DimensionNames())
+
+    app.add_route("/v3/metrics/measurements", v3metrics.MetricsMeasurements())
+    app.add_route("/v3/metrics/statistics", v3metrics.MetricsStatistics())
+
+    alarms_v3 = v3alarms.Alarms()
+    app.add_route("/v3/alarms", alarms_v3)
+    app.add_route("/v3/alarms/{alarm_id}", alarms_v3)
+    app.add_route("/v3/alarms/count", v3alarms.AlarmsCount())
+
+    alarms_v3_state_history = v3alarms.AlarmsStateHistory()
+    app.add_route("/v3/alarms/state-history", alarms_v3_state_history)
+    app.add_route("/v3/alarms/{alarm_id}/state-history", alarms_v3_state_history)
+
+    alarm_definitions_v3 = v3alarm_definitions.AlarmDefinitions()
+    app.add_route("/v3/alarm-definitions", alarm_definitions_v3)
+    app.add_route("/v3/alarm-definitions/{alarm_definition_id}", alarm_definitions_v3)
+
+    notification_methods_v3 = v3notifications.Notifications()
+    app.add_route("/v3/notification-methods", notification_methods_v3)
+    app.add_route("/v3/notification-methods/{notification_method_id}", notification_methods_v3)
+
+    app.add_route("/v3/notification-methods/types", v3notification_types.NotificationTypes())
 
     LOG.debug('Dispatcher drivers have been added to the routes!')
     return app

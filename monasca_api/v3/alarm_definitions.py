@@ -22,31 +22,29 @@ from oslo_config import cfg
 from oslo_log import log
 
 import monasca_api.expression_parser.alarm_expr_parser
-from monasca_api.api import alarm_definitions_api_v2
 from monasca_api.common.exceptions import HTTPUnprocessableEntityError
 from monasca_api.common.repositories import exceptions
-from monasca_api.v2.common import validation
 from monasca_api.v2.common.schemas import (
     alarm_definition_request_body_schema as schema_alarms)
-from monasca_api.v2.reference import alarming
-from monasca_api.v2.reference import helpers
-from monasca_api.v2.reference import resource
+from monasca_api.v3.common import alarming
+from monasca_api.v3.common import auth
+from monasca_api.v3.common import pagination
+from monasca_api.v3.common import utils
+from monasca_api.v3.common import validation
 
 LOG = log.getLogger(__name__)
 
+DEFAULT_AUTHORIZED_ROLES = cfg.CONF.security.default_authorized_roles
+GET_ALARMDEFS_AUTHORIZED_ROLES = (cfg.CONF.security.default_authorized_roles +
+                                  cfg.CONF.security.read_only_authorized_roles)
 
-class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
-                       alarming.Alarming):
+
+class AlarmDefinitions(alarming.Alarming):
 
     def __init__(self):
         try:
             super(AlarmDefinitions, self).__init__()
             self._region = cfg.CONF.region
-            self._default_authorized_roles = (
-                cfg.CONF.security.default_authorized_roles)
-            self._get_alarmdefs_authorized_roles = (
-                cfg.CONF.security.default_authorized_roles +
-                cfg.CONF.security.read_only_authorized_roles)
             self._alarm_definitions_repo = simport.load(
                 cfg.CONF.repositories.alarm_definitions_driver)()
 
@@ -54,171 +52,130 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
             LOG.exception(ex)
             raise exceptions.RepositoryException(ex)
 
-    @resource.resource_try_catch_block
+    @utils.exception_translator
+    @auth.Authorize(authorized_roles=DEFAULT_AUTHORIZED_ROLES)
     def on_post(self, req, res):
-        helpers.validate_authorization(req, self._default_authorized_roles)
+        alarm_definition = utils.parse_http_json_body(req)
 
-        alarm_definition = helpers.read_json_msg_body(req)
+        utils.apply_default(alarm_definition, 'name', required=True)
+        utils.apply_default(alarm_definition, 'expression', required=True)
+        utils.apply_default(alarm_definition, 'description', default='')
+        utils.apply_default(alarm_definition, 'severity', default='LOW')
+        utils.apply_default(alarm_definition, 'match_by', default=[])
+        utils.apply_default(alarm_definition, 'alarm_actions', default=[])
+        utils.apply_default(alarm_definition, 'ok_actions', default=[])
+        utils.apply_default(alarm_definition, 'undetermined_actions', default=[])
 
         self._validate_alarm_definition(alarm_definition)
 
-        name = get_query_alarm_definition_name(alarm_definition)
-        expression = get_query_alarm_definition_expression(alarm_definition)
-        description = get_query_alarm_definition_description(alarm_definition)
-        severity = get_query_alarm_definition_severity(alarm_definition)
-        match_by = get_query_alarm_definition_match_by(alarm_definition)
-        alarm_actions = get_query_alarm_definition_alarm_actions(
-            alarm_definition)
-        undetermined_actions = get_query_alarm_definition_undetermined_actions(
-            alarm_definition)
-        ok_actions = get_query_ok_actions(alarm_definition)
+        result = self._alarm_definition_create(req.project_id,
+                                               alarm_definition)
 
-        result = self._alarm_definition_create(req.project_id, name, expression,
-                                               description, severity, match_by,
-                                               alarm_actions,
-                                               undetermined_actions,
-                                               ok_actions)
-
-        helpers.add_links_to_resource(result, req.uri)
-        res.body = helpers.dumpit_utf8(result)
+        pagination.add_links_to_resource(result, req.uri)
+        res.body = utils.dumps_json_utf8(result)
         res.status = falcon.HTTP_201
 
-    @resource.resource_try_catch_block
+    @utils.exception_translator
+    @auth.Authorize(authorized_roles=GET_ALARMDEFS_AUTHORIZED_ROLES)
     def on_get(self, req, res, alarm_definition_id=None):
         if alarm_definition_id is None:
-            helpers.validate_authorization(req, self._get_alarmdefs_authorized_roles)
-            name = helpers.get_query_name(req)
-            dimensions = helpers.get_query_dimensions(req)
-            severity = helpers.get_query_param(req, "severity", default_val=None)
+            name = req.get_param('name')
+            dimensions = req.get_param_as_dimensions('dimensions')
+            severity = req.get_param('severity')
+            sort_by = req.get_param_as_list('sort_by')
+            offset = req.get_param_as_int('offset')
+
+            if sort_by is not None:
+                allowed_sort_by = {'id', 'name', 'severity',
+                                   'updated_at', 'created_at'}
+                validation.validate_sort_by(sort_by, allowed_sort_by)
+
             if severity is not None:
                 validation.validate_severity_query(severity)
                 severity = severity.upper()
-            sort_by = helpers.get_query_param(req, 'sort_by', default_val=None)
-            if sort_by is not None:
-                if isinstance(sort_by, basestring):
-                    sort_by = sort_by.split(',')
 
-                allowed_sort_by = {'id', 'name', 'severity',
-                                   'updated_at', 'created_at'}
-
-                validation.validate_sort_by(sort_by, allowed_sort_by)
-
-            offset = helpers.get_query_param(req, 'offset')
-            if offset is not None and not isinstance(offset, int):
-                try:
-                    offset = int(offset)
-                except Exception:
-                    raise HTTPUnprocessableEntityError('Unprocessable Entity',
-                                                       'Offset value {} must be an integer'.format(offset))
             result = self._alarm_definition_list(req.project_id, name,
                                                  dimensions, severity,
                                                  req.uri, sort_by,
                                                  offset, req.limit)
 
-            res.body = helpers.dumpit_utf8(result)
+            res.body = utils.dumps_json_utf8(result)
             res.status = falcon.HTTP_200
 
         else:
-            helpers.validate_authorization(req, self._get_alarmdefs_authorized_roles)
-
             result = self._alarm_definition_show(req.project_id,
                                                  alarm_definition_id)
+            pagination.add_links_to_resource(result,
+                                             re.sub('/' + alarm_definition_id, '', req.uri))
 
-            helpers.add_links_to_resource(result,
-                                          re.sub('/' + alarm_definition_id, '',
-                                                 req.uri))
-            res.body = helpers.dumpit_utf8(result)
+            res.body = utils.dumps_json_utf8(result)
             res.status = falcon.HTTP_200
 
-    @resource.resource_try_catch_block
+    @utils.exception_translator
+    @auth.Authorize(authorized_roles=DEFAULT_AUTHORIZED_ROLES)
     def on_put(self, req, res, alarm_definition_id):
 
-        helpers.validate_authorization(req, self._default_authorized_roles)
+        alarm_definition = utils.parse_http_json_body(req)
 
-        alarm_definition = helpers.read_json_msg_body(req)
+        utils.apply_default(alarm_definition, 'name', required=True)
+        utils.apply_default(alarm_definition, 'expression', required=True)
+        utils.apply_default(alarm_definition, 'description', required=True)
+        utils.apply_default(alarm_definition, 'severity', required=True)
+        utils.apply_default(alarm_definition, 'match_by', required=True)
+        utils.apply_default(alarm_definition, 'actions_enabled', required=True)
+        utils.apply_default(alarm_definition, 'alarm_actions', required=True)
+        utils.apply_default(alarm_definition, 'ok_actions', required=True)
+        utils.apply_default(alarm_definition, 'undetermined_actions', required=True)
 
-        self._validate_alarm_definition(alarm_definition, require_all=True)
+        self._validate_name_not_conflicting(req.tenant_id,
+                                            alarm_definition['name'],
+                                            alarm_definition_id)
 
-        name = get_query_alarm_definition_name(alarm_definition)
-        expression = get_query_alarm_definition_expression(alarm_definition)
-        actions_enabled = (
-            get_query_alarm_definition_actions_enabled(alarm_definition))
-        description = get_query_alarm_definition_description(alarm_definition)
-        alarm_actions = get_query_alarm_definition_alarm_actions(alarm_definition)
-        ok_actions = get_query_ok_actions(alarm_definition)
-        undetermined_actions = get_query_alarm_definition_undetermined_actions(
-            alarm_definition)
-        match_by = get_query_alarm_definition_match_by(alarm_definition)
-        severity = get_query_alarm_definition_severity(alarm_definition)
+        self._validate_alarm_definition(alarm_definition)
 
         result = self._alarm_definition_update_or_patch(req.project_id,
                                                         alarm_definition_id,
-                                                        name,
-                                                        expression,
-                                                        actions_enabled,
-                                                        description,
-                                                        alarm_actions,
-                                                        ok_actions,
-                                                        undetermined_actions,
-                                                        match_by,
-                                                        severity,
+                                                        alarm_definition,
                                                         patch=False)
 
-        helpers.add_links_to_resource(result, req.uri)
-        res.body = helpers.dumpit_utf8(result)
+        pagination.add_links_to_resource(result, req.uri)
+        res.body = utils.dumps_json_utf8(result)
         res.status = falcon.HTTP_200
 
-    @resource.resource_try_catch_block
+    @utils.exception_translator
+    @auth.Authorize(authorized_roles=DEFAULT_AUTHORIZED_ROLES)
     def on_patch(self, req, res, alarm_definition_id):
 
-        helpers.validate_authorization(req, self._default_authorized_roles)
+        alarm_definition = utils.parse_http_json_body(req)
 
-        alarm_definition = helpers.read_json_msg_body(req)
+        if 'name' in alarm_definition:
+            self._validate_name_not_conflicting(req.tenant_id,
+                                                alarm_definition['name'],
+                                                alarm_definition_id)
 
-        # Optional args
-        name = get_query_alarm_definition_name(alarm_definition,
-                                               return_none=True)
-        expression = get_query_alarm_definition_expression(alarm_definition,
-                                                           return_none=True)
-        actions_enabled = (
-            get_query_alarm_definition_actions_enabled(alarm_definition,
-                                                       return_none=True))
-
-        description = get_query_alarm_definition_description(alarm_definition,
-                                                             return_none=True)
-        alarm_actions = get_query_alarm_definition_alarm_actions(
-            alarm_definition, return_none=True)
-        ok_actions = get_query_ok_actions(alarm_definition, return_none=True)
-        undetermined_actions = get_query_alarm_definition_undetermined_actions(
-            alarm_definition, return_none=True)
-        match_by = get_query_alarm_definition_match_by(alarm_definition,
-                                                       return_none=True)
-        severity = get_query_alarm_definition_severity(alarm_definition,
-                                                       return_none=True)
+        self._fill_previous_definition_data(req.tenant_id, alarm_definition_id, alarm_definition)
 
         result = self._alarm_definition_update_or_patch(req.project_id,
                                                         alarm_definition_id,
-                                                        name,
-                                                        expression,
-                                                        actions_enabled,
-                                                        description,
-                                                        alarm_actions,
-                                                        ok_actions,
-                                                        undetermined_actions,
-                                                        match_by,
-                                                        severity,
+                                                        alarm_definition,
                                                         patch=True)
 
-        helpers.add_links_to_resource(result, req.uri)
-        res.body = helpers.dumpit_utf8(result)
+        pagination.add_links_to_resource(result, req.uri)
+        res.body = utils.dumps_json_utf8(result)
         res.status = falcon.HTTP_200
 
-    @resource.resource_try_catch_block
+    @utils.exception_translator
+    @auth.Authorize(authorized_roles=DEFAULT_AUTHORIZED_ROLES)
     def on_delete(self, req, res, alarm_definition_id):
-
-        helpers.validate_authorization(req, self._default_authorized_roles)
         self._alarm_definition_delete(req.project_id, alarm_definition_id)
         res.status = falcon.HTTP_204
+
+    def _fill_previous_definition_data(self, tenant_id, alarm_definition_id, alarm_definition):
+        old_definition = self._alarm_definitions_repo.get_alarm_definition(tenant_id=tenant_id,
+                                                                           id=alarm_definition_id)
+        for key, value in old_definition.items():
+            if key not in alarm_definition:
+                alarm_definition[key] = value
 
     def _validate_name_not_conflicting(self, tenant_id, name, expected_id=None):
         definitions = self._alarm_definitions_repo.get_alarm_definitions(tenant_id=tenant_id,
@@ -312,6 +269,7 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
                                                                dimensions, severity, sort_by,
                                                                offset, limit))
 
+        # TODO(Ryan) move this formatting down to repo level
         result = []
         for alarm_definition_row in alarm_definition_rows:
             match_by = get_comma_separated_str_as_list(
@@ -342,17 +300,17 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
                   u'ok_actions': ok_actions_list,
                   u'undetermined_actions': undetermined_actions_list}
 
-            helpers.add_links_to_resource(ad, req_uri)
+            pagination.add_links_to_resource(ad, req_uri)
             result.append(ad)
 
-        result = helpers.paginate_alarming(result, req_uri, limit)
+        result = pagination.paginate_alarming(result, req_uri, limit)
 
         return result
 
-    def _validate_alarm_definition(self, alarm_definition, require_all=False):
+    def _validate_alarm_definition(self, alarm_definition):
 
         try:
-            schema_alarms.validate(alarm_definition, require_all=require_all)
+            schema_alarms.validate(alarm_definition, require_all=True)
             if 'match_by' in alarm_definition:
                 for name in alarm_definition['match_by']:
                     metric_validation.validate_dimension_key(name)
@@ -363,51 +321,33 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
 
     def _alarm_definition_update_or_patch(self, tenant_id,
                                           definition_id,
-                                          name,
-                                          expression,
-                                          actions_enabled,
-                                          description,
-                                          alarm_actions,
-                                          ok_actions,
-                                          undetermined_actions,
-                                          match_by,
-                                          severity,
+                                          alarm_definition,
                                           patch):
 
-        if expression:
-            try:
-                sub_expr_list = (
-                    monasca_api.expression_parser.alarm_expr_parser.
-                    AlarmExprParser(expression).sub_expr_list)
+        if alarm_definition['name']:
+            self._validate_name_not_conflicting(tenant_id,
+                                                alarm_definition['name'],
+                                                expected_id=definition_id)
 
-            except (pyparsing.ParseException,
-                    pyparsing.ParseFatalException) as ex:
-                LOG.exception(ex)
-                title = "Invalid alarm expression".encode('utf8')
-                msg = "parser failed on expression '{}' at column {}: {}".format(
-                      expression.encode('utf8'), str(ex.column).encode('utf8'),
-                      ex.msg.encode('utf8'))
-                raise HTTPUnprocessableEntityError(title, msg)
+        if alarm_definition['expression']:
+            sub_expr_list = parse_alarm_definition_expression(alarm_definition['expression'])
         else:
             sub_expr_list = None
-
-        if name:
-            self._validate_name_not_conflicting(tenant_id, name, expected_id=definition_id)
 
         alarm_def_row, sub_alarm_def_dicts = (
             self._alarm_definitions_repo.update_or_patch_alarm_definition(
                 tenant_id,
                 definition_id,
-                name,
-                expression,
+                alarm_definition['name'],
+                alarm_definition['expression'],
                 sub_expr_list,
-                actions_enabled,
-                description,
-                alarm_actions,
-                ok_actions,
-                undetermined_actions,
-                match_by,
-                severity,
+                alarm_definition['actions_enabled'],
+                alarm_definition['description'],
+                alarm_definition['alarm_actions'],
+                alarm_definition['ok_actions'],
+                alarm_definition['undetermined_actions'],
+                alarm_definition['match_by'],
+                alarm_definition['severity'],
                 patch))
 
         old_sub_alarm_def_event_dict = (
@@ -480,53 +420,35 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
 
         return sub_alarm_def_update_dict
 
-    def _alarm_definition_create(self, tenant_id, name, expression,
-                                 description, severity, match_by,
-                                 alarm_actions, undetermined_actions,
-                                 ok_actions):
-        try:
+    def _alarm_definition_create(self, tenant_id, alarm_definition):
 
-            sub_expr_list = (
-                monasca_api.expression_parser.alarm_expr_parser.
-                AlarmExprParser(expression).sub_expr_list)
+        sub_expr_list = parse_alarm_definition_expression(alarm_definition['expression'])
 
-        except (pyparsing.ParseException,
-                pyparsing.ParseFatalException) as ex:
-            LOG.exception(ex)
-            title = "Invalid alarm expression".encode('utf8')
-            msg = "parser failed on expression '{}' at column {}: {}".format(
-                  expression.encode('utf8'), str(ex.column).encode('utf8'),
-                  ex.msg.encode('utf8'))
-            raise HTTPUnprocessableEntityError(title, msg)
-
-        self._validate_name_not_conflicting(tenant_id, name)
+        self._validate_name_not_conflicting(tenant_id, alarm_definition['name'])
 
         alarm_definition_id = (
             self._alarm_definitions_repo.
             create_alarm_definition(tenant_id,
-                                    name,
-                                    expression,
+                                    alarm_definition['name'],
+                                    alarm_definition['expression'],
                                     sub_expr_list,
-                                    description,
-                                    severity,
-                                    match_by,
-                                    alarm_actions,
-                                    undetermined_actions,
-                                    ok_actions))
+                                    alarm_definition['description'],
+                                    alarm_definition['severity'],
+                                    alarm_definition['match_by'],
+                                    alarm_definition['alarm_actions'],
+                                    alarm_definition['undetermined_actions'],
+                                    alarm_definition['ok_actions']))
 
         self._send_alarm_definition_created_event(tenant_id,
                                                   alarm_definition_id,
-                                                  name, expression,
+                                                  alarm_definition['name'],
+                                                  alarm_definition['expression'],
                                                   sub_expr_list,
-                                                  description, match_by)
-        result = (
-            {u'alarm_actions': alarm_actions, u'ok_actions': ok_actions,
-             u'description': description, u'match_by': match_by,
-             u'severity': severity, u'actions_enabled': u'true',
-             u'undetermined_actions': undetermined_actions,
-             u'expression': expression, u'id': alarm_definition_id,
-             u'deterministic': is_definition_deterministic(expression),
-             u'name': name})
+                                                  alarm_definition['description'],
+                                                  alarm_definition['match_by'])
+        result = alarm_definition
+        result['id'] = alarm_definition_id
+        result['deterministic'] = is_definition_deterministic(alarm_definition['expression'])
 
         return result
 
@@ -595,125 +517,18 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
                         alarm_definition_created_event_msg)
 
 
-def get_query_alarm_definition_name(alarm_definition, return_none=False):
+def parse_alarm_definition_expression(expression):
     try:
-        if 'name' in alarm_definition:
-            name = alarm_definition['name']
-            return name
-        else:
-            if return_none:
-                return None
-            else:
-                raise Exception("Missing name")
-    except Exception as ex:
-        LOG.debug(ex)
-        raise HTTPUnprocessableEntityError('Unprocessable Entity', ex.message)
-
-
-def get_query_alarm_definition_expression(alarm_definition,
-                                          return_none=False):
-    try:
-        if 'expression' in alarm_definition:
-            expression = alarm_definition['expression']
-            return expression
-        else:
-            if return_none:
-                return None
-            else:
-                raise Exception("Missing expression")
-    except Exception as ex:
-        LOG.debug(ex)
-        raise HTTPUnprocessableEntityError('Unprocessable Entity', ex.message)
-
-
-def get_query_alarm_definition_description(alarm_definition,
-                                           return_none=False):
-    if 'description' in alarm_definition:
-        return alarm_definition['description'].decode('utf8')
-    else:
-        if return_none:
-            return None
-        else:
-            return ''
-
-
-def get_query_alarm_definition_severity(alarm_definition, return_none=False):
-    if 'severity' in alarm_definition:
-        severity = alarm_definition['severity']
-        severity = severity.decode('utf8').upper()
-        if severity not in ['LOW', 'MEDIUM', 'HIGH', 'CRITICAL']:
-            raise HTTPUnprocessableEntityError('Unprocessable Entity', 'Invalid severity')
-        return severity
-    else:
-        if return_none:
-            return None
-        else:
-            return 'LOW'
-
-
-def get_query_alarm_definition_match_by(alarm_definition, return_none=False):
-    if 'match_by' in alarm_definition:
-        match_by = alarm_definition['match_by']
-        return match_by
-    else:
-        if return_none:
-            return None
-        else:
-            return []
-
-
-def get_query_alarm_definition_alarm_actions(alarm_definition,
-                                             return_none=False):
-    if 'alarm_actions' in alarm_definition:
-        alarm_actions = alarm_definition['alarm_actions']
-        return alarm_actions
-    else:
-        if return_none:
-            return None
-        else:
-            return []
-
-
-def get_query_alarm_definition_undetermined_actions(alarm_definition,
-                                                    return_none=False):
-    if 'undetermined_actions' in alarm_definition:
-        undetermined_actions = alarm_definition['undetermined_actions']
-        return undetermined_actions
-    else:
-        if return_none:
-            return None
-        else:
-            return []
-
-
-def get_query_ok_actions(alarm_definition, return_none=False):
-    if 'ok_actions' in alarm_definition:
-        ok_actions = alarm_definition['ok_actions']
-        return ok_actions
-    else:
-        if return_none:
-            return None
-        else:
-            return []
-
-
-def get_query_alarm_definition_actions_enabled(alarm_definition,
-                                               required=False,
-                                               return_none=False):
-    try:
-        if 'actions_enabled' in alarm_definition:
-            enabled_actions = alarm_definition['actions_enabled']
-            return enabled_actions
-        else:
-            if return_none:
-                return None
-            elif required:
-                raise Exception("Missing actions-enabled")
-            else:
-                return ''
-    except Exception as ex:
-        LOG.debug(ex)
-        raise HTTPUnprocessableEntityError('Unprocessable Entity', ex.message)
+        return (monasca_api.expression_parser.alarm_expr_parser.
+                AlarmExprParser(expression).sub_expr_list)
+    except (pyparsing.ParseException,
+            pyparsing.ParseFatalException) as ex:
+        LOG.exception(ex)
+        title = "Invalid alarm expression".encode('utf8')
+        msg = "Parser failed on expression '{}' at column {}: {}".format(
+            expression.encode('utf8'), str(ex.column).encode('utf8'),
+            ex.msg.encode('utf8'))
+        raise HTTPUnprocessableEntityError(title, msg)
 
 
 def get_comma_separated_str_as_list(comma_separated_str):

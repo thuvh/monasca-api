@@ -19,29 +19,27 @@ from monasca_common.simport import simport
 from oslo_config import cfg
 from oslo_log import log
 
-from monasca_api.api import alarms_api_v2
 from monasca_api.common.exceptions import HTTPUnprocessableEntityError
 from monasca_api.common.repositories import exceptions
-from monasca_api.v2.common import validation
 from monasca_api.v2.common.schemas import alarm_update_schema as schema_alarm
-from monasca_api.v2.reference import alarming
-from monasca_api.v2.reference import helpers
-from monasca_api.v2.reference import resource
+from monasca_api.v3.common import alarming
+from monasca_api.v3.common import auth
+from monasca_api.v3.common import pagination
+from monasca_api.v3.common import utils
+from monasca_api.v3.common import validation
 
 LOG = log.getLogger(__name__)
 
+DEFAULT_AUTHORIZED_ROLES = cfg.CONF.security.default_authorized_roles
+GET_ALARMS_AUTHORIZED_ROLES = (cfg.CONF.security.default_authorized_roles +
+                               cfg.CONF.security.read_only_authorized_roles)
 
-class Alarms(alarms_api_v2.AlarmsV2API,
-             alarming.Alarming):
+
+class Alarms(alarming.Alarming):
     def __init__(self):
         try:
             super(Alarms, self).__init__()
             self._region = cfg.CONF.region
-            self._default_authorized_roles = (
-                cfg.CONF.security.default_authorized_roles)
-            self._get_alarms_authorized_roles = (
-                cfg.CONF.security.default_authorized_roles +
-                cfg.CONF.security.read_only_authorized_roles)
             self._alarms_repo = simport.load(
                 cfg.CONF.repositories.alarms_driver)()
 
@@ -49,39 +47,31 @@ class Alarms(alarms_api_v2.AlarmsV2API,
             LOG.exception(ex)
             raise exceptions.RepositoryException(ex)
 
-    @resource.resource_try_catch_block
+    @utils.exception_translator
+    @auth.Authorize(authorized_roles=DEFAULT_AUTHORIZED_ROLES)
     def on_put(self, req, res, alarm_id):
 
-        helpers.validate_authorization(req, self._default_authorized_roles)
-
-        alarm = helpers.read_http_resource(req)
+        alarm = utils.parse_http_json_body(req)
         schema_alarm.validate(alarm)
 
         # Validator makes state optional, so check it here
-        if 'state' not in alarm or not alarm['state']:
-            raise HTTPUnprocessableEntityError('Unprocessable Entity',
-                                               "Field 'state' is required")
-        if 'lifecycle_state' not in alarm or not alarm['lifecycle_state']:
-            raise HTTPUnprocessableEntityError('Unprocessable Entity',
-                                               "Field 'lifecycle_state' is required")
-        if 'link' not in alarm or not alarm['link']:
-            raise HTTPUnprocessableEntityError('Unprocessable Entity',
-                                               "Field 'link' is required")
+        utils.apply_default(alarm, 'state', required=True)
+        utils.apply_default(alarm, 'lifecycle_state', required=True)
+        utils.apply_default(alarm, 'link', required=True)
 
         self._alarm_update(req.project_id, alarm_id, alarm['state'],
                            alarm['lifecycle_state'], alarm['link'])
 
         result = self._alarm_show(req.uri, req.project_id, alarm_id)
 
-        res.body = helpers.dumpit_utf8(result)
+        res.body = utils.dumps_json_utf8(result)
         res.status = falcon.HTTP_200
 
-    @resource.resource_try_catch_block
+    @utils.exception_translator
+    @auth.Authorize(authorized_roles=DEFAULT_AUTHORIZED_ROLES)
     def on_patch(self, req, res, alarm_id):
 
-        helpers.validate_authorization(req, self._default_authorized_roles)
-
-        alarm = helpers.read_http_resource(req)
+        alarm = utils.parse_http_json_body(req)
         schema_alarm.validate(alarm)
 
         old_alarm = self._alarms_repo.get_alarm(req.project_id, alarm_id)[0]
@@ -99,64 +89,54 @@ class Alarms(alarms_api_v2.AlarmsV2API,
 
         result = self._alarm_show(req.uri, req.project_id, alarm_id)
 
-        res.body = helpers.dumpit_utf8(result)
+        res.body = utils.dumps_json_utf8(result)
         res.status = falcon.HTTP_200
 
-    @resource.resource_try_catch_block
+    @utils.exception_translator
+    @auth.Authorize(authorized_roles=DEFAULT_AUTHORIZED_ROLES)
     def on_delete(self, req, res, alarm_id):
 
-        helpers.validate_authorization(req, self._default_authorized_roles)
-
         self._alarm_delete(req.project_id, alarm_id)
-
         res.status = falcon.HTTP_204
 
-    @resource.resource_try_catch_block
+    @utils.exception_translator
+    @auth.Authorize(authorized_roles=GET_ALARMS_AUTHORIZED_ROLES)
     def on_get(self, req, res, alarm_id=None):
-        helpers.validate_authorization(req, self._get_alarms_authorized_roles)
-
         if alarm_id is None:
-            query_parms = falcon.uri.parse_query_string(req.query_string)
-            if 'state' in query_parms:
-                validation.validate_alarm_state(query_parms['state'])
-                query_parms['state'] = query_parms['state'].upper()
+            query_params = {}
+            req.get_param('state', store=query_params)
+            req.get_param('severity', store=query_params)
+            req.get_param_as_dimensions('metric_dimensions', store=query_params)
+            req.get_param_as_list('sort_by', store=query_params, default=[])
+            offset = req.get_param_as_int('offset')
 
-            if 'severity' in query_parms:
-                validation.validate_severity_query(query_parms['severity'])
-                query_parms['severity'] = query_parms['severity'].upper()
+            if 'state'in query_params and query_params['state'] is not None:
+                validation.validate_alarm_state(query_params['state'])
+                query_params['state'] = query_params['state'].upper()
 
-            if 'sort_by' in query_parms:
-                if isinstance(query_parms['sort_by'], basestring):
-                    query_parms['sort_by'] = [query_parms['sort_by']]
+            if 'severity' in query_params and query_params['severity'] is not None:
+                validation.validate_severity_query(query_params['severity'])
+                query_params['severity'] = query_params['severity'].upper()
 
-                allowed_sort_by = {'alarm_id', 'alarm_definition_id', 'alarm_definition_name',
-                                   'state', 'severity', 'lifecycle_state', 'link',
-                                   'state_updated_timestamp', 'updated_timestamp', 'created_timestamp'}
-                validation.validate_sort_by(query_parms['sort_by'], allowed_sort_by)
+            allowed_sort_by = {'alarm_id', 'alarm_definition_id', 'alarm_definition_name',
+                               'state', 'severity', 'lifecycle_state', 'link',
+                               'state_updated_timestamp', 'updated_timestamp', 'created_timestamp'}
+            validation.validate_sort_by(query_params['sort_by'], allowed_sort_by)
 
-            query_parms['metric_dimensions'] = helpers.get_query_dimensions(req, 'metric_dimensions')
-            helpers.validate_query_dimensions(query_parms['metric_dimensions'])
+            # ensure metric_dimensions is a list
+            validation.validate_dimensions(query_params['metric_dimensions'])
 
-            offset = helpers.get_query_param(req, 'offset')
-            if offset is not None and not isinstance(offset, int):
-                try:
-                    offset = int(offset)
-                except Exception as ex:
-                    LOG.exception(ex)
-                    raise HTTPUnprocessableEntityError("Unprocessable Entity",
-                                                       "Offset value {} must be an integer".format(offset))
-
-            result = self._alarm_list(req.uri, req.project_id,
-                                      query_parms, offset,
+            result = self._alarm_list(req.uri, req.tenant_id,
+                                      query_params, offset,
                                       req.limit)
 
-            res.body = helpers.dumpit_utf8(result)
+            res.body = utils.dumps_json_utf8(result)
             res.status = falcon.HTTP_200
 
         else:
-            result = self._alarm_show(req.uri, req.project_id, alarm_id)
+            result = self._alarm_show(req.uri, req.tenant_id, alarm_id)
 
-            res.body = helpers.dumpit_utf8(result)
+            res.body = utils.dumps_json_utf8(result)
             res.status = falcon.HTTP_200
 
     def _alarm_update(self, tenant_id, alarm_id, new_state, lifecycle_state,
@@ -256,7 +236,7 @@ class Alarms(alarms_api_v2.AlarmsV2API,
                 ad = {u'id': alarm_row['alarm_definition_id'],
                       u'name': alarm_row['alarm_definition_name'],
                       u'severity': alarm_row['severity'], }
-                helpers.add_links_to_resource(ad,
+                pagination.add_links_to_resource(ad,
                                               re.sub('alarms',
                                                      'alarm-definitions',
                                                      req_uri_no_id))
@@ -274,7 +254,7 @@ class Alarms(alarms_api_v2.AlarmsV2API,
                          u'created_timestamp':
                              alarm_row['created_timestamp'].isoformat() + 'Z',
                          u'alarm_definition': ad}
-                helpers.add_links_to_resource(alarm, req_uri_no_id)
+                pagination.add_links_to_resource(alarm, req_uri_no_id)
 
                 first_row = False
 
@@ -298,7 +278,7 @@ class Alarms(alarms_api_v2.AlarmsV2API,
 
         result = []
         if not alarm_rows:
-            return helpers.paginate_alarming(result, req_uri, limit)
+            return pagination.paginate_alarming(result, req_uri, limit)
 
         # Forward declaration
         alarm = {}
@@ -311,7 +291,7 @@ class Alarms(alarms_api_v2.AlarmsV2API,
                 ad = {u'id': alarm_row['alarm_definition_id'],
                       u'name': alarm_row['alarm_definition_name'],
                       u'severity': alarm_row['severity'], }
-                helpers.add_links_to_resource(ad,
+                pagination.add_links_to_resource(ad,
                                               re.sub('alarms',
                                                      'alarm-definitions',
                                                      req_uri))
@@ -329,7 +309,7 @@ class Alarms(alarms_api_v2.AlarmsV2API,
                          u'created_timestamp':
                              alarm_row['created_timestamp'].isoformat() + 'Z',
                          u'alarm_definition': ad}
-                helpers.add_links_to_resource(alarm, req_uri)
+                pagination.add_links_to_resource(alarm, req_uri)
 
                 prev_alarm_id = alarm_row['alarm_id']
 
@@ -346,18 +326,15 @@ class Alarms(alarms_api_v2.AlarmsV2API,
 
         result.append(alarm)
 
-        return helpers.paginate_alarming(result, req_uri, limit)
+        return pagination.paginate_alarming(result, req_uri, limit)
 
 
-class AlarmsCount(alarms_api_v2.AlarmsCountV2API, alarming.Alarming):
+class AlarmsCount(alarming.Alarming):
 
     def __init__(self):
         try:
             super(AlarmsCount, self).__init__()
             self._region = cfg.CONF.region
-            self._get_alarms_authorized_roles = (
-                cfg.CONF.security.default_authorized_roles +
-                cfg.CONF.security.read_only_authorized_roles)
             self._alarms_repo = simport.load(
                 cfg.CONF.repositories.alarms_driver)()
 
@@ -365,45 +342,35 @@ class AlarmsCount(alarms_api_v2.AlarmsCountV2API, alarming.Alarming):
             LOG.exception(ex)
             raise exceptions.RepositoryException(ex)
 
-    @resource.resource_try_catch_block
+    @utils.exception_translator
+    @auth.Authorize(authorized_roles=GET_ALARMS_AUTHORIZED_ROLES)
     def on_get(self, req, res):
-        helpers.validate_authorization(req, self._get_alarms_authorized_roles)
-        query_parms = falcon.uri.parse_query_string(req.query_string)
+        query_params = {}
+        req.get_param('state', store=query_params)
+        req.get_param('severity', store=query_params)
+        req.get_param_as_dimensions('metric_dimensions', store=query_params)
+        req.get_param_as_list('group_by', store=query_params, default=[])
+        offset = req.get_param_as_int('offset')
 
-        if 'state' in query_parms:
-            validation.validate_alarm_state(query_parms['state'])
-            query_parms['state'] = query_parms['state'].upper()
+        if query_params['state'] is not None:
+            validation.validate_alarm_state(query_params['state'])
+            query_params['state'] = query_params['state'].upper()
 
-        if 'severity' in query_parms:
-            validation.validate_severity_query(query_parms['severity'])
-            query_parms['severity'] = query_parms['severity'].upper()
+        if query_params['severity'] is not None:
+            validation.validate_severity_query(query_params['severity'])
+            query_params['severity'] = query_params['severity'].upper()
 
-        if 'group_by' in query_parms:
-            if not isinstance(query_parms['group_by'], list):
-                query_parms['group_by'] = query_parms['group_by'].split(',')
-            self._validate_group_by(query_parms['group_by'])
+        self._validate_group_by(query_params['group_by'])
+        validation.validate_dimensions(query_params['metric_dimensions'])
 
-        query_parms['metric_dimensions'] = helpers.get_query_dimensions(req, 'metric_dimensions')
-        helpers.validate_query_dimensions(query_parms['metric_dimensions'])
+        result = self._alarms_count(req.uri, req.tenant_id, query_params, offset, req.limit)
 
-        offset = helpers.get_query_param(req, 'offset')
-
-        if offset is not None:
-            try:
-                offset = int(offset)
-            except Exception:
-                raise HTTPUnprocessableEntityError("Unprocessable Entity",
-                                                   "Offset must be a valid integer, was {}".format(offset))
-
-        result = self._alarms_count(req.uri, req.project_id, query_parms, offset, req.limit)
-
-        res.body = helpers.dumpit_utf8(result)
+        res.body = utils.dumps_json_utf8(result)
         res.status = falcon.HTTP_200
 
     def _alarms_count(self, req_uri, tenant_id, query_parms, offset, limit):
 
         count_data = self._alarms_repo.get_alarms_count(tenant_id, query_parms, offset, limit)
-        group_by = query_parms['group_by'] if 'group_by' in query_parms else []
 
         # result = count_data
         result = {
@@ -426,16 +393,17 @@ class AlarmsCount(alarms_api_v2.AlarmsCountV2API, alarming.Alarming):
             return result
 
         if len(count_data) > limit:
-            result['links'].append({'rel': 'next',
-                                    'href': helpers.create_alarms_count_next_link(req_uri, offset, limit)})
+            result['links'].append(
+                {'rel': 'next',
+                 'href': pagination.create_alarms_count_next_link(req_uri, offset, limit)})
             count_data = count_data[:limit]
 
-        result['columns'].extend(group_by)
+        result['columns'].extend(query_parms['group_by'])
 
         result['counts'] = []
         for row in count_data:
             count_result = [row['count']]
-            for field in group_by:
+            for field in query_parms['group_by']:
                 count_result.append(row[field])
             result['counts'].append(count_result)
 
@@ -451,15 +419,11 @@ class AlarmsCount(alarms_api_v2.AlarmsCountV2API, alarming.Alarming):
                 "One or more group-by values from {} are not in {}".format(group_by, allowed_values))
 
 
-class AlarmsStateHistory(alarms_api_v2.AlarmsStateHistoryV2API,
-                         alarming.Alarming):
+class AlarmsStateHistory(alarming.Alarming):
     def __init__(self):
         try:
             super(AlarmsStateHistory, self).__init__()
             self._region = cfg.CONF.region
-            self._get_alarms_authorized_roles = (
-                cfg.CONF.security.default_authorized_roles +
-                cfg.CONF.security.read_only_authorized_roles)
             self._alarms_repo = simport.load(
                 cfg.CONF.repositories.alarms_driver)()
             self._metrics_repo = simport.load(
@@ -469,33 +433,35 @@ class AlarmsStateHistory(alarms_api_v2.AlarmsStateHistoryV2API,
             LOG.exception(ex)
             raise exceptions.RepositoryException(ex)
 
-    @resource.resource_try_catch_block
+    @utils.exception_translator
+    @auth.Authorize(authorized_roles=GET_ALARMS_AUTHORIZED_ROLES)
     def on_get(self, req, res, alarm_id=None):
 
         if alarm_id is None:
-            helpers.validate_authorization(req, self._get_alarms_authorized_roles)
-            start_timestamp = helpers.get_query_starttime_timestamp(req, False)
-            end_timestamp = helpers.get_query_endtime_timestamp(req, False)
-            offset = helpers.get_query_param(req, 'offset')
-            dimensions = helpers.get_query_dimensions(req)
-            helpers.validate_query_dimensions(dimensions)
+            start_timestamp = req.get_param_as_datetime('start_time')
+            end_timestamp = req.get_param_as_datetime('end_time')
+            dimensions = req.get_param_as_dimensions('dimensions')
+            offset = req.get_param('offset')
 
-            result = self._alarm_history_list(req.project_id, start_timestamp,
+            validation.validate_dimensions(dimensions)
+            validation.validate_time_range(start_timestamp, end_timestamp)
+
+            result = self._alarm_history_list(req.tenant_id, start_timestamp,
                                               end_timestamp, dimensions,
                                               req.uri, offset, req.limit)
 
-            res.body = helpers.dumpit_utf8(result)
+            res.body = utils.dumps_json_utf8(result)
             res.status = falcon.HTTP_200
 
         else:
-            helpers.validate_authorization(req, self._get_alarms_authorized_roles)
-            offset = helpers.get_query_param(req, 'offset')
+            offset = req.get_param('offset')
 
-            result = self._alarm_history(req.project_id, alarm_id,
-                                         req.uri, offset,
-                                         req.limit)
+            result = self._metrics_repo.alarm_history(req.tenant_id, alarm_id, offset,
+                                                      req.limit)
 
-            res.body = helpers.dumpit_utf8(result)
+            paginated_result = pagination.paginate(result, req.uri, req.limit)
+
+            res.body = utils.dumps_json_utf8(paginated_result)
             res.status = falcon.HTTP_200
 
     def _alarm_history_list(self, tenant_id, start_timestamp,
@@ -503,7 +469,10 @@ class AlarmsStateHistory(alarms_api_v2.AlarmsStateHistoryV2API,
                             limit):
 
         # get_alarms expects 'metric_dimensions' for dimensions key.
-        new_query_parms = {'metric_dimensions': dimensions}
+        if dimensions is not None:
+            new_query_parms = {'metric_dimensions': dimensions}
+        else:
+            new_query_parms = {}
 
         alarm_rows = self._alarms_repo.get_alarms(tenant_id, new_query_parms,
                                                   None, None)
@@ -514,11 +483,4 @@ class AlarmsStateHistory(alarms_api_v2.AlarmsStateHistoryV2API,
                                                   start_timestamp,
                                                   end_timestamp)
 
-        return helpers.paginate(result, req_uri, limit)
-
-    def _alarm_history(self, tenant_id, alarm_id, req_uri, offset, limit):
-
-        result = self._metrics_repo.alarm_history(tenant_id, [alarm_id], offset,
-                                                  limit)
-
-        return helpers.paginate(result, req_uri, limit)
+        return pagination.paginate(result, req_uri, limit)
