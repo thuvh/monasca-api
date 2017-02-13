@@ -13,11 +13,11 @@
 # under the License.
 
 import falcon
-
+import iso8601
 from oslo_context import context
 
+from monasca_api.common import exceptions
 from monasca_api.common.repositories import constants
-from monasca_api.v2.common import exceptions
 
 _TENANT_ID_PARAM = 'tenant_id'
 """Name of the query-param pointing at project-id (tenant-id)"""
@@ -78,6 +78,51 @@ class Request(falcon.Request):
         """
         return self.context.roles
 
+    def get_param_as_datetime(self, param_name, store=None, required=False, default=None):
+        param = self.get_param(param_name, required=required, default=default)
+        result = iso8601.parse_date(param) if param is not None else None
+        if store is not None:
+            store[param_name] = result
+        return result
+
+    def get_param_as_dimensions(self, param_name, store=None, required=False):
+        param = self.get_param_as_list(param_name, required=required)
+        result = {}
+        if param is not None:
+            for dimension in param:
+                dimension_name_value = dimension.split(':')
+                if len(dimension_name_value) == 2:
+                    result[dimension_name_value[0]] = dimension_name_value[1]
+                elif len(dimension_name_value) == 1:
+                    result[dimension_name_value[0]] = ""
+                else:
+                    err_msg = "Dimension {} is malformed".format(dimension)
+                    raise exceptions.HTTPUnprocessableEntityError('Dimensions are malformed', err_msg)
+
+        if store is not None:
+            store[param_name] = result
+
+        return result
+
+    def get_param_as_list(self, param_name, transform=None, store=None, required=False, default=None):
+        result = super(Request, self).get_param_as_list(param_name, transform=transform,
+                                                        required=required, store=store)
+        if result is None:
+            result = default
+        if store is not None:
+            store[param_name] = result
+        return result
+
+    def get_param_as_int(self, param_name, store=None, required=False, min=None, max=None,
+                         default=None):
+        result = super(Request, self).get_param_as_int(param_name, required=required, min=min,
+                                                       max=max, store=store)
+        if result is None:
+            result = default
+        if store is not None:
+            store[param_name] = result
+        return result
+
     @property
     def limit(self):
         """Returns LIMIT query param value.
@@ -91,17 +136,15 @@ class Request(falcon.Request):
         :raise exceptions.HTTPUnprocessableEntityError: if limit is not valid integer
 
         """
-        limit = self.get_param('limit', required=False, default=None)
+        limit = self.get_param_as_int('limit', required=False)
         if limit is not None:
-            if limit.isdigit():
-                limit = int(limit)
-                if limit > constants.PAGE_LIMIT:
-                    return constants.PAGE_LIMIT
-                else:
-                    return limit
-            else:
+            if limit > constants.PAGE_LIMIT:
+                return constants.PAGE_LIMIT
+            elif limit < 0:
                 err_msg = 'Limit parameter must be a positive integer'
                 raise exceptions.HTTPUnprocessableEntityError('Invalid limit', err_msg)
+            else:
+                return limit
         else:
             return constants.PAGE_LIMIT
 
