@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa31d9ce_d9782af5",
+        "filename": "monasca_tempest_tests/tests/api/test_monascastatsd.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-02-13T17:32:20Z",
+      "side": 1,
+      "message": "As long as you have the response, you might as well check that it has the right value and dimensions",
+      "range": {
+        "startLine": 42,
+        "startChar": 16,
+        "endLine": 42,
+        "endChar": 22
+      },
+      "revId": "00af723a6d9104a8b1fd558f9a98b3c61c579a9b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
