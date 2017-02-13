@@ -20,10 +20,10 @@ from oslo_config import cfg
 from oslo_log import log
 
 from monasca_api.api import alarms_api_v2
+from monasca_api.common.exceptions import HTTPUnprocessableEntityError
 from monasca_api.common.repositories import exceptions
-from monasca_api.v2.common.exceptions import HTTPUnprocessableEntityError
-from monasca_api.v2.common.schemas import alarm_update_schema as schema_alarm
 from monasca_api.v2.common import validation
+from monasca_api.v2.common.schemas import alarm_update_schema as schema_alarm
 from monasca_api.v2.reference import alarming
 from monasca_api.v2.reference import helpers
 from monasca_api.v2.reference import resource

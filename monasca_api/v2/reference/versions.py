@@ -18,7 +18,7 @@ import falcon
 from oslo_log import log
 
 from monasca_api.api import versions_api
-from monasca_api.v2.common.exceptions import HTTPUnprocessableEntityError
+from monasca_api.common.exceptions import HTTPUnprocessableEntityError
 
 LOG = log.getLogger(__name__)
 VERSIONS = {
@@ -30,6 +30,15 @@ VERSIONS = {
         }],
         'status': 'CURRENT',
         'updated': "2013-03-06T00:00:00.000Z"
+    },
+    'v3': {
+        'id': 'v3',
+        'links': [{
+            'rel': 'self',
+            'href': ''
+        }],
+        'status': 'CURRENT',
+        'updated': "2017-02-09T00:00:00.000Z"
     }
 }
 
