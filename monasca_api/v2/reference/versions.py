@@ -17,7 +17,7 @@ import json
 import falcon
 
 from monasca_api.api import versions_api
-from monasca_api.v2.common.exceptions import HTTPUnprocessableEntityError
+from monasca_api.common.exceptions import HTTPUnprocessableEntityError
 
 VERSIONS = {
     'v2.0': {
@@ -28,6 +28,15 @@ VERSIONS = {
         }],
         'status': 'CURRENT',
         'updated': "2013-03-06T00:00:00.000Z"
+    },
+    'v3': {
+        'id': 'v3',
+        'links': [{
+            'rel': 'self',
+            'href': ''
+        }],
+        'status': 'CURRENT',
+        'updated': "2017-02-09T00:00:00.000Z"
     }
 }
 

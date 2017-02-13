@@ -22,40 +22,10 @@ from oslo_config import cfg
 from oslo_log import log
 import paste.deploy
 
+import monasca_api.v3.metrics as v3metrics
+import monasca_api.v3.version_3 as v3version
+
 from monasca_api.api.core import request
-
-dispatcher_opts = [cfg.StrOpt('versions', default=None,
-                              help='Versions'),
-                   cfg.StrOpt('version_2_0', default=None,
-                              help='Version 2.0'),
-                   cfg.StrOpt('metrics', default=None,
-                              help='Metrics'),
-                   cfg.StrOpt('metrics_measurements', default=None,
-                              help='Metrics measurements'),
-                   cfg.StrOpt('metrics_statistics', default=None,
-                              help='Metrics statistics'),
-                   cfg.StrOpt('metrics_names', default=None,
-                              help='Metrics names'),
-                   cfg.StrOpt('alarm_definitions', default=None,
-                              help='Alarm definitions'),
-                   cfg.StrOpt('alarms', default=None,
-                              help='Alarms'),
-                   cfg.StrOpt('alarms_count', default=None,
-                              help='Alarms Count'),
-                   cfg.StrOpt('alarms_state_history', default=None,
-                              help='Alarms state history'),
-                   cfg.StrOpt('notification_methods', default=None,
-                              help='Notification methods'),
-                   cfg.StrOpt('dimension_values', default=None,
-                              help='Dimension values'),
-                   cfg.StrOpt('dimension_names', default=None,
-                              help='Dimension names'),
-                   cfg.StrOpt('notification_method_types', default=None,
-                              help='notification_method_types methods')]
-
-dispatcher_group = cfg.OptGroup(name='dispatcher', title='dispatcher')
-cfg.CONF.register_group(dispatcher_group)
-cfg.CONF.register_opts(dispatcher_opts, dispatcher_group)
 
 LOG = log.getLogger(__name__)
 
@@ -102,7 +72,7 @@ def launch(conf, config_file="/etc/monasca/api-config.conf"):
     app.add_route("/v2.0/alarms/{alarm_id}", alarms)
 
     alarm_count = simport.load(cfg.CONF.dispatcher.alarms_count)()
-    app.add_route("/v2.0/alarms/count/", alarm_count)
+    app.add_route("/v2.0/alarms/count", alarm_count)
 
     alarms_state_history = simport.load(
         cfg.CONF.dispatcher.alarms_state_history)()
@@ -125,6 +95,15 @@ def launch(conf, config_file="/etc/monasca/api-config.conf"):
     notification_method_types = simport.load(
         cfg.CONF.dispatcher.notification_method_types)()
     app.add_route("/v2.0/notification-methods/types", notification_method_types)
+
+    app.add_route("/v3", v3version.Version3())
+    app.add_route("/v3/metrics", v3metrics.Metrics())
+    app.add_route("/v3/metrics/names", v3metrics.MetricsNames())
+    app.add_route("/v3/metrics/dimensions/names/values", v3metrics.DimensionValues())
+    app.add_route("/v3/metrics/dimensions/names", v3metrics.DimensionNames())
+
+    app.add_route("/v3/metrics/measurements", v3metrics.MetricsMeasurements())
+    app.add_route("/v3/metrics/statistics", v3metrics.MetricsStatistics())
 
     LOG.debug('Dispatcher drivers have been added to the routes!')
     return app

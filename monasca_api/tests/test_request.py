@@ -12,14 +12,13 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+from falcon import errors
+from falcon import testing
 from mock import mock
 from oslo_config import fixture as oo_cfg
 from oslo_context import fixture as oo_ctx
 
-from falcon import testing
-
 from monasca_api.api.core import request
-from monasca_api.v2.common import exceptions
 
 
 class TestRequest(testing.TestBase):
@@ -85,7 +84,7 @@ class TestRequestLimit(testing.TestBase):
             return req.limit
 
         self.assertRaises(
-            exceptions.HTTPUnprocessableEntityError,
+            errors.HTTPInvalidParam,
             property_wrapper
         )
 
