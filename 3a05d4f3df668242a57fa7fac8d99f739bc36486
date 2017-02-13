@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "fa31d9ce_87210bfe",
+        "filename": "devstack/files/schema/mon_mysql.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-02-13T05:32:08Z",
+      "side": 1,
+      "message": "Could you add those tables there as well to mon_postgresql ?",
+      "revId": "3a05d4f3df668242a57fa7fac8d99f739bc36486",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa31d9ce_b403bb72",
         "filename": "monasca_api/v2/reference/alarm_grouping_managers.py",
         "patchSetId": 2
