@@ -18,8 +18,8 @@ from oslo_config import cfg
 from oslo_log import log
 
 from monasca_api.api import notifications_api_v2
+from monasca_api.common.exceptions import HTTPUnprocessableEntityError
 from monasca_api.common.repositories import exceptions
-from monasca_api.v2.common.exceptions import HTTPUnprocessableEntityError
 from monasca_api.v2.common.schemas import (
     notifications_request_body_schema as schemas_notifications)
 from monasca_api.v2.common.schemas import exceptions as schemas_exceptions

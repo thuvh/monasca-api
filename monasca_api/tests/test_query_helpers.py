@@ -17,8 +17,8 @@ import unittest
 
 from mock import Mock
 
-from monasca_api.v2.common.exceptions import HTTPUnprocessableEntityError
 import monasca_api.v2.reference.helpers as helpers
+from monasca_api.common.exceptions import HTTPUnprocessableEntityError
 
 
 class TestGetQueryDimension(unittest.TestCase):
