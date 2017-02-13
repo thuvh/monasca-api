@@ -18,7 +18,7 @@ import unittest
 import falcon
 import mock
 
-import monasca_api.v2.common.exceptions as common_exceptions
+import monasca_api.common.exceptions as common_exceptions
 import monasca_api.v2.common.schemas.alarm_definition_request_body_schema as schemas_alarm_defs
 import monasca_api.v2.common.schemas.exceptions as schemas_exceptions
 import monasca_api.v2.common.schemas.notifications_request_body_schema as schemas_notifications

@@ -1,5 +1,4 @@
-# Copyright 2014 Hewlett-Packard
-# (C) Copyright 2015 Hewlett Packard Enterprise Development Company LP
+# (C) Copyright 2017 Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -15,14 +14,16 @@
 
 import falcon
 from oslo_log import log
+import json
+import simplejson
 
-from monasca_api.common.exceptions import HTTPUnprocessableEntityError
-from monasca_api.common.repositories import exceptions
+from monasca_api.common import exceptions
+from monasca_api.common.repositories import exceptions as repo_exceptions
 
 LOG = log.getLogger(__name__)
 
 
-def resource_try_catch_block(fun):
+def exception_translator(fun):
     def try_it(*args, **kwargs):
         try:
             return fun(*args, **kwargs)
@@ -30,19 +31,19 @@ def resource_try_catch_block(fun):
         except falcon.HTTPError:
             raise
 
-        except exceptions.DoesNotExistException:
+        except repo_exceptions.DoesNotExistException:
             raise falcon.HTTPNotFound
 
-        except exceptions.MultipleMetricsException as ex:
+        except repo_exceptions.MultipleMetricsException as ex:
             raise falcon.HTTPConflict("MultipleMetrics", ex.message)
 
-        except exceptions.AlreadyExistsException as ex:
+        except repo_exceptions.AlreadyExistsException as ex:
             raise falcon.HTTPConflict(ex.__class__.__name__, ex.message)
 
-        except exceptions.InvalidUpdateException as ex:
-            raise HTTPUnprocessableEntityError(ex.__class__.__name__, ex.message)
+        except repo_exceptions.InvalidUpdateException as ex:
+            raise exceptions.HTTPUnprocessableEntityError(ex.__class__.__name__, ex.message)
 
-        except exceptions.RepositoryException as ex:
+        except repo_exceptions.RepositoryException as ex:
             LOG.exception(ex)
             msg = " ".join(map(str, ex.message.args))
             raise falcon.HTTPInternalServerError('The repository was unable '
@@ -55,3 +56,27 @@ def resource_try_catch_block(fun):
                                                  ex.message)
 
     return try_it
+
+
+def validate_json_content_type(req):
+    if req.content_type not in ['application/json']:
+        raise falcon.HTTPBadRequest('Bad request', 'Bad content type. Must be '
+                                                   'application/json')
+
+
+def parse_http_json_body(req):
+    """Read from http request and return json.
+
+    :param req: the http request.
+    """
+    try:
+        msg = req.stream.read()
+        return simplejson.loads(msg)
+    except ValueError as ex:
+        LOG.debug(ex)
+        raise exceptions.HTTPUnprocessableEntityError(
+            'Unprocessable Entity', 'Request body is not valid JSON')
+
+
+def dumps_json_utf8(data):
+    return json.dumps(data, ensure_ascii=False).encode('utf8')
