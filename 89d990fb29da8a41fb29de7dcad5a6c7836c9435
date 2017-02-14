@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa31d9ce_6a23a5a7",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 870,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-02-14T18:00:48Z",
+      "side": 1,
+      "message": "need to remove this, DEST will have it if it is needed.",
+      "range": {
+        "startLine": 870,
+        "startChar": 58,
+        "endLine": 870,
+        "endChar": 62
+      },
+      "revId": "89d990fb29da8a41fb29de7dcad5a6c7836c9435",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
