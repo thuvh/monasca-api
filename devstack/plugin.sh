@@ -867,9 +867,9 @@ function install_monasca_api_python {
 
     PIP_VIRTUAL_ENV=/opt/monasca-api
 
-    (cd /opt/monasca-api ; sudo ./bin/pip install $MONASCA_COMMON_SRC_DIST)
+    setup_install $MONASCA_COMMON_DIR
 
-    (cd /opt/monasca-api ; sudo ./bin/pip install $MONASCA_STATSD_SRC_DIST)
+    setup_install $MONASCA_STATSD_DIR
 
     pip_install gunicorn
 
@@ -1111,7 +1111,7 @@ function install_monasca_persister_python {
 
     PIP_VIRTUAL_ENV=/opt/monasca-persister
 
-    (cd /opt/monasca-persister ; sudo ./bin/pip install $MONASCA_COMMON_SRC_DIST)
+    setup_install $MONASCA_COMMON_DIR
 
     (cd /opt/monasca-persister ; ./bin/pip install $MONASCA_PERSISTER_SRC_DIST)
 
@@ -1273,11 +1273,11 @@ function install_monasca_notification {
       pip_install sqlalchemy
     fi
 
-    (cd /opt/monasca ; sudo ./bin/pip install $MONASCA_COMMON_SRC_DIST)
+    setup_install $MONASCA_COMMON_DIR
 
-    (cd /opt/monasca ; sudo ./bin/pip install $MONASCA_STATSD_SRC_DIST)
+    setup_install $MONASCA_STATSD_DIR
 
-    (cd /opt/monasca ; ./bin/pip install $MONASCA_NOTIFICATION_SRC_DIST)
+    setup_install $MONASCA_NOTIFICATION_DIR
 
     unset PIP_VIRTUAL_ENV
 
