@@ -58,6 +58,29 @@ def exception_translator(fun):
     return try_it
 
 
+def parse_json_body(req, required_fields=None, defaults=None, validation=None):
+    """Verifies structure of json data with option to add validation.
+
+    :param req: a falcon request object
+    :param required_fields: a list of required fields, will error if any not found.
+    :param defaults: a dictionary of defaults, will add values only if key doesn't exist.
+    :param validation: a function to use for validation accepting tenant_id and dictionary data
+    """
+    validate_json_content_type(req)
+    data = parse_http_json_body(req)
+    if required_fields is not None:
+        for field in required_fields:
+            if field not in data or data[field] is None:
+                raise falcon.HTTPMissingParam(field)
+    if defaults is not None:
+        for key, value in defaults.items():
+            if key not in data:
+                data[key] = value
+    if validation is not None:
+        validation(req=req, data=data)
+    return data
+
+
 def validate_json_content_type(req):
     if req.content_type not in ['application/json']:
         raise falcon.HTTPBadRequest('Bad request', 'Bad content type. Must be '
