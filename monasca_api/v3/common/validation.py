@@ -59,3 +59,21 @@ def validate_statistics(statistics):
                statistic in statistics):
         raise falcon.HTTPBadRequest("Invalid statistic",
                                     "Statistics must be one of [avg, min, max, count, sum]")
+
+
+def validate_sort_by(sort_by_list, allowed_sort_by):
+    for sort_by_field in sort_by_list:
+        sort_by_values = sort_by_field.split()
+        if len(sort_by_values) > 2:
+            raise exceptions.HTTPUnprocessableEntityError(
+                "Unprocessable Entity",
+                "Invalid sort_by {}".format(sort_by_field))
+        if sort_by_values[0] not in allowed_sort_by:
+            raise exceptions.HTTPUnprocessableEntityError(
+                "Unprocessable Entity",
+                "sort_by field {} must be one of [{}]".format(sort_by_values[0],
+                                                              ','.join(list(allowed_sort_by))))
+        if len(sort_by_values) > 1 and sort_by_values[1] not in ['asc', 'desc']:
+            raise exceptions.HTTPUnprocessableEntityError(
+                "Unprocessable Entity",
+                "sort_by value {} must be 'asc' or 'desc'".format(sort_by_values[1]))
