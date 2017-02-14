@@ -867,9 +867,9 @@ function install_monasca_api_python {
 
     PIP_VIRTUAL_ENV=/opt/monasca-api
 
-    (cd /opt/monasca-api ; sudo ./bin/pip install $MONASCA_COMMON_SRC_DIST)
+    (cd /opt/monasca-api ; sudo ./bin/pip install -c $DEST/new/requirements/upper-constraints.txt $MONASCA_COMMON_SRC_DIST)
 
-    (cd /opt/monasca-api ; sudo ./bin/pip install $MONASCA_STATSD_SRC_DIST)
+    (cd /opt/monasca-api ; sudo ./bin/pip install -c $DEST/new/requirements/upper-constraints.txt $MONASCA_STATSD_SRC_DIST)
 
     pip_install gunicorn
 
@@ -890,7 +890,7 @@ function install_monasca_api_python {
     (cd "${MONASCA_API_DIR}" ; sudo python setup.py sdist)
     MONASCA_API_SRC_DIST=$(ls -td "${MONASCA_API_DIR}"/dist/monasca-api-*.tar.gz)
 
-    (cd /opt/monasca-api ; ./bin/pip install $MONASCA_API_SRC_DIST)
+    (cd /opt/monasca-api ; ./bin/pip install -c $DEST/new/requirements/upper-constraints.txt $MONASCA_API_SRC_DIST)
 
     unset PIP_VIRTUAL_ENV
 
@@ -1111,9 +1111,9 @@ function install_monasca_persister_python {
 
     PIP_VIRTUAL_ENV=/opt/monasca-persister
 
-    (cd /opt/monasca-persister ; sudo ./bin/pip install $MONASCA_COMMON_SRC_DIST)
+    (cd /opt/monasca-persister ; sudo ./bin/pip install -c $DEST/new/requirements/upper-constraints.txt $MONASCA_COMMON_SRC_DIST)
 
-    (cd /opt/monasca-persister ; ./bin/pip install $MONASCA_PERSISTER_SRC_DIST)
+    (cd /opt/monasca-persister ; ./bin/pip install -c $DEST/new/requirements/upper-constraints.txt $MONASCA_PERSISTER_SRC_DIST)
 
     if [[ "${MONASCA_METRICS_DB,,}" == 'influxdb' ]]; then
 
@@ -1273,11 +1273,11 @@ function install_monasca_notification {
       pip_install sqlalchemy
     fi
 
-    (cd /opt/monasca ; sudo ./bin/pip install $MONASCA_COMMON_SRC_DIST)
+    (cd /opt/monasca ; sudo ./bin/pip install -c $DEST/new/requirements/upper-constraints.txt $MONASCA_COMMON_SRC_DIST)
 
-    (cd /opt/monasca ; sudo ./bin/pip install $MONASCA_STATSD_SRC_DIST)
+    (cd /opt/monasca ; sudo ./bin/pip install -c $DEST/new/requirements/upper-constraints.txt $MONASCA_STATSD_SRC_DIST)
 
-    (cd /opt/monasca ; ./bin/pip install $MONASCA_NOTIFICATION_SRC_DIST)
+    (cd /opt/monasca ; ./bin/pip install -c $DEST/new/requirements/upper-constraints.txt $MONASCA_NOTIFICATION_SRC_DIST)
 
     unset PIP_VIRTUAL_ENV
 
@@ -1557,9 +1557,9 @@ function install_monasca_keystone_client {
 
     PIP_VIRTUAL_ENV=/opt/monasca
 
-    (cd /opt/monasca ; sudo ./bin/pip install python-keystoneclient)
+    (cd /opt/monasca ; sudo ./bin/pip install -c $DEST/new/requirements/upper-constraints.txt python-keystoneclient)
 
-    (cd /opt/monasca ; sudo ./bin/pip install keystoneauth1)
+    (cd /opt/monasca ; sudo ./bin/pip install -c $DEST/new/requirements/upper-constraints.txt keystoneauth1)
 
     unset PIP_VIRTUAL_ENV
 
@@ -1710,7 +1710,7 @@ function install_monasca_horizon_ui {
     git_clone $MONASCA_UI_REPO $MONASCA_UI_DIR $MONASCA_UI_BRANCH
     (cd "${MONASCA_UI_DIR}" ; sudo python setup.py sdist)
 
-    sudo pip install python-monascaclient
+    sudo pip install -c $DEST/new/requirements/upper-constraints.txt python-monascaclient
 
     sudo ln -sf "${MONASCA_UI_DIR}"/monitoring/enabled/_50_admin_add_monitoring_panel.py "${MONASCA_BASE}"/horizon/openstack_dashboard/local/enabled/_50_admin_add_monitoring_panel.py
 
