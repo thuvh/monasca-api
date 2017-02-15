@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa31d9ce_90c63f66",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 893,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2017-02-15T00:33:21Z",
+      "side": 1,
+      "message": "I think we still need setup_install here to apply the constraints to the monasca-api source install.",
+      "range": {
+        "startLine": 893,
+        "startChar": 13,
+        "endLine": 893,
+        "endChar": 20
+      },
+      "revId": "c58a292bbec064b422bb455af75febfa655e5e58",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa31d9ce_909d5f68",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 1116,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2017-02-15T00:33:21Z",
+      "side": 1,
+      "message": "Same as the API above I think we need setup_install here.",
+      "range": {
+        "startLine": 1116,
+        "startChar": 13,
+        "endLine": 1116,
+        "endChar": 30
+      },
+      "revId": "c58a292bbec064b422bb455af75febfa655e5e58",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
