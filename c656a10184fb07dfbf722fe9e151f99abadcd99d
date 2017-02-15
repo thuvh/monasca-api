@@ -22,6 +22,30 @@
       "revId": "c656a10184fb07dfbf722fe9e151f99abadcd99d",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa31d9ce_2171a744",
+        "filename": "monasca_api/v3/notifications.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-02-15T15:18:50Z",
+      "side": 1,
+      "message": "Removing",
+      "parentUuid": "fa31d9ce_90d9df24",
+      "range": {
+        "startLine": 138,
+        "startChar": 13,
+        "endLine": 138,
+        "endChar": 35
+      },
+      "revId": "c656a10184fb07dfbf722fe9e151f99abadcd99d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
