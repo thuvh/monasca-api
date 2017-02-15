@@ -865,8 +865,6 @@ function install_monasca_api_python {
 
     setup_install $MONASCA_STATSD_DIR
 
-    pip_install_gr gunicorn
-
     if [[ "${MONASCA_METRICS_DB,,}" == 'influxdb' ]]; then
         pip_install_gr influxdb
     fi
