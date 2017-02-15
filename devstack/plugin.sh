@@ -519,7 +519,7 @@ function install_monasca_cassandra {
     sleep 15s
 
     export CQLSH_NO_BUNDLED=true
-    pip_install 'cassandra-driver>=2.1.4,!=3.6.0'
+    pip_install_gr cassandra-driver
 
     if [[ ${SERVICE_HOST} ]]; then
 
@@ -871,20 +871,20 @@ function install_monasca_api_python {
 
     setup_install $MONASCA_STATSD_DIR
 
-    pip_install gunicorn
+    pip_install_gr gunicorn
 
     if [[ "${MONASCA_METRICS_DB,,}" == 'influxdb' ]]; then
-        pip_install influxdb==2.8.0
+        pip_install_gr influxdb
     fi
     if [[ "${MONASCA_METRICS_DB,,}" == 'cassandra' ]]; then
-        pip_install cassandra-driver>=2.1.4,!=3.6.0
+        pip_install_gr cassandra-driver
     fi
     if is_service_enabled postgresql; then
       apt_get -y install libpq-dev
-      pip_install psycopg2==2.6.2
+      pip_install_gr psycopg2
     elif is_service_enabled mysql; then
       apt_get -y install libmysqlclient-dev
-      pip_install PyMySQL
+      pip_install_gr PyMySQL
     fi
 
     (cd "${MONASCA_API_DIR}" ; sudo python setup.py sdist)
@@ -1117,11 +1117,11 @@ function install_monasca_persister_python {
 
     if [[ "${MONASCA_METRICS_DB,,}" == 'influxdb' ]]; then
 
-        pip_install influxdb==2.8.0
+        pip_install_gr influxdb
 
     elif [[ "${MONASCA_METRICS_DB,,}" == 'cassandra' ]]; then
 
-        pip_install 'cassandra-driver>=2.1.4,!=3.6.0'
+        pip_install_gr cassandra-driver
 
     fi
 
@@ -1262,15 +1262,15 @@ function install_monasca_notification {
 
     if is_service_enabled postgresql; then
       apt_get -y install libpq-dev
-      pip_install psycopg2==2.6.2
+      pip_install_gr psycopg2
     elif is_service_enabled mysql; then
       apt_get -y install python-mysqldb
       apt_get -y install libmysqlclient-dev
-      pip_install PyMySQL
-      pip_install mysql-python
+      pip_install_gr PyMySQL
+      pip_install_gr MySQL-python
     fi
     if [[ ${MONASCA_DATABASE_USE_ORM} == "True" ]]; then
-      pip_install sqlalchemy
+      pip_install_gr sqlalchemy
     fi
 
     setup_install $MONASCA_COMMON_DIR
