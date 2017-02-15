@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "fa31d9ce_7c3a819a",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 887,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-02-15T05:33:22Z",
+      "side": 1,
+      "message": "I get a feeling that modifying this line to\n  \n  pip_install_gr \n\nmight suffice.\n\nI will test this locally to see if I am right.",
+      "revId": "c58a292bbec064b422bb455af75febfa655e5e58",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa31d9ce_90c63f66",
         "filename": "devstack/plugin.sh",
         "patchSetId": 4
