@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa31d9ce_d6525e66",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 1093,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-02-15T11:06:30Z",
+      "side": 1,
+      "message": "Are those lines here needed ? I think we ought to delete them now since everything is based on setup_install ?",
+      "revId": "734e5553e214fd3145eceaf82a6184de529a255b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa31d9ce_96d386d4",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 1247,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-02-15T11:06:30Z",
+      "side": 1,
+      "message": "Also I think that these 2 lines here are now redundant.",
+      "revId": "734e5553e214fd3145eceaf82a6184de529a255b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
