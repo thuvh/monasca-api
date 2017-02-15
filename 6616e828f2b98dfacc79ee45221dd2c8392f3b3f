@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa31d9ce_7cb3480a",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 1547,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-02-15T15:36:02Z",
+      "side": 1,
+      "message": "I assume you don\u0027t want these changes?",
+      "range": {
+        "startLine": 1545,
+        "startChar": 0,
+        "endLine": 1547,
+        "endChar": 60
+      },
+      "revId": "6616e828f2b98dfacc79ee45221dd2c8392f3b3f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
