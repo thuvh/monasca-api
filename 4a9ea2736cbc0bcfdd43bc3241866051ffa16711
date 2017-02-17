@@ -2,6 +2,138 @@
   "comments": [
     {
       "key": {
+        "uuid": "fa31d9ce_a1c45040",
+        "filename": "devstack/files/monasca-api/python/api-config.conf",
+        "patchSetId": 8
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-02-17T23:12:23Z",
+      "side": 1,
+      "message": "should be alarm grouping manager",
+      "range": {
+        "startLine": 53,
+        "startChar": 34,
+        "endLine": 53,
+        "endChar": 45
+      },
+      "revId": "4a9ea2736cbc0bcfdd43bc3241866051ffa16711",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa31d9ce_7c7cbe20",
+        "filename": "monasca_api/common/repositories/alarm_grouping_managers_repository.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-02-17T23:12:23Z",
+      "side": 1,
+      "message": "add delete_alarm_grouping_managers and update_or_patch_alarm_grouping_managers",
+      "revId": "4a9ea2736cbc0bcfdd43bc3241866051ffa16711",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa31d9ce_1cb902cc",
+        "filename": "monasca_api/common/repositories/sqla/alarm_grouping_managers_repository.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-02-17T23:12:23Z",
+      "side": 1,
+      "message": "agmr",
+      "range": {
+        "startLine": 21,
+        "startChar": 7,
+        "endLine": 21,
+        "endChar": 10
+      },
+      "revId": "4a9ea2736cbc0bcfdd43bc3241866051ffa16711",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa31d9ce_bcc47640",
+        "filename": "monasca_api/common/repositories/sqla/alarm_grouping_managers_repository.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-02-17T23:12:23Z",
+      "side": 1,
+      "message": "agmr",
+      "range": {
+        "startLine": 32,
+        "startChar": 38,
+        "endLine": 32,
+        "endChar": 41
+      },
+      "revId": "4a9ea2736cbc0bcfdd43bc3241866051ffa16711",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da36d5c6_6c7e13b0",
+        "filename": "monasca_api/common/repositories/sqla/alarm_grouping_managers_repository.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-02-17T23:12:23Z",
+      "side": 1,
+      "message": "delete",
+      "range": {
+        "startLine": 87,
+        "startChar": 13,
+        "endLine": 87,
+        "endChar": 42
+      },
+      "revId": "4a9ea2736cbc0bcfdd43bc3241866051ffa16711",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da36d5c6_6f7e05b0",
+        "filename": "monasca_api/common/repositories/sqla/alarm_grouping_managers_repository.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-02-17T23:12:23Z",
+      "side": 1,
+      "message": "delete",
+      "range": {
+        "startLine": 325,
+        "startChar": 25,
+        "endLine": 325,
+        "endChar": 55
+      },
+      "revId": "4a9ea2736cbc0bcfdd43bc3241866051ffa16711",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da36d5c6_3837f5e4",
         "filename": "monasca_api/v2/reference/alarm_grouping_managers.py",
         "patchSetId": 8
@@ -13,6 +145,24 @@
       "writtenOn": "2017-02-17T22:54:07Z",
       "side": 1,
       "message": "you missed : @resource.resource_try_catch_block",
+      "revId": "4a9ea2736cbc0bcfdd43bc3241866051ffa16711",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da36d5c6_3848d52d",
+        "filename": "monasca_api/v2/reference/alarm_grouping_managers.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-02-17T23:12:23Z",
+      "side": 1,
+      "message": "Good catch! Will add it in next patch! Thank you!",
+      "parentUuid": "da36d5c6_3837f5e4",
       "revId": "4a9ea2736cbc0bcfdd43bc3241866051ffa16711",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -36,6 +186,24 @@
     },
     {
       "key": {
+        "uuid": "da36d5c6_98d2a133",
+        "filename": "monasca_api/v2/reference/alarm_grouping_managers.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-02-17T23:12:23Z",
+      "side": 1,
+      "message": "Do we need exception here though? We used log.debug in get_query_alarm_definition_name and get_query_param in helpers.py.",
+      "parentUuid": "da36d5c6_383e15b9",
+      "revId": "4a9ea2736cbc0bcfdd43bc3241866051ffa16711",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da36d5c6_b8784591",
         "filename": "monasca_api/v2/reference/alarm_grouping_managers.py",
         "patchSetId": 8
@@ -47,6 +215,24 @@
       "writtenOn": "2017-02-17T22:54:07Z",
       "side": 1,
       "message": "In Py35 exception has no message attribute, but str(ex) should work just fine.",
+      "revId": "4a9ea2736cbc0bcfdd43bc3241866051ffa16711",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da36d5c6_b8d76522",
+        "filename": "monasca_api/v2/reference/alarm_grouping_managers.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-02-17T23:12:23Z",
+      "side": 1,
+      "message": "Will do!",
+      "parentUuid": "da36d5c6_b8784591",
       "revId": "4a9ea2736cbc0bcfdd43bc3241866051ffa16711",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
