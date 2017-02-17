@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da36d5c6_3837f5e4",
+        "filename": "monasca_api/v2/reference/alarm_grouping_managers.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-02-17T22:54:07Z",
+      "side": 1,
+      "message": "you missed : @resource.resource_try_catch_block",
+      "revId": "4a9ea2736cbc0bcfdd43bc3241866051ffa16711",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da36d5c6_383e15b9",
+        "filename": "monasca_api/v2/reference/alarm_grouping_managers.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-02-17T22:54:07Z",
+      "side": 1,
+      "message": "LOG.exception",
+      "revId": "4a9ea2736cbc0bcfdd43bc3241866051ffa16711",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da36d5c6_b8784591",
+        "filename": "monasca_api/v2/reference/alarm_grouping_managers.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-02-17T22:54:07Z",
+      "side": 1,
+      "message": "In Py35 exception has no message attribute, but str(ex) should work just fine.",
+      "revId": "4a9ea2736cbc0bcfdd43bc3241866051ffa16711",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
