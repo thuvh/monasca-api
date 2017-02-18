@@ -163,8 +163,21 @@ class MonascaClient(rest_client.RestClient):
         resp, response_body = self.post(uri, request_body)
         return resp, json.loads(response_body)
 
+    def create_inhibition_definitions(self, alarm_inhibition_definitions):
+        uri = 'alarm-inhibition-definitions'
+        request_body = json.dumps(alarm_inhibition_definitions)
+        resp, response_body = self.post(uri, request_body)
+        return resp, json.loads(response_body)
+
     def list_alarm_definitions(self, query_params=None):
         uri = 'alarm-definitions'
+        if query_params is not None:
+            uri = uri + query_params
+        resp, response_body = self.get(uri)
+        return resp, json.loads(response_body)
+
+    def list_inhibition_definitions(self, query_params=None):
+        uri = 'alarm-inhibition-definitions'
         if query_params is not None:
             uri = uri + query_params
         resp, response_body = self.get(uri)
