@@ -26,6 +26,17 @@ from sqlalchemy import String, DateTime, Boolean, Integer, Binary, Float
 from sqlalchemy import Table
 
 
+def create_ard_model(metadata=None):
+    return Table('alarm_rule_definition', metadata,
+                 Column('id', String(36)),
+                 Column('tenant_id', String(36)),
+                 Column('name', String(255)),
+                 Column('description', String(255)),
+                 Column('created_at', DateTime),
+                 Column('updated_at', DateTime),
+                 Column('deleted_at', DateTime))
+
+
 def create_a_model(metadata=None):
     return Table('alarm', metadata,
                  Column('id', String(36)),
@@ -135,6 +146,33 @@ def create_sad_model(metadata=None):
                  Column('is_deterministic', Boolean),
                  Column('created_at', DateTime),
                  Column('updated_at', DateTime))
+
+
+def create_aidsm_model(metadata=None):
+    return Table('alarm_inhibition_definition_source_match', metadata,
+                 Column('alarm_inhibition_definition_id', String(36)),
+                 Column('source_name', String(36)),
+                 Column('source_value', String(36)))
+
+
+def create_aidtm_model(metadata=None):
+    return Table('alarm_inhibition_definition_target_match', metadata,
+                 Column('alarm_inhibition_definition_id', String(36)),
+                 Column('target_name', String(36)),
+                 Column('target_value', String(36)))
+
+
+def create_aid_exclusion_model(metadata=None):
+    return Table('alarm_inhibition_definition_exclusion', metadata,
+                 Column('alarm_inhibition_definition_id', String(36)),
+                 Column('exclusion_name', String(36)),
+                 Column('value', String(36)))
+
+
+def create_aid_model(metadata=None):
+    return Table('alarm_inhibition_definition', metadata,
+                 Column('rule_id', String(36)),
+                 Column('equal', String(255)))
 
 
 class group_concat(expression.ColumnElement):
