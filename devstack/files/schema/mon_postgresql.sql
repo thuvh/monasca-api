@@ -1,5 +1,6 @@
 ---
 -- # Copyright 2017 FUJITSU LIMITED
+-- # (C) Copyright 2017 Hewlett Packard Enterprise Development LP
 ---
 
 SET statement_timeout = 0;
@@ -128,6 +129,28 @@ CREATE TABLE sub_alarm_definition_dimension (
     sub_alarm_definition_id character varying(36) NOT NULL
 );
 
+CREATE TABLE alarm_inhibition_definition (
+    id character varying(36) NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    deleted_at timestamp without time zone,
+    name character varying(255) NOT NULL,
+    equal character varying(255) NOT NULL,
+    tenant_id character varying(36) NOT NULL
+);
+
+CREATE TABLE alarm_inhibition_definition_source_match (
+    alarm_inhibition_definition_id character varying(36) NOT NULL,
+    source_name character varying(36) NOT NULL,
+    source_value character varying(36) NOT NULL
+);
+
+CREATE TABLE alarm_inhibition_definition_target_match (
+    alarm_inhibition_definition_id character varying(36) NOT NULL,
+    target_name character varying(36) NOT NULL,
+    target_value character varying(36) NOT NULL
+);
+
 ---
 -- primary keys
 ---
@@ -161,6 +184,8 @@ ALTER TABLE ONLY sub_alarm_definition
 ALTER TABLE ONLY sub_alarm
     ADD CONSTRAINT sub_alarm_pkey PRIMARY KEY (id);
 
+ALTER TABLE ONLY alarm_inhibition_definition
+    ADD CONSTRAINT alarm_inhibition_definition_pkey PRIMARY KEY (id);
 ---
 -- indexes
 ---
@@ -209,6 +234,14 @@ ALTER TABLE ONLY alarm_definition
 
 ALTER TABLE ONLY notification_method
     ADD CONSTRAINT fk_alarm_noticication_method_type FOREIGN KEY (type) REFERENCES notification_method_type (name);
+
+ALTER TABLE ONLY alarm_inhibition_definition_source_match
+    ADD CONSTRAINT fk_source_match_alarm_inhibition_definition_id FOREIGN KEY (alarm_inhibition_definition_id)
+    REFERENCES alarm_inhibition_definition(id);
+
+ALTER TABLE ONLY alarm_inhibition_definition_target_match
+    ADD CONSTRAINT fk_target_match_alarm_inhibition_definition_id FOREIGN KEY (alarm_inhibition_definition_id)
+    REFERENCES alarm_inhibition_definition(id);
 
 ---
 -- data for enum tables
