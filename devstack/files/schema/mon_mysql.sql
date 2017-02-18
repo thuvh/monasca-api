@@ -1,5 +1,5 @@
 /*
-* (C) Copyright 2015,2016 Hewlett Packard Enterprise Development LP
+* (C) Copyright 2015-2017 Hewlett Packard Enterprise Development LP
 * Copyright 2017 FUJITSU LIMITED
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -179,6 +179,33 @@ CREATE TABLE `sub_alarm` (
   CONSTRAINT `fk_sub_alarm_state` FOREIGN KEY (`state`) REFERENCES `alarm_state` (`name`),
   CONSTRAINT `fk_sub_alarm_expr` FOREIGN KEY (`sub_expression_id`) REFERENCES `sub_alarm_definition` (`id`)
 );
+
+CREATE TABLE `alarm_inhibition_definition` (
+  `rule_id` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `equal` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`rule_id`),
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `alarm_inhibition_definition_source_match` (
+  `alarm_inhibition_definition_id` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `source_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `source_value` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  CONSTRAINT `fk_source_match_alarm_inhibition_definition_id` FOREIGN KEY (`alarm_inhibition_definition_id`) REFERENCES `alarm_rule_definition` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `alarm_inhibition_definition_target_match` (
+  `alarm_inhibition_definition_id` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `target_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `target_value` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  CONSTRAINT `fk_target_match_alarm_inhibition_definition_id` FOREIGN KEY (`alarm_inhibition_definition_id`) REFERENCES `alarm_rule_definition` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `alarm_inhibition_definition_exclusion` (
+  `alarm_inhibition_definition_id` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exclusion_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  CONSTRAINT `fk_exclusion_alarm_inhibition_definition_id` FOREIGN KEY (`alarm_inhibition_definition_id`) REFERENCES `alarm_rule_definition` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 SET foreign_key_checks = 1;
 
