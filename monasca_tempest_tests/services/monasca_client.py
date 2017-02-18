@@ -1,4 +1,4 @@
-# (C) Copyright 2015-2016 Hewlett Packard Enterprise Development LP
+# (C) Copyright 2015-2017 Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -163,8 +163,21 @@ class MonascaClient(rest_client.RestClient):
         resp, response_body = self.post(uri, request_body)
         return resp, json.loads(response_body)
 
+    def create_inhibition_definitions(self, alarm_inhibition_definitions):
+        uri = 'alarm-inhibition-definitions'
+        request_body = json.dumps(alarm_inhibition_definitions)
+        resp, response_body = self.post(uri, request_body)
+        return resp, json.loads(response_body)
+
     def list_alarm_definitions(self, query_params=None):
         uri = 'alarm-definitions'
+        if query_params is not None:
+            uri = uri + query_params
+        resp, response_body = self.get(uri)
+        return resp, json.loads(response_body)
+
+    def list_inhibition_definitions(self, query_params=None):
+        uri = 'alarm-inhibition-definitions'
         if query_params is not None:
             uri = uri + query_params
         resp, response_body = self.get(uri)
@@ -175,8 +188,18 @@ class MonascaClient(rest_client.RestClient):
         resp, response_body = self.get(uri)
         return resp, json.loads(response_body)
 
+    def get_inhibition_definition(self, id):
+        uri = 'alarm-inhibition-definitions/' + id
+        resp, response_body = self.get(uri)
+        return resp, json.loads(response_body)
+
     def delete_alarm_definition(self, id):
         uri = 'alarm-definitions/' + id
+        resp, response_body = self.delete(uri)
+        return resp, response_body
+
+    def delete_inhibition_definition(self, id):
+        uri = 'alarm-inhibition-definitions/' + id
         resp, response_body = self.delete(uri)
         return resp, response_body
 
@@ -196,6 +219,25 @@ class MonascaClient(rest_client.RestClient):
         request_body['alarm_actions'] = alarm_actions
         request_body['ok_actions'] = ok_actions
         request_body['undetermined_actions'] = undetermined_actions
+
+        for key, value in kwargs.iteritems():
+            request_body[key] = value
+
+        resp, response_body = self.put(uri, json.dumps(request_body))
+        return resp, json.loads(response_body)
+
+    def update_inhibition_definition(self, id, name, description,
+                                     equal, source_match, target_match,
+                                     exclusions=None, **kwargs):
+        uri = 'alarm-inhibition-definitions/' + id
+        request_body = {}
+        request_body['name'] = name
+        request_body['description'] = description
+        request_body['equal'] = equal
+        request_body['source_match'] = source_match
+        request_body['target_match'] = target_match
+        if exclusions is not None:
+            request_body['exclusions'] = exclusions
 
         for key, value in kwargs.iteritems():
             request_body[key] = value
@@ -235,6 +277,30 @@ class MonascaClient(rest_client.RestClient):
             request_body['ok_actions'] = ok_actions
         if undetermined_actions is not None:
             request_body['undetermined_actions'] = undetermined_actions
+
+        for key, value in kwargs.iteritems():
+            request_body[key] = value
+
+        resp, response_body = self.patch(uri, json.dumps(request_body))
+        return resp, json.loads(response_body)
+
+    def patch_inhibition_definition(self, id, name=None, description=None,
+                                    equal=None, source_match=None, target_match=None,
+                                    exclusions=None, **kwargs):
+        uri = 'alarm-inhibition-definitions/' + id
+        request_body = {}
+        if name:
+            request_body['name'] = name
+        if description:
+            request_body['description'] = description
+        if equal:
+            request_body['equal'] = equal
+        if source_match:
+            request_body['source_match'] = source_match
+        if target_match:
+            request_body['target_match'] = target_match
+        if exclusions:
+            request_body['exclusions'] = exclusions
 
         for key, value in kwargs.iteritems():
             request_body[key] = value
