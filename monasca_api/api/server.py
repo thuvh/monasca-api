@@ -1,5 +1,5 @@
 # Copyright 2014 IBM Corp
-# (C) Copyright 2015,2016 Hewlett Packard Enterprise Development LP
+# (C) Copyright 2015-2017 Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -51,7 +51,9 @@ dispatcher_opts = [cfg.StrOpt('versions', default=None,
                    cfg.StrOpt('dimension_names', default=None,
                               help='Dimension names'),
                    cfg.StrOpt('notification_method_types', default=None,
-                              help='notification_method_types methods')]
+                              help='notification_method_types methods'),
+                   cfg.StrOpt('alarm_inhibition_definitions', default=None,
+                              help='Alarm inhibition definitions')]
 
 dispatcher_group = cfg.OptGroup(name='dispatcher', title='dispatcher')
 cfg.CONF.register_group(dispatcher_group)
@@ -125,6 +127,12 @@ def launch(conf, config_file="/etc/monasca/api-config.conf"):
     notification_method_types = simport.load(
         cfg.CONF.dispatcher.notification_method_types)()
     app.add_route("/v2.0/notification-methods/types", notification_method_types)
+
+    alarm_inhibition_definitions = simport.load(
+        cfg.CONF.dispatcher.alarm_inhibition_definitions)()
+    app.add_route("/v2.0/alarm-inhibition-definitions/", alarm_inhibition_definitions)
+    app.add_route("/v2.0/alarm-inhibition-definitions/{alarm_inhibition_definition_id}",
+                  alarm_inhibition_definitions)
 
     LOG.debug('Dispatcher drivers have been added to the routes!')
     return app
