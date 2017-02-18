@@ -22,6 +22,17 @@ VALID_ALARM_DEFINITION_SEVERITIES = ["LOW", "MEDIUM", "HIGH", "CRITICAL"]
 
 EMAIL_PATTERN = '^.+@.+$'
 
+INVALID_CHARS = "<>={}(),\"\\\\;&"
+RESTRICTED_MATCHER_CHARS = re.compile('[' + INVALID_CHARS + ']')
+
+
+class InvalidMatcherKey(Exception):
+    pass
+
+
+class InvalidMatcherValue(Exception):
+    pass
+
 
 def validate_alarm_state(state):
     if state.upper() not in VALID_ALARM_STATES:
@@ -65,3 +76,39 @@ def validate_email_address(email):
         return False
     else:
         return True
+
+
+def validate_matcher_key(k):
+    if not isinstance(k, (str, unicode)):
+        msg = "Invalid matcher key type: {0} is not a string type".format(k)
+        raise InvalidMatcherKey(msg)
+    if len(k) > 255 or len(k) < 1:
+        msg = "Invalid length ({0}) for matcher key {1}". \
+            format(len(k), k)
+        raise InvalidMatcherKey(msg)
+    if RESTRICTED_MATCHER_CHARS.search(k):
+        msg = "Invalid characters in matcher key {0}". \
+            format(k)
+        raise InvalidMatcherKey(msg)
+
+
+def validate_matcher_value(k, v):
+    if not isinstance(v, (str, unicode)):
+        msg = "Invalid matcher value type: {0} must be a string (from key " \
+              "{1})".format(v, k)
+        raise InvalidMatcherValue(msg)
+    if len(v) > 255 or len(v) < 1:
+        msg = "Invalid length ({0}) for matcher value {1} from key {2}". \
+            format(len(v), v, k)
+        raise InvalidMatcherValue(msg)
+    if RESTRICTED_MATCHER_CHARS.search(v):
+        msg = "Invalid characters in matcher value {0} from key {1}".\
+            format(v, k)
+        raise InvalidMatcherValue(msg)
+
+
+def validate_matchers(matchers):
+    matcher_list = [[key, value] for key, value in matchers.items()]
+    for matcher in matcher_list:
+        validate_matcher_key(matcher[0])
+        validate_matcher_value(matcher[0], matcher[1])
