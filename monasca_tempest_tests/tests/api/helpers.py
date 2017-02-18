@@ -93,6 +93,28 @@ def create_alarm_definition(name=None,
     return alarm_definition
 
 
+def create_inhibition_definition(name=None,
+                                 description=None,
+                                 source_match=None,
+                                 target_match=None,
+                                 equal=None,
+                                 exclusions=None):
+    alarm_inhibition_definition = {}
+    if name:
+        alarm_inhibition_definition['name'] = name
+    if description:
+        alarm_inhibition_definition['description'] = description
+    if source_match:
+        alarm_inhibition_definition['source_match'] = source_match
+    if target_match:
+        alarm_inhibition_definition['target_match'] = target_match
+    if equal:
+        alarm_inhibition_definition['equal'] = equal
+    if exclusions:
+        alarm_inhibition_definition['exclusions'] = exclusions
+    return alarm_inhibition_definition
+
+
 def delete_alarm_definitions(monasca_client):
     # Delete alarm definitions
     resp, response_body = monasca_client.list_alarm_definitions()
@@ -101,6 +123,15 @@ def delete_alarm_definitions(monasca_client):
         for element in elements:
             alarm_def_id = element['id']
             monasca_client.delete_alarm_definition(alarm_def_id)
+
+def delete_inhibition_definitions(monasca_client):
+    # Delete alarm definitions
+    resp, response_body = monasca_client.list_inhibition_definitions()
+    elements = response_body['elements']
+    if elements:
+        for element in elements:
+            alarm_def_id = element['id']
+            monasca_client.delete_inhibition_definition(alarm_def_id)
 
 
 def timestamp_to_iso(timestamp):
