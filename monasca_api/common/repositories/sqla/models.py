@@ -1,6 +1,6 @@
 # Copyright 2015 Robin Hood
 # Copyright 2016 FUJITSU LIMITED
-# (C) Copyright 2016 Hewlett Packard Enterprise Development LP
+# (C) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -135,6 +135,33 @@ def create_sad_model(metadata=None):
                  Column('is_deterministic', Boolean),
                  Column('created_at', DateTime),
                  Column('updated_at', DateTime))
+
+
+def create_aidsm_model(metadata=None):
+    return Table('alarm_inhibition_definition_source_match', metadata,
+                 Column('alarm_inhibition_definition_id', String(36)),
+                 Column('source_name', String(36)),
+                 Column('source_value', String(36)))
+
+
+def create_aidtm_model(metadata=None):
+    return Table('alarm_inhibition_definition_target_match', metadata,
+                 Column('alarm_inhibition_definition_id', String(36)),
+                 Column('target_name', String(36)),
+                 Column('target_value', String(36)))
+
+
+def create_aid_exclusion_model(metadata=None):
+    return Table('alarm_inhibition_definition_exclusion', metadata,
+                 Column('alarm_inhibition_definition_id', String(36)),
+                 Column('exclusion_name', String(36)),
+                 Column('value', String(36)))
+
+
+def create_aid_model(metadata=None):
+    return Table('alarm_inhibition_definition', metadata,
+                 Column('rule_id', String(36)),
+                 Column('equal', String(255)))
 
 
 class group_concat(expression.ColumnElement):
