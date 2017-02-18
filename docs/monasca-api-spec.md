@@ -3548,9 +3548,456 @@ Returns a JSON object with a 'links' array of links and an 'elements' array of a
 
 ```
 ___
+# Alarm Inhibition Definitions
+Operations for working with alarm inhibition definitions.
+## Create Alarm Inhibition Definition
+Create an alarm inhibition definition.
+
+### POST /v2.0/alarm-inhibition-definitions
+
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+* Accept (string) - application/json
+
+#### Path Parameters
+None.
+
+#### Query Parameters
+None.
+
+#### Request Body
+Consists of an alarm inhibition definition. An alarm inhibition definition has the following properties:
+
+* name (string(255), required) - A unique name of the alarm. Note, the name must be unique.
+* equal ([string(255)], required) - Array of keys by which incoming alarms are grouped together for inhibition. These keys that must have an equal value in the source and target
+alarm for the inhibition to take effect.
+* source_match (string, required) - A dictionary specified as a comma separated array of (key, value) pairs. Source matchers for which one or more alerts have to exist for the
+inhibition to take effect
+* target_match (string, required) - A dictionary specified as a comma separated array of (key, value) pairs. Target matchers that have to be fulfilled in the alarms to be muted.
+* exclusions(string, optional) - A dictionary specified as a comma separated array of (key, value) pairs like `key1:value1,key2:value2, ...`. Alarms match the exclusions will not be inhibited.
+
+#### Request Examples
+```
+POST /v2.0/alarm-inhibition-definitions HTTP/1.1
+Host: 192.168.10.4:8070
+Content-Type: application/json
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4d7
+Cache-Control: no-cache
+
+{
+	"name": "alarm_inhibition_definition_1",
+	"equal": ["alarmName", "__metrics_name__", "__metrics_definitions_hostname__"],
+	"source_match": {"severity": "CRITICAL"},
+	"target_match": {"severity": "LOW"},
+	"exclusions": {"alarmName": "cpu_too_high"}
+}
+```
+
+### Response
+#### Status Code
+* 201 - Created
+
+#### Response Body
+Returns a JSON object of alarm inhibition definition objects with the following fields:
+
+* id (string) - ID of alarm inhibition definition.
+* links ([link]) - Links to alarm inhibition definition.
+* name (string) - Name of alarm inhibition definition.
+* equal ([string(255)], required) - Array of keys by which incoming alarms are grouped together for inhibition.
+* source_match (string, required) - A dictionary specified as a comma separated array of (key, value) pairs. 
+* target_match (string, required) - A dictionary specified as a comma separated array of (key, value) pairs. Target matchers that have to be fulfilled in the alarms to be muted.
+* exclusions(string, optional) - A dictionary specified as a comma separated array of (key, value) pairs.
+
+
+#### Response Examples
+```
+{
+  "name": "alarm_inhibition_definition_1",
+  "links": [
+    {
+      "href": "http://192.168.10.6:8070/v2.0/alarm-inhibition-definitions/6ec3d81c-9ad2-4577-af53-f163d1a21c21",
+      "rel": "self"
+    }
+  ],
+  "equal": [
+    "alarmName",
+    "__metrics_name__",
+    "__metrics_definitions_hostname__"
+  ],
+  "target_match": {
+    "severity": "LOW"
+  },
+  "source_match": {
+    "severity": "CRITICAL"
+  },
+  "id": "6ec3d81c-9ad2-4577-af53-f163d1a21c21",
+  "exclusions": {
+		"alarmName": "cpu_too_high"
+  }
+}
+```
+___
+## List Alarm Inhibition Definitions
+List alarm inhibition definitions.
+
+### GET /v2.0/alarm-inhibition-definitions
+
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+* Accept (string) - application/json
+
+#### Path Parameters
+None.
+
+#### Query Parameters
+* name (string(255), optional) - Name of alarm inhibition definition to filter by.
+* offset (integer, optional)
+* limit (integer, optional)
+
+#### Request Body
+None.
+
+#### Request Examples
+```
+GET /v2.0/alarm-inhibition-definitions HTTP/1.1
+Host: 192.168.10.4:8070
+Content-Type: application/json
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Cache-Control: no-cache
+```
+
+### Response
+#### Status Code
+* 200 - OK
+
+#### Response Body
+Returns a JSON object with a 'links' array of links and an 'elements' array of alarm objects with the following fields:
+
+* id (string) - ID of alarm inhibition definition.
+* links ([link]) - Links to alarm inhibition definition.
+* name (string) - Name of alarm inhibition definition.
+* equal ([string(255)], required) - Array of keys by which incoming alarms are grouped together for inhibition.
+* source_match (string, required) - A dictionary specified as a comma separated array of (key, value) pairs. 
+* target_match (string, required) - A dictionary specified as a comma separated array of (key, value) pairs. Target matchers that have to be fulfilled in the alarms to be muted.
+* exclusions(string, optional) - A dictionary specified as a comma separated array of (key, value) pairs.
+
+#### Response Examples
+```
+[
+  {
+    "name": "alarm_inhibition_definition_2",
+    "links": [
+      {
+        "href": "http://192.168.10.6:8070/v2.0/alarm-inhibition-definitions/6592f80c-9864-4b3f-a38a-e66ffc4c8619",
+        "rel": "self"
+      }
+    ],
+    "equal": [
+      "alarmName",
+      "__metrics_definitions_hostname__"
+    ],
+    "target_match": [
+      "severity=LOW"
+    ],
+    "source_match": [
+      "alarmName=cpu_too_high",
+      "severity=CRITICAL"
+    ],
+    "id": "6592f80c-9864-4b3f-a38a-e66ffc4c8619"
+  },
+  {
+    "name": "alarm_inhibition_definition_1",
+    "links": [
+      {
+        "href": "http://192.168.10.6:8070/v2.0/alarm-inhibition-definitions/6ec3d81c-9ad2-4577-af53-f163d1a21c21",
+        "rel": "self"
+      }
+    ],
+    "equal": [
+      "alarmName",
+      "__metrics_name__",
+      "__metrics_definitions_hostname__"
+    ],
+    "target_match": [
+      "severity=LOW"
+    ],
+    "source_match": [
+      "severity=CRITICAL"
+    ],
+    "id": "6ec3d81c-9ad2-4577-af53-f163d1a21c21",
+    "exclusions": {
+		"alarmName": "cpu_too_high"
+  }
+  }
+]
+```
+___
+
+## Get Alarm Inhibition Definition
+Get the specified alarm inhibition definition.
+
+### GET /v2.0/alarm-inhibition-definitions/{alarm_inhibition_definition_id}
+
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+* Accept (string) - application/json
+
+#### Path Parameters
+* alarm_inhibition_definition_id (string, required) - Alarm Inhibition Definition ID
+
+#### Query Parameters
+None.
+
+#### Request Body
+None.
+
+#### Request Examples
+```
+GET /v2.0/alarm-inhibition-definitions/6592f80c-9864-4b3f-a38a-e66ffc4c8619 HTTP/1.1
+Host: 192.168.10.4:8070
+Content-Type: application/json
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Cache-Control: no-cache
+```
+
+### Response
+#### Status Code
+* 200 - OK
+
+#### Response Body
+Returns a JSON alarm inhibition definition object with the following fields:
+
+* id (string) - ID of alarm inhibition definition.
+* links ([link]) - Links to alarm inhibition definition.
+* name (string) - Name of alarm inhibition definition.
+* equal ([string(255)], required) - Array of keys by which incoming alarms are grouped together for inhibition.
+* source_match (string, required) - A dictionary specified as a comma separated array of (key, value) pairs. 
+* target_match (string, required) - A dictionary specified as a comma separated array of (key, value) pairs. Target matchers that have to be fulfilled in the alarms to be muted.
+* exclusions(string, optional) - A dictionary specified as a comma separated array of (key, value) pairs.
+
+#### Response Examples
+```
+{
+  "name": "alarm_inhibition_definition_2",
+  "links": [
+    {
+      "href": "http://192.168.10.6:8070/v2.0/alarm-inhibition-definitions/6592f80c-9864-4b3f-a38a-e66ffc4c8619",
+      "rel": "self"
+    }
+  ],
+  "equal": [
+    "alarmName",
+    "__metrics_definitions_hostname__"
+  ],
+  "target_match": [
+    "severity=LOW"
+  ],
+  "source_match": [
+    "alarmName=cpu_too_high",
+    "severity=CRITICAL"
+  ],
+  "id": "6592f80c-9864-4b3f-a38a-e66ffc4c8619"
+}
+```
+
+## Update Alarm Inhibition Definition
+Update/Replace the specified alarm inhibition definition.
+
+### PUT /v2.0/alarm-inhibition-definitions/{alarm_inhibition_definition_id}
+
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+* Content-Type (string, required) - application/json
+* Accept (string) - application/json
+
+#### Path Parameters
+* alarm_inhibition_definition_id (string, required)
+
+#### Query Parameters
+None.
+
+#### Request Body
+An alarm inhibition definition has the following properties:
+
+* name (string) - Name of alarm inhibition definition.
+* equal ([string(255)], required) - Array of keys by which incoming alarms are grouped together for inhibition.
+* source_match (string, required) - A dictionary specified as a comma separated array of (key, value) pairs. 
+* target_match (string, required) - A dictionary specified as a comma separated array of (key, value) pairs. Target matchers that have to be fulfilled in the alarms to be muted.
+* exclusions(string, optional) - A dictionary specified as a comma separated array of (key, value) pairs.
+
+#### Request Examples
+```
+PUT /v2.0/alarm-inhibition-definitions/6592f80c-9864-4b3f-a38a-e66ffc4c8619 HTTP/1.1
+Host: 192.168.10.4:8070
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+	"name": "alarm_inhibition_definition_2_update",
+	"equal": ["alarmName", "__metrics_name__"],
+	"source_match": {"severity": "CRITICAL", "alarmName": "mem_too_high"},
+	"target_match": {"severity": "LOW"}
+}
+```
+
+### Response
+#### Status Code
+* 200 - OK
+
+#### Response Body
+Returns a JSON alarm inhibition definition object with the following parameters:
+
+* id (string) - ID of alarm inhibition definition.
+* links ([link]) - Links to alarm inhibition definition.
+* name (string) - Name of alarm inhibition definition.
+* equal ([string(255)], required) - Array of keys by which incoming alarms are grouped together for inhibition.
+* source_match (string, required) - A dictionary specified as a comma separated array of (key, value) pairs. 
+* target_match (string, required) - A dictionary specified as a comma separated array of (key, value) pairs. Target matchers that have to be fulfilled in the alarms to be muted.
+* exclusions(string, optional) - A dictionary specified as a comma separated array of (key, value) pairs.
+
+#### Response Examples
+```
+{
+  "name": "alarm_inhibition_definition_2_update",
+  "links": [
+    {
+      "href": "http://192.168.10.6:8070/v2.0/alarm-inhibition-definitions/6592f80c-9864-4b3f-a38a-e66ffc4c8619/6592f80c-9864-4b3f-a38a-e66ffc4c8619",
+      "rel": "self"
+    }
+  ],
+  "equal": [
+    "alarmName",
+    "__metrics_name__"
+  ],
+  "target_match": [
+    "severity=LOW"
+  ],
+  "source_match": [
+    "alarmName=mem_too_high",
+    "severity=CRITICAL"
+  ],
+  "id": "6592f80c-9864-4b3f-a38a-e66ffc4c8619"
+}
+```
+
+## Patch Alarm Inhibition Definition
+### PATCH /v2.0/alarm-inhibition-definitions/{alarm_inhibition_definition_id}
+Update selected parameters of the specified alarm inhibition definition.
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+* Content-Type (string, required) - application/json
+* Accept (string) - application/json
+
+#### Path Parameters
+* alarm_inhibition_definition_id (string, required) - Alarm Inhibition Definition ID
+
+#### Query Parameters
+None.
+
+#### Request Body
+Consists of an alarm inhibition definition with the following properties:
+
+* name (string) - Name of alarm inhibition definition.
+* equal ([string(255)], required) - Array of keys by which incoming alarms are grouped together for inhibition.
+* source_match (string, required) - A dictionary specified as a comma separated array of (key, value) pairs. 
+* target_match (string, required) - A dictionary specified as a comma separated array of (key, value) pairs. Target matchers that have to be fulfilled in the alarms to be muted.
+* exclusions(string, optional) - A dictionary specified as a comma separated array of (key, value) pairs.
+
+Only the parameters that are specified will be updated. 
+
+#### Request Examples
+```
+PATCH /v2.0/alarm-inhibition-definitions/6592f80c-9864-4b3f-a38a-e66ffc4c8619 HTTP/1.1
+Host: 192.168.10.4:8070
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+	"name": "alarm_inhibition_definition_2_patch",
+	"equal": ["alarmName", "__metrics_name__", "__metrics_definitions_hostname__"]
+}
+```
+
+### Response
+#### Status Code
+* 200 - OK
+
+#### Response Body
+Returns a JSON alarm group definition object with the following fields:
+
+* id (string) - ID of alarm inhibition definition.
+* links ([link]) - Links to alarm inhibition definition.
+* name (string) - Name of alarm inhibition definition.
+* equal ([string(255)], required) - Array of keys by which incoming alarms are grouped together for inhibition.
+* source_match (string, required) - A dictionary specified as a comma separated array of (key, value) pairs. 
+* target_match (string, required) - A dictionary specified as a comma separated array of (key, value) pairs. Target matchers that have to be fulfilled in the alarms to be muted.
+* exclusions(string, optional) - A dictionary specified as a comma separated array of (key, value) pairs.
+
+#### Response Examples
+```
+{
+  "name": "alarm_inhibition_definition_2_patch",
+  "links": [
+    {
+      "href": "http://192.168.10.6:8070/v2.0/alarm-inhibition-definitions/6592f80c-9864-4b3f-a38a-e66ffc4c8619/6592f80c-9864-4b3f-a38a-e66ffc4c8619",
+      "rel": "self"
+    }
+  ],
+  "equal": [
+    "alarmName",
+    "__metrics_name__",
+    "__metrics_definitions_hostname__"
+  ],
+  "target_match": [
+    "severity=LOW"
+  ],
+  "source_match": [
+    "alarmName=mem_too_high",
+    "severity=CRITICAL"
+  ],
+  "id": "6592f80c-9864-4b3f-a38a-e66ffc4c8619"
+}
+```
+___
+
+## Delete Alarm Inhibition Definition
+Delete the specified alarm inhibition definition.
+
+### DELETE /v2.0/alarm-inhibition-definitions/{alarm_inhibition_definition_id}
+
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+
+#### Path Parameters
+* alarm_inhibition_definition_id (string, required) - Alarm Inhibition Definition ID
+
+#### Query Parameters
+None.
+
+#### Request Body
+None.
+
+#### Request Examples
+```
+DELETE /v2.0/alarm-inhibition-definitions/99fb8bf3-378b-45e8-9c55-aad1f1e488e1 HTTP/1.1
+Host: 192.168.10.4:8070
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Cache-Control: no-cache
+```
+
+### Response
+#### Status Code
+* 204 - No content
+
+#### Response Body
+None.
+___
+
 
 # License
-(C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
+(C) Copyright 2014-2017 Hewlett Packard Enterprise Development LP
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
