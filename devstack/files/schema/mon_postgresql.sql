@@ -1,5 +1,6 @@
 ---
 -- # Copyright 2017 FUJITSU LIMITED
+-- # (C) Copyright 2017 Hewlett Packard Enterprise Development LP
 ---
 
 SET statement_timeout = 0;
@@ -128,6 +129,18 @@ CREATE TABLE sub_alarm_definition_dimension (
     sub_alarm_definition_id character varying(36) NOT NULL
 );
 
+CREATE TABLE alarm_silencing_manager (
+    id character varying(36) NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    deleted_at timestamp without time zone,
+    name character varying(255) NOT NULL,
+    matchers character varying(255) NOT NULL,
+    start_time timestamp without time zone NOT NULL,
+    end_time timestamp without time zone NOT NULL,
+    tenant_id character varying(36) NOT NULL
+);
+
 ---
 -- primary keys
 ---
@@ -160,6 +173,9 @@ ALTER TABLE ONLY sub_alarm_definition
 
 ALTER TABLE ONLY sub_alarm
     ADD CONSTRAINT sub_alarm_pkey PRIMARY KEY (id);
+
+ALTER TABLE ONLY alarm_silencing_manager
+    ADD CONSTRAINT alarm_silencing_manager_pkey PRIMARY KEY (id);
 
 ---
 -- indexes
