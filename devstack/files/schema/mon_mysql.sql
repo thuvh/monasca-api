@@ -1,5 +1,5 @@
 /*
-* (C) Copyright 2015,2016 Hewlett Packard Enterprise Development LP
+* (C) Copyright 2015-2017 Hewlett Packard Enterprise Development LP
 * Copyright 2017 FUJITSU LIMITED
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -179,6 +179,23 @@ CREATE TABLE `sub_alarm` (
   CONSTRAINT `fk_sub_alarm_state` FOREIGN KEY (`state`) REFERENCES `alarm_state` (`name`),
   CONSTRAINT `fk_sub_alarm_expr` FOREIGN KEY (`sub_expression_id`) REFERENCES `sub_alarm_definition` (`id`)
 );
+
+CREATE TABLE `alarm_silence_definition` (
+  `rule_id` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `start_time` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `silence_duration` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT '10m',
+  PRIMARY KEY (`rule_id`),
+  CONSTRAINT `fk_alarm_silence_definition_id` FOREIGN KEY (`rule_id`) REFERENCES `alarm_rule_definition` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `alarm_silence_definition_matcher` (
+  `alarm_silence_definition_id` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `matcher_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `matcher_value` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`alarm_silence_definition_id`),
+  CONSTRAINT `fk_matcher_alarm_silence_definition_id` FOREIGN KEY (`alarm_silence_definition_id`) REFERENCES `alarm_rule_definition` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 
 SET foreign_key_checks = 1;
 

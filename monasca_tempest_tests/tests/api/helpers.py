@@ -1,4 +1,4 @@
-# (C) Copyright 2015 Hewlett Packard Enterprise Development Company LP
+# (C) Copyright 2015,2017 Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -93,6 +93,27 @@ def create_alarm_definition(name=None,
     return alarm_definition
 
 
+def create_silence_definition(name=None,
+                              description=None,
+                              matchers=None,
+                              silence_duration=None,
+                              start_time=None):
+    silence_definition = {}
+    if name is not None:
+        silence_definition['name'] = name
+    if description is not None:
+        silence_definition['description'] = description
+    if matchers is not None:
+        silence_definition['matchers'] = matchers
+    if silence_duration is not None:
+        silence_definition['silence_duration'] = silence_duration
+    if start_time is not None:
+        silence_definition['start_time'] = start_time
+    else:
+        silence_definition['start_time'] = "2017-04-10T10:42:10.685Z"
+    return silence_definition
+
+
 def delete_alarm_definitions(monasca_client):
     # Delete alarm definitions
     resp, response_body = monasca_client.list_alarm_definitions()
@@ -101,6 +122,16 @@ def delete_alarm_definitions(monasca_client):
         for element in elements:
             alarm_def_id = element['id']
             monasca_client.delete_alarm_definition(alarm_def_id)
+
+
+def delete_silence_definitions(monasca_client):
+    # Delete silence definitions
+    resp, response_body = monasca_client.list_silence_definitions()
+    elements = response_body['elements']
+    if elements:
+        for element in elements:
+            silence_def_id = element['id']
+            monasca_client.delete_silence_definition(silence_def_id)
 
 
 def timestamp_to_iso(timestamp):
