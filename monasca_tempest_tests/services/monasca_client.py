@@ -163,8 +163,21 @@ class MonascaClient(rest_client.RestClient):
         resp, response_body = self.post(uri, request_body)
         return resp, json.loads(response_body)
 
+    def create_silence_definitions(self, silence_definitions):
+        uri = 'alarm-silence-definitions'
+        request_body = json.dumps(silence_definitions)
+        resp, response_body = self.post(uri, request_body)
+        return resp, json.loads(response_body)
+
     def list_alarm_definitions(self, query_params=None):
         uri = 'alarm-definitions'
+        if query_params is not None:
+            uri = uri + query_params
+        resp, response_body = self.get(uri)
+        return resp, json.loads(response_body)
+
+    def list_silence_definitions(self, query_params=None):
+        uri = 'alarm-silence-definitions'
         if query_params is not None:
             uri = uri + query_params
         resp, response_body = self.get(uri)
