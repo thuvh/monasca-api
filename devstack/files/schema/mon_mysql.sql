@@ -180,6 +180,22 @@ CREATE TABLE `sub_alarm` (
   CONSTRAINT `fk_sub_alarm_expr` FOREIGN KEY (`sub_expression_id`) REFERENCES `sub_alarm_definition` (`id`)
 );
 
+CREATE TABLE `alarm_silence_definition` (
+  `rule_id` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `start_time` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `silence_duration` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT '10m',
+  PRIMARY KEY (`rule_id`),
+  CONSTRAINT `fk_rule_id` FOREIGN KEY (`rule_id`) REFERENCES `alarm_rule_definition` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `alarm_silence_definition_matcher` (
+  `alarm_silence_definition_id` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `matcher_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `matcher_value` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  CONSTRAINT `fk_matcher_alarm_silence_definition_id` FOREIGN KEY (`alarm_silence_definition_id`) REFERENCES `alarm_rule_definition` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
 SET foreign_key_checks = 1;
 
 /* provide data for enum tables */
