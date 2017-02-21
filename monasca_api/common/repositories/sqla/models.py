@@ -1,6 +1,6 @@
 # Copyright 2015 Robin Hood
 # Copyright 2016 FUJITSU LIMITED
-# (C) Copyright 2016 Hewlett Packard Enterprise Development LP
+# (C) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -135,6 +135,21 @@ def create_sad_model(metadata=None):
                  Column('is_deterministic', Boolean),
                  Column('created_at', DateTime),
                  Column('updated_at', DateTime))
+
+
+def create_asdm_model(metadata=None):
+    return Table('alarm_silence_definition_matcher', metadata,
+                 Column('alarm_silence_definition_id', String(36)),
+                 Column('matcher_name', String(36)),
+                 Column('matcher_value', String(36)))
+
+
+def create_asd_model(metadata=None):
+    return Table('alarm_silence_definition', metadata,
+                 Column('rule_id', String(36)),
+                 Column('matchers', String(255)),
+                 Column('start_time', DateTime),
+                 Column('silence_duration', String(10)))
 
 
 class group_concat(expression.ColumnElement):

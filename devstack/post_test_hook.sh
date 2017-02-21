@@ -97,6 +97,9 @@ set_tempest_conf
 (cd $TEMPEST_DIR; testr list-tests monasca_tempest_tests > monasca_tempest_tests)
 (cd $TEMPEST_DIR; cat monasca_tempest_tests)
 (cd $TEMPEST_DIR; cat monasca_tempest_tests | grep gate > monasca_tempest_tests_gate)
+if [[ "${MONASCA_API_IMPLEMENTATION_LANG,,}" == 'python' ]]; then
+    (cd $TEMPEST_DIR; cat monasca_tempest_tests | grep python_only >> monasca_tempest_tests_gate)
+fi
 (cd $TEMPEST_DIR; testr run --subunit --load-list=monasca_tempest_tests_gate | subunit-trace --fails)
 
 
