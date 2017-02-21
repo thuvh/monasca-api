@@ -163,8 +163,21 @@ class MonascaClient(rest_client.RestClient):
         resp, response_body = self.post(uri, request_body)
         return resp, json.loads(response_body)
 
+    def create_silence_definitions(self, silence_definitions):
+        uri = 'alarm-silence-definitions'
+        request_body = json.dumps(silence_definitions)
+        resp, response_body = self.post(uri, request_body)
+        return resp, json.loads(response_body)
+
     def list_alarm_definitions(self, query_params=None):
         uri = 'alarm-definitions'
+        if query_params is not None:
+            uri = uri + query_params
+        resp, response_body = self.get(uri)
+        return resp, json.loads(response_body)
+
+    def list_silence_definitions(self, query_params=None):
+        uri = 'alarm-silence-definitions'
         if query_params is not None:
             uri = uri + query_params
         resp, response_body = self.get(uri)
@@ -175,8 +188,18 @@ class MonascaClient(rest_client.RestClient):
         resp, response_body = self.get(uri)
         return resp, json.loads(response_body)
 
+    def get_silence_definition(self, id):
+        uri = 'alarm-silence-definitions/' + id
+        resp, response_body = self.get(uri)
+        return resp, json.loads(response_body)
+
     def delete_alarm_definition(self, id):
         uri = 'alarm-definitions/' + id
+        resp, response_body = self.delete(uri)
+        return resp, response_body
+
+    def delete_silence_definition(self, id):
+        uri = 'alarm-silence-definitions/' + id
         resp, response_body = self.delete(uri)
         return resp, response_body
 
@@ -196,6 +219,23 @@ class MonascaClient(rest_client.RestClient):
         request_body['alarm_actions'] = alarm_actions
         request_body['ok_actions'] = ok_actions
         request_body['undetermined_actions'] = undetermined_actions
+
+        for key, value in kwargs.iteritems():
+            request_body[key] = value
+
+        resp, response_body = self.put(uri, json.dumps(request_body))
+        return resp, json.loads(response_body)
+
+    def update_silence_definition(self, id, name, description, matchers,
+                                  start_time, silence_duration,
+                                  **kwargs):
+        uri = 'alarm-silence-definitions/' + id
+        request_body = {}
+        request_body['name'] = name
+        request_body['description'] = description
+        request_body['matchers'] = matchers
+        request_body['silence_duration'] = silence_duration
+        request_body['start_time'] = start_time
 
         for key, value in kwargs.iteritems():
             request_body[key] = value
