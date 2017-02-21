@@ -357,6 +357,71 @@ Document Version: v2.0
       - [Status Code](#status-code-26)
       - [Response Body](#response-body-28)
       - [Response Examples](#response-examples-24)
+- [Alarm Silence Definitions](#alarm-silence-definitions)
+  - [Create Alarm Silence Definition](#create-alarm-silence-definition)
+    - [POST /v2.0/alarm-silence-definitions](#post-v20alarm-silence-definitions)
+      - [Headers](#headers-29)
+      - [Path Parameters](#path-parameters-28)
+      - [Query Parameters](#query-parameters-29)
+      - [Request Body](#request-body-29)
+      - [Request Examples](#request-examples-25)
+    - [Response](#response-29)
+      - [Status Code](#status-code-27)
+      - [Response Body](#response-body-29)
+      - [Response Examples](#response-examples-25)
+  - [List Alarm Silence Definitions](#list-alarm-silence-definitions)
+    - [GET /v2.0/alarm-silence-definitions](#get-v20alarm-silence-definitions)
+      - [Headers](#headers-30)
+      - [Path Parameters](#path-parameters-29)
+      - [Query Parameters](#query-parameters-30)
+      - [Request Body](#request-body-30)
+      - [Request Examples](#request-examples-26)
+    - [Response](#response-30)
+      - [Status Code](#status-code-28)
+      - [Response Body](#response-body-30)
+      - [Response Examples](#response-examples-26)
+  - [Get Alarm Silence Definition](#get-alarm-silence-definition)
+    - [GET /v2.0/alarm-silence-definitions/{alarm_silence_definition_id}](#get-v20alarm-silence-definitionsalarm_silence_definition_id)
+      - [Headers](#headers-31)
+      - [Path Parameters](#path-parameters-30)
+      - [Query Parameters](#query-parameters-31)
+      - [Request Body](#request-body-31)
+    - [Response](#response-31)
+      - [Status Code](#status-code-29)
+      - [Response Body](#response-body-31)
+      - [Response Examples](#response-examples-27)
+  - [Update Alarm Silence Definition](#update-alarm-silence-definition)
+    - [PUT /v2.0/alarm-silence-definitions/{alarm_silence_definition_id}](#put-v20alarm-silence-definitionsalarm_silence_definition_id)
+      - [Headers](#headers-32)
+      - [Path Parameters](#path-parameters-31)
+      - [Query Parameters](#query-parameters-32)
+      - [Request Body](#request-body-32)
+      - [Request Examples](#request-examples-27)
+    - [Response](#response-32)
+      - [Status Code](#status-code-30)
+      - [Response Body](#response-body-32)
+      - [Response Examples](#response-examples-28)
+  - [Patch Alarm Silence Definition](#patch-alarm-silence-definition)
+    - [PATCH /v2.0/alarm-silence-definitions/{alarm_silence_definition_id}](#patch-v20alarm-silence-definitionsalarm_silence_definition_id)
+      - [Headers](#headers-33)
+      - [Path Parameters](#path-parameters-32)
+      - [Query Parameters](#query-parameters-33)
+      - [Request Body](#request-body-33)
+      - [Request Examples](#request-examples-28)
+    - [Response](#response-33)
+      - [Status Code](#status-code-31)
+      - [Response Body](#response-body-33)
+      - [Response Examples](#response-examples-29)
+  - [Delete Alarm Silence Definition](#delete-alarm-silence-definition)
+    - [DELETE /v2.0/alarm-silence-definitions/{alarm_silence_definition_id}](#delete-v20alarm-silence-definitionsalarm_silence_definition_id)
+      - [Headers](#headers-34)
+      - [Path Parameters](#path-parameters-33)
+      - [Query Parameters](#query-parameters-34)
+      - [Request Body](#request-body-34)
+      - [Request Examples](#request-examples-29)
+    - [Response](#response-34)
+      - [Status Code](#status-code-32)
+      - [Response Body](#response-body-34)
 - [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -3548,6 +3613,416 @@ Returns a JSON object with a 'links' array of links and an 'elements' array of a
 
 ```
 ___
+
+___
+___
+___
+___
+___
+___
+___
+___
+___
+# Alarm Silence Definitions
+Operations for working with alarm silence definitions.
+
+## Create Alarm Silence Definition
+Create an alarm silence definition.
+
+### POST /v2.0/alarm-silence-definitions
+
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+* Accept (string) - application/json
+
+#### Path Parameters
+None.
+
+#### Query Parameters
+None.
+
+#### Request Body
+Consists of an alarm silence definition. An alarm has the following properties:
+
+* name (string(255), required) - A name of the alarm. Note, the name must be unique.
+* description (string(255), optional) - A description of a silence definition.
+* matchers ({string(255), string(255)}, required) - A dictionary of (key, value) pairs. An alarm is silenced if it matches all key value pairs.
+* start_time (string, optional) - The start time in ISO 8601 combined date and time format in UTC. Any alarm state transition before this time will not be silenced. Defaults to the current time.
+* silence_duration (string, optional) - The length of time the silence should effect alarm state transitions. Defaults to '10m'
+
+#### Request Examples
+```
+POST /v2.0/alarm-silence-definitions HTTP/1.1
+Host: 192.168.10.4:8070
+Content-Type: application/json
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Cache-Control: no-cache
+
+{
+	"name": "alarm_silence_definition_1",
+        "description": "Silence cpu too high on host1"
+        "matchers": {"alarmName": "cpu_too_high", "__hostName__": "host1"}
+}
+
+```
+
+### Response
+#### Status Code
+* 201 - Created
+
+#### Response Body
+Returns a JSON object of alarm silence definition objects with the following fields:
+
+* id (string) - ID of alarm silence definition.
+* links ([link]) - Links to alarm silence definition.
+* name (string) - Name of alarm silence definition.
+* description (string) - A description of a silence definition.
+* matchers ({string, string}) - An alarm is silenced if it matches all key value pairs.
+* start_time (string) - The start time in ISO 8601 combined date and time format in UTC. Any alarm state transition before this time will not be silenced.
+* silence_duration (string) - The length of time the silence should effect alarm state transitions.
+
+#### Response Examples
+```
+{
+	"name": "alarm_silence_definition_1",
+        "description": "Silence cpu too high on host1"
+        "matchers": {
+            "alarmName: "cpu_too_high",
+            "__hostName__": "host1"
+        },
+        "silence_duration": "10m",
+        "start_time": "2017-04-10T10:42:10.685Z"
+}
+```
+___
+## List Alarm Silence Definitions
+List alarm silence definitions.
+
+### GET /v2.0/alarm-silence-definitions
+
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+* Accept (string) - application/json
+
+#### Path Parameters
+None.
+
+#### Query Parameters
+* name (string(255), optional) - Name of alarm silence definition to filter by.
+* offset (integer, optional)
+* limit (integer, optional)
+
+#### Request Body
+None.
+
+#### Request Examples
+```
+GET /v2.0/alarm-silence-definitions?name=alarm_silence_definition HTTP/1.1
+Host: 192.168.10.4:8070
+Content-Type: application/json
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Cache-Control: no-cache
+```
+
+### Response
+#### Status Code
+* 200 - OK
+
+#### Response Body
+Returns a JSON object with a 'links' array of links and an 'elements' array of alarm objects with the following fields:
+
+* id (string) - ID of alarm silence definition.
+* links ([link]) - Links to alarm silence definition.
+* name (string) - Name of alarm silence definition.
+* description (string) - A description of a silence definition.
+* matchers ({string(255), string(255)}, required) - A dictionary of (key, value) pairs. An alarm is silenced if it matches all key value pairs.
+* start_time (string) - The start time in ISO 8601 combined date and time format in UTC. Any alarm state transition before this time will not be silenced.
+* silence_duration (string) - The length of time the silence should effect alarm state transitions.
+
+#### Response Examples
+```
+{
+  "links": [
+    {
+      "href": "http://192.168.10.6:8070/v2.0/alarm-silence-definitions/1dfe8b9a-7210-44f1-91f7-2f503b983b35",
+      "rel": "self"
+    },
+    {
+      "href": "http://192.168.10.6:8070/v2.0/alarm-silence-definitions/6812962c-5424-44d1-a39e-6c3b424f1efb",
+      "rel": "self"
+    }
+  ],
+  "elements": [
+    {
+      "name": "alarm_silence_definition_1",
+      "description": "Silence cpu too high on host1",
+      "matchers": {
+        "alarmName: "cpu_too_high",
+        "__hostName__": "host1"
+      },
+      "silence_duration": "10m",
+      "start_time": "2017-04-10T10:42:10.685Z"
+    },
+    {
+      "name": "alarm_silence_definition_2",
+      "description": "Silence cpu too high on host3"
+      "matchers": {
+        "alarmName: "cpu_too_high",
+        "__hostName__": "host3"
+      },
+      "silence_duration": "10m",
+      "start_time": "2017-04-10T10:42:10.685Z"
+    }
+  ]
+}
+```
+___
+
+## Get Alarm Silence Definition
+Get the specified alarm silence definition.
+
+### GET /v2.0/alarm-silence-definitions/{alarm_silence_definition_id}
+
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+* Accept (string) - application/json
+
+#### Path Parameters
+* alarm_silence_definition_id (string, required) - Alarm Silence Definition ID
+
+#### Query Parameters
+None.
+
+#### Request Body
+None.
+
+### Response
+#### Status Code
+* 200 - OK
+
+#### Response Body
+Returns a JSON alarm silence definition object with the following fields:
+
+* id (string) - ID of alarm silence definition.
+* links ([link]) - Links to alarm silence definition.
+* name (string) - Name of alarm silence definition.
+* matchers ({string(255), string(255)}, required) - A dictionary of (key, value) pairs. An alarm is silenced if it matches all key value pairs.
+* description (string) - A description of a silence definition.
+* start_time (string) - The start time in ISO 8601 combined date and time format in UTC. Any alarm state transition before this time will not be silenced.
+* silence_duration (string) - The length of time the silence should effect alarm state transitions.
+
+#### Response Examples
+```
+{
+  "name": "alarm_silence_definition_1",
+  "description": "Silence cpu too high on host1",
+  "links": [
+    {
+      "href": "http://192.168.10.6:8070/v2.0/alarm-silence-definitions/1dfe8b9a-7210-44f1-91f7-2f503b983b35",
+      "rel": "self"
+    }
+  ],
+  "matchers": {
+    "alarmName: "cpu_too_high",
+    "__hostName__": "host1"
+  },
+  "silence_duration": "10m",
+  "start_time": "2017-04-10T10:42:10.685Z"
+}
+```
+___
+
+## Update Alarm Silence Definition
+Update/Replace the specified alarm silence definition.
+
+### PUT /v2.0/alarm-silence-definitions/{alarm_silence_definition_id}
+
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+* Content-Type (string, required) - application/json
+* Accept (string) - application/json
+
+#### Path Parameters
+* alarm_silence_definition_id (string, required)
+
+#### Query Parameters
+None.
+
+#### Request Body
+An alarm silence definition has the following properties:
+
+* id (string) - ID of alarm silence definition.
+* name (string(255), required) - A unique name of the alarm. Note, the name must be unique.
+* description (string(255), required) - A description of a silence definition.
+* matchers ({string(255), string(255)}, required) - A dictionary of (key, value) pairs. An alarm is silenced if it matches all key value pairs. This MUST be the same as the existing value for matchers.
+* start_time (string, required) - The start time in ISO 8601 combined date and time format in UTC. Any alarm state transition before this time will not be silenced. Defaults to the current time.
+* silence_duration (string, required) - The length of time the silence should effect alarm state transitions. Defaults to '10m'
+
+#### Request Examples
+```
+PUT /v2.0/alarm-silence-definitions/f9935bcc-9641-4cbf-8224-0993a947ea83 HTTP/1.1
+Host: 192.168.10.4:8070
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Content-Type: application/json
+Cache-Control: no-cache
+
+```
+{
+        "id": "1dfe8b9a-7210-44f1-91f7-2f503b983b35",
+	"name": "updated_alarm_silence_definition_1",
+        "matchers": {"alarmName": "cpu_too_high", "__hostName__": "host1"}
+        "description": "Silence cpu too high on host1"
+        "silence_duration": "1d4h",
+        "start_time": "2017-04-11T10:42:10.685Z"
+}
+```
+
+### Response
+#### Status Code
+* 200 - OK
+
+#### Response Body
+Returns a JSON alarm silence definition object with the following parameters:
+
+* id (string) - ID of alarm silence definition.
+* links ([link]) - Links to alarm silence definition.
+* name (string) - Name of alarm silence definition.
+* description (string) - A description of a silence definition.
+* matchers ({string(255), string(255)}) - An alarm is silenced if it matches all key value pairs.
+* start_time (string) - The start time in ISO 8601 combined date and time format in UTC. Any alarm state transition before this time will not be silenced.
+* silence_duration (string) - The length of time the silence should effect alarm state transitions.
+
+#### Response Examples
+```
+{
+  "name": "updated_alarm_silence_definition_1",
+  "description": "Silence cpu too high on host1",
+  "links": [
+    {
+      "href": "http://192.168.10.6:8070/v2.0/alarm-silence-definitions/1dfe8b9a-7210-44f1-91f7-2f503b983b35",
+      "rel": "self"
+    }
+  ],
+  "matchers": [
+    "alarmName=cpu_too_high",
+    "__hostName__=host1"
+  ],
+  "silence_duration": "1d4h",
+  "start_time": "2017-04-11T10:42:10.685Z"
+}
+```
+
+___
+
+## Patch Alarm Silence Definition
+### PATCH /v2.0/alarm-silence-definitions/{alarm_silence_definition_id}
+Update selected parameters of the specified alarm silence definition.
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+* Content-Type (string, required) - application/json
+* Accept (string) - application/json
+
+#### Path Parameters
+* alarm_silence_definition_id (string, required) - Alarm Silence Definition ID
+
+#### Query Parameters
+None.
+
+#### Request Body
+Consists of an alarm silence definition with the following properties:
+
+* name (string(255), optional) - A unique name of the alarm. Note, the name must be unique.
+* description (string(255), optional) - A description of a silence definition.
+* matchers ({string(255), string(255)}, required) - A dictionary of (key, value) pairs. An alarm is silenced if it matches all key value pairs. If specified, this MUST be the same as the existing value for
+* start_time (string, optional) - The start time in ISO 8601 combined date and time format in UTC. Any alarm state transition before this time will not be silenced. Defaults to the current time.
+* silence_duration (string, optional) - The length of time the silence should effect alarm state transitions. Defaults to '10m'
+
+Only the parameters that are specified will be updated.
+
+#### Request Examples
+```
+PATCH /v2.0/alarm-silence-definitions/f9935bcc-9641-4cbf-8224-0993a947ea83 HTTP/1.1
+Host: 192.168.10.4:8070
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+        "id": "1dfe8b9a-7210-44f1-91f7-2f503b983b35",
+	"name": "patched_alarm_silence_definition_1",
+        "description": "Silence cpu too high on host1"
+        "silence_duration": "1d4h",
+}
+```
+
+### Response
+#### Status Code
+* 200 - OK
+
+#### Response Body
+Returns a JSON alarm silence definition object with the following fields:
+
+* id (string) - ID of alarm silence definition.
+* links ([link]) - Links to alarm silence definition.
+* name (string) - Name of alarm silence definition.
+* description (string) - A description of a silence definition.
+* matchers ({string(255), string(255)}) - An alarm is silenced if it matches all key value pairs.
+* start_time (string) - The start time in ISO 8601 combined date and time format in UTC. Any alarm state transition before this time will not be silenced.
+* silence_duration (string) - The length of time the silence should effect alarm state transitions.
+
+#### Response Examples
+```
+{
+  "name": "patched_alarm_silence_definition_1",
+  "description": "Silence cpu too high on host1",
+  "links": [
+    {
+      "href": "http://192.168.10.6:8070/v2.0/alarm-silence-definitions/1dfe8b9a-7210-44f1-91f7-2f503b983b35",
+      "rel": "self"
+    }
+  ],
+  "matchers": [
+    "alarmName=cpu_too_high",
+    "__hostName__=host1"
+  ],
+  "silence_duration": "1d4h",
+  "start_time": "2017-04-10T10:42:10.685Z"
+}
+```
+___
+
+## Delete Alarm Silence Definition
+Delete the specified alarm silence definition.
+
+### DELETE /v2.0/alarm-silence-definitions/{alarm_silence_definition_id}
+
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+
+#### Path Parameters
+* alarm_silence_definition_id (string, required) - Alarm Silence Definition ID
+
+#### Query Parameters
+None.
+
+#### Request Body
+None.
+
+#### Request Examples
+```
+DELETE /v2.0/alarm-silence-definitions/b461d659-577b-4d63-9782-a99194d4a472 HTTP/1.1
+Host: 192.168.10.4:8070
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Cache-Control: no-cache
+```
+
+### Response
+#### Status Code
+* 204 - No content
+
+#### Response Body
+None.
+
 
 # License
 (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
