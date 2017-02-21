@@ -1,5 +1,6 @@
 ---
 -- # Copyright 2017 FUJITSU LIMITED
+-- # (C) Copyright 2017 Hewlett Packard Enterprise Development LP
 ---
 
 SET statement_timeout = 0;
@@ -128,6 +129,23 @@ CREATE TABLE sub_alarm_definition_dimension (
     sub_alarm_definition_id character varying(36) NOT NULL
 );
 
+CREATE TABLE alarm_silence_definition (
+    tenant_id character varying(36) NOT NULL,
+    id character varying(36) NOT NULL,
+    name character varying(255) NOT NULL,
+    start_time character varying(36) NOT NULL,
+    silence_duration character varying(10) NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    deleted_at timestamp without time zone,
+);
+
+CREATE TABLE alarm_silence_definition_matcher (
+    alarm_silence_definition_id character varying(36) NOT NULL,
+    matcher_name character varying(36) NOT NULL,
+    matcher_value character varying(36) NOT NULL
+);
+
 ---
 -- primary keys
 ---
@@ -160,6 +178,9 @@ ALTER TABLE ONLY sub_alarm_definition
 
 ALTER TABLE ONLY sub_alarm
     ADD CONSTRAINT sub_alarm_pkey PRIMARY KEY (id);
+
+ALTER TABLE ONLY alarm_silencing_manager
+    ADD CONSTRAINT alarm_silencing_manager_pkey PRIMARY KEY (id);
 
 ---
 -- indexes
@@ -209,6 +230,10 @@ ALTER TABLE ONLY alarm_definition
 
 ALTER TABLE ONLY notification_method
     ADD CONSTRAINT fk_alarm_noticication_method_type FOREIGN KEY (type) REFERENCES notification_method_type (name);
+
+ALTER TABLE ONLY alarm_silence_definition_matcher
+    ADD CONSTRAINT fk_matcher_alarm_silence_definition_id FOREIGN KEY (alarm_silence_definition_id)
+    REFERENCES alarm_silence_definition(id);
 
 ---
 -- data for enum tables
