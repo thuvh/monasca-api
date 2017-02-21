@@ -180,6 +180,28 @@ CREATE TABLE `sub_alarm` (
   CONSTRAINT `fk_sub_alarm_expr` FOREIGN KEY (`sub_expression_id`) REFERENCES `sub_alarm_definition` (`id`)
 );
 
+CREATE TABLE `alarm_silence_definition` (
+  `id` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tenant_id` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `start_time` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `silence_duration` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT '10m',
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `deleted_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `tenant_id` (`tenant_id`),
+  KEY `deleted_at` (`deleted_at`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `alarm_silence_definition_matcher` (
+  `alarm_silence_definition_id` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `matcher_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `matcher_value` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  CONSTRAINT `fk_matcher_alarm_silence_definition_id` FOREIGN KEY (`alarm_silence_definition_id`) REFERENCES `alarm_silence_definition` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
 SET foreign_key_checks = 1;
 
 /* provide data for enum tables */
