@@ -75,11 +75,6 @@ else
 
 fi
 
-# db users
-MON_DB_USERS=($MONASCA_API_DATABASE_USER $MONASCA_THRESH_DATABASE_USER $MONASCA_NOTIFICATION_DATABASE_USER)
-MON_DB_HOSTS=("%" "localhost" "$DATABASE_HOST" "$MYSQL_HOST")
-MON_DB_HOSTS=$(echo "${MON_DB_HOSTS[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' ')
-
 function pre_install_monasca {
     echo_summary "Pre-Installing Monasca Components"
     install_git
@@ -687,11 +682,7 @@ function install_schema_alarm_database {
     elif is_service_enabled postgresql; then
         sudo -u root sudo -u postgres -i psql -d $databaseName -f $MONASCA_SCHEMA_DIR/mon.sql
     fi
-
-    # for postgres, creating users must be after schema has been deployed
-    recreate_users $databaseName MON_DB_USERS MON_DB_HOSTS
 }
-
 
 function clean_schema {
 
@@ -834,7 +825,7 @@ function install_monasca_api_java {
         s|%KAFKA_HOST%|$SERVICE_HOST|g;
         s|%MONASCA_DATABASE_USE_ORM%|$MONASCA_DATABASE_USE_ORM|g;
         s|%MONASCA_API_DATABASE_ENGINE%|$dbEngine|g;
-        s|%MONASCA_API_DATABASE_USER%|$MONASCA_API_DATABASE_USER|g;
+        s|%DATABASE_USER%|$DATABASE_USER|g;
         s|%DATABASE_HOST%|$DATABASE_HOST|g;
         s|%DATABASE_PORT%|$dbPort|g;
         s|%MYSQL_HOST%|$MYSQL_HOST|g;
@@ -927,7 +918,7 @@ function install_monasca_api_python {
     else
         dbMetricDriver="monasca_api.common.repositories.influxdb.metrics_repository:MetricsRepository"
     fi
-    dbAlarmUrl=`get_database_type_$DATABASE_TYPE`://$MONASCA_API_DATABASE_USER:$DATABASE_PASSWORD@$DATABASE_HOST/mon
+    dbAlarmUrl=`database_connection_url mon`
 
     sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/api-config.conf /etc/monasca/api-config.conf
     sudo chown mon-api:root /etc/monasca/api-config.conf
@@ -951,7 +942,7 @@ function install_monasca_api_python {
         s|%KEYSTONE_SERVICE_PORT%|$KEYSTONE_SERVICE_PORT|g;
         s|%DATABASE_HOST%|$DATABASE_HOST|g;
         s|%DATABASE_PASSWORD%|$DATABASE_PASSWORD|g;
-        s|%MONASCA_API_DATABASE_USER%|$MONASCA_API_DATABASE_USER|g;
+        s|%DATABASE_USER%|$DATABASE_USER|g;
         s|%MONASCA_API_DATABASE_URL%|$dbAlarmUrl|g;
         s|%MONASCA_METRIC_DATABASE_DRIVER%|$dbMetricDriver|g;
         s|%CASSANDRA_HOST%|$SERVICE_HOST|g;
@@ -1316,7 +1307,7 @@ function install_monasca_notification {
         s|%DATABASE_HOST%|$DATABASE_HOST|g;
         s|%DATABASE_PORT%|$dbPort|g;
         s|%DATABASE_PASSWORD%|$DATABASE_PASSWORD|g;
-        s|%MONASCA_NOTIFICATION_DATABASE_USER%|$MONASCA_NOTIFICATION_DATABASE_USER|g;
+        s|%DATABASE_USER%|$DATABASE_USER|g;
         s|%MONASCA_NOTIFICATION_DATABASE_DRIVER%|$dbDriver|g;
         s|%MONASCA_NOTIFICATION_DATABASE_ENGINE%|$dbEngine|g;
         s|%KAFKA_HOST%|$SERVICE_HOST|g;
@@ -1508,7 +1499,7 @@ function install_monasca_thresh {
     sudo sed -e "
         s|%KAFKA_HOST%|$SERVICE_HOST|g;
         s|%MONASCA_THRESH_DATABASE_ENGINE%|$dbEngine|g;
-        s|%MONASCA_THRESH_DATABASE_USER%|$MONASCA_THRESH_DATABASE_USER|g;
+        s|%DATABASE_USER%|$DATABASE_USER|g;
         s|%MONASCA_DATABASE_USE_ORM%|$MONASCA_DATABASE_USE_ORM|g;
         s|%DATABASE_TYPE%|$DATABASE_TYPE|g;
         s|%DATABASE_HOST%|$DATABASE_HOST|g;
