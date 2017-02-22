@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da36d5c6_27de7f11",
+        "filename": "devstack/files/schema/mon_mysql.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-02-22T16:00:52Z",
+      "side": 1,
+      "message": "Copyright",
+      "range": {
+        "startLine": 2,
+        "startChar": 21,
+        "endLine": 2,
+        "endChar": 25
+      },
+      "revId": "a073205fc9f4f2e9faa0f8d92f8ce87d2394472b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da36d5c6_67831705",
+        "filename": "devstack/files/schema/mon_mysql.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-02-22T16:00:52Z",
+      "side": 1,
+      "message": "Remove",
+      "range": {
+        "startLine": 186,
+        "startChar": 58,
+        "endLine": 186,
+        "endChar": 68
+      },
+      "revId": "a073205fc9f4f2e9faa0f8d92f8ce87d2394472b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da36d5c6_a7a42fa6",
+        "filename": "devstack/files/schema/mon_mysql.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-02-22T16:00:52Z",
+      "side": 1,
+      "message": "Remove",
+      "range": {
+        "startLine": 198,
+        "startChar": 65,
+        "endLine": 198,
+        "endChar": 75
+      },
+      "revId": "a073205fc9f4f2e9faa0f8d92f8ce87d2394472b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da36d5c6_87b48bd1",
+        "filename": "devstack/files/schema/mon_mysql.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-02-22T16:00:52Z",
+      "side": 1,
+      "message": "Remove",
+      "range": {
+        "startLine": 205,
+        "startChar": 65,
+        "endLine": 205,
+        "endChar": 75
+      },
+      "revId": "a073205fc9f4f2e9faa0f8d92f8ce87d2394472b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da36d5c6_6736b753",
+        "filename": "monasca_api/common/repositories/alarm_inhibition_managers_repository.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-02-22T16:00:52Z",
+      "side": 1,
+      "message": "You are missing get_alarm_inhibition_manager",
+      "revId": "a073205fc9f4f2e9faa0f8d92f8ce87d2394472b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da36d5c6_4767f324",
+        "filename": "monasca_api/v2/reference/alarm_inhibition_managers.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-02-22T16:00:52Z",
+      "side": 1,
+      "message": "These are all basically the same, can you have one method that you pass parameters to so you can reduce the amount of code?",
+      "range": {
+        "startLine": 355,
+        "startChar": 0,
+        "endLine": 416,
+        "endChar": 75
+      },
+      "revId": "a073205fc9f4f2e9faa0f8d92f8ce87d2394472b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
