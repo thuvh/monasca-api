@@ -298,6 +298,30 @@
     },
     {
       "key": {
+        "uuid": "da36d5c6_63ae7499",
+        "filename": "monasca_api/common/repositories/sqla/alarm_grouping_managers_repository.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-02-23T19:53:36Z",
+      "side": 1,
+      "message": "I just realized it did throw an exception but it\u0027s in self._get_alarm_grouping_manager(). If original row is empty, it will throw exceptions.DoesNotExistException.",
+      "parentUuid": "da36d5c6_570133ae",
+      "range": {
+        "startLine": 178,
+        "startChar": 12,
+        "endLine": 178,
+        "endChar": 24
+      },
+      "revId": "71ef0e50396dcc0f6265628659b8ba38edc206dd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da36d5c6_b2ee4b89",
         "filename": "monasca_api/common/repositories/sqla/alarm_grouping_managers_repository.py",
         "patchSetId": 9
