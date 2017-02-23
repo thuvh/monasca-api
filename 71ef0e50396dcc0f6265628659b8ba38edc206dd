@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "da36d5c6_c9c82d25",
+        "filename": "devstack/files/schema/mon_mysql.sql",
+        "patchSetId": 9
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-02-23T17:43:08Z",
+      "side": 1,
+      "message": "10",
+      "range": {
+        "startLine": 188,
+        "startChar": 23,
+        "endLine": 188,
+        "endChar": 24
+      },
+      "revId": "71ef0e50396dcc0f6265628659b8ba38edc206dd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da36d5c6_923067ea",
         "filename": "devstack/files/schema/mon_mysql.sql",
         "patchSetId": 9
@@ -64,6 +87,52 @@
         "startChar": 67,
         "endLine": 208,
         "endChar": 78
+      },
+      "revId": "71ef0e50396dcc0f6265628659b8ba38edc206dd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da36d5c6_11f1a795",
+        "filename": "devstack/files/schema/mon_postgresql.sql",
+        "patchSetId": 9
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-02-23T17:43:08Z",
+      "side": 1,
+      "message": "change to 10",
+      "range": {
+        "startLine": 139,
+        "startChar": 32,
+        "endLine": 139,
+        "endChar": 35
+      },
+      "revId": "71ef0e50396dcc0f6265628659b8ba38edc206dd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da36d5c6_240c903a",
+        "filename": "devstack/files/schema/mon_postgresql.sql",
+        "patchSetId": 9
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-02-23T17:43:08Z",
+      "side": 1,
+      "message": "10",
+      "range": {
+        "startLine": 140,
+        "startChar": 38,
+        "endLine": 140,
+        "endChar": 39
       },
       "revId": "71ef0e50396dcc0f6265628659b8ba38edc206dd",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
@@ -111,6 +180,30 @@
     },
     {
       "key": {
+        "uuid": "da36d5c6_97064bcc",
+        "filename": "monasca_api/common/repositories/alarm_grouping_managers_repository.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-02-23T17:43:08Z",
+      "side": 1,
+      "message": "Yes definitely! That will be the get_alarm_grouping_manager with id as parameter. I already implemented that in sqla/alarm_grouping_managers_repository.py but forgot to put an abstract method here. Will add it on next patch set! Thanks!",
+      "parentUuid": "da36d5c6_b2372baf",
+      "range": {
+        "startLine": 32,
+        "startChar": 8,
+        "endLine": 32,
+        "endChar": 35
+      },
+      "revId": "71ef0e50396dcc0f6265628659b8ba38edc206dd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da36d5c6_2d3bdad2",
         "filename": "monasca_api/common/repositories/sqla/alarm_grouping_managers_repository.py",
         "patchSetId": 9
@@ -122,6 +215,30 @@
       "writtenOn": "2017-02-21T22:12:13Z",
       "side": 1,
       "message": "This name is really hard to distiguish from delete_agma_query",
+      "range": {
+        "startLine": 110,
+        "startChar": 13,
+        "endLine": 110,
+        "endChar": 30
+      },
+      "revId": "71ef0e50396dcc0f6265628659b8ba38edc206dd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da36d5c6_8960f5d0",
+        "filename": "monasca_api/common/repositories/sqla/alarm_grouping_managers_repository.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-02-23T17:43:08Z",
+      "side": 1,
+      "message": "Yeah I agree. How about self.delete_agm_action_query and self.delete_agm_exclusion_query?",
+      "parentUuid": "da36d5c6_2d3bdad2",
       "range": {
         "startLine": 110,
         "startChar": 13,
@@ -157,6 +274,30 @@
     },
     {
       "key": {
+        "uuid": "da36d5c6_570133ae",
+        "filename": "monasca_api/common/repositories/sqla/alarm_grouping_managers_repository.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-02-23T17:43:08Z",
+      "side": 1,
+      "message": "It should throw an exception here! Will add it in next patch set! Thank you!",
+      "parentUuid": "da36d5c6_b2180b86",
+      "range": {
+        "startLine": 178,
+        "startChar": 12,
+        "endLine": 178,
+        "endChar": 24
+      },
+      "revId": "71ef0e50396dcc0f6265628659b8ba38edc206dd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da36d5c6_b2ee4b89",
         "filename": "monasca_api/common/repositories/sqla/alarm_grouping_managers_repository.py",
         "patchSetId": 9
@@ -180,6 +321,76 @@
     },
     {
       "key": {
+        "uuid": "da36d5c6_97bbabe4",
+        "filename": "monasca_api/common/repositories/sqla/alarm_grouping_managers_repository.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-02-23T17:43:08Z",
+      "side": 1,
+      "message": "This part is for both update and patch. If you want to do an update and did not give all the fields, an exception will be thrown from code reference/alarm_grouping_managers.py. For example, if name is missing, get_query_alarm_grouping_manager_name function will throw \"missing name\".",
+      "parentUuid": "da36d5c6_b2ee4b89",
+      "range": {
+        "startLine": 185,
+        "startChar": 16,
+        "endLine": 185,
+        "endChar": 47
+      },
+      "revId": "71ef0e50396dcc0f6265628659b8ba38edc206dd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da36d5c6_c983cd54",
+        "filename": "monasca_api/common/repositories/sqla/models.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-02-23T17:43:08Z",
+      "side": 1,
+      "message": "change to 10",
+      "range": {
+        "startLine": 159,
+        "startChar": 44,
+        "endLine": 159,
+        "endChar": 47
+      },
+      "revId": "71ef0e50396dcc0f6265628659b8ba38edc206dd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da36d5c6_69958185",
+        "filename": "monasca_api/common/repositories/sqla/models.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-02-23T17:43:08Z",
+      "side": 1,
+      "message": "change to 10",
+      "range": {
+        "startLine": 160,
+        "startChar": 50,
+        "endLine": 160,
+        "endChar": 51
+      },
+      "revId": "71ef0e50396dcc0f6265628659b8ba38edc206dd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da36d5c6_cdecfe2b",
         "filename": "monasca_api/v2/reference/alarm_grouping_managers.py",
         "patchSetId": 9
@@ -191,6 +402,30 @@
       "writtenOn": "2017-02-21T22:12:13Z",
       "side": 1,
       "message": "Move this above the if. It gets done for both cases",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 72
+      },
+      "revId": "71ef0e50396dcc0f6265628659b8ba38edc206dd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da36d5c6_7e67f4b6",
+        "filename": "monasca_api/v2/reference/alarm_grouping_managers.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-02-23T17:43:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da36d5c6_cdecfe2b",
       "range": {
         "startLine": 88,
         "startChar": 0,
@@ -226,6 +461,30 @@
     },
     {
       "key": {
+        "uuid": "da36d5c6_3ecd7c85",
+        "filename": "monasca_api/v2/reference/alarm_grouping_managers.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-02-23T17:43:08Z",
+      "side": 1,
+      "message": "It\u0027s in function self._get_alarm_grouping_manager under sqla/alarm_grouping_managers_repository.py. If the id doesnt exist, an exceptions.DoesNotExistException will get raised.",
+      "parentUuid": "da36d5c6_ad2c2a4b",
+      "range": {
+        "startLine": 111,
+        "startChar": 12,
+        "endLine": 111,
+        "endChar": 18
+      },
+      "revId": "71ef0e50396dcc0f6265628659b8ba38edc206dd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da36d5c6_cd8b1e1d",
         "filename": "monasca_api/v2/reference/alarm_grouping_managers.py",
         "patchSetId": 9
@@ -237,6 +496,30 @@
       "writtenOn": "2017-02-21T22:12:13Z",
       "side": 1,
       "message": "You should be able to change the if statements so the LOG.warning and raise aren\u0027t duplicated",
+      "range": {
+        "startLine": 356,
+        "startChar": 0,
+        "endLine": 370,
+        "endChar": 74
+      },
+      "revId": "71ef0e50396dcc0f6265628659b8ba38edc206dd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da36d5c6_97a2cbac",
+        "filename": "monasca_api/v2/reference/alarm_grouping_managers.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-02-23T17:43:08Z",
+      "side": 1,
+      "message": "OK! Let me try that! Thanks!",
+      "parentUuid": "da36d5c6_cd8b1e1d",
       "range": {
         "startLine": 356,
         "startChar": 0,
