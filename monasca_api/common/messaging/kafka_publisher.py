@@ -11,18 +11,20 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
-
 from oslo_config import cfg
 from oslo_log import log
 
 from monasca_api.common.messaging import exceptions
 from monasca_api.common.messaging import publisher
+from monasca_api.monitoring import client as monitoring_client
+from monasca_api.monitoring.metrics import KAFKA_PRODUCER_ERRORS
 
 import monasca_common.kafka.producer as kafka_producer
 import monasca_common.kafka_lib.common as kafka_common
 
 LOG = log.getLogger(__name__)
 
+STATSD_CLIENT = monitoring_client.get_client()
 
 class KafkaPublisher(publisher.Publisher):
     def __init__(self, topic):
@@ -44,6 +46,8 @@ class KafkaPublisher(publisher.Publisher):
         self.partitions = cfg.CONF.kafka.partitions
         self.drop_data = cfg.CONF.kafka.drop_data
 
+        self.statsd_kafka_producer_error_count = STATSD_CLIENT.get_counter(KAFKA_PRODUCER_ERRORS,
+                                                                           dimensions={'topic': self.topic})
         self._producer = kafka_producer.KafkaProducer(self.uri)
 
     def close(self):
@@ -56,7 +60,9 @@ class KafkaPublisher(publisher.Publisher):
         except (kafka_common.KafkaUnavailableError,
                 kafka_common.LeaderNotAvailableError):
             LOG.exception('Error occurred while posting data to Kafka.')
+            self.statsd_kafka_producer_error_count.increment(1, sample_rate=1.0)
             raise exceptions.MessageQueueException()
         except Exception:
             LOG.exception('Unknown error.')
+            self.statsd_kafka_producer_error_count.increment(1, sample_rate=1.0)
             raise exceptions.MessageQueueException()

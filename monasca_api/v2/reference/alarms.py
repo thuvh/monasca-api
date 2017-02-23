@@ -14,13 +14,18 @@
 
 import re
 
+import datetime
 import falcon
+from jinja2 import Template, TemplateSyntaxError
 from monasca_common.simport import simport
 from oslo_config import cfg
 from oslo_log import log
+import time
 
 from monasca_api.api import alarms_api_v2
 from monasca_api.common.repositories import exceptions
+from monasca_api.monitoring import client
+from monasca_api.monitoring.metrics import ALARMS_LIST_TIME
 from monasca_api.v2.common.exceptions import HTTPUnprocessableEntityError
 from monasca_api.v2.common.schemas import alarm_update_schema as schema_alarm
 from monasca_api.v2.common import validation
@@ -29,6 +34,9 @@ from monasca_api.v2.reference import helpers
 from monasca_api.v2.reference import resource
 
 LOG = log.getLogger(__name__)
+
+STATSD_CLIENT = client.get_client()
+STATSD_TIMER = STATSD_CLIENT.get_timer()
 
 
 class Alarms(alarms_api_v2.AlarmsV2API,
@@ -159,6 +167,55 @@ class Alarms(alarms_api_v2.AlarmsV2API,
             res.body = helpers.dumpit_utf8(result)
             res.status = falcon.HTTP_200
 
+    @staticmethod
+    def _render_alarm(alarm):
+        """
+        Expands template variables contained in an alarm
+        :param alarm: the alarm json as dict
+        :return the expanded alarm with placeholders being substituted
+        """
+        template_vars = {}
+        for metric in alarm['metrics']:
+            for k, v in metric['dimensions'].iteritems():
+                old = template_vars.get(k)
+                if not old:
+                    template_vars[k] = v
+                elif isinstance(old, set):
+                    old.add(v)
+                else:
+                    template_vars[k] = {old, v}
+        for k, v in template_vars.iteritems():
+            if isinstance(v, set):
+                template_vars[k] = ", ".join(v)
+
+        # provide actual metric values leading to the alarm
+        # TODO: query needs to be changed to provide this data
+        for subalarm in alarm.get('subAlarms', []):
+            metric_name = subalarm['subAlarmExpression']['metricDefinition']['name'].replace('.', '_')
+            metric_value = subalarm['currentValues']
+            if len(metric_value) == 0:
+                template_vars[metric_name] = None
+            elif len(metric_value) == 1:
+                template_vars[metric_name] = metric_value[0]
+            else:
+                template_vars[metric_name] = metric_value
+
+        # add additional variables
+        # TODO: add sub-alarm states
+        ts = datetime.datetime.strptime(alarm['state_updated_timestamp'], "%Y-%m-%dT%H:%M:%SZ")
+        template_vars['_age'] = time.time() - time.mktime(ts.timetuple())
+        template_vars['_timestamp'] = alarm['state_updated_timestamp']
+        template_vars['_state'] = alarm['state']
+        desc = alarm[u'alarm_definition'][u'description']
+        try:
+            alarm[u'alarm_definition'][u'description'] = Template(desc).render(**template_vars)
+        except TemplateSyntaxError as ex:
+            LOG.debug('alarm-definition %s does not follow Jinja2 syntax: %s', alarm[u'alarm_definition'][u'id'],
+                      ex.message)
+            pass
+        except Exception:
+            LOG.exception("failed rendering alarm-definition: %s", desc)
+
     def _alarm_update(self, tenant_id, alarm_id, new_state, lifecycle_state,
                       link):
 
@@ -255,6 +312,7 @@ class Alarms(alarms_api_v2.AlarmsV2API,
             if first_row:
                 ad = {u'id': alarm_row['alarm_definition_id'],
                       u'name': alarm_row['alarm_definition_name'],
+                      u'description': alarm_row['alarm_definition_description'],
                       u'severity': alarm_row['severity'], }
                 helpers.add_links_to_resource(ad,
                                               re.sub('alarms',
@@ -289,8 +347,12 @@ class Alarms(alarms_api_v2.AlarmsV2API,
 
             metrics.append(metric)
 
+        Alarms._render_alarm(alarm)
+
         return alarm
 
+    @STATSD_TIMER.timed(ALARMS_LIST_TIME, sample_rate=0.1)
+    @resource.resource_try_catch_block
     def _alarm_list(self, req_uri, tenant_id, query_parms, offset, limit):
 
         alarm_rows = self._alarms_repo.get_alarms(tenant_id, query_parms,
@@ -306,10 +368,12 @@ class Alarms(alarms_api_v2.AlarmsV2API,
         for alarm_row in alarm_rows:
             if prev_alarm_id != alarm_row['alarm_id']:
                 if prev_alarm_id is not None:
+                    Alarms._render_alarm(alarm)
                     result.append(alarm)
 
                 ad = {u'id': alarm_row['alarm_definition_id'],
                       u'name': alarm_row['alarm_definition_name'],
+                      u'description': alarm_row['alarm_definition_description'],
                       u'severity': alarm_row['severity'], }
                 helpers.add_links_to_resource(ad,
                                               re.sub('alarms',
@@ -343,6 +407,8 @@ class Alarms(alarms_api_v2.AlarmsV2API,
                     dimensions[parsed_dimension[0]] = parsed_dimension[1]
 
             metrics.append(metric)
+
+        Alarms._render_alarm(alarm)
 
         result.append(alarm)
 

@@ -225,8 +225,9 @@ unicode_printables = u''.join(
     unichr(c) for c in xrange(128, 65536) if not unichr(c).isspace())
 
 # Does not like comma. No Literals from above allowed.
+# See also validation.py: invalid_chars = "<>={}(),\"\\\\|;&"
 valid_identifier_chars = (
-    (unicode_printables + pyparsing.alphanums + ".-_#!$%&'*+/:;?@[\\]^`|~"))
+    (unicode_printables + pyparsing.alphanums + r".-_#!$%'*+/:?@[]^`~"))
 
 metric_name = (
     pyparsing.Word(valid_identifier_chars, min=1, max=255)("metric_name"))

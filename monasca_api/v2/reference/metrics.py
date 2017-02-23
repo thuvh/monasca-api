@@ -13,6 +13,9 @@
 # under the License.
 
 import falcon
+import math
+import monasca_api.monitoring.client as monitoring_client
+
 from monasca_common.simport import simport
 from monasca_common.validation import metrics as metric_validation
 from oslo_config import cfg
@@ -23,11 +26,16 @@ from monasca_api.common.messaging import (
     exceptions as message_queue_exceptions)
 from monasca_api.common.messaging.message_formats import (
     metrics as metrics_message)
+from monasca_api.monitoring.metrics import METRICS_PUBLISH_TIME, METRICS_LIST_TIME, METRICS_STATS_TIME, \
+    METRICS_RETRIEVE_TIME, METRICS_DIMS_RETRIEVE_TIME, METRICS_REJECTED_COUNT
 from monasca_api.v2.common.exceptions import HTTPUnprocessableEntityError
 from monasca_api.v2.reference import helpers
 from monasca_api.v2.reference import resource
 
 LOG = log.getLogger(__name__)
+
+STATSD_CLIENT = monitoring_client.get_client()
+STATSD_TIMER = STATSD_CLIENT.get_timer()
 
 
 def get_merge_metrics_flag(req):
@@ -70,6 +78,8 @@ class Metrics(metrics_api_v2.MetricsV2API):
             raise falcon.HTTPInternalServerError('Service unavailable',
                                                  ex.message)
 
+        self._statsd_rejected_count = STATSD_CLIENT.get_counter(METRICS_REJECTED_COUNT)
+
     def _send_metrics(self, metrics):
         try:
             self._message_queue.send_message(metrics)
@@ -92,6 +102,7 @@ class Metrics(metrics_api_v2.MetricsV2API):
         return helpers.paginate(result, req_uri, limit)
 
     @resource.resource_try_catch_block
+    @STATSD_TIMER.timed(METRICS_PUBLISH_TIME, sample_rate=0.01)
     def on_post(self, req, res):
         helpers.validate_json_content_type(req)
         helpers.validate_authorization(req,
@@ -101,6 +112,7 @@ class Metrics(metrics_api_v2.MetricsV2API):
             metric_validation.validate(metrics)
         except Exception as ex:
             LOG.exception(ex)
+            self._statsd_rejected_count.increment(1)
             raise HTTPUnprocessableEntityError("Unprocessable Entity", ex.message)
 
         tenant_id = (
@@ -112,6 +124,7 @@ class Metrics(metrics_api_v2.MetricsV2API):
         res.status = falcon.HTTP_204
 
     @resource.resource_try_catch_block
+    @STATSD_TIMER.timed(METRICS_LIST_TIME)
     def on_get(self, req, res):
         helpers.validate_authorization(req, self._get_metrics_authorized_roles)
         tenant_id = (
@@ -155,6 +168,7 @@ class MetricsMeasurements(metrics_api_v2.MetricsMeasurementsV2API):
                                                  ex.message)
 
     @resource.resource_try_catch_block
+    @STATSD_TIMER.timed(METRICS_RETRIEVE_TIME)
     def on_get(self, req, res):
         helpers.validate_authorization(req, self._get_metrics_authorized_roles)
         tenant_id = (
@@ -217,6 +231,7 @@ class MetricsStatistics(metrics_api_v2.MetricsStatisticsV2API):
                                                  ex.message)
 
     @resource.resource_try_catch_block
+    @STATSD_TIMER.timed(METRICS_STATS_TIME)
     def on_get(self, req, res):
         helpers.validate_authorization(req, self._get_metrics_authorized_roles)
         tenant_id = (
@@ -324,6 +339,7 @@ class DimensionValues(metrics_api_v2.DimensionValuesV2API):
                                                  ex.message)
 
     @resource.resource_try_catch_block
+    @STATSD_TIMER.timed(METRICS_DIMS_RETRIEVE_TIME)
     def on_get(self, req, res):
         helpers.validate_authorization(req, self._get_metrics_authorized_roles)
         tenant_id = (

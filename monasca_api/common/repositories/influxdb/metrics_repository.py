@@ -16,6 +16,7 @@ from datetime import datetime
 from datetime import timedelta
 from distutils import version
 import json
+import monasca_api.monitoring.client as monitoring_client
 
 from influxdb import client
 from influxdb.exceptions import InfluxDBClientError
@@ -25,14 +26,19 @@ from oslo_utils import timeutils
 
 from monasca_api.common.repositories import exceptions
 from monasca_api.common.repositories import metrics_repository
+from monasca_api.monitoring.metrics import INFLUXDB_QUERY_TIME, TSDB_ERRORS
 
 MEASUREMENT_NOT_FOUND_MSG = "measurement not found"
 
 LOG = log.getLogger(__name__)
 
+STATSD_CLIENT = monitoring_client.get_client()
+STATSD_TIMER = STATSD_CLIENT.get_timer()
+
 
 class MetricsRepository(metrics_repository.AbstractMetricsRepository):
     def __init__(self):
+        self._statsd_tsdb_error_count = STATSD_CLIENT.get_counter(TSDB_ERRORS)
 
         try:
             self.conf = cfg.CONF
@@ -85,7 +91,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
         of InfluxDB might not return a Version.
         '''
         try:
-            result = self.influxdb_client.query('SHOW DIAGNOSTICS')
+            result = self._query_influxdb('SHOW DIAGNOSTICS')
         except InfluxDBClientError as ex:
             LOG.exception(ex)
             raise
@@ -285,7 +291,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
             if offset:
                 query += ' offset {}'.format(int(offset) + 1)
 
-            result = self.influxdb_client.query(query)
+            result = self._query_influxdb(query)
 
             json_metric_list = self._build_serie_metric_list(result,
                                                              tenant_id,
@@ -539,7 +545,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
                 dimensions = self._get_dimensions(tenant_id, region, name, dimensions)
                 query += " slimit 1"
 
-            result = self.influxdb_client.query(query)
+            result = self._query_influxdb(query)
 
             if not result:
                 return json_measurement_list
@@ -618,7 +624,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
             query = self._build_show_measurements_query(dimensions, None, tenant_id,
                                                         region)
 
-            result = self.influxdb_client.query(query)
+            result = self._query_influxdb(query)
 
             json_name_list = self._build_measurement_name_list(result)
             return json_name_list
@@ -644,7 +650,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
                 dimensions = self._get_dimensions(tenant_id, region, name, dimensions)
                 query += " slimit 1"
 
-            result = self.influxdb_client.query(query)
+            result = self._query_influxdb(query)
 
             if not result:
                 return json_statistics_list
@@ -713,6 +719,8 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
             else:
 
                 LOG.exception(ex)
+                if ex.code == 400:
+                    LOG.error("Invalid query: %s", query)
 
                 raise exceptions.RepositoryException(ex)
 
@@ -830,7 +838,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
 
             query += where_clause + time_clause + offset_clause + limit_clause
 
-            result = self.influxdb_client.query(query)
+            result = self._query_influxdb(query)
 
             if not result:
                 return json_alarm_history_list
@@ -878,7 +886,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
             query = self._build_show_tag_values_query(metric_name,
                                                       dimension_name,
                                                       tenant_id, region)
-            result = self.influxdb_client.query(query)
+            result = self._query_influxdb(query)
             json_dim_name_list = self._build_serie_dimension_values(
                 result, dimension_name)
             return json_dim_name_list
@@ -890,9 +898,18 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
         try:
             query = self._build_show_tag_keys_query(metric_name,
                                                     tenant_id, region)
-            result = self.influxdb_client.query(query)
+            result = self._query_influxdb(query)
             json_dim_name_list = self._build_serie_dimension_names(result)
             return json_dim_name_list
         except Exception as ex:
             LOG.exception(ex)
             raise exceptions.RepositoryException(ex)
+
+    @STATSD_TIMER.timed(INFLUXDB_QUERY_TIME, sample_rate=0.01)
+    def _query_influxdb(self, query):
+        try:
+            result = self.influxdb_client.query(query)
+            return result
+        except Exception as ex:
+            self._statsd_tsdb_error_count.increment(1)
+            raise ex
