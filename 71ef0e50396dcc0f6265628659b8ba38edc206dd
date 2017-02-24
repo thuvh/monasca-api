@@ -251,6 +251,30 @@
     },
     {
       "key": {
+        "uuid": "da36d5c6_e1ea4eda",
+        "filename": "monasca_api/common/repositories/sqla/alarm_grouping_managers_repository.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-02-24T05:27:12Z",
+      "side": 1,
+      "message": "That would be easy to tell apart.",
+      "parentUuid": "da36d5c6_8960f5d0",
+      "range": {
+        "startLine": 110,
+        "startChar": 13,
+        "endLine": 110,
+        "endChar": 30
+      },
+      "revId": "71ef0e50396dcc0f6265628659b8ba38edc206dd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da36d5c6_b2180b86",
         "filename": "monasca_api/common/repositories/sqla/alarm_grouping_managers_repository.py",
         "patchSetId": 9
@@ -322,6 +346,30 @@
     },
     {
       "key": {
+        "uuid": "da36d5c6_21f1c6cd",
+        "filename": "monasca_api/common/repositories/sqla/alarm_grouping_managers_repository.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-02-24T05:27:12Z",
+      "side": 1,
+      "message": "Ok",
+      "parentUuid": "da36d5c6_63ae7499",
+      "range": {
+        "startLine": 178,
+        "startChar": 12,
+        "endLine": 178,
+        "endChar": 24
+      },
+      "revId": "71ef0e50396dcc0f6265628659b8ba38edc206dd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da36d5c6_b2ee4b89",
         "filename": "monasca_api/common/repositories/sqla/alarm_grouping_managers_repository.py",
         "patchSetId": 9
@@ -357,6 +405,30 @@
       "side": 1,
       "message": "This part is for both update and patch. If you want to do an update and did not give all the fields, an exception will be thrown from code reference/alarm_grouping_managers.py. For example, if name is missing, get_query_alarm_grouping_manager_name function will throw \"missing name\".",
       "parentUuid": "da36d5c6_b2ee4b89",
+      "range": {
+        "startLine": 185,
+        "startChar": 16,
+        "endLine": 185,
+        "endChar": 47
+      },
+      "revId": "71ef0e50396dcc0f6265628659b8ba38edc206dd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da36d5c6_01e68214",
+        "filename": "monasca_api/common/repositories/sqla/alarm_grouping_managers_repository.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-02-24T05:27:12Z",
+      "side": 1,
+      "message": "Ok",
+      "parentUuid": "da36d5c6_97bbabe4",
       "range": {
         "startLine": 185,
         "startChar": 16,
