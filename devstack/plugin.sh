@@ -80,6 +80,9 @@ MON_DB_USERS=($MONASCA_API_DATABASE_USER $MONASCA_THRESH_DATABASE_USER $MONASCA_
 MON_DB_HOSTS=("%" "localhost" "$DATABASE_HOST" "$MYSQL_HOST")
 MON_DB_HOSTS=$(echo "${MON_DB_HOSTS[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' ')
 
+# wsgi bits
+MONASCA_API_USE_MOD_WSGI=$(trueorfalse False MONASCA_API_USE_MOD_WSGI)
+
 function pre_install_monasca {
     echo_summary "Pre-Installing Monasca Components"
     install_git
