@@ -58,27 +58,27 @@ elif is_service_enabled postgresql; then
 fi
 MONASCA_DATABASE_USE_ORM=$(trueorfalse False MONASCA_DATABASE_USE_ORM)
 
-# Set INFLUXDB_VERSION
+# enforce different settings based on implementation language
 if [[ "${MONASCA_API_IMPLEMENTATION_LANG,,}" == 'java' ]]; then
-
+    MONASCA_API_USE_MOD_WSGI=False
     INFLUXDB_VERSION=${INFLUXDB_VERSION:-${INFLUXDB_JAVA_VERSION}}
-
 elif [[ "${MONASCA_API_IMPLEMENTATION_LANG,,}" == 'python' ]]; then
-
     INFLUXDB_VERSION=${INFLUXDB_VERSION:-${INFLUXDB_PYTHON_VERSION}}
-
 else
-
     echo "Found invalid value for variable MONASCA_API_IMPLEMENTATION_LANG: $MONASCA_API_IMPLEMENTATION_LANG"
     echo "Valid values for MONASCA_API_IMPLEMENTATION_LANG are \"java\" and \"python\""
     die "Please set MONASCA_API_IMPLEMENTATION_LANG to either \"java'' or \"python\""
-
 fi
 
 # db users
 MON_DB_USERS=($MONASCA_API_DATABASE_USER $MONASCA_THRESH_DATABASE_USER $MONASCA_NOTIFICATION_DATABASE_USER)
 MON_DB_HOSTS=("%" "localhost" "$DATABASE_HOST" "$MYSQL_HOST")
 MON_DB_HOSTS=$(echo "${MON_DB_HOSTS[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' ')
+
+# monasca-api variables
+MONASCA_API_USE_MOD_WSGI=$(trueorfalse False MONASCA_API_USE_MOD_WSGI)
+MONASCA_API_BASE_URI=${MONASCA_API_SERVICE_PROTOCOL}://${MONASCA_API_SERVICE_HOST}:${MONASCA_API_SERVICE_PORT}
+MONASCA_API_URI_V2=${MONASCA_API_BASE_URI}/v2.0
 
 function pre_install_monasca {
     echo_summary "Pre-Installing Monasca Components"
@@ -181,7 +181,7 @@ function extra_monasca {
 
 function start_monasca_services {
     if is_service_enabled monasca-api; then
-        start_service monasca-api || restart_service monasca-api
+        start_monasca_api
     fi
     if is_service_enabled monasca-persister; then
         start_service monasca-persister || restart_service monasca-persister
@@ -201,6 +201,29 @@ function start_monasca_services {
     fi
 }
 
+function start_monasca_api {
+    local service_port=$MONASCA_API_SERVICE_PORT
+    local service_protocol=$MONASCA_API_SERVICE_PROTOCOL
+    local service_host=$MONASCA_API_SERVICE_HOST
+    local service_timeout=$MONASCA_API_SERVICE_TIMEOUT
+
+    local enabled_site_file
+    enabled_site_file=$(apache_site_config_for monasca-api)
+
+    if [ -f ${enabled_site_file} ] && [ "$MONASCA_API_USE_MOD_WSGI" == "True" ]; then
+        enable_apache_site monasca-api
+        restart_apache_server
+        tail_log monasca-api /var/log/$APACHE_NAME/monasca-api.log
+    else
+        start_service monasca-api || restart_service monasca-api
+    fi
+
+    echo "Waiting for monasca-api to start..."
+    if ! wait_for_service $service_timeout $service_protocol://$service_host:$service_port; then
+        die $LINENO "monasca-api did not start"
+    fi
+}
+
 function unstack_monasca {
     stop_service grafana-server || true
 
@@ -216,7 +239,7 @@ function unstack_monasca {
 
     stop_service monasca-persister || true
 
-    stop_service monasca-api || true
+    stop_monasca_api
 
     stop_service kafka || true
 
@@ -227,6 +250,17 @@ function unstack_monasca {
     stop_service vertica_agent || true
 
     stop_service cassandra || true
+}
+
+function stop_monasca_api {
+    if is_service_enabled monasca-api; then
+        if [ "$MONASCA_API_USE_MOD_WSGI" == "True" ]; then
+            disable_apache_site monasca-api
+            restart_apache_server
+        else
+            stop_service monasca-api || true
+        fi
+    fi
 }
 
 function clean_monasca {
@@ -835,6 +869,9 @@ function install_monasca_api_java {
         s|%MONASCA_DATABASE_USE_ORM%|$MONASCA_DATABASE_USE_ORM|g;
         s|%MONASCA_API_DATABASE_ENGINE%|$dbEngine|g;
         s|%MONASCA_API_DATABASE_USER%|$MONASCA_API_DATABASE_USER|g;
+        s|%MONASCA_API_SERVICE_HOST%|$MONASCA_API_SERVICE_HOST|g;
+        s|%MONASCA_API_SERVICE_PORT%|$MONASCA_API_SERVICE_PORT|g;
+        s|%MONASCA_API_ADMIN_PORT%|$MONASCA_API_ADMIN_PORT|g;
         s|%DATABASE_HOST%|$DATABASE_HOST|g;
         s|%DATABASE_PORT%|$dbPort|g;
         s|%MYSQL_HOST%|$MYSQL_HOST|g;
@@ -844,7 +881,6 @@ function install_monasca_api_java {
         s|%INFLUXDB_HOST%|$SERVICE_HOST|g;
         s|%INFLUXDB_PORT%|8086|g;
         s|%VERTICA_HOST%|$SERVICE_HOST|g;
-        s|%SERVICE_HOST%|$SERVICE_HOST|g;
         s|%ADMIN_PASSWORD%|$ADMIN_PASSWORD|g;
         s|%KEYSTONE_SERVICE_PORT%|$KEYSTONE_SERVICE_PORT|g;
         s|%KEYSTONE_SERVICE_HOST%|$KEYSTONE_SERVICE_HOST|g;
@@ -877,6 +913,9 @@ function install_monasca_api_python {
     fi
     if [[ "${MONASCA_METRICS_DB,,}" == 'cassandra' ]]; then
         pip_install_gr cassandra-driver
+    fi
+    if [[ "$MONASCA_API_USE_MOD_WSGI" == "True" ]]; then
+        install_apache_wsgi
     fi
     if is_service_enabled postgresql; then
         apt_get -y install libpq-dev
@@ -917,10 +956,19 @@ function install_monasca_api_python {
 
     sudo chmod 0775 /etc/monasca
 
+    configure_monasca_api_python
+}
+
+function configure_monasca_api_python {
+
     # if monasca devstack would use DATABASE_USER everywhere, following line
     # might be replaced with database_connection_url call
     local dbAlarmUrl
     local dbMetricDriver
+
+    local api_config=/etc/monasca/api-config.conf
+    local api_logging_config=/etc/monasca/api-logging.conf
+    local api_paste_config=/etc/monasca/api-config.ini
 
     if [[ "${MONASCA_METRICS_DB,,}" == 'cassandra' ]]; then
         dbMetricDriver="monasca_api.common.repositories.cassandra.metrics_repository:MetricsRepository"
@@ -929,20 +977,20 @@ function install_monasca_api_python {
     fi
     dbAlarmUrl=`get_database_type_$DATABASE_TYPE`://$MONASCA_API_DATABASE_USER:$DATABASE_PASSWORD@$DATABASE_HOST/mon
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/api-config.conf /etc/monasca/api-config.conf
-    sudo chown mon-api:root /etc/monasca/api-config.conf
-    sudo chmod 0660 /etc/monasca/api-config.conf
-    sudo ln -sf /etc/monasca/api-config.conf /etc/api-config.conf
+    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/api-config.conf ${api_config}
+    sudo chown mon-api:root ${api_config}
+    sudo chmod 0660 ${api_config}
+    sudo ln -sf ${api_config} /etc/api-config.conf
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/api-logging.conf /etc/monasca/api-logging.conf
-    sudo chown mon-api:root /etc/monasca/api-logging.conf
-    sudo chmod 0660 /etc/monasca/api-logging.conf
-    sudo ln -sf /etc/monasca/api-logging.conf /etc/api-logging.conf
+    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/api-logging.conf ${api_logging_config}
+    sudo chown mon-api:root ${api_logging_config}
+    sudo chmod 0660 ${api_logging_config}
+    sudo ln -sf ${api_logging_config} /etc/api-logging.conf
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/api-config.ini /etc/monasca/api-config.ini
-    sudo chown mon-api:root /etc/monasca/api-config.ini
-    sudo chmod 0660 /etc/monasca/api-config.ini
-    sudo ln -sf /etc/monasca/api-config.ini /etc/api-config.ini
+    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/api-config.ini ${api_paste_config}
+    sudo chown mon-api:root ${api_paste_config}
+    sudo chmod 0660 ${api_paste_config}
+    sudo ln -sf ${api_paste_config} /etc/api-config.ini
 
     sudo sed -e "
         s|%KEYSTONE_AUTH_HOST%|$KEYSTONE_AUTH_HOST|g;
@@ -959,12 +1007,41 @@ function install_monasca_api_python {
         s|%INFLUXDB_PORT%|8086|g;
         s|%KAFKA_HOST%|$SERVICE_HOST|g;
         s|%ADMIN_PASSWORD%|$ADMIN_PASSWORD|g;
-    " -i /etc/monasca/api-config.conf
+    " -i ${api_config}
 
     sudo sed -e "
-        s|%SERVICE_HOST%|$SERVICE_HOST|g;
-    " -i /etc/monasca/api-config.ini
+        s|%MONASCA_API_SERVICE_HOST%|$MONASCA_API_SERVICE_HOST|g;
+        s|%MONASCA_API_SERVICE_PORT%|$MONASCA_API_SERVICE_PORT|g;
+        s|%API_WORKERS%|$API_WORKERS|g;
+    " -i ${api_paste_config}
 
+
+    if [[ "$MONASCA_API_USE_MOD_WSGI" == "True" ]]; then
+        configure_monasca_api_python_wsgi
+    fi
+}
+
+function configure_monasca_api_python_wsgi {
+    sudo install -d $MONASCA_API_WSGI_DIR
+
+    local monasca_api_apache_conf
+    monasca_api_apache_conf=$(apache_site_config_for monasca-api)
+
+    local monasca_api_port=${MONASCA_API_SERVICE_PORT}
+    local venv_path="python-path=/opt/monasca-api/lib/$(python_version)/site-packages"
+
+    local public_wsgi=${MONASCA_API_WSGI_DIR}/monasca_api
+
+    sudo cp ${MONASCA_API_DIR}/monasca_api/api/wsgi.py ${public_wsgi}
+    sudo cp ${MONASCA_API_DIR}/devstack/files/monasca-api/python/api-wsgi.template ${monasca_api_apache_conf}
+
+    sudo sed -e "
+        s|%PUBLICPORT%|${monasca_api_port}|g;
+        s|%APACHE_NAME%|${APACHE_NAME}|g;
+        s|%PUBLICWSGI%|${public_wsgi}|g;
+        s|%VIRTUALENV%|${venv_path}|g
+        s|%APIWORKERS%|${API_WORKERS}|g
+    " -i ${monasca_api_apache_conf}
 }
 
 function clean_monasca_api_java {
@@ -1023,6 +1100,15 @@ function clean_monasca_api_python {
         apt_get -y purge libmysqlclient-dev
     fi
 
+    if [ "$MONASCA_API_USE_MOD_WSGI" == "True" ]; then
+            clean_monasca_api_wsgi
+    fi
+
+}
+
+function clean_monasca_api_wsgi {
+    sudo rm -f $MONASCA_API_WSGI_DIR/*
+    sudo rm -f $(apache_site_config_for monasca-api)
 }
 
 function install_monasca_persister_java {
