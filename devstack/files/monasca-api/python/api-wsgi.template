@@ -1,0 +1,45 @@
+Listen %PUBLICPORT%
+
+<VirtualHost *:%PUBLICPORT%>
+    WSGIDaemonProcess monasca-api processes=%APIWORKERS% threads=1 user=%USER% display-name=%{GROUP} %VIRTUALENV%
+    WSGIProcessGroup monasca-api
+    WSGIScriptAlias / %PUBLICWSGI%
+    WSGIApplicationGroup %{GLOBAL}
+
+    WSGIPassAuthorization On
+
+    LogLevel info
+    ErrorLog /var/log/%APACHE_NAME%/monasca-api.log
+    CustomLog /var/log/%APACHE_NAME%/monasca-api_access.log combined
+
+    SetEnv no-gzip 1
+    AddDefaultCharset utf-8
+
+</VirtualHost>
+
+Alias /metrics %PUBLICWSGI%
+<Location /v2.0/metrics>
+    SetHandler wsgi-script
+    Options +ExecCGI
+    WSGIProcessGroup monasca-api
+    WSGIApplicationGroup %{GLOBAL}
+    WSGIPassAuthorization On
+</Location>
+
+Alias /alarm-definitions %PUBLICWSGI%
+<Location /v2.0/alarm-definitions>
+    SetHandler wsgi-script
+    Options +ExecCGI
+    WSGIProcessGroup monasca-api
+    WSGIApplicationGroup %{GLOBAL}
+    WSGIPassAuthorization On
+</Location>
+
+Alias /alarms %PUBLICWSGI%
+<Location /v2.0/alarms>
+    SetHandler wsgi-script
+    Options +ExecCGI
+    WSGIProcessGroup monasca-api
+    WSGIApplicationGroup %{GLOBAL}
+    WSGIPassAuthorization On
+</Location>
