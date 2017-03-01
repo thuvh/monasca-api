@@ -118,6 +118,17 @@ a.k.a.
 enable_service postgresql
 ```
 
+## Using WSGI
+
+monasca-api can be deployed with Apache using mod_wsgi.
+By default monasca-api by default runs under gunicorn.
+If you wish to use Apache make sure that ```devstack/local.conf```
+contains:
+
+```sh
+MONASCA_API_USE_MOD_WSGI=True
+```
+
 # (C) Copyright 2015-2016 Hewlett Packard Enterprise Development Company LP
 # Copyright Fujitsu LIMITED 2017
 #
