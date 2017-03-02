@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba2be162_fed790ea",
+        "filename": "devstack/Vagrantfile",
+        "patchSetId": 12
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-03-02T15:57:29Z",
+      "side": 1,
+      "message": "I wouldn\u0027t include this in the default Vagrantfile.",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 126,
+        "endChar": 31
+      },
+      "revId": "6531e39f721fe0a4ae4b47daa52ee6a29178e347",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba2be162_74d57fb7",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-03-02T15:57:29Z",
+      "side": 1,
+      "message": "\u0027variables\u0027 or \u0027settings\u0027 would be better.",
+      "range": {
+        "startLine": 78,
+        "startChar": 14,
+        "endLine": 78,
+        "endChar": 18
+      },
+      "revId": "6531e39f721fe0a4ae4b47daa52ee6a29178e347",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
