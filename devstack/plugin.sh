@@ -158,7 +158,9 @@ function configure_screen {
 function extra_monasca {
     echo_summary "Installing additional monasca components"
 
-    install_monasca_keystone_client
+    create_metric_accounts
+
+    install_keystone_client
 
     install_monasca_agent
 
@@ -235,6 +237,9 @@ function clean_monasca {
 
     unstack_monasca
 
+    clean_monasca_default_alarms
+    clean_keystone_client
+
     if is_service_enabled horizon; then
 
         clean_monasca_horizon_ui
@@ -247,14 +252,10 @@ function clean_monasca {
 
     fi
 
-    clean_monasca_default_alarms
 
     if is_service_enabled monasca-agent; then
         clean_monasca_agent
     fi
-
-    clean_monasca_keystone_client
-
     if is_service_enabled monasca-thresh; then
         clean_monasca_thresh
     fi
@@ -1545,10 +1546,55 @@ function clean_monasca_thresh {
 
 }
 
-function install_monasca_keystone_client {
+function create_metric_accounts {
 
-    echo_summary "Install Monasca Keystone Client"
+    local projects=("mini-mon" "admin" "demo")
+    declare -A users=(
+        ["mini-mon"]="password"
+        ["monasca-agent"]="password"
+        ["admin"]="${ADMIN_PASSWORD}"
+        ["demo"]="${ADMIN_PASSWORD}"
+        ["monasca-read-only-user"]="password"
+    )
+    local roles=("monasca-user" "monasca-agent" "admin" "monasca-read-only-user")
 
+    for project in "${projects[@]}"; do
+        get_or_create_project "${project}"
+    done
+    for user in "${!users[@]}"; do
+        local password
+        password="${users[$user]}"
+        get_or_create_user "${user}" "${password}"
+    done
+    for role in "${roles[@]}"; do
+        get_or_create_role "${role}"
+    done
+
+    # create assignments
+    # args=> <role> <user> <project>
+    get_or_add_user_project_role "monasca-user" "mini-mon" "mini-mon"
+    get_or_add_user_project_role "monasca-user" "admin" "admin"
+    get_or_add_user_project_role "monasca-user" "demo" "demo"
+
+    get_or_add_user_project_role "admin" "admin" "mini-mon"
+
+    get_or_add_user_project_role "monasca-agent" "monasca-agent" "mini-mon"
+
+    get_or_add_user_project_role "monasca-read-only-user" "monasca-read-only-user" "mini-mon"
+
+    # crate service
+    get_or_create_service "monasca" "monitoring" "Monasca Monitoring Service"
+
+    # create endpoint
+    get_or_create_endpoint \
+            "monasca" \
+            "${REGION_NAME}" \
+            "${MONASCA_API_URI_V2}" \
+            "${MONASCA_API_URI_V2}" \
+            "${MONASCA_API_URI_V2}"
+}
+
+function install_keystone_client {
     apt_get -y install python-dev
 
     PIP_VIRTUAL_ENV=/opt/monasca
@@ -1557,32 +1603,10 @@ function install_monasca_keystone_client {
     pip_install_gr keystoneauth1
 
     unset PIP_VIRTUAL_ENV
-
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/keystone/create_monasca_service.py /usr/local/bin/create_monasca_service.py
-
-    sudo chmod 0700 /usr/local/bin/create_monasca_service.py
-
-
-    if [[ ${SERVICE_HOST} ]]; then
-
-        sudo /opt/monasca/bin/python /usr/local/bin/create_monasca_service.py ${SERVICE_HOST} ${OS_USERNAME} ${OS_PASSWORD} ${OS_PROJECT_NAME} ${OS_PROJECT_DOMAIN_ID} ${OS_USER_DOMAIN_ID}
-
-    else
-
-        sudo /opt/monasca/bin/python /usr/local/bin/create_monasca_service.py "127.0.0.1" ${OS_USERNAME} ${OS_PASSWORD} ${OS_PROJECT_NAME} ${OS_PROJECT_DOMAIN_ID} ${OS_USER_DOMAIN_ID}
-
-    fi
-
 }
 
-function clean_monasca_keystone_client {
-
-    echo_summary "Clean Monasca Keystone Client"
-
-    sudo rm /usr/local/bin/create_monasca_service.py
-
+function clean_keystone_client {
     apt_get -y purge python-dev
-
 }
 
 function install_monasca_agent {
