@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ba2be162_ad9885c1",
+        "filename": "devstack/Vagrantfile",
+        "patchSetId": 12
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-03-02T18:17:25Z",
+      "side": 1,
+      "message": "Using same reasoning we should remove\n\n  # MONASCA_METRICS_DB\u003d${MONASCA_METRICS_DB:-vertica}\n\nor\n  #MONASCA_PERSISTER_IMPLEMENTATION_LANG\u003d${MONASCA_PERSISTER_IMPLEMENTATION_LANG:-java}\n\nThat\u0027s quickest way to run with WSGI + that variable is commented out so, does no harm. I\u0027d keep it.",
+      "parentUuid": "ba2be162_fed790ea",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 126,
+        "endChar": 31
+      },
+      "revId": "6531e39f721fe0a4ae4b47daa52ee6a29178e347",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba2be162_74d57fb7",
         "filename": "devstack/plugin.sh",
         "patchSetId": 12
