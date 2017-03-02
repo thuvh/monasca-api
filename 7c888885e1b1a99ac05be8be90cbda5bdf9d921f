@@ -16,6 +16,24 @@
       "revId": "7c888885e1b1a99ac05be8be90cbda5bdf9d921f",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba2be162_19139eb9",
+        "filename": "monasca_api/v3/common/utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-03-02T15:34:34Z",
+      "side": 1,
+      "message": "Can you be more specific or provide a link to what you are suggesting?\nSome quick google searches did not yield a replacement for this that I could find, but I would be happy to use internal falcon structures or methods if they are available.",
+      "parentUuid": "ba2be162_2583db57",
+      "revId": "7c888885e1b1a99ac05be8be90cbda5bdf9d921f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
