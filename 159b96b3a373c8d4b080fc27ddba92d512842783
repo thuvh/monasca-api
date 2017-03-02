@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba2be162_b3f723f4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-03-02T10:48:53Z",
+      "side": 1,
+      "message": "nit: It is usually written above Change-Id (or below) and not as a list.",
+      "revId": "159b96b3a373c8d4b080fc27ddba92d512842783",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
