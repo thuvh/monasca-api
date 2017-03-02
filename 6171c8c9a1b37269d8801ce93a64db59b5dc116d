@@ -140,6 +140,30 @@
       "revId": "6171c8c9a1b37269d8801ce93a64db59b5dc116d",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba2be162_7e1000a9",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-03-02T15:17:20Z",
+      "side": 1,
+      "message": "In general, adding new characters to the restricted list is not a great option. It would be more worthwhile I think to add a way to delineate the keys and values. Perhaps surrounding them with quotes, then we just have to not allow a \" as a starting or ending character.",
+      "parentUuid": "ba2be162_e27c75ed",
+      "range": {
+        "startLine": 167,
+        "startChar": 45,
+        "endLine": 167,
+        "endChar": 58
+      },
+      "revId": "6171c8c9a1b37269d8801ce93a64db59b5dc116d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
