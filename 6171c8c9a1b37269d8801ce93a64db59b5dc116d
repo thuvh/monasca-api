@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ba2be162_a2f8bd4a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 15178
+      },
+      "writtenOn": "2017-03-02T05:50:43Z",
+      "side": 1,
+      "message": "thx and done",
+      "parentUuid": "ba2be162_40b71d39",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 66
+      },
+      "revId": "6171c8c9a1b37269d8801ce93a64db59b5dc116d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba2be162_60ffc101",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2017-03-01T14:57:45Z",
       "side": 1,
       "message": "Please use the following for automatic updates to Launchpad:\n\n Closes-Bug: 1668937",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 60
+      },
+      "revId": "6171c8c9a1b37269d8801ce93a64db59b5dc116d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba2be162_c295b1e4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 15178
+      },
+      "writtenOn": "2017-03-02T05:50:43Z",
+      "side": 1,
+      "message": "also thx and done",
+      "parentUuid": "ba2be162_60ffc101",
       "range": {
         "startLine": 17,
         "startChar": 0,
