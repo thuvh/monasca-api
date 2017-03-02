@@ -68,6 +68,30 @@
       "revId": "6171c8c9a1b37269d8801ce93a64db59b5dc116d",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba2be162_e27c75ed",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 15178
+      },
+      "writtenOn": "2017-03-02T05:46:02Z",
+      "side": 1,
+      "message": "What, if we would add the \u0027:\u0027 to the invalid characters for the key?",
+      "parentUuid": "ba2be162_27915bf1",
+      "range": {
+        "startLine": 167,
+        "startChar": 45,
+        "endLine": 167,
+        "endChar": 58
+      },
+      "revId": "6171c8c9a1b37269d8801ce93a64db59b5dc116d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
