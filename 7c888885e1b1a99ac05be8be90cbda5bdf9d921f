@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba2be162_2583db57",
+        "filename": "monasca_api/v3/common/utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-03-02T14:25:46Z",
+      "side": 1,
+      "message": "this can be found directly in falcon. I\u0027d recommend switching to that approach.",
+      "revId": "7c888885e1b1a99ac05be8be90cbda5bdf9d921f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
