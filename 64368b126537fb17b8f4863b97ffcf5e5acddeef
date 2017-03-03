@@ -142,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "ba2be162_f27a1f87",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 730,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-03-03T18:50:35Z",
+      "side": 1,
+      "message": "Well we have a little problem then.\nWithout ability to login, after setting mon-apo user/group to wsgi configuration, Apache is incapable of running monasca-api because it says that cannot find /home/mon-api :/",
+      "parentUuid": "ba2be162_5ab94f78",
+      "range": {
+        "startLine": 730,
+        "startChar": 54,
+        "endLine": 730,
+        "endChar": 85
+      },
+      "revId": "64368b126537fb17b8f4863b97ffcf5e5acddeef",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba2be162_a6aebce3",
         "filename": "devstack/plugin.sh",
         "patchSetId": 8
