@@ -80,11 +80,24 @@ MON_DB_USERS=($MONASCA_API_DATABASE_USER $MONASCA_THRESH_DATABASE_USER $MONASCA_
 MON_DB_HOSTS=("%" "localhost" "$DATABASE_HOST" "$MYSQL_HOST")
 MON_DB_HOSTS=$(echo "${MON_DB_HOSTS[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' ')
 
+# system user&group for monasca services
+# other services, in example: kafka, storm, grafana
+# are not included in this array as they are
+# user&group for monasca dependencies
+MONASCA_SYSTEM_GROUP="monasca"
+declare -A MONASCA_SYSTEM_USERS=(
+    ["mon-api"]="${MONASCA_SYSTEM_GROUP}"
+    ["mon-persister"]="${MONASCA_SYSTEM_GROUP}"
+    ["mon-notification"]="${MONASCA_SYSTEM_GROUP}"
+    ["mon-thresh"]="${MONASCA_SYSTEM_GROUP}"
+)
+
 function pre_install_monasca {
     echo_summary "Pre-Installing Monasca Components"
     install_git
     install_maven
     install_openjdk_8_jdk
+    create_system_accounts
 
     install_kafka
 
@@ -287,6 +300,8 @@ function clean_monasca {
 
     clean_monasca_virtual_env
 
+    clean_system_accounts
+
     #Restore errexit
     set -o errexit
 }
@@ -294,8 +309,6 @@ function clean_monasca {
 function install_monasca_virtual_env {
 
     echo_summary "Install Monasca Virtual Environment"
-
-    sudo groupadd --system monasca || true
 
     sudo mkdir -p /opt/monasca || true
 
@@ -309,8 +322,6 @@ function clean_monasca_virtual_env {
     echo_summary "Clean Monasca Virtual Environment"
 
     sudo rm -rf /opt/monasca
-
-    sudo groupdel monasca
 
 }
 
@@ -707,6 +718,23 @@ function clean_schema {
 
 }
 
+function create_system_accounts {
+    group_add "${MONASCA_SYSTEM_GROUP}" || true
+
+    local group
+    for user in "${!MONASCA_SYSTEM_USERS}"; do
+        group="${MONASCA_SYSTEM_USERS[$user]}"
+        useradd -g "${group}" -G "${STACK_USER}" -s /bin/bash -d /opt/monasca -m "${user}" || true
+    done
+}
+
+function clean_system_accounts {
+    for user in "${!MONASCA_SYSTEM_USERS}"; do
+        userdel --force "${user}" || true
+    done
+    groupdel "${MONASCA_SYSTEM_GROUP}" || true
+}
+
 function install_openjdk_8_jdk {
 
     echo_summary "Install Monasca openjdk_8_jdk"
@@ -780,8 +808,6 @@ function install_monasca_api_java {
 
     sudo cp -f "${MONASCA_API_DIR}"/java/target/monasca-api-${version}-shaded.jar \
         /opt/monasca/monasca-api.jar
-
-    sudo useradd --system -g monasca mon-api || true
 
     sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/monasca-api.service /etc/systemd/system/monasca-api.service
 
@@ -890,8 +916,6 @@ function install_monasca_api_python {
 
     unset PIP_VIRTUAL_ENV
 
-    sudo useradd --system -g monasca mon-api || true
-
     sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/monasca-api.service /etc/systemd/system/monasca-api.service
     sudo chown root:root /etc/systemd/system/monasca-api.service
     sudo chmod 0644 /etc/systemd/system/monasca-api.service
@@ -984,8 +1008,6 @@ function clean_monasca_api_java {
     sudo rm /opt/monasca/monasca-api.jar
 
     sudo rm /var/log/upstart/monasca-api.log*
-
-    sudo userdel mon-api
 }
 
 function clean_monasca_api_python {
@@ -1014,8 +1036,6 @@ function clean_monasca_api_python {
 
     sudo rm -rf /opt/monasca-api
 
-    sudo userdel mon-api
-
     if is_service_enabled postgresql; then
         apt_get -y purge libpq-dev
     elif is_service_enabled mysql; then
@@ -1037,8 +1057,6 @@ function install_monasca_persister_java {
 
     sudo cp -f "${MONASCA_PERSISTER_DIR}"/java/target/monasca-persister-${version}-shaded.jar \
         /opt/monasca/monasca-persister.jar
-
-    sudo useradd --system -g monasca mon-persister || true
 
     sudo mkdir -p /var/log/monasca || true
 
@@ -1124,8 +1142,6 @@ function install_monasca_persister_python {
     fi
 
     unset PIP_VIRTUAL_ENV
-
-    sudo useradd --system -g monasca mon-persister || true
 
     sudo mkdir -p /var/log/monasca || true
 
@@ -1219,7 +1235,6 @@ function clean_monasca_persister_java {
 
     sudo rm /var/log/upstart/monasca-persister.log*
 
-    sudo userdel mon-persister
 }
 
 function clean_monasca_persister_python {
@@ -1241,7 +1256,6 @@ function clean_monasca_persister_python {
 
     sudo rm -rf /opt/monasca-persister
 
-    sudo userdel mon-persister
 }
 
 function install_monasca_notification {
@@ -1275,8 +1289,6 @@ function install_monasca_notification {
     setup_install $MONASCA_NOTIFICATION_DIR
 
     unset PIP_VIRTUAL_ENV
-
-    sudo useradd --system -g monasca mon-notification || true
 
     sudo mkdir -p /var/log/monasca/notification || true
 
@@ -1350,8 +1362,6 @@ function clean_monasca_notification {
     sudo rm /etc/monasca/notification.yaml
 
     sudo rm -rf /var/log/monasca/notification
-
-    sudo userdel mon-notification
 
     sudo rm -rf /opt/monasca/monasca-notification
 
@@ -1481,8 +1491,6 @@ function install_monasca_thresh {
     sudo cp -f "${MONASCA_THRESH_DIR}"/thresh/target/monasca-thresh-${version}-shaded.jar \
         /opt/monasca/monasca-thresh.jar
 
-    sudo useradd --system -g monasca mon-thresh || true
-
     sudo mkdir -p /etc/monasca || true
 
     sudo chown root:monasca /etc/monasca
@@ -1538,8 +1546,6 @@ function clean_monasca_thresh {
     sudo rm /etc/init.d/monasca-thresh
 
     sudo rm /etc/monasca/thresh-config.yml
-
-    sudo userdel mon-thresh || true
 
     sudo rm /opt/monasca/monasca-thresh.jar
 
