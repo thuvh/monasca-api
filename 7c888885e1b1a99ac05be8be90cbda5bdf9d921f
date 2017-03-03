@@ -52,6 +52,24 @@
       "revId": "7c888885e1b1a99ac05be8be90cbda5bdf9d921f",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba2be162_cfef43e7",
+        "filename": "monasca_api/v3/common/utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-03-03T15:19:49Z",
+      "side": 1,
+      "message": "That looks much nicer! I will definitely put that in.",
+      "parentUuid": "ba2be162_45a98b23",
+      "revId": "7c888885e1b1a99ac05be8be90cbda5bdf9d921f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
