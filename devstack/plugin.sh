@@ -75,6 +75,19 @@ else
 
 fi
 
+# system user&group for monasca services
+MONASCA_SYSTEM_GROUP="monasca"
+MONASCA_API_USER="mon-api"
+MONASCA_PERSISTER_USER="mon-persister"
+MONASCA_NOTIFICATION_USER="mon-notification"
+MONASCA_THRESH_USER="mon-thresh"
+declare -A MONASCA_SYSTEM_USERS=(
+    ["${MONASCA_API_USER}"]="${MONASCA_SYSTEM_GROUP}"
+    ["${MONASCA_PERSISTER_USER}"]="${MONASCA_SYSTEM_GROUP}"
+    ["${MONASCA_NOTIFICATION_USER}"]="${MONASCA_SYSTEM_GROUP}"
+    ["${MONASCA_THRESH_USER}"]="${MONASCA_SYSTEM_GROUP}"
+)
+
 # monasca-api variables
 MONASCA_API_BASE_URI=${MONASCA_API_SERVICE_PROTOCOL}://${MONASCA_API_SERVICE_HOST}:${MONASCA_API_SERVICE_PORT}
 MONASCA_API_URI_V2=${MONASCA_API_BASE_URI}/v2.0
@@ -84,6 +97,7 @@ function pre_install_monasca {
     install_git
     install_maven
     install_openjdk_8_jdk
+    create_system_accounts
     find_nearest_apache_mirror
     install_kafka
 
@@ -256,10 +270,10 @@ function clean_monasca {
 
     fi
 
-
     if is_service_enabled monasca-agent; then
         clean_monasca_agent
     fi
+
     if is_service_enabled monasca-thresh; then
         clean_monasca_thresh
     fi
@@ -292,6 +306,8 @@ function clean_monasca {
 
     clean_monasca_virtual_env
 
+    clean_system_accounts
+
     #Restore errexit
     set -o errexit
 }
@@ -300,11 +316,9 @@ function install_monasca_virtual_env {
 
     echo_summary "Install Monasca Virtual Environment"
 
-    sudo groupadd --system monasca || true
-
     sudo mkdir -p /opt/monasca || true
 
-    sudo chown $STACK_USER:monasca /opt/monasca
+    sudo chown "${STACK_USER}":"${MONASCA_SYSTEM_GROUP}" /opt/monasca
 
     (cd /opt/monasca ; virtualenv .)
 }
@@ -314,8 +328,6 @@ function clean_monasca_virtual_env {
     echo_summary "Clean Monasca Virtual Environment"
 
     sudo rm -rf /opt/monasca
-
-    sudo groupdel monasca
 
 }
 
@@ -707,6 +719,24 @@ function clean_schema {
 
 }
 
+function create_system_accounts {
+    local group
+    for user in "${!MONASCA_SYSTEM_USERS[@]}"; do
+        group="${MONASCA_SYSTEM_USERS[$user]}"
+        sudo groupadd -f "${group}" || true
+        sudo useradd --gid "${group}" --groups "${STACK_USER}" --system "${user}" || true
+    done
+}
+
+function clean_system_accounts {
+    local group
+    for user in "${!MONASCA_SYSTEM_USERS[@]}"; do
+        group="${MONASCA_SYSTEM_USERS[$user]}"
+        sudo groupdel "${group}" || true
+        sudo userdel -f "${user}" || true
+    done
+}
+
 function install_openjdk_8_jdk {
 
     echo_summary "Install Monasca openjdk_8_jdk"
@@ -789,8 +819,6 @@ function install_monasca_api_java {
     sudo cp -f "${MONASCA_API_DIR}"/java/target/monasca-api-${version}-shaded.jar \
         /opt/monasca/monasca-api.jar
 
-    sudo useradd --system -g monasca mon-api || true
-
     sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/monasca-api.service /etc/systemd/system/monasca-api.service
 
     if [[ "${MONASCA_METRICS_DB,,}" == 'vertica' ]]; then
@@ -808,19 +836,19 @@ function install_monasca_api_java {
 
     sudo mkdir -p /var/log/monasca || true
 
-    sudo chown root:monasca /var/log/monasca
+    sudo chown root:"${MONASCA_SYSTEM_GROUP}" /var/log/monasca
 
     sudo chmod 0755 /var/log/monasca
 
     sudo mkdir -p /var/log/monasca/api || true
 
-    sudo chown root:monasca /var/log/monasca/api
+    sudo chown root:"${MONASCA_SYSTEM_GROUP}" /var/log/monasca/api
 
     sudo chmod 0775 /var/log/monasca/api
 
     sudo mkdir -p /etc/monasca || true
 
-    sudo chown root:monasca /etc/monasca
+    sudo chown root:"${MONASCA_SYSTEM_GROUP}" /etc/monasca
 
     sudo chmod 0775 /etc/monasca
 
@@ -835,7 +863,7 @@ function install_monasca_api_java {
     fi
 
     sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/api-config.yml /etc/monasca/api-config.yml
-    sudo chown mon-api:root /etc/monasca/api-config.yml
+    sudo chown "${MONASCA_API_USER}":root /etc/monasca/api-config.yml
     sudo chmod 0640 /etc/monasca/api-config.yml
 
     sudo sed -e "
@@ -900,8 +928,6 @@ function install_monasca_api_python {
 
     unset PIP_VIRTUAL_ENV
 
-    sudo useradd --system -g monasca mon-api || true
-
     sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/monasca-api.service /etc/systemd/system/monasca-api.service
     sudo chown root:root /etc/systemd/system/monasca-api.service
     sudo chmod 0644 /etc/systemd/system/monasca-api.service
@@ -911,19 +937,19 @@ function install_monasca_api_python {
 
     sudo mkdir -p /var/log/monasca || true
 
-    sudo chown root:monasca /var/log/monasca
+    sudo chown root:"${MONASCA_SYSTEM_GROUP}" /var/log/monasca
 
     sudo chmod 0755 /var/log/monasca
 
     sudo mkdir -p /var/log/monasca/api || true
 
-    sudo chown root:monasca /var/log/monasca/api
+    sudo chown root:"${MONASCA_SYSTEM_GROUP}" /var/log/monasca/api
 
     sudo chmod 0775 /var/log/monasca/api
 
     sudo mkdir -p /etc/monasca || true
 
-    sudo chown root:monasca /etc/monasca
+    sudo chown root:"${MONASCA_SYSTEM_GROUP}" /etc/monasca
 
     sudo chmod 0775 /etc/monasca
 
@@ -940,17 +966,17 @@ function install_monasca_api_python {
     dbAlarmUrl=`database_connection_url mon`
 
     sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/api-config.conf /etc/monasca/api-config.conf
-    sudo chown mon-api:root /etc/monasca/api-config.conf
+    sudo chown "${MONASCA_API_USER}":root /etc/monasca/api-config.conf
     sudo chmod 0660 /etc/monasca/api-config.conf
     sudo ln -sf /etc/monasca/api-config.conf /etc/api-config.conf
 
     sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/api-logging.conf /etc/monasca/api-logging.conf
-    sudo chown mon-api:root /etc/monasca/api-logging.conf
+    sudo chown "${MONASCA_API_USER}":root /etc/monasca/api-logging.conf
     sudo chmod 0660 /etc/monasca/api-logging.conf
     sudo ln -sf /etc/monasca/api-logging.conf /etc/api-logging.conf
 
     sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/api-config.ini /etc/monasca/api-config.ini
-    sudo chown mon-api:root /etc/monasca/api-config.ini
+    sudo chown "${MONASCA_API_USER}":root /etc/monasca/api-config.ini
     sudo chmod 0660 /etc/monasca/api-config.ini
     sudo ln -sf /etc/monasca/api-config.ini /etc/api-config.ini
 
@@ -996,8 +1022,6 @@ function clean_monasca_api_java {
     sudo rm /opt/monasca/monasca-api.jar
 
     sudo rm /var/log/upstart/monasca-api.log*
-
-    sudo userdel mon-api
 }
 
 function clean_monasca_api_python {
@@ -1026,8 +1050,6 @@ function clean_monasca_api_python {
 
     sudo rm -rf /opt/monasca-api
 
-    sudo userdel mon-api
-
     if is_service_enabled postgresql; then
         apt_get -y purge libpq-dev
     elif is_service_enabled mysql; then
@@ -1050,27 +1072,25 @@ function install_monasca_persister_java {
     sudo cp -f "${MONASCA_PERSISTER_DIR}"/java/target/monasca-persister-${version}-shaded.jar \
         /opt/monasca/monasca-persister.jar
 
-    sudo useradd --system -g monasca mon-persister || true
-
     sudo mkdir -p /var/log/monasca || true
 
-    sudo chown root:monasca /var/log/monasca
+    sudo chown root:"${MONASCA_SYSTEM_GROUP}" /var/log/monasca
 
     sudo chmod 0755 /var/log/monasca
 
     sudo mkdir -p /var/log/monasca/persister || true
 
-    sudo chown root:monasca /var/log/monasca/persister
+    sudo chown root:"${MONASCA_SYSTEM_GROUP}" /var/log/monasca/persister
 
     sudo chmod 0775 /var/log/monasca/persister
 
     sudo mkdir -p /etc/monasca || true
 
-    sudo chown root:monasca /etc/monasca
+    sudo chown root:"${MONASCA_SYSTEM_GROUP}" /etc/monasca
 
     sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-persister/persister-config.yml /etc/monasca/persister-config.yml
 
-    sudo chown mon-persister:monasca /etc/monasca/persister-config.yml
+    sudo chown "${MONASCA_PERSISTER_USER}":"${MONASCA_SYSTEM_GROUP}" /etc/monasca/persister-config.yml
 
     sudo chmod 0640 /etc/monasca/persister-config.yml
 
@@ -1115,7 +1135,7 @@ function install_monasca_persister_python {
 
     sudo mkdir -p /opt/monasca-persister || true
 
-    sudo chown $STACK_USER:monasca /opt/monasca-persister
+    sudo chown "${STACK_USER}":"${MONASCA_SYSTEM_GROUP}" /opt/monasca-persister
 
     (cd /opt/monasca-persister ; virtualenv .)
 
@@ -1137,28 +1157,26 @@ function install_monasca_persister_python {
 
     unset PIP_VIRTUAL_ENV
 
-    sudo useradd --system -g monasca mon-persister || true
-
     sudo mkdir -p /var/log/monasca || true
 
-    sudo chown root:monasca /var/log/monasca
+    sudo chown root:"${MONASCA_SYSTEM_GROUP}" /var/log/monasca
 
     sudo chmod 0755 /var/log/monasca
 
     sudo mkdir -p /var/log/monasca/persister || true
 
-    sudo chown root:monasca /var/log/monasca/persister
+    sudo chown root:"${MONASCA_SYSTEM_GROUP}" /var/log/monasca/persister
 
     sudo chmod 0775 /var/log/monasca/persister
 
     sudo mkdir -p /etc/monasca || true
 
-    sudo chown root:monasca /etc/monasca
+    sudo chown root:"${MONASCA_SYSTEM_GROUP}" /etc/monasca
 
     sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-persister/python/persister.conf /etc/monasca/persister.conf
     sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-persister/python/persister-logging.conf /etc/monasca/persister-logging.conf
 
-    sudo chown mon-persister:monasca /etc/monasca/persister.conf
+    sudo chown "${MONASCA_PERSISTER_USER}":"${MONASCA_SYSTEM_GROUP}" /etc/monasca/persister.conf
 
     sudo chmod 0640 /etc/monasca/persister.conf
 
@@ -1186,7 +1204,7 @@ function install_monasca_persister_python {
     # /etc/monasca/persister-config.yml is needed for the Monasca Agent configuration.
     sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-persister/persister-config.yml /etc/monasca/persister-config.yml
 
-    sudo chown mon-persister:monasca /etc/monasca/persister-config.yml
+    sudo chown "${MONASCA_PERSISTER_USER}":"${MONASCA_SYSTEM_GROUP}" /etc/monasca/persister-config.yml
 
     sudo chmod 0640 /etc/monasca/persister-config.yml
 
@@ -1288,23 +1306,21 @@ function install_monasca_notification {
 
     unset PIP_VIRTUAL_ENV
 
-    sudo useradd --system -g monasca mon-notification || true
-
     sudo mkdir -p /var/log/monasca/notification || true
 
-    sudo chown root:monasca /var/log/monasca/notification
+    sudo chown root:"${MONASCA_SYSTEM_GROUP}" /var/log/monasca/notification
 
     sudo chmod 0775 /var/log/monasca/notification
 
     sudo mkdir -p /etc/monasca || true
 
-    sudo chown root:monasca /etc/monasca
+    sudo chown root:"${MONASCA_SYSTEM_GROUP}" /etc/monasca
 
     sudo chmod 0775 /etc/monasca
 
     sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-notification/notification.yaml /etc/monasca/notification.yaml
 
-    sudo chown mon-notification:monasca /etc/monasca/notification.yaml
+    sudo chown "${MONASCA_NOTIFICATION_USER}":"${MONASCA_SYSTEM_GROUP}" /etc/monasca/notification.yaml
 
     sudo chmod 0660 /etc/monasca/notification.yaml
 
@@ -1362,8 +1378,6 @@ function clean_monasca_notification {
     sudo rm /etc/monasca/notification.yaml
 
     sudo rm -rf /var/log/monasca/notification
-
-    sudo userdel mon-notification
 
     sudo rm -rf /opt/monasca/monasca-notification
 
@@ -1493,17 +1507,15 @@ function install_monasca_thresh {
     sudo cp -f "${MONASCA_THRESH_DIR}"/thresh/target/monasca-thresh-${version}-shaded.jar \
         /opt/monasca/monasca-thresh.jar
 
-    sudo useradd --system -g monasca mon-thresh || true
-
     sudo mkdir -p /etc/monasca || true
 
-    sudo chown root:monasca /etc/monasca
+    sudo chown root:"${MONASCA_SYSTEM_GROUP}" /etc/monasca
 
     sudo chmod 0775 /etc/monasca
 
     sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-thresh/thresh-config.yml /etc/monasca/thresh-config.yml
 
-    sudo chown root:monasca /etc/monasca/thresh-config.yml
+    sudo chown root:"${MONASCA_SYSTEM_GROUP}" /etc/monasca/thresh-config.yml
 
     sudo chmod 0640 /etc/monasca/thresh-config.yml
 
@@ -1550,8 +1562,6 @@ function clean_monasca_thresh {
     sudo rm /etc/init.d/monasca-thresh
 
     sudo rm /etc/monasca/thresh-config.yml
-
-    sudo userdel mon-thresh || true
 
     sudo rm /opt/monasca/monasca-thresh.jar
 
@@ -1653,7 +1663,7 @@ function install_monasca_agent {
 
     (cd /opt/monasca-agent ; sudo ./bin/pip install kafka-python==0.9.2)
 
-    sudo chown $STACK_USER:monasca /opt/monasca-agent
+    sudo chown "${STACK_USER}":"${MONASCA_SYSTEM_GROUP}" /opt/monasca-agent
 
     sudo mkdir -p /etc/monasca/agent/conf.d || true
 
