@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba2be162_8018bf76",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-03-03T14:07:56Z",
+      "side": 1,
+      "message": "The first line is enough. Please remove the following ones.",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 37
+      },
+      "revId": "64368b126537fb17b8f4863b97ffcf5e5acddeef",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba2be162_a04ea36c",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-03-03T14:07:56Z",
+      "side": 1,
+      "message": "Should be MONASCA_SYSTEM_GROUPS",
+      "range": {
+        "startLine": 92,
+        "startChar": 11,
+        "endLine": 92,
+        "endChar": 31
+      },
+      "revId": "64368b126537fb17b8f4863b97ffcf5e5acddeef",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba2be162_00b76ff5",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 730,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-03-03T14:07:56Z",
+      "side": 1,
+      "message": "What was wrong with system users? Why do we want to create home directories? And do we want to use the same home directory for all these users?",
+      "range": {
+        "startLine": 730,
+        "startChar": 54,
+        "endLine": 730,
+        "endChar": 85
+      },
+      "revId": "64368b126537fb17b8f4863b97ffcf5e5acddeef",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba2be162_a03863a1",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 730,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-03-03T14:07:56Z",
+      "side": 1,
+      "message": "It\u0027s not correct. Please remove.",
+      "range": {
+        "startLine": 730,
+        "startChar": 35,
+        "endLine": 730,
+        "endChar": 53
+      },
+      "revId": "64368b126537fb17b8f4863b97ffcf5e5acddeef",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba2be162_a6aebce3",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 738,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-03-03T14:07:56Z",
+      "side": 1,
+      "message": "You should use the array here as well.",
+      "range": {
+        "startLine": 735,
+        "startChar": 4,
+        "endLine": 738,
+        "endChar": 51
+      },
+      "revId": "64368b126537fb17b8f4863b97ffcf5e5acddeef",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
