@@ -166,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "ba2be162_00959e85",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 730,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-03-03T19:05:31Z",
+      "side": 1,
+      "message": "I will retest that with creating users without ability to login to  confirm that statement.",
+      "parentUuid": "ba2be162_f27a1f87",
+      "range": {
+        "startLine": 730,
+        "startChar": 54,
+        "endLine": 730,
+        "endChar": 85
+      },
+      "revId": "64368b126537fb17b8f4863b97ffcf5e5acddeef",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba2be162_a6aebce3",
         "filename": "devstack/plugin.sh",
         "patchSetId": 8
