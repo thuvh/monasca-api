@@ -34,6 +34,24 @@
       "revId": "7c888885e1b1a99ac05be8be90cbda5bdf9d921f",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba2be162_45a98b23",
+        "filename": "monasca_api/v3/common/utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-03-03T05:07:21Z",
+      "side": 1,
+      "message": "Ahh, sorry for that.\n\nHere\u0027s an example how we did that in monasca-log-api: https://github.com/openstack/monasca-log-api/blob/master/monasca_log_api/reference/common/error_handlers.py",
+      "parentUuid": "ba2be162_19139eb9",
+      "revId": "7c888885e1b1a99ac05be8be90cbda5bdf9d921f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
