@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "ba2be162_da01bf07",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-03-03T15:51:50Z",
+      "side": 1,
+      "message": "It is the list of users, why should it be named MONASCA_SYSTEM_GROUPS?",
+      "parentUuid": "ba2be162_a04ea36c",
+      "range": {
+        "startLine": 92,
+        "startChar": 11,
+        "endLine": 92,
+        "endChar": 31
+      },
+      "revId": "64368b126537fb17b8f4863b97ffcf5e5acddeef",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba2be162_00b76ff5",
         "filename": "devstack/plugin.sh",
         "patchSetId": 8
@@ -87,6 +111,30 @@
         "startChar": 35,
         "endLine": 730,
         "endChar": 53
+      },
+      "revId": "64368b126537fb17b8f4863b97ffcf5e5acddeef",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba2be162_5ab94f78",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 730,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-03-03T15:51:50Z",
+      "side": 1,
+      "message": "Our security people asked that these accounts not have home directories and not be allowed to login. Makes sense to keep those restrictions in devstack.",
+      "parentUuid": "ba2be162_00b76ff5",
+      "range": {
+        "startLine": 730,
+        "startChar": 54,
+        "endLine": 730,
+        "endChar": 85
       },
       "revId": "64368b126537fb17b8f4863b97ffcf5e5acddeef",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
