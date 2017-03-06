@@ -939,20 +939,20 @@ function install_monasca_api_python {
     fi
     dbAlarmUrl=`database_connection_url mon`
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/api-config.conf /etc/monasca/api-config.conf
-    sudo chown mon-api:root /etc/monasca/api-config.conf
-    sudo chmod 0660 /etc/monasca/api-config.conf
-    sudo ln -sf /etc/monasca/api-config.conf /etc/api-config.conf
+    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/metric-api.conf /etc/monasca/metric-api.conf
+    sudo chown mon-api:root /etc/monasca/metric-api.conf
+    sudo chmod 0660 /etc/monasca/metric-api.conf
+    sudo ln -sf /etc/monasca/api.conf /etc/metric-api.conf
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/api-logging.conf /etc/monasca/api-logging.conf
-    sudo chown mon-api:root /etc/monasca/api-logging.conf
-    sudo chmod 0660 /etc/monasca/api-logging.conf
-    sudo ln -sf /etc/monasca/api-logging.conf /etc/api-logging.conf
+    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/metric-api-logging.conf /etc/monasca/metric-api-logging.conf
+    sudo chown mon-api:root /etc/monasca/metric-api-logging.conf
+    sudo chmod 0660 /etc/monasca/metric-api-logging.conf
+    sudo ln -sf /etc/monasca/api-logging.conf /etc/metric-api-logging.conf
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/api-config.ini /etc/monasca/api-config.ini
-    sudo chown mon-api:root /etc/monasca/api-config.ini
-    sudo chmod 0660 /etc/monasca/api-config.ini
-    sudo ln -sf /etc/monasca/api-config.ini /etc/api-config.ini
+    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/metric-api-config.ini /etc/monasca/metric-api-paste.ini
+    sudo chown mon-api:root /etc/monasca/metric-api-paste.ini
+    sudo chmod 0660 /etc/monasca/metric-api-paste.ini
+    sudo ln -sf /etc/monasca/api-config.ini /etc/metric-api-paste.ini
 
     sudo sed -e "
         s|%KEYSTONE_AUTH_HOST%|$KEYSTONE_AUTH_HOST|g;
@@ -969,13 +969,13 @@ function install_monasca_api_python {
         s|%INFLUXDB_PORT%|8086|g;
         s|%KAFKA_HOST%|$SERVICE_HOST|g;
         s|%ADMIN_PASSWORD%|$ADMIN_PASSWORD|g;
-    " -i /etc/monasca/api-config.conf
+    " -i /etc/monasca/metric-api.conf
 
     sudo sed -e "
         s|%MONASCA_API_SERVICE_HOST%|$MONASCA_API_SERVICE_HOST|g;
         s|%MONASCA_API_SERVICE_PORT%|$MONASCA_API_SERVICE_PORT|g;
         s|%API_WORKERS%|$API_WORKERS|g;
-    " -i /etc/monasca/api-config.ini
+    " -i /etc/monasca/metric-api-paste.ini
 
 }
 
@@ -1008,17 +1008,14 @@ function clean_monasca_api_python {
 
     sudo rm /etc/systemd/system/monasca-api.service
 
-    sudo rm /etc/api-config.conf
+    sudo rm /etc/metric-api-config.conf
+    sudo rm /etc/monasca/metric-api.conf
 
-    sudo rm /etc/monasca/api-config.conf
+    sudo rm /etc/metric-api-logging.conf
+    sudo rm /etc/monasca/metric-api-logging.conf
 
-    sudo rm /etc/api-logging.conf
-
-    sudo rm /etc/monasca/api-logging.conf
-
-    sudo rm /etc/api-config.ini
-
-    sudo rm /etc/monasca/api-config.ini
+    sudo rm /etc/metric-api-paste.ini
+    sudo rm /etc/monasca/metric-api-paste.ini
 
     sudo rm -rf /var/log/monasca/api
 
