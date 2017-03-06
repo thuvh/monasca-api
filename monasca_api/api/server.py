@@ -24,6 +24,7 @@ from oslo_log import log
 import paste.deploy
 
 from monasca_api.api.core import request
+from monasca_api import version
 
 dispatcher_opts = [cfg.StrOpt('versions', default=None,
                               help='Versions'),
@@ -61,16 +62,24 @@ cfg.CONF.register_opts(dispatcher_opts, dispatcher_group)
 LOG = log.getLogger(__name__)
 
 
-def launch(conf):
-    # use default, but try to access one passed from conf first
-    config_file = conf.get('config_file', "/etc/monasca/api-config.conf")
+def launch(args):
 
-    log.register_options(cfg.CONF)
     log.set_defaults()
-    cfg.CONF(args=[],
-             project='monasca_api',
-             default_config_files=[config_file])
-    log.setup(cfg.CONF, 'monasca_api')
+    log.register_options(cfg.CONF)
+
+    cfg.CONF(args=args.get('oslo.args', []),
+             # NOTE(trebskit) that effectively disables CLI args from oslo.*
+             # args list build from code below is passed
+             # instead of actual CLI arguments
+             # reason for that is having gunicorn with different argparse that
+             # clashes with oslo.cfg argparse
+             prog='api',
+             project='monasca',
+             version=version.version_str,
+             description='REST-ful API to collect metric')
+    log.setup(cfg.CONF,
+              product_name='monasca-log-api',
+              version=version.version_str)
 
     app = falcon.API(request_type=request.Request)
 
@@ -134,33 +143,37 @@ def launch(conf):
     return app
 
 
-def get_wsgi_app(config_base_path=None, **kwargs):
+def get_wsgi_app(config_dir=None, **kwargs):
+    if config_dir is None:
+        config_dir = '/etc/monasca'
 
-    # allow to override names of the configuration files
-    config_file = kwargs.get('config_file', 'api-config.conf')
+    oslo_args = ['--config-dir=%s' % config_dir]
+    if 'log_config_append' in kwargs:
+        oslo_args.append(('--log-config-append=%s'
+                          % kwargs.get('log_config_append')))
     paste_file = kwargs.get('paste_file', 'api-config.ini')
 
-    if config_base_path is None:
-        # allow monasca-api to be run in dev mode from __main__
-        config_base_path = os.path.join(
-            os.path.dirname(os.path.realpath(__file__)), '../../etc')
-
-    config_file = os.path.join(config_base_path, config_file)
-    global_conf = {'config_file': config_file}
-
     LOG.debug('Initializing WSGI application using configuration from %s',
-              config_base_path)
+              config_dir)
 
     return (
         paste.deploy.loadapp(
-            'config:%s' % paste_file,
-            relative_to=config_base_path,
-            global_conf=global_conf
+                'config:%s' % paste_file,
+                relative_to=config_dir,
+                global_conf={
+                    'oslo.args': oslo_args
+                }
         )
     )
 
 
 if __name__ == '__main__':
-    wsgi_app = get_wsgi_app()
+    conf_dir = os.path.join(
+        os.path.dirname(os.path.realpath(__file__)), '../../etc')
+
+    wsgi_app = get_wsgi_app(
+            config_dir=conf_dir,
+            log_config_append=os.path.join(conf_dir, 'api-logging.conf')
+    )
     httpd = simple_server.make_server('127.0.0.1', 8070, wsgi_app)
     httpd.serve_forever()
