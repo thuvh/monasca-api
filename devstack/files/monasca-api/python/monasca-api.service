@@ -22,7 +22,7 @@ After=network.target kafka.service influxdb.service mysql.service
 [Service]
 User=mon-api
 Group=monasca
-ExecStart=/opt/monasca-api/bin/gunicorn -n monasca-api -k eventlet --worker-connections=2000 --backlog=1000 --paste /etc/monasca/api-config.ini -w 9
+ExecStart=/opt/monasca-api/bin/gunicorn -n monasca-api -k eventlet --worker-connections=2000 --backlog=1000 --paste /etc/monasca/metric-api-paste.ini -w 9
 Restart=on-failure
 
 [Install]
