@@ -12,9 +12,12 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-# extremely simple way to setup of monasca-api
-# with wsgi
+from oslotest import base
 
-from monasca_api.api import server
+from monasca_api import version
 
-application = server.get_wsgi_app(config_dir='/etc/monasca')
+
+class TestAppVersion(base.BaseTestCase):
+
+    def test_should_report_version(self):
+        self.assertIsNotNone(version.version_str)
