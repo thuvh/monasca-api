@@ -164,6 +164,30 @@
       "revId": "6171c8c9a1b37269d8801ce93a64db59b5dc116d",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba2be162_18e95cb7",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 15178
+      },
+      "writtenOn": "2017-03-06T13:57:40Z",
+      "side": 1,
+      "message": "I\u0027ve checked the current java api implementation, because we had no problems with the java version so far. We found that the current behavior in java is the same as we want to implement for python. The dimension string is splitted on the first occurred colon. Everything else is the value:\n\nhttps://github.com/openstack/monasca-api/blob/master/java/src/main/java/monasca/api/app/validation/Validation.java#L45\nhttps://github.com/openstack/monasca-api/blob/master/java/src/main/java/monasca/api/app/validation/Validation.java#L101\n\nI think we should have the same functioniality in both implementations.",
+      "parentUuid": "ba2be162_7e1000a9",
+      "range": {
+        "startLine": 167,
+        "startChar": 45,
+        "endLine": 167,
+        "endChar": 58
+      },
+      "revId": "6171c8c9a1b37269d8801ce93a64db59b5dc116d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
