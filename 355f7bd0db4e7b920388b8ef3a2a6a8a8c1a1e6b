@@ -16,6 +16,24 @@
       "revId": "355f7bd0db4e7b920388b8ef3a2a6a8a8c1a1e6b",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba2be162_0e97ab3a",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 15178
+      },
+      "writtenOn": "2017-03-06T13:58:46Z",
+      "side": 1,
+      "message": "We could raise an exception if the string is empty. Or we just ignore this dimension. But to raise an exception if the length of the array is something else then 1 or 2 will never happen with this implementation. Because in this situation we already know that we have a string. And independent of the number of colon we will always get at least one and maximum two strings back.",
+      "parentUuid": "ba2be162_bed7d8bd",
+      "revId": "355f7bd0db4e7b920388b8ef3a2a6a8a8c1a1e6b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
