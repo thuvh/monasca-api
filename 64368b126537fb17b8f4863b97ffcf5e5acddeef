@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "ba2be162_189b1c67",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-03-06T13:59:28Z",
+      "side": 1,
+      "message": "It is the associative array of system groups where system users are used as keys.",
+      "parentUuid": "ba2be162_da01bf07",
+      "range": {
+        "startLine": 92,
+        "startChar": 11,
+        "endLine": 92,
+        "endChar": 31
+      },
+      "revId": "64368b126537fb17b8f4863b97ffcf5e5acddeef",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba2be162_00b76ff5",
         "filename": "devstack/plugin.sh",
         "patchSetId": 8
