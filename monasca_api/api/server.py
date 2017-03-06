@@ -23,6 +23,7 @@ from oslo_log import log
 import paste.deploy
 
 from monasca_api.api.core import request
+from monasca_api import version
 
 dispatcher_opts = [cfg.StrOpt('versions', default=None,
                               help='Versions'),
@@ -60,13 +61,24 @@ cfg.CONF.register_opts(dispatcher_opts, dispatcher_group)
 LOG = log.getLogger(__name__)
 
 
-def launch(conf, config_file="/etc/monasca/api-config.conf"):
-    log.register_options(cfg.CONF)
+def launch(conf):
+
+    if conf and 'config_dir' in conf:
+        config_dirs = [conf.get('config_dir')]
+    else:
+        config_dirs = []
+
     log.set_defaults()
     cfg.CONF(args=[],
-             project='monasca_api',
-             default_config_files=[config_file])
-    log.setup(cfg.CONF, 'monasca_api')
+             prog='api',
+             project='monasca',
+             version=version.version_str,
+             description='REST-ful API to collect metric',
+             default_config_dirs=config_dirs)
+    log.setup(cfg.CONF,
+              product_name='monasca-log-api',
+              version=version.version_str)
+    log.register_options(cfg.CONF)
 
     app = falcon.API(request_type=request.Request)
 
