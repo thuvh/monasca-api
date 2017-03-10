@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a30ddce_462423c4",
+        "filename": "setup.cfg",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 17788
+      },
+      "writtenOn": "2017-03-10T09:13:47Z",
+      "side": 1,
+      "message": "Storlets has not yet complete to support py3 .",
+      "range": {
+        "startLine": 19,
+        "startChar": 3,
+        "endLine": 19,
+        "endChar": 41
+      },
+      "revId": "522120ceb401e4d442055ac54a1f676a7c9ba7c2",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
