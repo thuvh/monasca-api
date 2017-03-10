@@ -1,0 +1,8 @@
+Code-Review+2: Witold Bedyk <witold.bedyk@est.fujitsu.com>
+Workflow+1: Witold Bedyk <witold.bedyk@est.fujitsu.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Fri, 10 Mar 2017 20:06:48 +0000
+Reviewed-on: https://review.openstack.org/442957
+Project: openstack/monasca-api
+Branch: refs/heads/stable/ocata
