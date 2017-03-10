@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a30ddce_d82d3e47",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 16
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-03-10T15:24:36Z",
+      "side": 1,
+      "message": "I still mean it should be called MONASCA_SYSTEM_GROUPS or GROUPS_BY_USER.",
+      "range": {
+        "startLine": 84,
+        "startChar": 11,
+        "endLine": 84,
+        "endChar": 31
+      },
+      "revId": "3e9b51694175d91c41f6e53f185a57f26cac41ab",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a30ddce_d889be27",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 16
+      },
+      "lineNbr": 719,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-03-10T15:24:36Z",
+      "side": 1,
+      "message": "Would prefer using \u0027--system\u0027. I always have to think a while what \u0027-r\u0027 actually means.",
+      "range": {
+        "startLine": 719,
+        "startChar": 54,
+        "endLine": 719,
+        "endChar": 56
+      },
+      "revId": "3e9b51694175d91c41f6e53f185a57f26cac41ab",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
