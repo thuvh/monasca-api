@@ -683,6 +683,7 @@ class AlarmDefinitionsRepository(sql_repository.SQLRepository,
         for sub_expr in sub_expr_list:
             sad = sub_alarm_definition.SubAlarmDefinition(
                 sub_expr=sub_expr)
+            # Note: the .id yet needs to be set (see below)
             # Inject the alarm definition id.
             sad.alarm_definition_id = alarm_definition_id.decode('utf8')
             new_sub_alarm_defs_set.add(sad)
@@ -710,6 +711,8 @@ class AlarmDefinitionsRepository(sql_repository.SQLRepository,
                     changed_sub_alarm_defs_by_id[
                         old_or_changed.id] = (
                         new_or_changed)
+                    # inject the missing ID (taken from the old), otherwise updates will not work
+                    new_or_changed.id = old_or_changed.id
         old_or_changed_sub_alarm_defs_set = (
             old_or_changed_sub_alarm_defs_set -
             old_or_changed_sub_alarm_defs_set_to_remove

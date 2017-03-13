@@ -49,9 +49,8 @@ class SubAlarmDefinition(object):
             self.deterministic = str(row['is_deterministic']) == '1'
 
         if sub_expr:
-            # id is not used for compare or hash.
-            self.id = ''
             # Must be injected.
+            self.id = ''
             self.alarm_definition_id = ''
             self.metric_name = sub_expr.metric_name
             self.dimensions_str = sub_expr.dimensions_str

@@ -457,16 +457,13 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
 
         sub_alarm_def_update_dict = {}
         for id, sub_alarm_def in sub_alarm_def_dict.items():
-            dimensions = {}
-            for name, value in sub_alarm_def.dimensions.items():
-                dimensions[u'uname'] = value
             sub_alarm_def_update_dict[sub_alarm_def.id] = {}
             sub_alarm_def_update_dict[sub_alarm_def.id][u'function'] = (
                 sub_alarm_def.function)
             sub_alarm_def_update_dict[sub_alarm_def.id][
                 u'metricDefinition'] = (
                 {u'name': sub_alarm_def.metric_name,
-                 u'dimensions': dimensions})
+                 u'dimensions': sub_alarm_def.dimensions.copy()})
             sub_alarm_def_update_dict[sub_alarm_def.id][u'operator'] = (
                 sub_alarm_def.operator)
             sub_alarm_def_update_dict[sub_alarm_def.id][u'threshold'] = (
