@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1ff146_29b76287",
+        "filename": "monasca_api/common/repositories/sqla/alarm_group_definitions_repository.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 22157
+      },
+      "writtenOn": "2017-03-15T23:47:38Z",
+      "side": 1,
+      "message": "When updating a rule with on_put, I get:\n\n    \"title\": \"Service unavailable\",\n    \"description\": \"(sqlalchemy.exc.InvalidRequestError) A value is required for bind parameter \u0027b_alarm_state\u0027 [SQL: u\u0027DELETE FROM alarm_group_definition_action WHERE alarm_group_definition_action.alarm_group_definition_id \u003d %(b_alarm_group_definition_id)s AND alarm_group_definition_action.alarm_state \u003d %(b_alarm_state)s\u0027] [parameters: [{\u0027b_alarm_group_definition_id\u0027: \u002794b9221c-fd6b-4ec0-8c3b-9a5de2f2b084\u0027}]]\"",
+      "range": {
+        "startLine": 280,
+        "startChar": 16,
+        "endLine": 282,
+        "endChar": 74
+      },
+      "revId": "cb5a723613938c454235452d16709dfe79f9b92e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1ff146_c15148da",
+        "filename": "monasca_api/v2/reference/alarm_group_definitions.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 22157
+      },
+      "writtenOn": "2017-03-15T23:47:38Z",
+      "side": 1,
+      "message": "If you try to create a definition where alarm_actions is the same as ok_actions or undetermined_actions, you get:\n\n    \"title\": \"Service unavailable\",\n    \"description\": \"(pymysql.err.IntegrityError) (1062, u\\\"Duplicate entry \u002754799ead-c4df-4c41-b376-f103592929f6-ea24a4ee-5279-48d6-8825-a47\u0027 for key \u0027PRIMARY\u0027\\\") [SQL: u\u0027INSERT INTO alarm_group_definition_action (alarm_group_definition_id, alarm_state, action_id) VALUES (%(b_alarm_group_definition_id)s, %(b_alarm_state)s, %(b_action_id)s)\u0027] [parameters: {\u0027b_alarm_group_definition_id\u0027: \u002754799ead-c4df-4c41-b376-f103592929f6\u0027, \u0027b_action_id\u0027: \u0027ea24a4ee-5279-48d6-8825-a478bad8c398\u0027, \u0027b_alarm_state\u0027: \u0027OK\u0027}]\"",
+      "range": {
+        "startLine": 71,
+        "startChar": 8,
+        "endLine": 76,
+        "endChar": 59
+      },
+      "revId": "cb5a723613938c454235452d16709dfe79f9b92e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
