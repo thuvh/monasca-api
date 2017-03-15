@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3a1ff146_a8ce1781",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 16
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-03-15T06:17:05Z",
+      "side": 1,
+      "message": "It cannot be called *GROUPS* because keys are the names of the users, not groups. So having that said better option would be USERS_BY_GROUP which after I add monasca\u0027d become MONASCA_USERS_BY_GROUP and that effectively is not far from MONASCA_SYSTEM_USERS IMHO. \n\nI can go with MONASCA_SYSTEM_USERS_BY_GROUP if you prefer it this way, but that\u0027s longer and does not change too much.",
+      "parentUuid": "9a30ddce_d82d3e47",
+      "range": {
+        "startLine": 84,
+        "startChar": 11,
+        "endLine": 84,
+        "endChar": 31
+      },
+      "revId": "3e9b51694175d91c41f6e53f185a57f26cac41ab",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a30ddce_d889be27",
         "filename": "devstack/plugin.sh",
         "patchSetId": 16
@@ -36,6 +60,30 @@
       "writtenOn": "2017-03-10T15:24:36Z",
       "side": 1,
       "message": "Would prefer using \u0027--system\u0027. I always have to think a while what \u0027-r\u0027 actually means.",
+      "range": {
+        "startLine": 719,
+        "startChar": 54,
+        "endLine": 719,
+        "endChar": 56
+      },
+      "revId": "3e9b51694175d91c41f6e53f185a57f26cac41ab",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1ff146_68825f02",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 16
+      },
+      "lineNbr": 719,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-03-15T06:17:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a30ddce_d889be27",
       "range": {
         "startLine": 719,
         "startChar": 54,
