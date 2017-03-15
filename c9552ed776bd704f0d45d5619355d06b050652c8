@@ -22,6 +22,30 @@
       "revId": "c9552ed776bd704f0d45d5619355d06b050652c8",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1ff146_2805c7c1",
+        "filename": "monasca_api/tests/test_a_repository.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-03-15T06:13:04Z",
+      "side": 1,
+      "message": "might be, but more importantly is to make Py35 and other gates green. I can fix that on side but focus is on Py35",
+      "parentUuid": "3a1ff146_228325ce",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 10
+      },
+      "revId": "c9552ed776bd704f0d45d5619355d06b050652c8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
