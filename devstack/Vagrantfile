@@ -41,7 +41,7 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
     # sudo apt-get update
     # sudo apt-get -y upgrade
-    sudo apt-get -y install git
+    sudo apt-get -y install git jq
 
     if [ $http_proxy ]; then
       git config --global url.https://git.openstack.org/.insteadOf git://git.openstack.org/
