@@ -112,6 +112,17 @@ def create_ad_model(metadata=None):
                  Column('deleted_at', DateTime))
 
 
+def create_ard_model(metadata=None):
+    return Table('alarm_rule_definition', metadata,
+                 Column('id', String(36)),
+                 Column('tenant_id', String(36)),
+                 Column('name', String(255)),
+                 Column('description', String(255)),
+                 Column('created_at', DateTime),
+                 Column('updated_at', DateTime),
+                 Column('deleted_at', DateTime))
+
+
 def create_sa_model(metadata=None):
     return Table('sub_alarm', metadata,
                  Column('id', String(36)),
