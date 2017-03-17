@@ -137,6 +137,12 @@ def create_sad_model(metadata=None):
                  Column('updated_at', DateTime))
 
 
+def create_ar_model(metadata=None):
+    return Table('alarm_rule', metadata,
+                 Column('alarm_rule_id', String(36)),
+                 Column('alamr_id', String(36)))
+
+
 class group_concat(expression.ColumnElement):
     name = "group_concat"
     order_by = None
