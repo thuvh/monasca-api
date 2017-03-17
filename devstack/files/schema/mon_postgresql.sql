@@ -128,6 +128,20 @@ CREATE TABLE sub_alarm_definition_dimension (
     sub_alarm_definition_id character varying(36) NOT NULL
 );
 
+CREATE TABLE 'alarm_rule_definition' (
+  id character varying(36) NOT NULL,
+  name character varying(255) NOT NULL,
+  tenant_id character varying(36) NOT NULL,
+  created_at timestamp without time zone NOT NULL,
+  updated_at timestamp without time zone NOT NULL,
+  deleted_at timestamp without time zone
+);
+
+CREATE TABLE alarm_rule (
+    alarm_rule_id character varying(255) NOT NULL,
+    alarm_id character varying(255) NOT NULL
+);
+
 ---
 -- primary keys
 ---
@@ -160,6 +174,12 @@ ALTER TABLE ONLY sub_alarm_definition
 
 ALTER TABLE ONLY sub_alarm
     ADD CONSTRAINT sub_alarm_pkey PRIMARY KEY (id);
+
+ALTER TABLE ONLY alarm_rule_definition
+    ADD CONSTRAINT alarm_definition_pkey PRIMARY KEY(id);
+
+ALTER TABLE ONLY alarm_rule
+    ADD CONSTRAINT alarm_rule PRIMARY KEY (alarm_rule_id, alarm_id);
 
 ---
 -- indexes
@@ -209,6 +229,12 @@ ALTER TABLE ONLY alarm_definition
 
 ALTER TABLE ONLY notification_method
     ADD CONSTRAINT fk_alarm_noticication_method_type FOREIGN KEY (type) REFERENCES notification_method_type (name);
+
+ALTER TABLE ONLY alarm_rule
+    ADD CONSTRAINT fk_rules_alarm_id FOREIGN KEY (alarm_id) REFRENCES alarm(id) ON DELETE CASCADE;
+
+ALTER TABLE ONLY alarm_rule
+    ADD CONSTRAINT fk_alarm_rule_definition_id FOREIGN KEY (alarm_rule_id) REFRENCES alarm_rule_definition(id) ON DELETE CASCADE;
 
 ---
 -- data for enum tables
