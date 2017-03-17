@@ -128,6 +128,11 @@ CREATE TABLE sub_alarm_definition_dimension (
     sub_alarm_definition_id character varying(36) NOT NULL
 );
 
+CREATE TABLE 'alarm_rule' (
+    alarm_rule_id character varying(255) NOT NULL,
+    alarm_id character varying(255) NOT NULL,
+);
+
 ---
 -- primary keys
 ---
