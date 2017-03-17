@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a1ced50_68bc096d",
+        "filename": "devstack/files/schema/mon_mysql.sql",
+        "patchSetId": 1
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 22157
+      },
+      "writtenOn": "2017-03-17T21:30:54Z",
+      "side": 1,
+      "message": "I think you don\u0027t need this coma.",
+      "range": {
+        "startLine": 186,
+        "startChar": 53,
+        "endLine": 186,
+        "endChar": 54
+      },
+      "revId": "3e357351be5bec8b77960aa771c23cc9a1d2b573",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
