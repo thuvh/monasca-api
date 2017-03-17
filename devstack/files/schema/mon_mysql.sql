@@ -180,6 +180,13 @@ CREATE TABLE `sub_alarm` (
   CONSTRAINT `fk_sub_alarm_expr` FOREIGN KEY (`sub_expression_id`) REFERENCES `sub_alarm_definition` (`id`)
 );
 
+CREATE TABLE `alarm_rule` (
+  `alarm_rule_id` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `alarm_id` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`alarm_rule_id`,`alarm_id`),
+  FOREIGN KEY (`alarm_id`) REFERENCES `alarm` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 SET foreign_key_checks = 1;
 
 /* provide data for enum tables */
