@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a1ced50_73b6badd",
+        "filename": "devstack/Vagrantfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 14123
+      },
+      "writtenOn": "2017-03-17T22:01:55Z",
+      "side": 1,
+      "message": "Usually my no_proxy starts with 127.0.0.1 are you sure we need this?",
+      "range": {
+        "startLine": 23,
+        "startChar": 13,
+        "endLine": 23,
+        "endChar": 18
+      },
+      "revId": "d28ef4bade403586d0bf94063f3972452d9c32f6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
