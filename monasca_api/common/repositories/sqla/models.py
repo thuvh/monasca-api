@@ -137,6 +137,16 @@ def create_sad_model(metadata=None):
                  Column('updated_at', DateTime))
 
 
+def create_ard_model(metadata=None):
+    return Table('alarm_rule_definition', metadata,
+                 Column('id', String(36)),
+                 Column('tenant_id', String(36)),
+                 Column('name', String(255)),
+                 Column('created_at', DateTime),
+                 Column('updated_at', DateTime),
+                 Column('deleted_at', DateTime))
+
+
 class group_concat(expression.ColumnElement):
     name = "group_concat"
     order_by = None
