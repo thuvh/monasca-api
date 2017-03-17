@@ -1,5 +1,5 @@
 /*
-* (C) Copyright 2015,2016 Hewlett Packard Enterprise Development LP
+* (C) Copyright 2015-2017 Hewlett Packard Enterprise Development LP
 * Copyright 2017 FUJITSU LIMITED
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -87,6 +87,30 @@ CREATE TABLE `alarm_metric` (
   KEY `alarm_id` (`alarm_id`),
   KEY `metric_definition_dimensions_id` (`metric_definition_dimensions_id`),
   CONSTRAINT `fk_alarm_id` FOREIGN KEY (`alarm_id`) REFERENCES `alarm` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `alarm_rule_definition` (
+  `id` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tenant_id` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `deleted_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `tenant_id` (`tenant_id`),
+  KEY `deleted_at` (`deleted_at`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `alarm_rule` (
+  `alarm_rule_id` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `alarm_id` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `inhibition_source_id` varchar(36) COLLATE utf8mb4_unicode_ci DEFAULT NULL, 
+  KEY `fk_rules_alarm_id` (`alarm_id`),
+  PRIMARY KEY (`alarm_rule_id`,`alarm_id`),
+  CONSTRAINT `fk_rules_alarm_id` FOREIGN KEY (`alarm_id`) REFERENCES `alarm` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_alarm_rule_definition_id` FOREIGN KEY (`alarm_rule_id`) REFERENCES `alarm_rule_definition` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_inhibition_source_id` (`inhibition_source_id`) REFERENCES `alarm` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `metric_definition` (
