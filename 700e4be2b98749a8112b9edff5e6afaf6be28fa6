@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a1ced50_e69e49b7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-03-20T11:27:02Z",
+      "side": 1,
+      "message": "This commit message is far too long. Could you break it down into proper header (79 chars) and body with enumerated fixes ?",
+      "revId": "700e4be2b98749a8112b9edff5e6afaf6be28fa6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
