@@ -78,8 +78,11 @@ fi
 function pre_install_monasca {
     echo_summary "Pre-Installing Monasca Components"
     install_git
+    install_jq
     install_maven
     install_openjdk_8_jdk
+
+    apache_mirror=`curl -s 'https://www.apache.org/dyn/closer.cgi?as_json=1' | jq --raw-output '.preferred'`
 
     install_kafka
 
@@ -314,7 +317,7 @@ function install_kafka {
     echo_summary "Install Monasca Kafka"
 
     local kafka_tarball=kafka_${KAFKA_VERSION}.tgz
-    local kafka_tarball_url=http://apache.mirrors.tds.net/kafka/${BASE_KAFKA_VERSION}/${kafka_tarball}
+    local kafka_tarball_url=${apache_mirror}kafka/${BASE_KAFKA_VERSION}/${kafka_tarball}
     local kafka_tarball_dest=${FILES}/${kafka_tarball}
 
     download_file ${kafka_tarball_url} ${kafka_tarball_dest}
@@ -736,6 +739,14 @@ function install_git {
     echo_summary "Install git"
 
     apt_get -y install git
+
+}
+
+function install_jq {
+
+    echo_summary "Install jq"
+
+    apt_get -y install jq
 
 }
 
@@ -1366,7 +1377,7 @@ function install_storm {
     echo_summary "Install Monasca Storm"
 
     local storm_tarball=apache-storm-${STORM_VERSION}.tar.gz
-    local storm_tarball_url=http://apache.mirrors.tds.net/storm/apache-storm-${STORM_VERSION}/${storm_tarball}
+    local storm_tarball_url=${apache_mirror}storm/apache-storm-${STORM_VERSION}/${storm_tarball}
     local storm_tarball_dest=${FILES}/${storm_tarball}
 
     download_file ${storm_tarball_url} ${storm_tarball_dest}
