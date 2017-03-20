@@ -16,6 +16,24 @@
       "revId": "700e4be2b98749a8112b9edff5e6afaf6be28fa6",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a1ced50_5036ebe7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 14768
+      },
+      "writtenOn": "2017-03-20T13:43:42Z",
+      "side": 1,
+      "message": "It\u0027s 78 chars at the moment, but I guess you mean \u003c72 chars. Will do.",
+      "parentUuid": "1a1ced50_e69e49b7",
+      "revId": "700e4be2b98749a8112b9edff5e6afaf6be28fa6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
