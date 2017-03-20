@@ -22,6 +22,30 @@
       "revId": "d28ef4bade403586d0bf94063f3972452d9c32f6",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a1ced50_cc0fb1df",
+        "filename": "devstack/Vagrantfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 14768
+      },
+      "writtenOn": "2017-03-20T10:16:38Z",
+      "side": 1,
+      "message": "There is no guarantee - for example my no_proxy does not include 127.0.0.1, which is how I found the problem :)\nHaving 127.0.0.1 in no_proxy is absolutely necessary for the Vagrant run to succeed when running behind a proxy server.",
+      "parentUuid": "1a1ced50_73b6badd",
+      "range": {
+        "startLine": 23,
+        "startChar": 13,
+        "endLine": 23,
+        "endChar": 18
+      },
+      "revId": "d28ef4bade403586d0bf94063f3972452d9c32f6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
