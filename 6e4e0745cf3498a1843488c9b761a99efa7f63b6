@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a1ced50_07ecc4f1",
+        "filename": "devstack/files/schema/mon_mysql.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 22157
+      },
+      "writtenOn": "2017-03-22T19:07:45Z",
+      "side": 1,
+      "message": "I think this should be alarm_id since an alarm could be effected differently than another but still have the same alarm definition as the other.",
+      "range": {
+        "startLine": 185,
+        "startChar": 3,
+        "endLine": 185,
+        "endChar": 22
+      },
+      "revId": "6e4e0745cf3498a1843488c9b761a99efa7f63b6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
