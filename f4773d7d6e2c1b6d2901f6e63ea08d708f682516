@@ -46,6 +46,30 @@
       "revId": "f4773d7d6e2c1b6d2901f6e63ea08d708f682516",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a1ced50_494865cd",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 643,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-03-23T16:00:42Z",
+      "side": 1,
+      "message": "Thanks. Makes sense now.",
+      "parentUuid": "1a1ced50_04a7390b",
+      "range": {
+        "startLine": 643,
+        "startChar": 9,
+        "endLine": 643,
+        "endChar": 47
+      },
+      "revId": "f4773d7d6e2c1b6d2901f6e63ea08d708f682516",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
