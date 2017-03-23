@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a1ced50_894fc232",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 643,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-03-23T14:13:11Z",
+      "side": 1,
+      "message": "Where does this get called from? I couldn\u0027t find any calls in plugin.sh",
+      "range": {
+        "startLine": 643,
+        "startChar": 9,
+        "endLine": 643,
+        "endChar": 47
+      },
+      "revId": "f4773d7d6e2c1b6d2901f6e63ea08d708f682516",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
