@@ -1,0 +1,10 @@
+Code-Review+1: Tomasz Trębski <tomasz.trebski@ts.fujitsu.com>
+Code-Review+1: Stefano Canepa <sc@linux.it>
+Code-Review+2: Roland Hochmuth <roland.hochmuth@hpe.com>
+Workflow+1: Roland Hochmuth <roland.hochmuth@hpe.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Fri, 24 Mar 2017 09:22:21 +0000
+Reviewed-on: https://review.openstack.org/447440
+Project: openstack/monasca-api
+Branch: refs/heads/master
