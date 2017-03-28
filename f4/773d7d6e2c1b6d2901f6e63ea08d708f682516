@@ -1,0 +1,9 @@
+Code-Review+1: Craig Bryant <craig.bryant@hpe.com>
+Code-Review+2: Roland Hochmuth <roland.hochmuth@hpe.com>
+Workflow+1: Roland Hochmuth <roland.hochmuth@hpe.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Tue, 28 Mar 2017 05:08:55 +0000
+Reviewed-on: https://review.openstack.org/449011
+Project: openstack/monasca-api
+Branch: refs/heads/master
