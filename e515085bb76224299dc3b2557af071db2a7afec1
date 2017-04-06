@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bff0334d_b2407309",
+        "filename": "devstack/files/schema/mon_mysql.sql",
+        "patchSetId": 6
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-04-06T00:01:45Z",
+      "side": 1,
+      "message": "alarm_rule_id is also a foreign key. Doesn\u0027t it need the KEY and CONSTRAINT lines for it, too? That would cause these entries to be deleted if the rule was deleted",
+      "range": {
+        "startLine": 184,
+        "startChar": 3,
+        "endLine": 184,
+        "endChar": 16
+      },
+      "revId": "e515085bb76224299dc3b2557af071db2a7afec1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bff0334d_12515fd9",
+        "filename": "devstack/files/schema/mon_postgresql.sql",
+        "patchSetId": 6
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-04-06T00:01:45Z",
+      "side": 1,
+      "message": "Don\u0027t you need this for alarm_rule_id, too?",
+      "range": {
+        "startLine": 222,
+        "startChar": 4,
+        "endLine": 222,
+        "endChar": 90
+      },
+      "revId": "e515085bb76224299dc3b2557af071db2a7afec1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
