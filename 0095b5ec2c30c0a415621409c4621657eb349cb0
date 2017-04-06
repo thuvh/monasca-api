@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bff0334d_32ab431e",
+        "filename": "monasca_api/common/repositories/sqla/alarm_group_definitions_repository.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-04-06T00:45:07Z",
+      "side": 1,
+      "message": "This is defined but never used. You should have some logging in this file",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 3
+      },
+      "revId": "0095b5ec2c30c0a415621409c4621657eb349cb0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bff0334d_723e6b2a",
+        "filename": "monasca_api/common/repositories/sqla/alarm_group_definitions_repository.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-04-06T00:45:07Z",
+      "side": 1,
+      "message": "This should only be done on patch. See update_or_patch_alarm_definition in monasca_api/common/repositories/sqla/alarm_group_definitions_repository.py",
+      "range": {
+        "startLine": 276,
+        "startChar": 0,
+        "endLine": 284,
+        "endChar": 68
+      },
+      "revId": "0095b5ec2c30c0a415621409c4621657eb349cb0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bff0334d_d21897d4",
+        "filename": "monasca_api/common/repositories/sqla/alarm_group_definitions_repository.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-04-06T00:45:07Z",
+      "side": 1,
+      "message": "Remove is not None from these three if statements",
+      "range": {
+        "startLine": 287,
+        "startChar": 28,
+        "endLine": 287,
+        "endChar": 41
+      },
+      "revId": "0095b5ec2c30c0a415621409c4621657eb349cb0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bff0334d_92eb2faf",
+        "filename": "monasca_api/common/repositories/sqla/alarm_group_definitions_repository.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-04-06T00:45:07Z",
+      "side": 1,
+      "message": "if not updated_row:",
+      "range": {
+        "startLine": 328,
+        "startChar": 12,
+        "endLine": 328,
+        "endChar": 35
+      },
+      "revId": "0095b5ec2c30c0a415621409c4621657eb349cb0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bff0334d_b2aab382",
+        "filename": "monasca_api/common/repositories/sqla/alarm_group_definitions_repository.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-04-06T00:45:07Z",
+      "side": 1,
+      "message": "Trailing space",
+      "range": {
+        "startLine": 357,
+        "startChar": 70,
+        "endLine": 357,
+        "endChar": 81
+      },
+      "revId": "0095b5ec2c30c0a415621409c4621657eb349cb0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bff0334d_b298736a",
+        "filename": "monasca_api/common/repositories/sqla/alarm_group_definitions_repository.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-04-06T00:45:07Z",
+      "side": 1,
+      "message": "Should this just be:\n\nif row:\n\nThat would handle where row is empty",
+      "range": {
+        "startLine": 373,
+        "startChar": 8,
+        "endLine": 373,
+        "endChar": 27
+      },
+      "revId": "0095b5ec2c30c0a415621409c4621657eb349cb0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bff0334d_32ac638b",
+        "filename": "monasca_api/common/repositories/sqla/alarm_group_definitions_repository.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-04-06T00:45:07Z",
+      "side": 1,
+      "message": "if not row: ?",
+      "range": {
+        "startLine": 386,
+        "startChar": 12,
+        "endLine": 386,
+        "endChar": 26
+      },
+      "revId": "0095b5ec2c30c0a415621409c4621657eb349cb0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bff0334d_12c27f34",
+        "filename": "monasca_api/common/repositories/sqla/alarm_group_definitions_repository.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-04-06T00:45:07Z",
+      "side": 1,
+      "message": "This should be:\n\nif not exclusions:",
+      "range": {
+        "startLine": 399,
+        "startChar": 8,
+        "endLine": 399,
+        "endChar": 53
+      },
+      "revId": "0095b5ec2c30c0a415621409c4621657eb349cb0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bff0334d_12e15f9b",
+        "filename": "monasca_api/v2/common/schemas/alarm_group_definition_request_body_schema.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-04-06T00:45:07Z",
+      "side": 1,
+      "message": "You should probably check for duplicate notification_id\u0027s. That is what the Alarm Definition code does.",
+      "range": {
+        "startLine": 44,
+        "startChar": 8,
+        "endLine": 44,
+        "endChar": 40
+      },
+      "revId": "0095b5ec2c30c0a415621409c4621657eb349cb0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bff0334d_d21e576f",
+        "filename": "monasca_api/v2/reference/alarm_group_definitions.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-04-06T00:45:07Z",
+      "side": 1,
+      "message": "This has already been done",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 72
+      },
+      "revId": "0095b5ec2c30c0a415621409c4621657eb349cb0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bff0334d_ad081828",
+        "filename": "monasca_api/v2/reference/alarm_group_definitions.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-04-06T00:45:07Z",
+      "side": 1,
+      "message": "Move these outside of the if/else since they are the same in both cases",
+      "range": {
+        "startLine": 123,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 40
+      },
+      "revId": "0095b5ec2c30c0a415621409c4621657eb349cb0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
