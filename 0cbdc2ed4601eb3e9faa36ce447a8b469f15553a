@@ -16,6 +16,24 @@
       "revId": "0cbdc2ed4601eb3e9faa36ce447a8b469f15553a",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7ffa3b31_2c94118b",
+        "filename": "bindep.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7102
+      },
+      "writtenOn": "2017-04-14T10:13:59Z",
+      "side": 1,
+      "message": "It works in master (see http://git.openstack.org/cgit/openstack/monasca-api/commit/?id\u003dbcee24b323a57a06c352d7365167004722e0ea12 ). Not sure how that works",
+      "parentUuid": "9ff52f3f_3ee30936",
+      "revId": "0cbdc2ed4601eb3e9faa36ce447a8b469f15553a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
