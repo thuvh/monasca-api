@@ -1,0 +1,8 @@
+Code-Review+2: Tomasz Trębski <tomasz.trebski@ts.fujitsu.com>
+Workflow+1: Tomasz Trębski <tomasz.trebski@ts.fujitsu.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Tue, 18 Apr 2017 11:56:19 +0000
+Reviewed-on: https://review.openstack.org/456076
+Project: openstack/monasca-api
+Branch: refs/heads/master
