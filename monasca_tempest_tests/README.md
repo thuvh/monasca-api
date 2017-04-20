@@ -32,14 +32,6 @@ Currently the devstack environment is needed to run the tests. Instructions on s
    ```
     [identity]
 
-    username = mini-mon
-    password = password
-    tenant_name = mini-mon
-    domain_name = Default
-    alt_username = mini-mon
-    alt_password = password
-    alt_tenant_name = mini-mon
-    use_ssl = False
     auth_version = v3
     uri = http://127.0.0.1:5000/v2.0/
     uri_v3 = http://127.0.0.1:35357/v3/
@@ -47,7 +39,6 @@ Currently the devstack environment is needed to run the tests. Instructions on s
     [auth]
 
     use_dynamic_credentials = true
-    tempest_roles = monasca-user
     admin_project_name = admin
     admin_username = admin
     admin_password = secretadmin
