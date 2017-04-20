@@ -1,5 +1,6 @@
 #
 # (C) Copyright 2015 Hewlett Packard Enterprise Development Company LP
+# (C) Copyright 2017 FUJITSU LIMITED
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,24 +16,97 @@
 # limitations under the License.
 #
 
-(cd $BASE/new/tempest/; sudo virtualenv .venv)
-source $BASE/new/tempest/.venv/bin/activate
+function load_devstack_utilities {
+    source $BASE/new/devstack/stackrc
+    source $BASE/new/devstack/functions
+    source $BASE/new/devstack/openrc admin admin
+}
 
-(cd $BASE/new/tempest/; sudo pip install -r requirements.txt -r test-requirements.txt)
-sudo pip install nose
-sudo pip install numpy
+function setup_monasca {
 
-(cd $BASE/new/tempest/; sudo oslo-config-generator --config-file  tempest/cmd/config-generator.tempest.conf  --output-file etc/tempest.conf)
-(cd $BASE/new/; sudo sh -c 'cat monasca-api/devstack/files/tempest/tempest.conf >> tempest/etc/tempest.conf')
+    local constraints="-c $REQUIREMENTS_DIR/upper-constraints.txt"
 
-sudo cp $BASE/new/tempest/etc/logging.conf.sample $BASE/new/tempest/etc/logging.conf
+    (cd $DEST/tempest/; sudo virtualenv .venv)
+    source $DEST/tempest/.venv/bin/activate
 
-(cd $BASE/new/monasca-api/; sudo pip install -r requirements.txt -r test-requirements.txt)
-(cd $BASE/new/monasca-api/; sudo python setup.py install)
+    (cd $DEST/tempest/; sudo pip install -r requirements.txt -r test-requirements.txt)
+    sudo pip install nose
+    sudo pip install numpy
 
-(cd $BASE/new/tempest/; sudo testr init)
+    pushd $MONASCA_API_DIR
+    sudo -H pip install $constraints -U -r requirements.txt -r test-requirements.txt
+    sudo python setup.py install
+    popd
+}
 
-(cd $BASE/new/tempest/; sudo sh -c 'testr list-tests monasca_tempest_tests > monasca_tempest_tests')
-(cd $BASE/new/tempest/; sudo sh -c 'cat monasca_tempest_tests')
-(cd $BASE/new/tempest/; sudo sh -c 'cat monasca_tempest_tests | grep gate > monasca_tempest_tests_gate')
-(cd $BASE/new/tempest/; sudo sh -c 'testr run --subunit --load-list=monasca_tempest_tests_gate | subunit-trace --fails')
+function set_tempest_conf {
+
+    local conf_file=$TEMPEST_DIR/etc/tempest.conf
+    pushd $TEMPEST_DIR
+    oslo-config-generator \
+        --config-file tempest/cmd/config-generator.tempest.conf \
+        --output-file $conf_file
+    popd
+
+    cp -f $DEST/tempest/etc/logging.conf.sample $DEST/tempest/etc/logging.conf
+
+    # set identity section
+    iniset $conf_file identity admin_domain_scope True
+    iniset $conf_file identity user_unique_last_password_count 2
+    iniset $conf_file identity user_locakout_duration 5
+    iniset $conf_file identity user_lockout_failure_attempts 2
+    iniset $conf_file identity uri $OS_AUTH_URL/v2.0
+    iniset $conf_file identity uri_v3 $OS_AUTH_URL/v3
+    iniset $conf_file identity auth_version v$OS_IDENTITY_API_VERSION
+    # set auth section
+    iniset $conf_file auth use_dynamic_credentials True
+    iniset $conf_file auth admin_username $OS_USERNAME
+    iniset $conf_file auth admin_password $OS_PASSWORD
+    iniset $conf_file auth admin_domain_name $OS_PROJECT_DOMAIN_ID
+    iniset $conf_file auth admin_project_name $OS_PROJECT_NAME
+
+}
+
+function run_tempest_test {
+
+    (cd $DEST/tempest/; sudo testr init)
+
+    (cd $DEST/tempest/; sudo sh -c 'testr list-tests monasca_tempest_tests > monasca_tempest_tests')
+    (cd $DEST/tempest/; sudo sh -c 'cat monasca_tempest_tests')
+    (cd $DEST/tempest/; sudo sh -c 'cat monasca_tempest_tests | grep gate > monasca_tempest_tests_gate')
+    (cd $DEST/tempest/; sudo sh -c 'testr run --subunit --load-list=monasca_tempest_tests_gate | subunit-trace --fails')
+
+}
+
+function run_post_hook {
+    XTRACE=$(set +o | grep xtrace)
+    set -o xtrace
+
+    echo_summary "monasca's post_test_hook.sh was called..."
+    (set -o posix; set)
+
+    # save ref to monasca-api dir
+    export MONASCA_API_DIR="$BASE/monasca-api"
+    export TEMPEST_DIR="$BASE/new/tempest"
+    #sudo chown -R jenkins:$STACK_USER $MONASCA_API_DIR
+
+    load_devstack_utilities
+    setup_monasca
+
+    # Run functional tests
+    echo "Running monasca tempest test suite"
+    set_tempest_conf
+    run_tempest_test
+}
+
+function  function_exists {
+    declare -f -F $1 > /dev/null
+}
+
+if ! function_exists echo_summary; then
+    function echo_summary {
+        echo $@
+    }
+fi
+
+run_post_hook
