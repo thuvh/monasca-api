@@ -860,6 +860,8 @@ function install_monasca_api_java {
         s|%KEYSTONE_SERVICE_HOST%|$KEYSTONE_SERVICE_HOST|g;
     " -i /etc/monasca/api-config.yml
 
+    # link configuration to /etc/monasca-api
+    (sudo mkdir -p /etc/monasca-api ; sudo ln -sf /etc/monasca/api-config.yml /etc/monasca-api/api-config.yml)
 }
 
 function install_monasca_api_python {
@@ -977,6 +979,10 @@ function install_monasca_api_python {
         s|%API_WORKERS%|$API_WORKERS|g;
     " -i /etc/monasca/api-config.ini
 
+    sudo mkdir -p /etc/monasca-api
+    sudo ln -sf /etc/monasca/api-config.conf /etc/monasca-api/api-config.conf
+    sudo ln -sf /etc/monasca/api-config.ini /etc/monasca-api/api-config.ini
+    sudo ln -sf /etc/monasca/api-logging.conf /etc/monasca-api/api-logging.conf
 }
 
 function clean_monasca_api_java {
