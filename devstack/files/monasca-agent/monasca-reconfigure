@@ -3,7 +3,7 @@
     -u 'monasca-agent' \
     -p 'password' \
      -s 'monitoring'  \
-    --keystone_url 'http://127.0.0.1:35357/v3' \
+    --keystone_url %KEYSTONE_AUTH_HOST% \
     --project_name 'mini-mon' \
      --monasca_url 'http://127.0.0.1:8070/v2.0'  \
      \
