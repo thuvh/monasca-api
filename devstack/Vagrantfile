@@ -110,6 +110,11 @@ SERVICE_HOST=192.168.10.6
 HOST_IP=192.168.10.6
 HOST_IP_IFACE=eth1
 
+# Set WSGI mode for Keystone. One of the value:
+# uwsgi - run Keystone as a UWSGI process
+# mod_wsgi - run Keystone as a Apache WSGI process
+WSGI_MODE=uwsgi
+
 DATABASE_PASSWORD=secretdatabase
 RABBIT_PASSWORD=secretrabbit
 ADMIN_PASSWORD=secretadmin
