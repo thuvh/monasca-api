@@ -897,6 +897,7 @@ function install_monasca_api_python {
     fi
 
     setup_install $MONASCA_API_DIR
+    install_keystonemiddleware
 
     unset PIP_VIRTUAL_ENV
 
@@ -940,25 +941,10 @@ function install_monasca_api_python {
     dbAlarmUrl=`database_connection_url mon`
 
     sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/api-config.conf /etc/monasca/api-config.conf
-    sudo chown mon-api:root /etc/monasca/api-config.conf
-    sudo chmod 0660 /etc/monasca/api-config.conf
-    sudo ln -sf /etc/monasca/api-config.conf /etc/api-config.conf
-
     sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/api-logging.conf /etc/monasca/api-logging.conf
-    sudo chown mon-api:root /etc/monasca/api-logging.conf
-    sudo chmod 0660 /etc/monasca/api-logging.conf
-    sudo ln -sf /etc/monasca/api-logging.conf /etc/api-logging.conf
-
     sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/api-config.ini /etc/monasca/api-config.ini
-    sudo chown mon-api:root /etc/monasca/api-config.ini
-    sudo chmod 0660 /etc/monasca/api-config.ini
-    sudo ln -sf /etc/monasca/api-config.ini /etc/api-config.ini
 
     sudo sed -e "
-        s|%KEYSTONE_AUTH_HOST%|$KEYSTONE_AUTH_HOST|g;
-        s|%KEYSTONE_AUTH_PORT%|$KEYSTONE_AUTH_PORT|g;
-        s|%KEYSTONE_SERVICE_HOST%|$KEYSTONE_SERVICE_HOST|g;
-        s|%KEYSTONE_SERVICE_PORT%|$KEYSTONE_SERVICE_PORT|g;
         s|%DATABASE_HOST%|$DATABASE_HOST|g;
         s|%DATABASE_PASSWORD%|$DATABASE_PASSWORD|g;
         s|%DATABASE_USER%|$DATABASE_USER|g;
@@ -968,14 +954,26 @@ function install_monasca_api_python {
         s|%INFLUXDB_HOST%|$SERVICE_HOST|g;
         s|%INFLUXDB_PORT%|8086|g;
         s|%KAFKA_HOST%|$SERVICE_HOST|g;
-        s|%ADMIN_PASSWORD%|$ADMIN_PASSWORD|g;
     " -i /etc/monasca/api-config.conf
+    configure_auth_token_middleware "/etc/monasca/api-config.conf" "admin"
 
     sudo sed -e "
         s|%MONASCA_API_SERVICE_HOST%|$MONASCA_API_SERVICE_HOST|g;
         s|%MONASCA_API_SERVICE_PORT%|$MONASCA_API_SERVICE_PORT|g;
         s|%API_WORKERS%|$API_WORKERS|g;
     " -i /etc/monasca/api-config.ini
+
+    sudo chown mon-api:root /etc/monasca/api-config.conf
+    sudo chmod 0660 /etc/monasca/api-config.conf
+    sudo ln -sf /etc/monasca/api-config.conf /etc/api-config.conf
+
+    sudo chown mon-api:root /etc/monasca/api-logging.conf
+    sudo chmod 0660 /etc/monasca/api-logging.conf
+    sudo ln -sf /etc/monasca/api-logging.conf /etc/api-logging.conf
+
+    sudo chown mon-api:root /etc/monasca/api-config.ini
+    sudo chmod 0660 /etc/monasca/api-config.ini
+    sudo ln -sf /etc/monasca/api-config.ini /etc/api-config.ini
 
 }
 
