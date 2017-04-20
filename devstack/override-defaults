@@ -1,0 +1,5 @@
+if [[ "${MONASCA_API_IMPLEMENTATION_LANG,,}" == 'java' ]]; then
+    WSGI_MODE=${WSGI_MODE:-mod_wsgi}
+else
+    WSGI_MODE=${WSGI_MODE:-uwsgi}
+fi
