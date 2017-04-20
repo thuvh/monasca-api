@@ -15,24 +15,82 @@
 # limitations under the License.
 #
 
-(cd $BASE/new/tempest/; sudo virtualenv .venv)
-source $BASE/new/tempest/.venv/bin/activate
+function load_devstack_utilities {
+    source $BASE/new/devstack/stackrc
+    source $BASE/new/devstack/functions
+}
 
-(cd $BASE/new/tempest/; sudo pip install -r requirements.txt -r test-requirements.txt)
-sudo pip install nose
-sudo pip install numpy
+function setup_monasca {
 
-(cd $BASE/new/tempest/; sudo oslo-config-generator --config-file  tempest/cmd/config-generator.tempest.conf  --output-file etc/tempest.conf)
-(cd $BASE/new/; sudo sh -c 'cat monasca-api/devstack/files/tempest/tempest.conf >> tempest/etc/tempest.conf')
+    local constraints="-c $REQUIREMENTS_DIR/upper-constraints.txt"
 
-sudo cp $BASE/new/tempest/etc/logging.conf.sample $BASE/new/tempest/etc/logging.conf
+    (cd $DEST/tempest/; sudo virtualenv .venv)
+    source $DEST/tempest/.venv/bin/activate
 
-(cd $BASE/new/monasca-api/; sudo pip install -r requirements.txt -r test-requirements.txt)
-(cd $BASE/new/monasca-api/; sudo python setup.py install)
+    (cd $DEST/tempest/; sudo pip install -r requirements.txt -r test-requirements.txt)
+    sudo pip install nose
+    sudo pip install numpy
 
-(cd $BASE/new/tempest/; sudo testr init)
+    pushd $MONASCA_API_DIR
+    sudo -H pip install $constraints -U -r requirements.txt -r test-requirements.txt
+    sudo python setup.py install
+    popd
+}
 
-(cd $BASE/new/tempest/; sudo sh -c 'testr list-tests monasca_tempest_tests > monasca_tempest_tests')
-(cd $BASE/new/tempest/; sudo sh -c 'cat monasca_tempest_tests')
-(cd $BASE/new/tempest/; sudo sh -c 'cat monasca_tempest_tests | grep gate > monasca_tempest_tests_gate')
-(cd $BASE/new/tempest/; sudo sh -c 'testr run --subunit --load-list=monasca_tempest_tests_gate | subunit-trace --fails')
+function set_tempest_conf {
+
+    (cd $DEST/tempest/; sudo oslo-config-generator --config-file  tempest/cmd/config-generator.tempest.conf  --output-file etc/tempest.conf)
+
+    sudo cp $DEST/tempest/etc/logging.conf.sample $DEST/tempest/etc/logging.conf
+
+    # set identity section
+    iniset $DEST/tempest/etc/tempest.conf identity admin_domain_scope True
+    iniset $DEST/tempest/etc/tempest.conf identity user_unique_last_password_count 2
+    iniset $DEST/tempest/etc/tempest.conf identity user_locakout_duration 5
+    iniset $DEST/tempest/etc/tempest.conf identity user_lockout_failure_attempts 2
+    iniset $DEST/tempest/etc/tempest.conf identity uri $OS_AUTH_URL/v2.0
+    iniset $DEST/tempest/etc/tempest.conf identity uri_v3 $OS_AUTH_URL/v3
+    iniset $DEST/tempest/etc/tempest.conf identity auth_version v$OS_IDENTITY_API_VERSION
+    # set auth section
+    iniset $DEST/tempest/etc/tempest.conf auth use_dynamic_credentials True
+    iniset $DEST/tempest/etc/tempest.conf auth admin_username $OS_USERNAME
+    iniset $DEST/tempest/etc/tempest.conf auth admin_password $OS_PASSWORD
+    iniset $DEST/tempest/etc/tempest.conf auth admin_domain_name $OS_PROJECT_DOMAIN_ID
+    iniset $DEST/tempest/etc/tempest.conf auth admin_project_name $OS_PROJECT_NAME
+
+}
+
+function run_tempest_test {
+
+    (cd $DEST/tempest/; sudo testr init)
+
+    (cd $DEST/tempest/; sudo sh -c 'testr list-tests monasca_tempest_tests > monasca_tempest_tests')
+    (cd $DEST/tempest/; sudo sh -c 'cat monasca_tempest_tests')
+    (cd $DEST/tempest/; sudo sh -c 'cat monasca_tempest_tests | grep gate > monasca_tempest_tests_gate')
+    (cd $DEST/tempest/; sudo sh -c 'testr run --subunit --load-list=monasca_tempest_tests_gate | subunit-trace --fails')
+
+}
+if ! function_exists echo_summary; then
+    function echo_summary {
+        echo $@
+    }
+fi
+
+XTRACE=$(set +o | grep xtrace)
+set -o xtrace
+
+echo_summary "monasca's post_test_hook.sh was called..."
+(set -o posix; set)
+
+# save ref to monasca-api dir
+export MONASCA_API_DIR="$DEST/monasca-api"
+#sudo chown -R jenkins:$STACK_USER $MONASCA_API_DIR
+
+load_devstack_utilities
+setup_monasca
+
+# Run functional tests
+echo "Running monasca tempest test suite"
+set_tempest_conf
+run_tempest_test
+
