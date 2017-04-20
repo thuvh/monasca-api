@@ -488,7 +488,7 @@ class TestMetrics(base.BaseMonascaTest):
         name = data_utils.rand_name('name')
         key = data_utils.rand_name('key')
         value = data_utils.rand_name('value')
-        tenant = self.tenants_client.create_tenant(
+        tenant = self.projects_client.create_project(
             name=data_utils.rand_name('test_tenant'))['tenant']
         # Delete the tenant at the end of the test
         self.addCleanup(self.tenants_client.delete_tenant, tenant['id'])
