@@ -37,6 +37,8 @@
 #
 # EXAMPLE VARS HERE
 
+echo "LOL"
+
 # Save trace setting
 XTRACE=$(set +o | grep xtrace)
 set -o xtrace
@@ -746,7 +748,7 @@ function install_git {
 function download_monasca_libraries {
 
     echo_summary "Download Monasca monasca_common and monasca_statsd"
-  
+
     GIT_DEPTH_OLD=$GIT_DEPTH
     GIT_DEPTH=0
     git_clone $MONASCA_COMMON_REPO $MONASCA_COMMON_DIR $MONASCA_COMMON_BRANCH
