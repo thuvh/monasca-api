@@ -1183,22 +1183,6 @@ function install_monasca_persister_python {
 
     fi
 
-    # /etc/monasca/persister-config.yml is needed for the Monasca Agent configuration.
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-persister/persister-config.yml /etc/monasca/persister-config.yml
-
-    sudo chown mon-persister:monasca /etc/monasca/persister-config.yml
-
-    sudo chmod 0640 /etc/monasca/persister-config.yml
-
-    if [[ ${SERVICE_HOST} ]]; then
-
-        # set influxdb ip address
-        sudo sed -i "s/url: \"http:\/\/127\.0\.0\.1:8086\"/url: \"http:\/\/${SERVICE_HOST}:8086\"/g" /etc/monasca/persister-config.yml
-        # set monasca persister server listening ip address
-        sudo sed -i "s/bindHost: 127\.0\.0\.1/bindHost: ${SERVICE_HOST}/g" /etc/monasca/persister-config.yml
-
-    fi
-
     sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-persister/python/monasca-persister.service /etc/systemd/system/monasca-persister.service
 
     if [[ "${MONASCA_METRICS_DB,,}" == 'cassandra' ]]; then
@@ -1244,8 +1228,6 @@ function clean_monasca_persister_python {
 
     sudo rm /etc/monasca/persister.conf
     sudo rm /etc/monasca/persister-logging.conf
-
-    sudo rm /etc/monasca/persister-config.yml
 
     sudo rm -rf /var/log/monasca/persister
 
