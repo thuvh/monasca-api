@@ -897,6 +897,7 @@ function install_monasca_api_python {
     fi
 
     setup_install $MONASCA_API_DIR
+    install_keystonemiddleware
 
     unset PIP_VIRTUAL_ENV
 
@@ -955,10 +956,6 @@ function install_monasca_api_python {
     sudo ln -sf /etc/monasca/api-config.ini /etc/api-config.ini
 
     sudo sed -e "
-        s|%KEYSTONE_AUTH_HOST%|$KEYSTONE_AUTH_HOST|g;
-        s|%KEYSTONE_AUTH_PORT%|$KEYSTONE_AUTH_PORT|g;
-        s|%KEYSTONE_SERVICE_HOST%|$KEYSTONE_SERVICE_HOST|g;
-        s|%KEYSTONE_SERVICE_PORT%|$KEYSTONE_SERVICE_PORT|g;
         s|%DATABASE_HOST%|$DATABASE_HOST|g;
         s|%DATABASE_PASSWORD%|$DATABASE_PASSWORD|g;
         s|%DATABASE_USER%|$DATABASE_USER|g;
@@ -968,8 +965,8 @@ function install_monasca_api_python {
         s|%INFLUXDB_HOST%|$SERVICE_HOST|g;
         s|%INFLUXDB_PORT%|8086|g;
         s|%KAFKA_HOST%|$SERVICE_HOST|g;
-        s|%ADMIN_PASSWORD%|$ADMIN_PASSWORD|g;
     " -i /etc/monasca/api-config.conf
+    sudo configure_auth_token_middleware "/etc/monasca/api-config.conf" "admin"
 
     sudo sed -e "
         s|%MONASCA_API_SERVICE_HOST%|$MONASCA_API_SERVICE_HOST|g;
