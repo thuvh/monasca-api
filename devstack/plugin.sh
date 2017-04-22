@@ -1687,7 +1687,7 @@ function install_monasca_agent {
     if [[ ${SERVICE_HOST} ]]; then
 
         sudo sed -i "s/--monasca_url 'http:\/\/127\.0\.0\.1:8070\/v2\.0'/--monasca_url 'http:\/\/${SERVICE_HOST}:8070\/v2\.0'/" /usr/local/bin/monasca-reconfigure
-        sudo sed -i "s/--keystone_url 'http:\/\/127\.0\.0\.1:35357\/v3'/--keystone_url 'http:\/\/${SERVICE_HOST}:35357\/v3'/" /usr/local/bin/monasca-reconfigure
+        sudo sed -i "s/--keystone_url 'http:\/\/127\.0\.0\.1:5000\/v3'/--keystone_url 'http:\/\/${SERVICE_HOST}:5000\/v3'/" /usr/local/bin/monasca-reconfigure
     fi
     sudo sed -e "
         s|%MONASCA_STATSD_PORT%|$MONASCA_STATSD_PORT|g;

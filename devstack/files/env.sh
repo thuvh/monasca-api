@@ -24,4 +24,4 @@ export OS_PASSWORD=password
 export OS_USER_DOMAIN_NAME=Default
 export OS_PROJECT_NAME=mini-mon
 export OS_PROJECT_DOMAIN_NAME=Default
-export OS_AUTH_URL=http://127.0.0.1:35357/v3/
+export OS_AUTH_URL=http://127.0.0.1:5000/v3/
