@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ff73747_fb45ab71",
+        "filename": "devstack/post_test_hook.sh",
+        "patchSetId": 21
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-04-24T17:20:01Z",
+      "side": 1,
+      "message": "$BASE/new/monasca-api\n\nAFAIK",
+      "revId": "35c7617c97b6fecbf73dbea071c6b363561b1b87",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
