@@ -1,0 +1,18 @@
+# Set INFLUXDB_VERSION and WSGI_MODE for keystone
+if [[ "${MONASCA_API_IMPLEMENTATION_LANG,,}" == 'java' ]]; then
+
+    INFLUXDB_VERSION=${INFLUXDB_VERSION:-${INFLUXDB_JAVA_VERSION}}
+    export WSGI_MODE=mod_wsgi
+
+elif [[ "${MONASCA_API_IMPLEMENTATION_LANG,,}" == 'python' ]]; then
+
+    INFLUXDB_VERSION=${INFLUXDB_VERSION:-${INFLUXDB_PYTHON_VERSION}}
+    export WSGI_MODE=uwsgi
+
+else
+
+    echo "Found invalid value for variable MONASCA_API_IMPLEMENTATION_LANG: $MONASCA_API_IMPLEMENTATION_LANG"
+    echo "Valid values for MONASCA_API_IMPLEMENTATION_LANG are \"java\" and \"python\""
+    die "Please set MONASCA_API_IMPLEMENTATION_LANG to either \"java'' or \"python\""
+
+fi

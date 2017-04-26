@@ -58,23 +58,6 @@ elif is_service_enabled postgresql; then
 fi
 MONASCA_DATABASE_USE_ORM=$(trueorfalse False MONASCA_DATABASE_USE_ORM)
 
-# Set INFLUXDB_VERSION
-if [[ "${MONASCA_API_IMPLEMENTATION_LANG,,}" == 'java' ]]; then
-
-    INFLUXDB_VERSION=${INFLUXDB_VERSION:-${INFLUXDB_JAVA_VERSION}}
-
-elif [[ "${MONASCA_API_IMPLEMENTATION_LANG,,}" == 'python' ]]; then
-
-    INFLUXDB_VERSION=${INFLUXDB_VERSION:-${INFLUXDB_PYTHON_VERSION}}
-
-else
-
-    echo "Found invalid value for variable MONASCA_API_IMPLEMENTATION_LANG: $MONASCA_API_IMPLEMENTATION_LANG"
-    echo "Valid values for MONASCA_API_IMPLEMENTATION_LANG are \"java\" and \"python\""
-    die "Please set MONASCA_API_IMPLEMENTATION_LANG to either \"java'' or \"python\""
-
-fi
-
 # monasca-api variables
 MONASCA_API_BASE_URI=${MONASCA_API_SERVICE_PROTOCOL}://${MONASCA_API_SERVICE_HOST}:${MONASCA_API_SERVICE_PORT}
 MONASCA_API_URI_V2=${MONASCA_API_BASE_URI}/v2.0
