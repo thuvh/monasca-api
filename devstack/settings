@@ -82,6 +82,9 @@ enable_service monasca-cli
 # Dependent Software Versions
 #
 
+# Set Keystone to WSGI mode
+WSGI_MODE=mod_wsgi
+
 # Set the InfluxDB version to use for the Java and Python API
 # InfluxDB has modified the result sets for SHOW SERIES. The
 # Python API has been modified to support those changes, but the
