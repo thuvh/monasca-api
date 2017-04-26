@@ -58,14 +58,16 @@ elif is_service_enabled postgresql; then
 fi
 MONASCA_DATABASE_USE_ORM=$(trueorfalse False MONASCA_DATABASE_USE_ORM)
 
-# Set INFLUXDB_VERSION
+# Set INFLUXDB_VERSION and WSGI_MODE for keystone
 if [[ "${MONASCA_API_IMPLEMENTATION_LANG,,}" == 'java' ]]; then
 
     INFLUXDB_VERSION=${INFLUXDB_VERSION:-${INFLUXDB_JAVA_VERSION}}
+    WSGI_MODE=mod_wsgi
 
 elif [[ "${MONASCA_API_IMPLEMENTATION_LANG,,}" == 'python' ]]; then
 
     INFLUXDB_VERSION=${INFLUXDB_VERSION:-${INFLUXDB_PYTHON_VERSION}}
+    WSGI_MODE=uwsgi
 
 else
 
