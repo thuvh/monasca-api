@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5ff73747_f5542a00",
+        "filename": "devstack/files/monasca-agent/monasca-reconfigure",
+        "patchSetId": 29
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2017-04-27T12:23:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ff73747_8a2381bd",
+      "revId": "c070471932187fde17cade6707eab18a5bfb588f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5ff73747_95116655",
         "filename": "devstack/plugin.sh",
         "patchSetId": 29
