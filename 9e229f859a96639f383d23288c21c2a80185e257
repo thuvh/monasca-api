@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ff73747_fb52e23a",
+        "filename": "devstack/post_test_hook.sh",
+        "patchSetId": 27
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-04-27T09:35:44Z",
+      "side": 1,
+      "message": "no contraints here used",
+      "revId": "9e229f859a96639f383d23288c21c2a80185e257",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ff73747_3b7baabe",
+        "filename": "devstack/post_test_hook.sh",
+        "patchSetId": 27
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-04-27T09:35:44Z",
+      "side": 1,
+      "message": "why -U ? we don\u0027t want to upgrade",
+      "range": {
+        "startLine": 38,
+        "startChar": 25,
+        "endLine": 38,
+        "endChar": 37
+      },
+      "revId": "9e229f859a96639f383d23288c21c2a80185e257",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
