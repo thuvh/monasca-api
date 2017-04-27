@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ff73747_1e969b40",
+        "filename": "devstack/files/monasca-agent/monasca-reconfigure",
+        "patchSetId": 28
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-04-27T10:18:00Z",
+      "side": 1,
+      "message": "In here, if yu are already changing that file,\nyou can use variables from here: https://github.com/openstack/monasca-api/blob/master/devstack/settings#L170",
+      "revId": "58e0739184436c85a5de29eb9d96345a718541c1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
