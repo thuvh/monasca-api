@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ff73747_8e4dbe9b",
+        "filename": "monasca_tempest_tests/README.md",
+        "patchSetId": 31
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-04-27T22:27:11Z",
+      "side": 1,
+      "message": "Actually I think that might need some adjustments as well. For instance the IPs are now different and so on. I guess I need to do the same for log-api README.md as well.",
+      "revId": "b8bf72abdda4f21caa468b5e7a0f880468840eeb",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
