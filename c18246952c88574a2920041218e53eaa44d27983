@@ -46,6 +46,23 @@
       "revId": "c18246952c88574a2920041218e53eaa44d27983",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ff73747_6744b947",
+        "filename": "devstack/override-defaults",
+        "patchSetId": 8
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-04-28T17:20:40Z",
+      "side": 1,
+      "message": "to be fair and square, I\u0027d ensure that user is capable of enforcing WSGI_MODE in devstack.\n\nJust put:\n\n  WSGI_MODE\u003d${WSGI_MODE:-mod_wsgi}\n\nand\n\n  WSGI_MODE\u003d${WSGI_MODE:-uwsgi}\n\nthat way if someone wants to override he can, but normaly loal.conf written from Vagrantfile would have it commented out.",
+      "revId": "c18246952c88574a2920041218e53eaa44d27983",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
