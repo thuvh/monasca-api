@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ff73747_74dfdc39",
+        "filename": "devstack/Vagrantfile",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-04-28T07:48:23Z",
+      "side": 1,
+      "message": "We should set this only for Java API.",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 18
+      },
+      "revId": "47c2d232e15d7720dc41291cf09ed3c3e63d6ffb",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ff73747_b4344494",
+        "filename": "devstack/settings",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-04-28T07:48:23Z",
+      "side": 1,
+      "message": "I\u0027m sorry for the previous comment. We don\u0027t need this here. What we want to control is the deployment of Keystone in devstack, so it has to be set before.",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 18
+      },
+      "revId": "47c2d232e15d7720dc41291cf09ed3c3e63d6ffb",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
