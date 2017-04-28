@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "5ff73747_07a4d506",
+        "filename": "devstack/Vagrantfile",
+        "patchSetId": 8
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-04-28T17:21:27Z",
+      "side": 1,
+      "message": "Let\u0027s keep that, but comment it out and have it like\n\n  # WSGI_MODE\u003duwsgi\n  # WSGI_MODE\u003dmod_wsgi\n\nwith appropriate comments for each one.",
+      "parentUuid": "5ff73747_05317a5a",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 29
+      },
+      "revId": "c18246952c88574a2920041218e53eaa44d27983",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5ff73747_6744b947",
         "filename": "devstack/override-defaults",
         "patchSetId": 8
