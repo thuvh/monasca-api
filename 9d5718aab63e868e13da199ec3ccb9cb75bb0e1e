@@ -22,6 +22,30 @@
       "revId": "9d5718aab63e868e13da199ec3ccb9cb75bb0e1e",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ff73747_14d293d1",
+        "filename": "devstack/override-defaults",
+        "patchSetId": 36
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2017-05-02T08:50:57Z",
+      "side": 1,
+      "message": "I do not agree. Python version of api works without a problem with Keystone in UWSGI mode. So I think we should move to UWSGI mode for python. For Java it still needs to have Keystone in WSGI mode.\nIMHO we need to move with changes which are made in devstack upstream.",
+      "parentUuid": "5ff73747_34b46ff1",
+      "range": {
+        "startLine": 4,
+        "startChar": 4,
+        "endLine": 4,
+        "endChar": 19
+      },
+      "revId": "9d5718aab63e868e13da199ec3ccb9cb75bb0e1e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
