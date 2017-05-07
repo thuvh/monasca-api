@@ -282,8 +282,6 @@ function clean_monasca {
 
     clean_kafka
 
-    clean_zookeeper
-
     clean_monasca_virtual_env
 
     #Restore errexit
@@ -1527,7 +1525,7 @@ function create_metric_accounts {
     get_or_add_user_project_role "monasca-read-only-user" "monasca-read-only-user" "mini-mon"
 
     # crate service
-    get_or_create_service "monasca" "monitoring" "Monasca Monitoring Service"
+    get_or_create_service "monasca" "${MONASCA_SERVICE_TYPE}" "Monasca Monitoring Service"
 
     # create endpoint
     get_or_create_endpoint \
@@ -1541,8 +1539,8 @@ function create_metric_accounts {
 function install_keystone_client {
     PIP_VIRTUAL_ENV=/opt/monasca
 
-    pip_install_gr python-keystoneclient
-    pip_install_gr keystoneauth1
+    install_keystoneclient
+    install_keystoneauth
 
     unset PIP_VIRTUAL_ENV
 }
@@ -1554,8 +1552,10 @@ function install_monasca_agent {
     apt_get -y install python-yaml libxml2-dev libxslt1-dev
 
     git_clone $MONASCA_CLIENT_REPO $MONASCA_CLIENT_DIR $MONASCA_CLIENT_BRANCH
-
     git_clone $MONASCA_AGENT_REPO $MONASCA_AGENT_DIR $MONASCA_AGENT_BRANCH
+
+    (cd "${MONASCA_AGENT_DIR}" ; sudo python setup.py sdist)
+    MONASCA_AGENT_SRC_DIST=$(ls -td "${MONASCA_AGENT_DIR}"/dist/monasca-agent-*.tar.gz | head -1)
 
     sudo mkdir -p /opt/monasca-agent || true
 
@@ -1599,13 +1599,12 @@ function install_monasca_agent {
 
     sudo chmod 0750 /usr/local/bin/monasca-reconfigure
 
-    if [[ ${SERVICE_HOST} ]]; then
-
-        sudo sed -i "s/--monasca_url 'http:\/\/127\.0\.0\.1:8070\/v2\.0'/--monasca_url 'http:\/\/${SERVICE_HOST}:8070\/v2\.0'/" /usr/local/bin/monasca-reconfigure
-        sudo sed -i "s/--keystone_url 'http:\/\/127\.0\.0\.1:35357\/v3'/--keystone_url 'http:\/\/${SERVICE_HOST}:35357\/v3'/" /usr/local/bin/monasca-reconfigure
-    fi
     sudo sed -e "
         s|%MONASCA_STATSD_PORT%|$MONASCA_STATSD_PORT|g;
+        s|%MONASCA_SERVICE_TYPE%|$MONASCA_SERVICE_TYPE|g;
+        s|%KEYSTONE_AUTH_URI%|$KEYSTONE_AUTH_URI|g;
+        s|%SERVICE_DOMAIN_NAME%|$SERVICE_DOMAIN_NAME|g;
+        s|%REGION_NAME%|$REGION_NAME|g;
     " -i /usr/local/bin/monasca-reconfigure
 }
 
