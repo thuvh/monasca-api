@@ -46,6 +46,30 @@
       "revId": "845d9db6e2cd3be76ff25a278c144e08c1d80f4f",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f044301_fe3e7dd8",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2017-05-08T12:29:21Z",
+      "side": 1,
+      "message": "Line 19 and 25 are monasca_common functions.\nBut there are separated. So I suggest get together one place.",
+      "parentUuid": "3f044301_be8475b2",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 51
+      },
+      "revId": "845d9db6e2cd3be76ff25a278c144e08c1d80f4f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
