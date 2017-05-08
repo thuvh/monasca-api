@@ -127,6 +127,29 @@
       "revId": "845d9db6e2cd3be76ff25a278c144e08c1d80f4f",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f044301_153b3f9c",
+        "filename": "monasca_api/v2/reference/metrics.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2017-05-08T19:07:20Z",
+      "side": 1,
+      "message": "Tomasz, the old code here forced a utf-8 encoding on the return value.  Does the new code also do that?",
+      "range": {
+        "startLine": 132,
+        "startChar": 27,
+        "endLine": 132,
+        "endChar": 39
+      },
+      "revId": "845d9db6e2cd3be76ff25a278c144e08c1d80f4f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
