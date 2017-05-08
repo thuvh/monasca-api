@@ -2,6 +2,46 @@
   "comments": [
     {
       "key": {
+        "uuid": "3f044301_6cd40721",
+        "filename": "monasca_api/common/messaging/message_formats/metrics.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2017-05-08T14:04:39Z",
+      "side": 1,
+      "message": "In general, I don\u0027t prefer acronyms like \"ru\" being introduced. When I first read the code I was like, what the hell is \"ru\". IMHO, it just makes it a little harder to understand the code initially. utils or rest_utils would work better I think, but utils might collide with another name.",
+      "range": {
+        "startLine": 17,
+        "startChar": 4,
+        "endLine": 17,
+        "endChar": 5
+      },
+      "revId": "845d9db6e2cd3be76ff25a278c144e08c1d80f4f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f044301_4cc02b51",
+        "filename": "monasca_api/v2/reference/alarm_definitions.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2017-05-08T14:04:39Z",
+      "side": 1,
+      "message": "Why not just call this function \"to_json\", as you have in other locations?",
+      "revId": "845d9db6e2cd3be76ff25a278c144e08c1d80f4f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3f044301_5ef1f16a",
         "filename": "monasca_api/v2/reference/helpers.py",
         "patchSetId": 16
@@ -67,6 +107,23 @@
         "endLine": 25,
         "endChar": 51
       },
+      "revId": "845d9db6e2cd3be76ff25a278c144e08c1d80f4f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f044301_4ca5cbb4",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2017-05-08T14:04:39Z",
+      "side": 1,
+      "message": "Would it be better to call this \"to_json\" or \"result_to_json\"?",
       "revId": "845d9db6e2cd3be76ff25a278c144e08c1d80f4f",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
