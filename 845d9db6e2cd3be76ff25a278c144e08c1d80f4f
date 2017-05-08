@@ -22,6 +22,30 @@
       "revId": "845d9db6e2cd3be76ff25a278c144e08c1d80f4f",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f044301_be8475b2",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-05-08T12:19:56Z",
+      "side": 1,
+      "message": "Not really sure what your comment is about ;-). Sorry, can you clarify that ?",
+      "parentUuid": "3f044301_5ef1f16a",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 51
+      },
+      "revId": "845d9db6e2cd3be76ff25a278c144e08c1d80f4f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
