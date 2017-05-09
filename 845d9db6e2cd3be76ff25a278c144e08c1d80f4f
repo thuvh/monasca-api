@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3f044301_d0cf1eae",
+        "filename": "monasca_api/common/messaging/message_formats/metrics.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-05-09T08:15:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f044301_6cd40721",
+      "range": {
+        "startLine": 17,
+        "startChar": 4,
+        "endLine": 17,
+        "endChar": 5
+      },
+      "revId": "845d9db6e2cd3be76ff25a278c144e08c1d80f4f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3f044301_4cc02b51",
         "filename": "monasca_api/v2/reference/alarm_definitions.py",
         "patchSetId": 16
@@ -36,6 +60,24 @@
       "writtenOn": "2017-05-08T14:04:39Z",
       "side": 1,
       "message": "Why not just call this function \"to_json\", as you have in other locations?",
+      "revId": "845d9db6e2cd3be76ff25a278c144e08c1d80f4f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f044301_b0ddb271",
+        "filename": "monasca_api/v2/reference/alarm_definitions.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-05-09T08:15:50Z",
+      "side": 1,
+      "message": "Yeah, might be good idea.\nWill do\n\n  to_json\n  from_json",
+      "parentUuid": "3f044301_4cc02b51",
       "revId": "845d9db6e2cd3be76ff25a278c144e08c1d80f4f",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -113,6 +155,30 @@
     },
     {
       "key": {
+        "uuid": "3f044301_7064cae4",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-05-09T08:15:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f044301_fe3e7dd8",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 51
+      },
+      "revId": "845d9db6e2cd3be76ff25a278c144e08c1d80f4f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3f044301_4ca5cbb4",
         "filename": "monasca_api/v2/reference/helpers.py",
         "patchSetId": 16
@@ -130,6 +196,24 @@
     },
     {
       "key": {
+        "uuid": "3f044301_302f6240",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-05-09T08:15:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f044301_4ca5cbb4",
+      "revId": "845d9db6e2cd3be76ff25a278c144e08c1d80f4f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3f044301_153b3f9c",
         "filename": "monasca_api/v2/reference/metrics.py",
         "patchSetId": 16
@@ -141,6 +225,30 @@
       "writtenOn": "2017-05-08T19:07:20Z",
       "side": 1,
       "message": "Tomasz, the old code here forced a utf-8 encoding on the return value.  Does the new code also do that?",
+      "range": {
+        "startLine": 132,
+        "startChar": 27,
+        "endLine": 132,
+        "endChar": 39
+      },
+      "revId": "845d9db6e2cd3be76ff25a278c144e08c1d80f4f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f044301_701dea64",
+        "filename": "monasca_api/v2/reference/metrics.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-05-09T08:15:50Z",
+      "side": 1,
+      "message": "monasca_common code is\n\n  rest/utils.py#L53 || data \u003d json.dumps(data, **kwargs) \n\nkwargs is populated with\n\n  ensure_ascii \u003d False\n\nif not present.\n\nEffectively that means output is UTF-8.\n\nI think, I\u0027ll just put ensure_ascii to False in monasca-api code to enforce that clearly.",
+      "parentUuid": "3f044301_153b3f9c",
       "range": {
         "startLine": 132,
         "startChar": 27,
