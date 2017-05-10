@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f044301_3233c616",
+        "filename": "devstack/files/schema/mon_postgresql.sql",
+        "patchSetId": 16
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-05-10T20:34:28Z",
+      "side": 1,
+      "message": "Extra H in foreign",
+      "range": {
+        "startLine": 248,
+        "startChar": 64,
+        "endLine": 248,
+        "endChar": 72
+      },
+      "revId": "699518fa4920c6e6511c91aca90b9c000c52eb1b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f044301_1238caec",
+        "filename": "devstack/files/schema/mon_postgresql.sql",
+        "patchSetId": 16
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-05-10T20:34:28Z",
+      "side": 1,
+      "message": "extra S in cascade",
+      "range": {
+        "startLine": 249,
+        "startChar": 51,
+        "endLine": 249,
+        "endChar": 59
+      },
+      "revId": "699518fa4920c6e6511c91aca90b9c000c52eb1b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
