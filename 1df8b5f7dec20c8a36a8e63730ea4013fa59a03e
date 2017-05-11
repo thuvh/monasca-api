@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f044301_ea731715",
+        "filename": "monasca_api/common/repositories/sqla/alarm_silence_definitions_repository.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-05-11T15:27:55Z",
+      "side": 1,
+      "message": "I don\u0027t think this method exists",
+      "range": {
+        "startLine": 37,
+        "startChar": 25,
+        "endLine": 37,
+        "endChar": 40
+      },
+      "revId": "1df8b5f7dec20c8a36a8e63730ea4013fa59a03e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
