@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f044301_9106f81b",
+        "filename": "monasca_api/tests/test_alarm_silence_definition.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-05-12T11:53:26Z",
+      "side": 1,
+      "message": "please use ujson [the change that migrates to monasca-api to monasca-common JSON processing is in now] therefore we should use ujson",
+      "revId": "e05235171d32927d71c46e4de32d9638463e2219",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f044301_910b987b",
+        "filename": "monasca_api/v2/reference/alarm_silence_definitions.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-05-12T11:53:26Z",
+      "side": 1,
+      "message": "I think you need to rebase, those functions were removed.",
+      "revId": "e05235171d32927d71c46e4de32d9638463e2219",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
