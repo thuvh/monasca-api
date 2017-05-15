@@ -22,6 +22,30 @@
       "revId": "2843a8ede9002c40ccab70fba3f20ae5dc2c67a2",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1f013ff3_0e1ff76c",
+        "filename": "devstack/files/schema/mon_mysql.sql",
+        "patchSetId": 20
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 22157
+      },
+      "writtenOn": "2017-05-15T16:41:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f013ff3_aef803c4",
+      "range": {
+        "startLine": 108,
+        "startChar": 77,
+        "endLine": 108,
+        "endChar": 78
+      },
+      "revId": "2843a8ede9002c40ccab70fba3f20ae5dc2c67a2",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
