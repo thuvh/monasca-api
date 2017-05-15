@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f013ff3_aef803c4",
+        "filename": "devstack/files/schema/mon_mysql.sql",
+        "patchSetId": 20
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-05-15T16:24:47Z",
+      "side": 1,
+      "message": "Trailing space? Can\u0027t quite tell",
+      "range": {
+        "startLine": 108,
+        "startChar": 77,
+        "endLine": 108,
+        "endChar": 78
+      },
+      "revId": "2843a8ede9002c40ccab70fba3f20ae5dc2c67a2",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
