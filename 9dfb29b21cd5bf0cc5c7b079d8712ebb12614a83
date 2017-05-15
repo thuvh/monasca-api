@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1f013ff3_aeaec3e4",
+        "filename": "devstack/files/schema/mon_mysql.sql",
+        "patchSetId": 19
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 22157
+      },
+      "writtenOn": "2017-05-15T16:17:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f013ff3_8488a771",
+      "range": {
+        "startLine": 108,
+        "startChar": 3,
+        "endLine": 108,
+        "endChar": 23
+      },
+      "revId": "9dfb29b21cd5bf0cc5c7b079d8712ebb12614a83",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1f013ff3_04ab77d6",
         "filename": "devstack/files/schema/mon_postgresql.sql",
         "patchSetId": 19
@@ -60,6 +84,30 @@
       "side": 1,
       "message": "It absolutely is a foreign key, but it corresponds to a table that is in a different review. MySql doesn\u0027t like a foreign key constraint to a table that doesn\u0027t exist, so I\u0027m thinking I should leave this variable out completely and maybe move it\u0027s declaration to the inhibition review.",
       "parentUuid": "1f013ff3_04ab77d6",
+      "range": {
+        "startLine": 78,
+        "startChar": 4,
+        "endLine": 78,
+        "endChar": 12
+      },
+      "revId": "9dfb29b21cd5bf0cc5c7b079d8712ebb12614a83",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1f013ff3_0ea017f4",
+        "filename": "devstack/files/schema/mon_postgresql.sql",
+        "patchSetId": 19
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 22157
+      },
+      "writtenOn": "2017-05-15T16:17:28Z",
+      "side": 1,
+      "message": "Never mind, I was thinking incorrectly.",
+      "parentUuid": "1f013ff3_13c16055",
       "range": {
         "startLine": 78,
         "startChar": 4,
