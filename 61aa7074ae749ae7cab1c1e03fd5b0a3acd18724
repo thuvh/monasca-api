@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f013ff3_8c5b1c2d",
+        "filename": "monasca_tempest_tests/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2017-05-15T09:42:27Z",
+      "side": 1,
+      "message": "This can be removed",
+      "range": {
+        "startLine": 22,
+        "startChar": 4,
+        "endLine": 22,
+        "endChar": 20
+      },
+      "revId": "61aa7074ae749ae7cab1c1e03fd5b0a3acd18724",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
