@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff0f0b1f_6fa571b5",
+        "filename": "monasca_api/healtcheck/kafka_check.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-05-17T14:30:10Z",
+      "side": 1,
+      "message": "There are two other kafka topics used by the API: events and alarm-state-transitions. Unfortunately, in one of the refactorings, events was removed from the conf file. So, unless they get added to the conf file, we\u0027ll have to just hard code them.",
+      "range": {
+        "startLine": 44,
+        "startChar": 28,
+        "endLine": 44,
+        "endChar": 41
+      },
+      "revId": "2d244a0af4fc6854f34557b2dc4eaca984217d02",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff0f0b1f_6f50d133",
+        "filename": "monasca_api/healtcheck/kafka_check.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-05-17T14:30:10Z",
+      "side": 1,
+      "message": "The other ones don\u0027t return a base.CheckResult",
+      "range": {
+        "startLine": 52,
+        "startChar": 15,
+        "endLine": 52,
+        "endChar": 31
+      },
+      "revId": "2d244a0af4fc6854f34557b2dc4eaca984217d02",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff0f0b1f_2f9d3959",
+        "filename": "monasca_api/healtcheck/kafka_check.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-05-17T14:30:10Z",
+      "side": 1,
+      "message": "This would be clearer if you used \u0027Closing Kafka Connection\u0027. LOG.exception already prints all of the exception information including the message.",
+      "range": {
+        "startLine": 59,
+        "startChar": 26,
+        "endLine": 59,
+        "endChar": 33
+      },
+      "revId": "2d244a0af4fc6854f34557b2dc4eaca984217d02",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff0f0b1f_8f05657d",
+        "filename": "monasca_api/healtcheck/timeseries_db_check.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-05-17T14:30:10Z",
+      "side": 1,
+      "message": "Misspelled",
+      "range": {
+        "startLine": 45,
+        "startChar": 20,
+        "endLine": 45,
+        "endChar": 28
+      },
+      "revId": "2d244a0af4fc6854f34557b2dc4eaca984217d02",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff0f0b1f_21dc2d73",
+        "filename": "monasca_api/healthchecks.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-05-17T14:30:10Z",
+      "side": 1,
+      "message": "I\u0027m not sure about this. If you front the API by something like nginx, then it may return 503 when it can\u0027t contact the Monasca API. How do you distinguish that from the health check returning unhealthy? But, I would be interested in other people\u0027s opinions.",
+      "range": {
+        "startLine": 31,
+        "startChar": 30,
+        "endLine": 31,
+        "endChar": 54
+      },
+      "revId": "2d244a0af4fc6854f34557b2dc4eaca984217d02",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff0f0b1f_41a961dd",
+        "filename": "monasca_api/healthchecks.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-05-17T14:30:10Z",
+      "side": 1,
+      "message": "This is really the metrics_database",
+      "range": {
+        "startLine": 51,
+        "startChar": 13,
+        "endLine": 51,
+        "endChar": 31
+      },
+      "revId": "2d244a0af4fc6854f34557b2dc4eaca984217d02",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
