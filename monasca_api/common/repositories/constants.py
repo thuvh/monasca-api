@@ -1,1 +1,10 @@
+import datetime
+
 PAGE_LIMIT = 10000
+RULE_DESCRIPTION = ''
+SILENCE_RULE_START_TIME = datetime.datetime.now().strftime(
+    "%Y-%m-%dT%H:%M:%S.%f")[:-3] + 'Z'
+SILENCE_RULE_SILENCE_DURATION = '10m'
+GROUP_RULE_GROUP_WAIT = '30s'
+GROUP_RULE_REPEAT_INTERVAL = '2h'
+GROUP_RULE_ACTIONS = []
