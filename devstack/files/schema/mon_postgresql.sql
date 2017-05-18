@@ -1,5 +1,6 @@
 ---
 -- # Copyright 2017 FUJITSU LIMITED
+-- # (C) Copyright 2017 Hewlett Packard Enterprise Development LP
 ---
 
 SET statement_timeout = 0;
@@ -62,6 +63,23 @@ CREATE TABLE alarm_definition (
     severity character varying(20) NOT NULL,
     tenant_id character varying(36) NOT NULL
 );
+
+CREATE TABLE alarm_rule_definition (
+    id character varying(36) NOT NULL,
+    name character varying(255) NOT NULL,
+    description character varying(255),
+    tenant_id character varying(36) NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    deleted_at timestamp without time zone
+);
+
+CREATE TABLE alarm_rule (
+    alarm_rule_id character varying(255) NOT NULL,
+    alarm_id character varying(255) NOT NULL,
+    inhibition_source_id character varying (255)
+);
+
 
 CREATE TABLE alarm_metric (
     metric_definition_dimensions_id bytea NOT NULL,
@@ -128,9 +146,68 @@ CREATE TABLE sub_alarm_definition_dimension (
     sub_alarm_definition_id character varying(36) NOT NULL
 );
 
+CREATE TABLE alarm_group_definition (
+    rule_id character varying(36) NOT NULL,
+    matchers character varying(255) NOT NULL,
+    group_wait character varying(10) NOT NULL,
+    repeat_interval character varying(10) NOT NULL,
+);
+
+CREATE TABLE alarm_group_definition_action (
+    alarm_group_definition_id character varying(36) NOT NULL,
+    alarm_state character varying (36) NOT NULL,
+    action_id character varying(36) NOT NULL
+);
+
+CREATE TABLE alarm_group_definition_exclusion (
+    alarm_group_definition_id character varying(36) NOT NULL,
+    exclusion_name character varying(36) NOT NULL,
+    value character varying(36) NOT NULL
+);
+
+CREATE TABLE alarm_inhibition_definition (
+    rule_id character varying(36) NOT NULL,
+    equal character varying(255) NOT NULL,
+);
+
+CREATE TABLE alarm_inhibition_definition_source_match (
+    alarm_inhibition_definition_id character varying(36) NOT NULL,
+    source_name character varying(36) NOT NULL,
+    source_value character varying(36) NOT NULL
+);
+
+CREATE TABLE alarm_inhibition_definition_target_match (
+    alarm_inhibition_definition_id character varying(36) NOT NULL,
+    target_name character varying(36) NOT NULL,
+    target_value character varying(36) NOT NULL
+);
+
+CREATE TABLE alarm_inhibition_definition_exclusion (
+    alarm_inhibition_definition_id character varying(36) NOT NULL,
+    exclusion_name character varying(36) NOT NULL,
+    value character varying(36) NOT NULL
+
+CREATE TABLE alarm_silence_definition (
+    rule_id character varying(36) NOT NULL,
+    start_time character varying(36) NOT NULL,
+    silence_duration character varying(10) NOT NULL,
+);
+
+CREATE TABLE alarm_silence_definition_matcher (
+    alarm_silence_definition_id character varying(36) NOT NULL,
+    matcher_name character varying(36) NOT NULL,
+    matcher_value character varying(36) NOT NULL
+);
+
 ---
 -- primary keys
 ---
+ALTER TABLE ONLY alarm_rule_definition
+    ADD CONSTRAINT alarm_rule_definition_pkey PRIMARY KEY(id);
+
+ALTER TABLE ONLY alarm_rule
+    ADD CONSTRAINT alarm_rule_pkey PRIMARY KEY (alarm_rule_id);
+
 ALTER TABLE ONLY alarm_action
     ADD CONSTRAINT alarm_action_pkey PRIMARY KEY (action_id, alarm_definition_id, alarm_state);
 
@@ -161,6 +238,19 @@ ALTER TABLE ONLY sub_alarm_definition
 ALTER TABLE ONLY sub_alarm
     ADD CONSTRAINT sub_alarm_pkey PRIMARY KEY (id);
 
+ALTER TABLE ONLY alarm_group_definition
+    ADD CONSTRAINT alarm_group_definition_pkey PRIMARY KEY (rule_id);
+
+ALTER TABLE ONLY alarm_group_definition_action
+    ADD CONSTRAINT alarm_group_definition_action_pkey PRIMARY KEY
+    (alarm_group_definition_id, action_id);
+
+ALTER TABLE ONLY alarm_inhibition_definition
+    ADD CONSTRAINT alarm_inhibition_definition_pkey PRIMARY KEY (rule_id);
+
+ALTER TABLE ONLY alarm_silence_definition
+    ADD CONSTRAINT alarm_silence_definition_pkey PRIMARY KEY (rule_id);
+
 ---
 -- indexes
 ---
@@ -177,6 +267,15 @@ CREATE INDEX tenant_id ON alarm_definition USING btree (tenant_id);
 ---
 -- foreign key constraints
 ---
+ALTER TABLE ONLY alarm_rule
+    ADD CONSTRAINT fk_rules_alarm_id FOREIGN KEY (alarm_id) REFRENCES alarm(id) ON DELETE CASCADE;
+
+ALTER TABLE ONLY alarm_rule
+    ADD CONSTRAINT fk_alarm_rule_definition_id FOREIGN KEY (alarm_rule_id) REFRENCES alarm_rule_definition(id) ON DELETE CASCADE;
+
+ALTER TABLE ONLY  alarm_rule
+    ADD CONSTRAINT fk_inhibition_source_id FOREIGN KEY (inhibition_source_id) REFERENCES alarm(id) ON DELETE CASCADE;
+
 ALTER TABLE ONLY alarm_action
     ADD CONSTRAINT fk_alarm_action_alarm_definition FOREIGN KEY (alarm_definition_id) REFERENCES alarm_definition(id);
 
@@ -209,6 +308,38 @@ ALTER TABLE ONLY alarm_definition
 
 ALTER TABLE ONLY notification_method
     ADD CONSTRAINT fk_alarm_noticication_method_type FOREIGN KEY (type) REFERENCES notification_method_type (name);
+
+ALTER TABLE ONLY alarm_group_definition
+    ADD CONSTRAINT fk_alarm_group_definition_id FOREIGN KEY (alarm_group_definition_id)
+    REFERENCES alarm_rule_definition(id) ON DELETE CASCADE;
+
+ALTER TABLE ONLY alarm_group_definition_action
+    ADD CONSTRAINT fk_action_alarm_group_definition_id FOREIGN KEY (alarm_group_definition_id)
+    REFERENCES alarm_rule_definition(id) ON DELETE CASCADE;
+
+ALTER TABLE ONLY alarm_group_definition_exclusion
+    ADD CONSTRAINT fk_exclusion_alarm_group_definition_id FOREIGN KEY (alarm_group_definition_id)
+    REFERENCES alarm_rule_definition(id) ON DELETE CASCADE;
+
+ALTER TABLE ONLY alarm_inhibition_definition_source_match
+    ADD CONSTRAINT fk_source_match_alarm_inhibition_definition_id FOREIGN KEY (alarm_inhibition_definition_id)
+    REFERENCES alarm_rule_definition(id) ON DELETE CASCADE;
+
+ALTER TABLE ONLY alarm_inhibition_definition_target_match
+    ADD CONSTRAINT fk_target_match_alarm_inhibition_definition_id FOREIGN KEY (alarm_inhibition_definition_id)
+    REFERENCES alarm_rule_definition(id) ON DELETE CASCADE;
+
+ALTER TABLE ONLY alarm_inhibition_definition_exclusion
+    ADD CONSTRAINT fk_exclusions_alarm_inhibition_definition_id FOREIGN KEY (alarm_inhibition_definition_id)
+    REFERENCES alarm_rule_definition(id) ON DELETE CASCADE;
+
+ALTER TABLE ONLY alarm_silence_definition
+    ADD CONSTRAINT fk_alarm_silence_definition_id FOREIGN KEY (rule_id)
+    REFERENCES alarm_rule_definition(id) ON DELETE CASCADE;
+
+ALTER TABLE ONLY alarm_silence_definition_matcher
+    ADD CONSTRAINT fk_matcher_alarm_silence_definition_id FOREIGN KEY (alarm_silence_definition_id)
+    REFERENCES alarm_rule_definition(id) ON DELETE CASCADE;
 
 ---
 -- data for enum tables
