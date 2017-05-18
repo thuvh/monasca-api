@@ -93,6 +93,67 @@ def create_alarm_definition(name=None,
     return alarm_definition
 
 
+def create_group_rule(name=None,
+                      description=None,
+                      expression=None,
+                      group_wait=None,
+                      repeat_interval=None,
+                      alarm_actions=None,
+                      ok_actions=None,
+                      undetermined_actions=None):
+    group_rule = {}
+    if name:
+        group_rule['name'] = name
+    if description:
+        group_rule['description'] = description
+    if expression:
+        group_rule['expression'] = expression
+    if group_wait:
+        group_rule['group_wait'] = group_wait
+    if repeat_interval:
+        group_rule['repeat_interval'] = repeat_interval
+    if alarm_actions:
+        group_rule['alarm_actions'] = alarm_actions
+    if ok_actions:
+        group_rule['ok_actions'] = ok_actions
+    if undetermined_actions:
+        group_rule['undetermined_actions'] = undetermined_actions
+    return group_rule
+
+
+def create_inhibit_rule(name=None, description=None, expression=None):
+    inhibit_rule = {}
+    if name:
+        inhibit_rule['name'] = name
+    if description:
+        inhibit_rule['description'] = description
+    if expression:
+        inhibit_rule['expression'] = expression
+    return inhibit_rule
+
+
+def create_silence_rule(name=None,
+                        description=None,
+                        expression=None,
+                        silence_duration=None,
+                        start_time=None):
+    silence_rule = {}
+    if name is not None:
+        silence_rule['name'] = name
+    if description is not None:
+        silence_rule['description'] = description
+    if expression is not None:
+        silence_rule['expression'] = expression
+    if silence_duration is not None:
+        silence_rule['silence_duration'] = silence_duration
+    if start_time is not None:
+        silence_rule['start_time'] = start_time
+    else:
+        silence_rule['start_time'] = datetime.datetime.now().strftime(
+            '%Y-%m-%d %H:%M:%S.%f')[:-3] + 'Z'
+    return silence_rule
+
+
 def delete_alarm_definitions(monasca_client):
     # Delete alarm definitions
     resp, response_body = monasca_client.list_alarm_definitions()
@@ -101,6 +162,36 @@ def delete_alarm_definitions(monasca_client):
         for element in elements:
             alarm_def_id = element['id']
             monasca_client.delete_alarm_definition(alarm_def_id)
+
+
+def delete_group_rules(monasca_client):
+    # Delete group rules
+    resp, response_body = monasca_client.list_group_rules()
+    elements = response_body['elements']
+    if elements:
+        for element in elements:
+            group_rule_id = element['id']
+            monasca_client.delete_group_rule(group_rule_id)
+
+
+def delete_inhibit_rules(monasca_client):
+    # Delete inhibit rule
+    resp, response_body = monasca_client.list_inhibit_rules()
+    elements = response_body['elements']
+    if elements:
+        for element in elements:
+            inhibit_rule_id = element['id']
+            monasca_client.delete_inhibit_rule(inhibit_rule_id)
+
+
+def delete_silence_rules(monasca_client):
+    # Delete silence rules
+    resp, response_body = monasca_client.list_silence_rules()
+    elements = response_body['elements']
+    if elements:
+        for element in elements:
+            silence_def_id = element['id']
+            monasca_client.delete_silence_rule(silence_def_id)
 
 
 def timestamp_to_iso(timestamp):
