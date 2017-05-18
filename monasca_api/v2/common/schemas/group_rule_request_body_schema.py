@@ -1,4 +1,4 @@
-# (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
+# (C) Copyright 2017 Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -13,32 +13,30 @@
 # under the License.
 
 from oslo_log import log
-import six
 import voluptuous
 
 from monasca_api.v2.common.schemas import exceptions
-
 
 LOG = log.getLogger(__name__)
 
 MAX_ITEM_LENGTH = 50
 
 
-def validate_action_list(notification_ids, action_type):
+def validate_action_list(notification_ids, action_state):
     if not isinstance(notification_ids, list):
         raise voluptuous.Invalid('Not a list: {}'.format(type(notification_ids)))
     existing = []
     for notification_id in notification_ids:
-        if not isinstance(notification_id, (str, six.text_type)):
+        if not isinstance(notification_id, (str, unicode)):
             raise voluptuous.Invalid('list item <{}> -> {} not one of (str, '
                                      'unicode)'.format(notification_id,
                                                        type(notification_id)))
         if len(notification_id) > MAX_ITEM_LENGTH:
-            raise voluptuous.Invalid('length {} > {}'.format(len(notification_id),
-                                                             MAX_ITEM_LENGTH))
+            raise voluptuous.Invalid('length {} > {}'.format(
+                len(notification_id), MAX_ITEM_LENGTH))
         if notification_id in existing:
             raise voluptuous.Invalid('Duplicate {} notification method {}'
-                                     .format(action_type, notification_id))
+                                     .format(action_state, notification_id))
         existing.append(notification_id)
 
 
@@ -53,26 +51,25 @@ def validate_alarm_action_list(v):
 def validate_undetermined_action_list(v):
     validate_action_list(v, 'UNDETERMINED')
 
-alarm_definition_schema = {
+
+group_rule_schema = {
     voluptuous.Required('name'): voluptuous.All(
-        voluptuous.Any(str, six.text_type), voluptuous.Length(max=255)),
+        voluptuous.Any(str, unicode), voluptuous.Length(max=255)),
     voluptuous.Required('expression'): voluptuous.All(
-        voluptuous.Any(str, six.text_type)),
+        voluptuous.Any(str, unicode), voluptuous.Length(max=1024)),
     voluptuous.Marker('description'): voluptuous.All(
-        voluptuous.Any(str, six.text_type), voluptuous.Length(max=255)),
-    voluptuous.Marker('severity'): voluptuous.All(
-        voluptuous.Upper, voluptuous.Any('LOW', 'MEDIUM', 'HIGH', 'CRITICAL')),
-    voluptuous.Marker('match_by'): voluptuous.Any([six.text_type], [str]),
+        voluptuous.Any(str, unicode), voluptuous.Length(max=255)),
+    voluptuous.Marker('group_wait'): voluptuous.Any(str, unicode),
+    voluptuous.Marker('repeat_interval'): voluptuous.Any(str, unicode),
     voluptuous.Marker('ok_actions'): validate_ok_action_list,
     voluptuous.Marker('alarm_actions'): validate_alarm_action_list,
     voluptuous.Marker('undetermined_actions'):
-        validate_undetermined_action_list,
-    voluptuous.Marker('actions_enabled'): bool}
+        validate_undetermined_action_list}
 
 
 def validate(msg, require_all=False):
     try:
-        request_body_schema = voluptuous.Schema(alarm_definition_schema,
+        request_body_schema = voluptuous.Schema(group_rule_schema,
                                                 required=require_all,
                                                 extra=True)
         request_body_schema(msg)
