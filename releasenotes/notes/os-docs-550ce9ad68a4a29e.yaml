@@ -1,7 +1,0 @@
----
-
-upgrade:
-    - Documentation handling of monasca-api has been migrated
-      to match OpenStack process. Note that this is just
-      initial migration and entire transition will be completed
-      in future.
