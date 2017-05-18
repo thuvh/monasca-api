@@ -1,5 +1,5 @@
 # Copyright 2014 IBM Corp
-# (C) Copyright 2015,2016 Hewlett Packard Enterprise Development LP
+# (C) Copyright 2015-2017 Hewlett Packard Enterprise Development LP
 # Copyright 2017 Fujitsu LIMITED
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
@@ -92,6 +92,18 @@ def launch(conf):
 
     healthchecks = simport.load(cfg.CONF.dispatcher.healthchecks)()
     app.add_route("/healthcheck", healthchecks)
+
+    group_rules = simport.load(cfg.CONF.dispatcher.group_rules)()
+    app.add_route("/v2.0/group-rules/", group_rules)
+    app.add_route("/v2.0/group-rules/{group_rule_id}", group_rules)
+
+    inhibit_rules = simport.load(cfg.CONF.dispatcher.inhibit_rules)()
+    app.add_route("/v2.0/inhibit-rules/", inhibit_rules)
+    app.add_route("/v2.0/inhibit-rules/{inhibit_rule_id}", inhibit_rules)
+
+    silence_rules = simport.load(cfg.CONF.dispatcher.silence_rules)()
+    app.add_route("/v2.0/silence-rules/", silence_rules)
+    app.add_route("/v2.0/silence-rules/{silence_rule_id}", silence_rules)
 
     LOG.debug('Dispatcher drivers have been added to the routes!')
     return app
