@@ -1,6 +1,6 @@
 # Copyright 2015 Robin Hood
 # Copyright 2016 FUJITSU LIMITED
-# (C) Copyright 2016 Hewlett Packard Enterprise Development LP
+# (C) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -112,6 +112,17 @@ def create_ad_model(metadata=None):
                  Column('deleted_at', DateTime))
 
 
+def create_ard_model(metadata=None):
+    return Table('alarm_rule_definition', metadata,
+                 Column('id', String(36)),
+                 Column('tenant_id', String(36)),
+                 Column('name', String(255)),
+                 Column('description', String(255)),
+                 Column('created_at', DateTime),
+                 Column('updated_at', DateTime),
+                 Column('deleted_at', DateTime))
+
+
 def create_sa_model(metadata=None):
     return Table('sub_alarm', metadata,
                  Column('id', String(36)),
@@ -135,6 +146,70 @@ def create_sad_model(metadata=None):
                  Column('is_deterministic', Boolean),
                  Column('created_at', DateTime),
                  Column('updated_at', DateTime))
+
+
+def create_agd_action_model(metadata=None):
+    return Table('alarm_group_definition_action', metadata,
+                 Column('alarm_group_definition_id', String(36)),
+                 Column('alarm_state', String(20)),
+                 Column('action_id', String(36)))
+
+
+def create_agd_exclusion_model(metadata=None):
+    return Table('alarm_group_definition_exclusion', metadata,
+                 Column('alarm_group_definition_id', String(36)),
+                 Column('exclusion_name', String(36)),
+                 Column('value', String(36)))
+
+
+def create_agd_model(metadata=None):
+    return Table('alarm_group_definition', metadata,
+                 Column('rule_id', String(36)),
+                 Column('matchers', String(255)),
+                 Column('group_wait', String(5)),
+                 Column('repeat_interval', String(5)))
+
+
+def create_aidsm_model(metadata=None):
+    return Table('alarm_inhibition_definition_source_match', metadata,
+                 Column('alarm_inhibition_definition_id', String(36)),
+                 Column('source_name', String(36)),
+                 Column('source_value', String(36)))
+
+
+def create_aidtm_model(metadata=None):
+    return Table('alarm_inhibition_definition_target_match', metadata,
+                 Column('alarm_inhibition_definition_id', String(36)),
+                 Column('target_name', String(36)),
+                 Column('target_value', String(36)))
+
+
+def create_aid_exclusion_model(metadata=None):
+    return Table('alarm_inhibition_definition_exclusion', metadata,
+                 Column('alarm_inhibition_definition_id', String(36)),
+                 Column('exclusion_name', String(36)),
+                 Column('value', String(36)))
+
+
+def create_aid_model(metadata=None):
+    return Table('alarm_inhibition_definition', metadata,
+                 Column('rule_id', String(36)),
+                 Column('equal', String(255)))
+
+
+def create_asdm_model(metadata=None):
+    return Table('alarm_silence_definition_matcher', metadata,
+                 Column('alarm_silence_definition_id', String(36)),
+                 Column('matcher_name', String(36)),
+                 Column('matcher_value', String(36)))
+
+
+def create_asd_model(metadata=None):
+    return Table('alarm_silence_definition', metadata,
+                 Column('rule_id', String(36)),
+                 Column('matchers', String(255)),
+                 Column('start_time', DateTime),
+                 Column('silence_duration', String(10)))
 
 
 class group_concat(expression.ColumnElement):
