@@ -128,6 +128,49 @@ CREATE TABLE sub_alarm_definition_dimension (
     sub_alarm_definition_id character varying(36) NOT NULL
 );
 
+CREATE TABLE group_rule (
+    id character varying(36) NOT NULL,
+    name character varying(255) NOT NULL,
+    expression character varying(1024) NOT NULL,
+    description character varying(255),
+    tenant_id character varying(36) NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    deleted_at timestamp without time zone,
+    group_wait character varying(10) NOT NULL,
+    repeat_interval character varying(10) NOT NULL
+);
+
+CREATE TABLE group_rule_action (
+    group_rule_id character varying(36) NOT NULL,
+    alarm_state character varying (36) NOT NULL,
+    action_id character varying(36) NOT NULL
+);
+
+CREATE TABLE inhibit_rule (
+    id character varying(36) NOT NULL,
+    name character varying(255) NOT NULL,
+    expression character varying(1024) NOT NULL
+    description character varying(255),
+    tenant_id character varying(36) NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    deleted_at timestamp without time zone
+);
+
+CREATE TABLE silence_rule (
+    id character varying(36) NOT NULL,
+    name character varying(255) NOT NULL,
+    expression character varying(1024) NOT NULL,
+    description character varying(255),
+    tenant_id character varying(36) NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    deleted_at timestamp without time zone,
+    start_time character varying(36) NOT NULL,
+    silence_duration character varying(10) NOT NULL
+);
+
 ---
 -- primary keys
 ---
@@ -160,6 +203,18 @@ ALTER TABLE ONLY sub_alarm_definition
 
 ALTER TABLE ONLY sub_alarm
     ADD CONSTRAINT sub_alarm_pkey PRIMARY KEY (id);
+
+ALTER TABLE ONLY group_rule
+    ADD CONSTRAINT group_rule_pkey PRIMARY KEY (id);
+
+ALTER TABLE ONLY group_rule_action
+    ADD CONSTRAINT group_rule_action_pkey PRIMARY KEY (group_rule_id, alarm_state，action_id);
+
+ALTER TABLE ONLY inhibit_rule
+    ADD CONSTRAINT inhibit_rule_pkey PRIMARY KEY (id);
+
+ALTER TABLE ONLY silence_rule
+    ADD CONSTRAINT silence_rule_pkey PRIMARY KEY (id);
 
 ---
 -- indexes
@@ -208,7 +263,7 @@ ALTER TABLE ONLY alarm_definition
     ADD CONSTRAINT fk_alarm_definition_severity FOREIGN KEY (severity) REFERENCES alarm_definition_severity (name);
 
 ALTER TABLE ONLY notification_method
-    ADD CONSTRAINT fk_alarm_noticication_method_type FOREIGN KEY (type) REFERENCES notification_method_type (name);
+    ADD CONSTRAINT fk_alarm_notification_method_type FOREIGN KEY (type) REFERENCES notification_method_type (name);
 
 ---
 -- data for enum tables
