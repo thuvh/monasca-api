@@ -1,0 +1,16 @@
+---
+prelude: >
+    Group rule is used to categorize alarms of similar nature into
+    a single notification. This functionality is very usefully
+    especially during large outages when many systems fail at once and
+    thousands of alarms go off simultaneously.
+
+    Inhibit rule allows user to mute a set of alarms (target alarms)
+    given that another alarm (source alarm) is firing. For example,
+    we can use this to mute any low level alarms if the same alarm is
+    already critical.
+
+    Silence rule will mute alarms for a given time based on
+    input parameters: start_time and end_time. A silence is configured
+    based on matchers and if an incoming alarm is checked to match the
+    matchers, no notifications will be sent out for that alarm.
