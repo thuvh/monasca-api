@@ -1,4 +1,3 @@
-
 # Monasca API
 
 Date: November 5, 2014
@@ -27,6 +26,33 @@ Document Version: v2.0
       - [Non-deterministic alarm with deterministic sub expressions](#non-deterministic-alarm-with-deterministic-sub-expressions)
     - [Changing Alarm Definitions](#changing-alarm-definitions)
   - [Notification Methods](#notification-methods)
+  - [Group, Inhibit, and Silence Rules](#group-inhibit-silence-rules)
+    - [Group Rule](#group-rule)
+    - [Inhibit Rule](#inhibit-rule)
+    - [Silence Rule](#silence-rule)
+    - [Alarm Rule Matching](#alarm-rule-matching)
+      - [Group Rule Matching](#group-rule-matching)
+        - [Group Expression Syntax](#group-expression-syntax)
+          - [Simple Group Expression Example](#simple-group-expression-syntax)
+          - [More Complex Group Expression Example](#more-complex-group-expression-example)
+      - [Inhibit Rule Matching](#inhibit-rule-matching)
+        - [Inhibit Expression Syntax](#inhibit-expression-syntax)
+          - [Simple Inhibit Expression Example](#simple-inhibit-expression-syntax)
+          - [More Complex Inhibit Expression Example](#more-complex-inhibit-expression-example)
+      - [Silence Rule Matching](#silence-rule-matching)
+        - [Silence Expression Syntax](#silence-expression-syntax)
+          - [Simple Silence Expression Example](#simple-silence-expression-syntax)
+          - [More Complex Silence Expression Example](#more-complex-silence-expression-example)
+      - [Matching by Key or Key Value Pairs](#matching-by-key-or-key-value-pairs)
+    - [Group, Inhibit and Silence Rules Working Together](#group-inhibit-silence-rules-working-together)
+      - [Group, Inhibit, and Silence Examples](#group-inhibit-and-silence-examples)
+        - [Silence Example](#silence-example)
+        - [Inhibit Example](#inhibit-example)
+        - [Group Example](#group-example)
+        - [Silence and Group Example](#silence-and-group-example)
+        - [Silence and Inhibit Example](#silence-and-inhibit-example)
+        - [Inhibit and Group Example](#inhibit-and-group-example)
+        - [Silence, Inhibit and Group Example](#silence-inhibit-and-group-example)
 - [Common Request Headers](#common-request-headers)
   - [Common Http Request Headers](#common-http-request-headers)
   - [Non-standard request headers](#non-standard-request-headers)
@@ -360,6 +386,201 @@ Document Version: v2.0
       - [Status Code](#status-code-26)
       - [Response Body](#response-body-28)
       - [Response Examples](#response-examples-24)
+- [Group Rules](#group-rules)
+  - [Create Group Rule](#create-group-rule)
+    - [POST /v2.0/group-rules](#post-v20group-rules)
+      - [Headers](#headers-29)
+      - [Path Parameters](#path-parameters-28)
+      - [Query Parameters](#query-parameters-29)
+      - [Request Body](#request-body-29)
+      - [Request Examples](#request-examples-25)
+    - [Response](#response-29)
+      - [Status Code](#status-code-27)
+      - [Response Body](#response-body-29)
+      - [Response Examples](#response-examples-25)
+  - [List Group Rules](#list-group-rules)
+    - [GET /v2.0/group-rules](#get-v20group-rules)
+      - [Headers](#headers-30)
+      - [Path Parameters](#path-parameters-29)
+      - [Query Parameters](#query-parameters-30)
+      - [Request Body](#request-body-30)
+      - [Request Examples](#request-examples-26)
+    - [Response](#response-30)
+      - [Status Code](#status-code-28)
+      - [Response Body](#response-body-30)
+      - [Response Examples](#response-examples-26)
+  - [Get Group Rule](#get-group-rule)
+    - [GET /v2.0/group-rules/{group_rule_id}](#get-v20group-rulesgroup_rule_id)
+      - [Headers](#headers-31)
+      - [Path Parameters](#path-parameters-30)
+      - [Query Parameters](#query-parameters-31)
+      - [Request Body](#request-body-31)
+    - [Response](#response-31)
+      - [Status Code](#status-code-29)
+      - [Response Body](#response-body-31)
+      - [Response Examples](#response-examples-27)
+  - [Update Group Rule](#update-group-rule)
+    - [PUT /v2.0/group-rules/{group_rule_id}](#put-v20group-rulesgroup_rule_id)
+      - [Headers](#headers-32)
+      - [Path Parameters](#path-parameters-31)
+      - [Query Parameters](#query-parameters-32)
+      - [Request Body](#request-body-32)
+      - [Request Examples](#request-examples-27)
+    - [Response](#response-32)
+      - [Status Code](#status-code-30)
+      - [Response Body](#response-body-32)
+      - [Response Examples](#response-examples-28)
+  - [Patch Group Rule](#patch-group-rule)
+    - [PATCH /v2.0/group-rules/{group_rule_id}](#patch-v20group-rulesgroup_rule_id)
+      - [Headers](#headers-33)
+      - [Path Parameters](#path-parameters-32)
+      - [Query Parameters](#query-parameters-33)
+      - [Request Body](#request-body-33)
+      - [Request Examples](#request-examples-28)
+    - [Response](#response-33)
+      - [Status Code](#status-code-31)
+      - [Response Body](#response-body-33)
+      - [Response Examples](#response-examples-29)
+  - [Delete Group Rule](#delete-group-rule)
+    - [DELETE /v2.0/group-rules/{group_rule_id}](#delete-v20group-rulesgroup_rule_id)
+      - [Headers](#headers-34)
+      - [Path Parameters](#path-parameters-33)
+      - [Query Parameters](#query-parameters-34)
+      - [Request Body](#request-body-34)
+      - [Request Examples](#request-examples-29)
+    - [Response](#response-34)
+      - [Status Code](#status-code-32)
+      - [Response Body](#response-body-34)
+- [Inhibit Rules](#inhibit-rules)
+  - [Create Inhibit Rule](#create-inhibit-rule)
+    - [POST /v2.0/inhibit-rules](#post-v20inhibit-rules)
+      - [Headers](#headers-29)
+      - [Path Parameters](#path-parameters-28)
+      - [Query Parameters](#query-parameters-29)
+      - [Request Body](#request-body-29)
+      - [Request Examples](#request-examples-25)
+    - [Response](#response-29)
+      - [Status Code](#status-code-27)
+      - [Response Body](#response-body-29)
+      - [Response Examples](#response-examples-25)
+  - [List Inhibit Rules](#list-inhibit-rules)
+    - [GET /v2.0/inhibit-rules](#get-v20inhibit-rules)
+      - [Headers](#headers-30)
+      - [Path Parameters](#path-parameters-29)
+      - [Query Parameters](#query-parameters-30)
+      - [Request Body](#request-body-30)
+      - [Request Examples](#request-examples-26)
+    - [Response](#response-30)
+      - [Status Code](#status-code-28)
+      - [Response Body](#response-body-30)
+      - [Response Examples](#response-examples-26)
+  - [Get Inhibit Rule](#get-inhibit-rule)
+    - [GET /v2.0/inhibit-rules/{inhibit_rule_id}](#get-v20inhibit-rulesinhibit_rule_id)
+      - [Headers](#headers-31)
+      - [Path Parameters](#path-parameters-30)
+      - [Query Parameters](#query-parameters-31)
+      - [Request Body](#request-body-31)
+    - [Response](#response-31)
+      - [Status Code](#status-code-29)
+      - [Response Body](#response-body-31)
+      - [Response Examples](#response-examples-27)
+  - [Update Inhibit Rule](#update-inhibit-rule)
+    - [PUT /v2.0/inhibit-rules/{inhibit_rule_id}](#put-v20inhibit-rulesinhibit_rule_id)
+      - [Headers](#headers-32)
+      - [Path Parameters](#path-parameters-31)
+      - [Query Parameters](#query-parameters-32)
+      - [Request Body](#request-body-32)
+      - [Request Examples](#request-examples-27)
+    - [Response](#response-32)
+      - [Status Code](#status-code-30)
+      - [Response Body](#response-body-32)
+      - [Response Examples](#response-examples-28)
+  - [Patch Inhibit Rule](#patch-inhibit-rule)
+    - [PATCH /v2.0/inhibit-rules/{inhibit_rule_id}](#patch-v20inhibit-rulesinhibit_rule_id)
+      - [Headers](#headers-33)
+      - [Path Parameters](#path-parameters-32)
+      - [Query Parameters](#query-parameters-33)
+      - [Request Body](#request-body-33)
+      - [Request Examples](#request-examples-28)
+    - [Response](#response-33)
+      - [Status Code](#status-code-31)
+      - [Response Body](#response-body-33)
+      - [Response Examples](#response-examples-29)
+  - [Delete Inhibit Rule](#delete-inhibit-rule)
+    - [DELETE /v2.0/inhibit-rules/{inhibit_rule_id}](#delete-v20inhibit-rulesinhibit_rule_id)
+      - [Headers](#headers-34)
+      - [Path Parameters](#path-parameters-33)
+      - [Query Parameters](#query-parameters-34)
+      - [Request Body](#request-body-34)
+      - [Request Examples](#request-examples-29)
+    - [Response](#response-34)
+      - [Status Code](#status-code-32)
+      - [Response Body](#response-body-34)
+- [Silence Rules](#silence-rules)
+  - [Create Silence Rule](#create-silence-rule)
+    - [POST /v2.0/silence-rules](#post-v20silence-rules)
+      - [Headers](#headers-29)
+      - [Path Parameters](#path-parameters-28)
+      - [Query Parameters](#query-parameters-29)
+      - [Request Body](#request-body-29)
+      - [Request Examples](#request-examples-25)
+    - [Response](#response-29)
+      - [Status Code](#status-code-27)
+      - [Response Body](#response-body-29)
+      - [Response Examples](#response-examples-25)
+  - [List Silence Rules](#list-silence-rules)
+    - [GET /v2.0/silence-rules](#get-v20silence-rules)
+      - [Headers](#headers-30)
+      - [Path Parameters](#path-parameters-29)
+      - [Query Parameters](#query-parameters-30)
+      - [Request Body](#request-body-30)
+      - [Request Examples](#request-examples-26)
+    - [Response](#response-30)
+      - [Status Code](#status-code-28)
+      - [Response Body](#response-body-30)
+      - [Response Examples](#response-examples-26)
+  - [Get Silence Rule](#get-silence-rule)
+    - [GET /v2.0/silence-rules/{silence_rule_id}](#get-v20silence-rulessilence_rule_id)
+      - [Headers](#headers-31)
+      - [Path Parameters](#path-parameters-30)
+      - [Query Parameters](#query-parameters-31)
+      - [Request Body](#request-body-31)
+    - [Response](#response-31)
+      - [Status Code](#status-code-29)
+      - [Response Body](#response-body-31)
+      - [Response Examples](#response-examples-27)
+  - [Update Silence Rule](#update-silence-rule)
+    - [PUT /v2.0/silence-rules/{silence_rule_id}](#put-v20silence-rulessilence_rule_id)
+      - [Headers](#headers-32)
+      - [Path Parameters](#path-parameters-31)
+      - [Query Parameters](#query-parameters-32)
+      - [Request Body](#request-body-32)
+      - [Request Examples](#request-examples-27)
+    - [Response](#response-32)
+      - [Status Code](#status-code-30)
+      - [Response Body](#response-body-32)
+      - [Response Examples](#response-examples-28)
+  - [Patch Silence Rule](#patch-silence-rule)
+    - [PATCH /v2.0/silence-rules/{silence_rule_id}](#patch-v20silence-rulessilence_rule_id)
+      - [Headers](#headers-33)
+      - [Path Parameters](#path-parameters-32)
+      - [Query Parameters](#query-parameters-33)
+      - [Request Body](#request-body-33)
+      - [Request Examples](#request-examples-28)
+    - [Response](#response-33)
+      - [Status Code](#status-code-31)
+      - [Response Body](#response-body-33)
+      - [Response Examples](#response-examples-29)
+  - [Delete Silence Rule](#delete-silence-rule)
+    - [DELETE /v2.0/silence-rules/{silence_rule_id}](#delete-v20silence-rulessilence_rule_id)
+      - [Headers](#headers-34)
+      - [Path Parameters](#path-parameters-33)
+      - [Query Parameters](#query-parameters-34)
+      - [Request Body](#request-body-34)
+      - [Request Examples](#request-examples-29)
+    - [Response](#response-34)
+      - [Status Code](#status-code-32)
+      - [Response Body](#response-body-34)
 - [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -726,6 +947,454 @@ The only option to change metrics or match_by is to delete the existing Alarm De
 Notification methods are resources used to specify a notification name, type and address that notifications can be sent to. After a notification method has been created, it can be associated with actions in alarm definitions, such that when an alarm state transition occurs, one or more notifications can be sent.
 
 Currently, notification method types of email, PagerDuty and webhooks are supported. In the case of email, the address is the email address. In the case of PagerDuty, the address is the PagerDuty Service API Key. In the case of a webhook, the address is the URL of the webhook.
+
+## Group, Inhibit, and Silence Rules
+Group rule is used to categorize alarms of similar nature into a single notification. This functionality is very usefully
+especially during large outages when many systems fail at once and thousands of alarms go off simultaneously. Inhibit rule allows user
+to mute a set of alarms (target alarms) given that another alarm (source alarm) is firing. For example, we can use this to mute any low
+level alarms if the same alarm is already critical. Silence rule will mute alarms, which means no notifications will be sent out for that alarm,
+for a given time if they are checked to match the matchers specified in expression.
+
+The Notification Engine is in charge of inhibiting, silencing and grouping alarm-state-transitions and keeping any inhibit and silence
+tags up-to-date in the database. See the Notification Manager documentation for more details. These rules are defined via the API and
+sent as events to the Notification Engine. Note that the Notification Engine keeps all rules in memory and evaluates each alarm against
+all rules on rule creation and deletion and evaluates each alarm-state-transition against all rules. A large number of rules could greatly
+influence performance of the Notification Engine.
+
+### Group Rule
+Group rule contains an expression and when alarms match the expression, these alarms will get grouped and a grouped notification will be sent
+based on the notification method defined in the group rule. A group rule does not effect the notification actions defined in the alarm definition.
+Therefore, an alarm that has alarm actions specified in both the alarm definition and the group rule will trigger two notifications to be sent
+if it transitions to the ALARM state. If users only want the group notification, an update or patch to individual alarm definitions to remove the
+notification actions will be needed. Please see [Group Rule Matching](# Group Rule Matching) for more information. A group rule also has
+a "group\_wait" parameter which specifies the window that the Notification Engine waits for notifications to pull down a batch to be examined.
+Note that it is possible for some notification to come in right before the window expires and some to come in right after a new window starts.
+This will result in two group notifications being sent. The "repeat_interval" parameter in group rule specifies the amount of time the notification
+should wait before it is re-sent by the Periodic Engine. Notification actions can also be specified for different states by parameters: "alarm\_actions",
+"ok\_actions", and "undetermined\_actions". Different notification actions will be used when group of alarms transitioned into different states.
+
+### Inhibit Rule
+Inhibit is when one alarm in the ALARM state causes another set of alarms to not send notifications. When an inhibit rule is
+created or deleted, the Notification Engine adds or removes tags to any newly influenced alarm and the Notification Engine is also responsible
+for keeping those tags up-to-date. When an inhibit rule is evaluated, tags are updated. Also, when an inhibit rule is created, it is evaluated right away.
+Note: when an alarm is tagged as inhibited, it is possible this alarm is partially inhibited or fully inhibited. For example, when an inhibit rule has
+source_match equals severity HIGH and target_match equals severity LOW with an excluding "state=OK", the alarm definition has ok_actions, alarm_actions
+and undetermined_actions all defined, then it will get inhibited only when the alarm is transitioned into alarm state or undetermined state. In this case,
+the alarm will have an "inhibited" tag but actually only be inhibited partially.
+
+In inhibit rule, there is an expression which defines source alarm and target alarm. A source alarm inhibits
+a target alarm. If the source alarm is in ALARM state, then the target alarm does not send any notifications. If the source alarm is in OK or
+UNDETERMINED state, then the target alarm will send notifications like normal. In the case where a source and target alarm both transition back to
+OK or UNDETERMINED, the target alarm will not send a notification. There is a window where, for a period of time after a source alarm transitions out
+of ALARM, no target alarm notification will be sent. Any alarm matching an inhibit rule must wait for some configured wait time to ensure proper behavior.
+See the Notification Manager documentation for configuration information.
+
+Great care should be taken when choosing source alarms for two reasons:
+1. An alarm in the UNDETERMINED state is essentially treated as OK. The chosen source alarms should not transition to UNDETERMINED for
+the same reason that the target alarms would. For example, a source alarm indicating a region went down should not transition to
+UNDETERMINED if the region goes down.
+2. It is possible for a source alarm to have multiple metrics. This means that the "group by" section of an inhibition expression
+will have unpredictable results when a metric dimension is specified here. For example, an alarm with multiple "hostname" dimensions
+in it matches an inhibit rule's group by "hostname" multiple times and will inhibit multiple target alarms. It is recommended that a
+source alarm be specific enough to only inhibit intended target alarms.
+
+### Silence Rule
+Alarm Silencing is when a notification is not sent out when it normally would have. When a silence rule is created or deleted, all
+alarms that match the rule's expression are tagged in the database as silenced by the Notification Engine and the Notification
+Engine is responsible for keeping the database up-to-date. When a silence rule is evaluated, tags are updated. Also, when a silence rule
+is created, it is evaluated right away. Note: when an alarm is tagged as silenced, it is possible this alarm is partially silenced or fully
+silenced. For example, when a silence rule targets "state=ALARM" and the alarm definition has ok_actions, alarm_actions and undetermined_actions
+all defined, then only the alarm_actions will be silenced. In this case, the alarm will have a "silenced" tag but actually only be silenced partially.
+A silence rule has the parameters "start\_time" and "silence\_duration". Together these parameters define when the rule is active and valid.
+The start time should be in ISO 8601 combined date and time format in UTC. The silence duration is a string built of non delimited value and
+labels from the table below. For example "2d3h4m5s" would define the duration of two days and three hours and four minutes and five seconds.
+Each label is preceded by an integer amount of that label, and there should be no spaces between each value and label pair in the silence duration string.
+
+| time | label |
+| ---- | ----- |
+| day | d |
+| hour | h|
+| minute | m|
+| second | s |
+
+### Alarm Rule Matching
+Each rule has a unique expression that is used to match alarms to the rule. When an alarm matches the expression then the rule is applied.
+In the cases of silence and inhibit, when a rule is applied, the Notification Engine will send less notifications and the alarm is tagged.
+If an alarm matches a group rule, then an additional notification separate from the ones defined in the alarm definition is sent according
+to the actions defined in the group rule.
+Note that it is impossible to define two different values for the same key. For example, it is not allowed to define two different
+host names to exclude from a rule.
+Rules are evaluated based on a pre-configured window. See the Notification Manager documentation for configuration details.
+A rule is only applied to an alarm if all matchers match the alarm to the rule.
+When matching on a metric value, any metric in the alarm matching the expression will will match the entire alarm to the rule.
+Exclusions will take precedence over any matching key or key value pair. If any exclusion key or key value pair matches the alarm,
+then the rule will not apply to the alarm. This means that if there are multiple exclusions, only one needs to match for the rule
+to not apply.
+
+#### Group Rule Matching
+Since a group rule cannot influence any alarm actions attached to an alarm definition, grouping by \_\_notificationName\_\_,
+\_\_type\_\_, or \_\_address\_\_ has no effect and should not be done. The evaluation window for a group rule might impact a group
+of notifications. If a group of notifications is evaluated at the edge of a window, the group will get split which results in
+two group notifications being sent for the same group.
+##### Group Expression Syntax
+Each group expression contains a "group by" section followed by an "excluding" section.
+
+```
+<expression>
+  ::= [<excluding>] [<group by>]
+```
+
+The "group by" section should be the phrase "group by" followed by a comma seperated list of keys from the table in the
+[Matching by Key or Key Value Pairs section](# Matching by Key or Key Value Pairs). The "excluding" section should be the word "excluding"
+followed by a dictionary of key value pairs from the table in the [Matching by Key or Key Value Pairs section](# Matching by Key or Key Value Pairs).
+Optionally, if a metric name is the key, then that can just be specified without the qualifying \_\_metricName\_\_
+###### Simple Group Expression Example
+In this example, the group rule will group by hostname and will exclude any metric that is named cpu\_perc.
+
+```
+excluding cpu_perc group by hostname
+```
+
+###### More Complex Group Expression Example
+In this example, the group rule will group by the name of the alarm and the hostname in the metrics and it will exclude any alarm that is
+named cpu\_perc\_high or has a metric name equal to cpu\_perc.
+
+```
+excluding {__alarmName__=cpu_perc_high, __metricName__=cpu_perc} group by __alarmName__, hostname
+```
+
+#### Inhibit Rule Matching
+Great care should be taken when choosing a source alarm for two reasons: An alarm in the UNDETERMINED state is essentially treated as
+OK and it is possible for a source alarm to have multiple metrics. Please see the [Inhibit Rule Section](# Inhibit Rule) for more details.
+
+##### Inhibit Expression Syntax
+Each inhibit expression contains a "source", "targets", "excluding", and "group by" section.
+
+```
+<expression>
+  ::= [<source>] [<targets>] [<excluding>] [<group by>]
+```
+
+The source section defines a source alarm that can inhibit a target alarm which is defined by the targets section. The excluding section
+defines any alarm that should not be included in either the source alarms or target alarms. The group by section defines how the source
+and target should be matched together. The source, targets and excluding sections should be key value pairs from the table in the
+[Matching by Key or Key Value Pairs section](# Matching by Key or Key Value Pairs). The group by section should be a comma separated list of
+keys from the same table.
+###### Simple Inhibit Expression Example
+In this example, the inhibit rule will include any source alarm with the metric name hostAlive and any target alarm that has the same
+hostname as the source alarm.
+
+```
+source hostAlive group by hostname
+```
+
+###### More Complex Inhibit Expression Exmple
+In this example any alarm with CRITICAL severity will inhibit any alarm for the same service with a LOW severity except for any monitoring service.
+
+```
+source {__severity__=CRITICAL} targets {__severity__=LOW} excluding {service=monitoring} group by service
+```
+
+#### Silence Rule Matching
+##### Silence Expression Syntax
+Each silence expression contains a "targets" section
+
+```
+<expression>
+  ::= [<targets>]
+```
+
+The targets section is defined by key value pairs from the table in the [Matching by Key or Key Value Pairs section](# Matching by Key or Key Value Pairs).
+Any alarm matching the specified key value pairs will be silenced.
+###### Simple Silence Expression Example
+In this example, any notification that would be sent to the notification named hipChap will get silenced.
+
+```
+targets {__notificationName__=hipChat}
+```
+
+###### More Complex Silence Expression Example
+In this example, any alarm with the metric name hostAlive from the host with host name host1 will not send a notification to the
+notification named hipChat.
+
+```
+targets hostAlive{hostname=host1, __notificationName__=hipChat}
+```
+
+#### Matching by Key or Key Value Pairs
+Group, Inhibit and Silence rules all must have some kind of key list or key value pair dictionary specified. See [examples](# Group, Inhibit, and Silence Examples) below.
+Every key in any matcher or equal in every rule must be one of the following:
+
+| Key | Definition |
+| -- | :--------: |
+| \_\_alarmId\_\_ | The identification UUID associated with the alarm |
+| \_\_alarmDefinitionId\_\_ | the identification number associated with the alarm definition |
+| \_\_state\_\_ | The current state of the alarm |
+| \_\_lifecycleState\_ | Lifecycle state of alarm |
+| \_\_link\_\_ | Link to an external resource related to the alarm |
+| \_\_alarmName\_\_ | The name of the alarm |
+| \_\_severity\_\_ | The severity associated with the notification |
+| \_\_metricName\_\_ | The name of one of the metrics associated with the alarm |
+| \{dimensionKey} | The key for any dimensions in one of the metrics associated with the alarm |
+| \_\_notificationName\_\_ | The name of the notification associated with the alarm |
+| \_\_type\_\_ | The type of notification associated with the alarm |
+| \_\_address\_\_ | The address the notification is sent to |
+
+NOTE: A double underbar on either side of a keyword designates it as a keyword instead of a key value. For example, a dimension key like
+"hostname" is not surrounded by underbars, while the keyword "\_\_metricName\_\_" is surrounded by underbars.
+
+### Group, Inhibit, and Silence Working Together
+It is possible for a notification to be silenced, inhibited and grouped at the same time.
+If an alarm is silenced or inhibited and grouped, it is removed from the group. Otherwise, the rules do not effect each other.
+
+Does one rule change the behavior of an other rule?
+Silence --> Group?   Yes, the alarm is removed from the group
+Silence --> Inhibit? No
+Inhibit --> Group?   Yes, the alarm is removed from the group
+Inhibit --> Silence? No
+Group   --> Inhibit? No
+Group   --> Silence? No
+
+If two rules are applied to the same alarm, is the notification sent?
+
+| Rule | Group | Inhibit | Silence |
+| ---- | ----- | ------- | ------- |
+| **Group** | Yes\* | No | No |
+| **Inhibit** | No | No | No |
+| **Silence** | No | No | No |
+
+\* In the case where one alarm applies to two groups, that alarm is included in both groups, and two notifications are sent including the alarm.
+
+Please see the below examples to see how they interact with each other.
+
+#### Group, Inhibit, and Silence Examples:
+
+##### 1. Silence Example
+Two alarm transitions: AT1 and AT2
+
+||AT1 | AT2 |
+| --- |--- | --- |
+| **\_\_severity\_\_** | HIGH | LOW |
+
+
+
+```
+SilenceRule1 = {
+  "name": "silence_rule_1",
+  "expression": "targets {__severity__=LOW}",
+  "description": "silence the alarm with severity equals low",
+  "start_time": "2017-02-21 20:00:00",
+  "duration": "2h"
+}
+```
+
+Output: AT2 gets silenced and AT1 sends a notification. NOTE: SilenceRule1 expires 2 hours after start time which will be "end\_time"="2017-02-21 22:00:00".
+
+##### 2. Inhibit Example
+Three alarm transitions: AT1, AT2 and AT3
+
+|| AT1 | AT2 | AT3 |
+| --- | --- | --- | --- |
+| **\_\_alarmId\_\_** | "d42bc" | "abcd3" | "23dgs" |
+| **\_\_severity\_\_** | CRITICAL | HIGH | LOW |
+| **\_\_alarmName\_\_** | "cpu_high" | "cpu_high" | "cpu_high" |
+| **\_\_state\_\_** | ALARM | ALARM | ALARM |
+
+```
+InhibitRule1 = {
+  "name": "inhibit_rule_1",
+  "expression": "source {severity=CRITICAL} targets {severity=HIGH} excluding {severity=LOW} group by alarmName",
+  "description": "inhibit rule excluding low severity"
+}
+```
+
+Output: AT1 is the source alarm and will send a notification. AT2 is the target alarm and will get inhibited. AT3 matches the exclusions
+and will send a notification immediately.
+
+##### 3. Group Example
+Three alarm transitions: AT1, AT2, and AT3
+
+|| AT1 | AT2 | AT3 |
+| --- | --- | --- | --- |
+| **hostname** | host1 | host1 | host2 |
+| **\_\_state\_\_** | ALARM | ALARM | ALARM |
+| **\_\_alarm_actions\_\_** | ["123ab"] | ["cd839"] | [] |
+
+
+```
+GroupRule1 = {
+  "name": "group_rule_2",
+  "expression": "group by hostname",
+  "id": "b7163",
+  "repeat_interval": "2h",
+  "group_wait": "30s",
+  "tenantId": " d42bc",
+  "alarm_actions": ["cd892"],
+  "ok_actions": ["ad892"],
+  "undetermined_actions": ["cf892"]
+}
+```
+
+Output: Generate two grouped notifications “group\_notification\_rule\_1\_host1\_alarm[2]” and “group\_notification\_rule\_1\_host2\_alarm[1]”.
+Both using alarm\_actions ["cd892"]. Also since AT1 and AT2 has their own alarm actions associated with them, there will be two more
+notifications sent out making 4 total notifications sent out.
+
+##### 4. Silence and Group Example
+Four alarm transitions: AT1, AT2, AT3 and AT4
+
+|| AT1 | AT2 | AT3 | AT4 |
+| --- | --- | --- | --- | --- |
+| **\_\_severity\_\_** | HIGH | LOW | HIGH | HIGH |
+| **hostname** | host1 | host1 | host2 | host1 |
+| **\_\_state\_\_** | ALARM | ALARM | OK | ALARM |
+| **\_\_alarm\_actions\_\_** | [] | [] | [] | [] |
+
+```
+SilenceRule1 = {
+  "name": "silence_rule_1",
+  "expression": "targets {__severity__=LOW}",
+  "description": "silence the alarm with severity equals low",
+  "start_time": "2017-02-21 20:00:00",
+  "duration": "2h"
+}
+```
+
+```
+GroupRule1 = {
+  "name": "group_rule_2",
+  "expression": "group by hostname",
+  "id": "b7163",
+  "repeat_interval": "2h",
+  "group_wait": "30s",
+  "tenantId": " d42bc",
+  "alarm_actions": ["cd892"],
+  "ok_actions": ["ad892"],
+  "undetermined_actions": ["cf892"]
+}
+```
+Output: Generate two grouped notifications. AT2 is silenced so it is not included in the group. “group\_notification\_rule\_2\_host1\_alarm[2]”
+using alarm action "cd892" and “group\_notification\_rule\_2\_host2\_ok[1]” using ok action "ad892".
+
+#####5. Silence and Inhibit Example
+Two alarm transitions: AT1, AT2
+
+||AT1 | AT2 |
+| --- |--- | --- |
+| **\_\_state\_\_** | ALARM | ALARM |
+| **\_\_alarmDefinitionId\_\_** | "d42bc" | "134bc" |
+| **\_\_severity\_\_** | CRITICAL | HIGH |
+| **hostname** | host1 | host2 |
+
+
+```
+SilenceRule2 = {
+  "name": "silence_rule_1",
+  "expression": "targets {__severity__=CRITICAL, hostname=host1}",
+  "description": "silence the alarm with severity equals critical",
+  "start_time": "2017-02-21 15:00:00",
+  "duration": "6h"
+}
+```
+
+```
+InhibitRule1 = {
+  "name": "inhibit_rule_1",
+  "expression": "source {severity=CRITICAL} targets {severity=HIGH} excluding {severity=LOW} group by alarmName",
+  "description": "inhibit rule excluding low severity"
+}
+```
+Output: no notification sent out. For inhibition, AT1 is the source alarm, AT2 is the target alarm. But at the same time, AT1 get silenced
+because it matches the silence rule.
+
+##### 6. Inhibit and Group Example
+Three alarm transitions: AT1, AT2, AT3
+
+|| AT1 | AT2 | AT3 |
+| --- | --- | --- | --- |
+| **\_\_alarmDefinitionId\_\_** | "d42bc" | "a4212" | "235dc" |
+| **\_\_severity\_\_** | CRITICAL | HIGH | CRITICAL |
+| **hostname** | host1 | host2 | host1 |
+| **\_\_state\_\_** | OK | ALARM | ALARM |
+| **\_\_alarm\_actions\_\_** | [] | [] | [] |
+| **\_\_ok\_actions\_\_** | [] | [] | [] |
+
+
+```
+InhibitRule1 = {
+  "name": "inhibit_rule_1",
+  "expression": "source {severity=CRITICAL} targets {severity=HIGH} excluding {severity=LOW} group by alarmName",
+  "description": "inhibit rule excluding low severity"
+}
+```
+
+```
+GroupRule1 = {
+  "name": "group_rule_2",
+  "expression": "group by hostname",
+  "id": "b7163",
+  "repeat_interval": "2h",
+  "group_wait": "30s",
+  "tenantId": " d42bc",
+  "alarm_actions": ["cd892"],
+  "ok_actions": ["ad892"],
+  "undetermined_actions": ["cf892"]
+}
+```
+Output: AT2 gets inhibited because its severity is HIGH and will not be included in the group. AT3 is the source alarm. Since AT1 is in OK state,
+it is a source alarm but inactive. For grouping, AT1 and AT3 has the same host name but different state. So there will be two grouped notifications sent
+out: “group\_notification\_rule\_1\_host1\_ok[1]” using notification method ["ad892"] and “group\_notification\_rule\_1\_host1\_alarm[1]” using
+notification method ["cd892"].
+
+#####7. Silence, Inhibit and Group Example
+Four alarm transitions: AT1, AT2, AT3 and AT5
+
+|| AT1 | AT2 | AT3 | AT4 | AT5 |
+| --- | --- | --- | --- | --- | --- |
+| **\_\_alarmDefinitionId\_\_** | "d42bc" | "sd223" | "db14c" | "dd267" | "451ed" |
+| **\_\_state\_\_** | ALARM | ALARM | OK | ALARM | UNDETERMINED |
+| **\_\_severity\_\_** | HIGH | HIGH | HIGH | CRITICAL | CRITICAL |
+| **hostname** | host1 | host2 | host1 | host2| host3 |
+| **\_\_alarm\_actions\_\_** | [] | [] | [] | [] | [] |
+| **\_\_ok\_actions\_\_** | [] | [] | [] | [] | [] |
+
+
+```
+SilenceRule2 = {
+  "name": "silence_rule_1",
+  "expression": "targets {__severity__=HIGH, hostname=host1}",
+  "description": "silence the alarm with severity equals high",
+  "start_time": "2017-02-21 15:00:00",
+  "duration": "6h"
+}
+```
+
+```
+GroupRule1 = {
+  "name": "group_rule_2",
+  "expression": "group by hostname",
+  "id": "b7163",
+  "repeat_interval": "2h",
+  "group_wait": "30s",
+  "tenantId": " d42bc",
+  "alarm_actions": ["cd892"],
+  "ok_actions": ["ad892"],
+  "undetermined_actions": ["cf892"]
+}
+
+```
+
+```
+InhibitRule2 = {
+  "name": "inhibit_rule_2",
+  "expression": "source {severity=CRITICAL} targets {severity=HIGH} excluding {severity=LOW} group by hostname",
+  "description": "inhibit rule excluding low severity"
+}
+```
+
+Output: AT1 is in "group_notification_rule_1_host1_alarm" group and silenced. AT3 is in "group_notification_rule_1_host1_ok" group
+and silenced. AT4 is in "group_notification_rule_1_host2_alarm" group and it is the source alarm. AT2 is in "group_notification_rule_1_host2_alarm" group and inhibited.
+AT5 is in "group_notification_rule_1_host3_undetermined" group and will send notification “group_notification_rule_1_host3_undetermined[1]” using undetermined action "cf892"
+which defined in GroupRule1.
 
 # Common Request Headers
 This section documents the common request headers that are used in requests.
@@ -2870,7 +3539,7 @@ None
 * state_updated_start_time (string, optional) - The start time in ISO 8601 combined date and time format in UTC.
 * offset (integer, optional)
 * limit (integer, optional)
-* group_by (string, optional) – a list of fields to group the results by as ```field1,field2,…```
+* group_by (string, optional)  a list of fields to group the results by as ```field1,field2,…```
 The group_by field is limited to `alarm_definition_id`, `name`, `state`, `severity`, `link`, `lifecycle_state`, `metric_name`, `dimension_name`, `dimension_value`.
 If any of the fields `metric_name`, `dimension_name`, or `dimension_value` are specified, the sum of the resulting counts is not guaranteed to equal the total number of alarms in the system. Alarms with multiple metrics may be included in multiple counts when grouped by any of these three fields.
 
@@ -3580,9 +4249,1236 @@ Returns a JSON object with a 'links' array of links and an 'elements' array of a
 
 ```
 ___
+# Group Rules
+Operations for working with group rules.
+
+## Create Group Rule
+Create a group rule.
+
+### POST /v2.0/group-rules
+
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+* Accept (string) - application/json
+
+#### Path Parameters
+None.
+
+#### Query Parameters
+None.
+
+#### Request Body
+Consists of a group rule. A group rule has the following properties:
+
+* name (string(255), required) - A unique name of the group rule. Note, the name must be unique.
+* expression (string(1024), required) - The rule expression.
+* description (string(255), optional) - A description of the group rule.
+* group_wait (string(10), optional) - Wait time to send the initial notification.
+* repeat_interval (string(10), optional) - Wait time to resend the group notification.
+* alarm_actions ([string(50)], optional) - Array of notification method IDs that are invoked when the group of alarms transition to the `ALARM` state.
+* ok_actions ([string(50)], optional) - Array of notification method IDs that are invoked when the group of alarms transition to the `OK` state.
+* undetermined_actions ([string(50)], optional) - Array of notification method IDs that are invoked when the group of alarms transition to the `UNDETERMINED` state.
+
+#### Request Examples
+```
+POST /v2.0/group-rules HTTP/1.1
+Host: 192.168.10.6:8070
+Content-Type: application/json
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Cache-Control: no-cache
+
+{
+	"name": "group_rule_1",
+        "description": "Group rule1",
+        "expression": "excluding {__alarmName__=cpu_too_high, hostname=host1} group by __alarmName__, __metricName__, hostName",
+	"group_wait": "10s",
+	"repeat_interval": "1h",
+	"alarm_actions": ["bf718275-a483-43eb-b125-eb31058d3053"],
+	"ok_actions": ["7fa35737-eada-4dd8-8048-8f81adf6feeb"],
+	"undetermined_actions": ["40167dde-a99d-4407-9b1e-02432c1d2de6"]
+}
+
+```
+
+### Response
+#### Status Code
+* 201 - Created
+
+#### Response Body
+Returns a JSON object of group rule objects with the following fields:
+
+* id (string) - ID of group rule.
+* links ([link]) - Links to group rule.
+* description (string) - Description of group rule.
+* name (string) - Name of group rule.
+* expression (string) - Rule expression.
+* group_wait (string) - Wait time to send the initial notification.
+* repeat_interval (string) - Wait time to resend the group notification.
+* alarm_actions ([string]) - Array of notification method IDs that are invoked when the group of alarms for this definition transition to the `ALARM` state.
+* ok_actions ([string]) - Array of notification method IDs that are invoked when the group of alarms for this definition transition to the `OK` state.
+* undetermined_actions ([string]) - Array of notification method IDs that are invoked when the group of alarms for this definition transition to the `UNDETERMINED` state.
+
+#### Response Examples
+```
+{
+	"name": "group_rule_1",
+        "description": "Group rule 1",
+        "expression": "excluding {__alarmName__=cpu_too_high, hostname=host1} group by __alarmName__, __metricName__, hostName",
+	"group_wait": "10s",
+	"repeat_interval": "1h",
+	"alarm_actions": [
+		"bf718275-a483-43eb-b125-eb31058d3053"
+	],
+	"ok_actions": [
+		"7fa35737-eada-4dd8-8048-8f81adf6feeb"
+	],
+	"undetermined_actions": [
+		"40167dde-a99d-4407-9b1e-02432c1d2de6"
+	]
+}
+```
+___
+## List Group Rule
+List group rules.
+
+### GET /v2.0/group-rules
+
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+* Accept (string) - application/json
+
+#### Path Parameters
+None.
+
+#### Query Parameters
+* name (string(255), optional) - Name of group rule to filter by.
+* offset (integer, optional)
+* limit (integer, optional)
+
+#### Request Body
+None.
+
+#### Request Examples
+```
+GET /v2.0/group-rules? HTTP/1.1
+Host: 192.168.10.4:8070
+Content-Type: application/json
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Cache-Control: no-cache
+```
+
+### Response
+#### Status Code
+* 200 - OK
+
+#### Response Body
+Returns a JSON object with a 'links' array of links and an 'elements' array of group rule objects with the following fields:
+
+* id (string) - ID of group rule.
+* links ([link]) - Links to group rule.
+* name (string) - Name of group rule.
+* description (string) - A description of the group rule.
+* expression (string) - Rule expression.
+* group_wait (string) - Wait time to send the initial notification.
+* repeat_interval (string) - Wait time to resend the group notification.
+* alarm_actions ([string]) - Array of notification method IDs that are invoked when the group of alarms for this definition transition to the `ALARM` state.
+* ok_actions ([string]) - Array of notification method IDs that are invoked when the group of alarms for this definition transition to the `OK` state.
+* undetermined_actions ([string]) - Array of notification method IDs that are invoked when the group of alarms for this definition transition to the `UNDETERMINED` state.
+
+#### Response Examples
+```
+{
+  "links": [
+    {
+      "href": "http://192.168.10.6:8070/v2.0/group-rules/1dfe8b9a-7210-44f1-91f7-2f503b983b35",
+      "rel": "self"
+    },
+    {
+      "href": "http://192.168.10.6:8070/v2.0/group-rules/6812962c-5424-44d1-a39e-6c3b424f1efb",
+      "rel": "self"
+    }
+  ],
+  "elements": [
+    {
+      "expression": "excluding {hostname=host2} group by __alarmName__, __metricName__, hostName",
+      "alarm_actions": [
+        "bf718275-a483-43eb-b125-eb31058d3053"
+      ],
+      "ok_actions": [
+        "7fa35737-eada-4dd8-8048-8f81adf6feeb"
+      ],
+      "name": "group_rule_2",
+      "description": "Group Rule 1",
+      "undetermined_actions": [
+        "40167dde-a99d-4407-9b1e-02432c1d2de6"
+      ],
+      "repeat_interval": "2h",
+      "id": "1dfe8b9a-7210-44f1-91f7-2f503b983b35",
+      "group_wait": "20s"
+    },
+    {
+      "expression": "excluding {hostname=host4} group by hostName ",
+      "alarm_actions": [
+        "bf718275-a483-43eb-b125-eb31058d3053"
+      ],
+      "ok_actions": [
+        "7fa35737-eada-4dd8-8048-8f81adf6feeb"
+      ],
+      "name": "group_rule_4",
+      "undetermined_actions": [
+        "40167dde-a99d-4407-9b1e-02432c1d2de6"
+      ],
+      "repeat_interval": "4h",
+      "id": "6812962c-5424-44d1-a39e-6c3b424f1efb",
+      "group_wait": "40s"
+    }
+  ]
+}
+```
+___
+
+## Get Group Rule
+Get the specified group rule.
+
+### GET /v2.0/group-rules/{group_rule_id}
+
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+* Accept (string) - application/json
+
+#### Path Parameters
+* group_rule_id (string, required) - Group Rule ID
+
+#### Query Parameters
+None.
+
+#### Request Body
+None.
+
+### Response
+#### Status Code
+* 200 - OK
+
+#### Response Body
+Returns a JSON object of group rule objects with the following fields:
+
+* id (string) - ID of group rule.
+* links ([link]) - Links to group rule.
+* name (string) - Name of group rule.
+* description (string) - Description of group rule.
+* expression (string) - Rule expression.
+* group_wait (string) - Wait time to send the initial notification.
+* repeat_interval (string) - Wait time to resend the group notification.
+* alarm_actions ([string]) - Array of notification method IDs that are invoked when the group of alarms for this definition transition to the `ALARM` state.
+* ok_actions ([string]) - Array of notification method IDs that are invoked when the group of alarms for this definition transition to the `OK` state.
+* undetermined_actions ([string]) - Array of notification method IDs that are invoked when the group of alarms for this definition transition to the `UNDETERMINED` state.
+
+#### Response Examples
+```
+{
+  "expression": "excluding {hostname=host2} group by __alarmName__, __metricName__, hostName",
+  "alarm_actions": [
+    "bf718275-a483-43eb-b125-eb31058d3053"
+  ],
+  "undetermined_actions": [
+    "40167dde-a99d-4407-9b1e-02432c1d2de6"
+  ],
+  "name": "group_rule_2",
+  "description": "Group Rule 2",
+  "group_wait": "20s",
+  "ok_actions": [
+    "7fa35737-eada-4dd8-8048-8f81adf6feeb"
+  ],
+  "links": [
+    {
+      "href": "http://192.168.10.6:8070/v2.0/group-rules/1dfe8b9a-7210-44f1-91f7-2f503b983b35",
+      "rel": "self"
+    }
+  ],
+  "repeat_interval": "2h",
+  "id": "1dfe8b9a-7210-44f1-91f7-2f503b983b35"
+}
+```
+___
+
+## Update Group Rule
+Update/Replace the specified group rule.
+
+### PUT /v2.0/group-rules/{group_rule_id}
+
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+* Content-Type (string, required) - application/json
+* Accept (string) - application/json
+
+#### Path Parameters
+* group_rule_id (string, required)
+
+#### Query Parameters
+None.
+
+#### Request Body
+An group rule has the following properties:
+
+* name (string()255), required) - Name of group rule.
+* description (string(255), required) - A description of the group rule.
+* expression (string(1024)) - The rule expression. Note, the expression must not change.
+* group_wait (string(10), required) - Wait time to send the initial notification.
+* repeat_interval (string(10), required) - Wait time to resend the group notification.
+* alarm_actions ([string(50)], required) - Array of notification method IDs that are invoked when the group of alarms transition to the `ALARM` state.
+* ok_actions ([string(50)], required) - Array of notification method IDs that are invoked when the group of alarms transition to the `OK` state.
+* undetermined_actions ([string(50)], required) - Array of notification method IDs that are invoked when the group of alarms transition to the `UNDETERMINED` state.
+
+#### Request Examples
+```
+PUT /v2.0/group-rules/f9935bcc-9641-4cbf-8224-0993a947ea83 HTTP/1.1
+Host: 192.168.10.4:8070
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+	"name": "updated_group_rule_1",
+        "description": "Updated Group rule1",
+        "expression": "excluding {hostname=host2} group by __alarmName__, __metricName__, hostName",
+	"group_wait": "10s",
+	"repeat_interval": "1h",
+	"alarm_actions": ["40167dde-a99d-4407-9b1e-02432c1d2de6"],
+	"ok_actions": ["bf718275-a483-43eb-b125-eb31058d3053"],
+	"undetermined_actions": ["7fa35737-eada-4dd8-8048-8f81adf6feeb"]
+}
+```
+
+### Response
+#### Status Code
+* 200 - OK
+
+#### Response Body
+Returns a JSON object of group rule objects with the following fields:
+
+* id (string) - ID of alarm definition.
+* links ([link]) - Links to alarm definition.
+* name (string) - Name of alarm definition.
+* description (string) - Description of group rule.
+* expression (string) - Rule expression.
+* group_wait (string) - Wait time to send the initial notification.
+* repeat_interval (string) - Wait time to resend the group notification.
+* alarm_actions ([string]) - Array of notification method IDs that are invoked when the group of alarms for this definition transition to the `ALARM` state.
+* ok_actions ([string]) - Array of notification method IDs that are invoked when the group of alarms for this definition transition to the `OK` state.
+* undetermined_actions ([string]) - Array of notification method IDs that are invoked when the group of alarms for this definition transition to the `UNDETERMINED` state.
+
+#### Response Examples
+```
+{
+  "id": 'u1dfe8b9a-7210-44f1-91f7-2f503b983b35',
+  "alarm_actions": [
+    "40167dde-a99d-4407-9b1e-02432c1d2de6"
+  ],
+  "ok_actions": [
+    "bf718275-a483-43eb-b125-eb31058d3053"
+  ],
+  "links": [
+    {
+      "href": "http://192.168.10.6:8070/v2.0/group-rules/1dfe8b9a-7210-44f1-91f7-2f503b983b35",
+      "rel": "self"
+    }
+  ]
+  "name": "updated_group_rule_1",
+  "description": "Patched Group Rule 1"
+  "undetermined_actions": [
+    "7fa35737-eada-4dd8-8048-8f81adf6feeb"
+  ],
+  "expression": "excluding {hostname=host2} group by __alarmName__, __metricName__, hostName",
+  "group_wait": "10s",
+  "repeat_interval: "1h"
+}
+```
+
+___
+
+## Patch Group Rule
+### PATCH /v2.0/group-rules/{group_rule_id}
+Update selected parameters of the specified group rule.
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+* Content-Type (string, required) - application/json
+* Accept (string) - application/json
+
+#### Path Parameters
+* group_rule_id (string, required) - Group Rule ID
+
+#### Query Parameters
+None.
+
+#### Request Body
+Consists of an group rule with the following properties:
+
+* name (string(255), optional) - Name of group rule.
+* description (string(255), optional) - A description of the group rule.
+* expression (string(1024), optional) - The rule expression. Note, the expression must not change.
+* group_wait (string(10), optional) - Wait time to send the initial notification.
+* repeat_interval (string(10), optional) - Wait time to resend the group notification.
+* alarm_actions ([string], optional) - Array of notification method IDs that are invoked when the group of alarms for this definition transition to the `ALARM` state.
+* ok_actions ([string], optional) - Array of notification method IDs that are invoked when the group of alarms for this definition transition to the `OK` state.
+* undetermined_actions ([string], optional) - Array of notification method IDs that are invoked when the group of alarms for this definition transition to the `UNDETERMINED` state.
+
+Only the parameters that are specified will be updated.
+
+#### Request Examples
+```
+PATCH /v2.0/group-rules/f9935bcc-9641-4cbf-8224-0993a947ea83 HTTP/1.1
+Host: 192.168.10.4:8070
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+	"name": "patched_group_rule_1",
+        "description": "Patched Group rule1",
+        "expression": "excluding {hostname=host2} group by __alarmName__, __metricName__, hostName",
+	"group_wait": "10s",
+	"repeat_interval": "1h",
+	"alarm_actions": ["40167dde-a99d-4407-9b1e-02432c1d2de6"],
+	"ok_actions": ["bf718275-a483-43eb-b125-eb31058d3053"],
+	"undetermined_actions": ["7fa35737-eada-4dd8-8048-8f81adf6feeb"]
+}
+```
+
+### Response
+#### Status Code
+* 200 - OK
+
+#### Response Body
+Returns a JSON group rule object with the following fields:
+
+* id (string) - ID of alarm definition.
+* links ([link]) - Links to alarm definition.
+* name (string) - Name of alarm definition.
+* description (string) - Description of group rule.
+* expression (string) - Rule expression.
+* group_wait (string) - Wait time to send the initial notification.
+* repeat_interval (string) - Wait time to resend the group notification.
+* alarm_actions ([string]) - Array of notification method IDs that are invoked when the group of alarms for this definition transition to the `ALARM` state.
+* ok_actions ([string]) - Array of notification method IDs that are invoked when the group of alarms for this definition transition to the `OK` state.
+* undetermined_actions ([string]) - Array of notification method IDs that are invoked when the group of alarms for this definition transition to the `UNDETERMINED` state.
+
+#### Response Examples
+```
+{
+  "id": 'u1dfe8b9a-7210-44f1-91f7-2f503b983b35',
+  "alarm_actions": [
+    "40167dde-a99d-4407-9b1e-02432c1d2de6"
+  ],
+  "ok_actions": [
+    "bf718275-a483-43eb-b125-eb31058d3053"
+  ],
+  "links": [
+    {
+      "href": "http://192.168.10.6:8070/v2.0/group-rules/1dfe8b9a-7210-44f1-91f7-2f503b983b35",
+      "rel": "self"
+    }
+  ]
+  "name": "patched_group_rule_1",
+  "description": "Patched Group Rule 1",
+  "undetermined_actions": [
+    "7fa35737-eada-4dd8-8048-8f81adf6feeb"
+  ],
+  "expression": "excluding {hostname=host2} group by __alarmName__, __metricName__, hostName",
+  "group_wait": "10s",
+  "repeat_interval: "1h"
+}
+```
+___
+
+## Delete Group Rule
+Delete the specified group rule.
+
+### DELETE /v2.0/group-rules/{group_rule_id}
+
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+
+#### Path Parameters
+* group_rule_id (string, required) - Group Rule ID
+
+#### Query Parameters
+None.
+
+#### Request Body
+None.
+
+#### Request Examples
+```
+DELETE /v2.0/group-rules/b461d659-577b-4d63-9782-a99194d4a472 HTTP/1.1
+Host: 192.168.10.4:8070
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Cache-Control: no-cache
+```
+
+### Response
+#### Status Code
+* 204 - No content
+
+#### Response Body
+None.
+
+___
+# Inhibit Rules
+Operations for working with inhibit rules.
+
+## Create Inhibit Rule
+Create an inhibit rule.
+
+### POST /v2.0/inhibit-rules
+
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+* Accept (string) - application/json
+
+#### Path Parameters
+None.
+
+#### Query Parameters
+None.
+
+#### Request Body
+Consists of an inhibit rule. An inhibit rule has the following properties:
+
+* name (string(255), required) - A name of the alarm inhibition rule. Note, the name must be unique.
+* expression (string(1024), required) - The rule expression.
+* description (string(255), optional) - A description of an alarm inhibition rule.
+
+#### Request Examples
+```
+POST /v2.0/inhibit-rules HTTP/1.1
+Host: 192.168.10.4:8070
+Content-Type: application/json
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4d7
+Cache-Control: no-cache
+
+{
+	"name": "inhibit_rule_1",
+	"description": "Inhibit Rule 1",
+    "expression": "source {__severity__=CRITICAL} targets {__severity__=LOW} excluding {__alarmName__=cpu_too_high} group by __alarmName__, __metricName__, hostname"
+}
+```
+
+### Response
+#### Status Code
+* 201 - Created
+
+#### Response Body
+Returns a JSON object of inhibit rule objects with the following fields:
+
+* id (string) - ID of inhibit rule.
+* links ([link]) - Links to inhibit rule.
+* name (string) - Name of inhibit rule.
+* description (string) - Description of alarm definition.
+* expression (string) - Rule expression.
+
+
+#### Response Examples
+```
+{
+  "name": "inhibit_rule_1",
+  "description": "Inhibit Rule 1"
+  "links": [
+    {
+      "href": "http://192.168.10.6:8070/v2.0/inhibit-rules/6ec3d81c-9ad2-4577-af53-f163d1a21c21",
+      "rel": "self"
+    }
+  ],
+  "expression": "source {__severity__=CRITICAL} targets {__severity__=LOW} excluding {__alarmName__=cpu_too_high} group by __alarmName__, __metricName__, hostname"
+  "id": "6ec3d81c-9ad2-4577-af53-f163d1a21c21",
+}
+```
+___
+## List Inhibit Rules
+List inhibit rules.
+
+### GET /v2.0/inhibit-rules
+
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+* Accept (string) - application/json
+
+#### Path Parameters
+None.
+
+#### Query Parameters
+* name (string(255), optional) - Name of inhibit rule to filter by.
+* offset (integer, optional)
+* limit (integer, optional)
+
+#### Request Body
+None.
+
+#### Request Examples
+```
+GET /v2.0/inhibit-rules HTTP/1.1
+Host: 192.168.10.4:8070
+Content-Type: application/json
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Cache-Control: no-cache
+```
+
+### Response
+#### Status Code
+* 200 - OK
+
+#### Response Body
+Returns a JSON object with a 'links' array of links and an 'elements' array of alarm objects with the following fields:
+
+* id (string) - ID of inhibit rule.
+* links ([link]) - Links to inhibit rule.
+* name (string) - Name of inhibit rule.
+* description (string) - Description of alarm definition.
+* expression (string) - Rule expression.
+
+#### Response Examples
+```
+{
+  "links": [
+    {
+      "href": "http://192.168.10.6:8070/v2.0/inhibit-rules/6592f80c-9864-4b3f-a38a-e66ffc4c8619",
+      "rel": "self"
+    },
+    {
+      "href": "http://192.168.10.6:8070/v2.0/inhibit-rules/6ec3d81c-9ad2-4577-af53-f163d1a21c21",
+      "rel": "self"
+    }
+  ],
+  "elements": [
+    {
+      "name": "inhibit_rule_2",
+      "description": "Inhibit Rule 2",
+      "expression": "source {__severity__=CRITICAL, alarmName=cpu_too_high} targets {__severity__=LOW} group by __alarmName__, hostname"
+      "id": "6592f80c-9864-4b3f-a38a-e66ffc4c8619"
+    },
+    {
+      "name": "inhibit_rule_1",
+      "expression": "source {__severity__=CRITICAL} targets {__severity__=LOW} excluding {__alarmName__=cpu_too_high} group by __alarmName__, __metricName__, hostname"
+      "id": "6ec3d81c-9ad2-4577-af53-f163d1a21c21",
+    }
+  ]
+}
+```
+___
+
+## Get Inhibit Rule
+Get the specified inhibit rule.
+
+### GET /v2.0/inhibit-rules/{inhibit_rule_id}
+
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+* Accept (string) - application/json
+
+#### Path Parameters
+* inhibit_rule_id (string, required) - Inhibit Rule ID
+
+#### Query Parameters
+None.
+
+#### Request Body
+None.
+
+#### Request Examples
+```
+GET /v2.0/inhibit-rules/6592f80c-9864-4b3f-a38a-e66ffc4c8619 HTTP/1.1
+Host: 192.168.10.4:8070
+Content-Type: application/json
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Cache-Control: no-cache
+```
+
+### Response
+#### Status Code
+* 200 - OK
+
+#### Response Body
+Returns a JSON inhibit rule object with the following fields:
+
+* id (string) - ID of inhibit rule.
+* links ([link]) - Links to inhibit rule.
+* name (string) - Name of inhibit rule.
+* description (string) - Description of alarm definition.
+* expression (string) - Rule expression.
+
+#### Response Examples
+```
+{
+  "name": "inhibit_rule_2",
+  "description": "Inhibit Rule 2"
+  "links": [
+    {
+      "href": "http://192.168.10.6:8070/v2.0/inhibit-rules/6592f80c-9864-4b3f-a38a-e66ffc4c8619",
+      "rel": "self"
+    }
+  ],
+  "expression": "source {__severity__=CRITICAL} targets {__severity__=LOW} excluding {__alarmName__=cpu_too_high} group by __alarmName__, __metricName__, hostname"
+  "id": "6592f80c-9864-4b3f-a38a-e66ffc4c8619"
+}
+```
+
+## Update Inhibit Rule
+Update/Replace the specified inhibit rule.
+
+### PUT /v2.0/inhibit-rules/{inhibit_rule_id}
+
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+* Content-Type (string, required) - application/json
+* Accept (string) - application/json
+
+#### Path Parameters
+* inhibit_rule_id (string, required)
+
+#### Query Parameters
+None.
+
+#### Request Body
+An inhibit rule has the following properties:
+
+* name (string(255), required) - A unique name of the alarm inhibition rule. Note, the name must be unique.
+* description (string(255), required) - A description of an alarm inhibition rule.
+* expression (string(1024)) - The rule expression. Note, the expression must not change.
+
+#### Request Examples
+```
+PUT /v2.0/inhibit-rules/6592f80c-9864-4b3f-a38a-e66ffc4c8619 HTTP/1.1
+Host: 192.168.10.4:8070
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+	"name": "updated_inhibit_rule_2",
+        "description": "Updated Inhibit Rule 2",
+        "expression": "source {__severity__=CRITICAL} targets {__severity__=LOW} excluding {__alarmName__=cpu_too_high} group by __alarmName__, __metricName__, hostname"
+}
+```
+
+### Response
+#### Status Code
+* 200 - OK
+
+#### Response Body
+Returns a JSON inhibit rule object with the following parameters:
+
+* id (string) - ID of inhibit rule.
+* links ([link]) - Links to inhibit rule.
+* name (string) - Name of inhibit rule.
+* description (string) - Description of alarm definition.
+* expression (string) - Rule expression.
+
+#### Response Examples
+```
+{
+  "name": "updated_inhibit_rule_2",
+  "description": "Updated Inhibit Rule 2"
+  "links": [
+    {
+      "href": "http://192.168.10.6:8070/v2.0/inhibit-rules/6592f80c-9864-4b3f-a38a-e66ffc4c8619/6592f80c-9864-4b3f-a38a-e66ffc4c8619",
+      "rel": "self"
+    }
+  ],
+  "expression": "source {__severity__=CRITICAL} targets {__severity__=LOW} excluding {__alarmName__=cpu_too_high} group by __alarmName__, __metricName__, hostname"
+  "id": "6592f80c-9864-4b3f-a38a-e66ffc4c8619"
+}
+```
+
+## Patch Inhibit Rule
+### PATCH /v2.0/inhibit-rules/{inhibit_rule_id}
+Update selected parameters of the specified inhibit rule.
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+* Content-Type (string, required) - application/json
+* Accept (string) - application/json
+
+#### Path Parameters
+* inhibit_rule_id (string, required) - Inhibit Rule ID
+
+#### Query Parameters
+None.
+
+#### Request Body
+Consists of an inhibit rule with the following properties:
+
+* name (string(255), optional) - A unique name of the alarm inhibition rule. Note, the name must be unique.
+* description (string(255), optional) - A description of an alarm inhibition rule.
+* expression (string(1024), optional) - The rule expression. Note, the expression must not change.
+
+Only the parameters that are specified will be updated.
+
+#### Request Examples
+```
+PATCH /v2.0/inhibit-rules/6592f80c-9864-4b3f-a38a-e66ffc4c8619 HTTP/1.1
+Host: 192.168.10.4:8070
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+	"name": "inhibit_rule_2_patch",
+    "description": "Patched Inhibit Rule 2"
+
+}
+```
+
+### Response
+#### Status Code
+* 200 - OK
+
+#### Response Body
+Returns a JSON group rule object with the following fields:
+
+* id (string) - ID of inhibit rule.
+* links ([link]) - Links to inhibit rule.
+* name (string) - Name of inhibit rule.
+* description (string) - Description of alarm definition.
+* expression (string) - Rule expression.
+
+#### Response Examples
+```
+{
+  "name": "inhibit_rule_2_patch",
+  "description": "Patched Inhibit Rule 2"
+  "links": [
+    {
+      "href": "http://192.168.10.6:8070/v2.0/inhibit-rules/6592f80c-9864-4b3f-a38a-e66ffc4c8619/6592f80c-9864-4b3f-a38a-e66ffc4c8619",
+      "rel": "self"
+    }
+  ],
+  "expression": "source {__severity__=CRITICAL} targets {__severity__=LOW} excluding {__alarmName__=cpu_too_high} group by __alarmName__, __metricName__, hostname"
+  "id": "6592f80c-9864-4b3f-a38a-e66ffc4c8619"
+}
+```
+___
+
+## Delete Inhibit Rule
+Delete the specified inhibit rule.
+
+### DELETE /v2.0/inhibit-rules/{inhibit_rule_id}
+
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+
+#### Path Parameters
+* inhibit_rule_id (string, required) - Inhibit Rule ID
+
+#### Query Parameters
+None.
+
+#### Request Body
+None.
+
+#### Request Examples
+```
+DELETE /v2.0/inhibit-rules/99fb8bf3-378b-45e8-9c55-aad1f1e488e1 HTTP/1.1
+Host: 192.168.10.4:8070
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Cache-Control: no-cache
+```
+
+### Response
+#### Status Code
+* 204 - No content
+
+#### Response Body
+None.
+
+___
+
+# Silence Rules
+Operations for working with silence rules.
+
+## Create Silence Rule
+Create an silence rule.
+
+### POST /v2.0/silence-rules
+
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+* Accept (string) - application/json
+
+#### Path Parameters
+None.
+
+#### Query Parameters
+None.
+
+#### Request Body
+Consists of an silence rule. An alarm has the following properties:
+
+* name (string(255), required) - A name of the alarm. Note, the name must be unique.
+* description (string(255), optional) - A description of a silence definition.
+* expression (string(1024)) - The rule expression.
+* start_time (string, optional) - The start time in ISO 8601 combined date and time format in UTC. Any alarm state transition before this time will not be silenced. Defaults to the current time.
+* silence_duration (string, optional) - The length of time the silence should effect alarm state transitions. Defaults to '10m'
+
+#### Request Examples
+```
+POST /v2.0/silence-rules HTTP/1.1
+Host: 192.168.10.4:8070
+Content-Type: application/json
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Cache-Control: no-cache
+
+{
+	"name": "silence_rule_1",
+    "description": "Silence cpu too high on host1"
+    "expression": "targets {__alarmName__=cpu_too_high, hostname=host1}"
+}
+
+```
+
+### Response
+#### Status Code
+* 201 - Created
+
+#### Response Body
+Returns a JSON object of silence rule objects with the following fields:
+
+* id (string) - ID of silence rule.
+* links ([link]) - Links to silence rule.
+* name (string) - Name of silence rule.
+* description (string) - A description of a silence definition.
+* expression (string) - Rule expression.
+* start_time (string) - The start time in ISO 8601 combined date and time format in UTC. Any alarm state transition before this time will not be silenced.
+* silence_duration (string) - The length of time the silence should effect alarm state transitions.
+
+#### Response Examples
+```
+{
+	"name": "silence_rule_1",
+    "description": "Silence cpu too high on host1"
+    "expression": "targets {__alarmName__=cpu_too_high, hostname=host1}"
+    "silence_duration": "10m",
+    "start_time": "2017-04-10T10:42:10.685Z"
+}
+```
+___
+## List Silence Rules
+List silence rules.
+
+### GET /v2.0/silence-rules
+
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+* Accept (string) - application/json
+
+#### Path Parameters
+None.
+
+#### Query Parameters
+* name (string(255), optional) - Name of silence rule to filter by.
+* offset (integer, optional)
+* limit (integer, optional)
+
+#### Request Body
+None.
+
+#### Request Examples
+```
+GET /v2.0/silence-rules HTTP/1.1
+Host: 192.168.10.4:8070
+Content-Type: application/json
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Cache-Control: no-cache
+```
+
+### Response
+#### Status Code
+* 200 - OK
+
+#### Response Body
+Returns a JSON object with a 'links' array of links and an 'elements' array of alarm objects with the following fields:
+
+* id (string) - ID of silence rule.
+* links ([link]) - Links to silence rule.
+* name (string) - Name of silence rule.
+* description (string) - A description of a silence definition.
+* expression (string) - Rule expression.
+* start_time (string) - The start time in ISO 8601 combined date and time format in UTC. Any alarm state transition before this time will not be silenced.
+* silence_duration (string) - The length of time the silence should effect alarm state transitions.
+
+#### Response Examples
+```
+{
+  "links": [
+    {
+      "href": "http://192.168.10.6:8070/v2.0/silence-rules/1dfe8b9a-7210-44f1-91f7-2f503b983b35",
+      "rel": "self"
+    },
+    {
+      "href": "http://192.168.10.6:8070/v2.0/silence-rules/6812962c-5424-44d1-a39e-6c3b424f1efb",
+      "rel": "self"
+    }
+  ],
+  "elements": [
+    {
+      "name": "silence_rule_1",
+      "description": "Silence cpu too high on host1",
+      "expression": "targets {__alarmName__=cpu_too_high, hostName=host1}"
+      "silence_duration": "10m",
+      "start_time": "2017-04-10T10:42:10.685Z"
+    },
+    {
+      "name": "silence_rule_2",
+      "description": "Silence cpu too high on host3"
+      "expression": "targets {__alarmName__=cpu_too_high, hostName=host3}"
+      "silence_duration": "10m",
+      "start_time": "2017-04-10T10:42:10.685Z"
+    }
+  ]
+}
+```
+___
+
+## Get Silence Rule
+Get the specified silence rule.
+
+### GET /v2.0/silence-rules/{silence_rule_id}
+
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+* Accept (string) - application/json
+
+#### Path Parameters
+* silence_rule_id (string, required) - Silence Rule ID
+
+#### Query Parameters
+None.
+
+#### Request Body
+None.
+
+### Response
+#### Status Code
+* 200 - OK
+
+#### Response Body
+Returns a JSON silence rule object with the following fields:
+
+* id (string) - ID of silence rule.
+* links ([link]) - Links to silence rule.
+* name (string) - Name of silence rule.
+* expression (string) - Rule expression.
+* description (string) - A description of a silence definition.
+* start_time (string) - The start time in ISO 8601 combined date and time format in UTC. Any alarm state transition before this time will not be silenced.
+* silence_duration (string) - The length of time the silence should effect alarm state transitions.
+
+#### Response Examples
+```
+{
+  "name": "silence_rule_1",
+  "description": "Silence cpu too high on host1",
+  "links": [
+    {
+      "href": "http://192.168.10.6:8070/v2.0/silence-rules/1dfe8b9a-7210-44f1-91f7-2f503b983b35",
+      "rel": "self"
+    }
+  ],
+  "expression": "targets {__alarmName__=cpu_too_high, hostName=host1}"
+  "silence_duration": "10m",
+  "start_time": "2017-04-10T10:42:10.685Z"
+}
+```
+___
+
+## Update Silence Rule
+Update/Replace the specified silence rule.
+
+### PUT /v2.0/silence-rules/{silence_rule_id}
+
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+* Content-Type (string, required) - application/json
+* Accept (string) - application/json
+
+#### Path Parameters
+* silence_rule_id (string, required)
+
+#### Query Parameters
+None.
+
+#### Request Body
+An silence rule has the following properties:
+
+* id (string) - ID of silence rule.
+* name (string(255), required) - A unique name of the alarm. Note, the name must be unique.
+* description (string(255), required) - A description of a silence definition.
+* expression (string(1024), required)- The rule expression. Note, expression must not change.
+* start_time (string, required) - The start time in ISO 8601 combined date and time format in UTC. Any alarm state transition before this time will not be silenced. Defaults to the current time.
+* silence_duration (string, required) - The length of time the silence should effect alarm state transitions. Defaults to '10m'
+
+#### Request Examples
+```
+PUT /v2.0/silence-rules/f9935bcc-9641-4cbf-8224-0993a947ea83 HTTP/1.1
+Host: 192.168.10.4:8070
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Content-Type: application/json
+Cache-Control: no-cache
+
+```
+```
+{
+        "id": "1dfe8b9a-7210-44f1-91f7-2f503b983b35",
+	"name": "updated_silence_rule_1",
+        "expression": "targets {__alarmName__=cpu_too_high, hostName=host1}"
+        "description": "Silence cpu too high on host1"
+        "silence_duration": "1d4h",
+        "start_time": "2017-04-11T10:42:10.685Z"
+}
+```
+
+### Response
+#### Status Code
+* 200 - OK
+
+#### Response Body
+Returns a JSON silence rule object with the following parameters:
+
+* id (string) - ID of silence rule.
+* links ([link]) - Links to silence rule.
+* name (string) - Name of silence rule.
+* description (string) - A description of a silence definition.
+* expression (string) - Rule expression.
+* start_time (string) - The start time in ISO 8601 combined date and time format in UTC. Any alarm state transition before this time will not be silenced.
+* silence_duration (string) - The length of time the silence should effect alarm state transitions.
+
+#### Response Examples
+```
+{
+  "name": "updated_silence_rule_1",
+  "description": "Silence cpu too high on host1",
+  "links": [
+    {
+      "href": "http://192.168.10.6:8070/v2.0/silence-rules/1dfe8b9a-7210-44f1-91f7-2f503b983b35",
+      "rel": "self"
+    }
+  ],
+  "expression": "targets {__alarmName__=cpu_too_high, hostName=host1}"
+  "silence_duration": "1d4h",
+  "start_time": "2017-04-11T10:42:10.685Z"
+}
+```
+
+___
+
+## Patch Silence Rule
+### PATCH /v2.0/silence-rules/{silence_rule_id}
+Update selected parameters of the specified silence rule.
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+* Content-Type (string, required) - application/json
+* Accept (string) - application/json
+
+#### Path Parameters
+* silence_rule_id (string, required) - Silence Rule ID
+
+#### Query Parameters
+None.
+
+#### Request Body
+Consists of an silence rule with the following properties:
+
+* name (string(255), optional) - A unique name of the alarm. Note, the name must be unique.
+* description (string(255), optional) - A description of a silence definition.
+* expression (string(1024), optional) - The rule expression. Note, expression must not change.
+* start_time (string, optional) - The start time in ISO 8601 combined date and time format in UTC. Any alarm state transition before this time will not be silenced. Defaults to the current time.
+* silence_duration (string, optional) - The length of time the silence should effect alarm state transitions. Defaults to '10m'
+
+Only the parameters that are specified will be updated.
+
+#### Request Examples
+```
+PATCH /v2.0/silence-rules/f9935bcc-9641-4cbf-8224-0993a947ea83 HTTP/1.1
+Host: 192.168.10.4:8070
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+    "id": "1dfe8b9a-7210-44f1-91f7-2f503b983b35",
+	"name": "patched_silence_rule_1",
+    "description": "Silence cpu too high on host1"
+    "silence_duration": "1d4h",
+}
+```
+
+### Response
+#### Status Code
+* 200 - OK
+
+#### Response Body
+Returns a JSON silence rule object with the following fields:
+
+* id (string) - ID of silence rule.
+* links ([link]) - Links to silence rule.
+* name (string) - Name of silence rule.
+* description (string) - A description of a silence definition.
+* expression (string) - Rule expression.
+* start_time (string) - The start time in ISO 8601 combined date and time format in UTC. Any alarm state transition before this time will not be silenced.
+* silence_duration (string) - The length of time the silence should effect alarm state transitions.
+
+#### Response Examples
+```
+{
+  "name": "patched_silence_rule_1",
+  "description": "Silence cpu too high on host1",
+  "links": [
+    {
+      "href": "http://192.168.10.6:8070/v2.0/silence-rules/1dfe8b9a-7210-44f1-91f7-2f503b983b35",
+      "rel": "self"
+    }
+  ],
+  "expression": "targets {__alarmName__=cpu_too_high, hostName=host1}"
+  "silence_duration": "1d4h",
+  "start_time": "2017-04-10T10:42:10.685Z"
+}
+```
+___
+
+## Delete Silence Rule
+Delete the specified silence rule.
+
+### DELETE /v2.0/silence-rules/{silence_rule_id}
+
+#### Headers
+* X-Auth-Token (string, required) - Keystone auth token
+
+#### Path Parameters
+* silence_rule_id (string, required) - Silence Rule ID
+
+#### Query Parameters
+None.
+
+#### Request Body
+None.
+
+#### Request Examples
+```
+DELETE /v2.0/silence-rules/b461d659-577b-4d63-9782-a99194d4a472 HTTP/1.1
+Host: 192.168.10.4:8070
+X-Auth-Token: 2b8882ba2ec44295bf300aecb2caa4f7
+Cache-Control: no-cache
+```
+
+### Response
+#### Status Code
+* 204 - No content
+
+#### Response Body
+None.
+
+___
+
+
 
 # License
-(C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
+(C) Copyright 2014-2017 Hewlett Packard Enterprise Development LP
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -3596,3 +5492,4 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
 implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
