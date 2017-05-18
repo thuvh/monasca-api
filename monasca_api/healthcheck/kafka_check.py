@@ -1,4 +1,5 @@
 # Copyright 2017 FUJITSU LIMITED
+#  (C) Copyright 2017 Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -34,8 +35,9 @@ class KafkaHealthCheck(base.BaseHealthCheck):
     Otherwise unhealthy status is returned with message.
 
     Note:
-        Healthcheck checks 3 type of topics given in configuration:
-        metrics_topic, events_topic and alarm_state_transition_topic.
+        Healthcheck checks 4 type of topics given in configuration:
+        metrics_topic, events_topic, alarm_state_transition_topic and
+        rule_updates_topic.
     """
 
     def health_check(self):
@@ -58,7 +60,8 @@ class KafkaHealthCheck(base.BaseHealthCheck):
     def _verify_topics(kafka_client):
         topics = (CONF.kafka.metrics_topic,
                   CONF.kafka.events_topic,
-                  CONF.kafka.alarm_state_transitions_topic)
+                  CONF.kafka.alarm_state_transitions_topic,
+                  CONF.kafka.rule_updates_topic)
 
         for topic in topics:
             for_topic = topic in kafka_client.topic_partitions
