@@ -1,6 +1,6 @@
 # Copyright 2015 Robin Hood
 # Copyright 2016 FUJITSU LIMITED
-# (C) Copyright 2016 Hewlett Packard Enterprise Development LP
+# (C) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -135,6 +135,53 @@ def create_sad_model(metadata=None):
                  Column('is_deterministic', Boolean),
                  Column('created_at', DateTime),
                  Column('updated_at', DateTime))
+
+
+def create_gr_action_model(metadata=None):
+    return Table('group_rule_action', metadata,
+                 Column('group_rule_id', String(36)),
+                 Column('alarm_state', String(20)),
+                 Column('action_id', String(36)))
+
+
+def create_gr_model(metadata=None):
+    return Table('group_rule', metadata,
+                 Column('id', String(36)),
+                 Column('tenant_id', String(36)),
+                 Column('name', String(255)),
+                 Column('expression', String(1024)),
+                 Column('description', String(255)),
+                 Column('group_wait', String(10)),
+                 Column('repeat_interval', String(10)),
+                 Column('created_at', DateTime),
+                 Column('updated_at', DateTime),
+                 Column('deleted_at', DateTime))
+
+
+def create_ir_model(metadata=None):
+    return Table('inhibit_rule', metadata,
+                 Column('id', String(36)),
+                 Column('tenant_id', String(36)),
+                 Column('name', String(255)),
+                 Column('expression', String(1024)),
+                 Column('description', String(255)),
+                 Column('created_at', DateTime),
+                 Column('updated_at', DateTime),
+                 Column('deleted_at', DateTime))
+
+
+def create_sr_model(metadata=None):
+    return Table('silence_rule', metadata,
+                 Column('id', String(36)),
+                 Column('tenant_id', String(36)),
+                 Column('name', String(255)),
+                 Column('expression', String(1024)),
+                 Column('description', String(255)),
+                 Column('start_time', DateTime),
+                 Column('silence_duration', String(10)),
+                 Column('created_at', DateTime),
+                 Column('updated_at', DateTime),
+                 Column('deleted_at', DateTime))
 
 
 class group_concat(expression.ColumnElement):
