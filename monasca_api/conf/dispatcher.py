@@ -1,5 +1,5 @@
 # Copyright 2014 IBM Corp
-# (C) Copyright 2015,2016 Hewlett Packard Enterprise Development LP
+# (C) Copyright 2015-2017 Hewlett Packard Enterprise Development LP
 # Copyright 2017 Fujitsu LIMITED
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
@@ -63,7 +63,16 @@ dispatcher_opts = [
                help='Notifications Type Methods controller'),
     cfg.StrOpt('healthchecks',
                default='monasca_api.healthchecks:HealthChecks',
-               help='Health checks endpoint controller')
+               help='Health checks endpoint controller'),
+    cfg.StrOpt('group_rules',
+               default='monasca_api.v2.reference.group_rules:GroupRules',
+               help='Group rules'),
+    cfg.StrOpt('inhibit_rules',
+               default='monasca_api.v2.reference.inhibit_rules:InhibitRules',
+               help='Inhibit rules'),
+    cfg.StrOpt('silence_rules',
+               default='monasca_api.v2.reference.silence_rules:SilenceRules',
+               help='Silence rules')
 ]
 
 dispatcher_group = cfg.OptGroup(name='dispatcher', title='dispatcher')
