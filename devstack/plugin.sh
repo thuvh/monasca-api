@@ -667,6 +667,8 @@ function install_schema_kafka_topics {
         --replication-factor 1 --partitions 3 --topic retry-notifications
     /opt/kafka/bin/kafka-topics.sh --create --zookeeper localhost:2181 \
         --replication-factor 1 --partitions 3 --topic 60-seconds-notifications
+    /opt/kafka/bin/kafka-topics.sh --create --zookeeper localhost:2181 \
+        --replication-factor 1 --partitions 12 --topic rule-updates
 }
 
 function install_schema_alarm_database {
