@@ -13,6 +13,7 @@
 # under the License.
 
 from monasca_api.v2.common.exceptions import HTTPUnprocessableEntityError
+from monasca_common.validation.metrics import INVALID_CHARS
 
 import re
 
@@ -21,6 +22,12 @@ VALID_ALARM_STATES = ["ALARM", "OK", "UNDETERMINED"]
 VALID_ALARM_DEFINITION_SEVERITIES = ["LOW", "MEDIUM", "HIGH", "CRITICAL"]
 
 EMAIL_PATTERN = '^.+@.+$'
+
+RESTRICTED_EXPRESSION_CHARS = re.compile('[' + INVALID_CHARS + ']')
+
+
+class InvalidExpression(Exception):
+    pass
 
 
 def validate_alarm_state(state):
@@ -65,3 +72,17 @@ def validate_email_address(email):
         return False
     else:
         return True
+
+
+def validate_expression(expression):
+    if not isinstance(expression, (str, unicode)):
+        msg = "Invalid expression type: {0} is not a string type".format(
+            expression)
+        raise InvalidExpression(msg)
+    if len(expression) > 1024 or len(expression) < 1:
+        msg = "Invalid length ({0}) for expression {1}".format(len(expression),
+                                                               expression)
+        raise InvalidExpression(msg)
+    if RESTRICTED_EXPRESSION_CHARS.search(expression):
+        msg = "Invalid characters in expression: {0}".format(expression)
+        raise InvalidExpression(msg)
