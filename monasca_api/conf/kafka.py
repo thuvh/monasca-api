@@ -19,6 +19,13 @@ from oslo_config import cfg
 
 from monasca_api.conf import types
 
+
+_DEFAULT_METRIC_TOPIC = 'metrics'
+_DEFAULT_EVENTS_TOPIC = 'events'
+_DEFAULT_RULE_UPDATES_TOPIC = 'rule_updates'
+_DEFAULT_ALARM_STATE_TRANS_TOPIC = 'alarm-state-transitions'
+
+
 kafka_opts = [
     cfg.ListOpt('uri',
                 default=['127.0.0.1:9092'],
@@ -26,16 +33,20 @@ kafka_opts = [
                 help='''
 Comma separated list of Kafka broker host:port
 '''),
-    cfg.StrOpt('metrics_topic', default='metrics',
+    cfg.StrOpt('metrics_topic', default=_DEFAULT_METRIC_TOPIC,
                help='''
 The topic that metrics will be published to
 '''),
-    cfg.StrOpt('events_topic', default='events',
+    cfg.StrOpt('events_topic', default=_DEFAULT_EVENTS_TOPIC,
+               help='''
+The topic that events will be published too
+'''),
+    cfg.StrOpt('rule_updates_topic', default=_DEFAULT_RULE_UPDATES_TOPIC,
                help='''
 The topic that events will be published too
 '''),
     cfg.StrOpt('alarm_state_transitions_topic',
-               default='alarm-state-transitions',
+               default=_DEFAULT_ALARM_STATE_TRANS_TOPIC,
                help='''
 The topic that alarm state will be published too
 '''),
