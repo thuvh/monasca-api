@@ -15,12 +15,17 @@
 from monasca_api.v2.common.exceptions import HTTPUnprocessableEntityError
 
 import re
+import six
 
 VALID_ALARM_STATES = ["ALARM", "OK", "UNDETERMINED"]
 
 VALID_ALARM_DEFINITION_SEVERITIES = ["LOW", "MEDIUM", "HIGH", "CRITICAL"]
 
 EMAIL_PATTERN = '^.+@.+$'
+
+
+class InvalidExpression(Exception):
+    pass
 
 
 def validate_alarm_state(state):
@@ -65,3 +70,14 @@ def validate_email_address(email):
         return False
     else:
         return True
+
+
+def validate_expression(expression):
+    if not isinstance(expression, six.string_types):
+        msg = "Invalid expression type: {0} is not a string type".format(
+            expression)
+        raise InvalidExpression(msg)
+    if len(expression) > 1024 or len(expression) < 1:
+        msg = "Invalid length ({0}) for expression {1}".format(len(expression),
+                                                               expression)
+        raise InvalidExpression(msg)

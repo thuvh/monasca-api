@@ -49,6 +49,24 @@ The repository driver to use for notifications
                advanced=True,
                help='''
 The repository driver to use for notifications
+'''),
+    cfg.StrOpt('group_rules_driver',
+               default=BASE_SQL_PATH + 'group_rules_repository:GroupRulesRepository',
+               advanced=True,
+               help='''
+The repository driver to use for group rules
+'''),
+    cfg.StrOpt('inhibit_rules_driver',
+               default=BASE_SQL_PATH + 'inhibit_rules_repository:InhibitRulesRepository',
+               advanced=True,
+               help='''
+The repository driver to use for inhibit rules
+'''),
+    cfg.StrOpt('silence_rules_driver',
+               default=BASE_SQL_PATH + 'silence_rules_repository:SilenceRulesRepository',
+               advanced=True,
+               help='''
+The repository driver to use for silence rules
 ''')
 ]
 
