@@ -1,5 +1,5 @@
 # Copyright 2014 IBM Corp
-# (C) Copyright 2015,2016 Hewlett Packard Enterprise Development LP
+# (C) Copyright 2015-2017 Hewlett Packard Enterprise Development LP
 # Copyright 2017 Fujitsu LIMITED
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
@@ -51,7 +51,13 @@ dispatcher_opts = [cfg.StrOpt('versions', default=None,
                    cfg.StrOpt('dimension_names', default=None,
                               help='Dimension names'),
                    cfg.StrOpt('notification_method_types', default=None,
-                              help='notification_method_types methods')]
+                              help='notification_method_types methods'),
+                   cfg.StrOpt('group_rules', default=None,
+                              help='Group rules'),
+                   cfg.StrOpt('inhibit_rules', default=None,
+                              help='Inhibit rules'),
+                   cfg.StrOpt('silence_rules', default=None,
+                              help='Silence rules')]
 
 dispatcher_group = cfg.OptGroup(name='dispatcher', title='dispatcher')
 cfg.CONF.register_group(dispatcher_group)
@@ -128,6 +134,18 @@ def launch(conf):
     notification_method_types = simport.load(
         cfg.CONF.dispatcher.notification_method_types)()
     app.add_route("/v2.0/notification-methods/types", notification_method_types)
+
+    group_rules = simport.load(cfg.CONF.dispatcher.alarm_group_definitions)()
+    app.add_route("/v2.0/group-rules/", group_rules)
+    app.add_route("/v2.0/group-rules/{group_rule_id}", group_rules)
+
+    inhibit_rules = simport.load(cfg.CONF.dispatcher.inhibit_rules)()
+    app.add_route("/v2.0/inhibit-rules/", inhibit_rules)
+    app.add_route("/v2.0/inhibit-rules/{inhibit_rule_id}", inhibit_rules)
+
+    silence_rules = simport.load(cfg.CONF.dispatcher.silence_rules)()
+    app.add_route("/v2.0/silence-rules/", silence_rules)
+    app.add_route("/v2.0/silence-rules/{silence_rule_id}", silence_rules)
 
     LOG.debug('Dispatcher drivers have been added to the routes!')
     return app
