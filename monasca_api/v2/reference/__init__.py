@@ -84,7 +84,16 @@ repositories_opts = [
                help='The repository driver to use for notifications'),
     cfg.StrOpt('notification_method_type_driver',
                default=base_sqla_path + 'notification_method_type_repository:NotificationMethodTypeRepository',
-               help='The repository driver to use for notifications')]
+               help='The repository driver to use for notifications'),
+    cfg.StrOpt('group_rules_driver',
+               default=base_sqla_path + 'group_rules_repository:GroupRulesRepository',
+               help='The repository driver to use for group rules'),
+    cfg.StrOpt('inhibit_rules_driver',
+               default=base_sqla_path + 'inhibit_rules_repository:InhibitRulesRepository',
+               help='The repository driver to use for inhibit rules'),
+    cfg.StrOpt('silence_rules_driver',
+               default=base_sqla_path + 'silence_rules_repository:SilenceRulesRepository',
+               help='The repository driver to use for silence rules')]
 
 repositories_group = cfg.OptGroup(name='repositories', title='repositories')
 cfg.CONF.register_group(repositories_group)
@@ -101,6 +110,9 @@ kafka_opts = [cfg.StrOpt('uri', help='Address to kafka server. For example: '
                          advanced=True),
               cfg.StrOpt('alarm_state_transitions_topic', default='alarm-state-transitions',
                          help='The topic that alarm state will be published too.',
+                         advanced=True),
+              cfg.StrOpt('rule_updates_topic', default='rule-updates',
+                         help='The topic that group, inhibit and silence rules will be published to.',
                          advanced=True),
               cfg.StrOpt('group', default='api',
                          help='The group name that this service belongs to.'),
