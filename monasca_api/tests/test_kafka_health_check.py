@@ -30,11 +30,13 @@ class TestKafkaHealthCheckLogic(base.BaseTestCase):
     mocked_topics = 'test1'
     mocked_event_topic = 'test2'
     mocked_alarm_state_topic = 'test3'
+    mocked_rule_updates_topic = 'test4'
     mocked_config = {
         'uri': mock_kafka_url,
         'metrics_topic': mocked_topics,
         'events_topic': mocked_event_topic,
-        'alarm_state_transitions_topic': mocked_alarm_state_topic
+        'alarm_state_transitions_topic': mocked_alarm_state_topic,
+        'rule_updates_topic': mocked_rule_updates_topic
     }
 
     def __init__(self, *args, **kwargs):
@@ -75,7 +77,8 @@ class TestKafkaHealthCheckLogic(base.BaseTestCase):
         kafka = mock.Mock()
         kafka.topic_partitions = (self.mocked_topics,
                                   self.mocked_event_topic,
-                                  self.mocked_alarm_state_topic)
+                                  self.mocked_alarm_state_topic,
+                                  self.mocked_rule_updates_topic)
         kafka_client.return_value = kafka
 
         kafka_health = kc.KafkaHealthCheck()

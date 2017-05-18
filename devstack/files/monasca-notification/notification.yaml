@@ -22,6 +22,9 @@ kafka:
     alarm_topic: "alarm-state-transitions"
     notification_topic: "alarm-notifications"
     notification_retry_topic: "retry-notifications"
+    rule_updates_topic: "rule-updates"
+    manager:
+        30: 30-seconds-manager
     periodic:
         60: 60-seconds-notifications
     max_offset_lag: 600  # In seconds, undefined for none
