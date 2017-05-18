@@ -93,6 +93,80 @@ def create_alarm_definition(name=None,
     return alarm_definition
 
 
+def create_group_definition(name=None,
+                            description=None,
+                            matchers=None,
+                            exclusions=None,
+                            group_wait=None,
+                            repeat_interval=None,
+                            alarm_actions=None,
+                            ok_actions=None,
+                            undetermined_actions=None):
+    group_rule_definition = {}
+    if name:
+        group_rule_definition['name'] = name
+    if description:
+        group_rule_definition['description'] = description
+    if matchers:
+        group_rule_definition['matchers'] = matchers
+    if exclusions:
+        group_rule_definition['exclusions'] = exclusions
+    if group_wait:
+        group_rule_definition['group_wait'] = group_wait
+    if repeat_interval:
+        group_rule_definition['repeat_interval'] = repeat_interval
+    if alarm_actions:
+        group_rule_definition['alarm_actions'] = alarm_actions
+    if ok_actions:
+        group_rule_definition['ok_actions'] = ok_actions
+    if undetermined_actions:
+        group_rule_definition['undetermined_actions'] = undetermined_actions
+    return group_rule_definition
+
+
+def create_inhibition_definition(name=None,
+                                 description=None,
+                                 source_match=None,
+                                 target_match=None,
+                                 equal=None,
+                                 exclusions=None):
+    alarm_inhibition_definition = {}
+    if name:
+        alarm_inhibition_definition['name'] = name
+    if description:
+        alarm_inhibition_definition['description'] = description
+    if source_match:
+        alarm_inhibition_definition['source_match'] = source_match
+    if target_match:
+        alarm_inhibition_definition['target_match'] = target_match
+    if equal:
+        alarm_inhibition_definition['equal'] = equal
+    if exclusions:
+        alarm_inhibition_definition['exclusions'] = exclusions
+    return alarm_inhibition_definition
+
+
+def create_silence_definition(name=None,
+                              description=None,
+                              matchers=None,
+                              silence_duration=None,
+                              start_time=None):
+    silence_definition = {}
+    if name is not None:
+        silence_definition['name'] = name
+    if description is not None:
+        silence_definition['description'] = description
+    if matchers is not None:
+        silence_definition['matchers'] = matchers
+    if silence_duration is not None:
+        silence_definition['silence_duration'] = silence_duration
+    if start_time is not None:
+        silence_definition['start_time'] = start_time
+    else:
+        silence_definition['start_time'] = "2017-04-10T10:42:10.685Z"
+    return silence_definition
+
+
 def delete_alarm_definitions(monasca_client):
     # Delete alarm definitions
     resp, response_body = monasca_client.list_alarm_definitions()
@@ -101,6 +175,36 @@ def delete_alarm_definitions(monasca_client):
         for element in elements:
             alarm_def_id = element['id']
             monasca_client.delete_alarm_definition(alarm_def_id)
+
+
+def delete_group_definitions(monasca_client):
+    # Delete group definitions
+    resp, response_body = monasca_client.list_group_definitions()
+    elements = response_body['elements']
+    if elements:
+        for element in elements:
+            group_def_id = element['id']
+            monasca_client.delete_group_definition(group_def_id)
+
+
+def delete_inhibition_definitions(monasca_client):
+    # Delete alarm definitions
+    resp, response_body = monasca_client.list_inhibition_definitions()
+    elements = response_body['elements']
+    if elements:
+        for element in elements:
+            alarm_def_id = element['id']
+            monasca_client.delete_inhibition_definition(alarm_def_id)
+
+
+def delete_silence_definitions(monasca_client):
+    # Delete silence definitions
+    resp, response_body = monasca_client.list_silence_definitions()
+    elements = response_body['elements']
+    if elements:
+        for element in elements:
+            silence_def_id = element['id']
+            monasca_client.delete_silence_definition(silence_def_id)
 
 
 def timestamp_to_iso(timestamp):
