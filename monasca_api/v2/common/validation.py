@@ -22,6 +22,13 @@ VALID_ALARM_DEFINITION_SEVERITIES = ["LOW", "MEDIUM", "HIGH", "CRITICAL"]
 
 EMAIL_PATTERN = '^.+@.+$'
 
+INVALID_CHARS = "<>={}(),\"\\\\;&"
+RESTRICTED_MATCHER_CHARS = re.compile('[' + INVALID_CHARS + ']')
+
+
+class InvalidExpression(Exception):
+    pass
+
 
 def validate_alarm_state(state):
     if state.upper() not in VALID_ALARM_STATES:
@@ -65,3 +72,12 @@ def validate_email_address(email):
         return False
     else:
         return True
+
+
+def validate_expression(k):
+    if not isinstance(k, (str, unicode)):
+        msg = "Invalid expression type: {0} is not a string type".format(k)
+        raise InvalidExpression(msg)
+    if len(k) > 1024 or len(k) < 1:
+        msg = "Invalid length ({0}) for expression {1}".format(len(k), k)
+        raise InvalidExpression(msg)
