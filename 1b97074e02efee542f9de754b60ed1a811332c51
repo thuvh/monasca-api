@@ -22,6 +22,30 @@
       "revId": "1b97074e02efee542f9de754b60ed1a811332c51",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff0f0b1f_3a60a4a5",
+        "filename": "devstack/files/schema/mon_mysql.sql",
+        "patchSetId": 23
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 22157
+      },
+      "writtenOn": "2017-05-18T22:22:41Z",
+      "side": 1,
+      "message": "Your right. One alarm id can be associated with several rule ids. Ill remove that in the put-together review",
+      "parentUuid": "ff0f0b1f_8f2c3448",
+      "range": {
+        "startLine": 110,
+        "startChar": 2,
+        "endLine": 110,
+        "endChar": 42
+      },
+      "revId": "1b97074e02efee542f9de754b60ed1a811332c51",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
