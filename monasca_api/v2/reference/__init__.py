@@ -84,7 +84,16 @@ repositories_opts = [
                help='The repository driver to use for notifications'),
     cfg.StrOpt('notification_method_type_driver',
                default=base_sqla_path + 'notification_method_type_repository:NotificationMethodTypeRepository',
-               help='The repository driver to use for notifications')]
+               help='The repository driver to use for notifications'),
+    cfg.StrOpt('alarm_group_definitions_driver',
+               default=base_sqla_path + 'alarm_group_definitions_repository:AlarmGroupDefinitionsRepository',
+               help='The repository driver to use for alarm group definitions'),
+    cfg.StrOpt('alarm_inhibition_definitions_driver',
+               default=base_sqla_path + 'alarm_inhibition_definitions_repository:AlarmInhibitionDefinitionsRepository',
+               help='The repository driver to use for alarm inhibition definitions'),
+    cfg.StrOpt('alarm_silence_definitions_driver',
+               default=base_sqla_path + 'alarm_silence_definitions_repository:AlarmSilenceDefinitionsRepository',
+               help='The repository driver to use for alarm silence definitions')]
 
 repositories_group = cfg.OptGroup(name='repositories', title='repositories')
 cfg.CONF.register_group(repositories_group)
