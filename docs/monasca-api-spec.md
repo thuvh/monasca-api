@@ -2935,7 +2935,7 @@ None.
 * dimensions (string, optional) - Dimensions of metrics to filter by specified as a comma separated array of (key, value) pairs as `key1:value1,key1:value1, ...`
 * start_time (string, optional) - The start time in ISO 8601 combined date and time format in UTC.
 * end_time (string, optional) - The end time in ISO 8601 combined date and time format in UTC.
-* offset (timestamp, optional) - The offset in ISO 8601 combined date and time format in UTC.
+* offset (integer, optional) - The offset specifies the number of points to paginate.
 * limit (integer, optional)
 
 #### Request Body
