@@ -205,14 +205,13 @@ class TestAlarmsStateHistoryOneTransition(base.BaseMonascaTest):
             for index in xrange(MIN_HISTORY - 1):
                 self.assertEqual(elements_set1[index], elements_set2[index])
             for index in xrange(MIN_HISTORY - 1):
-                alarm_history = elements_set2[index]
                 max_limit = len(elements_set2) - index
                 for limit in xrange(1, max_limit):
                     first_index = index + 1
                     last_index = first_index + limit
                     expected_elements = elements_set2[first_index:last_index]
 
-                    query_parms = '?offset=' + str(alarm_history['timestamp'])\
+                    query_parms = '?offset=' + str(index + 1)\
                                   + '&limit=' + str(limit)
                     resp, response_body = self.\
                         monasca_client.list_alarms_state_history(query_parms)
