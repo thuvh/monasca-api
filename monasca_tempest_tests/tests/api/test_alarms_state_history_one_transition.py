@@ -212,7 +212,7 @@ class TestAlarmsStateHistoryOneTransition(base.BaseMonascaTest):
                     last_index = first_index + limit
                     expected_elements = elements_set2[first_index:last_index]
 
-                    query_parms = '?offset=' + str(alarm_history['timestamp'])\
+                    query_parms = '?offset=' + str(index + 1)\
                                   + '&limit=' + str(limit)
                     resp, response_body = self.\
                         monasca_client.list_alarms_state_history(query_parms)
