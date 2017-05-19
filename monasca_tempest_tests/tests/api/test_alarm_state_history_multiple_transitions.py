@@ -112,6 +112,7 @@ class TestAlarmStateHistoryMultipleTransitions(base.BaseMonascaTest):
             self.fail(error_msg)
 
     @decorators.attr(type="gate")
+    @decorators.attr(type="python_only")
     def test_list_alarm_state_history_with_offset_limit(self):
         # Get the alarm state history for a specific alarm by ID
         resp, response_body = self.monasca_client.list_alarms_state_history()
@@ -119,6 +120,7 @@ class TestAlarmStateHistoryMultipleTransitions(base.BaseMonascaTest):
         elements = response_body['elements']
         if len(elements) >= MIN_HISTORY:
             element = elements[0]
+            offset = 1
             second_element = elements[1]
             alarm_id = element['alarm_id']
             query_parms = '?limit=1'
@@ -128,7 +130,7 @@ class TestAlarmStateHistoryMultipleTransitions(base.BaseMonascaTest):
             self.assertEqual(200, resp.status)
             self.assertEqual(1, len(elements))
 
-            query_parms = '?offset=' + str(element['timestamp'])
+            query_parms = '?offset=' + str(offset)
             resp, response_body = self.monasca_client.\
                 list_alarm_state_history(alarm_id, query_parms)
             elements_new = response_body['elements']
