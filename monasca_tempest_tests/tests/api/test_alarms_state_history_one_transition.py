@@ -19,7 +19,7 @@ from monasca_tempest_tests.tests.api import constants
 from monasca_tempest_tests.tests.api import helpers
 from oslo_utils import timeutils
 from tempest.lib.common.utils import data_utils
-from tempest.lib import decorators
+from tempest import test
 
 NUM_ALARM_DEFINITIONS = 3
 MIN_HISTORY = 3
@@ -64,7 +64,7 @@ class TestAlarmsStateHistoryOneTransition(base.BaseMonascaTest):
     def resource_cleanup(cls):
         super(TestAlarmsStateHistoryOneTransition, cls).resource_cleanup()
 
-    @decorators.attr(type="gate")
+    @test.attr(type="gate")
     def test_list_alarms_state_history(self):
         resp, response_body = self.monasca_client.list_alarms_state_history()
         self.assertEqual(200, resp.status)
@@ -83,7 +83,7 @@ class TestAlarmsStateHistoryOneTransition(base.BaseMonascaTest):
                                  'timestamp', 'sub_alarms'])
                             == set(element))
 
-    @decorators.attr(type="gate")
+    @test.attr(type="gate")
     def test_list_alarms_state_history_with_dimensions(self):
         resp, response_body = self.monasca_client.list_alarms_state_history()
         elements = response_body['elements']
@@ -109,7 +109,7 @@ class TestAlarmsStateHistoryOneTransition(base.BaseMonascaTest):
                         "to test."
             self.fail(error_msg)
 
-    @decorators.attr(type="gate")
+    @test.attr(type="gate")
     def test_list_alarms_state_history_with_start_time(self):
         # 1, get all histories
         resp, all_response_body = self.monasca_client.\
@@ -136,7 +136,7 @@ class TestAlarmsStateHistoryOneTransition(base.BaseMonascaTest):
         expected_elements.remove(min_element)
         self.assertEqual(expected_elements, selected_elements)
 
-    @decorators.attr(type="gate")
+    @test.attr(type="gate")
     def test_list_alarms_state_history_with_end_time(self):
         # 1, get all histories
         resp, all_response_body = self.monasca_client.\
@@ -163,7 +163,7 @@ class TestAlarmsStateHistoryOneTransition(base.BaseMonascaTest):
         expected_elements.remove(max_element)
         self.assertEqual(expected_elements, selected_elements)
 
-    @decorators.attr(type="gate")
+    @test.attr(type="gate")
     def test_list_alarms_state_history_with_start_end_time(self):
         # 1, get all histories
         resp, all_response_body = self.monasca_client.\
@@ -190,7 +190,8 @@ class TestAlarmsStateHistoryOneTransition(base.BaseMonascaTest):
         # 3. compare #1 and #2
         self.assertEqual(all_elements, selected_elements)
 
-    @decorators.attr(type="gate")
+    @test.attr(type="python_only")
+    @test.attr(type="gate")
     def test_list_alarms_state_history_with_offset_limit(self):
         resp, response_body = self.monasca_client.list_alarms_state_history()
         elements_set1 = response_body['elements']
@@ -205,14 +206,13 @@ class TestAlarmsStateHistoryOneTransition(base.BaseMonascaTest):
             for index in range(MIN_HISTORY - 1):
                 self.assertEqual(elements_set1[index], elements_set2[index])
             for index in range(MIN_HISTORY - 1):
-                alarm_history = elements_set2[index]
                 max_limit = len(elements_set2) - index
                 for limit in range(1, max_limit):
                     first_index = index + 1
                     last_index = first_index + limit
                     expected_elements = elements_set2[first_index:last_index]
 
-                    query_parms = '?offset=' + str(alarm_history['timestamp'])\
+                    query_parms = '?offset=' + str(index + 1)\
                                   + '&limit=' + str(limit)
                     resp, response_body = self.\
                         monasca_client.list_alarms_state_history(query_parms)
