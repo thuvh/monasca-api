@@ -724,13 +724,9 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
             raise exceptions.RepositoryException(ex)
 
     def _build_offset_clause(self, offset):
-
         if offset:
-            offset_clause = " and time > '{}'".format(offset)
-        else:
-            offset_clause = ""
-
-        return offset_clause
+            return " offset {} ".format(str(offset))
+        return ""
 
     def _build_group_by_clause(self, group_by, period=None):
         if group_by is not None and not isinstance(group_by, list):
@@ -829,7 +825,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
 
             limit_clause = self._build_limit_clause(limit)
 
-            query += where_clause + time_clause + offset_clause + limit_clause
+            query += where_clause + time_clause + limit_clause + offset_clause
 
             result = self.influxdb_client.query(query)
 
