@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ff0f0b1f_5820f2b0",
+        "filename": "monasca_api/healtcheck/kafka_check.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2017-05-19T11:07:18Z",
+      "side": 1,
+      "message": "I will add those topics to configuration options.",
+      "parentUuid": "ff0f0b1f_6fa571b5",
+      "range": {
+        "startLine": 44,
+        "startChar": 28,
+        "endLine": 44,
+        "endChar": 41
+      },
+      "revId": "2d244a0af4fc6854f34557b2dc4eaca984217d02",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff0f0b1f_6f50d133",
         "filename": "monasca_api/healtcheck/kafka_check.py",
         "patchSetId": 1
@@ -94,6 +118,30 @@
     },
     {
       "key": {
+        "uuid": "ff0f0b1f_d350630d",
+        "filename": "monasca_api/healtcheck/timeseries_db_check.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2017-05-19T11:07:18Z",
+      "side": 1,
+      "message": "thx",
+      "parentUuid": "ff0f0b1f_8f05657d",
+      "range": {
+        "startLine": 45,
+        "startChar": 20,
+        "endLine": 45,
+        "endChar": 28
+      },
+      "revId": "2d244a0af4fc6854f34557b2dc4eaca984217d02",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff0f0b1f_21dc2d73",
         "filename": "monasca_api/healthchecks.py",
         "patchSetId": 1
@@ -117,6 +165,30 @@
     },
     {
       "key": {
+        "uuid": "ff0f0b1f_930c2b3c",
+        "filename": "monasca_api/healthchecks.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2017-05-19T11:07:18Z",
+      "side": 1,
+      "message": "This was taken from monasca-log-api and this solution works there. The change was accepted without any doubts.",
+      "parentUuid": "ff0f0b1f_21dc2d73",
+      "range": {
+        "startLine": 31,
+        "startChar": 30,
+        "endLine": 31,
+        "endChar": 54
+      },
+      "revId": "2d244a0af4fc6854f34557b2dc4eaca984217d02",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff0f0b1f_41a961dd",
         "filename": "monasca_api/healthchecks.py",
         "patchSetId": 1
@@ -128,6 +200,30 @@
       "writtenOn": "2017-05-17T14:30:10Z",
       "side": 1,
       "message": "This is really the metrics_database",
+      "range": {
+        "startLine": 51,
+        "startChar": 13,
+        "endLine": 51,
+        "endChar": 31
+      },
+      "revId": "2d244a0af4fc6854f34557b2dc4eaca984217d02",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff0f0b1f_733cf7c7",
+        "filename": "monasca_api/healthchecks.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2017-05-19T11:07:18Z",
+      "side": 1,
+      "message": "ok :) I will also change relational_database to alarms_database",
+      "parentUuid": "ff0f0b1f_41a961dd",
       "range": {
         "startLine": 51,
         "startChar": 13,
