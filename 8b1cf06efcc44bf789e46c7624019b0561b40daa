@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff0f0b1f_d995ef34",
+        "filename": "monasca_api/api/prometheus_registry.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2017-05-22T13:59:49Z",
+      "side": 1,
+      "message": "2017?",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "8b1cf06efcc44bf789e46c7624019b0561b40daa",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff0f0b1f_f9b9d3cb",
+        "filename": "monasca_api/api/prometheus_utils.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2017-05-22T13:59:49Z",
+      "side": 1,
+      "message": "2017?",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "8b1cf06efcc44bf789e46c7624019b0561b40daa",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff0f0b1f_394d0bc4",
+        "filename": "monasca_api/api/prometheus_utils.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2017-05-22T13:59:49Z",
+      "side": 1,
+      "message": "You should import module not object, classes:\nhttps://docs.openstack.org/developer/hacking/#imports",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 58
+      },
+      "revId": "8b1cf06efcc44bf789e46c7624019b0561b40daa",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff0f0b1f_f9bf935e",
+        "filename": "monasca_api/middleware/instrument_filter.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2017-05-22T13:59:49Z",
+      "side": 1,
+      "message": "2017?",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "8b1cf06efcc44bf789e46c7624019b0561b40daa",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
