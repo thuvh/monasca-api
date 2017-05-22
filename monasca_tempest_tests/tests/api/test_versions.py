@@ -17,7 +17,7 @@ import datetime
 from oslo_serialization import jsonutils as json
 
 from monasca_tempest_tests.tests.api import base
-from tempest import test
+from tempest.lib import decorators
 
 
 class TestVersions(base.BaseMonascaTest):
@@ -26,7 +26,7 @@ class TestVersions(base.BaseMonascaTest):
     def resource_setup(cls):
         super(TestVersions, cls).resource_setup()
 
-    @test.attr(type='gate')
+    @decorators.attr(type='gate')
     def test_get_version(self):
         resp, response_body = self.monasca_client.get_version()
         self.assertEqual(resp.status, 200)

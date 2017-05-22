@@ -13,7 +13,7 @@
 # under the License.
 
 from monasca_tempest_tests.tests.api import base
-from tempest import test
+from tempest.lib import decorators
 
 
 class TestNotificationMethodType(base.BaseMonascaTest):
@@ -26,7 +26,7 @@ class TestNotificationMethodType(base.BaseMonascaTest):
     def resource_cleanup(cls):
         super(TestNotificationMethodType, cls).resource_cleanup()
 
-    @test.attr(type="gate")
+    @decorators.attr(type="gate")
     def test_list_notification_method_type(self):
         resp, response_body = (self.monasca_client.
                                list_notification_method_types())
