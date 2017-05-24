@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff0f0b1f_076cdc05",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 999,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-05-24T05:22:13Z",
+      "side": 1,
+      "message": "Actual link would be great.",
+      "revId": "15173e6b99c6a3627c43edd3d62caf80033918a6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff0f0b1f_794ea038",
+        "filename": "monasca_api/common/repositories/exceptions.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-05-24T05:22:13Z",
+      "side": 1,
+      "message": "add one extra empty line.",
+      "revId": "15173e6b99c6a3627c43edd3d62caf80033918a6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff0f0b1f_3966e8c2",
+        "filename": "monasca_api/healthcheck/alarms_db_check.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-05-24T05:22:13Z",
+      "side": 1,
+      "message": "Might be nice to add some documentation.",
+      "revId": "15173e6b99c6a3627c43edd3d62caf80033918a6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff0f0b1f_f95bd0f2",
+        "filename": "monasca_api/healthcheck/base.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-05-24T05:22:13Z",
+      "side": 1,
+      "message": "Documentation",
+      "revId": "15173e6b99c6a3627c43edd3d62caf80033918a6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff0f0b1f_f9de303c",
+        "filename": "monasca_api/healthcheck/kafka_check.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-05-24T05:22:13Z",
+      "side": 1,
+      "message": "Documentation",
+      "revId": "15173e6b99c6a3627c43edd3d62caf80033918a6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff0f0b1f_99ef34e8",
+        "filename": "monasca_api/healthcheck/metrics_db_check.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-05-24T05:22:13Z",
+      "side": 1,
+      "message": "Documentation",
+      "revId": "15173e6b99c6a3627c43edd3d62caf80033918a6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff0f0b1f_b9cd5886",
+        "filename": "monasca_api/tests/test_keystone_protocol.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-05-24T05:22:13Z",
+      "side": 1,
+      "message": "why mocks done here ?",
+      "revId": "15173e6b99c6a3627c43edd3d62caf80033918a6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
