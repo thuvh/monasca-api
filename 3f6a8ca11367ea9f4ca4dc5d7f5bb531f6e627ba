@@ -1,0 +1,180 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff0f0b1f_2cfc4eb3",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 984,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2017-05-24T19:43:39Z",
+      "side": 1,
+      "message": "nit: APi -\u003e API",
+      "revId": "3f6a8ca11367ea9f4ca4dc5d7f5bb531f6e627ba",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff0f0b1f_ec8f7627",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 995,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2017-05-24T19:43:39Z",
+      "side": 1,
+      "message": "consider -\u003e considered healthy if a connection to the broker can be established and the configured topics",
+      "range": {
+        "startLine": 995,
+        "startChar": 15,
+        "endLine": 995,
+        "endChar": 23
+      },
+      "revId": "3f6a8ca11367ea9f4ca4dc5d7f5bb531f6e627ba",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff0f0b1f_ac9a9e5e",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 998,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2017-05-24T19:43:39Z",
+      "side": 1,
+      "message": "Probably should remove Cassandra, if not both InfluxDB and Cassandra. It is enough to say the Metrics Database.\n\nBTW, you could also change Metrics database to be Time Series Database (TSDB).",
+      "revId": "3f6a8ca11367ea9f4ca4dc5d7f5bb531f6e627ba",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff0f0b1f_4cab0274",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 1002,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2017-05-24T19:43:39Z",
+      "side": 1,
+      "message": "nit: APi -\u003e API",
+      "revId": "3f6a8ca11367ea9f4ca4dc5d7f5bb531f6e627ba",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff0f0b1f_d1dfaa0a",
+        "filename": "monasca_api/healthcheck/alarms_db_check.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2017-05-24T19:43:39Z",
+      "side": 1,
+      "message": "Should this class be moved to the common/repositories/alarms_repository.py?",
+      "revId": "3f6a8ca11367ea9f4ca4dc5d7f5bb531f6e627ba",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff0f0b1f_acd29ecf",
+        "filename": "monasca_api/healthcheck/base.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2017-05-24T19:43:39Z",
+      "side": 1,
+      "message": "I was just wondering why the change from the monasca-log-api? I think the log-api returns HealthCheckResult with status and details in the response body. But, here you are returning health and message. Should these be the same or am I misunderstanding?",
+      "revId": "3f6a8ca11367ea9f4ca4dc5d7f5bb531f6e627ba",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff0f0b1f_6c7486cf",
+        "filename": "monasca_api/healthcheck/kafka_check.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2017-05-24T19:43:39Z",
+      "side": 1,
+      "message": "nit, but the log api returns \"healthy\" instead of \"health\".",
+      "revId": "3f6a8ca11367ea9f4ca4dc5d7f5bb531f6e627ba",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff0f0b1f_6c2246bb",
+        "filename": "monasca_api/healthcheck/kafka_check.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2017-05-24T19:43:39Z",
+      "side": 1,
+      "message": "log-api logs an error, but you are logging an exception here.",
+      "revId": "3f6a8ca11367ea9f4ca4dc5d7f5bb531f6e627ba",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff0f0b1f_51e95ae3",
+        "filename": "monasca_api/healthcheck/metrics_db_check.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2017-05-24T19:43:39Z",
+      "side": 1,
+      "message": "Just wondering if cassandra should be removed, as it isn\u0027t officially supported and importing here forces a dependency on Cassandra.",
+      "revId": "3f6a8ca11367ea9f4ca4dc5d7f5bb531f6e627ba",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff0f0b1f_b1943638",
+        "filename": "monasca_api/healthcheck/metrics_db_check.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2017-05-24T19:43:39Z",
+      "side": 1,
+      "message": "Was going to suggest that a method \"check_status\" be added to the metrics repo. For example, add to the AbstractMetricsRepository the check_status method. This would also address the Cassandra dependency.",
+      "revId": "3f6a8ca11367ea9f4ca4dc5d7f5bb531f6e627ba",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
