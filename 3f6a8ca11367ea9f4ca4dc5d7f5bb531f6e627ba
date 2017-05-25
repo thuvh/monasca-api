@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ff0f0b1f_ffc82955",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 984,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2017-05-25T06:46:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff0f0b1f_2cfc4eb3",
+      "revId": "3f6a8ca11367ea9f4ca4dc5d7f5bb531f6e627ba",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff0f0b1f_ec8f7627",
         "filename": "docs/monasca-api-spec.md",
         "patchSetId": 13
@@ -30,6 +48,30 @@
       "writtenOn": "2017-05-24T19:43:39Z",
       "side": 1,
       "message": "consider -\u003e considered healthy if a connection to the broker can be established and the configured topics",
+      "range": {
+        "startLine": 995,
+        "startChar": 15,
+        "endLine": 995,
+        "endChar": 23
+      },
+      "revId": "3f6a8ca11367ea9f4ca4dc5d7f5bb531f6e627ba",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff0f0b1f_fc703774",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 995,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2017-05-25T06:46:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff0f0b1f_ec8f7627",
       "range": {
         "startLine": 995,
         "startChar": 15,
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "ff0f0b1f_7c3307ac",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 998,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2017-05-25T06:46:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff0f0b1f_ac9a9e5e",
+      "revId": "3f6a8ca11367ea9f4ca4dc5d7f5bb531f6e627ba",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff0f0b1f_4cab0274",
         "filename": "docs/monasca-api-spec.md",
         "patchSetId": 13
@@ -70,6 +130,24 @@
       "writtenOn": "2017-05-24T19:43:39Z",
       "side": 1,
       "message": "nit: APi -\u003e API",
+      "revId": "3f6a8ca11367ea9f4ca4dc5d7f5bb531f6e627ba",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff0f0b1f_5c26036a",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 1002,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2017-05-25T06:46:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff0f0b1f_4cab0274",
       "revId": "3f6a8ca11367ea9f4ca4dc5d7f5bb531f6e627ba",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -93,6 +171,24 @@
     },
     {
       "key": {
+        "uuid": "ff0f0b1f_5fa9558d",
+        "filename": "monasca_api/healthcheck/alarms_db_check.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2017-05-25T06:46:04Z",
+      "side": 1,
+      "message": "It can be moved to the alarms_repository but AlarmsRepository is an metaclass and if I move it to there and inherit by this class a also need to overwrite all the abstract methods and that might not be a good idea.",
+      "parentUuid": "ff0f0b1f_d1dfaa0a",
+      "revId": "3f6a8ca11367ea9f4ca4dc5d7f5bb531f6e627ba",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff0f0b1f_acd29ecf",
         "filename": "monasca_api/healthcheck/base.py",
         "patchSetId": 13
@@ -110,6 +206,24 @@
     },
     {
       "key": {
+        "uuid": "ff0f0b1f_7c942737",
+        "filename": "monasca_api/healthcheck/base.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2017-05-25T06:46:04Z",
+      "side": 1,
+      "message": "This is the same approach as in monasca-log-api. I took the code from the just refactored a little bit. Status and details are returned in the response body.",
+      "parentUuid": "ff0f0b1f_acd29ecf",
+      "revId": "3f6a8ca11367ea9f4ca4dc5d7f5bb531f6e627ba",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff0f0b1f_6c7486cf",
         "filename": "monasca_api/healthcheck/kafka_check.py",
         "patchSetId": 13
@@ -121,6 +235,24 @@
       "writtenOn": "2017-05-24T19:43:39Z",
       "side": 1,
       "message": "nit, but the log api returns \"healthy\" instead of \"health\".",
+      "revId": "3f6a8ca11367ea9f4ca4dc5d7f5bb531f6e627ba",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff0f0b1f_5c0cc392",
+        "filename": "monasca_api/healthcheck/kafka_check.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2017-05-25T06:46:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff0f0b1f_6c7486cf",
       "revId": "3f6a8ca11367ea9f4ca4dc5d7f5bb531f6e627ba",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -161,6 +293,24 @@
     },
     {
       "key": {
+        "uuid": "ff0f0b1f_9f624dad",
+        "filename": "monasca_api/healthcheck/metrics_db_check.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2017-05-25T06:46:04Z",
+      "side": 1,
+      "message": "AFAIK Cassandra is optional database so it might be a good idea to also check it status.",
+      "parentUuid": "ff0f0b1f_51e95ae3",
+      "revId": "3f6a8ca11367ea9f4ca4dc5d7f5bb531f6e627ba",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff0f0b1f_b1943638",
         "filename": "monasca_api/healthcheck/metrics_db_check.py",
         "patchSetId": 13
@@ -172,6 +322,24 @@
       "writtenOn": "2017-05-24T19:43:39Z",
       "side": 1,
       "message": "Was going to suggest that a method \"check_status\" be added to the metrics repo. For example, add to the AbstractMetricsRepository the check_status method. This would also address the Cassandra dependency.",
+      "revId": "3f6a8ca11367ea9f4ca4dc5d7f5bb531f6e627ba",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff0f0b1f_7f3c1992",
+        "filename": "monasca_api/healthcheck/metrics_db_check.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2017-05-25T06:46:04Z",
+      "side": 1,
+      "message": "I don\u0027t think this is a good idea. If I add check_status method to the metric repository I would need to create repositories objects to check their health status and it would be little redundant.",
+      "parentUuid": "ff0f0b1f_b1943638",
       "revId": "3f6a8ca11367ea9f4ca4dc5d7f5bb531f6e627ba",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
