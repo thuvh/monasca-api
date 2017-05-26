@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff0f0b1f_dd2bf87f",
+        "filename": "devstack/files/debs/monasca-api",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 10311
+      },
+      "writtenOn": "2017-05-26T16:35:09Z",
+      "side": 1,
+      "message": "Will this list need to be updated past Xenial, or for other debian based OSs?  I guess this is a devstack file, and we only test a limited set of OS configurations with devstack...",
+      "range": {
+        "startLine": 7,
+        "startChar": 17,
+        "endLine": 7,
+        "endChar": 23
+      },
+      "revId": "21e4adfa1d48c80379d374bf0a23d8318a1429fa",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
