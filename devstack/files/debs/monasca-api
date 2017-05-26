@@ -1,0 +1,7 @@
+openjdk-8-jdk # dist:xenial
+maven # dist:xenial
+jq # dist:xenial
+zookeeper # dist:xenial
+python-dev # dist:xenial
+build-essential # dist:xenial
+mailutils # dist:xenial
