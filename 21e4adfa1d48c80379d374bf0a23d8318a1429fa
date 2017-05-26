@@ -46,6 +46,23 @@
       "revId": "21e4adfa1d48c80379d374bf0a23d8318a1429fa",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff0f0b1f_f1d5c344",
+        "filename": "devstack/files/zookeeper/environment",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-05-26T18:40:44Z",
+      "side": 1,
+      "message": "As for the CRs here - those are copied back from the referenced commit so I didn;t create them. I think that means we are keeping old CRs.",
+      "revId": "21e4adfa1d48c80379d374bf0a23d8318a1429fa",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
