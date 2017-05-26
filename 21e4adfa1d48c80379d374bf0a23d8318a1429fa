@@ -22,6 +22,30 @@
       "revId": "21e4adfa1d48c80379d374bf0a23d8318a1429fa",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff0f0b1f_318d7b7b",
+        "filename": "devstack/files/debs/monasca-api",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-05-26T18:39:41Z",
+      "side": 1,
+      "message": "Well, actually we only roll out with Ubuntu Xenial at the moment. There\u0027s a possibility to run different APT (let\u0027s put it this way) systems + RPM systems (like OpenSuse). Nevertheless I don\u0027t think this particular devstack is compatible with something other then Ubuntu. Guess only log-api devstack would be able to be deployed somewhere else since it is purely based on devstack without. \n\nActually you asked a nice question. I will dig into the code of devstack\u0027s ```get_plugins_packages``` function to see if the comment here (i.e. dist:xenial) is just a comment or it means anything in particular.",
+      "parentUuid": "ff0f0b1f_dd2bf87f",
+      "range": {
+        "startLine": 7,
+        "startChar": 17,
+        "endLine": 7,
+        "endChar": 23
+      },
+      "revId": "21e4adfa1d48c80379d374bf0a23d8318a1429fa",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
