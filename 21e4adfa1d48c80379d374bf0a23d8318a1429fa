@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "df140735_5fbca3ba",
+        "filename": "devstack/files/debs/monasca-api",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-05-27T18:07:44Z",
+      "side": 1,
+      "message": "It works like this. We enlist all the packages we expect to be installed as prerequisites for the certain flavor we support. For instance we could write that for \u0027trusty\u0027 we needed a package \u0027foo\u0027 \n\n  foo # dist:trusty\n\nbut if the devstack happens on xenial such package will be skipped as the DISTRO is xenial not trusty.\n\nFrom my POV we\u0027re good to go with this.",
+      "parentUuid": "ff0f0b1f_318d7b7b",
+      "range": {
+        "startLine": 7,
+        "startChar": 17,
+        "endLine": 7,
+        "endChar": 23
+      },
+      "revId": "21e4adfa1d48c80379d374bf0a23d8318a1429fa",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff0f0b1f_f1d5c344",
         "filename": "devstack/files/zookeeper/environment",
         "patchSetId": 1
