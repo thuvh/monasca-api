@@ -1559,22 +1559,23 @@ function install_monasca_agent {
         # project is cloned in the gate already, do not reclone
         git_timed clone $MONASCA_CLIENT_REPO $MONASCA_CLIENT_DIR
     fi
-    (cd "${MONASCA_CLIENT_DIR}" ; git checkout $MONASCA_CLIENT_BRANCH ; sudo python setup.py sdist)
-    MONASCA_CLIENT_SRC_DIST=$(ls -td "${MONASCA_CLIENT_DIR}"/dist/python-monascaclient*.tar.gz | head -1)
+    (cd "${MONASCA_CLIENT_DIR}" ; git checkout $MONASCA_CLIENT_BRANCH)
 
     git_clone $MONASCA_AGENT_REPO $MONASCA_AGENT_DIR $MONASCA_AGENT_BRANCH
-    (cd "${MONASCA_AGENT_DIR}" ; sudo python setup.py sdist)
-    MONASCA_AGENT_SRC_DIST=$(ls -td "${MONASCA_AGENT_DIR}"/dist/monasca-agent-*.tar.gz | head -1)
 
     sudo mkdir -p /opt/monasca-agent/
 
     (cd /opt/monasca-agent ; sudo virtualenv .)
 
-    (cd /opt/monasca-agent ; sudo ./bin/pip install $MONASCA_AGENT_SRC_DIST)
+    PIP_VIRTUAL_ENV=/opt/monasca-agent
 
-    (cd /opt/monasca-agent ; sudo ./bin/pip install $MONASCA_CLIENT_SRC_DIST)
+    setup_install $MONASCA_AGENT_DIR
 
-    (cd /opt/monasca-agent ; sudo ./bin/pip install kafka-python==0.9.2)
+    setup_install $MONASCA_CLIENT_DIR
+
+    setup_install $MONASCA_COMMON_DIR
+
+    unset PIP_VIRTUAL_ENV
 
     sudo chown $STACK_USER:monasca /opt/monasca-agent
 
