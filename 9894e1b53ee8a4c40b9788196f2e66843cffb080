@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df140735_c9eb3dae",
+        "filename": "monasca_api/tests/test_metrics_db_health_check.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-05-30T04:41:36Z",
+      "side": 1,
+      "message": "Such test should be splitted into 3 seperate cases.",
+      "revId": "9894e1b53ee8a4c40b9788196f2e66843cffb080",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
