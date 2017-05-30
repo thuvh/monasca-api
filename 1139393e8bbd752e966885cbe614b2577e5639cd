@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df140735_6147a51f",
+        "filename": "monasca_api/healthcheck/kafka_check.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-05-30T09:20:28Z",
+      "side": 1,
+      "message": "nit: Healthcheck",
+      "revId": "1139393e8bbd752e966885cbe614b2577e5639cd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df140735_0160e9a4",
+        "filename": "monasca_api/healthcheck/kafka_check.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-05-30T09:20:28Z",
+      "side": 1,
+      "message": "nit: Healthcheck",
+      "revId": "1139393e8bbd752e966885cbe614b2577e5639cd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df140735_814ab924",
+        "filename": "monasca_api/healthcheck/metrics_db_check.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-05-30T09:20:28Z",
+      "side": 1,
+      "message": "nit: Healthcheck",
+      "revId": "1139393e8bbd752e966885cbe614b2577e5639cd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df140735_41bf01fb",
+        "filename": "monasca_api/healthcheck/metrics_db_check.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-05-30T09:20:28Z",
+      "side": 1,
+      "message": "nit: Healthcheck",
+      "revId": "1139393e8bbd752e966885cbe614b2577e5639cd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df140735_0137c9b2",
+        "filename": "monasca_api/healthcheck/metrics_db_check.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-05-30T09:20:28Z",
+      "side": 1,
+      "message": "nit: Healthcheck",
+      "revId": "1139393e8bbd752e966885cbe614b2577e5639cd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
