@@ -1,5 +1,6 @@
 if [[ "${MONASCA_API_IMPLEMENTATION_LANG,,}" == 'java' ]]; then
     WSGI_MODE=mod_wsgi
+    LIBS_FROM_GIT=""
 else
 # For python version we still needs mod_wsgi because monasca-agent
 # and python-monascaclient doesn't works with Keystone in UWSGI mode.
