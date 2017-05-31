@@ -79,13 +79,23 @@ else
 
 fi
 
-# monasca-api variables
+# monasca-api settings
+if [[ ${USE_VENV} = True ]]; then
+    PROJECT_VENV["monasca-api"]=${MONASCA_API_DIR}.venv
+    MONASCA_API_BIN_DIR=${PROJECT_VENV["monasca-api"]}/bin
+else
+    MONASCA_API_BIN_DIR=$(get_python_exec_prefix)
+fi
 MONASCA_API_BASE_URI=${MONASCA_API_SERVICE_PROTOCOL}://${MONASCA_API_SERVICE_HOST}:${MONASCA_API_SERVICE_PORT}
 MONASCA_API_URI_V2=${MONASCA_API_BASE_URI}/v2.0
+
+# Files inside this directory will be visible in gates log
+MON_API_GATE_CONFIGURATION_DIR=/etc/monasca-api
 
 function pre_install_monasca {
     echo_summary "Pre-Installing Monasca Components"
     find_nearest_apache_mirror
+    install_gate_config_holder
     install_kafka
     install_zookeeper
 
@@ -95,6 +105,10 @@ function pre_install_monasca {
 
     install_monasca_virtual_env
     install_monasca_$MONASCA_METRICS_DB
+}
+
+function install_gate_config_holder {
+    sudo install -d -o $STACK_USER $MON_API_GATE_CONFIGURATION_DIR
 }
 
 function find_nearest_apache_mirror {
@@ -121,8 +135,12 @@ function install_monasca {
         install_monasca_thresh
     fi
     if is_service_enabled monasca-api; then
-        install_monasca_api_$MONASCA_API_IMPLEMENTATION_LANG
-        sudo systemctl enable monasca-api
+        if [ "$MONASCA_API_IMPLEMENTATION_LANG" == "python" ]; then
+            stack_install_service monasca-api
+        else
+            install_monasca_api_java
+            sudo systemctl enable monasca-api
+        fi
     fi
 
     install_cli_creds
@@ -139,8 +157,6 @@ function post_config_monasca {
 function configure_screen {
     if [[ -n ${SCREEN_LOGDIR} ]]; then
         sudo ln -sf /var/log/influxdb/influxd.log ${SCREEN_LOGDIR}/screen-influxdb.log || true
-
-        sudo ln -sf /var/log/monasca/api/monasca-api.log ${SCREEN_LOGDIR}/screen-monasca-api.log || true
 
         sudo ln -sf /var/log/monasca/persister/persister.log ${SCREEN_LOGDIR}/screen-monasca-persister.log || true
 
@@ -186,7 +202,7 @@ function extra_monasca {
 
 function start_monasca_services {
     if is_service_enabled monasca-api; then
-        start_service monasca-api || restart_service monasca-api
+        start_monasca_api
     fi
     if is_service_enabled monasca-persister; then
         start_service monasca-persister || restart_service monasca-persister
@@ -221,7 +237,7 @@ function unstack_monasca {
 
     stop_service monasca-persister || true
 
-    stop_service monasca-api || true
+    stop_monasca_api
 
     stop_service kafka || true
 
@@ -806,24 +822,15 @@ function install_monasca_api_java {
     " -i /etc/monasca/api-config.yml
 
 }
+function install_monasca-api {
+    echo_summary "Install Monasca monasca_api "
 
-function install_monasca_api_python {
-
-    echo_summary "Install Monasca monasca_api_python"
-
-    sudo mkdir -p /opt/monasca-api
-
-    sudo chown $STACK_USER:monasca /opt/monasca-api
-
-    (cd /opt/monasca-api; virtualenv .)
-
-    PIP_VIRTUAL_ENV=/opt/monasca-api
-
-    setup_install $MONASCA_COMMON_DIR
-
-    setup_install $MONASCA_STATSD_DIR
+    git_clone $MONASCA_API_REPO $MONASCA_API_DIR $MONASCA_API_BRANCH
+    setup_develop $MONASCA_API_DIR
 
     pip_install_gr gunicorn
+    install_monasca_common
+    install_monasca_statsd
 
     if [[ "${MONASCA_METRICS_DB,,}" == 'influxdb' ]]; then
         pip_install_gr influxdb
@@ -839,88 +846,81 @@ function install_monasca_api_python {
         pip_install_gr PyMySQL
     fi
 
-    setup_install $MONASCA_API_DIR
-    install_keystonemiddleware
+}
 
-    unset PIP_VIRTUAL_ENV
+function configure_monasca_api_python {
+    if is_service_enabled monasca-api; then
+        echo_summary "Configuring monasca-api python"
+        sudo install -d -o $STACK_USER $MONASCA_API_CONF_DIR
+        create_api_cache_dir
 
-    sudo useradd --system -g monasca mon-api || true
+        rm -rf $MONASCA_API_CONF $MONASCA_API_PASTE_INI $MONASCA_API_LOGGING_CONF
+        local dbAlarmUrl
+        local dbMetricDriver
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/monasca-api.service /etc/systemd/system/monasca-api.service
-    sudo chown root:root /etc/systemd/system/monasca-api.service
-    sudo chmod 0644 /etc/systemd/system/monasca-api.service
-    if [[ "${MONASCA_METRICS_DB,,}" == 'cassandra' ]]; then
-        sudo sed -i "s/influxdb.service/cassandra.service/g" /etc/systemd/system/monasca-api.service
+        if [[ "${MONASCA_METRICS_DB,,}" == 'cassandra' ]]; then
+            dbMetricDriver="monasca_api.common.repositories.cassandra.metrics_repository:MetricsRepository"
+        else
+            dbMetricDriver="monasca_api.common.repositories.influxdb.metrics_repository:MetricsRepository"
+        fi
+        dbAlarmUrl=`database_connection_url mon`
+        if [[ "$MONASCA_API_CONF_DIR" != "$MONASCA_API_DIR/etc/monasca" ]]; then
+            install -m 600 $MONASCA_API_DIR/etc/api-config.conf $MONASCA_API_CONF
+            install -m 600 $MONASCA_API_DIR/etc/api-logging.conf $MONASCA_API_LOGGING_CONF
+            install -m 600 $MONASCA_API_DIR/etc/api-config.ini $MONASCA_API_PASTE_INI
+        fi
+        iniset "$MONASCA_API_CONF" database connection $dbAlarmUrl
+        iniset "$MONASCA_API_CONF" repositories metrics_driver $dbMetricDriver
+        iniset "$MONASCA_API_CONF" cassandra cluster_ip_addresses $SERVICE_HOST
+        iniset "$MONASCA_API_CONF" influxdb ip_address $SERVICE_HOST
+        iniset "$MONASCA_API_CONF" influxdb port 8086
+        iniset "$MONASCA_API_CONF" kafka uri $SERVICE_HOST
+
+        configure_auth_token_middleware $MONASCA_API_CONF "admin"
+        iniset "$MONASCA_API_CONF" keystone_authtoken region_name $REGION_NAME
+        iniset "$MONASCA_API_CONF" keystone_authtoken project_name "admin"
+        iniset "$MONASCA_API_CONF" keystone_authtoken password $ADMIN_PASSWORD
+
+        iniset "$MONASCA_API_PASTE_INI" server:main host $MONASCA_API_SERVICE_HOST
+        iniset "$MONASCA_API_PASTE_INI" server:main port $MONASCA_API_SERVICE_PORT
+        iniset "$MONASCA_API_PASTE_INI" server:main workers $API_WORKERS
+
+        iniset "$MONASCA_API_LOGGING_CONF" handler_file args "($MONASCA_API_LOG_DIR, 'a', 104857600, 5)"
+
+        # link configuration for the gate
+        ln -sf $MONASCA_API_CONF $MON_API_GATE_CONFIGURATION_DIR
+        ln -sf $MONASCA_API_PASTE_INI $MON_API_GATE_CONFIGURATION_DIR
+        ln -sf $MONASCA_API_LOGGING_CONF $MON_API_GATE_CONFIGURATION_DIR
+
     fi
+}
 
-    sudo mkdir -p /var/log/monasca || true
+function create_api_cache_dir {
+    sudo install -m 700 -d -o $STACK_USER $MONASCA_API_CACHE_DIR
+}
 
-    sudo chown root:monasca /var/log/monasca
+function start_monasca_api_python {
+    if is_service_enabled monasca-api; then
+        echo_summary "Starting monasca-api"
 
-    sudo chmod 0755 /var/log/monasca
+        local service_port=$MONASCA_API_SERVICE_PORT
+        local service_protocol=$MONASCA_API_SERVICE_PROTOCOL
+        local gunicorn="$MONASCA_API_BIN_DIR/gunicorn"
 
-    sudo mkdir -p /var/log/monasca/api || true
+        restart_service memcached
+        run_process "monasca-api" "$gunicorn --paste $MONASCA_API_PASTE_INI"
 
-    sudo chown root:monasca /var/log/monasca/api
-
-    sudo chmod 0775 /var/log/monasca/api
-
-    sudo install -d -o $STACK_USER /etc/monasca
-
-    # if monasca devstack would use DATABASE_USER everywhere, following line
-    # might be replaced with database_connection_url call
-    local dbAlarmUrl
-    local dbMetricDriver
-
-    if [[ "${MONASCA_METRICS_DB,,}" == 'cassandra' ]]; then
-        dbMetricDriver="monasca_api.common.repositories.cassandra.metrics_repository:MetricsRepository"
-    else
-        dbMetricDriver="monasca_api.common.repositories.influxdb.metrics_repository:MetricsRepository"
+        echo "Waiting for monasca-api to start..."
+        if ! wait_for_service $SERVICE_TIMEOUT $service_protocol://$SERVICE_HOST:$service_port; then
+            die $LINENO "monasca-api did not start"
+        fi
     fi
-    dbAlarmUrl=`database_connection_url mon`
+}
 
-
-    install -m 600 "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/api-config.conf /etc/monasca/api-config.conf
-    install -m 600 "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/api-logging.conf /etc/monasca/api-logging.conf
-    install -m 600 "${MONASCA_API_DIR}"/devstack/files/monasca-api/python/api-config.ini /etc/monasca/api-config.ini
-
-    sed -e "
-        s|%DATABASE_HOST%|$DATABASE_HOST|g;
-        s|%DATABASE_PASSWORD%|$DATABASE_PASSWORD|g;
-        s|%DATABASE_USER%|$DATABASE_USER|g;
-        s|%MONASCA_API_DATABASE_URL%|$dbAlarmUrl|g;
-        s|%MONASCA_METRIC_DATABASE_DRIVER%|$dbMetricDriver|g;
-        s|%CASSANDRA_HOST%|$SERVICE_HOST|g;
-        s|%INFLUXDB_HOST%|$SERVICE_HOST|g;
-        s|%INFLUXDB_PORT%|8086|g;
-        s|%KAFKA_HOST%|$SERVICE_HOST|g;
-    " -i /etc/monasca/api-config.conf
-
-    configure_auth_token_middleware "/etc/monasca/api-config.conf" "admin"
-    iniset /etc/monasca/api-config.conf keystone_authtoken region_name $REGION_NAME
-    iniset /etc/monasca/api-config.conf keystone_authtoken project_name "admin"
-    iniset /etc/monasca/api-config.conf keystone_authtoken password $ADMIN_PASSWORD
-
-
-
-    sed -e "
-        s|%MONASCA_API_SERVICE_HOST%|$MONASCA_API_SERVICE_HOST|g;
-        s|%MONASCA_API_SERVICE_PORT%|$MONASCA_API_SERVICE_PORT|g;
-        s|%API_WORKERS%|$API_WORKERS|g;
-    " -i /etc/monasca/api-config.ini
-
-    sudo chown mon-api:root /etc/monasca/api-config.conf
-    sudo chmod 0660 /etc/monasca/api-config.conf
-    sudo ln -sf /etc/monasca/api-config.conf /etc/api-config.conf
-
-    sudo chown mon-api:root /etc/monasca/api-logging.conf
-    sudo chmod 0660 /etc/monasca/api-logging.conf
-    sudo ln -sf /etc/monasca/api-logging.conf /etc/api-logging.conf
-
-    sudo chown mon-api:root /etc/monasca/api-config.ini
-    sudo chmod 0660 /etc/monasca/api-config.ini
-    sudo ln -sf /etc/monasca/api-config.ini /etc/api-config.ini
-
+function stop_monasca_api_python {
+    if is_service_enabled monasca-api; then
+        stop_process "monasca-api" || true
+    fi
 }
 
 function clean_monasca_api_java {
@@ -948,29 +948,11 @@ function clean_monasca_api_python {
 
     echo_summary "Clean Monasca monasca_api_python"
 
-    sudo systemctl disable monasca-api
-
-    sudo rm /etc/systemd/system/monasca-api.service
-
-    sudo rm /etc/api-config.conf
-
-    sudo rm /etc/monasca/api-config.conf
-
-    sudo rm /etc/api-logging.conf
-
-    sudo rm /etc/monasca/api-logging.conf
-
-    sudo rm /etc/api-config.ini
-
-    sudo rm /etc/monasca/api-config.ini
-
-    sudo rm -rf /var/log/monasca/api
-
-    sudo rm /var/log/upstart/monasca-api.log*
-
-    sudo rm -rf /opt/monasca-api
-
-    sudo userdel mon-api
+    sudo rm -rf /etc/monasca/api-config.conf
+    sudo rm -rf /etc/monasca/api-logging.conf
+    sudo rm -rf /etc/monasca/api-config.ini
+    sudo rm -rf $MON_API_GATE_CONFIGURATION_DIR
+    sudo rm -rf $MONASCA_API_LOG_DIR
 
     if is_service_enabled postgresql; then
         apt_get -y purge libpq-dev
@@ -978,6 +960,22 @@ function clean_monasca_api_python {
         apt_get -y purge libmysqlclient-dev
     fi
 
+}
+
+function start_monasca_api {
+    if [[ "${MONASCA_API_IMPLEMENTATION_LANG,,}" == 'java' ]]; then
+        start_service monasca-api || restart_service monasca-api
+    elif [[ "${MONASCA_API_IMPLEMENTATION_LANG,,}" == 'python' ]]; then
+        start_monasca_api_python
+    fi
+}
+
+function stop_monasca_api {
+    if [[ "${MONASCA_API_IMPLEMENTATION_LANG,,}" == 'java' ]]; then
+        stop_service monasca-api || true
+    elif [[ "${MONASCA_API_IMPLEMENTATION_LANG,,}" == 'python' ]]; then
+        stop_monasca_api_python
+    fi
 }
 
 function install_monasca_persister_java {
