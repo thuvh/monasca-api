@@ -1249,6 +1249,7 @@ function install_monasca_notification {
         s|%MONASCA_NOTIFICATION_DATABASE_ENGINE%|$dbEngine|g;
         s|%KAFKA_HOST%|$SERVICE_HOST|g;
         s|%MONASCA_STATSD_PORT%|$MONASCA_STATSD_PORT|g;
+        s|%GRAFANA_URL%|http:\/\/$SERVICE_HOST:3000|g;
     " -i /etc/monasca/notification.yaml
 
     sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-notification/monasca-notification.service /etc/systemd/system/monasca-notification.service
