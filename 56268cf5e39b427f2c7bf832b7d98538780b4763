@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df140735_b843556c",
+        "filename": "devstack/files/monasca-agent/monasca-reconfigure",
+        "patchSetId": 9
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 10311
+      },
+      "writtenOn": "2017-06-01T21:17:07Z",
+      "side": 1,
+      "message": "Don\u0027t know if I would have left this at DEBUG, but it is just devstack not production.  Still, might consider putting at least at INFO unless you really need something from DEBUG.",
+      "range": {
+        "startLine": 17,
+        "startChar": 17,
+        "endLine": 17,
+        "endChar": 22
+      },
+      "revId": "56268cf5e39b427f2c7bf832b7d98538780b4763",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
