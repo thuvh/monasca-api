@@ -22,6 +22,30 @@
       "revId": "56268cf5e39b427f2c7bf832b7d98538780b4763",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df140735_770ca340",
+        "filename": "devstack/files/monasca-agent/monasca-reconfigure",
+        "patchSetId": 9
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-06-02T04:28:10Z",
+      "side": 1,
+      "message": "I prefer debug for the reason that\u0027s just devstack and in case of failures DEBUG brings some more light. Still, no plan to fight over that on, I can simply put INFO if more folks feel the same.",
+      "parentUuid": "df140735_b843556c",
+      "range": {
+        "startLine": 17,
+        "startChar": 17,
+        "endLine": 17,
+        "endChar": 22
+      },
+      "revId": "56268cf5e39b427f2c7bf832b7d98538780b4763",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
