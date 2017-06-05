@@ -1060,6 +1060,8 @@ class TestAlarms(base.BaseMonascaTest):
                              'state',
                              'lifecycle_state',
                              'link',
+                             'inhibited',
+                             'silenced',
                              'state_updated_timestamp',
                              'updated_timestamp',
                              'created_timestamp']) ==
