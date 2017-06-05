@@ -1,0 +1,199 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df140735_08c181e5",
+        "filename": "devstack/post_test_hook.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-06-05T15:55:49Z",
+      "side": 1,
+      "message": "Copyright",
+      "revId": "fb4f52e92afe44af05e693b3b6ba3d7e2a27f038",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df140735_28a56547",
+        "filename": "devstack/post_test_hook.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-06-05T15:55:49Z",
+      "side": 1,
+      "message": "Doesn\u0027t this need to be the reverse? If java, grep -v python_only",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 102,
+        "endChar": 2
+      },
+      "revId": "fb4f52e92afe44af05e693b3b6ba3d7e2a27f038",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df140735_138bf667",
+        "filename": "monasca_api/common/repositories/sqla/group_rules_repository.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-06-05T15:55:49Z",
+      "side": 1,
+      "message": "Updates should have all of the fields defined. This should never be hit. Same for below",
+      "range": {
+        "startLine": 226,
+        "startChar": 20,
+        "endLine": 226,
+        "endChar": 68
+      },
+      "revId": "fb4f52e92afe44af05e693b3b6ba3d7e2a27f038",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df140735_9342660e",
+        "filename": "monasca_api/common/repositories/sqla/group_rules_repository.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-06-05T15:55:49Z",
+      "side": 1,
+      "message": "On a patch, how would I say that I want to delete all of alarm actions? They are only deleted if alarm_actions has more than one element",
+      "range": {
+        "startLine": 256,
+        "startChar": 19,
+        "endLine": 256,
+        "endChar": 32
+      },
+      "revId": "fb4f52e92afe44af05e693b3b6ba3d7e2a27f038",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df140735_b358caf9",
+        "filename": "monasca_api/common/repositories/sqla/group_rules_repository.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-06-05T15:55:49Z",
+      "side": 1,
+      "message": "Should add the id to the exception",
+      "revId": "fb4f52e92afe44af05e693b3b6ba3d7e2a27f038",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df140735_73e912e4",
+        "filename": "monasca_api/common/repositories/sqla/group_rules_repository.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-06-05T15:55:49Z",
+      "side": 1,
+      "message": "The succinct way is:\n\nreturn cursor.rowcount \u003e 0",
+      "range": {
+        "startLine": 313,
+        "startChar": 12,
+        "endLine": 316,
+        "endChar": 23
+      },
+      "revId": "fb4f52e92afe44af05e693b3b6ba3d7e2a27f038",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df140735_53a04e90",
+        "filename": "monasca_api/common/repositories/sqla/inhibit_rules_repository.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-06-05T15:55:49Z",
+      "side": 1,
+      "message": "This should not have a default. It needs to be passed in from the resource.",
+      "range": {
+        "startLine": 80,
+        "startChar": 73,
+        "endLine": 80,
+        "endChar": 77
+      },
+      "revId": "fb4f52e92afe44af05e693b3b6ba3d7e2a27f038",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df140735_f3df620a",
+        "filename": "monasca_api/common/repositories/sqla/inhibit_rules_repository.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-06-05T15:55:49Z",
+      "side": 1,
+      "message": "Indent under the above else.",
+      "range": {
+        "startLine": 133,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 60
+      },
+      "revId": "fb4f52e92afe44af05e693b3b6ba3d7e2a27f038",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df140735_13d416e8",
+        "filename": "monasca_api/common/repositories/sqla/silence_rules_repository.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-06-05T15:55:49Z",
+      "side": 1,
+      "message": "All fields must be passed in for an update",
+      "range": {
+        "startLine": 148,
+        "startChar": 20,
+        "endLine": 148,
+        "endChar": 67
+      },
+      "revId": "fb4f52e92afe44af05e693b3b6ba3d7e2a27f038",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
