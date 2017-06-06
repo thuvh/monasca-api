@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "df140735_1b6876b8",
+        "filename": "devstack/post_test_hook.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-06-06T23:19:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df140735_08c181e5",
+      "revId": "fb4f52e92afe44af05e693b3b6ba3d7e2a27f038",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df140735_28a56547",
         "filename": "devstack/post_test_hook.sh",
         "patchSetId": 7
@@ -65,6 +83,30 @@
     },
     {
       "key": {
+        "uuid": "df140735_bbe18a2d",
+        "filename": "monasca_api/common/repositories/sqla/group_rules_repository.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-06-06T23:19:47Z",
+      "side": 1,
+      "message": "I think here  we allow group_wait\u003dNone for example in update and then it will hit the line.",
+      "parentUuid": "df140735_138bf667",
+      "range": {
+        "startLine": 226,
+        "startChar": 20,
+        "endLine": 226,
+        "endChar": 68
+      },
+      "revId": "fb4f52e92afe44af05e693b3b6ba3d7e2a27f038",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df140735_9342660e",
         "filename": "monasca_api/common/repositories/sqla/group_rules_repository.py",
         "patchSetId": 7
@@ -76,6 +118,30 @@
       "writtenOn": "2017-06-05T15:55:49Z",
       "side": 1,
       "message": "On a patch, how would I say that I want to delete all of alarm actions? They are only deleted if alarm_actions has more than one element",
+      "range": {
+        "startLine": 256,
+        "startChar": 19,
+        "endLine": 256,
+        "endChar": 32
+      },
+      "revId": "fb4f52e92afe44af05e693b3b6ba3d7e2a27f038",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df140735_bb686a87",
+        "filename": "monasca_api/common/repositories/sqla/group_rules_repository.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-06-06T23:19:47Z",
+      "side": 1,
+      "message": "On a patch, if you want to change alarm_actions, you will specify the new alarm_actions\u003d[notification_id1, notification_id2, ...].  Then you will need to delete the alarm_actions in the action table and insert the new ids into the action table. Sorry maybe I misunderstand your question hmm but does that make sense?",
+      "parentUuid": "df140735_9342660e",
       "range": {
         "startLine": 256,
         "startChar": 19,
@@ -105,6 +171,24 @@
     },
     {
       "key": {
+        "uuid": "df140735_3b121a0b",
+        "filename": "monasca_api/common/repositories/sqla/group_rules_repository.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-06-06T23:19:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df140735_b358caf9",
+      "revId": "fb4f52e92afe44af05e693b3b6ba3d7e2a27f038",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df140735_73e912e4",
         "filename": "monasca_api/common/repositories/sqla/group_rules_repository.py",
         "patchSetId": 7
@@ -116,6 +200,30 @@
       "writtenOn": "2017-06-05T15:55:49Z",
       "side": 1,
       "message": "The succinct way is:\n\nreturn cursor.rowcount \u003e 0",
+      "range": {
+        "startLine": 313,
+        "startChar": 12,
+        "endLine": 316,
+        "endChar": 23
+      },
+      "revId": "fb4f52e92afe44af05e693b3b6ba3d7e2a27f038",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df140735_7b31b2a2",
+        "filename": "monasca_api/common/repositories/sqla/group_rules_repository.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-06-06T23:19:47Z",
+      "side": 1,
+      "message": "Good point!! Perhaps cursor.rowcount \u003e\u003d 0?",
+      "parentUuid": "df140735_73e912e4",
       "range": {
         "startLine": 313,
         "startChar": 12,
