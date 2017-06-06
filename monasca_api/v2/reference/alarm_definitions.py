@@ -131,87 +131,100 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
             res.status = falcon.HTTP_200
 
     @resource.resource_try_catch_block
-    def on_put(self, req, res, alarm_definition_id):
+    def on_put(self, req, res, alarm_definition_id=None):
 
-        helpers.validate_authorization(req, self._default_authorized_roles)
+        if alarm_definition_id is not None:
+            helpers.validate_authorization(req, self._default_authorized_roles)
 
-        alarm_definition = helpers.from_json(req)
+            alarm_definition = helpers.from_json(req)
 
-        self._validate_alarm_definition(alarm_definition, require_all=True)
+            self._validate_alarm_definition(alarm_definition, require_all=True)
 
-        name = get_query_alarm_definition_name(alarm_definition)
-        expression = get_query_alarm_definition_expression(alarm_definition)
-        actions_enabled = (
-            get_query_alarm_definition_actions_enabled(alarm_definition))
-        description = get_query_alarm_definition_description(alarm_definition)
-        alarm_actions = get_query_alarm_definition_alarm_actions(alarm_definition)
-        ok_actions = get_query_ok_actions(alarm_definition)
-        undetermined_actions = get_query_alarm_definition_undetermined_actions(
-            alarm_definition)
-        match_by = get_query_alarm_definition_match_by(alarm_definition)
-        severity = get_query_alarm_definition_severity(alarm_definition)
+            name = get_query_alarm_definition_name(alarm_definition)
+            expression = get_query_alarm_definition_expression(alarm_definition)
+            actions_enabled = (
+                get_query_alarm_definition_actions_enabled(alarm_definition))
+            description = get_query_alarm_definition_description(alarm_definition)
+            alarm_actions = get_query_alarm_definition_alarm_actions(alarm_definition)
+            ok_actions = get_query_ok_actions(alarm_definition)
+            undetermined_actions = get_query_alarm_definition_undetermined_actions(
+                alarm_definition)
+            match_by = get_query_alarm_definition_match_by(alarm_definition)
+            severity = get_query_alarm_definition_severity(alarm_definition)
 
-        result = self._alarm_definition_update_or_patch(req.project_id,
-                                                        alarm_definition_id,
-                                                        name,
-                                                        expression,
-                                                        actions_enabled,
-                                                        description,
-                                                        alarm_actions,
-                                                        ok_actions,
-                                                        undetermined_actions,
-                                                        match_by,
-                                                        severity,
-                                                        patch=False)
+            result = self._alarm_definition_update_or_patch(req.project_id,
+                                                            alarm_definition_id,
+                                                            name,
+                                                            expression,
+                                                            actions_enabled,
+                                                            description,
+                                                            alarm_actions,
+                                                            ok_actions,
+                                                            undetermined_actions,
+                                                            match_by,
+                                                            severity,
+                                                            patch=False)
 
-        helpers.add_links_to_resource(result, req.uri)
-        res.body = helpers.to_json(result)
-        res.status = falcon.HTTP_200
+            helpers.add_links_to_resource(result, req.uri)
+            res.body = helpers.to_json(result)
+            res.status = falcon.HTTP_200
+        else:
+            res.status = falcon.HTTP_422
+            raise HTTPUnprocessableEntityError('Unprocessable Entity',
+                                               'Alarm definition ID not provided')
 
     @resource.resource_try_catch_block
-    def on_patch(self, req, res, alarm_definition_id):
+    def on_patch(self, req, res, alarm_definition_id=None):
 
-        helpers.validate_authorization(req, self._default_authorized_roles)
+        if alarm_definition_id is not None:
 
-        alarm_definition = helpers.from_json(req)
+            helpers.validate_authorization(req, self._default_authorized_roles)
 
-        # Optional args
-        name = get_query_alarm_definition_name(alarm_definition,
-                                               return_none=True)
-        expression = get_query_alarm_definition_expression(alarm_definition,
+            alarm_definition = helpers.from_json(req)
+
+            # Optional args
+            name = get_query_alarm_definition_name(alarm_definition,
+                                                   return_none=True)
+            expression = get_query_alarm_definition_expression(alarm_definition,
+                                                               return_none=True)
+            actions_enabled = (
+                get_query_alarm_definition_actions_enabled(alarm_definition,
+                                                           return_none=True))
+
+            description = get_query_alarm_definition_description(alarm_definition,
+                                                                 return_none=True)
+            alarm_actions = get_query_alarm_definition_alarm_actions(
+                alarm_definition, return_none=True)
+            ok_actions = get_query_ok_actions(alarm_definition, return_none=True)
+            undetermined_actions = get_query_alarm_definition_undetermined_actions(
+                alarm_definition, return_none=True)
+            match_by = get_query_alarm_definition_match_by(alarm_definition,
                                                            return_none=True)
-        actions_enabled = (
-            get_query_alarm_definition_actions_enabled(alarm_definition,
-                                                       return_none=True))
+            severity = get_query_alarm_definition_severity(alarm_definition,
+                                                           return_none=True)
 
-        description = get_query_alarm_definition_description(alarm_definition,
-                                                             return_none=True)
-        alarm_actions = get_query_alarm_definition_alarm_actions(
-            alarm_definition, return_none=True)
-        ok_actions = get_query_ok_actions(alarm_definition, return_none=True)
-        undetermined_actions = get_query_alarm_definition_undetermined_actions(
-            alarm_definition, return_none=True)
-        match_by = get_query_alarm_definition_match_by(alarm_definition,
-                                                       return_none=True)
-        severity = get_query_alarm_definition_severity(alarm_definition,
-                                                       return_none=True)
+            result = self._alarm_definition_update_or_patch(req.project_id,
+                                                            alarm_definition_id,
+                                                            name,
+                                                            expression,
+                                                            actions_enabled,
+                                                            description,
+                                                            alarm_actions,
+                                                            ok_actions,
+                                                            undetermined_actions,
+                                                            match_by,
+                                                            severity,
+                                                            patch=True)
 
-        result = self._alarm_definition_update_or_patch(req.project_id,
-                                                        alarm_definition_id,
-                                                        name,
-                                                        expression,
-                                                        actions_enabled,
-                                                        description,
-                                                        alarm_actions,
-                                                        ok_actions,
-                                                        undetermined_actions,
-                                                        match_by,
-                                                        severity,
-                                                        patch=True)
+            helpers.add_links_to_resource(result, req.uri)
+            res.body = helpers.to_json(result)
+            res.status = falcon.HTTP_200
+        else:
+                res.status = falcon.HTTP_422
+                raise HTTPUnprocessableEntityError('Unprocessable Entity',
+                                                'Alarm definition ID not provided')
 
-        helpers.add_links_to_resource(result, req.uri)
-        res.body = helpers.to_json(result)
-        res.status = falcon.HTTP_200
+
 
     @resource.resource_try_catch_block
     def on_delete(self, req, res, alarm_definition_id):
