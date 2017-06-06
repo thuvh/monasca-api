@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df140735_53a37c01",
+        "filename": "monasca_api/v2/reference/alarm_definitions.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2017-06-06T19:48:18Z",
+      "side": 1,
+      "message": "It might be better here to test if the alarm_definition_id is none and then raise if it is.  That way we can see the immediate exit without having to read down the rest of the function and we don\u0027t have to have an else block for the if.",
+      "range": {
+        "startLine": 136,
+        "startChar": 8,
+        "endLine": 136,
+        "endChar": 43
+      },
+      "revId": "eebd4b6fb6fb53dd3dc417c2e852fd280fb1b316",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df140735_9374749e",
+        "filename": "monasca_api/v2/reference/alarm_definitions.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 14273
+      },
+      "writtenOn": "2017-06-06T19:48:18Z",
+      "side": 1,
+      "message": "With the raise call on the next line down I\u0027m not certain this line does anything.  The decorator should catch the raise and generate the proper exception.",
+      "range": {
+        "startLine": 172,
+        "startChar": 12,
+        "endLine": 172,
+        "endChar": 40
+      },
+      "revId": "eebd4b6fb6fb53dd3dc417c2e852fd280fb1b316",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
