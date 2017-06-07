@@ -236,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "df140735_01890925",
+        "filename": "monasca_api/common/repositories/sqla/group_rules_repository.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-06-07T15:56:59Z",
+      "side": 1,
+      "message": "Sorry you are right. I think \u003e0 is correct!",
+      "parentUuid": "df140735_7b31b2a2",
+      "range": {
+        "startLine": 313,
+        "startChar": 12,
+        "endLine": 316,
+        "endChar": 23
+      },
+      "revId": "fb4f52e92afe44af05e693b3b6ba3d7e2a27f038",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df140735_53a04e90",
         "filename": "monasca_api/common/repositories/sqla/inhibit_rules_repository.py",
         "patchSetId": 7
