@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "df140735_54cb4171",
+        "filename": "monasca_api/v2/common/schemas/group_rule_request_body_schema.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-06-07T17:08:47Z",
+      "side": 1,
+      "message": "I think import the entire voluptous will work. Thanks.",
+      "parentUuid": "df140735_6696a997",
+      "revId": "6cd978be8dc2e72773a28c2859f3080f0ee99db4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df140735_266c319b",
         "filename": "monasca_api/v2/common/schemas/inhibit_rule_request_body_schema.py",
         "patchSetId": 15
@@ -47,6 +65,24 @@
       "writtenOn": "2017-06-07T09:34:36Z",
       "side": 1,
       "message": "same comment as in previous file.",
+      "revId": "6cd978be8dc2e72773a28c2859f3080f0ee99db4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df140735_d42e31f9",
+        "filename": "monasca_api/v2/common/schemas/inhibit_rule_request_body_schema.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-06-07T17:08:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df140735_266c319b",
       "revId": "6cd978be8dc2e72773a28c2859f3080f0ee99db4",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -70,6 +106,24 @@
     },
     {
       "key": {
+        "uuid": "df140735_773f67b5",
+        "filename": "monasca_api/v2/reference/group_rules.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-06-07T17:08:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df140735_66cea984",
+      "revId": "6cd978be8dc2e72773a28c2859f3080f0ee99db4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df140735_a6a96191",
         "filename": "monasca_api/v2/reference/group_rules.py",
         "patchSetId": 15
@@ -81,6 +135,24 @@
       "writtenOn": "2017-06-07T09:34:36Z",
       "side": 1,
       "message": "maybe a constant, module level variable ?",
+      "revId": "6cd978be8dc2e72773a28c2859f3080f0ee99db4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df140735_97867bdb",
+        "filename": "monasca_api/v2/reference/group_rules.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-06-07T17:08:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df140735_a6a96191",
       "revId": "6cd978be8dc2e72773a28c2859f3080f0ee99db4",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -104,6 +176,24 @@
     },
     {
       "key": {
+        "uuid": "df140735_5768e31f",
+        "filename": "monasca_api/v2/reference/group_rules.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-06-07T17:08:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df140735_269d5166",
+      "revId": "6cd978be8dc2e72773a28c2859f3080f0ee99db4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df140735_c68d7532",
         "filename": "monasca_api/v2/reference/group_rules.py",
         "patchSetId": 15
@@ -115,6 +205,24 @@
       "writtenOn": "2017-06-07T09:34:36Z",
       "side": 1,
       "message": "see above",
+      "revId": "6cd978be8dc2e72773a28c2859f3080f0ee99db4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df140735_37756ffb",
+        "filename": "monasca_api/v2/reference/group_rules.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-06-07T17:08:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df140735_c68d7532",
       "revId": "6cd978be8dc2e72773a28c2859f3080f0ee99db4",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -138,6 +246,24 @@
     },
     {
       "key": {
+        "uuid": "df140735_17726b12",
+        "filename": "monasca_api/v2/reference/group_rules.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 450,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-06-07T17:08:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df140735_4679652d",
+      "revId": "6cd978be8dc2e72773a28c2859f3080f0ee99db4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df140735_66ca2950",
         "filename": "monasca_api/v2/reference/inhibit_rules.py",
         "patchSetId": 15
@@ -149,6 +275,24 @@
       "writtenOn": "2017-06-07T09:34:36Z",
       "side": 1,
       "message": "Should import exceptions module instead concrete object",
+      "revId": "6cd978be8dc2e72773a28c2859f3080f0ee99db4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df140735_f44a5581",
+        "filename": "monasca_api/v2/reference/inhibit_rules.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-06-07T17:08:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df140735_66ca2950",
       "revId": "6cd978be8dc2e72773a28c2859f3080f0ee99db4",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
