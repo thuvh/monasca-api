@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df140735_32efbdb1",
+        "filename": "monasca_api/v2/reference/alarm_definitions.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-06-07T17:22:33Z",
+      "side": 1,
+      "message": "If you change this to:\n\nif not alarm_definition_id:\n\nIt handles an alarm_definition_id of \"\" as well",
+      "range": {
+        "startLine": 136,
+        "startChar": 8,
+        "endLine": 136,
+        "endChar": 38
+      },
+      "revId": "9719445d85f10ea7777cad40b7c1535b06ca7b21",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
