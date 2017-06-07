@@ -306,6 +306,30 @@
     },
     {
       "key": {
+        "uuid": "df140735_6109e52f",
+        "filename": "monasca_api/common/repositories/sqla/inhibit_rules_repository.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-06-07T17:09:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df140735_f3df620a",
+      "range": {
+        "startLine": 133,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 60
+      },
+      "revId": "fb4f52e92afe44af05e693b3b6ba3d7e2a27f038",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df140735_13d416e8",
         "filename": "monasca_api/common/repositories/sqla/silence_rules_repository.py",
         "patchSetId": 7
@@ -317,6 +341,30 @@
       "writtenOn": "2017-06-05T15:55:49Z",
       "side": 1,
       "message": "All fields must be passed in for an update",
+      "range": {
+        "startLine": 148,
+        "startChar": 20,
+        "endLine": 148,
+        "endChar": 67
+      },
+      "revId": "fb4f52e92afe44af05e693b3b6ba3d7e2a27f038",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df140735_34be8dff",
+        "filename": "monasca_api/common/repositories/sqla/silence_rules_repository.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-06-07T17:09:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df140735_13d416e8",
       "range": {
         "startLine": 148,
         "startChar": 20,
