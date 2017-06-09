@@ -1,4 +1,5 @@
 # Copyright 2017 FUJITSU LIMITED
+# (C) Copyright 2017 Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -14,12 +15,18 @@
 
 import requests
 
-from cassandra import cluster
 from oslo_config import cfg
 from oslo_log import log
+from oslo_utils import importutils
 
 from monasca_api.common.repositories import exceptions
 from monasca_api.healthcheck import base
+
+# Try to import cassandra. Not a problem if it can't be imported as long
+# as the metrics db is influx
+cluster = importutils.try_import('cassandra.cluster', None)
+
+driver_import_logged = False
 
 LOG = log.getLogger(__name__)
 CONF = cfg.CONF
@@ -77,6 +84,12 @@ class MetricsDbCheck(base.BaseHealthCheck):
 
     @staticmethod
     def _check_cassandra_status():
+        if cluster is None:
+            if not driver_import_logged:
+                LOG.error("Metrics Database is Cassandra but cassandra.cluster"
+                          "not importable. Unable to do health check")
+                driver_import_logged = True
+            return False, "Cassandra driver not imported"
         try:
             cassandra = cluster.Cluster(
                 CONF.cassandra.cluster_ip_addresses.split(',')
