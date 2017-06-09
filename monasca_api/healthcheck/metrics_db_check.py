@@ -1,4 +1,5 @@
 # Copyright 2017 FUJITSU LIMITED
+# (C) Copyright 2017 Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -14,12 +15,19 @@
 
 import requests
 
-from cassandra import cluster
 from oslo_config import cfg
 from oslo_log import log
 
 from monasca_api.common.repositories import exceptions
 from monasca_api.healthcheck import base
+
+# Try to import cassandra. Not a problem if it can't be imported as long
+# as the metrics db is influx
+try:
+    from cassandra import cluster
+    has_cassandra = True
+except ImportError:
+    has_cassandra = False
 
 LOG = log.getLogger(__name__)
 CONF = cfg.CONF
@@ -49,7 +57,11 @@ class MetricsDbCheck(base.BaseHealthCheck):
         if db == 'influxdb':
             status = self._check_influxdb_status()
         else:
-            status = self._check_cassandra_status()
+            if not has_cassandra:
+                # Should never happen
+                status = [False, "Cassandra driver not imported"]
+            else:
+                status = self._check_cassandra_status()
 
         return base.CheckResult(healthy=status[0],
                                 message=status[1])
