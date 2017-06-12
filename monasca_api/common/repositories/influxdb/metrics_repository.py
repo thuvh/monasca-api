@@ -724,13 +724,19 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
             raise exceptions.RepositoryException(ex)
 
     def _build_offset_clause(self, offset):
-
         if offset:
-            offset_clause = " and time > '{}'".format(offset)
+            # offset may be given as a timestamp or as epoch time in ms
+            if str(offset).isdigit():
+                # epoch time
+                offset_clause = " and time > {}ms".format(offset)
+            else:
+                # timestamp
+                offset_clause = " and time > '{}'".format(offset)
         else:
             offset_clause = ""
 
         return offset_clause
+
 
     def _build_group_by_clause(self, group_by, period=None):
         if group_by is not None and not isinstance(group_by, list):
