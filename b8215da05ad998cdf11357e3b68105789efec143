@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7f231b9d_e41606f2",
+        "filename": "monasca_api/healthcheck/metrics_db_check.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-06-12T22:59:27Z",
+      "side": 1,
+      "message": "Why exactly we need this ?",
+      "revId": "b8215da05ad998cdf11357e3b68105789efec143",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_041c6210",
+        "filename": "monasca_api/healthcheck/metrics_db_check.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-06-12T22:59:27Z",
+      "side": 1,
+      "message": "I think you need to have \n\n   global cluster \n\nand \n   \n   global driver_import_logged\n\nafter all now you refer to those as to variables.",
+      "revId": "b8215da05ad998cdf11357e3b68105789efec143",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
