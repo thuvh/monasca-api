@@ -69,6 +69,24 @@
       "revId": "90a23bc77693c7d111e9352866c06d44507df9b3",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_488a761b",
+        "filename": "monasca_api/healthcheck/metrics_db_check.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-06-12T18:45:36Z",
+      "side": 1,
+      "message": "hmm...I think that\u0027s ok. Even if you install the requirement, I guess you will restart API anyway.",
+      "parentUuid": "7f231b9d_681add7d",
+      "revId": "90a23bc77693c7d111e9352866c06d44507df9b3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
