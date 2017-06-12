@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7f231b9d_3a1e7dba",
+        "filename": "monasca_api/healthcheck/metrics_db_check.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-06-12T07:03:00Z",
+      "side": 1,
+      "message": "oslo.utils are part of requirements here. That part of code can be written as\n\n   cluster \u003d oslo_utils.importutils.try_import(\u0027cassandra.cluster\u0027, False)\n   \nand rest of the code as followed with minor adjustments.",
+      "revId": "90a23bc77693c7d111e9352866c06d44507df9b3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_da82e9c8",
+        "filename": "monasca_api/healthcheck/metrics_db_check.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-06-12T07:03:00Z",
+      "side": 1,
+      "message": "I\u0027d also put that here. Instead of the above.",
+      "revId": "90a23bc77693c7d111e9352866c06d44507df9b3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
