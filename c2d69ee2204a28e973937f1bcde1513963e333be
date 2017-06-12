@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7f231b9d_5ac5b93b",
+        "filename": "devstack/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-06-12T06:55:56Z",
+      "side": 1,
+      "message": "You can wrap these up as well.",
+      "revId": "c2d69ee2204a28e973937f1bcde1513963e333be",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_3ac2fd34",
+        "filename": "devstack/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-06-12T06:55:56Z",
+      "side": 1,
+      "message": "here",
+      "revId": "c2d69ee2204a28e973937f1bcde1513963e333be",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_1add0114",
+        "filename": "devstack/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-06-12T06:55:56Z",
+      "side": 1,
+      "message": "here",
+      "revId": "c2d69ee2204a28e973937f1bcde1513963e333be",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_5ada5917",
+        "filename": "devstack/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-06-12T06:55:56Z",
+      "side": 1,
+      "message": "and add here ```, it\u0027s somehow missing.",
+      "revId": "c2d69ee2204a28e973937f1bcde1513963e333be",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
