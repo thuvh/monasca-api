@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7f231b9d_950e85e3",
+        "filename": "devstack/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-06-12T04:34:44Z",
+      "side": 1,
+      "message": "If you;re changing here, please wrap code parts inside ``` ```.",
+      "revId": "af22566344734a349dc30cdf668169eea8b19745",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_7513e90e",
+        "filename": "devstack/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-06-12T04:34:44Z",
+      "side": 1,
+      "message": "It includes those lines as well.",
+      "revId": "af22566344734a349dc30cdf668169eea8b19745",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
