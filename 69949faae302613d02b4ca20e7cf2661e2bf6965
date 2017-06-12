@@ -22,6 +22,30 @@
       "revId": "69949faae302613d02b4ca20e7cf2661e2bf6965",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_c4954ae6",
+        "filename": "monasca_api/common/repositories/sqla/models.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 22157
+      },
+      "writtenOn": "2017-06-12T23:23:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f231b9d_bcab97d4",
+      "range": {
+        "startLine": 36,
+        "startChar": 37,
+        "endLine": 36,
+        "endChar": 47
+      },
+      "revId": "69949faae302613d02b4ca20e7cf2661e2bf6965",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
