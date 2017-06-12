@@ -724,8 +724,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
             raise exceptions.RepositoryException(ex)
 
     def _build_offset_clause(self, offset):
-
-        if offset:
+        if offset and str(offset) != '0':
             offset_clause = " and time > '{}'".format(offset)
         else:
             offset_clause = ""
