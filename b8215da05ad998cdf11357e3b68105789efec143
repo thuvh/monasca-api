@@ -87,6 +87,24 @@
       "revId": "b8215da05ad998cdf11357e3b68105789efec143",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_869bc4c7",
+        "filename": "monasca_api/healthcheck/metrics_db_check.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2017-06-13T12:25:14Z",
+      "side": 1,
+      "message": "Still you need to use here:\n    global driver_import_logged\nBecause you want to change the value of this variable (which is global) in line 91 and that\u0027s why you need to use \u0027global\u0027 to give function a permission to change it.",
+      "parentUuid": "7f231b9d_08c1102f",
+      "revId": "b8215da05ad998cdf11357e3b68105789efec143",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
