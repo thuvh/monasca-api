@@ -46,6 +46,30 @@
       "revId": "69949faae302613d02b4ca20e7cf2661e2bf6965",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_2285f208",
+        "filename": "monasca_api/common/repositories/sqla/models.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-06-13T16:54:50Z",
+      "side": 1,
+      "message": "Were you thinking to put the rule ID in here instead of just boolean?",
+      "parentUuid": "7f231b9d_c4954ae6",
+      "range": {
+        "startLine": 36,
+        "startChar": 37,
+        "endLine": 36,
+        "endChar": 47
+      },
+      "revId": "69949faae302613d02b4ca20e7cf2661e2bf6965",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
