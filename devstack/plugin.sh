@@ -1544,20 +1544,17 @@ function install_monasca_agent {
     apt_get -y install python-yaml libxml2-dev libxslt1-dev
 
     git_clone $MONASCA_CLIENT_REPO $MONASCA_CLIENT_DIR $MONASCA_CLIENT_BRANCH
-
     git_clone $MONASCA_AGENT_REPO $MONASCA_AGENT_DIR $MONASCA_AGENT_BRANCH
 
     sudo mkdir -p /opt/monasca-agent || true
-
     sudo chown $STACK_USER:monasca /opt/monasca-agent
 
     (cd /opt/monasca-agent ; virtualenv .)
 
     PIP_VIRTUAL_ENV=/opt/monasca-agent
 
-    setup_install $MONASCA_AGENT_DIR kafka_plugin
-
-    setup_install $MONASCA_CLIENT_DIR
+    setup_develop $MONASCA_AGENT_DIR kafka_plugin
+    setup_dev_lib "python-monascaclient"
 
     unset PIP_VIRTUAL_ENV
 
@@ -1589,6 +1586,12 @@ function install_monasca_agent {
 
     sudo chmod 0750 /usr/local/bin/monasca-reconfigure
 
+    sudo mkdir -p $MONASCA_AGENT_DIR/templates || true
+    sudo cp -f $MONASCA_AGENT_DIR/agent.yaml.template $MONASCA_AGENT_DIR/templates/agent.yaml.template
+    sudo cp -f $MONASCA_AGENT_DIR/packaging/supervisor.conf.template $MONASCA_AGENT_DIR/templates/supervisor.conf.template
+    sudo cp -f $MONASCA_AGENT_DIR/packaging/monasca-agent.init.template $MONASCA_AGENT_DIR/templates/monasca-agent.init.template
+    sudo cp -f $MONASCA_AGENT_DIR/packaging/monasca-agent.service.template $MONASCA_AGENT_DIR/templates/monasca-agent.service.template
+
     if [[ ${SERVICE_HOST} ]]; then
 
         sudo sed -i "s/--monasca_url 'http:\/\/127\.0\.0\.1:8070\/v2\.0'/--monasca_url 'http:\/\/${SERVICE_HOST}:8070\/v2\.0'/" /usr/local/bin/monasca-reconfigure
@@ -1596,6 +1599,7 @@ function install_monasca_agent {
     fi
     sudo sed -e "
         s|%MONASCA_STATSD_PORT%|$MONASCA_STATSD_PORT|g;
+        s|%MONASCA_TEMPLATE_DIR%|$MONASCA_AGENT_DIR/templates|g;
     " -i /usr/local/bin/monasca-reconfigure
 }
 
