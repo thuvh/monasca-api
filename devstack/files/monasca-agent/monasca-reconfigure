@@ -12,4 +12,5 @@
      --log_level 'WARN'  \
     --overwrite \
     --system_only \
-    --monasca_statsd_port %MONASCA_STATSD_PORT%
+    --monasca_statsd_port %MONASCA_STATSD_PORT% \
+    --template_dir %MONASCA_TEMPLATE_DIR%
