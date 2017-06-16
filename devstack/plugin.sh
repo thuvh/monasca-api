@@ -1554,20 +1554,17 @@ function install_monasca_agent {
     apt_get -y install python-yaml libxml2-dev libxslt1-dev
 
     git_clone $MONASCA_CLIENT_REPO $MONASCA_CLIENT_DIR $MONASCA_CLIENT_BRANCH
-
     git_clone $MONASCA_AGENT_REPO $MONASCA_AGENT_DIR $MONASCA_AGENT_BRANCH
 
     sudo mkdir -p /opt/monasca-agent || true
-
     sudo chown $STACK_USER:monasca /opt/monasca-agent
 
     (cd /opt/monasca-agent ; virtualenv .)
 
     PIP_VIRTUAL_ENV=/opt/monasca-agent
 
-    setup_install $MONASCA_AGENT_DIR kafka_plugin
-
-    setup_install $MONASCA_CLIENT_DIR
+    setup_develop $MONASCA_AGENT_DIR kafka_plugin
+    setup_dev_lib "python-monascaclient"
 
     unset PIP_VIRTUAL_ENV
 
