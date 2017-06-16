@@ -1554,20 +1554,17 @@ function install_monasca_agent {
     apt_get -y install python-yaml libxml2-dev libxslt1-dev
 
     git_clone $MONASCA_CLIENT_REPO $MONASCA_CLIENT_DIR $MONASCA_CLIENT_BRANCH
-
     git_clone $MONASCA_AGENT_REPO $MONASCA_AGENT_DIR $MONASCA_AGENT_BRANCH
 
     sudo mkdir -p /opt/monasca-agent || true
-
     sudo chown $STACK_USER:monasca /opt/monasca-agent
 
     (cd /opt/monasca-agent ; virtualenv .)
 
     PIP_VIRTUAL_ENV=/opt/monasca-agent
 
-    setup_install $MONASCA_AGENT_DIR kafka_plugin
-
-    setup_install $MONASCA_CLIENT_DIR
+    setup_develop $MONASCA_AGENT_DIR kafka_plugin
+    setup_dev_lib "python-monascaclient"
 
     unset PIP_VIRTUAL_ENV
 
@@ -1644,9 +1641,11 @@ function install_monasca_horizon_ui {
     echo_summary "Install Monasca Horizon UI"
 
     git_clone $MONASCA_UI_REPO $MONASCA_UI_DIR $MONASCA_UI_BRANCH
+    git_clone $MONASCA_CLIENT_REPO $MONASCA_CLIENT_DIR $MONASCA_CLIENT_BRANCH
+
     (cd "${MONASCA_UI_DIR}" ; sudo python setup.py sdist)
 
-    pip_install_gr python-monascaclient
+    setup_dev_lib "python-monascaclient"
 
     sudo ln -sf "${MONASCA_UI_DIR}"/monitoring/enabled/_50_admin_add_monitoring_panel.py "${MONASCA_BASE}"/horizon/openstack_dashboard/local/enabled/_50_admin_add_monitoring_panel.py
 
