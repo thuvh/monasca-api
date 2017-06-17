@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7f231b9d_4d6c249b",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 959,
+      "author": {
+        "id": 15027
+      },
+      "writtenOn": "2017-06-17T15:31:40Z",
+      "side": 1,
+      "message": "alarm grouping is when alarms are grouped?",
+      "revId": "fcff99d29eb0f4225c6386abb4caba1037d250c6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
