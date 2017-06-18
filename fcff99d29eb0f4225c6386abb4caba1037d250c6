@@ -16,6 +16,236 @@
       "revId": "fcff99d29eb0f4225c6386abb4caba1037d250c6",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_dba34bb1",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 960,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-06-18T14:24:30Z",
+      "side": 1,
+      "message": "Therefore",
+      "range": {
+        "startLine": 960,
+        "startChar": 69,
+        "endLine": 960,
+        "endChar": 77
+      },
+      "revId": "fcff99d29eb0f4225c6386abb4caba1037d250c6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_7bac379e",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 965,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-06-18T14:24:30Z",
+      "side": 1,
+      "message": "repeat_interval",
+      "range": {
+        "startLine": 965,
+        "startChar": 60,
+        "endLine": 965,
+        "endChar": 67
+      },
+      "revId": "fcff99d29eb0f4225c6386abb4caba1037d250c6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_1b9d4365",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 976,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-06-18T14:24:30Z",
+      "side": 1,
+      "message": "inhibit rule",
+      "range": {
+        "startLine": 976,
+        "startChar": 22,
+        "endLine": 976,
+        "endChar": 37
+      },
+      "revId": "fcff99d29eb0f4225c6386abb4caba1037d250c6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_bb8f6f28",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 984,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-06-18T14:24:30Z",
+      "side": 1,
+      "message": "hostname",
+      "range": {
+        "startLine": 984,
+        "startChar": 112,
+        "endLine": 984,
+        "endChar": 120
+      },
+      "revId": "fcff99d29eb0f4225c6386abb4caba1037d250c6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_7b855706",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 985,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-06-18T14:24:30Z",
+      "side": 1,
+      "message": "hostname",
+      "range": {
+        "startLine": 985,
+        "startChar": 41,
+        "endLine": 985,
+        "endChar": 51
+      },
+      "revId": "fcff99d29eb0f4225c6386abb4caba1037d250c6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_5ba5fba0",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 1142,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-06-18T14:24:30Z",
+      "side": 1,
+      "message": "notification?",
+      "range": {
+        "startLine": 1142,
+        "startChar": 51,
+        "endLine": 1142,
+        "endChar": 56
+      },
+      "revId": "fcff99d29eb0f4225c6386abb4caba1037d250c6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_dbba2bbf",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 1162,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-06-18T14:24:30Z",
+      "side": 1,
+      "message": "This is not the silence rule, its the event sending to kafka instead.",
+      "range": {
+        "startLine": 1162,
+        "startChar": 0,
+        "endLine": 1162,
+        "endChar": 12
+      },
+      "revId": "fcff99d29eb0f4225c6386abb4caba1037d250c6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_bbbd2fb8",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 1184,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-06-18T14:24:30Z",
+      "side": 1,
+      "message": "same here",
+      "range": {
+        "startLine": 1184,
+        "startChar": 0,
+        "endLine": 1184,
+        "endChar": 15
+      },
+      "revId": "fcff99d29eb0f4225c6386abb4caba1037d250c6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_9bb033df",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 1209,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-06-18T14:24:30Z",
+      "side": 1,
+      "message": "same here",
+      "range": {
+        "startLine": 1209,
+        "startChar": 0,
+        "endLine": 1209,
+        "endChar": 13
+      },
+      "revId": "fcff99d29eb0f4225c6386abb4caba1037d250c6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_3bc91f58",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 1225,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-06-18T14:24:30Z",
+      "side": 1,
+      "message": "I remember we discussed and changed the behavior to this a while ago. Do you remember why we send 4 notifications instead of 2? Feels like this defeats the purpose of grouping.",
+      "range": {
+        "startLine": 1223,
+        "startChar": 0,
+        "endLine": 1225,
+        "endChar": 61
+      },
+      "revId": "fcff99d29eb0f4225c6386abb4caba1037d250c6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
