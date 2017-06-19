@@ -94,6 +94,30 @@
     },
     {
       "key": {
+        "uuid": "7f231b9d_31ca45a0",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 961,
+      "author": {
+        "id": 22157
+      },
+      "writtenOn": "2017-06-19T17:04:57Z",
+      "side": 1,
+      "message": "That is correct. Grouping does not effect the origonal notification. The thought here is that important notificaions like pagerduty should not get grouped. Grouping well never reduce the notificaions received. I plan to add more explaining that grouping will not reduce the number of notifications received.",
+      "parentUuid": "7f231b9d_dd668aed",
+      "range": {
+        "startLine": 961,
+        "startChar": 49,
+        "endLine": 961,
+        "endChar": 66
+      },
+      "revId": "05127c6ee24e69de334633443935c9a09fd03a14",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7f231b9d_7dd5361b",
         "filename": "docs/monasca-api-spec.md",
         "patchSetId": 20
@@ -209,6 +233,30 @@
     },
     {
       "key": {
+        "uuid": "7f231b9d_f1fa8dba",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 974,
+      "author": {
+        "id": 22157
+      },
+      "writtenOn": "2017-06-19T17:04:57Z",
+      "side": 1,
+      "message": "I was trying to explain the window where both alarms transitioning will keep the target from sending for a little while. The idea here was that if you never knew there was a problem then got a notification saying the problem was fixed, that would be weird, so we added a window that looked for both source and target transitioning to OK. If they both fell in that window then we didn\u0027t send the target. Ill explain that better here",
+      "parentUuid": "7f231b9d_bbaab66d",
+      "range": {
+        "startLine": 974,
+        "startChar": 110,
+        "endLine": 974,
+        "endChar": 113
+      },
+      "revId": "05127c6ee24e69de334633443935c9a09fd03a14",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7f231b9d_fbfb8e75",
         "filename": "docs/monasca-api-spec.md",
         "patchSetId": 20
@@ -220,6 +268,30 @@
       "writtenOn": "2017-06-19T16:50:49Z",
       "side": 1,
       "message": "similar question to above, does it get tagged when the rule is created or when the rule takes effect?",
+      "range": {
+        "startLine": 990,
+        "startChar": 44,
+        "endLine": 990,
+        "endChar": 50
+      },
+      "revId": "05127c6ee24e69de334633443935c9a09fd03a14",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_3126c569",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 990,
+      "author": {
+        "id": 22157
+      },
+      "writtenOn": "2017-06-19T17:04:57Z",
+      "side": 1,
+      "message": "I have it tagging when the rule gets created. I believe that was the behavior in Prometheus. Should it only be on alarm-transition?",
+      "parentUuid": "7f231b9d_fbfb8e75",
       "range": {
         "startLine": 990,
         "startChar": 44,
@@ -335,6 +407,30 @@
       "writtenOn": "2017-06-19T16:50:49Z",
       "side": 1,
       "message": "Did you want to use the expressions in the examples? Also, I thought silence rules were specified with a start and duration, not endtime",
+      "range": {
+        "startLine": 1165,
+        "startChar": 9,
+        "endLine": 1170,
+        "endChar": 40
+      },
+      "revId": "05127c6ee24e69de334633443935c9a09fd03a14",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_f123ad54",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 1170,
+      "author": {
+        "id": 22157
+      },
+      "writtenOn": "2017-06-19T17:04:57Z",
+      "side": 1,
+      "message": "Yes, I have an old format here, and plan to change it to the one we are using now",
+      "parentUuid": "7f231b9d_367c7b70",
       "range": {
         "startLine": 1165,
         "startChar": 9,
