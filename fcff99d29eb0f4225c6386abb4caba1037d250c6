@@ -180,6 +180,30 @@
     },
     {
       "key": {
+        "uuid": "7f231b9d_1b0aca1e",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 1162,
+      "author": {
+        "id": 22157
+      },
+      "writtenOn": "2017-06-19T15:52:14Z",
+      "side": 1,
+      "message": "Good point. These examples should all have expressions instead of the Kafka event",
+      "parentUuid": "7f231b9d_dbba2bbf",
+      "range": {
+        "startLine": 1162,
+        "startChar": 0,
+        "endLine": 1162,
+        "endChar": 12
+      },
+      "revId": "fcff99d29eb0f4225c6386abb4caba1037d250c6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7f231b9d_bbbd2fb8",
         "filename": "docs/monasca-api-spec.md",
         "patchSetId": 21
@@ -237,6 +261,30 @@
       "writtenOn": "2017-06-18T14:24:30Z",
       "side": 1,
       "message": "I remember we discussed and changed the behavior to this a while ago. Do you remember why we send 4 notifications instead of 2? Feels like this defeats the purpose of grouping.",
+      "range": {
+        "startLine": 1223,
+        "startChar": 0,
+        "endLine": 1225,
+        "endChar": 61
+      },
+      "revId": "fcff99d29eb0f4225c6386abb4caba1037d250c6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_7b39bea1",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 1225,
+      "author": {
+        "id": 22157
+      },
+      "writtenOn": "2017-06-19T15:52:14Z",
+      "side": 1,
+      "message": "We send 4 notifications because the original alarms still has alarm actions. Grouping should not be used to reduce notifications in the system. Grouping should be set up in a way such that the user knows they will be getting more notifications for each group rule they define. If the intent is to reduce notifications, then the alarm definitions need to be modified.",
+      "parentUuid": "7f231b9d_3bc91f58",
       "range": {
         "startLine": 1223,
         "startChar": 0,
