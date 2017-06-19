@@ -294,6 +294,29 @@
       "revId": "fcff99d29eb0f4225c6386abb4caba1037d250c6",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_e5f4008a",
+        "filename": "monasca_api/v2/reference/group_rules.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 22157
+      },
+      "writtenOn": "2017-06-19T21:04:43Z",
+      "side": 1,
+      "message": "This should send the event to a different topic then \u0027events\u0027 to make sure that rule stuff doesn\u0027t interfere with Thresh",
+      "range": {
+        "startLine": 247,
+        "startChar": 13,
+        "endLine": 247,
+        "endChar": 23
+      },
+      "revId": "fcff99d29eb0f4225c6386abb4caba1037d250c6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
