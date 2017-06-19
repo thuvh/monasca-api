@@ -1,0 +1,602 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7f231b9d_0a8036f4",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 953,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-19T16:50:49Z",
+      "side": 1,
+      "message": "You haven\u0027t really explained what these rules are for.",
+      "range": {
+        "startLine": 953,
+        "startChar": 100,
+        "endLine": 953,
+        "endChar": 105
+      },
+      "revId": "05127c6ee24e69de334633443935c9a09fd03a14",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_8a6206ad",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 959,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-19T16:50:49Z",
+      "side": 1,
+      "message": "This doesn\u0027t explain what it means for an alarm to be grouped. What happens? What does it change about the pipeline?",
+      "range": {
+        "startLine": 959,
+        "startChar": 41,
+        "endLine": 959,
+        "endChar": 48
+      },
+      "revId": "05127c6ee24e69de334633443935c9a09fd03a14",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_1d23e2a8",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 960,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-19T16:50:49Z",
+      "side": 1,
+      "message": "spelling",
+      "range": {
+        "startLine": 960,
+        "startChar": 69,
+        "endLine": 960,
+        "endChar": 77
+      },
+      "revId": "05127c6ee24e69de334633443935c9a09fd03a14",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_dd668aed",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 961,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-19T16:50:49Z",
+      "side": 1,
+      "message": "This isn\u0027t the desired behavior though, right? This makes it sound like the grouping rules change nothing about the notifications being sent.",
+      "range": {
+        "startLine": 961,
+        "startChar": 49,
+        "endLine": 961,
+        "endChar": 66
+      },
+      "revId": "05127c6ee24e69de334633443935c9a09fd03a14",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_7dd5361b",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 965,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-19T16:50:49Z",
+      "side": 1,
+      "message": "Is this parameter specific to the grouping? You may want to clarify what this means with regard to other notifications.",
+      "range": {
+        "startLine": 965,
+        "startChar": 69,
+        "endLine": 965,
+        "endChar": 78
+      },
+      "revId": "05127c6ee24e69de334633443935c9a09fd03a14",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_761673aa",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 966,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-19T16:50:49Z",
+      "side": 1,
+      "message": "did you mean for the group transition?",
+      "range": {
+        "startLine": 966,
+        "startChar": 96,
+        "endLine": 966,
+        "endChar": 101
+      },
+      "revId": "05127c6ee24e69de334633443935c9a09fd03a14",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_9de932e4",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 970,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-19T16:50:49Z",
+      "side": 1,
+      "message": "did you mean a group of alarms? Perhaps a set of alarms",
+      "range": {
+        "startLine": 970,
+        "startChar": 60,
+        "endLine": 970,
+        "endChar": 65
+      },
+      "revId": "05127c6ee24e69de334633443935c9a09fd03a14",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_fdd14624",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 971,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-19T16:50:49Z",
+      "side": 1,
+      "message": "does it add the tags? or are those only added when the inhibition is active?",
+      "range": {
+        "startLine": 971,
+        "startChar": 60,
+        "endLine": 971,
+        "endChar": 64
+      },
+      "revId": "05127c6ee24e69de334633443935c9a09fd03a14",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_bbaab66d",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 974,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-19T16:50:49Z",
+      "side": 1,
+      "message": "Is this true? I though the only state we cared about was alarm, and we didn\u0027t interfere with anything else? Remember we can send notifications on OK and UNDETERMINED as well.",
+      "range": {
+        "startLine": 974,
+        "startChar": 110,
+        "endLine": 974,
+        "endChar": 113
+      },
+      "revId": "05127c6ee24e69de334633443935c9a09fd03a14",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_fbfb8e75",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 990,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-19T16:50:49Z",
+      "side": 1,
+      "message": "similar question to above, does it get tagged when the rule is created or when the rule takes effect?",
+      "range": {
+        "startLine": 990,
+        "startChar": 44,
+        "endLine": 990,
+        "endChar": 50
+      },
+      "revId": "05127c6ee24e69de334633443935c9a09fd03a14",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_2ab772f7",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 1029,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-19T16:50:49Z",
+      "side": 1,
+      "message": "group by always comes last",
+      "range": {
+        "startLine": 1029,
+        "startChar": 6,
+        "endLine": 1029,
+        "endChar": 18
+      },
+      "revId": "05127c6ee24e69de334633443935c9a09fd03a14",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_7bf2de71",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 1040,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-19T16:50:49Z",
+      "side": 1,
+      "message": "this is a valid expression, but will is not a good example for this section. It would return a group by list of \u0027hostname,excluding,cpu_perc\u0027",
+      "range": {
+        "startLine": 1040,
+        "startChar": 0,
+        "endLine": 1040,
+        "endChar": 17
+      },
+      "revId": "05127c6ee24e69de334633443935c9a09fd03a14",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_7bc09ee1",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 1048,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-19T16:50:49Z",
+      "side": 1,
+      "message": "this is an invalid expression",
+      "range": {
+        "startLine": 1048,
+        "startChar": 43,
+        "endLine": 1048,
+        "endChar": 97
+      },
+      "revId": "05127c6ee24e69de334633443935c9a09fd03a14",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_9b793ac6",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 1072,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-19T16:50:49Z",
+      "side": 1,
+      "message": "Did you try parsing this expression? I think it might require a \u0027targets {}\u0027 phrase.",
+      "range": {
+        "startLine": 1072,
+        "startChar": 17,
+        "endLine": 1072,
+        "endChar": 22
+      },
+      "revId": "05127c6ee24e69de334633443935c9a09fd03a14",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_367c7b70",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 1170,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-19T16:50:49Z",
+      "side": 1,
+      "message": "Did you want to use the expressions in the examples? Also, I thought silence rules were specified with a start and duration, not endtime",
+      "range": {
+        "startLine": 1165,
+        "startChar": 9,
+        "endLine": 1170,
+        "endChar": 40
+      },
+      "revId": "05127c6ee24e69de334633443935c9a09fd03a14",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_76eb1312",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 1180,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-19T16:50:49Z",
+      "side": 1,
+      "message": "This example is confusing. The ids are all the same, but a single alarm cannot have multiple severities. Same for name.",
+      "range": {
+        "startLine": 1180,
+        "startChar": 23,
+        "endLine": 1180,
+        "endChar": 39
+      },
+      "revId": "05127c6ee24e69de334633443935c9a09fd03a14",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_f6d283ff",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 1267,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-19T16:50:49Z",
+      "side": 1,
+      "message": "A single alarm definition cannot have multiple severities",
+      "range": {
+        "startLine": 1267,
+        "startChar": 23,
+        "endLine": 1267,
+        "endChar": 33
+      },
+      "revId": "05127c6ee24e69de334633443935c9a09fd03a14",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_7608b390",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 1298,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-19T16:50:49Z",
+      "side": 1,
+      "message": "A single alarm definition cannot have multiple severities.",
+      "range": {
+        "startLine": 1298,
+        "startChar": 23,
+        "endLine": 1298,
+        "endChar": 40
+      },
+      "revId": "05127c6ee24e69de334633443935c9a09fd03a14",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_56a6d7c2",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 1328,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-19T16:50:49Z",
+      "side": 1,
+      "message": "Nit: It is not explicit in the description above that the group notifications will be separated by state.",
+      "range": {
+        "startLine": 1328,
+        "startChar": 89,
+        "endLine": 1328,
+        "endChar": 94
+      },
+      "revId": "05127c6ee24e69de334633443935c9a09fd03a14",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_b6ee4bea",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 1328,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-19T16:50:49Z",
+      "side": 1,
+      "message": "I would say it is a source alarm, but it is inactive",
+      "range": {
+        "startLine": 1328,
+        "startChar": 12,
+        "endLine": 1328,
+        "endChar": 24
+      },
+      "revId": "05127c6ee24e69de334633443935c9a09fd03a14",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_16b3bfea",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 1337,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-19T16:50:49Z",
+      "side": 1,
+      "message": "A single alarm definition cannot have multiple severities",
+      "range": {
+        "startLine": 1337,
+        "startChar": 23,
+        "endLine": 1337,
+        "endChar": 47
+      },
+      "revId": "05127c6ee24e69de334633443935c9a09fd03a14",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_762d53fc",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 1378,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-19T16:50:49Z",
+      "side": 1,
+      "message": "Nit: Same as previous nit",
+      "range": {
+        "startLine": 1378,
+        "startChar": 6,
+        "endLine": 1378,
+        "endChar": 18
+      },
+      "revId": "05127c6ee24e69de334633443935c9a09fd03a14",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_d600a736",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 4344,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-19T16:50:49Z",
+      "side": 1,
+      "message": "would this actually return \u0027group_rule_2\u0027 and \u0027group_rule_4\u0027?",
+      "range": {
+        "startLine": 4344,
+        "startChar": 27,
+        "endLine": 4344,
+        "endChar": 37
+      },
+      "revId": "05127c6ee24e69de334633443935c9a09fd03a14",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_369d9b09",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 4460,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-19T16:50:49Z",
+      "side": 1,
+      "message": "wrong order on group by and excluding",
+      "range": {
+        "startLine": 4460,
+        "startChar": 66,
+        "endLine": 4460,
+        "endChar": 75
+      },
+      "revId": "05127c6ee24e69de334633443935c9a09fd03a14",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_561ff76a",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 5100,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-19T16:50:49Z",
+      "side": 1,
+      "message": "Could move the defaults to the front so they are easier to find",
+      "range": {
+        "startLine": 5100,
+        "startChar": 165,
+        "endLine": 5100,
+        "endChar": 173
+      },
+      "revId": "05127c6ee24e69de334633443935c9a09fd03a14",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f231b9d_9600ef03",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 5167,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-19T16:50:49Z",
+      "side": 1,
+      "message": "would this example actually return \u0027silence_rule_1\u0027 and \u0027silence_rule_2\u0027?",
+      "range": {
+        "startLine": 5167,
+        "startChar": 29,
+        "endLine": 5167,
+        "endChar": 41
+      },
+      "revId": "05127c6ee24e69de334633443935c9a09fd03a14",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
