@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7f231b9d_6e231ec0",
+        "filename": "monasca_api/healthcheck/metrics_db_check.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-06-20T11:23:44Z",
+      "side": 1,
+      "message": "Not really sure, but I guess the major part of having troubles in unit testing that is that you have this line here. As long as it would be part of the class (we could have two internal properties there)\n\n  def __init__(self):\n   \n    self._cassandra \u003d importutils.try_import(...)\n    self._influx \u003d importutils.try_import(...)\n\nwe would be already in good position to mock things. Obviously you\u0027d want to have this set to None and set it lazily based on \n\n   CONF.repositories.metrics_driver\n\nOnce set (i.e. not None) you would now that you\u0027ve already logged that exception you have hence cassandra_driver_import_failure_logged would become redundant.",
+      "revId": "df9c38302c3b14389e961c38613477208c958278",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
