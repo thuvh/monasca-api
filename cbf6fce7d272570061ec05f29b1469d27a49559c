@@ -1,0 +1,326 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f201791_def2f49a",
+        "filename": "monasca_api/tests/test_group_rule.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-20T16:50:21Z",
+      "side": 1,
+      "message": "why does this link have two IDs in it?",
+      "range": {
+        "startLine": 309,
+        "startChar": 72,
+        "endLine": 309,
+        "endChar": 80
+      },
+      "revId": "cbf6fce7d272570061ec05f29b1469d27a49559c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f201791_3e87a8da",
+        "filename": "monasca_api/tests/test_inhibit_rule.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-20T16:50:21Z",
+      "side": 1,
+      "message": "why is this class here and why is it called AlarmTestBase?",
+      "range": {
+        "startLine": 57,
+        "startChar": 6,
+        "endLine": 57,
+        "endChar": 19
+      },
+      "revId": "cbf6fce7d272570061ec05f29b1469d27a49559c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f201791_defc3440",
+        "filename": "monasca_api/tests/test_inhibit_rule.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-20T16:50:21Z",
+      "side": 1,
+      "message": "I\u0027m confused as to why this class exists. Seems like it could be replaced with a simple method call.",
+      "range": {
+        "startLine": 70,
+        "startChar": 6,
+        "endLine": 70,
+        "endChar": 24
+      },
+      "revId": "cbf6fce7d272570061ec05f29b1469d27a49559c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f201791_7ee1a0d0",
+        "filename": "monasca_api/tests/test_inhibit_rule.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-20T16:50:21Z",
+      "side": 1,
+      "message": "why do all these links have two IDs in them?",
+      "range": {
+        "startLine": 365,
+        "startChar": 72,
+        "endLine": 365,
+        "endChar": 78
+      },
+      "revId": "cbf6fce7d272570061ec05f29b1469d27a49559c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f201791_fe2010b3",
+        "filename": "monasca_api/tests/test_silence_rule.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-20T16:50:21Z",
+      "side": 1,
+      "message": "Same question, why two IDs on these links?",
+      "range": {
+        "startLine": 288,
+        "startChar": 59,
+        "endLine": 288,
+        "endChar": 71
+      },
+      "revId": "cbf6fce7d272570061ec05f29b1469d27a49559c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f201791_fe3c90c0",
+        "filename": "monasca_api/v2/common/schemas/inhibit_rule_request_body_schema.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-20T16:50:21Z",
+      "side": 1,
+      "message": "should probably import voluptuous to be consistent with other files",
+      "range": {
+        "startLine": 16,
+        "startChar": 1,
+        "endLine": 21,
+        "endChar": 29
+      },
+      "revId": "cbf6fce7d272570061ec05f29b1469d27a49559c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f201791_deb7943a",
+        "filename": "monasca_api/v2/common/validation.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-20T16:50:21Z",
+      "side": 1,
+      "message": "should probably reuse the dimensions validation here",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 13
+      },
+      "revId": "cbf6fce7d272570061ec05f29b1469d27a49559c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f201791_090dd93d",
+        "filename": "monasca_api/v2/reference/group_rules.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-20T16:50:21Z",
+      "side": 1,
+      "message": "this is already on the on_post method, no need for it here",
+      "range": {
+        "startLine": 253,
+        "startChar": 14,
+        "endLine": 253,
+        "endChar": 38
+      },
+      "revId": "cbf6fce7d272570061ec05f29b1469d27a49559c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f201791_24043c7b",
+        "filename": "monasca_api/v2/reference/group_rules.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-20T16:50:21Z",
+      "side": 1,
+      "message": "why not a limit of 1?",
+      "range": {
+        "startLine": 362,
+        "startChar": 34,
+        "endLine": 362,
+        "endChar": 35
+      },
+      "revId": "cbf6fce7d272570061ec05f29b1469d27a49559c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f201791_640914dc",
+        "filename": "monasca_api/v2/reference/inhibit_rules.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-20T16:50:21Z",
+      "side": 1,
+      "message": "This is already on the on_post method, so not needed here",
+      "range": {
+        "startLine": 234,
+        "startChar": 14,
+        "endLine": 234,
+        "endChar": 38
+      },
+      "revId": "cbf6fce7d272570061ec05f29b1469d27a49559c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f201791_04cf0080",
+        "filename": "monasca_api/v2/reference/inhibit_rules.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-20T16:50:21Z",
+      "side": 1,
+      "message": "why not a limit of 1?",
+      "range": {
+        "startLine": 293,
+        "startChar": 49,
+        "endLine": 293,
+        "endChar": 50
+      },
+      "revId": "cbf6fce7d272570061ec05f29b1469d27a49559c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f201791_0f3b99d1",
+        "filename": "monasca_api/v2/reference/silence_rules.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-20T16:50:21Z",
+      "side": 1,
+      "message": "this is already on on_post, no need for it here",
+      "range": {
+        "startLine": 243,
+        "startChar": 14,
+        "endLine": 243,
+        "endChar": 38
+      },
+      "revId": "cbf6fce7d272570061ec05f29b1469d27a49559c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f201791_0f4a7926",
+        "filename": "monasca_api/v2/reference/silence_rules.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-20T16:50:21Z",
+      "side": 1,
+      "message": "why not a limit of 1?",
+      "range": {
+        "startLine": 317,
+        "startChar": 36,
+        "endLine": 317,
+        "endChar": 37
+      },
+      "revId": "cbf6fce7d272570061ec05f29b1469d27a49559c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f201791_eacbab6f",
+        "filename": "monasca_tempest_tests/tests/api/test_silence_rules.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-20T16:50:21Z",
+      "side": 1,
+      "message": "can shorten this to name \u003d \"x\" * constants.MAX_RULE_NAME_LENGTH",
+      "range": {
+        "startLine": 63,
+        "startChar": 27,
+        "endLine": 65,
+        "endChar": 26
+      },
+      "revId": "cbf6fce7d272570061ec05f29b1469d27a49559c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
