@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "5f201791_415ba52d",
+        "filename": "monasca_api/common/repositories/constants.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-06-20T17:09:19Z",
+      "side": 1,
+      "message": "I don\u0027t think this is working the way you expect. As written, this should return whatever time the API started.",
+      "range": {
+        "startLine": 19,
+        "startChar": 44,
+        "endLine": 19,
+        "endChar": 49
+      },
+      "revId": "cbf6fce7d272570061ec05f29b1469d27a49559c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5f201791_def2f49a",
         "filename": "monasca_api/tests/test_group_rule.py",
         "patchSetId": 22
