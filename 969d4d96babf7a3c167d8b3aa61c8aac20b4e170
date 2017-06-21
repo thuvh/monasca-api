@@ -22,6 +22,30 @@
       "revId": "969d4d96babf7a3c167d8b3aa61c8aac20b4e170",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f201791_0c637e1c",
+        "filename": "monasca_tempest_tests/tests/api/test_alarms.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1056,
+      "author": {
+        "id": 22157
+      },
+      "writtenOn": "2017-06-21T17:29:49Z",
+      "side": 1,
+      "message": "It will fail the java tests, and we didn\u0027t want to make this dependent on the other API review or re-write the code in the other API review",
+      "parentUuid": "5f201791_ecf4c25d",
+      "range": {
+        "startLine": 1056,
+        "startChar": 8,
+        "endLine": 1056,
+        "endChar": 21
+      },
+      "revId": "969d4d96babf7a3c167d8b3aa61c8aac20b4e170",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
