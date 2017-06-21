@@ -16,6 +16,24 @@
       "revId": "b4da6612c255901667d479a2ada6ef38c8740dfe",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f201791_6f7d5a1b",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 17
+      },
+      "lineNbr": 704,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2017-06-21T06:32:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f201791_ace6e0e7",
+      "revId": "b4da6612c255901667d479a2ada6ef38c8740dfe",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
