@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f201791_ecf4c25d",
+        "filename": "monasca_tempest_tests/tests/api/test_alarms.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1056,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-06-21T17:27:45Z",
+      "side": 1,
+      "message": "What is the reason you didn\u0027t just add inhibited and silenced into this?",
+      "range": {
+        "startLine": 1056,
+        "startChar": 8,
+        "endLine": 1056,
+        "endChar": 21
+      },
+      "revId": "969d4d96babf7a3c167d8b3aa61c8aac20b4e170",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
