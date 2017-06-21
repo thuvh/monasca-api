@@ -134,6 +134,52 @@
     },
     {
       "key": {
+        "uuid": "5f201791_960d6140",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 993,
+      "author": {
+        "id": 22157
+      },
+      "writtenOn": "2017-06-21T16:26:03Z",
+      "side": 1,
+      "message": "Year should be taken out because it is not accepted",
+      "range": {
+        "startLine": 993,
+        "startChar": 108,
+        "endLine": 993,
+        "endChar": 110
+      },
+      "revId": "fcff99d29eb0f4225c6386abb4caba1037d250c6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f201791_b6185d81",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 999,
+      "author": {
+        "id": 22157
+      },
+      "writtenOn": "2017-06-21T16:26:03Z",
+      "side": 1,
+      "message": "Year should be taken out because it is not accepted",
+      "range": {
+        "startLine": 999,
+        "startChar": 0,
+        "endLine": 999,
+        "endChar": 12
+      },
+      "revId": "fcff99d29eb0f4225c6386abb4caba1037d250c6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7f231b9d_5ba5fba0",
         "filename": "docs/monasca-api-spec.md",
         "patchSetId": 21
