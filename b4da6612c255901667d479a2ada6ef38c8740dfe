@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f201791_ace6e0e7",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 17
+      },
+      "lineNbr": 704,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-06-21T05:43:11Z",
+      "side": 1,
+      "message": "this line is no longer valid.",
+      "revId": "b4da6612c255901667d479a2ada6ef38c8740dfe",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
