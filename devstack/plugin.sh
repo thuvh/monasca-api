@@ -1839,8 +1839,13 @@ function install_gate_config_holder {
 }
 
 function find_nearest_apache_mirror {
-    apache_mirror=`curl -s 'https://www.apache.org/dyn/closer.cgi?as_json=1' | jq --raw-output '.preferred'`
+    if [ -z $APACHE_MIRROR ]; then
+        local mirror;
+        mirror=`curl -s 'https://www.apache.org/dyn/closer.cgi?as_json=1' | jq --raw-output '.preferred'`
+        APACHE_MIRROR=$mirror
+    fi
 }
+
 
 # check for service enabled
 if is_service_enabled monasca; then
