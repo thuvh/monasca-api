@@ -245,7 +245,7 @@ def get_query_statistics(req):
             else:
                 statistics.extend(params['statistics'].split(','))
             statistics = [statistic.lower() for statistic in statistics]
-            if not all(statistic in ['avg', 'min', 'max', 'count', 'sum'] for
+            if not all(statistic in ['avg', 'min', 'max', 'count', 'sum', 'last'] for
                        statistic in statistics):
                 raise Exception("Invalid statistic")
             return statistics
