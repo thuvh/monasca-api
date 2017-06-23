@@ -378,6 +378,30 @@
     },
     {
       "key": {
+        "uuid": "5f201791_7ec7f346",
+        "filename": "monasca_api/v2/common/validation.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-06-23T16:44:47Z",
+      "side": 1,
+      "message": "We cant validate the expression here with invalid chars. It needs to be parsed first.",
+      "parentUuid": "5f201791_deb7943a",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 13
+      },
+      "revId": "cbf6fce7d272570061ec05f29b1469d27a49559c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5f201791_090dd93d",
         "filename": "monasca_api/v2/reference/group_rules.py",
         "patchSetId": 22
