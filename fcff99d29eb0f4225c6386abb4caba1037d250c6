@@ -442,6 +442,30 @@
     },
     {
       "key": {
+        "uuid": "5f201791_58732f4e",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 1162,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-06-23T16:44:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f231b9d_1b0aca1e",
+      "range": {
+        "startLine": 1162,
+        "startChar": 0,
+        "endLine": 1162,
+        "endChar": 12
+      },
+      "revId": "fcff99d29eb0f4225c6386abb4caba1037d250c6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7f231b9d_bbbd2fb8",
         "filename": "docs/monasca-api-spec.md",
         "patchSetId": 21
@@ -465,6 +489,30 @@
     },
     {
       "key": {
+        "uuid": "5f201791_9879c730",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 1184,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-06-23T16:44:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f231b9d_bbbd2fb8",
+      "range": {
+        "startLine": 1184,
+        "startChar": 0,
+        "endLine": 1184,
+        "endChar": 15
+      },
+      "revId": "fcff99d29eb0f4225c6386abb4caba1037d250c6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7f231b9d_9bb033df",
         "filename": "docs/monasca-api-spec.md",
         "patchSetId": 21
@@ -476,6 +524,30 @@
       "writtenOn": "2017-06-18T14:24:30Z",
       "side": 1,
       "message": "same here",
+      "range": {
+        "startLine": 1209,
+        "startChar": 0,
+        "endLine": 1209,
+        "endChar": 13
+      },
+      "revId": "fcff99d29eb0f4225c6386abb4caba1037d250c6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f201791_38907343",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 1209,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-06-23T16:44:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f231b9d_9bb033df",
       "range": {
         "startLine": 1209,
         "startChar": 0,
@@ -569,6 +641,30 @@
       "writtenOn": "2017-06-19T21:41:59Z",
       "side": 1,
       "message": "When creating a silence rule, it should default to datetime.datetime.utcnow()",
+      "range": {
+        "startLine": 390,
+        "startChar": 4,
+        "endLine": 390,
+        "endChar": 37
+      },
+      "revId": "fcff99d29eb0f4225c6386abb4caba1037d250c6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f201791_b0acdc8c",
+        "filename": "monasca_api/v2/reference/silence_rules.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-06-23T16:44:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f231b9d_702e70fb",
       "range": {
         "startLine": 390,
         "startChar": 4,
