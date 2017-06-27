@@ -98,6 +98,9 @@ MON_API_GATE_CONFIGURATION_DIR=/etc/monasca-api
 # configuration files
 MONASCA_SERVICE_TYPE=monitoring
 
+MONASCA_COMPLETION_FILE=/etc/bash_completion.d/monasca.bash_completion
+MONASCA_PROFILE_FILE=/etc/profile.d/monasca.sh
+
 function pre_install_monasca {
     echo_summary "Pre-Installing Monasca Components"
     find_nearest_apache_mirror
@@ -180,10 +183,9 @@ function extra_monasca {
     echo_summary "Installing additional monasca components"
 
     create_metric_accounts
-
-    install_keystone_client
-
     install_monasca_agent
+    install_monascaclient
+    install_monasca_profile
 
     if is_service_enabled horizon; then
         install_node_nvm
@@ -280,7 +282,8 @@ function clean_monasca {
 
     clean_schema
 
-    clean_cli_creds
+    clean_monasca_profile
+    clean_monascaclient
 
     clean_monasca_$MONASCA_METRICS_DB
 
@@ -647,11 +650,7 @@ function install_schema_metric_database_vertica {
 
 function install_schema_metric_database_cassandra {
     sudo cp -f "${MONASCA_API_DIR}"/devstack/files/cassandra/cassandra_schema.cql $MONASCA_SCHEMA_DIR/cassandra_schema.cql
-    if [[ ${SERVICE_HOST} ]]; then
-        /usr/bin/cqlsh ${SERVICE_HOST} -f $MONASCA_SCHEMA_DIR/cassandra_schema.cql
-    else
-        /usr/bin/cqlsh -f $MONASCA_SCHEMA_DIR/cassandra_schema.cql
-    fi
+    /usr/bin/cqlsh ${SERVICE_HOST} -f $MONASCA_SCHEMA_DIR/cassandra_schema.cql
 }
 
 function install_schema_kafka_topics {
@@ -1519,13 +1518,18 @@ function create_metric_accounts {
             "${MONASCA_API_URI_V2}"
 }
 
-function install_keystone_client {
-    PIP_VIRTUAL_ENV=/opt/monasca
+function install_monascaclient {
+    git_clone $MONASCA_CLIENT_REPO $MONASCA_CLIENT_DIR $MONASCA_CLIENT_BRANCH
+    setup_dev_lib "python-monascaclient"
 
-    install_keystoneclient
-    install_keystoneauth
+    # install completion file
+    monasca complete > /tmp/monasca.bash_completion
+    sudo install -D -m 0644 -o $STACK_USER /tmp/monasca.bash_completion $MONASCA_COMPLETION_FILE
+    rm -rf /tmp/monasca.bash_completion
+}
 
-    unset PIP_VIRTUAL_ENV
+function clean_monascaclient {
+    sudo rm -rf $MONASCA_COMPLETION_FILE
 }
 
 function install_monasca_agent {
