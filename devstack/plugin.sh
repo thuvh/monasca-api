@@ -93,6 +93,9 @@ MONASCA_API_URI_V2=${MONASCA_API_BASE_URI}/v2.0
 # Files inside this directory will be visible in gates log
 MON_API_GATE_CONFIGURATION_DIR=/etc/monasca-api
 
+MONASCA_COMPLETION_FILE=/etc/bash_completion.d/monasca.bash_completion
+MONASCA_PROFILE_FILE=/etc/profile.d/monasca.sh
+
 function pre_install_monasca {
     echo_summary "Pre-Installing Monasca Components"
     find_nearest_apache_mirror
@@ -137,7 +140,6 @@ function install_monasca {
     fi
 
     install_ui
-    install_cli_creds
 }
 
 function configure_monasca {
@@ -176,8 +178,6 @@ function extra_monasca {
 
     create_metric_accounts
 
-    install_keystone_client
-
     install_monasca_agent
 
     if is_service_enabled horizon; then
@@ -187,6 +187,8 @@ function extra_monasca {
     fi
 
     start_monasca_services
+    install_monascaclient
+    install_monasca_profile
 }
 
 function start_monasca_services {
@@ -275,7 +277,8 @@ function clean_monasca {
 
     clean_schema
 
-    clean_cli_creds
+    clean_monasca_profile
+    clean_monascaclient
 
     clean_monasca_$MONASCA_METRICS_DB
 
@@ -589,40 +592,37 @@ function clean_monasca_cassandra {
     sudo rm -f /etc/apt/trusted.gpg.d/cassandra.gpg
 }
 
-function install_cli_creds {
+function install_monasca_profile {
 
-    echo_summary "Install Monasca CLI Creds"
+    echo_summary "Install Monasca Bash Profile"
+
+    touch /tmp/monasca_cli.sh
+    cat > /tmp/monasca_cli.sh << EOF
+# signalize we're in shape to use monasca here
+export PS1='[\u@\h \W(monasca)]\$ '
+# set monasca client bash_completion
+source $MONASCA_COMPLETION_FILE
+# set OS_* variables
+source $TOP_DIR/openrc mini-mon mini-mon
+# override password for mini-mon (guy is not using SERVICE_PASSWORD)
+export OS_PASSWORD=password
+EOF
 
     if [[ "${MONASCA_METRICS_DB,,}" == 'cassandra' ]]; then
-
-        sudo sh -c "cat ${MONASCA_API_DIR}/devstack/files/env.sh \
-                        ${MONASCA_API_DIR}/devstack/files/cassandra/env_cassandra.sh \
-                        > /etc/profile.d/monasca_cli.sh"
-
-    else
-
-        sudo cp -f "${MONASCA_API_DIR}"/devstack/files/env.sh /etc/profile.d/monasca_cli.sh
-
+        cat >> /tmp/monasca_cli.sh << EOF
+# allow to use cassandra cli
+export CQLSH_NO_BUNDLED=true
+export CQLSH_HOST=${SERVICE_HOST}
+EOF
     fi
 
-    if [[ ${SERVICE_HOST} ]]; then
-
-        sudo sed -i "s/127\.0\.0\.1/${SERVICE_HOST}/g" /etc/profile.d/monasca_cli.sh
-
-    fi
-
-    sudo chown root:root /etc/profile.d/monasca_cli.sh
-
-    sudo chmod 0644 /etc/profile.d/monasca_cli.sh
-
+    sudo install -D -m 0644 -o $STACK_USER /tmp/monasca_cli.sh $MONASCA_PROFILE_FILE
+    rm /tmp/monasca_cli.sh
 }
 
-function clean_cli_creds {
-
+function clean_monasca_profile {
     echo_summary "Clean Monasca CLI Creds"
-
-    sudo rm -f /etc/profile.d/monasca_cli.sh
-
+    sudo rm -f $MONASCA_PROFILE_FILE
 }
 
 function install_schema {
@@ -1515,13 +1515,18 @@ function create_metric_accounts {
             "${MONASCA_API_URI_V2}"
 }
 
-function install_keystone_client {
-    PIP_VIRTUAL_ENV=/opt/monasca
+function install_monascaclient {
+    git_clone $MONASCA_CLIENT_REPO $MONASCA_CLIENT_DIR $MONASCA_CLIENT_BRANCH
+    setup_dev_lib "python-monascaclient"
 
-    install_keystoneclient
-    install_keystoneauth
+    # install completion file
+    monasca complete > /tmp/monasca.bash_completion
+    sudo install -D -m 0644 -o $STACK_USER /tmp/monasca.bash_completion $MONASCA_COMPLETION_FILE
+    rm -rf /tmp/monasca.bash_completion
+}
 
-    unset PIP_VIRTUAL_ENV
+function clean_monascaclient {
+    sudo rm -rf $MONASCA_COMPLETION_FILE
 }
 
 function install_monasca_agent {
