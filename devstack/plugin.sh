@@ -176,8 +176,7 @@ function extra_monasca {
 
     create_metric_accounts
 
-    install_keystone_client
-
+    install_monascaclient
     install_monasca_agent
 
     if is_service_enabled horizon; then
@@ -1515,13 +1514,26 @@ function create_metric_accounts {
             "${MONASCA_API_URI_V2}"
 }
 
-function install_keystone_client {
-    PIP_VIRTUAL_ENV=/opt/monasca
+function install_monascaclient {
+    git_clone $MONASCA_CLIENT_REPO $MONASCA_CLIENT_DIR $MONASCA_CLIENT_BRANCH
+    setup_dev_lib "python-monascaclient"
 
-    install_keystoneclient
-    install_keystoneauth
+    local completion_file="monasca.bash_completion"
 
-    unset PIP_VIRTUAL_ENV
+    # install completion file
+    monasca complete >> /tmp/$completion_file
+    sudo install -D -m 0644 -o $STACK_USER /tmp/$completion_file /etc/bash_completion.d/$completion_file
+
+    # install convenient rc file to get environmental variables to work
+    # with monascaclient in CLI
+    cat > $HOME/monascarc << EOF
+
+    . /etc/bash_completion.d/$completion_file
+    . $TOP_DIR/openrc mini-mon mini-mon
+
+    export OS_PASSWORD=password
+
+EOF
 }
 
 function install_monasca_agent {
