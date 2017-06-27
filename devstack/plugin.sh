@@ -48,6 +48,8 @@ set -o errexit
 source ${MONASCA_API_DIR}/devstack/lib/zookeeper.sh
 source ${MONASCA_API_DIR}/devstack/lib/ui.sh
 source ${MONASCA_API_DIR}/devstack/lib/notification.sh
+source ${MONASCA_API_DIR}/devstack/lib/profile.sh
+source ${MONASCA_API_DIR}/devstack/lib/client.sh
 # source lib/*
 
 # Set default implementations to python
@@ -81,15 +83,13 @@ else
 
 fi
 
-# venv settings
+# monasca-api settings
 if [[ ${USE_VENV} = True ]]; then
     PROJECT_VENV["monasca-api"]=${MONASCA_API_DIR}.venv
     MONASCA_API_BIN_DIR=${PROJECT_VENV["monasca-api"]}/bin
 else
     MONASCA_API_BIN_DIR=$(get_python_exec_prefix)
 fi
-
-# monasca-api settings
 MONASCA_API_BASE_URI=${MONASCA_API_SERVICE_PROTOCOL}://${MONASCA_API_SERVICE_HOST}:${MONASCA_API_SERVICE_PORT}
 MONASCA_API_URI_V2=${MONASCA_API_BASE_URI}/v2.0
 
@@ -183,10 +183,9 @@ function extra_monasca {
     echo_summary "Installing additional monasca components"
 
     create_metric_accounts
-
-    install_keystone_client
-
     install_monasca_agent
+    install_monascaclient
+    install_monasca_profile
 
     if is_service_enabled horizon; then
         install_node_nvm
@@ -280,7 +279,8 @@ function clean_monasca {
 
     clean_schema
 
-    clean_cli_creds
+    clean_monasca_profile
+    clean_monascaclient
 
     clean_monasca_$MONASCA_METRICS_DB
 
@@ -584,42 +584,6 @@ function clean_monasca_cassandra {
     sudo rm -f /etc/apt/trusted.gpg.d/cassandra.gpg
 }
 
-function install_cli_creds {
-
-    echo_summary "Install Monasca CLI Creds"
-
-    if [[ "${MONASCA_METRICS_DB,,}" == 'cassandra' ]]; then
-
-        sudo sh -c "cat ${MONASCA_API_DIR}/devstack/files/env.sh \
-                        ${MONASCA_API_DIR}/devstack/files/cassandra/env_cassandra.sh \
-                        > /etc/profile.d/monasca_cli.sh"
-
-    else
-
-        sudo cp -f "${MONASCA_API_DIR}"/devstack/files/env.sh /etc/profile.d/monasca_cli.sh
-
-    fi
-
-    if [[ ${SERVICE_HOST} ]]; then
-
-        sudo sed -i "s/127\.0\.0\.1/${SERVICE_HOST}/g" /etc/profile.d/monasca_cli.sh
-
-    fi
-
-    sudo chown root:root /etc/profile.d/monasca_cli.sh
-
-    sudo chmod 0644 /etc/profile.d/monasca_cli.sh
-
-}
-
-function clean_cli_creds {
-
-    echo_summary "Clean Monasca CLI Creds"
-
-    sudo rm -f /etc/profile.d/monasca_cli.sh
-
-}
-
 function install_schema {
     echo_summary "Install Monasca Schema"
 
@@ -647,11 +611,7 @@ function install_schema_metric_database_vertica {
 
 function install_schema_metric_database_cassandra {
     sudo cp -f "${MONASCA_API_DIR}"/devstack/files/cassandra/cassandra_schema.cql $MONASCA_SCHEMA_DIR/cassandra_schema.cql
-    if [[ ${SERVICE_HOST} ]]; then
-        /usr/bin/cqlsh ${SERVICE_HOST} -f $MONASCA_SCHEMA_DIR/cassandra_schema.cql
-    else
-        /usr/bin/cqlsh -f $MONASCA_SCHEMA_DIR/cassandra_schema.cql
-    fi
+    /usr/bin/cqlsh ${SERVICE_HOST} -f $MONASCA_SCHEMA_DIR/cassandra_schema.cql
 }
 
 function install_schema_kafka_topics {
