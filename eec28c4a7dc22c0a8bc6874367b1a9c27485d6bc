@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3f1d235d_a81dc3be",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-06-29T07:32:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f1d235d_28a9b3de",
+      "range": {
+        "startLine": 610,
+        "startChar": 4,
+        "endLine": 610,
+        "endChar": 5
+      },
+      "revId": "eec28c4a7dc22c0a8bc6874367b1a9c27485d6bc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3f1d235d_c8efdfe7",
         "filename": "devstack/plugin.sh",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2017-06-29T07:28:44Z",
       "side": 1,
       "message": "This will overwrite this file instead of extending it",
+      "range": {
+        "startLine": 616,
+        "startChar": 12,
+        "endLine": 616,
+        "endChar": 13
+      },
+      "revId": "eec28c4a7dc22c0a8bc6874367b1a9c27485d6bc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f1d235d_4882afca",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-06-29T07:32:47Z",
+      "side": 1,
+      "message": "That\u0027s not important. That is done only to avoid using sudo during content creation. Also this file is removed after copying to proper location.",
+      "parentUuid": "3f1d235d_c8efdfe7",
       "range": {
         "startLine": 616,
         "startChar": 12,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "3f1d235d_a8726310",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 1527,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-06-29T07:32:47Z",
+      "side": 1,
+      "message": "Not important, see below.",
+      "parentUuid": "3f1d235d_e8d85b80",
+      "range": {
+        "startLine": 1527,
+        "startChar": 21,
+        "endLine": 1527,
+        "endChar": 23
+      },
+      "revId": "eec28c4a7dc22c0a8bc6874367b1a9c27485d6bc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3f1d235d_e8f4dbd1",
         "filename": "devstack/plugin.sh",
         "patchSetId": 4
@@ -82,6 +154,30 @@
       "writtenOn": "2017-06-29T07:28:44Z",
       "side": 1,
       "message": "remove this tmp file at end",
+      "range": {
+        "startLine": 1528,
+        "startChar": 43,
+        "endLine": 1528,
+        "endChar": 71
+      },
+      "revId": "eec28c4a7dc22c0a8bc6874367b1a9c27485d6bc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f1d235d_8861e73c",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 1528,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-06-29T07:32:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f1d235d_e8f4dbd1",
       "range": {
         "startLine": 1528,
         "startChar": 43,
