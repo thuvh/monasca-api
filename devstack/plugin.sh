@@ -80,18 +80,24 @@ else
 
 fi
 
-# monasca-api settings
+# venv settings
 if [[ ${USE_VENV} = True ]]; then
     PROJECT_VENV["monasca-api"]=${MONASCA_API_DIR}.venv
+    PROJECT_VENV["monasca-notification"]=${MONASCA_NOTIFICATION_DIR}.venv
     MONASCA_API_BIN_DIR=${PROJECT_VENV["monasca-api"]}/bin
+    MONASCA_NOTIFICATION_BIN_DIR=${PROJECT_VENV["monasca-notification"]}/bin
 else
     MONASCA_API_BIN_DIR=$(get_python_exec_prefix)
+    MONASCA_NOTIFICATION_BIN_DIR=$(get_python_exec_prefix)
 fi
+
+# monasca-api settings
 MONASCA_API_BASE_URI=${MONASCA_API_SERVICE_PROTOCOL}://${MONASCA_API_SERVICE_HOST}:${MONASCA_API_SERVICE_PORT}
 MONASCA_API_URI_V2=${MONASCA_API_BASE_URI}/v2.0
 
 # Files inside this directory will be visible in gates log
 MON_API_GATE_CONFIGURATION_DIR=/etc/monasca-api
+MON_NOTIFICATION_GATE_CONFIGURATION_DIR=/etc/monasca-notification
 
 # monasca_service_type, used in:
 # keystone endpoint creation
@@ -124,7 +130,7 @@ function install_monasca {
         sudo systemctl enable monasca-persister
     fi
     if is_service_enabled monasca-notification; then
-        install_monasca_notification
+        stack_install_service monasca-notification
     fi
     if is_service_enabled monasca-thresh; then
         if ! is_service_enabled monasca-storm; then
@@ -152,6 +158,7 @@ function configure_monasca {
     install_schema
     configure_ui
     configure_monasca_api
+    configure_monasca_notification
     configure_screen
 }
 
@@ -159,8 +166,6 @@ function configure_screen {
     if [[ -n ${SCREEN_LOGDIR} ]]; then
         sudo ln -sf /var/log/influxdb/influxd.log ${SCREEN_LOGDIR}/screen-influxdb.log || true
         sudo ln -sf /var/log/monasca/persister/persister.log ${SCREEN_LOGDIR}/screen-monasca-persister.log || true
-
-        sudo ln -sf /var/log/monasca/notification/notification.log ${SCREEN_LOGDIR}/screen-monasca-notification.log || true
 
         sudo ln -sf /var/log/monasca/agent/statsd.log ${SCREEN_LOGDIR}/screen-monasca-agent-statsd.log || true
         sudo ln -sf /var/log/monasca/agent/supervisor.log ${SCREEN_LOGDIR}/screen-monasca-agent-supervisor.log || true
@@ -201,9 +206,7 @@ function start_monasca_services {
     if is_service_enabled monasca-persister; then
         start_service monasca-persister || restart_service monasca-persister
     fi
-    if is_service_enabled monasca-notification; then
-        start_service monasca-notification || restart_service monasca-notification
-    fi
+    run_process "monasca-notification" "$MONASCA_NOTIFICATION_BIN_DIR/monasca-notification $MONASCA_NOTIFICATION_CONF"
     if is_service_enabled monasca-thresh; then
         start_service monasca-thresh || restart_service monasca-thresh
     fi
@@ -227,7 +230,7 @@ function unstack_monasca {
 
     stop_service storm-nimbus || true
 
-    stop_service monasca-notification || true
+    stop_process "monasca-notification"
 
     stop_service monasca-persister || true
 
@@ -1182,13 +1185,14 @@ function clean_monasca_persister_python {
     sudo userdel mon-persister
 }
 
-function install_monasca_notification {
-
-    echo_summary "Install Monasca monasca_notification"
+function install_monasca-notification {
+    echo_summary "Installing monasca-notification"
 
     git_clone $MONASCA_NOTIFICATION_REPO $MONASCA_NOTIFICATION_DIR $MONASCA_NOTIFICATION_BRANCH
 
-    PIP_VIRTUAL_ENV=/opt/monasca
+    setup_develop $MONASCA_NOTIFICATION_DIR
+    install_monasca_common
+    install_monasca_statsd
 
     if is_service_enabled postgresql; then
         apt_get -y install libpq-dev
@@ -1202,31 +1206,19 @@ function install_monasca_notification {
         pip_install_gr sqlalchemy
     fi
 
-    setup_install $MONASCA_NOTIFICATION_DIR
-    install_monasca_common
-    install_monasca_statsd
+}
 
-    unset PIP_VIRTUAL_ENV
+function configure_monasca_notification {
+    if ! is_service_enabled monasca-notification; then
+        return
+    fi
 
-    sudo useradd --system -g monasca mon-notification || true
+    echo_summary "Configuring monasca-notification"
 
-    sudo mkdir -p /var/log/monasca/notification || true
+    sudo install -d -o $STACK_USER $MONASCA_NOTIFICATION_CONF_DIR
+    sudo install -d -o $STACK_USER $MONASCA_NOTIFICATION_LOG_DIR
 
-    sudo chown root:monasca /var/log/monasca/notification
-
-    sudo chmod 0775 /var/log/monasca/notification
-
-    sudo mkdir -p /etc/monasca || true
-
-    sudo chown root:monasca /etc/monasca
-
-    sudo chmod 0775 /etc/monasca
-
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-notification/notification.yaml /etc/monasca/notification.yaml
-
-    sudo chown mon-notification:monasca /etc/monasca/notification.yaml
-
-    sudo chmod 0660 /etc/monasca/notification.yaml
+    install -m 600  ${MONASCA_API_DIR}/devstack/files/monasca-notification/notification.yaml $MONASCA_NOTIFICATION_CONF
 
     local dbDriver
     local dbEngine
@@ -1253,39 +1245,25 @@ function install_monasca_notification {
         s|%MONASCA_NOTIFICATION_DATABASE_ENGINE%|$dbEngine|g;
         s|%KAFKA_HOST%|$SERVICE_HOST|g;
         s|%MONASCA_STATSD_PORT%|$MONASCA_STATSD_PORT|g;
-    " -i /etc/monasca/notification.yaml
+        s|%MONASCA_NOTIFICATION_LOG_DIR%|$MONASCA_NOTIFICATION_LOG_DIR|g;
+    " -i $MONASCA_NOTIFICATION_CONF
 
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-notification/monasca-notification.service /etc/systemd/system/monasca-notification.service
+    ln -sf $MONASCA_NOTIFICATION_CONF $MON_NOTIFICATION_GATE_CONFIGURATION_DIR
 
-    sudo chown root:root /etc/systemd/system/monasca-notification.service
-
-    sudo chmod 0644 /etc/systemd/system/monasca-notification.service
-
-    sudo systemctl enable monasca-notification
-
-    sudo debconf-set-selections <<< "postfix postfix/mailname string localhost"
-
-    sudo debconf-set-selections <<< "postfix postfix/main_mailer_type string 'Local only'"
+    echo "postfix postfix/mailname string localhost" | sudo debconf-set-selections -v
+    echo "postfix postfix/main_mailer_type string 'Local only'" | sudo debconf-set-selections -v
 
 }
 
 function clean_monasca_notification {
+    if ! is_service_enabled monasca-notification; then
+        return
+    fi
 
     echo_summary "Clean Monasca monasca_notification"
 
-    sudo systemctl disable monasca-notification
-
-    sudo rm /etc/systemd/system/monasca-notification.service
-
-    sudo rm /etc/monasca/notification.yaml
-
-    sudo rm -rf /var/log/monasca/notification
-
-    sudo userdel mon-notification
-
-    sudo rm -rf /opt/monasca/monasca-notification
-
-    sudo rm /var/log/upstart/monasca-notification.log*
+    sudo rm -rf $MONASCA_NOTIFICATION_CONF $MONASCA_NOTIFICATION_CONF_DIR \
+        $MONASCA_NOTIFICATION_LOG_DIR $MON_NOTIFICATION_GATE_CONFIGURATION_DIR
 
     if is_service_enabled postgresql; then
         apt_get -y purge libpq-dev
@@ -1839,6 +1817,7 @@ function install_monasca_statsd {
 
 function install_gate_config_holder {
     sudo install -d -o $STACK_USER $MON_API_GATE_CONFIGURATION_DIR
+    sudo install -d -o $STACK_USER $MON_NOTIFICATION_GATE_CONFIGURATION_DIR
 }
 
 function find_nearest_apache_mirror {
