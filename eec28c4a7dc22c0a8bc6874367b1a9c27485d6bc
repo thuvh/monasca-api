@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f1d235d_28a9b3de",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-06-29T07:28:44Z",
+      "side": 1,
+      "message": "remove one `v`",
+      "range": {
+        "startLine": 610,
+        "startChar": 4,
+        "endLine": 610,
+        "endChar": 5
+      },
+      "revId": "eec28c4a7dc22c0a8bc6874367b1a9c27485d6bc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f1d235d_c8efdfe7",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-06-29T07:28:44Z",
+      "side": 1,
+      "message": "This will overwrite this file instead of extending it",
+      "range": {
+        "startLine": 616,
+        "startChar": 12,
+        "endLine": 616,
+        "endChar": 13
+      },
+      "revId": "eec28c4a7dc22c0a8bc6874367b1a9c27485d6bc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f1d235d_e8d85b80",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 1527,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-06-29T07:28:44Z",
+      "side": 1,
+      "message": "Should overwrite, not add to end",
+      "range": {
+        "startLine": 1527,
+        "startChar": 21,
+        "endLine": 1527,
+        "endChar": 23
+      },
+      "revId": "eec28c4a7dc22c0a8bc6874367b1a9c27485d6bc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f1d235d_e8f4dbd1",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 1528,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-06-29T07:28:44Z",
+      "side": 1,
+      "message": "remove this tmp file at end",
+      "range": {
+        "startLine": 1528,
+        "startChar": 43,
+        "endLine": 1528,
+        "endChar": 71
+      },
+      "revId": "eec28c4a7dc22c0a8bc6874367b1a9c27485d6bc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
