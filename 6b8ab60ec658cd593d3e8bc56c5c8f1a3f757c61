@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f1d235d_a3a20b4a",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 4618,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-07-04T09:45:19Z",
+      "side": 1,
+      "message": "Seems a bit odd to include this as possible value that can be send if it is prohibited anyway.",
+      "revId": "6b8ab60ec658cd593d3e8bc56c5c8f1a3f757c61",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f1d235d_44ad7ee7",
+        "filename": "monasca_api/v2/common/schemas/alarm_definition_request_body_schema.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-07-04T09:45:19Z",
+      "side": 1,
+      "message": "six.string_types",
+      "revId": "6b8ab60ec658cd593d3e8bc56c5c8f1a3f757c61",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f1d235d_c4a18efa",
+        "filename": "monasca_api/v2/common/schemas/group_rule_request_body_schema.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-07-04T09:45:19Z",
+      "side": 1,
+      "message": "This is not py35 compatible.\nI believe you can get the same result using six.string_types.\n\nAs Py35 is Pike goal, we shouldn\u0027t introduce more incompatibility as it is already a big issue to fix the code to be Py35 compatible",
+      "revId": "6b8ab60ec658cd593d3e8bc56c5c8f1a3f757c61",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f1d235d_e49c8ac1",
+        "filename": "monasca_api/v2/common/schemas/inhibit_rule_request_body_schema.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-07-04T09:45:19Z",
+      "side": 1,
+      "message": "This is not py35 compatible.\nI believe you can get the same result using six.string_types.\n\nAs Py35 is Pike goal, we shouldn\u0027t introduce more incompatibility as it is already a big issue to fix the code to be Py35 compatible",
+      "revId": "6b8ab60ec658cd593d3e8bc56c5c8f1a3f757c61",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f1d235d_c48aae68",
+        "filename": "monasca_api/v2/common/schemas/silence_rule_request_body_schema.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-07-04T09:45:19Z",
+      "side": 1,
+      "message": "This is not py35 compatible.\nI believe you can get the same result using six.string_types.\n\nAs Py35 is Pike goal, we shouldn\u0027t introduce more incompatibility as it is already a big issue to fix the code to be Py35 compatible",
+      "revId": "6b8ab60ec658cd593d3e8bc56c5c8f1a3f757c61",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f1d235d_a47b3279",
+        "filename": "monasca_api/v2/common/validation.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-07-04T09:45:19Z",
+      "side": 1,
+      "message": "This is not py35 compatible.\nI believe you can get the same result using six.string_types.\n\nAs Py35 is Pike goal, we shouldn\u0027t introduce more incompatibility as it is already a big issue to fix the code to be Py35 compatible",
+      "revId": "6b8ab60ec658cd593d3e8bc56c5c8f1a3f757c61",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f1d235d_e4d36a5f",
+        "filename": "monasca_api/v2/reference/group_rules.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-07-04T09:45:19Z",
+      "side": 1,
+      "message": "As I recall there was a problem somewhere where falcon interpreted numeric value as long and such code got broken. Might be better to have long here or take a look at six.integer_types",
+      "revId": "6b8ab60ec658cd593d3e8bc56c5c8f1a3f757c61",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f1d235d_64c75a98",
+        "filename": "monasca_api/v2/reference/inhibit_rules.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-07-04T09:45:19Z",
+      "side": 1,
+      "message": "six.integer_types",
+      "revId": "6b8ab60ec658cd593d3e8bc56c5c8f1a3f757c61",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f1d235d_24bde201",
+        "filename": "monasca_api/v2/reference/silence_rules.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-07-04T09:45:19Z",
+      "side": 1,
+      "message": "six.integer_types",
+      "revId": "6b8ab60ec658cd593d3e8bc56c5c8f1a3f757c61",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
