@@ -67,8 +67,14 @@ usedevelop = False
 commands = bash {toxinidir}/tools/bashate.sh
 
 [testenv:pep8]
+<<<<<<< 175577d35b65ed5a5f6be0a13a67fc0a7525e67a
 skip_install = True
 usedevelop = False
+=======
+description = Runs set of linters against codebase (flake8, bandit, bashate, checkniceness)
+deps =
+  {[testenv]deps}
+>>>>>>> Prepare foundation for doc migration
 commands =
   {[testenv:flake8]commands}
   {[testenv:bandit]commands}
@@ -111,8 +117,6 @@ commands =
   python setup.py build_sphinx
 
 [testenv:checkniceness]
-skip_install = True
-usedevelop = False
 description = Validates (pep-like) documenation
 commands =
   doc8 --file-encoding utf-8 {toxinidir}/doc
@@ -123,11 +127,9 @@ commands =
 [testenv:checkjson]
 description = Validates all json samples inside doc folder
 deps =
-skip_install = True
-usedevelop = False
 whitelist_externals =
-  python
-  bash
+    bash
+    python
 commands =
   bash -c "! find doc/ -type f -name *.json | xargs grep -U -n $'\r'"
   bash -c '! find doc/ -type f -name *.json | xargs -t -n1 python -m json.tool 2>&1 > /dev/null | grep -B1 -v ^python'
