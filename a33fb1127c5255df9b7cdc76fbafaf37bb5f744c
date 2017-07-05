@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f1d235d_92016d09",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 25904
+      },
+      "writtenOn": "2017-07-05T13:47:33Z",
+      "side": 1,
+      "message": "A question: why do you use \"-\" as the usual name convention uses \"_\" (as in configure_monasca_api)?",
+      "range": {
+        "startLine": 156,
+        "startChar": 4,
+        "endLine": 156,
+        "endChar": 21
+      },
+      "revId": "a33fb1127c5255df9b7cdc76fbafaf37bb5f744c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f1d235d_a532e5f0",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 1207,
+      "author": {
+        "id": 25904
+      },
+      "writtenOn": "2017-07-05T13:47:33Z",
+      "side": 1,
+      "message": "Same question as above.",
+      "range": {
+        "startLine": 1207,
+        "startChar": 27,
+        "endLine": 1207,
+        "endChar": 39
+      },
+      "revId": "a33fb1127c5255df9b7cdc76fbafaf37bb5f744c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
