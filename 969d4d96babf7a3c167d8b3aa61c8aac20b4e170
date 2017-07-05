@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3f1d235d_17cd5265",
+        "filename": "monasca_api/tests/sqlite_alarm.sql",
+        "patchSetId": 9
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-07-05T11:36:18Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "5f201791_8a476d4c",
+      "range": {
+        "startLine": 47,
+        "startChar": 43,
+        "endLine": 47,
+        "endChar": 44
+      },
+      "revId": "969d4d96babf7a3c167d8b3aa61c8aac20b4e170",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5f201791_6a7651a7",
         "filename": "monasca_api/tests/sqlite_alarm.sql",
         "patchSetId": 9
@@ -36,6 +60,29 @@
       "writtenOn": "2017-06-21T18:57:30Z",
       "side": 1,
       "message": "same here",
+      "revId": "969d4d96babf7a3c167d8b3aa61c8aac20b4e170",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f1d235d_570ceaea",
+        "filename": "monasca_api/tests/test_a_repository.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 896,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-07-05T11:36:18Z",
+      "side": 1,
+      "message": "stick to the same order like in lines 889-893",
+      "range": {
+        "startLine": 895,
+        "startChar": 0,
+        "endLine": 896,
+        "endChar": 38
+      },
       "revId": "969d4d96babf7a3c167d8b3aa61c8aac20b4e170",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
