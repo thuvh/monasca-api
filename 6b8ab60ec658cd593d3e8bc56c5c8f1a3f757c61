@@ -19,6 +19,29 @@
     },
     {
       "key": {
+        "uuid": "3f1d235d_b577a1a0",
+        "filename": "monasca_api/common/repositories/sqla/silence_rules_repository.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-07-06T22:46:52Z",
+      "side": 1,
+      "message": "cannot encode a datetime object",
+      "range": {
+        "startLine": 81,
+        "startChar": 38,
+        "endLine": 81,
+        "endChar": 48
+      },
+      "revId": "6b8ab60ec658cd593d3e8bc56c5c8f1a3f757c61",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3f1d235d_44ad7ee7",
         "filename": "monasca_api/v2/common/schemas/alarm_definition_request_body_schema.py",
         "patchSetId": 32
@@ -149,6 +172,29 @@
       "writtenOn": "2017-07-04T09:45:19Z",
       "side": 1,
       "message": "six.integer_types",
+      "revId": "6b8ab60ec658cd593d3e8bc56c5c8f1a3f757c61",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f1d235d_ed7e46ad",
+        "filename": "monasca_api/v2/reference/silence_rules.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-07-06T22:46:52Z",
+      "side": 1,
+      "message": "Need to validate the expression before creating in the repository. Same for other rules.",
+      "range": {
+        "startLine": 265,
+        "startChar": 17,
+        "endLine": 265,
+        "endChar": 36
+      },
       "revId": "6b8ab60ec658cd593d3e8bc56c5c8f1a3f757c61",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
