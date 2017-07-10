@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f1d235d_5fefd186",
+        "filename": "devstack/settings",
+        "patchSetId": 19
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-10T15:41:31Z",
+      "side": 1,
+      "message": "Monasca is registered as Monitoring service in OpenStack Governance. Why would want to use a different name and expose that settings?\n\nIn my opinion it would be better to define this constant in plugin itself and not expose it here.",
+      "range": {
+        "startLine": 190,
+        "startChar": 0,
+        "endLine": 190,
+        "endChar": 58
+      },
+      "revId": "ca8ce4ba821f6bc1382198c72ff338d0f36aaa40",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
