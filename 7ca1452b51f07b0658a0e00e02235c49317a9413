@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f1d235d_2eb4d1d0",
+        "filename": "monasca_api/api/server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-07-11T08:36:38Z",
+      "side": 1,
+      "message": "I\u0027d add debug here to have this in logs.",
+      "revId": "7ca1452b51f07b0658a0e00e02235c49317a9413",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
