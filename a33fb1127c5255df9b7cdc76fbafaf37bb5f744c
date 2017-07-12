@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3f1d235d_06c1d8e4",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-07-12T05:32:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f1d235d_92016d09",
+      "range": {
+        "startLine": 156,
+        "startChar": 4,
+        "endLine": 156,
+        "endChar": 21
+      },
+      "revId": "a33fb1127c5255df9b7cdc76fbafaf37bb5f744c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3f1d235d_a532e5f0",
         "filename": "devstack/plugin.sh",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2017-07-05T13:47:33Z",
       "side": 1,
       "message": "Same question as above.",
+      "range": {
+        "startLine": 1207,
+        "startChar": 27,
+        "endLine": 1207,
+        "endChar": 39
+      },
+      "revId": "a33fb1127c5255df9b7cdc76fbafaf37bb5f744c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f1d235d_c6bac06c",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 1207,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-07-12T05:32:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f1d235d_a532e5f0",
       "range": {
         "startLine": 1207,
         "startChar": 27,
