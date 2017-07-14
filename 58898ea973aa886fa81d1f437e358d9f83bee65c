@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f1a1f67_a52eb340",
+        "filename": "devstack/lib/profile.sh",
+        "patchSetId": 14
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-07-14T10:44:00Z",
+      "side": 1,
+      "message": "MONASCA_COMPLETION_FILE also should be removed",
+      "range": {
+        "startLine": 56,
+        "startChar": 4,
+        "endLine": 56,
+        "endChar": 38
+      },
+      "revId": "58898ea973aa886fa81d1f437e358d9f83bee65c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
