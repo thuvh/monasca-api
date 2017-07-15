@@ -141,17 +141,20 @@ MONASCA_DATABASE_USE_ORM=${MONASCA_DATABASE_USE_ORM:-false}
 # MONASCA_API_IMPLEMENTATION_LANG=${MONASCA_API_IMPLEMENTATION_LANG:-java}
 MONASCA_API_IMPLEMENTATION_LANG=${MONASCA_API_IMPLEMENTATION_LANG:-python}
 
-# Uncomment one of the following two lines to choose Java or Python for the Monasca Pesister.
-# MONASCA_PERSISTER_IMPLEMENTATION_LANG=${MONASCA_PERSISTER_IMPLEMENTATION_LANG:-java}
-MONASCA_PERSISTER_IMPLEMENTATION_LANG=${MONASCA_PERSISTER_IMPLEMENTATION_LANG:-python}
+# Uncomment one of the following two lines to choose Java or Python for the Monasca Pesister
+MONASCA_PERSISTER_IMPLEMENTATION_LANG=${MONASCA_PERSISTER_IMPLEMENTATION_LANG:-java}
+# MONASCA_PERSISTER_IMPLEMENTATION_LANG=${MONASCA_PERSISTER_IMPLEMENTATION_LANG:-python}
 
 # Uncomment one of the following three lines to choose either InfluxDB, Vertica or Cassandra.
 # MONASCA_METRICS_DB=${MONASCA_METRICS_DB:-vertica}
 # MONASCA_METRICS_DB=${MONASCA_METRICS_DB:-cassandra}
 MONASCA_METRICS_DB=${MONASCA_METRICS_DB:-influxdb}
 
+MONASCA_API_BRANCH=review/tomasz_tr_bski/484179
+MONASCA_API_REPO=file:///vagrant_home/dev/monasca-api
+
 # Uncomment one of the following lines and modify accordingly to enable the Monasca DevStack Plugin
-enable_plugin monasca-api https://git.openstack.org/openstack/monasca-api
+enable_plugin monasca-api $MONASCA_API_REPO $MONASCA_API_BRANCH
 # enable_plugin monasca-api file:///vagrant_home/Documents/repos/openstack/monasca-api.vertica
 
 ' > local.conf
