@@ -48,6 +48,7 @@ set -o errexit
 source ${MONASCA_API_DIR}/devstack/lib/zookeeper.sh
 source ${MONASCA_API_DIR}/devstack/lib/ui.sh
 source ${MONASCA_API_DIR}/devstack/lib/notification.sh
+source ${MONASCA_API_DIR}/devstack/lib/persister.sh
 # source lib/*
 
 # Set default implementations to python
@@ -121,12 +122,7 @@ function install_monasca {
     echo_summary "Installing Monasca"
 
     install_monasca_common_java
-
-    if is_service_enabled monasca-persister; then
-        install_monasca_persister_$MONASCA_PERSISTER_IMPLEMENTATION_LANG
-        sudo systemctl enable monasca-persister
-    fi
-
+    stack_install_service monasca-persister
     stack_install_service monasca-notification
 
     if is_service_enabled monasca-thresh; then
@@ -157,13 +153,13 @@ function configure_monasca {
     configure_ui
     configure_monasca_api
     configure_monasca_notification
+    configure_monasca-persister
     configure_screen
 }
 
 function configure_screen {
     if [[ -n ${SCREEN_LOGDIR} ]]; then
         sudo ln -sf /var/log/influxdb/influxd.log ${SCREEN_LOGDIR}/screen-influxdb.log || true
-        sudo ln -sf /var/log/monasca/persister/persister.log ${SCREEN_LOGDIR}/screen-monasca-persister.log || true
 
         sudo ln -sf /var/log/monasca/agent/statsd.log ${SCREEN_LOGDIR}/screen-monasca-agent-statsd.log || true
         sudo ln -sf /var/log/monasca/agent/supervisor.log ${SCREEN_LOGDIR}/screen-monasca-agent-supervisor.log || true
@@ -201,10 +197,8 @@ function start_monasca_services {
     if is_service_enabled monasca-api; then
         start_monasca_api
     fi
-    if is_service_enabled monasca-persister; then
-        start_service monasca-persister || restart_service monasca-persister
-    fi
     start_monasca_notification
+    start_monasca-persister
     if is_service_enabled monasca-thresh; then
         start_service monasca-thresh || restart_service monasca-thresh
     fi
@@ -229,9 +223,7 @@ function unstack_monasca {
     stop_service storm-nimbus || true
 
     stop_monasca_notification
-
-    stop_service monasca-persister || true
-
+    stop_monasca-persister
     stop_monasca_api
 
     stop_service kafka || true
@@ -267,15 +259,12 @@ function clean_monasca {
     if is_service_enabled monasca-storm; then
         clean_storm
     fi
-    if is_service_enabled monasca-persister; then
-        clean_monasca_persister_$MONASCA_PERSISTER_IMPLEMENTATION_LANG
-    fi
     if is_service_enabled monasca-api; then
         clean_monasca_api_$MONASCA_API_IMPLEMENTATION_LANG
     fi
 
+    clean_monasca-persister
     clean_monasca_notification
-
     clean_monasca_common_java
 
     clean_schema
@@ -1046,98 +1035,6 @@ function install_monasca_persister_java {
 
 }
 
-function install_monasca_persister_python {
-
-    echo_summary "Install Monasca monasca_persister_python"
-
-    git_clone $MONASCA_PERSISTER_REPO $MONASCA_PERSISTER_DIR $MONASCA_PERSISTER_BRANCH
-
-    sudo mkdir -p /opt/monasca-persister || true
-    sudo chown $STACK_USER:monasca /opt/monasca-persister
-
-    (cd /opt/monasca-persister ; virtualenv .)
-
-    PIP_VIRTUAL_ENV=/opt/monasca-persister
-
-    setup_install $MONASCA_PERSISTER_DIR
-    install_monasca_common
-
-    if [[ "${MONASCA_METRICS_DB,,}" == 'influxdb' ]]; then
-        pip_install_gr influxdb
-    elif [[ "${MONASCA_METRICS_DB,,}" == 'cassandra' ]]; then
-        pip_install_gr cassandra-driver
-    fi
-
-    unset PIP_VIRTUAL_ENV
-    sudo useradd --system -g monasca mon-persister || true
-
-    sudo mkdir -p /var/log/monasca || true
-    sudo chown root:monasca /var/log/monasca
-    sudo chmod 0755 /var/log/monasca
-
-    sudo mkdir -p /var/log/monasca/persister || true
-    sudo chown root:monasca /var/log/monasca/persister
-    sudo chmod 0775 /var/log/monasca/persister
-
-    sudo mkdir -p /etc/monasca || true
-    sudo chown root:monasca /etc/monasca
-
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-persister/python/persister.conf /etc/monasca/persister.conf
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-persister/python/persister-logging.conf /etc/monasca/persister-logging.conf
-
-    sudo chown mon-persister:monasca /etc/monasca/persister.conf
-    sudo chmod 0640 /etc/monasca/persister.conf
-
-    if [[ ${SERVICE_HOST} ]]; then
-
-        # set kafka ip address
-        sudo sed -i "s/uri = 127\.0\.0\.1:9092/uri = ${SERVICE_HOST}:9092/g" /etc/monasca/persister.conf
-        # set influxdb ip address
-        sudo sed -i "s/ip_address = 127\.0\.0\.1/ip_address = ${SERVICE_HOST}/g" /etc/monasca/persister.conf
-        # set cassandra ip address
-        sudo sed -i "s/cluster_ip_addresses: 127\.0\.0\.1/cluster_ip_addresses: ${SERVICE_HOST}/g" /etc/monasca/persister.conf
-
-    fi
-
-    if [[ "${MONASCA_METRICS_DB,,}" == 'cassandra' ]]; then
-
-        # Switch databaseType from influxdb to cassandra
-        sudo sed -i "s/metrics_driver = monasca_persister\.repositories\.influxdb/#metrics_driver = monasca_persister.repositories.influxdb/g" /etc/monasca/persister.conf
-        sudo sed -i "s/#metrics_driver = monasca_persister\.repositories\.cassandra/metrics_driver = monasca_persister.repositories.cassandra/g" /etc/monasca/persister.conf
-        sudo sed -i "s/alarm_state_history_driver = monasca_persister\.repositories\.influxdb/#alarm_state_history_driver = monasca_persister.repositories.influxdb/g" /etc/monasca/persister.conf
-        sudo sed -i "s/#alarm_state_history_driver = monasca_persister\.repositories\.cassandra/alarm_state_history_driver = monasca_persister.repositories.cassandra/g" /etc/monasca/persister.conf
-
-    fi
-
-    # /etc/monasca/persister-config.yml is needed for the Monasca Agent configuration.
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-persister/persister-config.yml /etc/monasca/persister-config.yml
-
-    sudo chown mon-persister:monasca /etc/monasca/persister-config.yml
-
-    sudo chmod 0640 /etc/monasca/persister-config.yml
-
-    if [[ ${SERVICE_HOST} ]]; then
-
-        # set influxdb ip address
-        sudo sed -i "s/url: \"http:\/\/127\.0\.0\.1:8086\"/url: \"http:\/\/${SERVICE_HOST}:8086\"/g" /etc/monasca/persister-config.yml
-        # set monasca persister server listening ip address
-        sudo sed -i "s/bindHost: 127\.0\.0\.1/bindHost: ${SERVICE_HOST}/g" /etc/monasca/persister-config.yml
-
-    fi
-
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/monasca-persister/python/monasca-persister.service /etc/systemd/system/monasca-persister.service
-
-    if [[ "${MONASCA_METRICS_DB,,}" == 'cassandra' ]]; then
-
-        sudo sed -i "s/influxdb.service/cassandra.service/g" /etc/systemd/system/monasca-persister.service
-
-    fi
-
-    sudo chown root:root /etc/systemd/system/monasca-persister.service
-
-    sudo chmod 0644 /etc/systemd/system/monasca-persister.service
-
-}
 
 function clean_monasca_persister_java {
 

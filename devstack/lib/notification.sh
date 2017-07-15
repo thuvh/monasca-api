@@ -36,6 +36,9 @@ is_monasca_notification_enabled() {
 
 # NOTE(trebskit) ref: stack_install_service from devstack
 install_monasca-notification() {
+    if ! is_monasca_notification_enabled; then
+        return
+    fi
     echo_summary "Installing monasca-notification"
 
     git_clone ${MONASCA_NOTIFICATION_REPO} ${MONASCA_NOTIFICATION_DIR} \
@@ -141,6 +144,5 @@ clean_monasca_notification() {
         apt_get -y purge python-mysqldb
     fi
 }
-
 
 ${_XTRACE_MON_NOTIFICATION}
