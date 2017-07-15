@@ -51,8 +51,14 @@ source ${MONASCA_API_DIR}/devstack/lib/ui.sh
 source ${MONASCA_API_DIR}/devstack/lib/notification.sh
 source ${MONASCA_API_DIR}/devstack/lib/profile.sh
 source ${MONASCA_API_DIR}/devstack/lib/client.sh
+source ${MONASCA_API_DIR}/devstack/lib/persister.sh
 # source lib/*
 
+# Set default implementations to python
+export MONASCA_API_IMPLEMENTATION_LANG=${MONASCA_API_IMPLEMENTATION_LANG:-python}
+
+# Set default persistent layer settings
+export MONASCA_METRICS_DB=${MONASCA_METRICS_DB:-influxdb}
 # Make sure we use ORM mapping as default if postgresql is enabled
 if is_service_enabled mysql; then
     MONASCA_DATABASE_USE_ORM=${MONASCA_DATABASE_USE_ORM:-false}
@@ -104,6 +110,8 @@ function pre_install_monasca {
 
     install_monasca_virtual_env
     install_monasca_$MONASCA_METRICS_DB
+
+    pre_monasca-persister
 }
 
 function install_monasca {
@@ -111,12 +119,7 @@ function install_monasca {
     echo_summary "Installing Monasca"
 
     install_monasca_common_java
-
-    if is_service_enabled monasca-persister; then
-        install_monasca_persister_$MONASCA_PERSISTER_IMPLEMENTATION_LANG
-        sudo systemctl enable monasca-persister
-    fi
-
+    stack_install_service monasca-persister
     stack_install_service monasca-notification
 
     if is_service_enabled monasca-thresh; then
@@ -145,14 +148,14 @@ function configure_monasca {
     install_schema
     configure_ui
     configure_monasca_api
-    configure_monasca_notification
+    configure_monasca-notification
+    configure_monasca-persister
     configure_screen
 }
 
 function configure_screen {
     if [[ -n ${SCREEN_LOGDIR} ]]; then
         sudo ln -sf /var/log/influxdb/influxd.log ${SCREEN_LOGDIR}/screen-influxdb.log || true
-        sudo ln -sf /var/log/monasca/persister/persister.log ${SCREEN_LOGDIR}/screen-monasca-persister.log || true
 
         sudo ln -sf /var/log/monasca/agent/statsd.log ${SCREEN_LOGDIR}/screen-monasca-agent-statsd.log || true
         sudo ln -sf /var/log/monasca/agent/supervisor.log ${SCREEN_LOGDIR}/screen-monasca-agent-supervisor.log || true
@@ -189,10 +192,8 @@ function start_monasca_services {
     if is_service_enabled monasca-api; then
         start_monasca_api
     fi
-    if is_service_enabled monasca-persister; then
-        start_service monasca-persister || restart_service monasca-persister
-    fi
-    start_monasca_notification
+    start_monasca-notification
+    start_monasca-persister
     if is_service_enabled monasca-thresh; then
         start_service monasca-thresh || restart_service monasca-thresh
     fi
@@ -216,10 +217,8 @@ function unstack_monasca {
 
     stop_service storm-nimbus || true
 
-    stop_monasca_notification
-
-    stop_service monasca-persister || true
-
+    stop_monasca-notification
+    stop_monasca-persister
     stop_monasca_api
 
     stop_service kafka || true
@@ -255,15 +254,12 @@ function clean_monasca {
     if is_service_enabled monasca-storm; then
         clean_storm
     fi
-    if is_service_enabled monasca-persister; then
-        clean_monasca_persister_$MONASCA_PERSISTER_IMPLEMENTATION_LANG
-    fi
     if is_service_enabled monasca-api; then
         clean_monasca_api_$MONASCA_API_IMPLEMENTATION_LANG
     fi
 
-    clean_monasca_notification
-
+    clean_monasca-persister
+    clean_monasca-notification
     clean_monasca_common_java
 
     clean_schema
