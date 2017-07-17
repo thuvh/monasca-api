@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f1a1f67_af9b0464",
+        "filename": "devstack/lib/notification.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-07-17T07:25:53Z",
+      "side": 1,
+      "message": "Also should be changed to `-`",
+      "range": {
+        "startLine": 32,
+        "startChar": 10,
+        "endLine": 32,
+        "endChar": 11
+      },
+      "revId": "0b22ff21d853846b54548c3e426987042c85d534",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1f1a1f67_cf32c05e",
+        "filename": "devstack/lib/persister.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-07-17T07:25:53Z",
+      "side": 1,
+      "message": "Also should be changed to `-`",
+      "range": {
+        "startLine": 56,
+        "startChar": 10,
+        "endLine": 56,
+        "endChar": 11
+      },
+      "revId": "0b22ff21d853846b54548c3e426987042c85d534",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1f1a1f67_0f4e7896",
+        "filename": "devstack/lib/persister.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-07-17T07:25:53Z",
+      "side": 1,
+      "message": "Is this function used anywhere?",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 25
+      },
+      "revId": "0b22ff21d853846b54548c3e426987042c85d534",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1f1a1f67_efcd7c31",
+        "filename": "devstack/lib/persister.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-07-17T07:25:53Z",
+      "side": 1,
+      "message": "Stick to one naming convention. use `monasca_persister` or `monasca-persister` consistently in entire file.",
+      "range": {
+        "startLine": 114,
+        "startChar": 15,
+        "endLine": 114,
+        "endChar": 16
+      },
+      "revId": "0b22ff21d853846b54548c3e426987042c85d534",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
