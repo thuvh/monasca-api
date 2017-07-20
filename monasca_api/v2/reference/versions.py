@@ -12,6 +12,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+from debtcollector import removals
 import falcon
 
 from monasca_api.api import versions_api
@@ -32,8 +33,6 @@ VERSIONS = {
 
 
 class Versions(versions_api.VersionsAPI):
-    def __init__(self):
-        super(Versions, self).__init__()
 
     def on_get(self, req, res, version_id=None):
         result = {
@@ -59,3 +58,24 @@ class Versions(versions_api.VersionsAPI):
             else:
                 raise HTTPUnprocessableEntityError('Invalid version',
                                                    'No versions found matching ' + version_id)
+
+
+# NOTE(trebskit) this endpoint is kept only for sake of the
+# backward compatibility and thus will be removed in the future
+# in overall endpoint version (the one created from the class above)
+# is available without the need of the authorization unlike the one
+# created below
+@removals.removed_class(
+    cls_name='VersionV2',
+    replacement='Versions',
+    message='"VersionV2" is the version endpoint available only with '
+            'Keystone token. That is not aligned with the rest of '
+            'monasca where version endpoint are available without '
+            'the need of obtaining the Keystone token.',
+    version='2.2.0',
+    removal_version='3.0.0'
+)
+class VersionV2(Versions):
+
+    def on_get(self, req, res):
+        super(VersionV2, self).on_get(req, res, 'v2.0')
