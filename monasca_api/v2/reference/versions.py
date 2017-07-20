@@ -32,8 +32,6 @@ VERSIONS = {
 
 
 class Versions(versions_api.VersionsAPI):
-    def __init__(self):
-        super(Versions, self).__init__()
 
     def on_get(self, req, res, version_id=None):
         result = {
@@ -59,3 +57,9 @@ class Versions(versions_api.VersionsAPI):
             else:
                 raise HTTPUnprocessableEntityError('Invalid version',
                                                    'No versions found matching ' + version_id)
+
+
+class VersionV2(Versions):
+
+    def on_get(self, req, res):
+        super(VersionV2, self).on_get(req, res, 'v2.0')
