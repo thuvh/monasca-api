@@ -12,9 +12,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-# extremely simple way to setup of monasca-api
-# with wsgi
+import pbr.version
 
-from monasca_api.api import server
-
-application = server.get_wsgi_app(config_base_path='/etc/monasca')
+version_info = pbr.version.VersionInfo('monasca-api')
+version_str = version_info.version_string()
