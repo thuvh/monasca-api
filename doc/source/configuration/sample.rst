@@ -15,7 +15,7 @@ of code in the monasca-api repository.
 Sample Configuration For Application
 ------------------------------------
 
-This sample configuration can also be viewed in `api-config.conf.sample
+This sample configuration can also be viewed in `api.conf.sample
 <../_static/api-config.conf.sample>`_.
 
 .. literalinclude:: ../_static/api.conf.sample
@@ -34,7 +34,7 @@ This sample configuration can also be viewed in `api-logging.conf
 Sample Configuration For Paster
 -------------------------------
 
-This sample configuration can also be viewed in `api-config.ini
+This sample configuration can also be viewed in `api-paste.ini
 <../../../etc/api-config.ini>`_.
 
-.. literalinclude:: ../../../etc/api-config.ini
+.. literalinclude:: ../../../etc/api-paste.ini
