@@ -802,7 +802,7 @@ function configure_monasca_api_python {
         if [[ "$MONASCA_API_CONF_DIR" != "$MONASCA_API_DIR/etc/monasca" ]]; then
             install -m 600 $MONASCA_API_DIR/etc/api-config.conf $MONASCA_API_CONF
             install -m 600 $MONASCA_API_DIR/etc/api-logging.conf $MONASCA_API_LOGGING_CONF
-            install -m 600 $MONASCA_API_DIR/etc/api-config.ini $MONASCA_API_PASTE_INI
+            install -m 600 $MONASCA_API_DIR/etc/api-paste.ini $MONASCA_API_PASTE_INI
         fi
         iniset "$MONASCA_API_CONF" database connection $dbAlarmUrl
         iniset "$MONASCA_API_CONF" repositories metrics_driver $dbMetricDriver
@@ -818,9 +818,12 @@ function configure_monasca_api_python {
         iniset "$MONASCA_API_CONF" keystone_authtoken identity_uri "http://$SERVICE_HOST:35357"
         iniset "$MONASCA_API_CONF" keystone_authtoken auth_uri "http://$SERVICE_HOST:5000"
 
-        iniset "$MONASCA_API_PASTE_INI" server:main host $MONASCA_API_SERVICE_HOST
-        iniset "$MONASCA_API_PASTE_INI" server:main port $MONASCA_API_SERVICE_PORT
+        iniset "$MONASCA_API_PASTE_INI" server:main bind $MONASCA_API_SERVICE_HOST:$MONASCA_API_SERVICE_PORT
         iniset "$MONASCA_API_PASTE_INI" server:main workers $API_WORKERS
+        # little hacky, but monasca-api does not follow oslo convention
+        # when it comes for names of the configuration files
+        # at least for now
+        iniset "$MONASCA_API_PASTE_INI" app:api_v2_app "set config_file=$MONASCA_API_CONF"
 
         iniset "$MONASCA_API_LOGGING_CONF" handler_file args "('$MONASCA_API_LOG_DIR/monasca-api.log', 'a', 104857600, 5)"
 
