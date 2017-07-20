@@ -12,9 +12,15 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-# extremely simple way to setup of monasca-api
-# with wsgi
+"""
+Use this file for deploying the API under mod_wsgi.
+"""
 
-from monasca_api.api import server
+from paste import deploy
 
-application = server.get_wsgi_app(config_base_path='/etc/monasca')
+config_dir = '/etc/monasca/'
+application = deploy.loadapp(
+    'config:%s/api-paste.ini' % config_dir,
+    relative_to='/',
+    name='main'
+)
