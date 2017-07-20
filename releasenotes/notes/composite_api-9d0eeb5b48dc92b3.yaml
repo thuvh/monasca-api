@@ -1,0 +1,13 @@
+---
+prelude: >
+    Changed the way monasca-api is initialized from Paster file.
+fixes:
+  - |
+    Removed dirty hack with custom keystonemiddleware to exclude certain
+    paths (version and healthcheck) from teh token verification.
+upgrade:
+  - |
+    monasca-api is now using composite Paster file.
+    It greatly increases the flexibility around modelling how the API
+    works allowing to design each pipeline (i.e. /version, /healthcheck, /v2.0)
+    independly from each other.
