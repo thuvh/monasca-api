@@ -34,7 +34,7 @@ This sample configuration can also be viewed in `api-logging.conf
 Sample Configuration For Paster
 -------------------------------
 
-This sample configuration can also be viewed in `api-config.ini
+This sample configuration can also be viewed in `api-paste.ini
 <../../../etc/api-config.ini>`_.
 
-.. literalinclude:: ../../../etc/api-config.ini
+.. literalinclude:: ../../../etc/api-paste.ini
