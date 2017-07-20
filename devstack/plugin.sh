@@ -630,6 +630,7 @@ function install_schema_alarm_database {
     recreate_database $databaseName
     if is_service_enabled mysql; then
         sudo mysql -u$DATABASE_USER -p$DATABASE_PASSWORD -h$MYSQL_HOST < $MONASCA_SCHEMA_DIR/mon.sql
+        sudo mysql -u$DATABASE_USER -p$DATABASE_PASSWORD -h$MYSQL_HOST -e "use mon ; show tables;"
     elif is_service_enabled postgresql; then
         sudo -u root sudo -u postgres -i psql -d $databaseName -f $MONASCA_SCHEMA_DIR/mon.sql
     fi
@@ -823,8 +824,7 @@ function configure_monasca_api_python {
         iniset "$MONASCA_API_CONF" keystone_authtoken identity_uri "http://$SERVICE_HOST:35357"
         iniset "$MONASCA_API_CONF" keystone_authtoken auth_uri "http://$SERVICE_HOST:5000"
 
-        iniset "$MONASCA_API_PASTE_INI" server:main host $MONASCA_API_SERVICE_HOST
-        iniset "$MONASCA_API_PASTE_INI" server:main port $MONASCA_API_SERVICE_PORT
+        iniset "$MONASCA_API_PASTE_INI" server:main bind $MONASCA_API_SERVICE_HOST:$MONASCA_API_SERVICE_PORT
         iniset "$MONASCA_API_PASTE_INI" server:main workers $API_WORKERS
 
         iniset "$MONASCA_API_LOGGING_CONF" handler_file args "('$MONASCA_API_LOG_DIR/monasca-api.log', 'a', 104857600, 5)"
