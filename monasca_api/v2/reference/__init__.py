@@ -16,7 +16,6 @@
 
 from oslo_config import cfg
 from oslo_config import types
-from oslo_db import options
 
 
 """Configurations for reference implementation
@@ -147,34 +146,3 @@ cassandra_opts = [cfg.StrOpt('cluster_ip_addresses'), cfg.StrOpt('keyspace')]
 cassandra_group = cfg.OptGroup(name='cassandra', title='cassandra')
 cfg.CONF.register_group(cassandra_group)
 cfg.CONF.register_opts(cassandra_opts, cassandra_group)
-
-
-def register_database_opts():
-    # Update the default QueuePool parameters. These can be tweaked by the
-    # conf variables - max_pool_size, max_overflow and pool_timeout
-
-    options.set_defaults(cfg.CONF, connection='sqlite://',
-                         max_pool_size=10, max_overflow=20,
-                         pool_timeout=10)
-
-    # register old value
-    url_opt = cfg.StrOpt(name='url',
-                         default=cfg.CONF.database.connection,
-                         required=False,
-                         deprecated_for_removal=True,
-                         deprecated_since='1.6.0',
-                         deprecated_reason=(
-                             'Please use database.connection option,'
-                             'database.url is scheduled for removal '
-                             'in Pike release')
-                         )
-
-    cfg.CONF.register_opts([url_opt], group='database')
-    cfg.CONF.set_override(name='connection', group='database',
-                          override=cfg.CONF.database.url)
-
-register_database_opts()
-
-
-# support URL as an option till Pike is released
-# TODO(trebskit) remove in Pike release
