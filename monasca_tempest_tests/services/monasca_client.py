@@ -29,7 +29,7 @@ class MonascaClient(rest_client.RestClient):
             endpoint_type=CONF.monitoring.endpoint_type)
 
     def get_version(self):
-        resp, response_body = self.get('')
+        resp, response_body = self.get('version')
         return resp, response_body
 
     def create_metrics(self, metrics, tenant_id=None):
