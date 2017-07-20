@@ -607,6 +607,7 @@ function install_schema_alarm_database {
     recreate_database $databaseName
     if is_service_enabled mysql; then
         sudo mysql -u$DATABASE_USER -p$DATABASE_PASSWORD -h$MYSQL_HOST < $MONASCA_SCHEMA_DIR/mon.sql
+        sudo mysql -u$DATABASE_USER -p$DATABASE_PASSWORD -h$MYSQL_HOST -e "use mon ; show tables;"
     elif is_service_enabled postgresql; then
         sudo -u root sudo -u postgres -i psql -d $databaseName -f $MONASCA_SCHEMA_DIR/mon.sql
     fi
@@ -773,7 +774,7 @@ function configure_monasca_api_python {
 
         install -m 600 /tmp/api.conf $MONASCA_API_CONF && rm -rf /tmp/api.conf
         install -m 600 $MONASCA_API_DIR/etc/api-logging.conf $MONASCA_API_LOGGING_CONF
-        install -m 600 $MONASCA_API_DIR/etc/api-config.ini $MONASCA_API_PASTE_INI
+        install -m 600 $MONASCA_API_DIR/etc/api-paste.ini $MONASCA_API_PASTE_INI
         # create configuration files in target locations
 
         local dbAlarmUrl
@@ -817,8 +818,7 @@ function configure_monasca_api_python {
         iniset "$MONASCA_API_CONF" security delegate_authorized_roles "admin"
 
         # server setup
-        iniset "$MONASCA_API_PASTE_INI" server:main host $MONASCA_API_SERVICE_HOST
-        iniset "$MONASCA_API_PASTE_INI" server:main port $MONASCA_API_SERVICE_PORT
+        iniset "$MONASCA_API_PASTE_INI" server:main bind $MONASCA_API_SERVICE_HOST:$MONASCA_API_SERVICE_PORT
         iniset "$MONASCA_API_PASTE_INI" server:main workers $API_WORKERS
 
         # link configuration for the gate
