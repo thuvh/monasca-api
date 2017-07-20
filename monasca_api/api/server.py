@@ -150,7 +150,7 @@ def get_wsgi_app(config_base_path=None, **kwargs):
 
     # allow to override names of the configuration files
     config_file = kwargs.get('config_file', 'api-config.conf')
-    paste_file = kwargs.get('paste_file', 'api-config.ini')
+    paste_file = kwargs.get('paste_file', 'api-paste.ini')
 
     if config_base_path is None:
         # allow monasca-api to be run in dev mode from __main__
