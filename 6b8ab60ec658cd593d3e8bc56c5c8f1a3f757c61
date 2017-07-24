@@ -42,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "ff346bd7_859bc270",
+        "filename": "monasca_api/common/repositories/sqla/silence_rules_repository.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-07-24T18:00:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f1d235d_b577a1a0",
+      "range": {
+        "startLine": 81,
+        "startChar": 38,
+        "endLine": 81,
+        "endChar": 48
+      },
+      "revId": "6b8ab60ec658cd593d3e8bc56c5c8f1a3f757c61",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3f1d235d_44ad7ee7",
         "filename": "monasca_api/v2/common/schemas/alarm_definition_request_body_schema.py",
         "patchSetId": 32
@@ -53,6 +77,24 @@
       "writtenOn": "2017-07-04T09:45:19Z",
       "side": 1,
       "message": "six.string_types",
+      "revId": "6b8ab60ec658cd593d3e8bc56c5c8f1a3f757c61",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_45bddab5",
+        "filename": "monasca_api/v2/common/schemas/alarm_definition_request_body_schema.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-07-24T18:00:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f1d235d_44ad7ee7",
       "revId": "6b8ab60ec658cd593d3e8bc56c5c8f1a3f757c61",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -76,6 +118,24 @@
     },
     {
       "key": {
+        "uuid": "ff346bd7_c5c8aa56",
+        "filename": "monasca_api/v2/common/schemas/group_rule_request_body_schema.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-07-24T18:00:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f1d235d_c4a18efa",
+      "revId": "6b8ab60ec658cd593d3e8bc56c5c8f1a3f757c61",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3f1d235d_e49c8ac1",
         "filename": "monasca_api/v2/common/schemas/inhibit_rule_request_body_schema.py",
         "patchSetId": 32
@@ -87,6 +147,24 @@
       "writtenOn": "2017-07-04T09:45:19Z",
       "side": 1,
       "message": "This is not py35 compatible.\nI believe you can get the same result using six.string_types.\n\nAs Py35 is Pike goal, we shouldn\u0027t introduce more incompatibility as it is already a big issue to fix the code to be Py35 compatible",
+      "revId": "6b8ab60ec658cd593d3e8bc56c5c8f1a3f757c61",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_a5c5a63e",
+        "filename": "monasca_api/v2/common/schemas/inhibit_rule_request_body_schema.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-07-24T18:00:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f1d235d_e49c8ac1",
       "revId": "6b8ab60ec658cd593d3e8bc56c5c8f1a3f757c61",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -110,6 +188,24 @@
     },
     {
       "key": {
+        "uuid": "ff346bd7_45ccba34",
+        "filename": "monasca_api/v2/common/schemas/silence_rule_request_body_schema.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-07-24T18:00:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f1d235d_c48aae68",
+      "revId": "6b8ab60ec658cd593d3e8bc56c5c8f1a3f757c61",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3f1d235d_a47b3279",
         "filename": "monasca_api/v2/common/validation.py",
         "patchSetId": 32
@@ -121,6 +217,24 @@
       "writtenOn": "2017-07-04T09:45:19Z",
       "side": 1,
       "message": "This is not py35 compatible.\nI believe you can get the same result using six.string_types.\n\nAs Py35 is Pike goal, we shouldn\u0027t introduce more incompatibility as it is already a big issue to fix the code to be Py35 compatible",
+      "revId": "6b8ab60ec658cd593d3e8bc56c5c8f1a3f757c61",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_b01e060a",
+        "filename": "monasca_api/v2/common/validation.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-07-24T18:00:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f1d235d_a47b3279",
       "revId": "6b8ab60ec658cd593d3e8bc56c5c8f1a3f757c61",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -144,6 +258,24 @@
     },
     {
       "key": {
+        "uuid": "ff346bd7_f0880e20",
+        "filename": "monasca_api/v2/reference/group_rules.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-07-24T18:00:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f1d235d_e4d36a5f",
+      "revId": "6b8ab60ec658cd593d3e8bc56c5c8f1a3f757c61",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3f1d235d_64c75a98",
         "filename": "monasca_api/v2/reference/inhibit_rules.py",
         "patchSetId": 32
@@ -155,6 +287,24 @@
       "writtenOn": "2017-07-04T09:45:19Z",
       "side": 1,
       "message": "six.integer_types",
+      "revId": "6b8ab60ec658cd593d3e8bc56c5c8f1a3f757c61",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_d07d0a1d",
+        "filename": "monasca_api/v2/reference/inhibit_rules.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-07-24T18:00:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f1d235d_64c75a98",
       "revId": "6b8ab60ec658cd593d3e8bc56c5c8f1a3f757c61",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -178,6 +328,24 @@
     },
     {
       "key": {
+        "uuid": "ff346bd7_d0cbca50",
+        "filename": "monasca_api/v2/reference/silence_rules.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-07-24T18:00:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f1d235d_24bde201",
+      "revId": "6b8ab60ec658cd593d3e8bc56c5c8f1a3f757c61",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3f1d235d_ed7e46ad",
         "filename": "monasca_api/v2/reference/silence_rules.py",
         "patchSetId": 32
@@ -189,6 +357,30 @@
       "writtenOn": "2017-07-06T22:46:52Z",
       "side": 1,
       "message": "Need to validate the expression before creating in the repository. Same for other rules.",
+      "range": {
+        "startLine": 265,
+        "startChar": 17,
+        "endLine": 265,
+        "endChar": 36
+      },
+      "revId": "6b8ab60ec658cd593d3e8bc56c5c8f1a3f757c61",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_d00d0a3f",
+        "filename": "monasca_api/v2/reference/silence_rules.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 18179
+      },
+      "writtenOn": "2017-07-24T18:00:10Z",
+      "side": 1,
+      "message": "In line 65, I did a _validate_silence_rule which called function \"validation.validate_expression\". But this validate_expression only checks if the expression is a string and if it has a valid length.",
+      "parentUuid": "3f1d235d_ed7e46ad",
       "range": {
         "startLine": 265,
         "startChar": 17,
