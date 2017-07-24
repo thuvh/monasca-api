@@ -1,0 +1,740 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff346bd7_f8efe284",
+        "filename": "api-ref/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-24T14:38:03Z",
+      "side": 1,
+      "message": "Monitoring API Reference",
+      "range": {
+        "startLine": 46,
+        "startChar": 12,
+        "endLine": 46,
+        "endChar": 36
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_24c2df34",
+        "filename": "api-ref/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-24T14:38:03Z",
+      "side": 1,
+      "message": "Should be project number from Storyboard: 863.",
+      "range": {
+        "startLine": 47,
+        "startChar": 16,
+        "endLine": 47,
+        "endChar": 27
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_24d77ff0",
+        "filename": "api-ref/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-24T14:38:03Z",
+      "side": 1,
+      "message": "leave empty",
+      "range": {
+        "startLine": 48,
+        "startChar": 12,
+        "endLine": 48,
+        "endChar": 19
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_6b979a92",
+        "filename": "api-ref/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-24T14:38:03Z",
+      "side": 1,
+      "message": "Following the same scheme as other projects should be \u0027monascadoc\u0027.",
+      "range": {
+        "startLine": 176,
+        "startChar": 21,
+        "endLine": 176,
+        "endChar": 45
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_2bbf52fc",
+        "filename": "api-ref/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-24T14:38:03Z",
+      "side": 1,
+      "message": "OpenStack Monitoring API Documentation",
+      "range": {
+        "startLine": 196,
+        "startChar": 43,
+        "endLine": 196,
+        "endChar": 75
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_4bc29687",
+        "filename": "api-ref/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-24T14:38:03Z",
+      "side": 1,
+      "message": "monasca.tex",
+      "range": {
+        "startLine": 196,
+        "startChar": 18,
+        "endLine": 196,
+        "endChar": 38
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_4b1e160d",
+        "filename": "api-ref/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-24T14:38:03Z",
+      "side": 1,
+      "message": "monasca",
+      "range": {
+        "startLine": 226,
+        "startChar": 18,
+        "endLine": 226,
+        "endChar": 34
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_6be67a19",
+        "filename": "api-ref/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-24T14:38:03Z",
+      "side": 1,
+      "message": "OpenStack Monitoring API Documentation",
+      "range": {
+        "startLine": 226,
+        "startChar": 39,
+        "endLine": 226,
+        "endChar": 71
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_4b7a9624",
+        "filename": "api-ref/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-24T14:38:03Z",
+      "side": 1,
+      "message": "OpenStack Monitoring API Documentation",
+      "range": {
+        "startLine": 240,
+        "startChar": 39,
+        "endLine": 240,
+        "endChar": 71
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_cbc0c653",
+        "filename": "api-ref/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-24T14:38:03Z",
+      "side": 1,
+      "message": "Monasca",
+      "range": {
+        "startLine": 240,
+        "startChar": 18,
+        "endLine": 240,
+        "endChar": 34
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_2bacf28a",
+        "filename": "api-ref/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-24T14:38:03Z",
+      "side": 1,
+      "message": "OpenStack Monitoring",
+      "range": {
+        "startLine": 241,
+        "startChar": 51,
+        "endLine": 241,
+        "endChar": 69
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_eb8eea25",
+        "filename": "api-ref/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-24T14:38:03Z",
+      "side": 1,
+      "message": "Monasca",
+      "range": {
+        "startLine": 241,
+        "startChar": 31,
+        "endLine": 241,
+        "endChar": 47
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_04bc7bda",
+        "filename": "doc/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-24T14:38:03Z",
+      "side": 1,
+      "message": "monasca-api",
+      "range": {
+        "startLine": 47,
+        "startChar": 12,
+        "endLine": 47,
+        "endChar": 35
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_e4bcd7bc",
+        "filename": "doc/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-24T14:38:03Z",
+      "side": 1,
+      "message": "Should be project number from Storyboard: 863",
+      "range": {
+        "startLine": 50,
+        "startChar": 16,
+        "endLine": 50,
+        "endChar": 27
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_c4ff9365",
+        "filename": "doc/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-24T14:38:03Z",
+      "side": 1,
+      "message": "leave empty",
+      "range": {
+        "startLine": 51,
+        "startChar": 12,
+        "endLine": 51,
+        "endChar": 15
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_2473ff17",
+        "filename": "doc/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-24T14:38:03Z",
+      "side": 1,
+      "message": "monascadoc",
+      "range": {
+        "startLine": 193,
+        "startChar": 21,
+        "endLine": 193,
+        "endChar": 35
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_e4505735",
+        "filename": "doc/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-24T14:38:03Z",
+      "side": 1,
+      "message": "Monasca",
+      "range": {
+        "startLine": 215,
+        "startChar": 36,
+        "endLine": 215,
+        "endChar": 47
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_bfa49c09",
+        "filename": "doc/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-24T14:38:03Z",
+      "side": 1,
+      "message": "Monasca",
+      "range": {
+        "startLine": 245,
+        "startChar": 34,
+        "endLine": 245,
+        "endChar": 45
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_df888072",
+        "filename": "doc/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-24T14:38:03Z",
+      "side": 1,
+      "message": "Monasca",
+      "range": {
+        "startLine": 259,
+        "startChar": 32,
+        "endLine": 259,
+        "endChar": 43
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_9fd0b852",
+        "filename": "doc/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-24T14:38:03Z",
+      "side": 1,
+      "message": "OpenStack Monitoring Service",
+      "range": {
+        "startLine": 260,
+        "startChar": 27,
+        "endLine": 260,
+        "endChar": 74
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_ff5fc4e2",
+        "filename": "releasenotes/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-24T14:38:03Z",
+      "side": 1,
+      "message": "API",
+      "range": {
+        "startLine": 41,
+        "startChar": 20,
+        "endLine": 41,
+        "endChar": 26
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_9f5e78e4",
+        "filename": "releasenotes/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-24T14:38:03Z",
+      "side": 1,
+      "message": "863",
+      "range": {
+        "startLine": 42,
+        "startChar": 16,
+        "endLine": 42,
+        "endChar": 27
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_1fede8ee",
+        "filename": "releasenotes/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-24T14:38:03Z",
+      "side": 1,
+      "message": "MonascaAPIReleaseNotesdoc",
+      "range": {
+        "startLine": 175,
+        "startChar": 21,
+        "endLine": 175,
+        "endChar": 49
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_dfa520b7",
+        "filename": "releasenotes/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-24T14:38:03Z",
+      "side": 1,
+      "message": "MonascaAPIReleaseNotes",
+      "range": {
+        "startLine": 195,
+        "startChar": 15,
+        "endLine": 195,
+        "endChar": 43
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_7f94f444",
+        "filename": "releasenotes/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-24T14:38:03Z",
+      "side": 1,
+      "message": "Monasca API",
+      "range": {
+        "startLine": 196,
+        "startChar": 7,
+        "endLine": 196,
+        "endChar": 23
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_7f7d141b",
+        "filename": "releasenotes/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-24T14:38:03Z",
+      "side": 1,
+      "message": "Monasca API",
+      "range": {
+        "startLine": 226,
+        "startChar": 45,
+        "endLine": 226,
+        "endChar": 61
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_bf837c04",
+        "filename": "releasenotes/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-24T14:38:03Z",
+      "side": 1,
+      "message": "monascaapireleasenotes",
+      "range": {
+        "startLine": 226,
+        "startChar": 15,
+        "endLine": 226,
+        "endChar": 40
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_1fa9687a",
+        "filename": "releasenotes/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-24T14:38:03Z",
+      "side": 1,
+      "message": "MonascaAPIReleaseNotes",
+      "range": {
+        "startLine": 240,
+        "startChar": 15,
+        "endLine": 240,
+        "endChar": 43
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_dfbc00bd",
+        "filename": "releasenotes/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-24T14:38:03Z",
+      "side": 1,
+      "message": "Monasca API",
+      "range": {
+        "startLine": 240,
+        "startChar": 48,
+        "endLine": 240,
+        "endChar": 64
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_9f04387d",
+        "filename": "releasenotes/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-24T14:38:03Z",
+      "side": 1,
+      "message": "MonascaAPIReleaseNotes",
+      "range": {
+        "startLine": 241,
+        "startChar": 31,
+        "endLine": 241,
+        "endChar": 59
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_5ff6d091",
+        "filename": "releasenotes/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-24T14:38:03Z",
+      "side": 1,
+      "message": "Monasca API",
+      "range": {
+        "startLine": 242,
+        "startChar": 6,
+        "endLine": 242,
+        "endChar": 22
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_9f39d842",
+        "filename": "setup.cfg",
+        "patchSetId": 8
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-24T14:38:03Z",
+      "side": 1,
+      "message": "Please remove.",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 29
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
