@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "ff346bd7_e0beb163",
+        "filename": "api-ref/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-26T13:41:32Z",
+      "side": 1,
+      "message": "Found it here https://docs.openstack.org/openstackdocstheme",
+      "parentUuid": "ff346bd7_de92784b",
+      "range": {
+        "startLine": 47,
+        "startChar": 16,
+        "endLine": 47,
+        "endChar": 27
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff346bd7_24d77ff0",
         "filename": "api-ref/source/conf.py",
         "patchSetId": 8
@@ -119,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "ff346bd7_e04c719f",
+        "filename": "api-ref/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-26T13:41:32Z",
+      "side": 1,
+      "message": "Fine with me.",
+      "parentUuid": "ff346bd7_7ea38c9f",
+      "range": {
+        "startLine": 48,
+        "startChar": 12,
+        "endLine": 48,
+        "endChar": 19
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff346bd7_6b979a92",
         "filename": "api-ref/source/conf.py",
         "patchSetId": 8
@@ -154,6 +202,30 @@
       "side": 1,
       "message": "Can\u0027t be :/ there are multiple monasca projects, so this has to be somehow unique.",
       "parentUuid": "ff346bd7_6b979a92",
+      "range": {
+        "startLine": 176,
+        "startChar": 21,
+        "endLine": 176,
+        "endChar": 45
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_82b00a45",
+        "filename": "api-ref/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-26T13:41:32Z",
+      "side": 1,
+      "message": "The name you suggested is not correct. It is not used anywhere else. The API is not only about metrics but also about measurements, alarm definitions, alarms and notifications. This is also the central Monasca API, so it is well justified to use the short name. I could live with \u0027monascaapidoc\u0027.",
+      "parentUuid": "ff346bd7_beb214e5",
       "range": {
         "startLine": 176,
         "startChar": 21,
@@ -248,6 +320,54 @@
       "side": 1,
       "message": "if we roll with monasca.tex it might conflict with other docs we will produce during migration.",
       "parentUuid": "ff346bd7_4bc29687",
+      "range": {
+        "startLine": 196,
+        "startChar": 18,
+        "endLine": 196,
+        "endChar": 38
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_c29cd20f",
+        "filename": "api-ref/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-26T13:41:32Z",
+      "side": 1,
+      "message": "Monasca is registered as OpenStack Monitoring Service. I don\u0027t know any other. For monasca-log-api we can use \u0027Monitoring Log API Documentation\u0027.\n\nPlease compare with other OpenStack projects.",
+      "parentUuid": "ff346bd7_3edbc41b",
+      "range": {
+        "startLine": 196,
+        "startChar": 43,
+        "endLine": 196,
+        "endChar": 75
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_228dded2",
+        "filename": "api-ref/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-26T13:41:32Z",
+      "side": 1,
+      "message": "\u0027monascaapi.tex\u0027 then.",
+      "parentUuid": "ff346bd7_7eccac69",
       "range": {
         "startLine": 196,
         "startChar": 18,
