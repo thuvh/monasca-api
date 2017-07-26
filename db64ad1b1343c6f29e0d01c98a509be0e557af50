@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "ff346bd7_de92784b",
+        "filename": "api-ref/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-07-26T09:53:05Z",
+      "side": 1,
+      "message": "Really ? Where did you take that detail ? I mean will openstackdocstheme properly render link to storyboard ?",
+      "parentUuid": "ff346bd7_24c2df34",
+      "range": {
+        "startLine": 47,
+        "startChar": 16,
+        "endLine": 47,
+        "endChar": 27
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff346bd7_24d77ff0",
         "filename": "api-ref/source/conf.py",
         "patchSetId": 8
@@ -71,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "ff346bd7_7ea38c9f",
+        "filename": "api-ref/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-07-26T09:53:05Z",
+      "side": 1,
+      "message": "log-api does not have it empty, why should be here ?",
+      "parentUuid": "ff346bd7_24d77ff0",
+      "range": {
+        "startLine": 48,
+        "startChar": 12,
+        "endLine": 48,
+        "endChar": 19
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff346bd7_6b979a92",
         "filename": "api-ref/source/conf.py",
         "patchSetId": 8
@@ -82,6 +130,30 @@
       "writtenOn": "2017-07-24T14:38:03Z",
       "side": 1,
       "message": "Following the same scheme as other projects should be \u0027monascadoc\u0027.",
+      "range": {
+        "startLine": 176,
+        "startChar": 21,
+        "endLine": 176,
+        "endChar": 45
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_beb214e5",
+        "filename": "api-ref/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-07-26T09:53:05Z",
+      "side": 1,
+      "message": "Can\u0027t be :/ there are multiple monasca projects, so this has to be somehow unique.",
+      "parentUuid": "ff346bd7_6b979a92",
       "range": {
         "startLine": 176,
         "startChar": 21,
@@ -140,6 +212,54 @@
     },
     {
       "key": {
+        "uuid": "ff346bd7_3edbc41b",
+        "filename": "api-ref/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-07-26T09:53:05Z",
+      "side": 1,
+      "message": "There are other monitoring project, as far as I know. Shouldn\u0027t it somehow unique for monasca.",
+      "parentUuid": "ff346bd7_2bbf52fc",
+      "range": {
+        "startLine": 196,
+        "startChar": 43,
+        "endLine": 196,
+        "endChar": 75
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_7eccac69",
+        "filename": "api-ref/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-07-26T09:53:05Z",
+      "side": 1,
+      "message": "if we roll with monasca.tex it might conflict with other docs we will produce during migration.",
+      "parentUuid": "ff346bd7_4bc29687",
+      "range": {
+        "startLine": 196,
+        "startChar": 18,
+        "endLine": 196,
+        "endChar": 38
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff346bd7_4b1e160d",
         "filename": "api-ref/source/conf.py",
         "patchSetId": 8
@@ -174,6 +294,54 @@
       "writtenOn": "2017-07-24T14:38:03Z",
       "side": 1,
       "message": "OpenStack Monitoring API Documentation",
+      "range": {
+        "startLine": 226,
+        "startChar": 39,
+        "endLine": 226,
+        "endChar": 71
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_1ed6c0f2",
+        "filename": "api-ref/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-07-26T09:53:05Z",
+      "side": 1,
+      "message": "see above",
+      "parentUuid": "ff346bd7_4b1e160d",
+      "range": {
+        "startLine": 226,
+        "startChar": 18,
+        "endLine": 226,
+        "endChar": 34
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_be00d468",
+        "filename": "api-ref/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-07-26T09:53:05Z",
+      "side": 1,
+      "message": "see above",
+      "parentUuid": "ff346bd7_6be67a19",
       "range": {
         "startLine": 226,
         "startChar": 39,
@@ -232,6 +400,54 @@
     },
     {
       "key": {
+        "uuid": "ff346bd7_9e03d073",
+        "filename": "api-ref/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-07-26T09:53:05Z",
+      "side": 1,
+      "message": "see above",
+      "parentUuid": "ff346bd7_4b7a9624",
+      "range": {
+        "startLine": 240,
+        "startChar": 39,
+        "endLine": 240,
+        "endChar": 71
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_7efa6c75",
+        "filename": "api-ref/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-07-26T09:53:05Z",
+      "side": 1,
+      "message": "see above",
+      "parentUuid": "ff346bd7_cbc0c653",
+      "range": {
+        "startLine": 240,
+        "startChar": 18,
+        "endLine": 240,
+        "endChar": 34
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff346bd7_2bacf28a",
         "filename": "api-ref/source/conf.py",
         "patchSetId": 8
@@ -266,6 +482,54 @@
       "writtenOn": "2017-07-24T14:38:03Z",
       "side": 1,
       "message": "Monasca",
+      "range": {
+        "startLine": 241,
+        "startChar": 31,
+        "endLine": 241,
+        "endChar": 47
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_5ef56882",
+        "filename": "api-ref/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-07-26T09:53:05Z",
+      "side": 1,
+      "message": "see above",
+      "parentUuid": "ff346bd7_2bacf28a",
+      "range": {
+        "startLine": 241,
+        "startChar": 51,
+        "endLine": 241,
+        "endChar": 69
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_3ef4e485",
+        "filename": "api-ref/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-07-26T09:53:05Z",
+      "side": 1,
+      "message": "see above",
+      "parentUuid": "ff346bd7_eb8eea25",
       "range": {
         "startLine": 241,
         "startChar": 31,
@@ -324,6 +588,30 @@
     },
     {
       "key": {
+        "uuid": "ff346bd7_1eefe0b0",
+        "filename": "doc/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-07-26T09:53:05Z",
+      "side": 1,
+      "message": "see comment in another file.",
+      "parentUuid": "ff346bd7_e4bcd7bc",
+      "range": {
+        "startLine": 50,
+        "startChar": 16,
+        "endLine": 50,
+        "endChar": 27
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff346bd7_c4ff9365",
         "filename": "doc/source/conf.py",
         "patchSetId": 8
@@ -335,6 +623,30 @@
       "writtenOn": "2017-07-24T14:38:03Z",
       "side": 1,
       "message": "leave empty",
+      "range": {
+        "startLine": 51,
+        "startChar": 12,
+        "endLine": 51,
+        "endChar": 15
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_de2ef8f8",
+        "filename": "doc/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-07-26T09:53:05Z",
+      "side": 1,
+      "message": "see comment in another file.",
+      "parentUuid": "ff346bd7_c4ff9365",
       "range": {
         "startLine": 51,
         "startChar": 12,
@@ -439,6 +751,30 @@
     },
     {
       "key": {
+        "uuid": "ff346bd7_5e3a0834",
+        "filename": "doc/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-07-26T09:53:05Z",
+      "side": 1,
+      "message": "see comment in another file.",
+      "parentUuid": "ff346bd7_df888072",
+      "range": {
+        "startLine": 259,
+        "startChar": 32,
+        "endLine": 259,
+        "endChar": 43
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff346bd7_9fd0b852",
         "filename": "doc/source/conf.py",
         "patchSetId": 8
@@ -450,6 +786,30 @@
       "writtenOn": "2017-07-24T14:38:03Z",
       "side": 1,
       "message": "OpenStack Monitoring Service",
+      "range": {
+        "startLine": 260,
+        "startChar": 27,
+        "endLine": 260,
+        "endChar": 74
+      },
+      "revId": "db64ad1b1343c6f29e0d01c98a509be0e557af50",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_9e38703d",
+        "filename": "doc/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-07-26T09:53:05Z",
+      "side": 1,
+      "message": "see comment in another file.",
+      "parentUuid": "ff346bd7_9fd0b852",
       "range": {
         "startLine": 260,
         "startChar": 27,
