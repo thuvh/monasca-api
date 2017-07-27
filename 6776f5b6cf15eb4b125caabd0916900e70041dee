@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "ff346bd7_8645a145",
+        "filename": "devstack/lib/persister.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-07-27T04:54:30Z",
+      "side": 1,
+      "message": "This setting is redundant now + it is now even specified in kafka_common.py",
+      "revId": "6776f5b6cf15eb4b125caabd0916900e70041dee",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff346bd7_6b4e0898",
         "filename": "devstack/lib/persister.sh",
         "patchSetId": 5
@@ -13,6 +30,63 @@
       "writtenOn": "2017-07-27T04:45:13Z",
       "side": 1,
       "message": "Yes, please ;-). Please fix the typo ;-)",
+      "revId": "6776f5b6cf15eb4b125caabd0916900e70041dee",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_e63d8dc4",
+        "filename": "devstack/lib/persister.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-07-27T04:54:30Z",
+      "side": 1,
+      "message": "also, I think that we can set something meaningful under client_id and consumer_id. Maybe\n\n   persister_$SERVICE_HOST \n\n?",
+      "range": {
+        "startLine": 142,
+        "startChar": 52,
+        "endLine": 142,
+        "endChar": 53
+      },
+      "revId": "6776f5b6cf15eb4b125caabd0916900e70041dee",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_c66849ba",
+        "filename": "devstack/lib/persister.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-07-27T04:54:30Z",
+      "side": 1,
+      "message": "In overall, for all the settings that do have some default settings, please remove entries from here. If those values are as they were inside persister.conf stored together with the plugin, might be good idea to place them as default inside monasca-persister change.",
+      "revId": "6776f5b6cf15eb4b125caabd0916900e70041dee",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_865ec10f",
+        "filename": "devstack/lib/persister.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-07-27T04:54:30Z",
+      "side": 1,
+      "message": "Port should be default value inside monasca-persister change thus here this line should be removed.",
       "revId": "6776f5b6cf15eb4b125caabd0916900e70041dee",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
