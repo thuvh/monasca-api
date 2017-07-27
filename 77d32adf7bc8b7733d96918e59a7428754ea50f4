@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff346bd7_553d0c29",
+        "filename": "api-ref/source/conf.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-27T16:42:15Z",
+      "side": 1,
+      "message": "just \u0027Monitoring API Reference\u0027\n\nPlease compare with other OpenStack projects.",
+      "range": {
+        "startLine": 48,
+        "startChar": 12,
+        "endLine": 48,
+        "endChar": 46
+      },
+      "revId": "77d32adf7bc8b7733d96918e59a7428754ea50f4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_952a5429",
+        "filename": "doc/source/cli/index.rst",
+        "patchSetId": 10
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-27T16:42:15Z",
+      "side": 1,
+      "message": "Please remove",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 16
+      },
+      "revId": "77d32adf7bc8b7733d96918e59a7428754ea50f4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_1502e40b",
+        "filename": "doc/source/conf.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-27T16:42:15Z",
+      "side": 1,
+      "message": "Other projects use short name here. I guess \u0027monasca\u0027 would be best.",
+      "range": {
+        "startLine": 47,
+        "startChar": 12,
+        "endLine": 47,
+        "endChar": 46
+      },
+      "revId": "77d32adf7bc8b7733d96918e59a7428754ea50f4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_a01f5459",
+        "filename": "doc/source/index.rst",
+        "patchSetId": 10
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-27T16:42:15Z",
+      "side": 1,
+      "message": "Monasca\u0027s",
+      "range": {
+        "startLine": 18,
+        "startChar": 11,
+        "endLine": 18,
+        "endChar": 24
+      },
+      "revId": "77d32adf7bc8b7733d96918e59a7428754ea50f4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_a054f4fe",
+        "filename": "doc/source/index.rst",
+        "patchSetId": 10
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-27T16:42:15Z",
+      "side": 1,
+      "message": "I would skip this for now.",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 42
+      },
+      "revId": "77d32adf7bc8b7733d96918e59a7428754ea50f4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_b5b3180a",
+        "filename": "releasenotes/notes/os-docs-550ce9ad68a4a29e.yaml",
+        "patchSetId": 10
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-27T16:42:15Z",
+      "side": 1,
+      "message": "I would prefer to deprecate after migration is finished.",
+      "range": {
+        "startLine": 4,
+        "startChar": 6,
+        "endLine": 4,
+        "endChar": 64
+      },
+      "revId": "77d32adf7bc8b7733d96918e59a7428754ea50f4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_206b6485",
+        "filename": "releasenotes/source/conf.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-27T16:42:15Z",
+      "side": 1,
+      "message": "\u0027Monasca Release Notes\u0027\n\nPlease compare with other OpenStack projects.",
+      "range": {
+        "startLine": 43,
+        "startChar": 12,
+        "endLine": 43,
+        "endChar": 46
+      },
+      "revId": "77d32adf7bc8b7733d96918e59a7428754ea50f4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
