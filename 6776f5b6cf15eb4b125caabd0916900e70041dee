@@ -59,6 +59,30 @@
     },
     {
       "key": {
+        "uuid": "ff346bd7_c67cc920",
+        "filename": "devstack/lib/persister.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-07-27T05:09:13Z",
+      "side": 1,
+      "message": "Looking at this differently, we might just remove that as long as we apply the comments from monasca-persister change.",
+      "parentUuid": "ff346bd7_e63d8dc4",
+      "range": {
+        "startLine": 142,
+        "startChar": 52,
+        "endLine": 142,
+        "endChar": 53
+      },
+      "revId": "6776f5b6cf15eb4b125caabd0916900e70041dee",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff346bd7_c66849ba",
         "filename": "devstack/lib/persister.sh",
         "patchSetId": 5
