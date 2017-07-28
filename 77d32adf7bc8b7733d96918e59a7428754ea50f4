@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "ff346bd7_af4de03e",
+        "filename": "doc/source/conf.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-28T15:14:17Z",
+      "side": 1,
+      "message": "It is more important to be consistent with other projects in that case. Please compare with Keystone or others.\n\nhttps://github.com/openstack/keystone/blob/master/doc/source/conf.py#L86\n\nbut\n\nhttps://github.com/openstack/keystone/blob/master/api-ref/source/conf.py#L68",
+      "parentUuid": "ff346bd7_fda97b8f",
+      "range": {
+        "startLine": 47,
+        "startChar": 12,
+        "endLine": 47,
+        "endChar": 46
+      },
+      "revId": "77d32adf7bc8b7733d96918e59a7428754ea50f4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff346bd7_a01f5459",
         "filename": "doc/source/index.rst",
         "patchSetId": 10
@@ -154,6 +178,30 @@
       "writtenOn": "2017-07-27T16:42:15Z",
       "side": 1,
       "message": "Monasca\u0027s",
+      "range": {
+        "startLine": 18,
+        "startChar": 11,
+        "endLine": 18,
+        "endChar": 24
+      },
+      "revId": "77d32adf7bc8b7733d96918e59a7428754ea50f4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_522f3b87",
+        "filename": "doc/source/index.rst",
+        "patchSetId": 10
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-28T15:14:17Z",
+      "side": 1,
+      "message": "I would like to have \u0027Monasca\u0027 here as it will act as the central landing page for the project.",
+      "parentUuid": "ff346bd7_a01f5459",
       "range": {
         "startLine": 18,
         "startChar": 11,
@@ -201,6 +249,30 @@
       "side": 1,
       "message": "It is always added from what I can tell :)",
       "parentUuid": "ff346bd7_a054f4fe",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 42
+      },
+      "revId": "77d32adf7bc8b7733d96918e59a7428754ea50f4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_efe8887c",
+        "filename": "doc/source/index.rst",
+        "patchSetId": 10
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-28T15:14:17Z",
+      "side": 1,
+      "message": "But we don\u0027t have any information about Monasca at docs.o.o. as of now. I would add it when we have something, but don\u0027t insist.",
+      "parentUuid": "ff346bd7_5aa52d46",
       "range": {
         "startLine": 31,
         "startChar": 0,
@@ -295,6 +367,30 @@
       "side": 1,
       "message": "Done and see comment in doc/source/conf.py",
       "parentUuid": "ff346bd7_206b6485",
+      "range": {
+        "startLine": 43,
+        "startChar": 12,
+        "endLine": 43,
+        "endChar": 46
+      },
+      "revId": "77d32adf7bc8b7733d96918e59a7428754ea50f4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_ef6be8ed",
+        "filename": "releasenotes/source/conf.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-07-28T15:14:17Z",
+      "side": 1,
+      "message": "Again\n\nhttps://github.com/openstack/keystone/blob/master/releasenotes/source/conf.py#L57\n\nand see comment in doc/source/conf.py",
+      "parentUuid": "ff346bd7_7d76ab40",
       "range": {
         "startLine": 43,
         "startChar": 12,
