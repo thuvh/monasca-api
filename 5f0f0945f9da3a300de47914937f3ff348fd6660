@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff346bd7_8e24655f",
+        "filename": "devstack/lib/persister.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-07-28T11:24:48Z",
+      "side": 1,
+      "message": "Too many empty lines.",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 129,
+        "endChar": 0
+      },
+      "revId": "5f0f0945f9da3a300de47914937f3ff348fd6660",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_4e1afd16",
+        "filename": "devstack/lib/persister.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-07-28T11:24:48Z",
+      "side": 1,
+      "message": "Same line as in 138",
+      "range": {
+        "startLine": 135,
+        "startChar": 4,
+        "endLine": 135,
+        "endChar": 64
+      },
+      "revId": "5f0f0945f9da3a300de47914937f3ff348fd6660",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff346bd7_2e1579e5",
+        "filename": "devstack/lib/persister.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-07-28T11:24:48Z",
+      "side": 1,
+      "message": "f",
+      "revId": "5f0f0945f9da3a300de47914937f3ff348fd6660",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
