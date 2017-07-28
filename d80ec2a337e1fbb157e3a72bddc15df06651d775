@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff346bd7_f7de2f3c",
+        "filename": "api-ref/source/conf.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2017-07-28T05:42:16Z",
+      "side": 1,
+      "message": "remove it",
+      "range": {
+        "startLine": 192,
+        "startChar": 43,
+        "endLine": 192,
+        "endChar": 52
+      },
+      "revId": "d80ec2a337e1fbb157e3a72bddc15df06651d775",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
