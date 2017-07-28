@@ -214,6 +214,30 @@
     },
     {
       "key": {
+        "uuid": "df3967d1_057dc21b",
+        "filename": "doc/source/index.rst",
+        "patchSetId": 10
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-07-28T19:12:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff346bd7_522f3b87",
+      "range": {
+        "startLine": 18,
+        "startChar": 11,
+        "endLine": 18,
+        "endChar": 24
+      },
+      "revId": "77d32adf7bc8b7733d96918e59a7428754ea50f4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff346bd7_a054f4fe",
         "filename": "doc/source/index.rst",
         "patchSetId": 10
@@ -273,6 +297,30 @@
       "side": 1,
       "message": "But we don\u0027t have any information about Monasca at docs.o.o. as of now. I would add it when we have something, but don\u0027t insist.",
       "parentUuid": "ff346bd7_5aa52d46",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 42
+      },
+      "revId": "77d32adf7bc8b7733d96918e59a7428754ea50f4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df3967d1_259d6659",
+        "filename": "doc/source/index.rst",
+        "patchSetId": 10
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-07-28T19:12:42Z",
+      "side": 1,
+      "message": "We could, but I am pretty much 100% sure we will forget about that. Let\u0027s keep that if that\u0027s not that important from your POV ;)",
+      "parentUuid": "ff346bd7_efe8887c",
       "range": {
         "startLine": 31,
         "startChar": 0,
@@ -391,6 +439,30 @@
       "side": 1,
       "message": "Again\n\nhttps://github.com/openstack/keystone/blob/master/releasenotes/source/conf.py#L57\n\nand see comment in doc/source/conf.py",
       "parentUuid": "ff346bd7_7d76ab40",
+      "range": {
+        "startLine": 43,
+        "startChar": 12,
+        "endLine": 43,
+        "endChar": 46
+      },
+      "revId": "77d32adf7bc8b7733d96918e59a7428754ea50f4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df3967d1_e59e3e53",
+        "filename": "releasenotes/source/conf.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-07-28T19:12:42Z",
+      "side": 1,
+      "message": "Ok, got the concept. Should be fine in next PS.",
+      "parentUuid": "ff346bd7_ef6be8ed",
       "range": {
         "startLine": 43,
         "startChar": 12,
