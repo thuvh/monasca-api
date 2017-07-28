@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff346bd7_aeb96979",
+        "filename": "monasca_api/app/main.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2017-07-28T11:46:35Z",
+      "side": 1,
+      "message": "should be 8070",
+      "range": {
+        "startLine": 43,
+        "startChar": 35,
+        "endLine": 43,
+        "endChar": 39
+      },
+      "revId": "78bb7bc0773d2a4c866f3f03d47a14db337c3035",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
