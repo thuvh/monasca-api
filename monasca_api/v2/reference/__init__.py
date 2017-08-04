@@ -30,43 +30,6 @@ used in kafka_publisher, but the original settings were at the api/server.py
 which I think is at the wrong place. I move these settings here for now, we
 need to have a bit more re-engineering to get it right.
 """
-global_opts = [cfg.StrOpt('region', help='Region that API is running in'),
-               cfg.ListOpt('valid_notification_periods', default=[0, 60],
-                           item_type=int,
-                           help='Valid periods for notification methods')
-               ]
-
-cfg.CONF.register_opts(global_opts)
-
-security_opts = [cfg.ListOpt('default_authorized_roles', default=['admin'],
-                             help='Roles that are allowed full access to the '
-                                  'API'),
-                 cfg.ListOpt('agent_authorized_roles', default=['agent'],
-                             help='Roles that are only allowed to POST to '
-                                  'the API'),
-                 cfg.ListOpt('read_only_authorized_roles', default=['monasca-read-only-user'],
-                             help='Roles that are only allowed to GET from '
-                                  'the API'),
-                 cfg.ListOpt('delegate_authorized_roles', default=['admin'],
-                             help='Roles that are allowed to POST metrics on '
-                                  'behalf of another tenant')]
-
-security_group = cfg.OptGroup(name='security', title='security')
-cfg.CONF.register_group(security_group)
-cfg.CONF.register_opts(security_opts, security_group)
-
-messaging_opts = [cfg.StrOpt('driver', default='kafka',
-                             help='The message queue driver to use'),
-                  cfg.StrOpt('metrics_message_format', default='reference',
-                             help='The type of metrics message format to '
-                                  'publish to the message queue'),
-                  cfg.StrOpt('events_message_format', default='reference',
-                             help='The type of events message format to '
-                                  'publish to the message queue')]
-
-messaging_group = cfg.OptGroup(name='messaging', title='messaging')
-cfg.CONF.register_group(messaging_group)
-cfg.CONF.register_opts(messaging_opts, messaging_group)
 
 base_sqla_path = 'monasca_api.common.repositories.sqla.'
 repositories_opts = [
