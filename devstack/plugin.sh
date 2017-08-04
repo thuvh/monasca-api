@@ -789,21 +789,25 @@ function configure_monasca_api_python {
 
         sudo chmod 0775 /var/log/monasca/api
 
+        # create configuration files in target locations
         rm -rf $MONASCA_API_CONF $MONASCA_API_PASTE_INI $MONASCA_API_LOGGING_CONF
+        $MONASCA_API_BIN_DIR/oslo-config-generator \
+            --config-file $MONASCA_API_DIR/config-generator/api.conf \
+            --output-file /tmp/api.conf
+        install -m 600 /tmp/api.conf $MONASCA_API_CONF
+        install -m 600 $MONASCA_API_DIR/etc/api-logging.conf $MONASCA_API_LOGGING_CONF
+        install -m 600 $MONASCA_API_DIR/etc/api-config.ini $MONASCA_API_PASTE_INI
+        # create configuration files in target locations
+
         local dbAlarmUrl
         local dbMetricDriver
-
         if [[ "${MONASCA_METRICS_DB,,}" == 'cassandra' ]]; then
             dbMetricDriver="monasca_api.common.repositories.cassandra.metrics_repository:MetricsRepository"
         else
             dbMetricDriver="monasca_api.common.repositories.influxdb.metrics_repository:MetricsRepository"
         fi
         dbAlarmUrl=`database_connection_url mon`
-        if [[ "$MONASCA_API_CONF_DIR" != "$MONASCA_API_DIR/etc/monasca" ]]; then
-            install -m 600 $MONASCA_API_DIR/etc/api-config.conf $MONASCA_API_CONF
-            install -m 600 $MONASCA_API_DIR/etc/api-logging.conf $MONASCA_API_LOGGING_CONF
-            install -m 600 $MONASCA_API_DIR/etc/api-config.ini $MONASCA_API_PASTE_INI
-        fi
+
         iniset "$MONASCA_API_CONF" database connection $dbAlarmUrl
         iniset "$MONASCA_API_CONF" repositories metrics_driver $dbMetricDriver
         iniset "$MONASCA_API_CONF" cassandra cluster_ip_addresses $SERVICE_HOST
