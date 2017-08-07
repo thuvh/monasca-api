@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bf3e73b7_a20db591",
+        "filename": "monasca_api/app/api.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2017-08-07T09:33:29Z",
+      "side": 1,
+      "message": "missing dot",
+      "revId": "da948f21d37b16e89955d92090aee5a30404979d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bf3e73b7_e2785df9",
+        "filename": "monasca_api/app/api.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2017-08-07T09:33:29Z",
+      "side": 1,
+      "message": "missing dot\nThe same comment in the rest of this file.",
+      "revId": "da948f21d37b16e89955d92090aee5a30404979d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bf3e73b7_e24bbd84",
+        "filename": "releasenotes/notes/composite_api-9d0eeb5b48dc92b3.yaml",
+        "patchSetId": 21
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2017-08-07T09:33:29Z",
+      "side": 1,
+      "message": "typo?",
+      "range": {
+        "startLine": 7,
+        "startChar": 41,
+        "endLine": 7,
+        "endChar": 44
+      },
+      "revId": "da948f21d37b16e89955d92090aee5a30404979d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
