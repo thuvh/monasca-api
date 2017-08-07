@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bf3e73b7_5f94a244",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 797,
+      "author": {
+        "id": 26141
+      },
+      "writtenOn": "2017-08-07T08:57:20Z",
+      "side": 1,
+      "message": "I think template(tmp/api.conf) file should be deleted, like in persister.",
+      "range": {
+        "startLine": 797,
+        "startChar": 8,
+        "endLine": 797,
+        "endChar": 54
+      },
+      "revId": "8921088f044b9345a5cadc884e1bd98484714ac0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
