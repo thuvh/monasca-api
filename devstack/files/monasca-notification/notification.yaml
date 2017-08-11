@@ -56,6 +56,7 @@ notification_types:
         password: ""
         timeout: 15
         from_addr: "hpcs.mon@hp.com"
+        %KIBANA_URL_CONF%
 
     webhook:
         timeout: 5
