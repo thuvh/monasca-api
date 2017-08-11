@@ -92,6 +92,10 @@ configure_monasca-notification() {
         dbDriver="monasca_notification.common.repositories.orm.orm_repo:OrmRepo"
     fi
 
+    if [ -n "${KIBANA_SERVICE_HOST}" ]; then
+        kibanaUrl="http:\/\/${KIBANA_SERVICE_HOST}${KIBANA_SERVER_BASE_PATH}"
+    fi  
+
     sudo sed -e "
         s|%DATABASE_HOST%|${DATABASE_HOST}|g;
         s|%DATABASE_PORT%|$dbPort|g;
@@ -102,6 +106,7 @@ configure_monasca-notification() {
         s|%KAFKA_HOST%|${SERVICE_HOST}|g;
         s|%MONASCA_STATSD_PORT%|${MONASCA_STATSD_PORT}|g;
         s|%MONASCA_NOTIFICATION_LOG_DIR%|${MONASCA_NOTIFICATION_LOG_DIR}|g;
+        s|%KIBANA_URL%|$kibanaUrl|g; 
     " -i ${MONASCA_NOTIFICATION_CONF}
 
     sudo install -d -o ${STACK_USER} ${MONASCA_NOTIFICATION_GATE_CFG_LINK}
