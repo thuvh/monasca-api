@@ -57,6 +57,7 @@ notification_types:
         timeout: 15
         from_addr: "hpcs.mon@hp.com"
         grafana_url: "%GRAFANA_URL%"
+        kibana_url: "%KIBANA_URL%"
 
     webhook:
         timeout: 5
