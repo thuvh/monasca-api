@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f436f4f_1fb6948b",
+        "filename": "config-generator/README.rst",
+        "patchSetId": 16
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2017-08-14T10:56:31Z",
+      "side": 1,
+      "message": "configuration file",
+      "revId": "601fbc6cde55671dfb8f1c0a8c38c9b104f87200",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f436f4f_fb0be326",
+        "filename": "tox.ini",
+        "patchSetId": 16
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2017-08-14T10:56:31Z",
+      "side": 1,
+      "message": "configuration",
+      "range": {
+        "startLine": 128,
+        "startChar": 31,
+        "endLine": 128,
+        "endChar": 44
+      },
+      "revId": "601fbc6cde55671dfb8f1c0a8c38c9b104f87200",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
