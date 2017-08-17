@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f436f4f_5f97253b",
+        "filename": "releasenotes/notes/influx_1.3.3-1be2009139641336.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2017-08-17T05:12:48Z",
+      "side": 1,
+      "message": "couple of",
+      "range": {
+        "startLine": 4,
+        "startChar": 54,
+        "endLine": 4,
+        "endChar": 60
+      },
+      "revId": "9a1cd5a937daa41dd6d7dc04cd7fac1775eb64b8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
