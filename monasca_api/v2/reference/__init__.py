@@ -148,6 +148,16 @@ cassandra_group = cfg.OptGroup(name='cassandra', title='cassandra')
 cfg.CONF.register_group(cassandra_group)
 cfg.CONF.register_opts(cassandra_opts, cassandra_group)
 
+griddb_opts = [cfg.StrOpt('notification_address'),
+               cfg.IntOpt('notification_port'),
+               cfg.StrOpt('cluster_name'),
+               cfg.StrOpt('user'),
+               cfg.StrOpt('password', secret=True)]
+
+griddb_group = cfg.OptGroup(name='griddb', title='griddb')
+cfg.CONF.register_group(griddb_group)
+cfg.CONF.register_opts(griddb_opts, griddb_group)
+
 
 def register_database_opts():
     # Update the default QueuePool parameters. These can be tweaked by the
