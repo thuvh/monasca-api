@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f436f4f_ebf13603",
+        "filename": "monasca_api/common/repositories/griddb/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2017-08-20T12:26:15Z",
+      "side": 1,
+      "message": "Acquire",
+      "range": {
+        "startLine": 112,
+        "startChar": 11,
+        "endLine": 112,
+        "endChar": 17
+      },
+      "revId": "26cf0310ae03484b75a9629effca0909106c714d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f436f4f_cbf672fa",
+        "filename": "monasca_api/common/repositories/griddb/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 18286
+      },
+      "writtenOn": "2017-08-20T12:26:15Z",
+      "side": 1,
+      "message": "history",
+      "range": {
+        "startLine": 230,
+        "startChar": 22,
+        "endLine": 230,
+        "endChar": 29
+      },
+      "revId": "26cf0310ae03484b75a9629effca0909106c714d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
