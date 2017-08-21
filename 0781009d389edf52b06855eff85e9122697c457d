@@ -1,0 +1,280 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f436f4f_5fb10e8f",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 18
+      },
+      "lineNbr": 792,
+      "author": {
+        "id": 13177
+      },
+      "writtenOn": "2017-08-21T11:54:24Z",
+      "side": 1,
+      "message": "This change is unrelated to the rest of the patch.",
+      "range": {
+        "startLine": 792,
+        "startChar": 7,
+        "endLine": 792,
+        "endChar": 56
+      },
+      "revId": "0781009d389edf52b06855eff85e9122697c457d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f436f4f_5f5fce40",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 18
+      },
+      "lineNbr": 801,
+      "author": {
+        "id": 13177
+      },
+      "writtenOn": "2017-08-21T11:54:24Z",
+      "side": 1,
+      "message": "this appears to be misplaced. should be above the code block",
+      "range": {
+        "startLine": 801,
+        "startChar": 8,
+        "endLine": 801,
+        "endChar": 56
+      },
+      "revId": "0781009d389edf52b06855eff85e9122697c457d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f436f4f_9f6c1609",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 18
+      },
+      "lineNbr": 830,
+      "author": {
+        "id": 13177
+      },
+      "writtenOn": "2017-08-21T11:54:24Z",
+      "side": 1,
+      "message": "this is unrelated",
+      "range": {
+        "startLine": 830,
+        "startChar": 8,
+        "endLine": 830,
+        "endChar": 29
+      },
+      "revId": "0781009d389edf52b06855eff85e9122697c457d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f436f4f_5af8fcc2",
+        "filename": "doc/source/configuration/sample.rst",
+        "patchSetId": 18
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 13177
+      },
+      "writtenOn": "2017-08-21T11:54:24Z",
+      "side": 1,
+      "message": "If the path begins with \"/\", the path is relative to the top-level dir instead of relative to the current file\u0027s path.\n\nhttp://www.sphinx-doc.org/en/stable/markup/code.html#includes",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 49
+      },
+      "revId": "0781009d389edf52b06855eff85e9122697c457d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f436f4f_9a830405",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 13177
+      },
+      "writtenOn": "2017-08-21T11:54:24Z",
+      "side": 1,
+      "message": "Perhaps this behaviour should be updated separately, as you\u0027re introducing the config generator AND changing the presentation/consumption of a config option in the same change.",
+      "range": {
+        "startLine": 42,
+        "startChar": 12,
+        "endLine": 43,
+        "endChar": 13
+      },
+      "revId": "0781009d389edf52b06855eff85e9122697c457d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f436f4f_3acad86d",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 13177
+      },
+      "writtenOn": "2017-08-21T11:54:24Z",
+      "side": 1,
+      "message": "unrelated change",
+      "range": {
+        "startLine": 45,
+        "startChar": 12,
+        "endLine": 46,
+        "endChar": 13
+      },
+      "revId": "0781009d389edf52b06855eff85e9122697c457d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f436f4f_ba080891",
+        "filename": "monasca_api/conf/cassandra.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 13177
+      },
+      "writtenOn": "2017-08-21T11:54:24Z",
+      "side": 1,
+      "message": "Questionable indentation choice. It should be inline with the rest of the parameters, if I\u0027m not mistaken.",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 4
+      },
+      "revId": "0781009d389edf52b06855eff85e9122697c457d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f436f4f_3a677854",
+        "filename": "monasca_api/conf/cassandra.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 13177
+      },
+      "writtenOn": "2017-08-21T11:54:24Z",
+      "side": 1,
+      "message": "ditto on indentation",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 35
+      },
+      "revId": "0781009d389edf52b06855eff85e9122697c457d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f436f4f_1a9274f7",
+        "filename": "monasca_api/conf/influxdb.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 13177
+      },
+      "writtenOn": "2017-08-21T11:54:24Z",
+      "side": 1,
+      "message": "Same comment as earlier re: indentation of the parameters",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 38
+      },
+      "revId": "0781009d389edf52b06855eff85e9122697c457d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f436f4f_35a9cbdc",
+        "filename": "monasca_api/healthcheck/metrics_db_check.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 13177
+      },
+      "writtenOn": "2017-08-21T11:54:24Z",
+      "side": 1,
+      "message": "again, arguing that this is an unrelated change because it is changing how the config option is presented",
+      "range": {
+        "startLine": 90,
+        "startChar": 12,
+        "endLine": 92,
+        "endChar": 13
+      },
+      "revId": "0781009d389edf52b06855eff85e9122697c457d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f436f4f_f5ea23d6",
+        "filename": "tox.ini",
+        "patchSetId": 18
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 13177
+      },
+      "writtenOn": "2017-08-21T11:54:24Z",
+      "side": 1,
+      "message": "This looks like an unrelated change i.e. clean-up in tox job",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 45
+      },
+      "revId": "0781009d389edf52b06855eff85e9122697c457d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f436f4f_75b873e4",
+        "filename": "tox.ini",
+        "patchSetId": 18
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 13177
+      },
+      "writtenOn": "2017-08-21T11:54:24Z",
+      "side": 1,
+      "message": "ditto: unrelated change",
+      "range": {
+        "startLine": 110,
+        "startChar": 0,
+        "endLine": 110,
+        "endChar": 87
+      },
+      "revId": "0781009d389edf52b06855eff85e9122697c457d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
