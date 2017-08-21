@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "9f436f4f_b1edc1b8",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 18
+      },
+      "lineNbr": 801,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-08-21T21:14:06Z",
+      "side": 1,
+      "message": "well, actually the code that is responsible for putting the configuration files inside the target locations as well as creating some of them (api-config.conf) can be found between these comments. What happens after is merely setting proper values.",
+      "parentUuid": "9f436f4f_5f5fce40",
+      "range": {
+        "startLine": 801,
+        "startChar": 8,
+        "endLine": 801,
+        "endChar": 56
+      },
+      "revId": "0781009d389edf52b06855eff85e9122697c457d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f436f4f_9f6c1609",
         "filename": "devstack/plugin.sh",
         "patchSetId": 18
@@ -59,6 +83,30 @@
       "writtenOn": "2017-08-21T11:54:24Z",
       "side": 1,
       "message": "this is unrelated",
+      "range": {
+        "startLine": 830,
+        "startChar": 8,
+        "endLine": 830,
+        "endChar": 29
+      },
+      "revId": "0781009d389edf52b06855eff85e9122697c457d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f436f4f_113ecd28",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 18
+      },
+      "lineNbr": 830,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-08-21T21:14:06Z",
+      "side": 1,
+      "message": "maybe, but there\u0027s a lot of settings being done here so I decided to organize those sections just a bit.",
+      "parentUuid": "9f436f4f_9f6c1609",
       "range": {
         "startLine": 830,
         "startChar": 8,
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "9f436f4f_510d758e",
+        "filename": "doc/source/configuration/sample.rst",
+        "patchSetId": 18
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-08-21T21:14:06Z",
+      "side": 1,
+      "message": "hmmm...I can check that, I took that file pretty much raw from other projects at they were following up that approach.",
+      "parentUuid": "9f436f4f_5af8fcc2",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 49
+      },
+      "revId": "0781009d389edf52b06855eff85e9122697c457d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f436f4f_9a830405",
         "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
         "patchSetId": 18
@@ -105,6 +177,30 @@
       "writtenOn": "2017-08-21T11:54:24Z",
       "side": 1,
       "message": "Perhaps this behaviour should be updated separately, as you\u0027re introducing the config generator AND changing the presentation/consumption of a config option in the same change.",
+      "range": {
+        "startLine": 42,
+        "startChar": 12,
+        "endLine": 43,
+        "endChar": 13
+      },
+      "revId": "0781009d389edf52b06855eff85e9122697c457d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f436f4f_f1d469bd",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-08-21T21:14:06Z",
+      "side": 1,
+      "message": "Hmm...well, yes and no - basically monasca-api suffered a bit, as far as I remember, from the fact that options that were meant to be IP adresses or port numbers were represented, respectively, as strings and integers. Seemed only fitting to wrap up those minor changes for certain variables within that change.\n\nI can change it back, but it won\u0027t be much of reversing. If you still feel like that this necessary I can surely do that.",
+      "parentUuid": "9f436f4f_9a830405",
       "range": {
         "startLine": 42,
         "startChar": 12,
@@ -209,6 +305,30 @@
     },
     {
       "key": {
+        "uuid": "9f436f4f_9194fde9",
+        "filename": "monasca_api/conf/influxdb.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-08-21T21:14:06Z",
+      "side": 1,
+      "message": "Everywhere the reply is the same, they way the string is written here is reflected in generated configuration file. Linebreaks put here are therefore in config file and are increasing a bit it\u0027s readability. Also that this the convention I picked from another OS project, though that is hardly an argument :D",
+      "parentUuid": "9f436f4f_1a9274f7",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 38
+      },
+      "revId": "0781009d389edf52b06855eff85e9122697c457d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f436f4f_35a9cbdc",
         "filename": "monasca_api/healthcheck/metrics_db_check.py",
         "patchSetId": 18
@@ -255,6 +375,30 @@
     },
     {
       "key": {
+        "uuid": "9f436f4f_7165191d",
+        "filename": "tox.ini",
+        "patchSetId": 18
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-08-21T21:14:06Z",
+      "side": 1,
+      "message": "Not at all unrelated IMHO, without that each run of the checknicess pick up the built documentation and kick out the validation. I am not for doing a changes for such things if they can be included in existing one. That\u0027s, on other side of the coin, a minor refactor and I do not particularly favor creating changes for such purpose.",
+      "parentUuid": "9f436f4f_f5ea23d6",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 45
+      },
+      "revId": "0781009d389edf52b06855eff85e9122697c457d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f436f4f_75b873e4",
         "filename": "tox.ini",
         "patchSetId": 18
@@ -266,6 +410,30 @@
       "writtenOn": "2017-08-21T11:54:24Z",
       "side": 1,
       "message": "ditto: unrelated change",
+      "range": {
+        "startLine": 110,
+        "startChar": 0,
+        "endLine": 110,
+        "endChar": 87
+      },
+      "revId": "0781009d389edf52b06855eff85e9122697c457d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f436f4f_9162bd15",
+        "filename": "tox.ini",
+        "patchSetId": 18
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-08-21T21:14:06Z",
+      "side": 1,
+      "message": "Same response.",
+      "parentUuid": "9f436f4f_75b873e4",
       "range": {
         "startLine": 110,
         "startChar": 0,
