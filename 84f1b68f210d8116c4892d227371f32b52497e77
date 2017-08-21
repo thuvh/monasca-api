@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f436f4f_ffa56248",
+        "filename": "monasca_api/common/repositories/griddb/metrics_repository.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-08-21T11:26:28Z",
+      "side": 1,
+      "message": "Import in general are grouped as in:\n\n1) system imports (internal python libs)\n2) libs from the requirements\n3) internal imports\n\nalso please use full imports and not import specific objects but modules.",
+      "revId": "84f1b68f210d8116c4892d227371f32b52497e77",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
