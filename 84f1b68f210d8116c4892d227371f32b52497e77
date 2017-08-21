@@ -16,6 +16,98 @@
       "revId": "84f1b68f210d8116c4892d227371f32b52497e77",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f436f4f_556c4f35",
+        "filename": "monasca_api/common/repositories/griddb/metrics_repository.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2017-08-21T12:08:09Z",
+      "side": 1,
+      "message": "You can write it as:\n   values \u003d value.split(\"|\") if value else None",
+      "range": {
+        "startLine": 320,
+        "startChar": 16,
+        "endLine": 323,
+        "endChar": 45
+      },
+      "revId": "84f1b68f210d8116c4892d227371f32b52497e77",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f436f4f_1580078b",
+        "filename": "monasca_api/common/repositories/griddb/metrics_repository.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2017-08-21T12:08:09Z",
+      "side": 1,
+      "message": "wrong brake of the line. Number of arguments should be equal in each line",
+      "range": {
+        "startLine": 414,
+        "startChar": 0,
+        "endLine": 415,
+        "endChar": 46
+      },
+      "revId": "84f1b68f210d8116c4892d227371f32b52497e77",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f436f4f_b5337b13",
+        "filename": "monasca_api/common/repositories/griddb/metrics_repository.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 495,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2017-08-21T12:08:09Z",
+      "side": 1,
+      "message": "d_values \u003d d_value.split(\"|\") if d_value else None",
+      "range": {
+        "startLine": 492,
+        "startChar": 16,
+        "endLine": 495,
+        "endChar": 49
+      },
+      "revId": "84f1b68f210d8116c4892d227371f32b52497e77",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f436f4f_d93519dd",
+        "filename": "monasca_api/common/repositories/griddb/metrics_repository.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2017-08-21T12:08:09Z",
+      "side": 1,
+      "message": "The same as above",
+      "range": {
+        "startLine": 588,
+        "startChar": 16,
+        "endLine": 591,
+        "endChar": 49
+      },
+      "revId": "84f1b68f210d8116c4892d227371f32b52497e77",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
