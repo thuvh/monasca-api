@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7f287b81_6c5c377e",
+        "filename": "devstack/lib/notification.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-08-24T07:25:33Z",
+      "side": 1,
+      "message": "Remove whitespace",
+      "range": {
+        "startLine": 97,
+        "startChar": 6,
+        "endLine": 97,
+        "endChar": 8
+      },
+      "revId": "7a7a892e5856921d144bf4bc58433f46683750e1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f287b81_ec4f07bb",
+        "filename": "devstack/lib/notification.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-08-24T07:25:33Z",
+      "side": 1,
+      "message": "Remove whitespace",
+      "range": {
+        "startLine": 109,
+        "startChar": 36,
+        "endLine": 109,
+        "endChar": 37
+      },
+      "revId": "7a7a892e5856921d144bf4bc58433f46683750e1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
