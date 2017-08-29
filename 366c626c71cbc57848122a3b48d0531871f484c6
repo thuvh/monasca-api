@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7f287b81_f7b2bd48",
+        "filename": "etc/api-config.conf",
+        "patchSetId": 11
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 20033
+      },
+      "writtenOn": "2017-08-29T11:40:04Z",
+      "side": 1,
+      "message": "Configuration file is right now generated though config generator.\nChange for this was merged: https://review.openstack.org/#/c/490778/",
+      "revId": "366c626c71cbc57848122a3b48d0531871f484c6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
