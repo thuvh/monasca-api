@@ -47,6 +47,7 @@ class MetricsDbCheck(base.BaseHealthCheck):
         # Try to import cassandra. Not a problem if it can't be imported as long
         # as the metrics db is influx
         self._cluster = importutils.try_import('cassandra.cluster', None)
+        self._griddb = importutils.try_import('griddb_python_client', None)
         metric_driver = CONF.repositories.metrics_driver
         self._db = self._detected_database_type(metric_driver)
         if self._db == 'cassandra' and self._cluster is None:
@@ -57,8 +58,10 @@ class MetricsDbCheck(base.BaseHealthCheck):
     def health_check(self):
         if self._db == 'influxdb':
             status = self._check_influxdb_status()
-        else:
+        elif self._db == 'cassandra':
             status = self._check_cassandra_status()
+        else:
+            status = self._check_griddb_status()
 
         return base.CheckResult(healthy=status[0],
                                 message=status[1])
@@ -68,6 +71,8 @@ class MetricsDbCheck(base.BaseHealthCheck):
             return 'influxdb'
         elif 'cassandra' in driver:
             return 'cassandra'
+        elif 'griddb' in driver:
+            return 'griddb'
         else:
             raise exceptions.UnsupportedDriverException(
                 'Driver {0} is not supported by Healthcheck'.format(driver))
@@ -95,4 +100,22 @@ class MetricsDbCheck(base.BaseHealthCheck):
         except Exception as ex:
             LOG.exception(str(ex))
             return False, str(ex)
+        return True, 'OK'
+
+    def _check_griddb_status(self):
+        if self._griddb is None:
+            return False, "GridDB driver not imported"
+        try:
+            factory = griddb.StoreFactory.get_default()
+            g = factory.get_store(params)
+            g.factory.get_store({
+                "notificationAddress": CONF.griddb.notification_address,
+                "notificationPort": CONF.griddb.notification_port,
+                "clusterName": CONF.griddb.cluster_name,
+                "user": CONF.griddb.user,
+                "password": CONF.griddb.password
+            })
+        except GSException as ex:
+            LOG.exception(str(ex.what()))
+            return False, str(ex.what())
         return True, 'OK'
