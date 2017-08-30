@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7f287b81_1a31cca3",
+        "filename": "monasca_api/healthcheck/metrics_db_check.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2017-08-30T14:27:32Z",
+      "side": 1,
+      "message": "Seems like _check_status should be made a method in the metrics repo interface and the three implementations below that are specific to each DB moved into their respective repos.",
+      "revId": "e79b7a1e4920805f455f8c0d6ddacfc94c452876",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
