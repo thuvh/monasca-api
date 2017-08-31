@@ -28,7 +28,7 @@ CONF = config.CONF
 
 class TestMetricsDbHealthCheck(base.BaseTestCase):
     cassandra_conf = {
-        'cluster_ip_addresses': 'localhost',
+        'contact_points': 'localhost',
         'keyspace': 'test'
     }
 
@@ -152,7 +152,7 @@ class TestMetricsDbHealthCheck(base.BaseTestCase):
             'metrics_driver': 'cassandra.metrics_repository:MetricsRepository'
         }
         cassandra_conf = {
-            'cluster_ip_addresses': 'localhost',
+            'contact_points': 'localhost',
             'keyspace': 'test'
         }
         self.conf_override(group='repositories', **messaging_conf)
@@ -176,7 +176,7 @@ class TestMetricsDbHealthCheck(base.BaseTestCase):
             'metrics_driver': 'cassandra.metrics_repository:MetricsRepository'
         }
         cassandra_conf = {
-            'cluster_ip_addresses': 'localhost',
+            'contact_points': 'localhost',
             'keyspace': 'test'
         }
         self.conf_override(group='repositories', **messaging_conf)
@@ -197,7 +197,7 @@ class TestMetricsDbHealthCheck(base.BaseTestCase):
             'metrics_driver': 'cassandra.metrics_repository:MetricsRepository'
         }
         cassandra_conf = {
-            'cluster_ip_addresses': 'localhost',
+            'contact_points': 'localhost',
             'keyspace': 'test'
         }
         self.conf_override(group='repositories', **messaging_conf)
