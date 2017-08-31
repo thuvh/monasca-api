@@ -771,7 +771,7 @@ If no limit is specified in the request URL, then a server-wide configurable lim
 
 
 ## Offset
-Offsets can be either integer offsets, string offsets (including hexadecimal numbers), or timestamp offsets. The use of either integer, string, or timestamp is determined by the resource being queried.
+Offsets can be either identifier offsets, timestamp offsets or combinational offsets that have an identifier part and timestamp part. The identifier can be an integer or string (including hexadecimal numbers) The use of either integer, string, timestamp or combination is determined by the resource being queried.
 
 For example, an integer offset would look like this:
 
@@ -809,12 +809,16 @@ A dimension value offset would look as follows:
 offset=dimensionValue2
 
 ```
+A combinational offset with hexdecimal id would look as follows:
+offset=01ce0acc66131296c8a17294f39aee44ea8963ec_2104-01-01T00:00:01Z
 
 Different resources use different offset types because of the internal implementation of different resources depends on different types of mechanisms for indexing and identifying resources. The type and form of the offsets for each resource can be determined by referring to the examples in each resource section below.
 
 The offset is determined by the ID of the last element in the result list. Users wishing to manually create a query URL can use the ID of the last element in the previously returned result set as the offset. The proceeding result set will return all elements with an ID greater than the offset up to the limit. The automatically generated offset in the next link does exactly this; it uses the ID in the last element.
 
-The offset can take the form of an integer, string, or timestamp, but the user should treat the offset as an opaque reference. When using offsets in manually generated URLs, users enter them as strings that look like integers, timestamps, or strings. Future releases may change the type and form of the offsets for each resource.
+For measurement and statistics resources backed up by the Cassandra database and InfluxDB (Python api only), the offset contains both ID and timestamp. The ID and timestamp part are determined by the ID and timestamp value of the last element in the previously returned result set respectively. The proceeding result set will return all elements with either an ID greater than the ID in the offset or the same ID as the offset but having a tempstamp value greater than the timestamp in the offset.
+
+The offset can take the form of an integer ID, string ID, timestamp, or a combination of both ID and timestamp, but the user should treat the offset as an opaque reference. When using offsets in manually generated URLs, users enter them as strings that look like integers, timestamps, or strings. Future releases may change the type and form of the offsets for each resource.
 
 ## Limit
 The Monasca API has a server-wide default limit that is applied. Users may specify their own limit in the URL, but the server-wide limit may not be exceeded. The Monasca server-wide limit is configured in the Monasca API config file as maxQueryLimit. Users may specify a limit up to the maxQueryLimit.
