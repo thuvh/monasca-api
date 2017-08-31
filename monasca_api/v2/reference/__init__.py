@@ -142,7 +142,7 @@ influxdb_group = cfg.OptGroup(name='influxdb', title='influxdb')
 cfg.CONF.register_group(influxdb_group)
 cfg.CONF.register_opts(influxdb_opts, influxdb_group)
 
-cassandra_opts = [cfg.StrOpt('cluster_ip_addresses'), cfg.StrOpt('keyspace')]
+cassandra_opts = [cfg.ListOpt('contact_points'), cfg.StrOpt('keyspace')]
 
 cassandra_group = cfg.OptGroup(name='cassandra', title='cassandra')
 cfg.CONF.register_group(cassandra_group)

@@ -29,7 +29,7 @@ CONF = cfg.CONF
 
 class TestMetricsDbHealthCheck(base.BaseTestCase):
     cassandra_conf = {
-        'cluster_ip_addresses': 'localhost',
+        'contact_points': 'localhost',
         'keyspace': 'test'
     }
 
@@ -154,7 +154,7 @@ class TestMetricsDbHealthCheck(base.BaseTestCase):
             'metrics_driver': 'cassandra.metrics_repository:MetricsRepository'
         }
         cassandra_conf = {
-            'cluster_ip_addresses': 'localhost',
+            'contact_points': 'localhost',
             'keyspace': 'test'
         }
         self._conf.config(group='repositories', **messaging_conf)
@@ -178,7 +178,7 @@ class TestMetricsDbHealthCheck(base.BaseTestCase):
             'metrics_driver': 'cassandra.metrics_repository:MetricsRepository'
         }
         cassandra_conf = {
-            'cluster_ip_addresses': 'localhost',
+            'contact_points': 'localhost',
             'keyspace': 'test'
         }
         self._conf.config(group='repositories', **messaging_conf)
@@ -199,7 +199,7 @@ class TestMetricsDbHealthCheck(base.BaseTestCase):
             'metrics_driver': 'cassandra.metrics_repository:MetricsRepository'
         }
         cassandra_conf = {
-            'cluster_ip_addresses': 'localhost',
+            'contact_points': 'localhost',
             'keyspace': 'test'
         }
         self._conf.config(group='repositories', **messaging_conf)
@@ -208,4 +208,5 @@ class TestMetricsDbHealthCheck(base.BaseTestCase):
         db_health = tdc.MetricsDbCheck()
         result = db_health.health_check()
 
+        self.assertEqual("OK", result.message)
         self.assertTrue(result.healthy)
