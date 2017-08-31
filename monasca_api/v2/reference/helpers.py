@@ -551,6 +551,7 @@ def paginate_measurements(measurements, uri, limit):
                                 u'href': self_link.decode('utf8')},
                                ]}
         for measurement in measurements:
+            LOG.info('helpers:paginate: measurements element: %s' % measurement)
             if len(measurement['measurements']) >= limit:
 
                 new_offset = measurement['measurements'][limit - 1][0]
