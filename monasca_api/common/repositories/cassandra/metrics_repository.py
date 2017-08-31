@@ -1,4 +1,5 @@
 # (C) Copyright 2015,2016 Hewlett Packard Enterprise Development Company LP
+# (C) Copyright 2017 SUSE LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -13,55 +14,174 @@
 # under the License.
 
 import binascii
-from datetime import datetime
-from datetime import timedelta
 import itertools
 import urllib
 
 from cassandra.cluster import Cluster
 from cassandra.query import SimpleStatement
+
 from oslo_config import cfg
 from oslo_log import log
-from oslo_utils import timeutils
-
-from monasca_common.rest import utils as rest_utils
 
 from monasca_api.common.repositories import exceptions
 from monasca_api.common.repositories import metrics_repository
+from monasca_common.rest import utils as rest_utils
 
 LOG = log.getLogger(__name__)
+
+LIMIT_CLAUSE = 'limit %s'
+ALLOW_FILTERING = 'allow filtering'
+
+MEASUREMENT_LIST_CQL = ('select time_stamp, value, value_meta '
+                        'from measurements where %s %s %s %s')
+METRIC_ID_EQ = 'metric_id = %s'
+METRIC_ID_IN = 'metric_id in %s'
+OFFSET_TIME_GT = "and time_stamp > %s"
+START_TIME_GE = "and time_stamp >= %s"
+END_TIME_LE = "and time_stamp <= %s"
+
+METRIC_LIST_CQL = ('select metric_name, dimensions, metric_id '
+                   'from metrics where %s %s %s %s %s %s %s')
+REGION_EQ = 'region = %s'
+TENANT_EQ = 'and tenant_id = %s'
+METRIC_NAME_EQ = 'and metric_name = %s'
+DIMENSION_CONTAINS = 'and dimensions contains %s'
+OFFSET_ID_GT = 'and metric_id > %s'
+
+DIMENSION_VALUE_BY_METRIC_CQL = ('select dimension_value as value from metrics_dimensions '
+                                 'where region = ? and tenant_id = ? and metric_name = ? '
+                                 'and dimension_name = ? group by dimension_value')
+
+DIMENSION_VALUE_CQL = ('select value from dimensions '
+                       'where region = ? and tenant_id = ? and name = ? '
+                       'group by value order by value')
+
+DIMENSION_NAME_BY_METRIC_CQL = ('select dimension_name as name from metrics_dimensions where '
+                                'region = ? and tenant_id = ? and metric_name = ? '
+                                'group by dimension_name order by dimension_name')
+
+DIMENSION_NAME_CQL = ('select name from dimensions where region = ? and tenant_id = ? '
+                      'group by name allow filtering')
+
+METRIC_NAME_BY_DIMENSION_CQL = ('select metric_name from dimensions_metrics where region = ? and '
+                                'tenant_id = ? and dimension_name = ? and dimension_value = ? '
+                                'group by metric_name order by metric_name')
+
+METRIC_NAME_CQL = ('select distinct region, tenant_id, metric_name from metrics_dimensions '
+                   'where region = ? and tenant_id = ? allow filtering')
 
 
 class MetricsRepository(metrics_repository.AbstractMetricsRepository):
     def __init__(self):
 
         try:
-
             self.conf = cfg.CONF
-            self._cassandra_cluster = Cluster(
-                self.conf.cassandra.cluster_ip_addresses
-            )
-            self.cassandra_session = self._cassandra_cluster.connect(
-                self.conf.cassandra.keyspace
-            )
+            self.cluster = Cluster(self.conf.cassandra.contact_points)
+            self.session = self.cluster.connect(self.conf.cassandra.keyspace)
+
+            self.dim_val_by_metric_stmt = self.session.prepare(DIMENSION_VALUE_BY_METRIC_CQL)
+
+            self.dim_val_stmt = self.session.prepare(DIMENSION_VALUE_CQL)
+
+            self.dim_name_by_metric_stmt = self.session.prepare(DIMENSION_NAME_BY_METRIC_CQL)
+
+            self.dim_name_stmt = self.session.prepare(DIMENSION_NAME_CQL)
+
+            self.metric_name_by_dimension_stmt = self.session.prepare(METRIC_NAME_BY_DIMENSION_CQL)
+
+            self.metric_name_stmt = self.session.prepare(METRIC_NAME_CQL)
+
+        except Exception as ex:
+            LOG.exception(ex)
+            raise exceptions.RepositoryException(ex)
+
+    def list_dimension_values(self, tenant_id, region, metric_name,
+                              dimension_name):
+
+        try:
+            if metric_name:
+                rows = self.session.execute(
+                    self.dim_val_by_metric_stmt,
+                    [region, tenant_id, metric_name, dimension_name])
+            else:
+                rows = self.session.execute(
+                    self.dim_val_stmt,
+                    [region, tenant_id, dimension_name])
+
+            json_dim_value_list = []
+
+            if not rows:
+                return json_dim_value_list
+
+            for row in rows:
+                json_dim_value_list.append({u'dimension_value': row.value})
+
+            json_dim_value_list.sort(key=lambda x: x[u'dimension_value'])
+
+            return json_dim_value_list
+        except Exception as ex:
+            LOG.exception(ex)
+            raise exceptions.RepositoryException(ex)
+
+    def list_dimension_names(self, tenant_id, region, metric_name):
+
+        try:
+
+            if metric_name:
+                rows = self.session.execute(
+                    self.dim_name_by_metric_stmt,
+                    [region, tenant_id, metric_name])
+                ordered = True
+            else:
+                rows = self.session.execute(
+                    self.dim_name_stmt,
+                    [region, tenant_id])
+                ordered = False
+
+            if not rows:
+                return []
+
+            json_dim_name_list = [{u'dimension_name': row.name} for row in rows]
+
+            if not ordered:
+                json_dim_name_list.sort(key=lambda x: x[u'dimension_name'])
+
+            return json_dim_name_list
         except Exception as ex:
             LOG.exception(ex)
             raise exceptions.RepositoryException(ex)
 
     def list_metrics(self, tenant_id, region, name, dimensions, offset,
-                     limit, start_timestamp=None, end_timestamp=None,
-                     include_metric_hash=False):
+                     limit, start_timestamp=None, end_timestamp=None):
+
+        metric_list = self._list_metrics(tenant_id, region, name, dimensions, offset,
+                                         limit)
+
+        if start_timestamp or end_timestamp:
+            final_list = []
+            for metric in metric_list:
+                series_list = self._measurement_list(metric, dimensions, start_timestamp, end_timestamp, None,
+                                                     1, None, None)
+                if series_list and len(series_list[0]['measurments']) > 0:
+                    final_list.append(metric)
+
+            return final_list
+
+        return metric_list
+
+    def _list_metrics(self, tenant_id, region, name, dimensions, offset, limit):
 
         or_dimensions = []
         sub_dimensions = {}
+        futures = []
 
         if dimensions:
-            for key, value in dimensions.iteritems():
+            for key, value in dimensions.items():
                 if not value:
-                    sub_dimensions[key] = value
+                    # does not support search by key only
+                    LOG.info('Ignored search by dimension key only in dimension dictionary: %s' % dimensions)
 
                 elif '|' in value:
-
                     def f(val):
                         return {key: val}
 
@@ -72,7 +192,6 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
 
             if or_dimensions:
                 or_dims_list = list(itertools.product(*or_dimensions))
-                metrics_list = []
 
                 for or_dims_tuple in or_dims_list:
                     extracted_dimensions = sub_dimensions.copy()
@@ -81,570 +200,383 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
                         for k, v in dims.iteritems():
                             extracted_dimensions[k] = v
 
-                    metrics = self._list_metrics(tenant_id, region, name,
-                                                 extracted_dimensions, offset,
-                                                 limit, start_timestamp,
-                                                 end_timestamp,
-                                                 include_metric_hash)
-                    metrics_list += metrics
+                    query = self._build_metrics_query(tenant_id, region, name,
+                                                      extracted_dimensions, offset,
+                                                      limit)
 
-                return sorted(metrics_list, key=lambda metric: metric['id'])
+                    futures.append(self.session.execute_async(query[0], query[1]))
 
-        return self._list_metrics(tenant_id, region, name, dimensions,
-                                  offset, limit, start_timestamp,
-                                  end_timestamp, include_metric_hash)
+            else:
+                query = self._build_metrics_query(tenant_id, region, name, sub_dimensions, offset,
+                                                  limit)
+                futures.append(self.session.execute_async(query[0], query[1]))
 
-    def _list_metrics(self, tenant_id, region, name, dimensions, offset,
-                      limit, start_timestamp=None, end_timestamp=None,
-                      include_metric_hash=False):
+        else:
+            query = self._build_metrics_query(tenant_id, region, name, dimensions, offset, limit)
+            futures.append(self.session.execute_async(query[0], query[1]))
 
-        try:
+        metric_list = {}
 
-            select_stmt = """
-              select tenant_id, region, metric_hash, metric_map
-              from metric_map
-              where tenant_id = %s and region = %s
-              """
-
-            parms = [tenant_id.encode('utf8'), region.encode('utf8')]
-
-            name_clause = self._build_name_clause(name, parms)
-
-            dimension_clause = self._build_dimensions_clause(dimensions, parms)
-
-            select_stmt += name_clause + dimension_clause
-
-            if offset:
-                select_stmt += ' and metric_hash > %s '
-                parms.append(bytearray(offset.decode('hex')))
-
-            if limit:
-                select_stmt += ' limit %s '
-                parms.append(limit + 1)
-
-            select_stmt += ' allow filtering '
-
-            json_metric_list = []
-
-            stmt = SimpleStatement(select_stmt,
-                                   fetch_size=2147483647)
-
-            rows = self.cassandra_session.execute(stmt, parms)
-
-            if not rows:
-                return json_metric_list
-
-            for (tenant_id, region, metric_hash, metric_map) in rows:
+        for future in futures:
+            rows = future.result()
+            for row in rows:
+                dimensions = {}
+                for d in row.dimensions:
+                    pair = d.split('=')
+                    dimensions[urllib.unquote_plus(pair[0])] = urllib.unquote_plus(pair[1])
 
                 metric = {}
+                metric['dimensions'] = dimensions
+                metric['id'] = '0x%s' % binascii.hexlify(bytearray(row.metric_id))
+                metric['name'] = row.metric_name
+                metric_list[metric['id']] = metric
 
-                dimensions = {}
+        return sorted(metric_list.values(), key=lambda metric: metric[u'id'])
 
-                if include_metric_hash:
-                    metric[u'metric_hash'] = metric_hash
+    def _build_metrics_query(self, tenant_id, region, name, dimensions, offset, limit):
 
-                for name, value in metric_map.iteritems():
+        conditions = [REGION_EQ, TENANT_EQ]
+        params = [region, tenant_id.encode('utf8')]
 
-                    if name == '__name__':
-
-                        name = urllib.unquote_plus(value)
-
-                        metric[u'name'] = name
-
-                    else:
-
-                        name = urllib.unquote_plus(name)
-
-                        value = urllib.unquote_plus(value)
-
-                        dimensions[name] = value
-
-                metric[u'dimensions'] = dimensions
-
-                metric[u'id'] = binascii.hexlify(bytearray(metric_hash))
-
-                json_metric_list.append(metric)
-
-            return json_metric_list
-
-        except Exception as ex:
-            LOG.exception(ex)
-            raise exceptions.RepositoryException(ex)
-
-    def _build_dimensions_clause(self, dimensions, parms):
-
-        dimension_clause = ''
-        if dimensions:
-
-            for name, value in dimensions.iteritems():
-                if not value:
-                    dimension_clause += ' and metric_map contains key %s '
-
-                    parms.append(urllib.quote_plus(name).encode('utf8'))
-                else:
-                    dimension_clause += ' and metric_map[%s] = %s '
-
-                    parms.append(urllib.quote_plus(name).encode('utf8'))
-                    parms.append(urllib.quote_plus(value).encode('utf8'))
-        return dimension_clause
-
-    def _build_name_clause(self, name, parms):
-
-        name_clause = ''
         if name:
-            name_clause = ' and metric_map[%s] = %s '
+            conditions.append(METRIC_NAME_EQ)
+            params.append(name)
+        else:
+            conditions.append('')
 
-            parms.append(urllib.quote_plus('__name__').encode('utf8'))
-            parms.append(urllib.quote_plus(name).encode('utf8'))
-
-        return name_clause
-
-    def _build_select_metric_map_query(self, tenant_id, region, parms):
-
-        select_stmt = """
-          select metric_map
-          from metric_map
-          where tenant_id = %s and region = %s
-          """
-
-        parms.append(tenant_id.encode('utf8'))
-        parms.append(region.encode('utf8'))
-
-        return select_stmt
-
-    def measurement_list(self, tenant_id, region, name, dimensions,
-                         start_timestamp, end_timestamp, offset,
-                         limit, merge_metrics_flag):
-
-        try:
-
-            json_measurement_list = []
-
-            rows = self._get_measurements(tenant_id, region, name, dimensions,
-                                          start_timestamp, end_timestamp,
-                                          offset, limit, merge_metrics_flag)
-
-            if not rows:
-                return json_measurement_list
-
-            if not merge_metrics_flag:
-                dimensions = self._get_dimensions(tenant_id, region, name, dimensions)
-
-            measurements_list = (
-                [[self._isotime_msec(time_stamp),
-                  value,
-                  rest_utils.from_json(value_meta) if value_meta else {}]
-                 for (time_stamp, value, value_meta) in rows])
-
-            measurement = {u'name': name,
-                           # The last date in the measurements list.
-                           u'id': measurements_list[-1][0],
-                           u'dimensions': dimensions,
-                           u'columns': [u'timestamp', u'value', u'value_meta'],
-                           u'measurements': measurements_list}
-
-            json_measurement_list.append(measurement)
-
-            return json_measurement_list
-
-        except exceptions.RepositoryException as ex:
-            LOG.exception(ex)
-            raise ex
-
-        except Exception as ex:
-            LOG.exception(ex)
-            raise exceptions.RepositoryException(ex)
-
-    def _get_measurements(self, tenant_id, region, name, dimensions,
-                          start_timestamp, end_timestamp, offset, limit,
-                          merge_metrics_flag):
-
-        metric_list = self.list_metrics(tenant_id, region, name,
-                                        dimensions, None, None,
-                                        start_timestamp, end_timestamp,
-                                        include_metric_hash=True)
-        if not metric_list:
-            return None
-
-        if len(metric_list) > 1:
-
-            if not merge_metrics_flag:
-                raise exceptions.MultipleMetricsException(
-                    self.MULTIPLE_METRICS_MESSAGE)
-
-        select_stmt = """
-          select time_stamp, value, value_meta
-          from measurements
-          where tenant_id = %s and region = %s
-          """
-
-        parms = [tenant_id.encode('utf8'), region.encode('utf8')]
-
-        metric_hash_list = [bytearray(metric['metric_hash']) for metric in
-                            metric_list]
-
-        place_holders = ["%s"] * len(metric_hash_list)
-
-        in_clause = ' and metric_hash in ({}) '.format(",".join(place_holders))
-
-        select_stmt += in_clause
-
-        parms.extend(metric_hash_list)
+        if dimensions:
+            conditions.append(DIMENSION_CONTAINS * len(dimensions))
+            params.extend(
+                [self._create_dimension_value_entry(dim_name, dim_value)
+                 for dim_name, dim_value in dimensions.items()])
+        else:
+            conditions.append('')
 
         if offset:
-
-            select_stmt += ' and time_stamp > %s '
-            parms.append(offset)
-
-        elif start_timestamp:
-
-            select_stmt += ' and time_stamp >= %s '
-            parms.append(int(start_timestamp * 1000))
-
-        if end_timestamp:
-            select_stmt += ' and time_stamp <= %s '
-            parms.append(int(end_timestamp * 1000))
-
-        select_stmt += ' order by time_stamp '
+            conditions.append(OFFSET_ID_GT % offset)
+        else:
+            conditions.append('')
 
         if limit:
-            select_stmt += ' limit %s '
-            parms.append(limit + 1)
+            conditions.append(LIMIT_CLAUSE)
+            params.append(limit)
+        else:
+            conditions.append('')
 
-        stmt = SimpleStatement(select_stmt,
-                               fetch_size=2147483647)
-        rows = self.cassandra_session.execute(stmt, parms)
+        if (not name) or dimensions:
+            conditions.append(ALLOW_FILTERING)
+        else:
+            conditions.append('')
 
-        return rows
+        return METRIC_LIST_CQL % tuple(conditions), params
 
-    def _get_dimensions(self, tenant_id, region, name, dimensions):
-        metrics_list = self.list_metrics(tenant_id, region, name,
-                                         dimensions, None, 2)
-
-        if len(metrics_list) > 1:
-            raise exceptions.MultipleMetricsException(self.MULTIPLE_METRICS_MESSAGE)
-
-        if not metrics_list:
-            return {}
-
-        return metrics_list[0]['dimensions']
+    def _create_dimension_value_entry(self, name, value):
+        return '%s=%s' % (name, value)
 
     def list_metric_names(self, tenant_id, region, dimensions):
 
         try:
+            if dimensions:
+                futures = []
+                for name, value in dimensions.items():
+                    futures.append(self.session.execute_async(self.metric_name_by_dimension_stmt,
+                                                              [region, tenant_id, name, value]))
+                nameSets = []
+                for future in futures:
+                    rows = future.result()
+                    tmp = set()
+                    for row in rows:
+                        LOG.info('myrow: %s' % row)
+                        tmp.add(row.metric_name)
 
-            parms = []
+                    nameSets.append(tmp)
 
-            query = self._build_select_metric_map_query(tenant_id, region, parms)
+                names = [{u'name': v} for v in set.intersection(*nameSets)]
 
-            dimension_clause = self._build_dimensions_clause(dimensions, parms)
+            else:
+                names = []
+                rows = self.session.execute(self.metric_name_stmt, [region, tenant_id])
 
-            query += dimension_clause
+                for row in rows:
+                    names.append({u'name': row.metric_name})
 
-            stmt = SimpleStatement(query,
-                                   fetch_size=2147483647)
+            names.sort(key=lambda x: x[u'name'])
 
-            rows = self.cassandra_session.execute(stmt, parms)
+            return names
 
-            json_name_list = []
+        except Exception as ex:
+            LOG.exception(ex)
+            raise exceptions.RepositoryException(ex)
 
-            if not rows:
-                return json_name_list
+    def measurement_list(self, tenant_id, region, name, dimensions,
+                         start_timestamp, end_timestamp, offset, limit,
+                         merge_metrics_flag, group_by):
+        metrics = self.list_metrics(tenant_id, region, name, dimensions, None, None)
 
-            for row in rows:
+        return self._measurement_list(metrics, dimensions, start_timestamp, end_timestamp, offset, limit,
+                                      merge_metrics_flag, group_by)
 
-                metric_map = row.metric_map
-                for name, value in metric_map.iteritems():
+    def _measurement_list(self, metrics, dimensions, start_timestamp, end_timestamp, offset, limit, merge_metrics_flag,
+                          group_by):
 
-                    if name == '__name__':
-                        value = urllib.unquote_plus(value)
-                        metric_name = {u'name': value}
+        if not metrics:
+            return None
+        elif len(metrics) > 1:
+            if not merge_metrics_flag and not group_by:
+                raise exceptions.MultipleMetricsException(self.MULTIPLE_METRICS_MESSAGE)
 
-                        if metric_name not in json_name_list:
-                            json_name_list.append(metric_name)
+        if offset:
+            tmp = offset.split(",")
+            if len(tmp) > 1:
+                offset_id = tmp[0]
+                offset_timestamp = tmp[1]
+            else:
+                offset_id = None
+                offset_timestamp = offset
+        else:
+            offset_timestamp = None
+            offset_id = None
 
+        if len(metrics) > 1 and merge_metrics_flag:
+            count, series_list = self.query_merge_measurements(metrics,
+                                                               dimensions,
+                                                               start_timestamp,
+                                                               end_timestamp,
+                                                               offset_timestamp,
+                                                               limit)
+            return series_list
+
+        if group_by is not None and not isinstance(group_by, list):
+            group_by = str(group_by).split(',')
+
+        if len(metrics) == 1 or group_by[0].startswith('*'):
+            if offset_id:
+                for index, metric in enumerate(metrics):
+                    if metric['id'] == offset_id:
+                        if index > 0:
+                            metrics[0:index] = []
                         break
 
-            return sorted(json_name_list)
+            count, series_list = self.query_measurements(metrics,
+                                                         start_timestamp,
+                                                         end_timestamp,
+                                                         offset_timestamp,
+                                                         limit)
 
-        except Exception as ex:
-            LOG.exception(ex)
-            raise exceptions.RepositoryException(ex)
+            return series_list
 
-    def metrics_statistics(self, tenant_id, region, name, dimensions,
-                           start_timestamp, end_timestamp, statistics,
-                           period, offset, limit, merge_metrics_flag):
+        grouped_metrics = self._group_metrics(metrics, group_by, dimensions)
 
-        try:
+        if offset_id:
+            found_offset = False
+            for outer_index, sublist in enumerate(grouped_metrics):
+                for inner_index, metric in enumerate(sublist):
+                    if metric['id'] == offset_id:
+                        found_offset = True
+                        if inner_index > 0:
+                            sublist[0:inner_index] = []
+                        break
+                if found_offset:
+                    if outer_index > 0:
+                        grouped_metrics[0:outer_index] = []
+                    break
 
-            if not period:
-                period = 300
-            period = int(period)
-
-            if offset:
-                if '_' in offset:
-                    tmp = datetime.strptime(str(offset).split('_')[1], "%Y-%m-%dT%H:%M:%SZ")
-                    tmp = tmp + timedelta(seconds=int(period))
-                    # Leave out any ID as cassandra doesn't understand it
-                    offset = tmp.isoformat()
-                else:
-                    tmp = datetime.strptime(offset, "%Y-%m-%dT%H:%M:%SZ")
-                    offset = tmp + timedelta(seconds=int(period))
-
-            rows = self._get_measurements(tenant_id, region, name, dimensions,
-                                          start_timestamp, end_timestamp,
-                                          offset, limit, merge_metrics_flag)
-
-            json_statistics_list = []
-
-            if not rows:
-                return json_statistics_list
-
-            requested_statistics = [stat.lower() for stat in statistics]
-
-            columns = [u'timestamp']
-
-            if 'avg' in requested_statistics:
-                columns.append(u'avg')
-
-            if 'min' in requested_statistics:
-                columns.append(u'min')
-
-            if 'max' in requested_statistics:
-                columns.append(u'max')
-
-            if 'count' in requested_statistics:
-                columns.append(u'count')
-
-            if 'sum' in requested_statistics:
-                columns.append(u'sum')
-
-            first_row = rows[0]
-            stats_count = 0
-            stats_sum = 0
-            stats_max = first_row.value
-            stats_min = first_row.value
-            start_period = first_row.time_stamp
-
-            stats_list = []
-
-            start_datetime = datetime.utcfromtimestamp(start_timestamp)
-            if offset and offset > start_datetime:
-                tmp_start_period = offset
+        series_list = []
+        count = 0
+        for index, sublist in enumerate(grouped_metrics):
+            if index == 0:
+                sub_count, results = self.query_merge_measurements(sublist,
+                                                                   sublist[0]['dimensions'],
+                                                                   start_timestamp,
+                                                                   end_timestamp,
+                                                                   offset_timestamp,
+                                                                   limit)
             else:
-                tmp_start_period = start_datetime
+                sub_count, results = self.query_merge_measurements(sublist,
+                                                                   sublist[0]['dimensions'],
+                                                                   start_timestamp,
+                                                                   end_timestamp,
+                                                                   None,
+                                                                   limit - count)
 
-            while start_period >= tmp_start_period + timedelta(seconds=period):
-                stat = [
-                    tmp_start_period.strftime('%Y-%m-%dT%H:%M:%SZ')
-                    .decode('utf8')
-                ]
-                for _statistics in requested_statistics:
-                    stat.append(0)
-                tmp_start_period += timedelta(seconds=period)
-                stats_list.append(stat)
+            count += sub_count
 
-            for (time_stamp, value, value_meta) in rows:
+            series_list.extend(results)
 
-                if (time_stamp - start_period).seconds >= period:
+            if count >= limit:
+                break
 
-                    stat = [
-                        start_period.strftime('%Y-%m-%dT%H:%M:%SZ').decode(
-                            'utf8')]
+        return series_list
 
-                    if 'avg' in requested_statistics:
-                        stat.append(stats_sum / stats_count)
+    def query_merge_measurements(self, metrics, dimensions, start_timestamp, end_timestamp,
+                                 offset_timestamp, limit):
 
-                    if 'min' in requested_statistics:
-                        stat.append(stats_min)
-
-                        stats_min = value
-
-                    if 'max' in requested_statistics:
-                        stat.append(stats_max)
-
-                        stats_max = value
-
-                    if 'count' in requested_statistics:
-                        stat.append(stats_count)
-
-                    if 'sum' in requested_statistics:
-                        stat.append(stats_sum)
-
-                    stats_list.append(stat)
-
-                    tmp_start_period = start_period + timedelta(seconds=period)
-                    while time_stamp > tmp_start_period:
-                        stat = [
-                            tmp_start_period.strftime('%Y-%m-%dT%H:%M:%SZ')
-                            .decode('utf8')
-                        ]
-                        for _statistics in requested_statistics:
-                            stat.append(0)
-                        tmp_start_period += timedelta(seconds=period)
-                        stats_list.append(stat)
-
-                    start_period = time_stamp
-
-                    stats_sum = 0
-                    stats_count = 0
-
-                stats_count += 1
-                stats_sum += value
-
-                if 'min' in requested_statistics:
-
-                    if value < stats_min:
-                        stats_min = value
-
-                if 'max' in requested_statistics:
-
-                    if value > stats_max:
-                        stats_max = value
-
-            if stats_count:
-
-                stat = [start_period.strftime('%Y-%m-%dT%H:%M:%SZ').decode(
-                    'utf8')]
-
-                if 'avg' in requested_statistics:
-                    stat.append(stats_sum / stats_count)
-
-                if 'min' in requested_statistics:
-                    stat.append(stats_min)
-
-                if 'max' in requested_statistics:
-                    stat.append(stats_max)
-
-                if 'count' in requested_statistics:
-                    stat.append(stats_count)
-
-                if 'sum' in requested_statistics:
-                    stat.append(stats_sum)
-
-                stats_list.append(stat)
-
-                if end_timestamp:
-                    time_stamp = datetime.utcfromtimestamp(end_timestamp)
-                else:
-                    time_stamp = datetime.now()
-                tmp_start_period = start_period + timedelta(seconds=period)
-                while time_stamp > tmp_start_period:
-                    stat = [
-                        tmp_start_period.strftime('%Y-%m-%dT%H:%M:%SZ')
-                        .decode('utf8')
-                    ]
-                    for _statistics in requested_statistics:
-                        stat.append(0)
-                    tmp_start_period += timedelta(seconds=period)
-                    stats_list.append(stat)
-
-            statistic = {u'name': name.decode('utf8'),
-                         # The last date in the stats list.
-                         u'id': stats_list[-1][0],
-                         u'dimensions': dimensions,
-                         u'columns': columns,
-                         u'statistics': stats_list}
-
-            json_statistics_list.append(statistic)
-
-            return json_statistics_list
-
-        except exceptions.RepositoryException as ex:
-            LOG.exception(ex)
-            raise ex
-
-        except Exception as ex:
-            LOG.exception(ex)
-            raise exceptions.RepositoryException(ex)
-
-    def alarm_history(self, tenant_id, alarm_id_list,
-                      offset, limit, start_timestamp=None,
-                      end_timestamp=None):
-
-        try:
-
-            json_alarm_history_list = []
-
-            if not alarm_id_list:
-                return json_alarm_history_list
-
-            select_stmt = """
-              select alarm_id, time_stamp, metrics, new_state, old_state,
-              reason, reason_data, sub_alarms, tenant_id
-              from alarm_state_history
-              where tenant_id = %s
-              """
-
-            parms = [tenant_id.encode('utf8')]
-
-            place_holders = ["%s"] * len(alarm_id_list)
-
-            in_clause = ' and alarm_id in ({}) '.format(
-                ",".join(place_holders))
-
-            select_stmt += in_clause
-
-            parms.extend(alarm_id_list)
-
-            if offset and offset != '0':
-
-                select_stmt += ' and time_stamp > %s '
-                dt = timeutils.normalize_time(timeutils.parse_isotime(offset))
-                parms.append(self._get_millis_from_timestamp(dt))
-
-            elif start_timestamp:
-
-                select_stmt += ' and time_stamp >= %s '
-                parms.append(int(start_timestamp * 1000))
-
-            if end_timestamp:
-                select_stmt += ' and time_stamp <= %s '
-                parms.append(int(end_timestamp * 1000))
-
+        results = []
+        for metric in metrics:
             if limit:
-                select_stmt += ' limit %s '
-                parms.append(limit + 1)
+                fetch_size = min(limit, max(1000, limit / len(metrics)))
+            else:
+                fetch_size = None
+            query = self._build_measurement_query(metric['id'],
+                                                  start_timestamp,
+                                                  end_timestamp,
+                                                  offset_timestamp,
+                                                  limit,
+                                                  fetch_size)
+            results.append((metric, iter(self.session.execute_async(query[0], query[1]).result())))
 
-            stmt = SimpleStatement(select_stmt,
-                                   fetch_size=2147483647)
+        return self._merge_series(results, dimensions, limit)
 
-            rows = self.cassandra_session.execute(stmt, parms)
+    def query_measurements(self, metrics, start_timestamp, end_timestamp,
+                           offset_timestamp, limit):
 
-            if not rows:
-                return json_alarm_history_list
+        results = []
+        for index, metric in enumerate(metrics):
+            if index == 0:
+                query = self._build_measurement_query(metric['id'],
+                                                      start_timestamp,
+                                                      end_timestamp,
+                                                      offset_timestamp,
+                                                      limit)
+            else:
+                if limit:
+                    fetech_size = min(5000, max(1000, limit / min(index, 4)))
+                query = self._build_measurement_query(metric['id'],
+                                                      start_timestamp,
+                                                      end_timestamp,
+                                                      None,
+                                                      limit,
+                                                      fetech_size)
 
-            sorted_rows = sorted(rows, key=lambda row: row.time_stamp)
+            results.append([metric,
+                            iter(self.session.execute_async(query[0], query[1]).result())])
 
-            for (alarm_id, time_stamp, metrics, new_state, old_state, reason,
-                 reason_data, sub_alarms, tenant_id) in sorted_rows:
+        series_list = []
+        count = 0
+        for result in results:
+            measurements = []
+            row = next(result[1], None)
+            while row:
+                measurements.append([self._isotime_msec(row.time_stamp),
+                                     row.value,
+                                     rest_utils.from_json(row.value_meta) if row.value_meta else {}])
+                count += 1
+                if count >= limit:
+                    break
 
-                alarm = {u'timestamp': self._isotime_msec(time_stamp),
-                         u'alarm_id': alarm_id,
-                         u'metrics': rest_utils.from_json(metrics),
-                         u'new_state': new_state,
-                         u'old_state': old_state,
-                         u'reason': reason,
-                         u'reason_data': reason_data,
-                         u'sub_alarms': rest_utils.from_json(sub_alarms),
-                         u'id': str(self._get_millis_from_timestamp(time_stamp)
-                                    ).decode('utf8')}
+                row = next(result[1], None)
 
-                if alarm[u'sub_alarms']:
-                    for sub_alarm in alarm[u'sub_alarms']:
-                        sub_expr = sub_alarm['sub_alarm_expression']
-                        metric_def = sub_expr['metric_definition']
-                        sub_expr['metric_name'] = metric_def['name']
-                        sub_expr['dimensions'] = metric_def['dimensions']
-                        del sub_expr['metric_definition']
+            series_list.append({'name': result[0]['name'],
+                                'id': result[0]['id'],
+                                'columns': ['timestamp', 'value', 'value_meta'],
+                                'measurements': measurements,
+                                'dimensions': result[0]['dimensions']})
+            if count >= limit:
+                break
 
-                json_alarm_history_list.append(alarm)
+        return count, series_list
 
-            return json_alarm_history_list
+    def _build_measurement_query(self, metric_id, start_timestamp,
+                                 end_timestamp, offset_timestamp,
+                                 limit=None, fetch_size=None):
 
-        except Exception as ex:
-            LOG.exception(ex)
-            raise exceptions.RepositoryException(ex)
+        conditions = [METRIC_ID_EQ % metric_id]
+        params = []
+
+        if offset_timestamp:
+            conditions.append(OFFSET_TIME_GT)
+            params.append(offset_timestamp)
+        elif start_timestamp:
+            conditions.append(START_TIME_GE)
+            params.append(int(start_timestamp * 1000))
+        else:
+            conditions.append('')
+
+        if end_timestamp:
+            conditions.append(END_TIME_LE)
+            params.append(int(end_timestamp * 1000))
+        else:
+            conditions.append('')
+
+        if limit:
+            conditions.append(LIMIT_CLAUSE)
+            params.append(limit)
+        else:
+            conditions.append('')
+
+        return SimpleStatement(MEASUREMENT_LIST_CQL % tuple(conditions), fetch_size=fetch_size), params
+
+    def _merge_series(self, series, dimensions, limit):
+
+        series_list = []
+
+        if not series:
+            return series_list
+
+        measurements = []
+        top_batch = []
+        num_series = len(series)
+        for i in range(0, num_series):
+            row = next(series[i][1], None)
+            if row:
+                top_batch.append([i,
+                                  row.time_stamp,
+                                  row.value,
+                                  rest_utils.from_json(row.value_meta) if row.value_meta else {}])
+            else:
+                num_series -= 1
+
+        top_batch.sort(key=lambda m: m[1], reverse=True)
+
+        count = 0
+        while count < limit and top_batch:
+            measurements.append([self._isotime_msec(top_batch[num_series - 1][1]),
+                                 top_batch[num_series - 1][2],
+                                 top_batch[num_series - 1][3]])
+            count += 1
+            row = next(series[top_batch[num_series - 1][0]][1], None)
+            if row:
+                top_batch[num_series - 1] = [top_batch[num_series - 1][0],
+                                             row.time_stamp,
+                                             row.value,
+                                             rest_utils.from_json(row.value_meta) if row.value_meta else {}]
+
+                top_batch.sort(key=lambda m: m[1], reverse=True)
+            else:
+                num_series -= 1
+                top_batch.pop()
+
+        series_list.append({'name': series[0][0]['name'],
+                            'id': series[0][0]['id'],
+                            'columns': ['timestamp', 'value', 'value_meta'],
+                            'measurements': measurements,
+                            'dimensions': dimensions})
+
+        return count, series_list
+
+    @staticmethod
+    def _group_metrics(metrics, group_by, search_by):
+        grouped_metrics = {}
+        for metric in metrics:
+            key = ''
+            display_dimensions = dict(search_by.items())
+            for name in group_by:
+                # ' ' ensures missing dimension is sorted lower
+                value = metric['dimensions'].get(name, ' ')
+                if value != ' ':
+                    display_dimensions[name] = value
+                key = key + '='.join((urllib.quote_plus(name), urllib.quote_plus(value))) + '&'
+
+            if key in grouped_metrics:
+                grouped_metrics[key].append(metric)
+            else:
+                grouped_metrics[key] = [metric]
+
+            metric['dimensions'] = display_dimensions
+
+        grouped_metrics = grouped_metrics.items()
+        grouped_metrics.sort(key=lambda x: x[0])
+        return [x[1] for x in grouped_metrics]
 
     @staticmethod
     def _isotime_msec(timestamp):
@@ -657,90 +589,12 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
             st += '.000Z'
         return st.decode('utf8')
 
-    @staticmethod
-    def _get_millis_from_timestamp(dt):
-        dt = timeutils.normalize_time(dt)
-        return int((dt - datetime(1970, 1, 1)).total_seconds() * 1000)
+    def metrics_statistics(self, tenant_id, region, name, dimensions,
+                           start_timestamp, end_timestamp, statistics,
+                           period, offset, limit, merge_metrics_flag,
+                           group_by):
+        return []
 
-    def list_dimension_values(self, tenant_id, region, metric_name,
-                              dimension_name):
-
-        try:
-
-            parms = []
-
-            query = self._build_select_metric_map_query(tenant_id, region, parms)
-
-            name_clause = self._build_name_clause(metric_name, parms)
-
-            dimensions = {dimension_name: None}
-
-            dimension_clause = self._build_dimensions_clause(dimensions, parms)
-
-            query += name_clause + dimension_clause
-
-            query += ' allow filtering '
-
-            stmt = SimpleStatement(query,
-                                   fetch_size=2147483647)
-
-            rows = self.cassandra_session.execute(stmt, parms)
-
-            json_dim_value_list = []
-
-            if not rows:
-                return json_dim_value_list
-
-            for row in rows:
-
-                metric_map = row.metric_map
-                for name, value in metric_map.iteritems():
-
-                    name = urllib.unquote_plus(name)
-                    value = urllib.unquote_plus(value)
-                    dim_value = {u'dimension_value': value}
-
-                    if name == dimension_name and dim_value not in json_dim_value_list:
-                        json_dim_value_list.append(dim_value)
-
-            return sorted(json_dim_value_list)
-
-        except Exception as ex:
-            LOG.exception(ex)
-            raise exceptions.RepositoryException(ex)
-
-    def list_dimension_names(self, tenant_id, region, metric_name):
-
-        try:
-
-            parms = []
-
-            query = self._build_select_metric_map_query(tenant_id, region, parms)
-
-            name_clause = self._build_name_clause(metric_name, parms)
-
-            query += name_clause
-
-            stmt = SimpleStatement(query,
-                                   fetch_size=2147483647)
-
-            rows = self.cassandra_session.execute(stmt, parms)
-
-            json_dim_name_list = []
-
-            for row in rows:
-
-                metric_map = row.metric_map
-                for name, value in metric_map.iteritems():
-
-                    name = urllib.unquote_plus(name)
-                    dim_name = {u'dimension_name': name}
-
-                    if name != '__name__' and dim_name not in json_dim_name_list:
-                        json_dim_name_list.append(dim_name)
-
-            return sorted(json_dim_name_list)
-
-        except Exception as ex:
-            LOG.exception(ex)
-            raise exceptions.RepositoryException(ex)
+    def alarm_history(self, tenant_id, alarm_id_list, offset, limit,
+                      start_timestamp, end_timestamp):
+        return []

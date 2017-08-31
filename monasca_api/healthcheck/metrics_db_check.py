@@ -88,7 +88,7 @@ class MetricsDbCheck(base.BaseHealthCheck):
             return False, "Cassandra driver not imported"
         try:
             cassandra = self._cluster.Cluster(
-                CONF.cassandra.cluster_ip_addresses
+                CONF.cassandra.contact_points
             )
             session = cassandra.connect(CONF.cassandra.keyspace)
             session.shutdown()
