@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Copyright 2017 FUJITSU LIMITED
-#
+# (C) Copyright 2017 SUSE LLC
+
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
 # a copy of the License at
@@ -156,8 +157,7 @@ configure_monasca_persister_python() {
         iniset "$MONASCA_PERSISTER_CONF" repositories metrics_driver ${M_REPO_DRIVER_INFLUX}
         iniset "$MONASCA_PERSISTER_CONF" repositories alarm_state_history_driver ${AH_REPO_DRIVER_INFLUX}
     else
-        iniset "$MONASCA_PERSISTER_CONF" cassandra cluster_ip_addresses ${SERVICE_HOST}
-        iniset "$MONASCA_PERSISTER_CONF" cassandra keyspace monasca
+        iniset "$MONASCA_PERSISTER_CONF" cassandra contact_points ${SERVICE_HOST}
         iniset "$MONASCA_PERSISTER_CONF" repositories metrics_driver ${M_REPO_DRIVER_CASSANDRA}
         iniset "$MONASCA_PERSISTER_CONF" repositories alarm_state_history_driver ${AH_REPO_DRIVER_CASSANDRA}
     fi
@@ -185,16 +185,27 @@ configure_monasca_persister_java() {
     # ensure fresh installation of configuration file
     rm -rf $MONASCA_PERSISTER_CONF
 
+    if [[ "${MONASCA_METRICS_DB,,}" == 'cassandra' ]]; then
+        MONASCA_PERSISTER_BATCH_SIZE=20
+        MONASCA_PERSISTER_MAX_BATCH_TIME=10
+    else
+        MONASCA_PERSISTER_BATCH_SIZE=100
+        MONASCA_PERSISTER_MAX_BATCH_TIME=15
+    fi
+
     install -m 600 "${MONASCA_API_DIR}"/devstack/files/monasca-persister/persister.yml ${MONASCA_PERSISTER_CONF}
     sudo sed -e "
         s|%ZOOKEEPER_HOST%|${SERVICE_HOST}|g;
         s|%VERTICA_HOST%|${SERVICE_HOST}|g;
         s|%INFLUXDB_HOST%|${SERVICE_HOST}|g;
+        s|%CASSANDRADB_HOST%|${SERVICE_HOST}|g;
         s|%MONASCA_PERSISTER_DB_TYPE%|${MONASCA_METRICS_DB}|g;
         s|%MONASCA_PERSISTER_BIND_HOST%|${MONASCA_PERSISTER_BIND_HOST}|g;
         s|%MONASCA_PERSISTER_APP_PORT%|${MONASCA_PERSISTER_APP_PORT}|g;
         s|%MONASCA_PERSISTER_ADMIN_PORT%|${MONASCA_PERSISTER_ADMIN_PORT}|g;
         s|%MONASCA_PERSISTER_LOG_DIR%|${MONASCA_PERSISTER_LOG_DIR}|g;
+        s|%MONASCA_PERSISTER_BATCH_SIZE%|${MONASCA_PERSISTER_BATCH_SIZE}|g;
+        s|%MONASCA_PERSISTER_MAX_BATCH_TIME%|${MONASCA_PERSISTER_MAX_BATCH_TIME}|g;
     " -i ${MONASCA_PERSISTER_CONF}
 
     ln -sf ${MONASCA_PERSISTER_CONF} ${MONASCA_PERSISTER_GATE_CONFIG}
