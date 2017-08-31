@@ -1,5 +1,6 @@
 #
 # (C) Copyright 2015 Hewlett Packard Enterprise Development Company LP
+# Copyright (c) 2017 SUSE LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,9 +19,9 @@
 name: monasca-persister
 
 alarmHistoryConfiguration:
-  batchSize: 100
+  batchSize: 1000000
   numThreads: 1
-  maxBatchTime: 15
+  maxBatchTime: 60
 # See http://kafka.apache.org/documentation.html#api for semantics and defaults.
   topic: alarm-state-transitions
   groupId: 1_alarm-state-transitions
@@ -28,9 +29,9 @@ alarmHistoryConfiguration:
   clientId : 1
 
 metricConfiguration:
-  batchSize: 100
-  numThreads: 1
-  maxBatchTime: 15
+  batchSize: 1000000
+  numThreads: 10
+  maxBatchTime: 60
 # See http://kafka.apache.org/documentation.html#api for semantics and defaults.
   topic: metrics
   groupId: 1_metrics
@@ -55,6 +56,40 @@ kafkaConfig:
   zookeeperSessionTimeoutMs : 60000
   zookeeperConnectionTimeoutMs : 60000
   zookeeperSyncTimeMs: 2000
+
+# uncomment if database type is cassandra
+cassandraDbConfiguration:
+  maxConnections: 10
+  maxRequests: 32000
+  contactPoints:
+    - %CASSANDRADB_HOST%
+  port: 9042
+  user: mon_persister
+  password: password
+  keyspace: monasca
+  maxConnections: 10
+  maxRequests: 32000
+  # socket time out in milli seconds when creating a new connection
+  connectionTimeout: 5000
+  # number of retries in upsert query. The retry interval is exponential, 
+  #, i.e., 1, 2, 4, 8 ... seconds. Retry is blocking.
+  maxWriteRetries: 8
+  maxDefinitionCacheSize: 20000000
+  #    ANY(0),
+  #    ONE(1),
+  #    TWO(2),
+  #    THREE(3),
+  #    QUORUM(4),
+  #    ALL(5),
+  #    LOCAL_QUORUM(6),
+  #    EACH_QUORUM(7),
+  #    SERIAL(8),
+  #    LOCAL_SERIAL(9),
+  #    LOCAL_ONE(10);
+  readConsistencyLevel: 1
+  writeConsistencyLevel: 1
+  # number of days metric retention
+  retentionPolicy: 45
 
 verticaMetricRepoConfig:
   maxCacheSize: 2000000
