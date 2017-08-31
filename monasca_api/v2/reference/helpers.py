@@ -553,7 +553,7 @@ def paginate_measurements(measurements, uri, limit):
         for measurement in measurements:
             if len(measurement['measurements']) >= limit:
 
-                new_offset = measurement['measurements'][limit - 1][0]
+                new_offset = ('_').join([measurement['id'], measurement['measurements'][limit - 1][0]])
 
                 next_link = build_base_uri(parsed_uri)
 
