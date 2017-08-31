@@ -1,4 +1,5 @@
 # (C) Copyright 2016 Hewlett Packard Enterprise Development LP
+# (C) Copyright 2017 SUSE LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -71,13 +72,16 @@ class TestDimensions(base.BaseMonascaTest):
 
         param = '?start_time=' + time_iso
         returned_name_set = set()
+        metric_name1_count = 0
         for i in range(constants.MAX_RETRIES):
             resp, response_body = cls.monasca_client.list_metrics(
                 param)
             elements = response_body['elements']
             for element in elements:
                 returned_name_set.add(str(element['name']))
-            if cls._test_metric_names.issubset(returned_name_set):
+                if (str(element['name']) == metric_name1):
+                    metric_name1_count += 1
+            if cls._test_metric_names.issubset(returned_name_set) and metric_name1_count >= 2:
                 return
             time.sleep(constants.RETRY_WAIT_SECS)
 
