@@ -1,7 +1,8 @@
 #
 # (C) Copyright 2015-2017 Hewlett Packard Enterprise Development LP
 # Copyright 2017 FUJITSU LIMITED
-#
+# (C) Copyright 2017 SUSE LLC
+# 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -469,11 +470,13 @@ function install_monasca_cassandra {
     echo_summary "Install Monasca Cassandra"
 
     if [[ "$OFFLINE" != "True" ]]; then
-        sudo sh -c "echo 'deb http://www.apache.org/dist/cassandra/debian ${CASSANDRA_VERSION} main' > /etc/apt/sources.list.d/cassandra.list"
+        sudo sh -c "echo 'deb http://www.apache.org/dist/cassandra/debian ${CASSANDRA_VERSION} main' > /etc/apt/sources.list.d/cassandra.sources.list"
         REPOS_UPDATED=False
-        PUBLIC_KEY=`apt_get_update 2>&1 | awk '/NO_PUBKEY/ {print $21}'`
-        gpg --keyserver pgp.mit.edu --recv-keys ${PUBLIC_KEY}
-        gpg --export --armor ${PUBLIC_KEY} | sudo apt-key --keyring /etc/apt/trusted.gpg.d/cassandra.gpg add -
+        curl https://www.apache.org/dist/cassandra/KEYS | sudo apt-key add -
+        PUBLIC_KEY=`sudo apt_get update 2>&1 | awk '/NO_PUBKEY/ {print $NF}'`
+        if [ -n "${PUBLIC_KEY}" ]; then
+            sudo apt-key adv --keyserver pool.sks-keyservers.net --recv-key  ${PUBLIC_KEY}
+        fi
     fi
 
     REPOS_UPDATED=False
@@ -498,6 +501,7 @@ function install_monasca_cassandra {
     sleep 15s
 
     export CQLSH_NO_BUNDLED=true
+    #always needed for Monasca api
     pip_install_gr cassandra-driver
 
 }
@@ -554,15 +558,15 @@ function clean_monasca_cassandra {
 
     echo_summary "Clean Monasca Cassandra"
 
-    sudo rm -f /etc/cassandra/cassandra.yaml
+    apt_get -y purge cassandra
+
+    apt_get -y autoremove
+
+    sudo rm -rf /var/lib/cassandra
 
     sudo rm -rf /var/log/cassandra
 
     sudo rm -rf /etc/cassandra
-
-    apt_get -y purge cassandra
-
-    apt_get -y autoremove
 
     sudo rm -f /etc/apt/sources.list.d/cassandra.list
 
@@ -595,8 +599,8 @@ function install_schema_metric_database_vertica {
 }
 
 function install_schema_metric_database_cassandra {
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/cassandra/cassandra_schema.cql $MONASCA_SCHEMA_DIR/cassandra_schema.cql
-    /usr/bin/cqlsh ${SERVICE_HOST} -f $MONASCA_SCHEMA_DIR/cassandra_schema.cql
+    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/cassandra/*.cql $MONASCA_SCHEMA_DIR
+    /usr/bin/cqlsh ${SERVICE_HOST} -f $MONASCA_SCHEMA_DIR/monasca_schema.cql
 }
 
 function install_schema_kafka_topics {
