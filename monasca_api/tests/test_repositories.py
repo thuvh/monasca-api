@@ -190,7 +190,7 @@ class TestRepoMetricsCassandra(base.BaseTestCase):
 
     def setUp(self):
         super(TestRepoMetricsCassandra, self).setUp()
-        self.conf_default(cluster_ip_addresses='127.0.0.1',
+        self.conf_default(contact_points='127.0.0.1',
                           group='cassandra')
 
     @patch("monasca_api.common.repositories.cassandra."
