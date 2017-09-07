@@ -19,7 +19,9 @@ from collections import namedtuple
 from datetime import datetime
 
 import cassandra
+import griddb_python_client as griddb
 import influxdb.exceptions as iexc
+import mock
 from mock import patch
 
 from oslo_config import cfg
@@ -27,6 +29,8 @@ from oslo_utils import timeutils
 
 from monasca_api.common.repositories.cassandra import metrics_repository \
     as cassandra_repo
+from monasca_api.common.repositories.griddb import metrics_repository \
+    as griddb_repo
 from monasca_api.common.repositories.influxdb import metrics_repository \
     as influxdb_repo
 from monasca_api.tests import base
@@ -531,3 +535,296 @@ class TestRepoMetricsCassandra(base.BaseTestCase):
         dt = timeutils.parse_isotime(date_time_string)
         dt = timeutils.normalize_time(dt)
         return dt
+
+
+class TestRepoMetricsGridDB(base.BaseTestCase):
+
+    @patch("monasca_api.common.repositories.griddb."
+           "metrics_repository.griddb")
+    def setUp(self, griddb_mock):
+        super(TestRepoMetricsGridDB, self).setUp()
+        self.griddb_mock = griddb_mock
+        self.repo = griddb_repo.MetricsRepository()
+
+    def test_list_metrics(self):
+        self.repo._get_metrics = mock.Mock()
+        self.repo._get_metrics.return_value = [
+            griddb_repo.Metric(u'abcdef', {u'__name__': 'process.cpu_perc',
+                                           u'process_name': 'nova-api',
+                                           u'component': 'nova-api',
+                                           u'hostname': 'host0',
+                                           u'service': 'compute'}),
+            griddb_repo.Metric(u'ghijkl', {u'__name__': 'process.cpu_perc',
+                                           u'process_name': 'monasca-agent',
+                                           u'component': 'monasca-agent',
+                                           u'hostname': 'host0',
+                                           u'service': 'monitoring',
+                                           u'process_user': 'monasca'}),
+            griddb_repo.Metric(u'mnopqr', {u'__name__': 'process.cpu_perc',
+                                           u'process_name': 'nova-novncproxy',
+                                           u'component': 'nova-novncproxy',
+                                           u'hostname': 'host0',
+                                           u'service': 'compute'})]
+
+        result = self.repo.list_metrics(
+            '0b5e7d8c43f74430add94fba09ffd66e',
+            'region',
+            name='process.cpu_perc',
+            dimensions={
+                'hostname': 'host0',
+                'component': 'nova-novncproxy'},
+            offset=None,
+            limit=1)
+
+        self.assertEqual([{
+            u'id': binascii.hexlify('mnopqr'),
+            u'name': u'process.cpu_perc',
+            u'dimensions': {
+                'process_name': 'nova-novncproxy',
+                'component': 'nova-novncproxy',
+                'hostname': 'host0',
+                'service': 'compute'
+            }}], result)
+
+    def test_list_metric_names(self):
+
+        self.repo._get_metrics = mock.Mock()
+        self.repo._get_metrics.return_value = [
+            griddb_repo.Metric(u'abcdef', {u'__name__': 'process.cpu_perc',
+                                           u'process_name': 'nova-api',
+                                           u'component': 'nova-api',
+                                           u'hostname': 'host0',
+                                           u'service': 'compute'}),
+            griddb_repo.Metric(u'ghijkl', {u'__name__': 'process.cpu_perc',
+                                           u'process_name': 'monasca-agent',
+                                           u'component': 'monasca-agent',
+                                           u'hostname': 'host0',
+                                           u'service': 'monitoring',
+                                           u'process_user': 'monasca'}),
+            griddb_repo.Metric(u'mnopqr', {u'__name__': 'process.cpu_perc',
+                                           u'process_name': 'nova-novncproxy',
+                                           u'component': 'nova-novncproxy',
+                                           u'hostname': 'host0',
+                                           u'service': 'compute'})]
+
+        result = self.repo.list_metric_names(
+            '0b5e7d8c43f74430add94fba09ffd66e',
+            'region',
+            dimensions={'hostname': 'host0'})
+
+        self.assertEqual([
+            {
+                u'name': u'process.cpu_perc'
+            }
+        ], result)
+
+    def test_measurement_list(self):
+
+        self.repo._get_measurements = mock.Mock()
+        self.repo._get_measurements.return_value = [
+            griddb_repo.Measurement(1505132600014,
+                                    u'abcdef', {
+                                        u'__name__': 'process.cpu_perc',
+                                        u'process_name': 'nova-api',
+                                        u'component': 'nova-api',
+                                        u'hostname': 'host0',
+                                        u'service': 'compute'},
+                                    50.0,
+                                    ''),
+            griddb_repo.Measurement(1505132700014,
+                                    u'ghijkl', {
+                                        u'__name__': 'process.cpu_perc',
+                                        u'process_name': 'monasca-agent',
+                                        u'component': 'monasca-agent',
+                                        u'hostname': 'host0',
+                                        u'service': 'monitoring',
+                                        u'process_user': 'monasca'},
+                                    45.0,
+                                    ''),
+            griddb_repo.Measurement(1505132800014,
+                                    u'mnopqr', {
+                                        u'__name__': 'process.cpu_perc',
+                                        u'process_name': 'nova-novncproxy',
+                                        u'component': 'nova-novncproxy',
+                                        u'hostname': 'host0',
+                                        u'service': 'compute'},
+                                    40.0,
+                                    '')]
+
+        result = self.repo.measurement_list(
+            'tenant_id',
+            'region',
+            name='process.cpu_perc',
+            dimensions={},
+            start_timestamp=1505132600,
+            end_timestamp=1505132800,
+            offset=None,
+            limit=2,
+            merge_metrics_flag=True,
+            group_by=None)
+
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0]['dimensions'], {})
+        self.assertEqual(result[0]['name'], 'process.cpu_perc')
+        self.assertEqual(result[0]['columns'],
+                         ['timestamp', 'value', 'value_meta'])
+
+        measurements = result[0]['measurements']
+
+        self.assertEqual([
+            ('2017-09-11T12:23:20.014Z', 50.0, ''),
+            ('2017-09-11T12:25:00.014Z', 45.0, '')],
+            measurements
+        )
+
+    def test_metrics_statistics(self):
+
+        self.repo._get_measurements = mock.Mock()
+        self.repo._get_measurements.return_value = [
+            griddb_repo.Measurement(1505132600014,
+                                    u'abcdef', {
+                                        u'__name__': 'process.cpu_perc',
+                                        u'process_name': 'nova-api',
+                                        u'component': 'nova-api',
+                                        u'hostname': 'host0',
+                                        u'service': 'compute'},
+                                    50.0,
+                                    ''),
+            griddb_repo.Measurement(1505132700014,
+                                    u'ghijkl', {
+                                        u'__name__': 'process.cpu_perc',
+                                        u'process_name': 'monasca-agent',
+                                        u'component': 'monasca-agent',
+                                        u'hostname': 'host0',
+                                        u'service': 'monitoring',
+                                        u'process_user': 'monasca'},
+                                    45.0,
+                                    ''),
+            griddb_repo.Measurement(1505132800014,
+                                    u'mnopqr', {
+                                        u'__name__': 'process.cpu_perc',
+                                        u'process_name': 'nova-novncproxy',
+                                        u'component': 'nova-novncproxy',
+                                        u'hostname': 'host0',
+                                        u'service': 'compute'},
+                                    40.0,
+                                    '')]
+
+        result = self.repo.metrics_statistics(
+            'tenant_id',
+            'region',
+            name='process.cpu_perc',
+            dimensions={},
+            start_timestamp=1505132600,
+            end_timestamp=1505132900,
+            statistics=['avg', 'min', 'max', 'count', 'sum'],
+            period=300,
+            offset=None,
+            limit=1,
+            merge_metrics_flag=True,
+            group_by=None)
+
+        self.assertEqual([
+            {
+                u'dimensions': {},
+                u'statistics': [[u'2017-09-11T12:23:20.014Z', 45.0, 40, 50, 3, 135]],
+                u'name': u'process.cpu_perc',
+                u'columns': [u'timestamp', u'avg', u'min', u'max', u'count', u'sum'],
+                u'id': u'2017-09-11T12:23:20.014Z'
+            }
+        ], result)
+
+    def test_alarm_history(self):
+
+        self.repo._get_alarm_histories = mock.Mock()
+        self.repo._get_alarm_histories.return_value = [
+            griddb_repo.AlarmHistory(
+                1505132600014,
+                u'09c2f5e7-9245-4b7e-bce1-01ed64a3c63d', [{
+                    u'id': u'',
+                    u'name': u'process.cpu_perc',
+                    u'dimensions': {
+                        u'process_name': 'nova-api',
+                        u'component': 'nova-api',
+                        u'hostname': 'host0',
+                        u'service': 'compute'}}],
+                u'OK',
+                u'UNDETERMINED',
+                u'The alarm threshold(s) have not been exceeded for the sub-alarms: '
+                u'avg(cpu.idle_perc) < 10.0 times 3 with the values: [84.35]',
+                [
+                    {
+                        u'sub_alarm_state': u'OK',
+                        u'currentValues': [
+                            u'84.35'
+                        ],
+                        u'sub_alarm_expression': {
+                            u'dimensions': {},
+                            u'threshold': 10.0,
+                            u'periods': 3,
+                            u'operator': u'LT',
+                            u'period': 60,
+                            u'function': u'AVG',
+                            u'metric_definition': {
+                                u'dimensions': {},
+                                u'id': u'',
+                                u'name': u'process.cpu_perc',
+                            }
+                        }
+                    }
+                ],
+                u'abcdef')]
+
+        result = self.repo.alarm_history('741e1aa149524c0f9887a8d6750f67b1',
+                                         ['09c2f5e7-9245-4b7e-bce1-01ed64a3c63d'],
+                                         None, None)
+        self.assertEqual(
+            [{
+                u'id': 'abcdef',
+                u'timestamp': u'2017-09-11T12:23:20.014Z',
+                u'new_state': u'OK',
+                u'old_state': u'UNDETERMINED',
+                u'reason_data': u'{}',
+                u'reason': u'The alarm threshold(s) have not been exceeded for the sub-alarms: '
+                           u'avg(cpu.idle_perc) < 10.0 times 3 with the values: [84.35]',
+                u'alarm_id': u'09c2f5e7-9245-4b7e-bce1-01ed64a3c63d',
+                u'metrics': [{
+                    u'id': u'',
+                    u'name': u'process.cpu_perc',
+                    u'dimensions': {
+                        u'process_name': 'nova-api',
+                        u'component': 'nova-api',
+                        u'hostname': 'host0',
+                        u'service': 'compute'}}],
+                u'sub_alarms': [
+                    {
+                        u'sub_alarm_state': u'OK',
+                        u'currentValues': [
+                            u'84.35'
+                        ],
+                        u'sub_alarm_expression': {
+                            u'dimensions': {},
+                            u'metric_name': u'process.cpu_perc',
+                            u'threshold': 10.0,
+                            u'periods': 3,
+                            u'operator': u'LT',
+                            u'period': 60,
+                            u'function': u'AVG'
+                        }
+                    }
+                ]
+            }], result)
+
+    def test_check_status(self):
+        result = self.repo.check_status()
+
+        self.assertEqual(result, (True, 'OK'))
+
+    @patch("monasca_api.common.repositories.griddb."
+           "metrics_repository.griddb.StoreFactory.get_default")
+    def test_check_status_server_error(self, factory_mock):
+        factory_mock.side_effect = griddb.GSException(140000)
+
+        result = self.repo.check_status()
+
+        self.assertEqual(result, (False, 'Error with number 140000'))
