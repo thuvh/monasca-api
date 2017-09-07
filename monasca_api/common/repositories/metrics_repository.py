@@ -56,3 +56,7 @@ class AbstractMetricsRepository(object):
     def alarm_history(self, tenant_id, alarm_id_list,
                       offset, limit, start_timestamp, end_timestamp):
         pass
+
+    @abc.abstractmethod
+    def check_status(self):
+        pass
