@@ -902,3 +902,14 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
         except Exception as ex:
             LOG.exception(ex)
             raise exceptions.RepositoryException(ex)
+
+    def check_status(self):
+        try:
+            self.influxdb_client.request('/ping',
+                                         method='HEAD',
+                                         expected_response_code=204)
+        except Exception as ex:
+            LOG.exception(str(ex))
+            return False, str(ex)
+
+        return True, 'OK'
