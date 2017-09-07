@@ -105,6 +105,7 @@ function pre_install_monasca {
     install_kafka
     install_zookeeper
     install_storm
+    install_monasca_griddb_c_client
 
     install_monasca_virtual_env
     install_monasca_$MONASCA_METRICS_DB
@@ -251,6 +252,8 @@ function clean_monasca {
     clean_zookeeper
 
     clean_monasca_virtual_env
+
+    clean_monasca_griddb_c_client
 
     #Restore errexit
     set -o errexit
@@ -1334,6 +1337,28 @@ function find_nearest_apache_mirror {
         mirror=`curl -s 'https://www.apache.org/dyn/closer.cgi?as_json=1' | jq --raw-output '.preferred'`
         APACHE_MIRROR=$mirror
     fi
+}
+
+function install_monasca_griddb_c_client {
+
+    echo_summary "Install GridDB C Client library"
+
+    DIR=`mktemp -d -p /tmp/`
+    pushd $DIR
+    git clone https://github.com/griddb/c_client.git
+    cd c_client/client/c
+    ./bootstrap.sh
+    ./configure
+    make
+    cd ../../bin
+    sudo install -o root -g root -m 0644 libgridstore.so /usr/local/lib
+    sudo ldconfig
+    popd
+    rm -rf $DIR
+}
+
+function clean_monasca_griddb_c_client {
+    sudo rm -f /usr/local/lib/libgridstore.so*
 }
 
 
