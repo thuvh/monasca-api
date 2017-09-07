@@ -18,6 +18,8 @@ import binascii
 from collections import namedtuple
 from datetime import datetime
 
+import cassandra
+import influxdb.exceptions as iexc
 from mock import patch
 
 from oslo_config import cfg
@@ -184,6 +186,31 @@ class TestRepoMetricsInfluxDB(base.BaseTestCase):
                              {u'dimension_name': u'hostname'},
                              {u'dimension_name': u'service'}
                          ])
+
+    @patch("monasca_api.common.repositories.influxdb."
+           "metrics_repository.client.InfluxDBClient")
+    def test_check_status(self, influxdb_client_mock):
+        mock_client = influxdb_client_mock.return_value
+        mock_client.request.return_value.status_code = 204
+
+        repo = influxdb_repo.MetricsRepository()
+
+        result = repo.check_status()
+
+        self.assertEqual(result, (True, 'OK'))
+
+    @patch("monasca_api.common.repositories.influxdb."
+           "metrics_repository.client.InfluxDBClient")
+    def test_check_status_server_error(self, influxdb_client_mock):
+        mock_client = influxdb_client_mock.return_value
+        mock_client.request.side_effect = \
+            iexc.InfluxDBServerError('error')
+
+        repo = influxdb_repo.MetricsRepository()
+
+        result = repo.check_status()
+
+        self.assertEqual(result, (False, 'error'))
 
 
 class TestRepoMetricsCassandra(base.BaseTestCase):
@@ -478,6 +505,26 @@ class TestRepoMetricsCassandra(base.BaseTestCase):
                     }
                 ]
             }], result)
+
+    @patch("monasca_api.common.repositories.cassandra."
+           "metrics_repository.Cluster.connect")
+    def test_check_status(self, _):
+        repo = cassandra_repo.MetricsRepository()
+
+        result = repo.check_status()
+
+        self.assertEqual(result, (True, 'OK'))
+
+    @patch("monasca_api.common.repositories.cassandra."
+           "metrics_repository.Cluster.connect")
+    def test_check_status_server_error(self, cassandra_connect_mock):
+        repo = cassandra_repo.MetricsRepository()
+        cassandra_connect_mock.side_effect = \
+            cassandra.DriverException("Cluster is already shut down")
+
+        result = repo.check_status()
+
+        self.assertEqual(result, (False, 'Cluster is already shut down'))
 
     @staticmethod
     def _convert_time_string(date_time_string):

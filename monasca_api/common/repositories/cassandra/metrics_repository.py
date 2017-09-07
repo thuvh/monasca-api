@@ -744,3 +744,15 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
         except Exception as ex:
             LOG.exception(ex)
             raise exceptions.RepositoryException(ex)
+
+    def check_status(self):
+        try:
+            cluster = Cluster(
+                self.conf.cassandra.cluster_ip_addresses
+            )
+            session = cluster.connect(self.conf.cassandra.keyspace)
+            session.shutdown()
+        except Exception as ex:
+            LOG.exception(str(ex))
+            return False, str(ex)
+        return True, 'OK'
