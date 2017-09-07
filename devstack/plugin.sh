@@ -53,6 +53,7 @@ source ${MONASCA_API_DIR}/devstack/lib/profile.sh
 source ${MONASCA_API_DIR}/devstack/lib/client.sh
 source ${MONASCA_API_DIR}/devstack/lib/persister.sh
 source ${MONASCA_API_DIR}/devstack/lib/storm.sh
+source ${MONASCA_API_DIR}/devstack/lib/griddb.sh
 # source lib/*
 
 # Set default implementations to python
