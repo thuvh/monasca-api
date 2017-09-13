@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f2577a7_ef86b9db",
+        "filename": "requirements.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 26733
+      },
+      "writtenOn": "2017-09-13T13:15:52Z",
+      "side": 1,
+      "message": "Isn\u0027t it better to use release 2.20.0 ? (\u003e\u003d2.20.0)",
+      "revId": "6cd5c34db45ffd00ed409e6dca897dbfe6504ff8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
