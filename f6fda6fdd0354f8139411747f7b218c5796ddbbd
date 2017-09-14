@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f2577a7_e90b307a",
+        "filename": "monasca_api/v2/reference/metrics.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2017-09-14T17:30:54Z",
+      "side": 1,
+      "message": "This and the one below need to handle an empty list of metrics",
+      "range": {
+        "startLine": 129,
+        "startChar": 57,
+        "endLine": 129,
+        "endChar": 64
+      },
+      "revId": "f6fda6fdd0354f8139411747f7b218c5796ddbbd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
