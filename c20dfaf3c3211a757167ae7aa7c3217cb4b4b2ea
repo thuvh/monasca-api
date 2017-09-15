@@ -1623,6 +1623,30 @@
     },
     {
       "key": {
+        "uuid": "5f2577a7_4a0c56eb",
+        "filename": "doc/source/contributor/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-09-15T20:58:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f2577a7_f4067786",
+      "range": {
+        "startLine": 84,
+        "startChar": 19,
+        "endLine": 84,
+        "endChar": 30
+      },
+      "revId": "c20dfaf3c3211a757167ae7aa7c3217cb4b4b2ea",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5f2577a7_34f4ff85",
         "filename": "doc/source/contributor/index.rst",
         "patchSetId": 4
