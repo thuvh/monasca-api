@@ -159,6 +159,8 @@ class TestAlarmsCount(base.BaseMonascaTest):
 
     @classmethod
     def resource_cleanup(cls):
+        super(TestAlarmsCount, cls).resource_cleanup()
+
         for definition_id in cls.alarm_definition_ids:
             cls.monasca_client.delete_alarm_definition(definition_id)
 
