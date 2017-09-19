@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff5d4b2f_fed929f4",
+        "filename": "devstack/files/monasca-persister/persister.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-09-19T07:47:02Z",
+      "side": 1,
+      "message": "nit: whitespace",
+      "revId": "a17a313a76415598891b8bcb5abfdeeab05b6b5b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_befcd13e",
+        "filename": "devstack/lib/persister.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-09-19T07:47:02Z",
+      "side": 1,
+      "message": "I don\u0027t actually understand these two lines. You changes persister.yml held in this repository but now we you kind of rollbacking these changes ?",
+      "revId": "a17a313a76415598891b8bcb5abfdeeab05b6b5b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_dead4532",
+        "filename": "devstack/settings",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-09-19T07:47:02Z",
+      "side": 1,
+      "message": "This will effectively swap default implemention to Java ? Are you sure this is wanted ? If not I prefer not to have it committed and for you to keep it only locally.",
+      "revId": "a17a313a76415598891b8bcb5abfdeeab05b6b5b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_be585156",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-09-19T07:47:02Z",
+      "side": 1,
+      "message": "This `struct` library is standard library of python hence it should added somewhere along 16-18 (alphabetical order). The approach in Openstack is that imports are grouped in 3 chunks:\n\n1) standard library imports (i.e. struct)\n2) program dependencies (i.e. oslo_log)\n3) local modules (i.e. onasca_api.common.repositories.exception).\n\nTherefore you\u0027ve chances to imports are wrong and should be partially rollbacked to previous state in the manner described above.",
+      "revId": "a17a313a76415598891b8bcb5abfdeeab05b6b5b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_fe0c8943",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-09-19T07:47:02Z",
+      "side": 1,
+      "message": "A lot of strings that I suggest to move outside the repository (module level) or make them class variables. The reason is that we will need to execute all that several times for each instance of this repo. I\u0027d also suggest wrap all these preparations (self.session.prepare) into own method to boost up the readability.",
+      "revId": "a17a313a76415598891b8bcb5abfdeeab05b6b5b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_3908fb26",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-09-19T07:47:02Z",
+      "side": 1,
+      "message": "Lines 71-87 are for sure candidates to be module or at least class level variables. Just to have one instance of each per interpreter.",
+      "revId": "a17a313a76415598891b8bcb5abfdeeab05b6b5b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_d90e7f31",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-09-19T07:47:02Z",
+      "side": 1,
+      "message": "In overall I like this idea of keeping the constant chunks of query in own variables. Just the approach I\u0027d change, for that see comments above.",
+      "revId": "a17a313a76415598891b8bcb5abfdeeab05b6b5b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_d9379fe3",
+        "filename": "monasca_api/conf/cassandra.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-09-19T07:47:02Z",
+      "side": 1,
+      "message": "I don\u0027t like this. You\u0027re deleting the option. I would add deprecation note (see oslo_config.cfg.Opt for keywords) and mark cluster_ip_address as such. After that you can add new configuration option.\n\nBTW, and that\u0027s nit, I\u0027d name it `contact_points`. That\u0027s bit more pythonic ;).",
+      "revId": "a17a313a76415598891b8bcb5abfdeeab05b6b5b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_993127f0",
+        "filename": "monasca_api/conf/cassandra.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-09-19T07:47:02Z",
+      "side": 1,
+      "message": "Will it be used ?",
+      "revId": "a17a313a76415598891b8bcb5abfdeeab05b6b5b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
