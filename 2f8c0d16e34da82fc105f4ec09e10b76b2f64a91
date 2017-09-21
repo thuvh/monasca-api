@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df140735_c7ce0159",
+        "filename": "monasca_api/api/server.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 22157
+      },
+      "writtenOn": "2017-09-21T17:32:30Z",
+      "side": 1,
+      "message": "group_rules",
+      "range": {
+        "startLine": 142,
+        "startChar": 51,
+        "endLine": 142,
+        "endChar": 74
+      },
+      "revId": "2f8c0d16e34da82fc105f4ec09e10b76b2f64a91",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df140735_677a95f1",
+        "filename": "monasca_api/common/repositories/sqla/group_rules_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 22157
+      },
+      "writtenOn": "2017-09-21T17:32:30Z",
+      "side": 1,
+      "message": "group_rule_id",
+      "range": {
+        "startLine": 67,
+        "startChar": 41,
+        "endLine": 67,
+        "endChar": 66
+      },
+      "revId": "2f8c0d16e34da82fc105f4ec09e10b76b2f64a91",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df140735_6763b543",
+        "filename": "monasca_api/common/repositories/sqla/group_rules_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 22157
+      },
+      "writtenOn": "2017-09-21T17:32:30Z",
+      "side": 1,
+      "message": "rule_id",
+      "range": {
+        "startLine": 74,
+        "startChar": 65,
+        "endLine": 74,
+        "endChar": 67
+      },
+      "revId": "2f8c0d16e34da82fc105f4ec09e10b76b2f64a91",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df140735_a7e1cd9d",
+        "filename": "monasca_api/common/repositories/sqla/group_rules_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 22157
+      },
+      "writtenOn": "2017-09-21T17:32:30Z",
+      "side": 1,
+      "message": "rule_id",
+      "range": {
+        "startLine": 76,
+        "startChar": 65,
+        "endLine": 76,
+        "endChar": 67
+      },
+      "revId": "2f8c0d16e34da82fc105f4ec09e10b76b2f64a91",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df140735_6764d522",
+        "filename": "monasca_api/common/repositories/sqla/models.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 22157
+      },
+      "writtenOn": "2017-09-21T17:32:30Z",
+      "side": 1,
+      "message": "I think you are missing:\n                 Column(\u0027group_wait\u0027, String(5)),\n                 Column(\u0027repeat_interval\u0027, String(5)),",
+      "range": {
+        "startLine": 153,
+        "startChar": 17,
+        "endLine": 153,
+        "endChar": 51
+      },
+      "revId": "2f8c0d16e34da82fc105f4ec09e10b76b2f64a91",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df140735_27113d5e",
+        "filename": "monasca_api/common/repositories/sqla/models.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 22157
+      },
+      "writtenOn": "2017-09-21T17:32:30Z",
+      "side": 1,
+      "message": "I think you are missing:\n                 Column(\u0027tenant_id\u0027, String(36)),\n                 Column(\u0027name\u0027, String(255)),\n                 Column(\u0027created_at\u0027, DateTime),\n                 Column(\u0027updated_at\u0027, DateTime),\n                 Column(\u0027deleted_at\u0027, DateTime))",
+      "range": {
+        "startLine": 172,
+        "startChar": 4,
+        "endLine": 172,
+        "endChar": 16
+      },
+      "revId": "2f8c0d16e34da82fc105f4ec09e10b76b2f64a91",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df140735_27437d6e",
+        "filename": "monasca_api/common/repositories/sqla/silence_rules_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 22157
+      },
+      "writtenOn": "2017-09-21T17:32:30Z",
+      "side": 1,
+      "message": "rule_id",
+      "range": {
+        "startLine": 38,
+        "startChar": 42,
+        "endLine": 38,
+        "endChar": 44
+      },
+      "revId": "2f8c0d16e34da82fc105f4ec09e10b76b2f64a91",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
