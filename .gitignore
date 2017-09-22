@@ -22,6 +22,7 @@ monasca.log
 .classpath
 .idea
 .project
+.stestr
 .target/
 java/debs/*
 .settings/
