@@ -1,0 +1,8 @@
+Code-Review+2: Tomasz Trębski <tomasz.trebski@ts.fujitsu.com>
+Workflow+1: Tomasz Trębski <tomasz.trebski@ts.fujitsu.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Fri, 22 Sep 2017 13:52:40 +0000
+Reviewed-on: https://review.openstack.org/506605
+Project: openstack/monasca-api
+Branch: refs/heads/stable/ocata
