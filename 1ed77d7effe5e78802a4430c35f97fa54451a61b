@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7f515b1d_2aed1bef",
+        "filename": "requirements.txt",
+        "patchSetId": 33
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 14123
+      },
+      "writtenOn": "2017-09-22T16:53:33Z",
+      "side": 1,
+      "message": "if I understood correctly global_requirements.txt requires: Paste\u003e\u003d2.0.2  # MIT",
+      "revId": "1ed77d7effe5e78802a4430c35f97fa54451a61b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
