@@ -1,1 +1,1 @@
-.. include:: ../../../ChangeLog
+.. todo:: If a ChangeLog is added, include it here or update this file!
