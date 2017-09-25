@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "7f515b1d_9f99c46f",
+        "filename": "devstack/lib/persister.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 24580
+      },
+      "writtenOn": "2017-09-25T21:43:22Z",
+      "side": 1,
+      "message": "persister by default ships with a large number for batch size and flush time interval for efficiency reasons in vertica and influxdb. Cassandra does not recommend using large batches for performance reasons. Here we reduce that to a smaller number that we have found to the sweet spot for Cassandra deployment.",
+      "parentUuid": "ff5d4b2f_befcd13e",
+      "revId": "a17a313a76415598891b8bcb5abfdeeab05b6b5b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff5d4b2f_dead4532",
         "filename": "devstack/settings",
         "patchSetId": 3
@@ -138,6 +156,24 @@
     },
     {
       "key": {
+        "uuid": "7f515b1d_852e0e41",
+        "filename": "monasca_api/conf/cassandra.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 24580
+      },
+      "writtenOn": "2017-09-25T21:43:22Z",
+      "side": 1,
+      "message": "I Like the idea to change to contact_points for pythonix.\nabout deprecating cluster_ip_addresses, it is not really option known by Cassandra. So I am replacing it with the Cassandra term contact points. But Cassandra module in Monasca was really completed or used by any. I do nto see worth the trouble going thru and mark it as deprecated and honestly it will be just more confusing for all who will be just see the first Cassandra release.",
+      "parentUuid": "ff5d4b2f_d9379fe3",
+      "revId": "a17a313a76415598891b8bcb5abfdeeab05b6b5b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff5d4b2f_993127f0",
         "filename": "monasca_api/conf/cassandra.py",
         "patchSetId": 3
@@ -149,6 +185,24 @@
       "writtenOn": "2017-09-19T07:47:02Z",
       "side": 1,
       "message": "Will it be used ?",
+      "revId": "a17a313a76415598891b8bcb5abfdeeab05b6b5b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f515b1d_c22e3ca4",
+        "filename": "monasca_api/conf/cassandra.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 24580
+      },
+      "writtenOn": "2017-09-25T21:43:22Z",
+      "side": 1,
+      "message": "Yes",
+      "parentUuid": "ff5d4b2f_993127f0",
       "revId": "a17a313a76415598891b8bcb5abfdeeab05b6b5b",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
