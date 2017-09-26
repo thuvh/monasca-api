@@ -25,6 +25,8 @@ set +o xtrace
 
 STORM_NIMBUS_CMD="/opt/storm/current/bin/storm nimbus"
 STORM_SUPERVISOR_CMD="/opt/storm/current/bin/storm supervisor"
+STORM_UI_CMD="/opt/storm/current/bin/storm ui"
+STORM_LOGVIEWER_CMD="/opt/storm/current/bin/storm logviewer"
 
 STORM_USER="storm"
 STORM_GROUP="storm"
@@ -43,19 +45,32 @@ function is_storm_enabled {
     return 1
 }
 
+function is_storm_component_enabled {
+    local cmp="${1}"
+    is_service_enabled "monasca-storm-${cmp}" && return 0
+    return 1
+}
+
+
 function start_storm {
     if is_storm_enabled; then
         echo_summary "Starting storm-{nimbus,supervisor}"
+
         run_process "monasca-storm-nimbus" "${STORM_NIMBUS_CMD}" "${STORM_GROUP}" "${STORM_USER}"
         run_process "monasca-storm-supervisor" "${STORM_SUPERVISOR_CMD}" "${STORM_GROUP}" "${STORM_USER}"
+        run_process "monasca-storm-ui" "${STORM_UI_CMD}" "${STORM_GROUP}" "${STORM_USER}"
+        run_process "monasca-storm-logviewer" "${STORM_LOGVIEWER_CMD}" "${STORM_GROUP}" "${STORM_USER}"
     fi
 }
 
 function stop_storm {
     if is_storm_enabled; then
         echo_summary "Stopping storm-{nimbus,supervisor}"
+
         stop_process "monasca-storm-nimbus"
         stop_process "monasca-storm-supervisor"
+        stop_process "monasca-storm-ui"
+        stop_process "monasca-storm-logviewer"
     fi
 }
 
