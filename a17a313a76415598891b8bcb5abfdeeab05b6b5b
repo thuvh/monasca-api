@@ -54,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "7f515b1d_88061a86",
+        "filename": "devstack/lib/persister.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-09-26T07:04:11Z",
+      "side": 1,
+      "message": "Seems fine enough, nevertheless could you stick to the style of setting up this file like presented above ? With placeholders and stuff ? I\u0027d also suggest having variables to be able to modify these two variables prior to deployment if necessary.",
+      "parentUuid": "7f515b1d_9f99c46f",
+      "revId": "a17a313a76415598891b8bcb5abfdeeab05b6b5b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff5d4b2f_dead4532",
         "filename": "devstack/settings",
         "patchSetId": 3
@@ -168,6 +186,24 @@
       "side": 1,
       "message": "I Like the idea to change to contact_points for pythonix.\nabout deprecating cluster_ip_addresses, it is not really option known by Cassandra. So I am replacing it with the Cassandra term contact points. But Cassandra module in Monasca was really completed or used by any. I do nto see worth the trouble going thru and mark it as deprecated and honestly it will be just more confusing for all who will be just see the first Cassandra release.",
       "parentUuid": "ff5d4b2f_d9379fe3",
+      "revId": "a17a313a76415598891b8bcb5abfdeeab05b6b5b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f515b1d_c8f3f29d",
+        "filename": "monasca_api/conf/cassandra.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-09-26T07:04:11Z",
+      "side": 1,
+      "message": "Hmm...actually I think you might be right that it hasn\u0027t been tried. Let\u0027s keep it but make it like `contact_points`",
+      "parentUuid": "7f515b1d_852e0e41",
       "revId": "a17a313a76415598891b8bcb5abfdeeab05b6b5b",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
