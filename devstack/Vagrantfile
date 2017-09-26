@@ -129,6 +129,14 @@ enable_service rabbit key tempest horizon
 enable_service mysql
 #enable_service postgresql
 
+# Enable entire storm for the sake of local development mode
+# Individual services are:
+# monasca-storm-ui
+# monasca-storm-supervisor
+# monasca-storm-nimbus
+# monasca-storm-logviewer
+enable_service monasca-storm
+
 # Enable/Disable ORM support for mysql/postgresql
 # HINT: If postgresql service is enabled, ORM is enforced
 MONASCA_DATABASE_USE_ORM=${MONASCA_DATABASE_USE_ORM:-false}
