@@ -54,6 +54,8 @@ enable_service monasca-influxdb
 enable_service monasca-storm
 enable_service monasca-storm-nimbus
 enable_service monasca-storm-supervisor
+disable_service monasca-storm-ui
+disable_service monasca-storm-logviewer
 
 # monasca-kafka depends on monasca-zookeeper
 enable_service monasca-kafka
