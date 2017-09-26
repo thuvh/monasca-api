@@ -52,6 +52,7 @@ source ${MONASCA_API_DIR}/devstack/lib/notification.sh
 source ${MONASCA_API_DIR}/devstack/lib/profile.sh
 source ${MONASCA_API_DIR}/devstack/lib/client.sh
 source ${MONASCA_API_DIR}/devstack/lib/persister.sh
+source ${MONASCA_API_DIR}/devstack/lib/storm.sh
 # source lib/*
 
 # Set default implementations to python
@@ -103,10 +104,7 @@ function pre_install_monasca {
     install_gate_config_holder
     install_kafka
     install_zookeeper
-
-    if is_service_enabled monasca-storm; then
-        install_storm
-    fi
+    install_storm
 
     install_monasca_virtual_env
     install_monasca_$MONASCA_METRICS_DB
@@ -123,7 +121,7 @@ function install_monasca {
     stack_install_service monasca-notification
 
     if is_service_enabled monasca-thresh; then
-        if ! is_service_enabled monasca-storm; then
+        if ! is_storm_enabled; then
             die "monasca-thresh requires monasca-storm service to be enabled"
         fi
         install_monasca_thresh
@@ -146,6 +144,7 @@ function configure_monasca {
     #(trebskit) Installing should happen in post-config phase
     # at this point databases is already configured
     install_schema
+    configure_storm
     configure_ui
     configure_monasca_api
     configure_monasca-notification
@@ -161,13 +160,6 @@ function configure_screen {
         sudo ln -sf /var/log/monasca/agent/supervisor.log ${SCREEN_LOGDIR}/screen-monasca-agent-supervisor.log || true
         sudo ln -sf /var/log/monasca/agent/collector.log ${SCREEN_LOGDIR}/screen-monasca-agent-collector.log || true
         sudo ln -sf /var/log/monasca/agent/forwarder.log ${SCREEN_LOGDIR}/screen-monasca-agent-forwarder.log || true
-
-        sudo ln -sf /var/log/storm/access.log ${SCREEN_LOGDIR}/screen-monasca-thresh-access.log || true
-        sudo ln -sf /var/log/storm/supervisor.log ${SCREEN_LOGDIR}/screen-monasca-thresh-supervisor.log || true
-        sudo ln -sf /var/log/storm/metrics.log ${SCREEN_LOGDIR}/screen-monasca-thresh-metrics.log || true
-        sudo ln -sf /var/log/storm/nimbus.log  ${SCREEN_LOGDIR}/screen-monasca-thresh-nimbus.log || true
-        sudo ln -sf /var/log/storm/worker-6701.log ${SCREEN_LOGDIR}/screen-monasca-thresh-worker-6701.log || true
-        sudo ln -sf /var/log/storm/worker-6702.log ${SCREEN_LOGDIR}/screen-monasca-thresh-worker-6702.log || true
     fi
 }
 
@@ -189,6 +181,7 @@ function extra_monasca {
 }
 
 function start_monasca_services {
+    start_storm
     if is_service_enabled monasca-api; then
         start_monasca_api
     fi
@@ -213,10 +206,7 @@ function unstack_monasca {
 
     stop_service monasca-thresh || true
 
-    stop_service storm-supervisor || true
-
-    stop_service storm-nimbus || true
-
+    stop_storm
     stop_monasca-notification
     stop_monasca-persister
     stop_monasca_api
@@ -251,9 +241,7 @@ function clean_monasca {
     if is_service_enabled monasca-thresh; then
         clean_monasca_thresh
     fi
-    if is_service_enabled monasca-storm; then
-        clean_storm
-    fi
+    clean_storm
     if is_service_enabled monasca-api; then
         clean_monasca_api_$MONASCA_API_IMPLEMENTATION_LANG
     fi
@@ -943,104 +931,6 @@ function configure_monasca_api {
     #NOTE(basiaka) Refactor of monasca-api in Java version will be handled in another change
 }
 
-function install_storm {
-
-    echo_summary "Install Monasca Storm"
-
-    local storm_tarball=apache-storm-${STORM_VERSION}.tar.gz
-    local storm_tarball_url=${APACHE_MIRROR}storm/apache-storm-${STORM_VERSION}/${storm_tarball}
-
-    local storm_tarball_dest
-    storm_tarball_dest=`get_extra_file ${storm_tarball_url}`
-
-    sudo groupadd --system storm || true
-
-    sudo useradd --system -g storm storm || true
-
-    sudo mkdir -p /opt/storm || true
-
-    sudo chown storm:storm /opt/storm
-
-    sudo chmod 0755 /opt/storm
-
-    sudo tar -xzf ${storm_tarball_dest} -C /opt/storm
-
-    sudo ln -sf /opt/storm/apache-storm-${STORM_VERSION} /opt/storm/current
-
-    sudo mkdir /var/storm || true
-
-    sudo chown storm:storm /var/storm
-
-    sudo chmod 0775 /var/storm
-
-    sudo mkdir /var/log/storm || true
-
-    sudo chown storm:storm /var/log/storm
-
-    sudo chmod 0775 /var/log/storm
-
-    sudo ln -sf /var/log/storm /opt/storm/current/logs
-
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/storm/storm.yaml /opt/storm/apache-storm-${STORM_VERSION}/conf/storm.yaml
-
-    sudo chown storm:storm /opt/storm/apache-storm-${STORM_VERSION}/conf/storm.yaml
-
-    sudo chmod 0644 /opt/storm/apache-storm-${STORM_VERSION}/conf/storm.yaml
-
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/storm/storm-nimbus.service /etc/systemd/system/storm-nimbus.service
-
-    sudo chown root:root /etc/systemd/system/storm-nimbus.service
-
-    sudo chmod 0644 /etc/systemd/system/storm-nimbus.service
-
-    sudo cp -f "${MONASCA_API_DIR}"/devstack/files/storm/storm-supervisor.service /etc/systemd/system/storm-supervisor.service
-
-    sudo chown root:root /etc/systemd/system/storm-supervisor.service
-
-    sudo chmod 0644 /etc/systemd/system/storm-supervisor.service
-
-    sudo systemctl enable storm-nimbus
-
-    sudo systemctl enable storm-supervisor
-
-    sudo systemctl start storm-nimbus || sudo systemctl restart storm-nimbus
-
-    sudo systemctl start storm-supervisor || sudo systemctl restart storm-supervisor
-
-}
-
-function clean_storm {
-
-    echo_summary "Clean Monasca Storm"
-
-    sudo systemctl disable storm-supervisor
-
-    sudo systemctl disable storm-nimbus
-
-    sudo rm /etc/systemd/system/storm-supervisor.service
-
-    sudo rm /etc/systemd/system/storm-nimbus.service
-
-    sudo rm /opt/storm/apache-storm-${STORM_VERSION}/conf/storm.yaml
-
-    sudo unlink /opt/storm/current/logs
-
-    sudo rm -rf /var/storm
-
-    sudo rm -rf /var/log/storm
-
-    sudo userdel storm || true
-
-    sudo groupdel storm || true
-
-    sudo unlink /opt/storm/current
-
-    sudo rm -rf /opt/storm
-
-    sudo rm ${FILES}/apache-storm-${STORM_VERSION}.tar.gz
-
-}
-
 function install_monasca_thresh {
 
     echo_summary "Install Monasca monasca_thresh"
@@ -1438,6 +1328,45 @@ function get_version_from_pom {
     python -c "import xml.etree.ElementTree as ET; \
         print(ET.parse(open('$1/pom.xml')).getroot().find( \
         '{http://maven.apache.org/POM/4.0.0}version').text)"
+}
+
+# download_file
+#  $1 - url to download
+#  $2 - location where to save url to
+#
+# Download file only when it not exists or there is newer version of it.
+#
+#  Uses global variables:
+#  - OFFLINE
+#  - DOWNLOAD_FILE_TIMEOUT
+function download_file {
+    local url=$1
+    local file=$2
+
+    # If in OFFLINE mode check if file already exists
+    if [[ ${OFFLINE} == "True" ]] && [[ ! -f ${file} ]]; then
+        die $LINENO "You are running in OFFLINE mode but
+                        the target file \"$file\" was not found"
+    fi
+
+    local curl_z_flag=""
+    if [[ -f "${file}" ]]; then
+        # If the file exists tell cURL to download only if newer version
+        # is available
+        curl_z_flag="-z $file"
+    fi
+
+    # yeah...downloading...devstack...hungry..om, om, om
+    local timeout=0
+
+    if [[ -n "${DOWNLOAD_FILE_TIMEOUT}" ]]; then
+        timeout=${DOWNLOAD_FILE_TIMEOUT}
+    fi
+
+    time_start "download_file"
+    _safe_permission_operation ${CURL_GET} -L $url --connect-timeout $timeout --retry 3 --retry-delay 5 -o $file $curl_z_flag
+    time_stop "download_file"
+
 }
 
 function install_monasca_common {
