@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7f515b1d_7dcff855",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-09-27T08:27:03Z",
+      "side": 1,
+      "message": "The commit title should not start with lowercase latter.",
+      "revId": "d31c4eb4924610edaf3f2cb3d251925700a1c999",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f515b1d_7dca584e",
+        "filename": "devstack/lib/persister.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-09-27T08:27:03Z",
+      "side": 1,
+      "message": "Move this bit after L56. There is somehow similar code to differentiate some variables between python and java impls, so it seems like nice place to this one there as well.",
+      "revId": "d31c4eb4924610edaf3f2cb3d251925700a1c999",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
