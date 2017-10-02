@@ -39,7 +39,7 @@ function clean_zookeeper {
 
 function configure_zookeeper {
     if is_zookeeper_enabled; then
-        sudo cp $PLUGIN_FILES/zookeeper/* $ZOOKEEPER_CONF_DIR
+        sudo cp "${MONASCA_API_REPO}/devstack/files/zookeeper/*" $ZOOKEEPER_CONF_DIR
         sudo sed -i -e 's|.*dataDir.*|dataDir='$ZOOKEEPER_DATA_DIR'|' $ZOOKEEPER_CONF_DIR/zoo.cfg
         sudo rm -rf $ZOOKEEPER_DATA_DIR || true
         sudo mkdir -p $ZOOKEEPER_DATA_DIR || true
