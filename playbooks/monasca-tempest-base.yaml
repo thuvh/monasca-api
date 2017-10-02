@@ -1,0 +1,56 @@
+- hosts: primary
+  tasks:
+    - shell:
+        cmd: |
+          set -e
+          set -x
+
+          export PYTHONUNBUFFERED=true
+          export KEEP_LOCALRC=1
+          export DEVSTACK_GATE_TEMPEST=1
+
+
+          if [ "{{ horizon }}" -eq 0 ] ; then
+              export DEVSTACK_LOCAL_CONFIG+=$'\n'"disable_service horizon"
+          else
+              export DEVSTACK_GATE_HORIZON=1
+          fi
+
+          export PROJECTS="openstack/monasca-api $PROJECTS"
+          export PROJECTS="openstack/monasca-persister $PROJECTS"
+          export PROJECTS="openstack/monasca-common $PROJECTS"
+          export PROJECTS="openstack/monasca-agent $PROJECTS"
+          export PROJECTS="openstack/monasca-notification $PROJECTS"
+          export PROJECTS="openstack/monasca-thresh $PROJECTS"
+          export PROJECTS="openstack/monasca-statsd $PROJECTS"
+          export PROJECTS="openstack/python-monascaclient $PROJECTS"
+          export PROJECTS="openstack/monasca-grafana-datasource $PROJECTS"
+          export PROJECTS="openstack/monasca-ui $PROJECTS"
+          export PROJECTS="openstack/requirements $PROJECTS"
+
+          export DEVSTACK_LOCAL_CONFIG+=$'\n'"enable_plugin monasca-api https://git.openstack.org/openstack/monasca-api"
+
+          if [ {backend} == "postgresql" ]; then
+              export DEVSTACK_GATE_POSTGRES=1
+          elif [ {backend} == "mysql" ]; then
+              export DEVSTACK_GATE_POSTGRES=0
+          fi
+
+          function gate_hook {
+              cd /opt/stack/new/monasca-api/
+              ./monasca_tempest_tests/contrib/gate_hook.sh
+          }
+          export -f gate_hook
+
+          function post_test_hook {
+              source $BASE/new/devstack/accrc/admin/admin
+              cd /opt/stack/new/monasca-api/
+              ./monasca_tempest_tests/contrib/post_test_hook.sh
+          }
+          export -f post_test_hook
+
+          cp devstack-gate/devstack-vm-gate-wrap.sh ./safe-devstack-vm-gate-wrap.sh
+          ./safe-devstack-vm-gate-wrap.sh
+        executable: /bin/bash
+        chdir: '{{ ansible_user_dir }}/workspace'
+      environment: '{{ zuul | zuul_legacy_vars }}'
