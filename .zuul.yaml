@@ -1,0 +1,63 @@
+- job:
+    name: tempest-base
+    parent: legacy-dsvm-base
+    run: playbooks/legacy/tempest-monasca-base/run
+    post-run: playbooks/legacy/tempest-monasca-base/post
+    timeout: 7800
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack/monasca-agent
+      - openstack/monasca-api
+      - openstack/monasca-common
+      - openstack/monasca-grafana-datasource
+      - openstack/monasca-notification
+      - openstack/monasca-persister
+      - openstack/monasca-statsd
+      - openstack/monasca-thresh
+      - openstack/monasca-ui
+      - openstack/python-monascaclient
+      - openstack/tempest
+
+
+
+- job:
+    name: tempest-monasca-python-mysql
+    parent: tempest-base
+    vars:
+      database: mysql
+      lang: python
+    voting: false
+
+- job:
+    name: tempest-monasca-python-postgresql
+    parent: tempest-base
+    vars:
+      database: postgresql
+      lang: python
+    voting: false
+
+- job:
+    name: tempest-monasca-java-mysql
+    parent: tempest-base
+    vars:
+      database: mysql
+      lang: java
+    voting: false
+
+- job:
+    name: tempest-monasca-java-postgresql
+    parent: tempest-base
+    vars:
+      database: postgresql
+      lang: java
+    voting: false
+
+
+- project:
+    name: openstack/monasca-api
+    check:
+      jobs:
+        - tempest-monasca-python-mysql
+        - tempest-monasca-python-postgresql
+        - tempest-monasca-java-mysql
+        - tempest-monasca-java-postgresql
