@@ -26,7 +26,7 @@ function load_devstack_utilities {
 
 function setup_monasca_api {
 
-    local constraints="-c $REQUIREMENTS_DIR/upper-constraints.txt"
+    local constraints="-c /opt/stack/new/requirements/upper-constraints.txt"
 
     pushd $TEMPEST_DIR
     sudo -EH pip install $constraints -r requirements.txt -r test-requirements.txt
