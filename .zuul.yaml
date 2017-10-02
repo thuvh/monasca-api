@@ -1,0 +1,20 @@
+- job:
+    name: monasca-tempest-base
+    parent: devstack
+    timeout: 9000
+    descrption: |
+      Base job for Monasca-api project
+    pre-run: gate/devstack/pre
+    run: gate/devstack/run
+    post-run: gate/devstack/post
+    required-projects:
+     - name: openstack/monasca-api
+     - name: openstack/monasca-persister
+     - name: openstack/monasca-common
+     - name: openstack/monasca-agent
+     - name: openstack/monasca-notification
+     - name: openstack/monasca-thresh
+     - name: openstack/monasca-statsd
+     - name: openstack/python-monascaclient
+     - name: openstack/monasca-grafana-datasource
+     - name: openstack/monasca-ui
