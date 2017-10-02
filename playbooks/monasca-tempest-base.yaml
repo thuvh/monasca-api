@@ -1,0 +1,56 @@
+- hosts: primary
+  tasks:
+    - shell:
+        cmd: |
+          set -e
+          set -x
+
+          export PYTHONUNBUFFERED=true
+          export KEEP_LOCALRC=1
+          export DEVSTACK_GATE_EXERCISES=0
+
+
+          export DEVSTACK_GATE_TEMPEST=1
+
+
+          # Keep localrc to be able to set some vars in post_test_hook
+
+          export PROJECTS="openstack/monasca-api $PROJECTS"
+          export PROJECTS="openstack/monasca-persister $PROJECTS"
+          export PROJECTS="openstack/monasca-common $PROJECTS"
+          export PROJECTS="openstack/monasca-agent $PROJECTS"
+          export PROJECTS="openstack/monasca-notification $PROJECTS"
+          export PROJECTS="openstack/monasca-thresh $PROJECTS"
+          export PROJECTS="openstack/monasca-statsd $PROJECTS"
+          export PROJECTS="openstack/python-monascaclient $PROJECTS"
+          export PROJECTS="openstack/monasca-grafana-datasource $PROJECTS"
+          export PROJECTS="openstack/monasca-ui $PROJECTS"
+
+          if [ {backend} == "postgresql" ]; then
+              export DEVSTACK_GATE_POSTGRES=1
+          elif [ {backend} == "postgresql" ]; then
+              export DEVSTACK_GATE_POSTGRES=0
+          else
+              echo "unsupported backend {backend}"
+              return 1
+          fi
+
+          function gate_hook {
+              cd /opt/stack/new/monasca-api/
+              ./monasca_tempest_tests/contrib/gate_hook.sh
+          }
+          export -f gate_hook
+
+          function post_test_hook {
+              source $BASE/new/devstack/accrc/admin/admin
+              cd /opt/stack/new/monasca-api/
+              ./monasca_tempest_tests/contrib/post_test_hook.sh
+          }
+          export -f post_test_hook
+
+          cp devstack-gate/devstack-vm-gate-wrap.sh ./safe-devstack-vm-gate-wrap.sh
+          ./safe-devstack-vm-gate-wrap.sh
+
+        executable: /bin/bash
+        chdir: '{{ ansible_user_dir }}/workspace'
+      environment: '{{ zuul | zuul_legacy_vars }}'
