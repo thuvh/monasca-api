@@ -1,0 +1,58 @@
+- job:
+    name: monasca-tempest-base
+    parent: legacy-dsvm-base
+    timeout: 900
+    description: Base job for Monasca-api project
+    pre-run: playbooks/functional/pre-run
+    run: playbooks/monasca-api-tempest-base/tempest-run
+    post-run: playbooks/functional/post-run
+    required-projects:
+       - name: openstack-dev/devstack
+       - name: openstack/monasca-api
+       - name: openstack/monasca-persister
+       - name: openstack/monasca-common
+       - name: openstack/monasca-agent
+       - name: openstack/monasca-notification
+       - name: openstack/monasca-thresh
+       - name: openstack/monasca-statsd
+       - name: openstack/python-monascaclient
+       - name: openstack/monasca-grafana-datasource
+       - name: openstack/monasca-ui
+       - name: openstack-infra/devstack-gate
+    irrelevant-files:
+      - ^.*\.rst$
+      - ^doc/.*$
+      - ^docs/.*$
+      - ^releasenotes/.*$
+      - ^api-guide/.*$
+      - ^api-ref/.*$
+    vars:
+      devstack_plugins:
+        monasca-api: https://git.openstack.org/openstack/monasca-api
+      devstack_services:
+        tempest: True
+        horizon: False
+        monasca-notification: True
+        monasca-persister: False
+
+
+
+- job:
+    name: monasca-tempest-python-mysql
+    parent: monasca-tempest-base
+    branches: ^(?!stable/newton).*$
+    voting: false
+    vars:
+      lang: python
+      backend: mysql
+
+- project:
+    name: openstack/monasca-api
+    check:
+      jobs:
+        - monasca-tempest-python-mysql
+        - openstack-tox-bashate
+    gate:
+      jobs:
+        - openstack-tox-bashate
+
