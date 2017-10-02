@@ -1,0 +1,47 @@
+- job:
+    name: monasca-tempest-base
+    parent: devstack
+    timeout: 900
+    description: |
+      Base job for Monasca-api project
+    pre-run: playbooks/monasca-api-tempest-base/pre
+    run: playbooks/monasca-api-tempest-base/tempest-run
+    post-run: playbooks/monasca-api-tempest-base/post
+    required-projects:
+       - name: openstack/monasca-api
+       - name: openstack/monasca-persister
+       - name: openstack/monasca-common
+       - name: openstack/monasca-agent
+       - name: openstack/monasca-notification
+       - name: openstack/monasca-thresh
+       - name: openstack/monasca-statsd
+       - name: openstack/python-monascaclient
+       - name: openstack/monasca-grafana-datasource
+       - name: openstack/monasca-ui
+    irrelevant-files:
+      - ^.*\.rst$
+      - ^doc/.*$
+      - ^docs/.*$
+      - ^releasenotes/.*$
+      - ^api-guide/.*$
+      - ^api-ref/.*$
+    vars:
+      horizon: 0
+      neutron: 1
+      tempest: 0
+
+
+- job:
+    name: monasca-tempest-python-mysql
+    parent: monasca-tempest-base
+    voting: false
+    vars:
+      lang: python
+      backend: mysql
+
+- project:
+    name: openstack/monasca-api
+    check:
+      jobs:
+        - monasca-tempest-python-mysql
+
