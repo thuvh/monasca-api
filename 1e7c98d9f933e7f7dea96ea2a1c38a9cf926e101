@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7f515b1d_91292238",
+        "filename": "devstack/lib/storm.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-10-02T06:46:14Z",
+      "side": 1,
+      "message": "Why not using `STORM_BIN` here?",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 62
+      },
+      "revId": "1e7c98d9f933e7f7dea96ea2a1c38a9cf926e101",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f515b1d_51cdea82",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 1371,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-10-02T06:46:14Z",
+      "side": 1,
+      "message": "Why not using standard devstack `get_extra_file`?",
+      "range": {
+        "startLine": 1334,
+        "startChar": 0,
+        "endLine": 1371,
+        "endChar": 1
+      },
+      "revId": "1e7c98d9f933e7f7dea96ea2a1c38a9cf926e101",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
