@@ -10,7 +10,6 @@ cover*
 .testrepository
 .stestr
 .tox
-ChangeLog
 MANIFEST
 monasca.log
 
