@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7f515b1d_d18f9a27",
+        "filename": "devstack/lib/storm.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-10-02T06:58:35Z",
+      "side": 1,
+      "message": "Use `STORM_BIN`",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 60
+      },
+      "revId": "5ece0fcd86d76072b3274aab02c4b1dc9e2f1c13",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f515b1d_9185a209",
+        "filename": "devstack/lib/storm.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-10-02T06:58:35Z",
+      "side": 1,
+      "message": "Where it is used?",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 1
+      },
+      "revId": "5ece0fcd86d76072b3274aab02c4b1dc9e2f1c13",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f515b1d_b182defe",
+        "filename": "devstack/lib/storm.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-10-02T06:58:35Z",
+      "side": 1,
+      "message": "Too many empty lines",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 0
+      },
+      "revId": "5ece0fcd86d76072b3274aab02c4b1dc9e2f1c13",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
