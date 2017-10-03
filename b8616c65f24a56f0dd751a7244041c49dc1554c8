@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7f515b1d_3ab91478",
+        "filename": ".zuul.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-10-03T06:41:54Z",
+      "side": 1,
+      "message": "typo: descrption -\u003e description",
+      "revId": "b8616c65f24a56f0dd751a7244041c49dc1554c8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
