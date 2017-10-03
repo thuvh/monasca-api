@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7f515b1d_8bd5581e",
+        "filename": "gate/tempest-base.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-10-03T08:44:10Z",
+      "side": 1,
+      "message": "Unsupported",
+      "revId": "4f42702df48a487fe2ddaaeee41f9f47794de663",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
