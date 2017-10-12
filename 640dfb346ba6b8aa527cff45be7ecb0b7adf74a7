@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f4e5783_3b8301cf",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 25903
+      },
+      "writtenOn": "2017-10-12T03:09:38Z",
+      "side": 1,
+      "message": "This has been updated to https://governance.openstack.org/tc/badges/monasca-api.svg",
+      "range": {
+        "startLine": 4,
+        "startChar": 29,
+        "endLine": 4,
+        "endChar": 84
+      },
+      "revId": "640dfb346ba6b8aa527cff45be7ecb0b7adf74a7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
