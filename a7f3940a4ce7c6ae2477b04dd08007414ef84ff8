@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f4e5783_4a9ee1b8",
+        "filename": ".zuul.yaml",
+        "patchSetId": 15
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-10-12T07:31:39Z",
+      "side": 1,
+      "message": "These need to be always enabled I believe",
+      "revId": "a7f3940a4ce7c6ae2477b04dd08007414ef84ff8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
