@@ -333,6 +333,14 @@ function install_kafka {
 
     sudo chmod 644 /etc/kafka/server.properties
 
+    if [[ ${SERVICE_HOST} ]]; then
+
+        # set kafka advertised broker address.
+        sudo sed -i "s/^#advertised.host.name=<hostname routable by clients>/#advertised.host.name=<hostname routable by clients>\nadvertised.host.name=${SERVICE_HOST}/"\
+                 /etc/kafka/server.properties
+
+    fi
+
     sudo systemctl enable kafka
 
     sudo systemctl start kafka || sudo systemctl restart kafka
