@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f4b6375_da5bdc2b",
+        "filename": ".zuul.yaml",
+        "patchSetId": 56
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-10-19T22:36:14Z",
+      "side": 1,
+      "message": "Is dsvm still required here as well as -full ?",
+      "revId": "dc643343e33605945dd11930bf2977ebf22bd994",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f4b6375_9a3d64bd",
+        "filename": ".zuul.yaml",
+        "patchSetId": 56
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-10-19T22:36:14Z",
+      "side": 1,
+      "message": "Non-voting so should not be inside the gate.",
+      "revId": "dc643343e33605945dd11930bf2977ebf22bd994",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
