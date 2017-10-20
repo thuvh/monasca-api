@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "3f4b6375_8c176fa4",
+        "filename": ".zuul.yaml",
+        "patchSetId": 56
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-10-20T04:23:57Z",
+      "side": 1,
+      "message": "From what I remember, the zuulv3 docs suggest dropping these aliases as historical debt.",
+      "parentUuid": "3f4b6375_da5bdc2b",
+      "revId": "dc643343e33605945dd11930bf2977ebf22bd994",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3f4b6375_9a3d64bd",
         "filename": ".zuul.yaml",
         "patchSetId": 56
@@ -30,6 +48,40 @@
       "writtenOn": "2017-10-19T22:36:14Z",
       "side": 1,
       "message": "Non-voting so should not be inside the gate.",
+      "revId": "dc643343e33605945dd11930bf2977ebf22bd994",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f4b6375_2cfabb74",
+        "filename": "monasca_tempest_tests/contrib/post_test_hook.sh",
+        "patchSetId": 56
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-10-20T04:23:57Z",
+      "side": 1,
+      "message": "Is this hack still valid or can we use `REQUIREMENTS_DIR` now ?",
+      "revId": "dc643343e33605945dd11930bf2977ebf22bd994",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f4b6375_6c355346",
+        "filename": "playbooks/legacy/tempest-dsvm-monasca-python-mysql-full/run.yaml",
+        "patchSetId": 56
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-10-20T04:23:57Z",
+      "side": 1,
+      "message": "This file and the one you\u0027re using in the base job looks exactly the same, are they the same ? Is the duplicate still required ?\n\nI\u0027d stick with the one in the base image if is sufficient.",
       "revId": "dc643343e33605945dd11930bf2977ebf22bd994",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
