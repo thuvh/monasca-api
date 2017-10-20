@@ -16,6 +16,24 @@
       "revId": "4d6e1b6e17da18bc39d6e612f0ef997fbdd9c24b",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f4b6375_6fb8a575",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 21
+      },
+      "lineNbr": 1342,
+      "author": {
+        "id": 659
+      },
+      "writtenOn": "2017-10-20T05:51:29Z",
+      "side": 1,
+      "message": "Thanks. I\u0027ve moved functions to devstack/lib/griddb.sh.",
+      "parentUuid": "3f4b6375_6c00b368",
+      "revId": "4d6e1b6e17da18bc39d6e612f0ef997fbdd9c24b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
