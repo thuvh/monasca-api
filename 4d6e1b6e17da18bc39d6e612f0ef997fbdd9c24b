@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f4b6375_6c00b368",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 21
+      },
+      "lineNbr": 1342,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-10-20T04:20:15Z",
+      "side": 1,
+      "message": "If I may suggest, please move that method and one below to dedicated script inside devstack/lib. plugin.sh is cluttered as it is now so best thing is to avoid putting more items to it. \n\nAlso these will result in installing the plugin always while it should be installed only if corresponding GridDB is enabled inside devstack.\n\nIf you need more help on this topic, let me know.",
+      "revId": "4d6e1b6e17da18bc39d6e612f0ef997fbdd9c24b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
