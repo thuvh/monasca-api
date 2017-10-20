@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f4b6375_2ca3dba0",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-10-20T04:17:38Z",
+      "side": 1,
+      "message": "Put `CONF \u003d cfg.CONF` above `LOG`",
+      "revId": "41220c302762594fc1e008e7c2d288b958fe7e90",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f4b6375_cca7a7a7",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-10-20T04:17:38Z",
+      "side": 1,
+      "message": "That is really pointless to be honest. If it does not break the tests, please remove `self.conf` field and replace all occurrences with `CONF` (see comment above)",
+      "revId": "41220c302762594fc1e008e7c2d288b958fe7e90",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f4b6375_ac8fcb21",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 750,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-10-20T04:17:38Z",
+      "side": 1,
+      "message": "this one I like",
+      "revId": "41220c302762594fc1e008e7c2d288b958fe7e90",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f4b6375_4c9cd75c",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 751,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-10-20T04:17:38Z",
+      "side": 1,
+      "message": "You can still access self.conf because it is really `cfg.CONF` also check constructor for one side change you might want to take, or at least I suggest to take.",
+      "revId": "41220c302762594fc1e008e7c2d288b958fe7e90",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f4b6375_2c7e3b19",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 908,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-10-20T04:17:38Z",
+      "side": 1,
+      "message": "In cassandra you\u0027re creating new Cluster instance, but in here you rely on the field influxdb_client this class instantiates. \n\nI still think that making these methods `static` would be much better idea - to avoid creating entire repo object where we actually need much leaner variant of it.  Check comments in repositories/metric_repository for further details.",
+      "revId": "41220c302762594fc1e008e7c2d288b958fe7e90",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f4b6375_ec77033a",
+        "filename": "monasca_api/common/repositories/metrics_repository.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-10-20T04:17:38Z",
+      "side": 1,
+      "message": "Add @staticmethod above @abc.abstractmethod to achieve `abstract static method`",
+      "revId": "41220c302762594fc1e008e7c2d288b958fe7e90",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f4b6375_6cb2f3e8",
+        "filename": "monasca_api/healthcheck/metrics_db_check.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-10-20T04:17:38Z",
+      "side": 1,
+      "message": "Once you introduce `abstract static method` concept you can import class without creating any object of it, or even retrieve the method directly and store the reference here, as in\n\n  getattr(simport.load(cfg.CONF.repositories_metric_drives), \u0027check_status\u0027)\n\nthere is no need for default value because we enforce that sub classes to have the implemention.",
+      "revId": "41220c302762594fc1e008e7c2d288b958fe7e90",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f4b6375_ccc0c72d",
+        "filename": "monasca_api/healthcheck/metrics_db_check.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-10-20T04:17:38Z",
+      "side": 1,
+      "message": "With this change this exception is bit invalid because any failure in import/retrieving the method will be an error on the code-level not on the accessibility of a service so I suggest to change it to be really 500 meaning that server has simply encountered really bad situation.",
+      "revId": "41220c302762594fc1e008e7c2d288b958fe7e90",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
