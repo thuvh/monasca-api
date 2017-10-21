@@ -16,6 +16,24 @@
       "revId": "97990784bfa25fd300db79a23fe4457674121e0e",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f4b6375_3470a3dc",
+        "filename": "devstack/lib/griddb.sh",
+        "patchSetId": 22
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 659
+      },
+      "writtenOn": "2017-10-21T14:46:09Z",
+      "side": 1,
+      "message": "It requires 4 methods to (un)install GridDB server and the client.\n\nWe need install_monasca_griddb() and clean_monasca_griddb() only when griddb is selected as metrics repository, but we alwasys need install_monasca_griddb_c_client() and clean_monasca_griddb_c_client() for running unit tests and document generation.",
+      "parentUuid": "3f4b6375_d53046eb",
+      "revId": "97990784bfa25fd300db79a23fe4457674121e0e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
