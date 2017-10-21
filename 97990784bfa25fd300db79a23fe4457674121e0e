@@ -34,6 +34,24 @@
       "revId": "97990784bfa25fd300db79a23fe4457674121e0e",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f4b6375_b0e25c00",
+        "filename": "devstack/lib/griddb.sh",
+        "patchSetId": 22
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-10-21T23:08:56Z",
+      "side": 1,
+      "message": "yeah well...if you install it here gates for docs and python [py, pep etc] won\u0027t pick it up. That should go to the tox.ini if I understand you correctly.",
+      "parentUuid": "3f4b6375_3470a3dc",
+      "revId": "97990784bfa25fd300db79a23fe4457674121e0e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
