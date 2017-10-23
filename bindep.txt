@@ -4,3 +4,8 @@
 maven
 openjdk-8-jdk
 libssl-dev [platform:dpkg]
+swig
+libtool
+automake
+autoconf
+m4
