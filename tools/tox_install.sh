@@ -16,6 +16,8 @@ git config --global url.https://git.openstack.org/.insteadOf git://git.openstack
 CONSTRAINTS_FILE=$1
 shift
 
+tools/install_griddb_c_client.sh
+
 install_cmd="pip install"
 mydir=$(mktemp -dt "$PACKAGE_NAME-tox_install-XXXXXXX")
 trap "rm -rf $mydir" EXIT
