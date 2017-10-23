@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f4b6375_0b857a08",
+        "filename": ".zuul.yaml",
+        "patchSetId": 61
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6547
+      },
+      "writtenOn": "2017-10-23T06:57:23Z",
+      "side": 1,
+      "message": "Let\u0027s leave those in project-config for now, we can use a native job to be shared.",
+      "range": {
+        "startLine": 69,
+        "startChar": 8,
+        "endLine": 69,
+        "endChar": 33
+      },
+      "revId": "9532bd9505aaa74aa54ec36094129965ef604681",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f4b6375_6b9aae6e",
+        "filename": ".zuul.yaml",
+        "patchSetId": 61
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6547
+      },
+      "writtenOn": "2017-10-23T06:57:23Z",
+      "side": 1,
+      "message": "this is non-voting, so do not run in gate. Just wastes resources.\n\nSame for the other postgresql job.",
+      "range": {
+        "startLine": 75,
+        "startChar": 5,
+        "endLine": 75,
+        "endChar": 41
+      },
+      "revId": "9532bd9505aaa74aa54ec36094129965ef604681",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
