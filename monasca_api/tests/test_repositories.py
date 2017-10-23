@@ -19,6 +19,8 @@ from collections import namedtuple
 from datetime import datetime
 
 import cassandra
+import griddb_python_client as griddb
+import mock
 from mock import patch
 
 from oslo_config import cfg
@@ -26,6 +28,9 @@ from oslo_utils import timeutils
 
 from monasca_api.common.repositories.cassandra import metrics_repository \
     as cassandra_repo
+from monasca_api.common.repositories import exceptions
+from monasca_api.common.repositories.griddb import metrics_repository \
+    as griddb_repo
 from monasca_api.common.repositories.influxdb import metrics_repository \
     as influxdb_repo
 from monasca_api.tests import base
@@ -525,3 +530,846 @@ class TestRepoMetricsCassandra(base.BaseTestCase):
         dt = timeutils.parse_isotime(date_time_string)
         dt = timeutils.normalize_time(dt)
         return dt
+
+
+def dummy_get_metrics(self, tenant_id, region,
+                      start_timestamp=None, end_timestamp=None,
+                      name=None):
+    source = [
+        ('0000000011111111',
+         'process.cpu_perc',
+         {'process_name': 'nova-api',
+          'component': 'nova-api',
+          'hostname': 'host0',
+          'service': 'compute'},
+         1505132600014),
+        ('2222222233333333',
+         'monasca.thread_count',
+         {'component': 'monasca-agent',
+          'hostname': 'host0',
+          'service': 'monitoring'},
+         1505132700014),
+        ('4444444455555555',
+         'process.cpu_perc',
+         {'process_name': 'nova-api',
+          'component': 'nova-api',
+          'hostname': 'host1',
+          'service': 'compute'},
+         1505132600014),
+        ('6666666677777777',
+         'monasca.thread_count',
+         {'component': 'monasca-agent',
+          'hostname': 'host1',
+          'service': 'monitoring'},
+         1505132700014),
+    ]
+    if name:
+        source = [_ for _ in source if _[1] == name]
+
+    return {_[0]: griddb_repo.Metric(_[1], _[2]) for _ in source}
+
+
+def dummy_get_measurements(self, tenant_id, region, metrics,
+                           start_timestamp=None, end_timestamp=None):
+    source = [
+        (1505132600014, '0000000011111111', 50.0, ''),
+        (1505132600014, '4444444455555555', 60.0, ''),
+        (1505132700014, '2222222233333333', 10.0, ''),
+        (1505132700014, '6666666677777777', 8.0, ''),
+        (1505132800014, '0000000011111111', 40.0, ''),
+        (1505132800014, '4444444455555555', 50.0, ''),
+        (1505132900014, '2222222233333333', 8.0, ''),
+        (1505132900014, '6666666677777777', 6.0, ''),
+        (1505133000014, '0000000011111111', 30.0, ''),
+        (1505133000014, '4444444455555555', 40.0, ''),
+        (1505133100014, '2222222233333333', 6.0, ''),
+        (1505133100014, '6666666677777777', 4.0, ''),
+    ]
+    if metrics:
+        source = [_ for _ in source if _[1] in metrics]
+    if start_timestamp:
+        source = [_ for _ in source if _[0] >= start_timestamp * 1000]
+    if end_timestamp:
+        source = [_ for _ in source if _[0] <= end_timestamp * 1000]
+
+    return [griddb_repo.Measurement(*_) for _ in source]
+
+
+class TestRepoMetricsGridDB(base.BaseTestCase):
+    @patch("monasca_api.common.repositories.griddb."
+           "metrics_repository.griddb")
+    def setUp(self, griddb_mock):
+        super(TestRepoMetricsGridDB, self).setUp()
+        self.repo = griddb_repo.MetricsRepository()
+
+    @patch.object(griddb_repo.MetricsRepository, '_get_metrics',
+                  dummy_get_metrics)
+    def test_list_metrics(self):
+        result = self.repo.list_metrics(
+            '0b5e7d8c43f74430add94fba09ffd66e',
+            'region',
+            name=None,
+            dimensions={},
+            offset=None,
+            limit=None)
+
+        self.assertEqual([{
+            'id': '0000000011111111',
+            'name': 'process.cpu_perc',
+            'dimensions': {
+                'process_name': 'nova-api',
+                'component': 'nova-api',
+                'hostname': 'host0',
+                'service': 'compute'
+            }}, {
+            'id': '2222222233333333',
+            'name': 'monasca.thread_count',
+            'dimensions': {
+                'component': 'monasca-agent',
+                'hostname': 'host0',
+                'service': 'monitoring'
+            }}, {
+            'id': '4444444455555555',
+            'name': 'process.cpu_perc',
+            'dimensions': {
+                'process_name': 'nova-api',
+                'component': 'nova-api',
+                'hostname': 'host1',
+                'service': 'compute'
+            }}, {
+            'id': '6666666677777777',
+            'name': 'monasca.thread_count',
+            'dimensions': {
+                'component': 'monasca-agent',
+                'hostname': 'host1',
+                'service': 'monitoring'
+            }}],
+            result)
+
+    @patch.object(griddb_repo.MetricsRepository, '_get_metrics',
+                  dummy_get_metrics)
+    def test_list_metrics_with_limit(self):
+        result = self.repo.list_metrics(
+            '0b5e7d8c43f74430add94fba09ffd66e',
+            'region',
+            name=None,
+            dimensions={},
+            offset=None,
+            limit=2)
+
+        self.assertEqual([{
+            'id': '0000000011111111',
+            'name': 'process.cpu_perc',
+            'dimensions': {
+                'process_name': 'nova-api',
+                'component': 'nova-api',
+                'hostname': 'host0',
+                'service': 'compute'
+            }}, {
+            'id': '2222222233333333',
+            'name': 'monasca.thread_count',
+            'dimensions': {
+                'component': 'monasca-agent',
+                'hostname': 'host0',
+                'service': 'monitoring'
+            }}],
+            result)
+
+    @patch.object(griddb_repo.MetricsRepository, '_get_metrics',
+                  dummy_get_metrics)
+    def test_list_metrics_with_offset(self):
+        result = self.repo.list_metrics(
+            '0b5e7d8c43f74430add94fba09ffd66e',
+            'region',
+            name=None,
+            dimensions={},
+            offset='4444444455555555',
+            limit=None)
+
+        self.assertEqual([{
+            'id': '4444444455555555',
+            'name': 'process.cpu_perc',
+            'dimensions': {
+                'process_name': 'nova-api',
+                'component': 'nova-api',
+                'hostname': 'host1',
+                'service': 'compute'
+            }}, {
+            'id': '6666666677777777',
+            'name': 'monasca.thread_count',
+            'dimensions': {
+                'component': 'monasca-agent',
+                'hostname': 'host1',
+                'service': 'monitoring'
+            }}],
+            result)
+
+    @patch.object(griddb_repo.MetricsRepository, '_get_metrics',
+                  dummy_get_metrics)
+    def test_list_metrics_with_name(self):
+        result = self.repo.list_metrics(
+            '0b5e7d8c43f74430add94fba09ffd66e',
+            'region',
+            name='process.cpu_perc',
+            dimensions={},
+            offset=None,
+            limit=None)
+
+        self.assertEqual([{
+            'id': '0000000011111111',
+            'name': 'process.cpu_perc',
+            'dimensions': {
+                'process_name': 'nova-api',
+                'component': 'nova-api',
+                'hostname': 'host0',
+                'service': 'compute'
+            }}, {
+            'id': '4444444455555555',
+            'name': 'process.cpu_perc',
+            'dimensions': {
+                'process_name': 'nova-api',
+                'component': 'nova-api',
+                'hostname': 'host1',
+                'service': 'compute'
+            }}],
+            result)
+
+    @patch.object(griddb_repo.MetricsRepository, '_get_metrics',
+                  dummy_get_metrics)
+    def test_list_metric_names(self):
+        result = self.repo.list_metric_names(
+            '0b5e7d8c43f74430add94fba09ffd66e',
+            'region',
+            dimensions={})
+
+        self.assertEqual([
+            {'name': 'monasca.thread_count'},
+            {'name': 'process.cpu_perc'},
+        ], sorted(result, key=lambda m: m['name']))
+
+    @patch.object(griddb_repo.MetricsRepository, '_get_metrics',
+                  dummy_get_metrics)
+    def test_list_metric_names_with_dimension(self):
+        result = self.repo.list_metric_names(
+            '0b5e7d8c43f74430add94fba09ffd66e',
+            'region',
+            dimensions={'service': 'compute'})
+
+        self.assertEqual([
+            {'name': 'process.cpu_perc'},
+        ], result)
+
+    @patch.object(griddb_repo.MetricsRepository, '_get_metrics',
+                  dummy_get_metrics)
+    def test_list_dimension_names(self):
+        result = self.repo.list_dimension_names(
+            '0b5e7d8c43f74430add94fba09ffd66e',
+            'region',
+            'process.cpu_perc')
+
+        self.assertEqual([
+            {'dimension_name': 'component'},
+            {'dimension_name': 'hostname'},
+            {'dimension_name': 'process_name'},
+            {'dimension_name': 'service'}
+        ], sorted(result, key=lambda m: m['dimension_name']))
+
+    @patch.object(griddb_repo.MetricsRepository, '_get_metrics',
+                  dummy_get_metrics)
+    def test_list_dimension_values(self):
+        result = self.repo.list_dimension_values(
+            '0b5e7d8c43f74430add94fba09ffd66e',
+            'region',
+            'process.cpu_perc',
+            'process_name')
+
+        self.assertEqual([{'dimension_value': 'nova-api'}], result)
+
+    @patch.object(griddb_repo.MetricsRepository, '_get_metrics',
+                  dummy_get_metrics)
+    @patch.object(griddb_repo.MetricsRepository, '_get_measurements',
+                  dummy_get_measurements)
+    def test_measurement_list(self):
+        self.assertRaises(exceptions.RepositoryException,
+                          self.repo.measurement_list,
+                          'tenant_id',
+                          'region',
+                          name='process.cpu_perc',
+                          dimensions=None,
+                          start_timestamp=1505132600,
+                          end_timestamp=None,
+                          offset=None,
+                          limit=None,
+                          merge_metrics_flag=False,
+                          group_by=None)
+
+    @patch.object(griddb_repo.MetricsRepository, '_get_metrics',
+                  dummy_get_metrics)
+    @patch.object(griddb_repo.MetricsRepository, '_get_measurements',
+                  dummy_get_measurements)
+    def test_measurement_list_with_dimension(self):
+        dimensions = {
+            'hostname': 'host0',
+            'process_name': 'nova-api'
+        }
+        result = self.repo.measurement_list(
+            'tenant_id',
+            'region',
+            name='process.cpu_perc',
+            dimensions=dimensions,
+            start_timestamp=1505132600,
+            end_timestamp=None,
+            offset=None,
+            limit=None,
+            merge_metrics_flag=False,
+            group_by=None)
+
+        self.assertEqual([
+            {
+                u'columns': [u'timestamp', u'value', u'value_meta'],
+                u'dimensions': dimensions,
+                u'id': u'2017-09-11T12:30:00.014Z',
+                u'measurements': [(u'2017-09-11T12:23:20.014Z', 50.0, ''),
+                                  (u'2017-09-11T12:26:40.014Z', 40.0, ''),
+                                  (u'2017-09-11T12:30:00.014Z', 30.0, '')],
+                u'name': 'process.cpu_perc'
+            }], result
+        )
+
+    @patch.object(griddb_repo.MetricsRepository, '_get_metrics',
+                  dummy_get_metrics)
+    @patch.object(griddb_repo.MetricsRepository, '_get_measurements',
+                  dummy_get_measurements)
+    def test_measurement_list_with_limit(self):
+        dimensions = {
+            'hostname': 'host0',
+            'process_name': 'nova-api'
+        }
+        result = self.repo.measurement_list(
+            'tenant_id',
+            'region',
+            name='process.cpu_perc',
+            dimensions=dimensions,
+            start_timestamp=1505132600,
+            end_timestamp=None,
+            offset=None,
+            limit=2,
+            merge_metrics_flag=False,
+            group_by=None)
+
+        self.assertEqual([
+            {
+                u'columns': [u'timestamp', u'value', u'value_meta'],
+                u'dimensions': dimensions,
+                u'id': u'2017-09-11T12:26:40.014Z',
+                u'measurements': [(u'2017-09-11T12:23:20.014Z', 50.0, ''),
+                                  (u'2017-09-11T12:26:40.014Z', 40.0, '')],
+                u'name': 'process.cpu_perc'
+            }], result
+        )
+
+    @patch.object(griddb_repo.MetricsRepository, '_get_metrics',
+                  dummy_get_metrics)
+    @patch.object(griddb_repo.MetricsRepository, '_get_measurements',
+                  dummy_get_measurements)
+    def test_measurement_list_with_end_timestamp(self):
+        dimensions = {
+            'hostname': 'host0',
+            'process_name': 'nova-api'
+        }
+        result = self.repo.measurement_list(
+            'tenant_id',
+            'region',
+            name='process.cpu_perc',
+            dimensions=dimensions,
+            start_timestamp=1505132600,
+            end_timestamp=1505132800,
+            offset=None,
+            limit=None,
+            merge_metrics_flag=False,
+            group_by=None)
+
+        self.assertEqual([
+            {
+                u'columns': [u'timestamp', u'value', u'value_meta'],
+                u'dimensions': dimensions,
+                u'id': u'2017-09-11T12:23:20.014Z',
+                u'measurements': [(u'2017-09-11T12:23:20.014Z', 50.0, '')],
+                u'name': 'process.cpu_perc'
+            }], result
+        )
+
+    @patch.object(griddb_repo.MetricsRepository, '_get_metrics',
+                  dummy_get_metrics)
+    @patch.object(griddb_repo.MetricsRepository, '_get_measurements',
+                  dummy_get_measurements)
+    def test_measurement_list_with_offset(self):
+        dimensions = {
+            'hostname': 'host0',
+            'process_name': 'nova-api'
+        }
+        result = self.repo.measurement_list(
+            'tenant_id',
+            'region',
+            name='process.cpu_perc',
+            dimensions=dimensions,
+            start_timestamp=1505132600,
+            end_timestamp=None,
+            offset=u'2017-09-11T12:26:40.014Z',
+            limit=None,
+            merge_metrics_flag=False,
+            group_by=None)
+
+        self.assertEqual([
+            {
+                u'columns': [u'timestamp', u'value', u'value_meta'],
+                u'dimensions': dimensions,
+                u'id': u'2017-09-11T12:30:00.014Z',
+                u'measurements': [(u'2017-09-11T12:26:40.014Z', 40.0, ''),
+                                  (u'2017-09-11T12:30:00.014Z', 30.0, '')],
+                u'name': 'process.cpu_perc'
+            }], result
+        )
+
+    @patch.object(griddb_repo.MetricsRepository, '_get_metrics',
+                  dummy_get_metrics)
+    @patch.object(griddb_repo.MetricsRepository, '_get_measurements',
+                  dummy_get_measurements)
+    def test_measurement_list_with_group_by(self):
+        result = self.repo.measurement_list(
+            'tenant_id',
+            'region',
+            name='process.cpu_perc',
+            dimensions={},
+            start_timestamp=1505132600,
+            end_timestamp=None,
+            offset=None,
+            limit=None,
+            merge_metrics_flag=False,
+            group_by=['hostname'])
+
+        self.assertEqual([
+            {
+                u'columns': [u'timestamp', u'value', u'value_meta'],
+                u'dimensions': {'hostname': 'host0'},
+                u'id': u'2017-09-11T12:30:00.014Z',
+                u'measurements': [(u'2017-09-11T12:23:20.014Z', 50.0, ''),
+                                  (u'2017-09-11T12:26:40.014Z', 40.0, ''),
+                                  (u'2017-09-11T12:30:00.014Z', 30.0, '')],
+                u'name': 'process.cpu_perc'
+            }, {
+                u'columns': [u'timestamp', u'value', u'value_meta'],
+                u'dimensions': {'hostname': 'host1'},
+                u'id': u'2017-09-11T12:30:00.014Z',
+                u'measurements': [(u'2017-09-11T12:23:20.014Z', 60.0, ''),
+                                  (u'2017-09-11T12:26:40.014Z', 50.0, ''),
+                                  (u'2017-09-11T12:30:00.014Z', 40.0, '')],
+                u'name': 'process.cpu_perc'
+            }], sorted(result, key=lambda m: m['dimensions']['hostname'])
+        )
+
+    @patch.object(griddb_repo.MetricsRepository, '_get_metrics',
+                  dummy_get_metrics)
+    @patch.object(griddb_repo.MetricsRepository, '_get_measurements',
+                  dummy_get_measurements)
+    def test_measurement_list_with_merge_metrics(self):
+        result = self.repo.measurement_list(
+            'tenant_id',
+            'region',
+            name='process.cpu_perc',
+            dimensions=None,
+            start_timestamp=1505132600,
+            end_timestamp=None,
+            offset=None,
+            limit=None,
+            merge_metrics_flag=True,
+            group_by=None)
+
+        self.assertEqual([
+            {
+                u'columns': [u'timestamp', u'value', u'value_meta'],
+                u'dimensions': None,
+                u'id': u'2017-09-11T12:30:00.014Z',
+                u'measurements': [
+                    (u'2017-09-11T12:23:20.014Z', 50.0, ''),
+                    (u'2017-09-11T12:23:20.014Z', 60.0, ''),
+                    (u'2017-09-11T12:26:40.014Z', 40.0, ''),
+                    (u'2017-09-11T12:26:40.014Z', 50.0, ''),
+                    (u'2017-09-11T12:30:00.014Z', 30.0, ''),
+                    (u'2017-09-11T12:30:00.014Z', 40.0, '')],
+                u'name': 'process.cpu_perc'
+            }], result
+        )
+
+    @patch.object(griddb_repo.MetricsRepository, '_get_metrics',
+                  dummy_get_metrics)
+    @patch.object(griddb_repo.MetricsRepository, '_get_measurements',
+                  dummy_get_measurements)
+    def test_metrics_statistics(self):
+        self.assertRaises(exceptions.RepositoryException,
+                          self.repo.metrics_statistics,
+                          'tenant_id',
+                          'region',
+                          name='process.cpu_perc',
+                          dimensions=None,
+                          start_timestamp=1505132600,
+                          end_timestamp=None,
+                          statistics=['avg', 'min', 'max', 'count', 'sum'],
+                          period=300,
+                          offset=None,
+                          limit=None,
+                          merge_metrics_flag=False,
+                          group_by=None)
+
+    @patch.object(griddb_repo.MetricsRepository, '_get_metrics',
+                  dummy_get_metrics)
+    @patch.object(griddb_repo.MetricsRepository, '_get_measurements',
+                  dummy_get_measurements)
+    def test_metrics_statistics_with_dimensions(self):
+        dimensions = {
+            'hostname': 'host0',
+            'process_name': 'nova-api'
+        }
+        result = self.repo.metrics_statistics(
+            'tenant_id',
+            'region',
+            name='process.cpu_perc',
+            dimensions=dimensions,
+            start_timestamp=1505132600,
+            end_timestamp=None,
+            statistics=['avg', 'min', 'max', 'count', 'sum'],
+            period=300,
+            offset=None,
+            limit=None,
+            merge_metrics_flag=False,
+            group_by=None)
+
+        self.assertEqual([
+            {
+                u'columns': [u'timestamp', u'avg', u'min', u'max', u'count',
+                             u'sum'],
+                u'dimensions': dimensions,
+                u'id': u'2017-09-11T12:30:00.014Z',
+                u'name': 'process.cpu_perc',
+                u'statistics': [
+                    [u'2017-09-11T12:23:20.014Z', 45.0, 40.0, 50.0, 2, 90.0],
+                    [u'2017-09-11T12:30:00.014Z', 30.0, 30.0, 30.0, 1, 30.0]]
+            }
+        ], result)
+
+    @patch.object(griddb_repo.MetricsRepository, '_get_metrics',
+                  dummy_get_metrics)
+    @patch.object(griddb_repo.MetricsRepository, '_get_measurements',
+                  dummy_get_measurements)
+    def test_metrics_statistics_with_large_period(self):
+        dimensions = {
+            'hostname': 'host0',
+            'process_name': 'nova-api'
+        }
+        result = self.repo.metrics_statistics(
+            'tenant_id',
+            'region',
+            name='process.cpu_perc',
+            dimensions=dimensions,
+            start_timestamp=1505132600,
+            end_timestamp=None,
+            statistics=['avg', 'min', 'max', 'count', 'sum'],
+            period=900,
+            offset=None,
+            limit=None,
+            merge_metrics_flag=False,
+            group_by=None)
+
+        self.assertEqual([
+            {
+                u'columns': [u'timestamp', u'avg', u'min', u'max', u'count',
+                             u'sum'],
+                u'dimensions': dimensions,
+                u'id': u'2017-09-11T12:23:20.014Z',
+                u'name': 'process.cpu_perc',
+                u'statistics': [
+                    [u'2017-09-11T12:23:20.014Z', 40.0, 30.0, 50.0, 3, 120.0]]
+            }
+        ], result)
+
+    @patch.object(griddb_repo.MetricsRepository, '_get_metrics',
+                  dummy_get_metrics)
+    @patch.object(griddb_repo.MetricsRepository, '_get_measurements',
+                  dummy_get_measurements)
+    def test_metrics_statistics_with_limit(self):
+        dimensions = {
+            'hostname': 'host0',
+            'process_name': 'nova-api'
+        }
+        result = self.repo.metrics_statistics(
+            'tenant_id',
+            'region',
+            name='process.cpu_perc',
+            dimensions=dimensions,
+            start_timestamp=1505132600,
+            end_timestamp=None,
+            statistics=['avg', 'min', 'max', 'count', 'sum'],
+            period=300,
+            offset=None,
+            limit=1,
+            merge_metrics_flag=False,
+            group_by=None)
+
+        self.assertEqual([
+            {
+                u'columns': [u'timestamp', u'avg', u'min', u'max', u'count',
+                             u'sum'],
+                u'dimensions': dimensions,
+                u'id': u'2017-09-11T12:23:20.014Z',
+                u'name': 'process.cpu_perc',
+                u'statistics': [
+                    [u'2017-09-11T12:23:20.014Z', 45.0, 40.0, 50.0, 2, 90.0]],
+            }
+        ], result)
+
+    @patch.object(griddb_repo.MetricsRepository, '_get_metrics',
+                  dummy_get_metrics)
+    @patch.object(griddb_repo.MetricsRepository, '_get_measurements',
+                  dummy_get_measurements)
+    def test_metrics_statistics_with_end_timestamp(self):
+        dimensions = {
+            'hostname': 'host0',
+            'process_name': 'nova-api'
+        }
+        result = self.repo.metrics_statistics(
+            'tenant_id',
+            'region',
+            name='process.cpu_perc',
+            dimensions=dimensions,
+            start_timestamp=1505132600,
+            end_timestamp=1505132800,
+            statistics=['avg', 'min', 'max', 'count', 'sum'],
+            period=300,
+            offset=None,
+            limit=None,
+            merge_metrics_flag=False,
+            group_by=None)
+
+        self.assertEqual([
+            {
+                u'columns': [u'timestamp', u'avg', u'min', u'max', u'count',
+                             u'sum'],
+                u'dimensions': dimensions,
+                u'id': u'2017-09-11T12:23:20.014Z',
+                u'name': 'process.cpu_perc',
+                u'statistics': [
+                    [u'2017-09-11T12:23:20.014Z', 50.0, 50.0, 50.0, 1, 50.0]],
+            }
+        ], result)
+
+    @patch.object(griddb_repo.MetricsRepository, '_get_metrics',
+                  dummy_get_metrics)
+    @patch.object(griddb_repo.MetricsRepository, '_get_measurements',
+                  dummy_get_measurements)
+    def test_metrics_statistics_with_offset(self):
+        dimensions = {
+            'hostname': 'host0',
+            'process_name': 'nova-api'
+        }
+        result = self.repo.metrics_statistics(
+            'tenant_id',
+            'region',
+            name='process.cpu_perc',
+            dimensions=dimensions,
+            start_timestamp=1505132600,
+            end_timestamp=None,
+            statistics=['avg', 'min', 'max', 'count', 'sum'],
+            period=300,
+            offset=u'2017-09-11T12:26:40.014Z',
+            limit=None,
+            merge_metrics_flag=False,
+            group_by=None)
+
+        self.assertEqual([
+            {
+                u'columns': [u'timestamp', u'avg', u'min', u'max', u'count',
+                             u'sum'],
+                u'dimensions': dimensions,
+                u'id': u'2017-09-11T12:26:40.014Z',
+                u'name': 'process.cpu_perc',
+                u'statistics': [
+                    [u'2017-09-11T12:26:40.014Z', 35.0, 30.0, 40.0, 2, 70.0]]
+            }
+        ], result)
+
+    @patch.object(griddb_repo.MetricsRepository, '_get_metrics',
+                  dummy_get_metrics)
+    @patch.object(griddb_repo.MetricsRepository, '_get_measurements',
+                  dummy_get_measurements)
+    def test_metrics_statistics_with_group_by(self):
+        dimensions = {
+            'process_name': 'nova-api'
+        }
+        result = self.repo.metrics_statistics(
+            'tenant_id',
+            'region',
+            name='process.cpu_perc',
+            dimensions=dimensions,
+            start_timestamp=1505132600,
+            end_timestamp=None,
+            statistics=['avg', 'min', 'max', 'count', 'sum'],
+            period=300,
+            offset=None,
+            limit=None,
+            merge_metrics_flag=False,
+            group_by=['hostname'])
+
+        self.assertEqual([
+            {
+                u'columns': [
+                    u'timestamp', u'avg', u'min', u'max', u'count', u'sum'],
+                u'dimensions': {'hostname': 'host0'},
+                u'id': u'2017-09-11T12:30:00.014Z',
+                u'name': 'process.cpu_perc',
+                u'statistics': [
+                    [u'2017-09-11T12:23:20.014Z', 45.0, 40.0, 50.0, 2, 90.0],
+                    [u'2017-09-11T12:30:00.014Z', 30.0, 30.0, 30.0, 1, 30.0]
+                ]
+            }, {
+                u'columns': [
+                    u'timestamp', u'avg', u'min', u'max', u'count', u'sum'],
+                u'dimensions': {'hostname': 'host1'},
+                u'id': u'2017-09-11T12:30:00.014Z',
+                u'name': 'process.cpu_perc',
+                u'statistics': [
+                    [u'2017-09-11T12:23:20.014Z', 55.0, 50.0, 60.0, 2, 110.0],
+                    [u'2017-09-11T12:30:00.014Z', 40.0, 40.0, 40.0, 1, 40.0]
+                ]
+            }
+        ], sorted(result, key=lambda m: m['dimensions']['hostname']))
+
+    @patch.object(griddb_repo.MetricsRepository, '_get_metrics',
+                  dummy_get_metrics)
+    @patch.object(griddb_repo.MetricsRepository, '_get_measurements',
+                  dummy_get_measurements)
+    def test_metrics_statistics_with_merge_metrics(self):
+        dimensions = {
+            'process_name': 'nova-api'
+        }
+        result = self.repo.metrics_statistics(
+            'tenant_id',
+            'region',
+            name='process.cpu_perc',
+            dimensions=dimensions,
+            start_timestamp=1505132600,
+            end_timestamp=None,
+            statistics=['avg', 'min', 'max', 'count', 'sum'],
+            period=300,
+            offset=u'2017-09-11T12:26:40.014Z',
+            limit=None,
+            merge_metrics_flag=True,
+            group_by=None)
+
+        self.assertEqual([
+            {
+                u'columns': [u'timestamp', u'avg', u'min', u'max', u'count',
+                             u'sum'],
+                u'dimensions': dimensions,
+                u'id': u'2017-09-11T12:26:40.014Z',
+                u'name': 'process.cpu_perc',
+                u'statistics': [
+                    [u'2017-09-11T12:26:40.014Z', 40.0, 30.0, 50.0, 4, 160.0]]
+            }
+        ], result)
+
+    def test_alarm_history(self):
+
+        self.repo._get_alarm_histories = mock.Mock()
+        self.repo._get_alarm_histories.return_value = [
+            griddb_repo.AlarmHistory(
+                1505132600014,
+                '09c2f5e7-9245-4b7e-bce1-01ed64a3c63d', [{
+                    'id': '',
+                    'name': 'process.cpu_perc',
+                    'dimensions': {
+                        'process_name': 'nova-api',
+                        'component': 'nova-api',
+                        'hostname': 'host0',
+                        'service': 'compute'}}],
+                'OK',
+                'UNDETERMINED',
+                'The alarm threshold(s) have not been exceeded for the sub-alarms: '
+                'avg(cpu.idle_perc) < 10.0 times 3 with the values: [84.35]',
+                [
+                    {
+                        'sub_alarm_state': 'OK',
+                        'currentValues': [
+                            '84.35'
+                        ],
+                        'sub_alarm_expression': {
+                            'dimensions': {},
+                            'threshold': 10.0,
+                            'periods': 3,
+                            'operator': 'LT',
+                            'period': 60,
+                            'function': 'AVG',
+                            'metric_definition': {
+                                'dimensions': {},
+                                'id': '',
+                                'name': 'process.cpu_perc',
+                            }
+                        }
+                    }
+                ],
+                '0000000011111111')]
+
+        result = self.repo.alarm_history('741e1aa149524c0f9887a8d6750f67b1',
+                                         ['09c2f5e7-9245-4b7e-bce1-01ed64a3c63d'],
+                                         None, None)
+        self.assertEqual(
+            [{
+                'id': '0000000011111111',
+                'timestamp': '2017-09-11T12:23:20.014Z',
+                'new_state': 'OK',
+                'old_state': 'UNDETERMINED',
+                'reason_data': '{}',
+                'reason': 'The alarm threshold(s) have not been exceeded for the sub-alarms: '
+                          'avg(cpu.idle_perc) < 10.0 times 3 with the values: [84.35]',
+                'alarm_id': '09c2f5e7-9245-4b7e-bce1-01ed64a3c63d',
+                'metrics': [{
+                    'id': '',
+                    'name': 'process.cpu_perc',
+                    'dimensions': {
+                        'process_name': 'nova-api',
+                        'component': 'nova-api',
+                        'hostname': 'host0',
+                        'service': 'compute'}}],
+                'sub_alarms': [
+                    {
+                        'sub_alarm_state': 'OK',
+                        'currentValues': [
+                            '84.35'
+                        ],
+                        'sub_alarm_expression': {
+                            'dimensions': {},
+                            'metric_name': 'process.cpu_perc',
+                            'threshold': 10.0,
+                            'periods': 3,
+                            'operator': 'LT',
+                            'period': 60,
+                            'function': 'AVG'
+                        }
+                    }
+                ]
+            }], result)
+
+    @patch("monasca_api.common.repositories.griddb."
+           "metrics_repository.griddb.StoreFactory.get_default")
+    def test_check_status(self, _):
+        result = self.repo.check_status()
+
+        self.assertEqual(result, (True, 'OK'))
+
+    @patch("monasca_api.common.repositories.griddb."
+           "metrics_repository.griddb.StoreFactory.get_default")
+    def test_check_status_server_error(self, factory_mock):
+        factory_mock.side_effect = griddb.GSException(140000)
+
+        result = self.repo.check_status()
+
+        self.assertEqual(result, (False, 'Error with number 140000'))
