@@ -36,10 +36,12 @@ if [ "$MONASCA_PERSISTER_IMPLEMENTATION_LANG" == "python" ]; then
     M_REPO_DRIVER_BASE=monasca_persister.repositories.${MONASCA_METRICS_DB}.metrics_repository
     M_REPO_DRIVER_INFLUX=$M_REPO_DRIVER_BASE:MetricInfluxdbRepository
     M_REPO_DRIVER_CASSANDRA=$M_REPO_DRIVER_BASE:MetricCassandraRepository
+    M_REPO_DRIVER_GRIDDB=$M_REPO_DRIVER_BASE:MetricGridDbRepository
 
     AH_REPO_DRIVER_BASE=monasca_persister.repositories.${MONASCA_METRICS_DB}.alarm_state_history_repository
     AH_REPO_DRIVER_INFLUX=$AH_REPO_DRIVER_BASE:AlarmStateHistInfluxdbRepository
     AH_REPO_DRIVER_CASSANDRA=$AH_REPO_DRIVER_BASE:AlarmStateHistCassandraRepository
+    AH_REPO_DRIVER_GRIDDB=$AH_REPO_DRIVER_BASE:AlarmStateHistGridDbRepository
 
     MONASCA_PERSISTER_CMD="$MONASCA_PERSISTER_BIN_DIR/monasca-persister --config-file=$MONASCA_PERSISTER_CONF"
 else
@@ -155,11 +157,17 @@ configure_monasca_persister_python() {
         iniset "$MONASCA_PERSISTER_CONF" influxdb password password
         iniset "$MONASCA_PERSISTER_CONF" repositories metrics_driver ${M_REPO_DRIVER_INFLUX}
         iniset "$MONASCA_PERSISTER_CONF" repositories alarm_state_history_driver ${AH_REPO_DRIVER_INFLUX}
-    else
+    elif [[ "${MONASCA_METRICS_DB,,}" == 'cassandra' ]]; then
         iniset "$MONASCA_PERSISTER_CONF" cassandra cluster_ip_addresses ${SERVICE_HOST}
         iniset "$MONASCA_PERSISTER_CONF" cassandra keyspace monasca
         iniset "$MONASCA_PERSISTER_CONF" repositories metrics_driver ${M_REPO_DRIVER_CASSANDRA}
         iniset "$MONASCA_PERSISTER_CONF" repositories alarm_state_history_driver ${AH_REPO_DRIVER_CASSANDRA}
+    else
+        iniset "$MONASCA_PERSISTER_CONF" griddb cluster_name ${GRIDDB_CLUSTER_NAME:-monasca}
+        iniset "$MONASCA_PERSISTER_CONF" griddb user admin
+        iniset "$MONASCA_PERSISTER_CONF" griddb password ${GRIDDB_PASSWORD:-nomoresecure}
+        iniset "$MONASCA_PERSISTER_CONF" repositories metrics_driver ${M_REPO_DRIVER_GRIDDB}
+        iniset "$MONASCA_PERSISTER_CONF" repositories alarm_state_history_driver ${AH_REPO_DRIVER_GRIDDB}
     fi
 
     ln -sf ${MONASCA_PERSISTER_CONF} ${MONASCA_PERSISTER_GATE_CONFIG}
