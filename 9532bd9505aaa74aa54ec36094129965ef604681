@@ -25,6 +25,23 @@
     },
     {
       "key": {
+        "uuid": "3f4b6375_eb9c5e5e",
+        "filename": ".zuul.yaml",
+        "patchSetId": 61
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-10-23T06:58:56Z",
+      "side": 1,
+      "message": "Actually that is non-voting too, so both variants of postgresql should be removed from gate jobs.",
+      "revId": "9532bd9505aaa74aa54ec36094129965ef604681",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3f4b6375_6b9aae6e",
         "filename": ".zuul.yaml",
         "patchSetId": 61
