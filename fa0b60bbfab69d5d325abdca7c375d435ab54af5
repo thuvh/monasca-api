@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f4b6375_c8d401c0",
+        "filename": ".zuul.yaml",
+        "patchSetId": 66
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-10-23T11:07:47Z",
+      "side": 1,
+      "message": "monasca-tempest-base",
+      "revId": "fa0b60bbfab69d5d325abdca7c375d435ab54af5",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
