@@ -52,6 +52,24 @@
       "revId": "97990784bfa25fd300db79a23fe4457674121e0e",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f4b6375_2b7a7687",
+        "filename": "devstack/lib/griddb.sh",
+        "patchSetId": 22
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 659
+      },
+      "writtenOn": "2017-10-23T06:37:22Z",
+      "side": 1,
+      "message": "Oh... I see. I\u0027ll try it.",
+      "parentUuid": "3f4b6375_b0e25c00",
+      "revId": "97990784bfa25fd300db79a23fe4457674121e0e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
