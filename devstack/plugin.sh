@@ -53,6 +53,7 @@ source ${MONASCA_API_DIR}/devstack/lib/profile.sh
 source ${MONASCA_API_DIR}/devstack/lib/client.sh
 source ${MONASCA_API_DIR}/devstack/lib/persister.sh
 source ${MONASCA_API_DIR}/devstack/lib/storm.sh
+source ${MONASCA_API_DIR}/devstack/lib/griddb.sh
 # source lib/*
 
 # Set default implementations to python
@@ -105,6 +106,7 @@ function pre_install_monasca {
     install_kafka
     install_zookeeper
     install_storm
+    tools/install_griddb_c_client.sh devstack
 
     install_monasca_virtual_env
     install_monasca_$MONASCA_METRICS_DB
@@ -802,6 +804,9 @@ function configure_monasca_api_python {
         iniset "$MONASCA_API_CONF" cassandra cluster_ip_addresses $SERVICE_HOST
         iniset "$MONASCA_API_CONF" influxdb ip_address $SERVICE_HOST
         iniset "$MONASCA_API_CONF" influxdb port 8086
+        iniset "$MONASCA_API_CONF" griddb cluster_name ${GRIDDB_CLUSTER_NAME:-monasca}
+        iniset "$MONASCA_API_CONF" griddb user admin
+        iniset "$MONASCA_API_CONF" griddb password ${GRIDDB_PASSWORD:-nomoresecure}
 
         # keystone & security
         configure_auth_token_middleware $MONASCA_API_CONF "admin"
