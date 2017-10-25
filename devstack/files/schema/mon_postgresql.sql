@@ -224,7 +224,3 @@ insert into alarm_definition_severity values ('LOW');
 insert into alarm_definition_severity values ('MEDIUM');
 insert into alarm_definition_severity values ('HIGH');
 insert into alarm_definition_severity values ('CRITICAL');
-
-insert into notification_method_type values ('EMAIL');
-insert into notification_method_type values ('WEBHOOK');
-insert into notification_method_type values ('PAGERDUTY');
