@@ -11,26 +11,6 @@ Team and repository tags
 
 The full API Specification can be found in [docs/monasca-api-spec.md](docs/monasca-api-spec.md)
 
-## Java Build
-
-Requires [monasca-common](https://github.com/openstack/monasca-common). First clone this repository and then do mvn install. Then return to monasca-api and:
-
-    $ cd java
-    $ mvn clean package
-
-# StackForge Java Build
-
-There is a pom.xml in the base directory that should only be used for the StackForge build. The StackForge build is a rather strange build because of the limitations of the current StackForge java jobs and infrastructure. We have found that the API runs faster if built with maven 3 but the StackForge nodes only have maven 2. This build checks the version of maven and if not maven 3, it downloads a version of maven 3 and uses it. This build depends on jars that are from monasca-common. That StrackForge build uploads the completed jars to http://tarballs.openstack.org/ci/monasca-common, but they are just regular jars, and not in a maven repository and sometimes zuul takes a long time to do the upload. Hence, the first thing the maven build from the base project does is invoke [build_common.sh](/common/build_common.sh) in the common directory. This script clones monasca-common and then invokes maven 3 to build monasca-common in the common directory and install the jars in the local maven repository.
-
-Since this is all rather complex, that part of the build only works on StackForge so follow the simple instruction above if you are building your own monasca-api.
-
-Currently this build is executed on the bare-precise nodes in StackForge and they only have maven 2. So, this build must be kept compatible with Maven 2. If another monasca-common jar is added as a dependency to [/java/pom.xml](/java/pom.xml), it must also be added to download/download.sh.
-
-Combining monasca-common, monasca-thresh, monasca-api and monasca-persister into one build would vastly simplify the builds but that is a future task.`
-
-## Usage
-
-    $ java -jar target/monasca-api.jar server config-file.yml
 
 ## Keystone Configuration
 
@@ -169,6 +149,11 @@ The wsgi file may look something like this:
     application = server.get_wsgi_app(config_base_path='/etc/monasca')
 
 ```
+### Java Implementation
+
+Details on usage can be found [here](/docs/java.md)
+
+WARNING: The Java implementation of Monasca API is DEPRECATED and will be removed in future release.
 
 # License
 
