@@ -16,6 +16,24 @@
       "revId": "89a7b55167d29e2d67462e80fb238c3f9621131d",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f4b6375_fbff3aa8",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 11934
+      },
+      "writtenOn": "2017-10-25T14:52:31Z",
+      "side": 1,
+      "message": "The server.properties files contains many examples... I just maintained the example for advertised.host.name and added my configured entry.",
+      "parentUuid": "3f4b6375_e9a0a692",
+      "revId": "89a7b55167d29e2d67462e80fb238c3f9621131d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
