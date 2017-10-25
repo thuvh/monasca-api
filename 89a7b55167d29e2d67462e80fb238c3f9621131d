@@ -34,6 +34,24 @@
       "revId": "89a7b55167d29e2d67462e80fb238c3f9621131d",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f4b6375_8b76b13d",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-10-25T19:07:11Z",
+      "side": 1,
+      "message": "Aha...my bad :), I will check this out tomorrow once again.",
+      "parentUuid": "3f4b6375_fbff3aa8",
+      "revId": "89a7b55167d29e2d67462e80fb238c3f9621131d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
