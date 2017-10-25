@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f201791_c39b02c7",
+        "filename": "monasca_api/common/repositories/constants.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-10-25T11:44:18Z",
+      "side": 1,
+      "message": "can we put some documentation over these constants ?\nmainly: what\u0027s their purpose, where they\u0027ll be used in what context ?",
+      "revId": "54e8b7ec971755547c68b7ab0e80200f550429a0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
