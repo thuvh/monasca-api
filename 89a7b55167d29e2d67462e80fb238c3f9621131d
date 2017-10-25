@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f4b6375_e9a0a692",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 16168
+      },
+      "writtenOn": "2017-10-25T05:01:31Z",
+      "side": 1,
+      "message": "Guess you duplicated left side of the expression. You have `#advertised.host.name\u003d\u003chostname routable by clients\u003e` set twice. I am not really sure but that does not sound correct to me.",
+      "revId": "89a7b55167d29e2d67462e80fb238c3f9621131d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
