@@ -1,0 +1,7 @@
+---
+other:
+  - |
+    Removed inserting [WEBHOOK, EMAIL, PAGERDUTY] as default rows
+    inside `notification_method_type` table. Aformentioned entries
+    refer to previously hardcoded notifiers that were transformed
+    into actual plugins.
