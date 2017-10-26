@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "3f4b6375_71ceb85a",
+        "filename": "devstack/files/cassandra/monasca_schema.cql",
+        "patchSetId": 8
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 24580
+      },
+      "writtenOn": "2017-10-26T05:26:15Z",
+      "side": 1,
+      "message": "I have seen more than 100k with no significant impact. But you are right there is a practical limit, some says it\u0027s 300k, some says it\u0027s 100k. I\u0027ll do some testing to see what that is for this specific table. I was hoping that the practical limit would be sufficient with a constrained collection interval and retention period combination.",
+      "parentUuid": "3f4b6375_314e0038",
+      "revId": "01ed388270eb46deacd01ca28410bc96ab59b909",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7f515b1d_68175ea5",
         "filename": "devstack/lib/persister.sh",
         "patchSetId": 8
@@ -82,6 +100,24 @@
       "side": 1,
       "message": "Agree, this should change to probably DEBUG.",
       "parentUuid": "7f515b1d_485ca27d",
+      "revId": "01ed388270eb46deacd01ca28410bc96ab59b909",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f4b6375_71a0f890",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 24580
+      },
+      "writtenOn": "2017-10-26T05:26:15Z",
+      "side": 1,
+      "message": "Yes, debugging instrumentation that accidentally slipped in. I do not want to print out customer in production. Removed this already in the later version. Thanks, Roland!",
+      "parentUuid": "3f4b6375_f13ce893",
       "revId": "01ed388270eb46deacd01ca28410bc96ab59b909",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
