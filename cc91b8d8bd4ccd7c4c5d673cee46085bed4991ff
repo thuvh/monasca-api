@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f4b6375_884d853f",
+        "filename": "devstack/settings",
+        "patchSetId": 13
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-10-26T08:41:38Z",
+      "side": 1,
+      "message": "$",
+      "range": {
+        "startLine": 194,
+        "startChar": 14,
+        "endLine": 194,
+        "endChar": 15
+      },
+      "revId": "cc91b8d8bd4ccd7c4c5d673cee46085bed4991ff",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
