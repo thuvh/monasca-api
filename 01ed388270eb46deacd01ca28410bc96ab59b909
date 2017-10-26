@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "3f4b6375_314e0038",
+        "filename": "devstack/files/cassandra/monasca_schema.cql",
+        "patchSetId": 8
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2017-10-26T05:06:00Z",
+      "side": 1,
+      "message": "Should a \"bucket\" be added. One issue with Cassandra is that as the number of samples per row approaches 100K, there is a performance cliff.",
+      "revId": "01ed388270eb46deacd01ca28410bc96ab59b909",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7f515b1d_68175ea5",
         "filename": "devstack/lib/persister.sh",
         "patchSetId": 8
@@ -47,6 +64,24 @@
       "writtenOn": "2017-09-26T07:08:06Z",
       "side": 1,
       "message": "That might be a large chunk of data to be pushed into logging. So maybe debug ? Also this is oslo.log, so can pass measurement as 2nd argument of LOG.info (or debug actually) and it will be interpolated only if given severity is enabled.",
+      "revId": "01ed388270eb46deacd01ca28410bc96ab59b909",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f4b6375_f13ce893",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2017-10-26T05:06:00Z",
+      "side": 1,
+      "message": "Agree, this should change to probably DEBUG.",
+      "parentUuid": "7f515b1d_485ca27d",
       "revId": "01ed388270eb46deacd01ca28410bc96ab59b909",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
