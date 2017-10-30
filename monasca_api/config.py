@@ -19,6 +19,7 @@ from oslo_log import log
 
 from monasca_api import conf
 from monasca_api import version
+from monasca_api.common.repositories.sqla import sql_repository
 
 CONF = conf.CONF
 LOG = log.getLogger(__name__)
@@ -57,6 +58,7 @@ def parse_args(argv=None, config_file=None):
               product_name='monasca-api',
               version=version.version_str)
     conf.register_opts()
+    CONF.sql_engine = sql_repository.get_engine()
 
     _CONF_LOADED = True
 
