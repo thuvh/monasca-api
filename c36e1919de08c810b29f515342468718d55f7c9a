@@ -16,6 +16,24 @@
       "revId": "c36e1919de08c810b29f515342468718d55f7c9a",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f4b6375_021c5bbf",
+        "filename": "monasca_api/common/repositories/griddb/metrics_repository.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 659
+      },
+      "writtenOn": "2017-10-31T14:17:52Z",
+      "side": 1,
+      "message": "Right. I like \"int2hashstr()\" but your int_to_hash_str() also looks better.\nJust wanted to know, is there any guideline of method and/or class naming in monasca?",
+      "parentUuid": "3f4b6375_66868a16",
+      "revId": "c36e1919de08c810b29f515342468718d55f7c9a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
