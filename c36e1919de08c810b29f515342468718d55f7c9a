@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f4b6375_66868a16",
+        "filename": "monasca_api/common/repositories/griddb/metrics_repository.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 26733
+      },
+      "writtenOn": "2017-10-31T10:02:54Z",
+      "side": 1,
+      "message": "In my opinion, It is better to name it as \"int_to_hash_str\", the same for other next functions: to_hash_long, from_timestamp_ms, ...\nIt is a more clean code if method name describes its functionality itself!",
+      "revId": "c36e1919de08c810b29f515342468718d55f7c9a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
