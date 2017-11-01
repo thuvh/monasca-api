@@ -11,10 +11,10 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
-from oslo_serialization import jsonutils as json
 
 from tempest import config
 from tempest.lib.common import rest_client
+import ujson
 
 CONF = config.CONF
 
@@ -36,7 +36,7 @@ class MonascaClient(rest_client.RestClient):
         uri = 'metrics'
         if tenant_id:
             uri = uri + '?tenant_id=%s' % tenant_id
-        request_body = json.dumps(metrics)
+        request_body = ujson.dumps(metrics)
         resp, response_body = self.post(uri, request_body)
         return resp, response_body
 
@@ -45,48 +45,48 @@ class MonascaClient(rest_client.RestClient):
         if query_params is not None:
             uri = uri + query_params
         resp, response_body = self.get(uri)
-        return resp, json.loads(response_body)
+        return resp, ujson.loads(response_body)
 
     def list_metrics_names(self, query_params=None):
         uri = 'metrics/names'
         if query_params is not None:
             uri = uri + query_params
         resp, response_body = self.get(uri)
-        return resp, json.loads(response_body)
+        return resp, ujson.loads(response_body)
 
     def list_dimension_names(self, query_params=None):
         uri = 'metrics/dimensions/names'
         if query_params is not None:
             uri = uri + query_params
         resp, response_body = self.get(uri)
-        return resp, json.loads(response_body)
+        return resp, ujson.loads(response_body)
 
     def list_dimension_values(self, query_params=None):
         uri = 'metrics/dimensions/names/values'
         if query_params is not None:
             uri = uri + query_params
         resp, response_body = self.get(uri)
-        return resp, json.loads(response_body)
+        return resp, ujson.loads(response_body)
 
     def list_measurements(self, query_params=None):
         uri = 'metrics/measurements'
         if query_params is not None:
             uri = uri + query_params
         resp, response_body = self.get(uri)
-        return resp, json.loads(response_body)
+        return resp, ujson.loads(response_body)
 
     def list_statistics(self, query_params=None):
         uri = 'metrics/statistics'
         if query_params is not None:
             uri = uri + query_params
         resp, response_body = self.get(uri)
-        return resp, json.loads(response_body)
+        return resp, ujson.loads(response_body)
 
     def create_notifications(self, notification):
         uri = 'notification-methods'
-        request_body = json.dumps(notification)
+        request_body = ujson.dumps(notification)
         resp, response_body = self.post(uri, request_body)
-        return resp, json.loads(response_body)
+        return resp, ujson.loads(response_body)
 
     def create_notification_method(self,
                                    name=None,
@@ -103,8 +103,8 @@ class MonascaClient(rest_client.RestClient):
             request_body['address'] = address
         if period is not None:
             request_body['period'] = period
-        resp, response_body = self.post(uri, json.dumps(request_body))
-        return resp, json.loads(response_body)
+        resp, response_body = self.post(uri, ujson.dumps(request_body))
+        return resp, ujson.loads(response_body)
 
     def delete_notification_method(self, id):
         uri = 'notification-methods/' + id
@@ -114,14 +114,14 @@ class MonascaClient(rest_client.RestClient):
     def get_notification_method(self, id):
         uri = 'notification-methods/' + id
         resp, response_body = self.get(uri)
-        return resp, json.loads(response_body)
+        return resp, ujson.loads(response_body)
 
     def list_notification_methods(self, query_params=None):
         uri = 'notification-methods'
         if query_params is not None:
             uri = uri + query_params
         resp, response_body = self.get(uri)
-        return resp, json.loads(response_body)
+        return resp, ujson.loads(response_body)
 
     def update_notification_method(self, id, name, type, address, period=None):
         uri = 'notification-methods/' + id
@@ -131,8 +131,8 @@ class MonascaClient(rest_client.RestClient):
         request_body['address'] = address
         if period is not None:
             request_body['period'] = period
-        resp, response_body = self.put(uri, json.dumps(request_body))
-        return resp, json.loads(response_body)
+        resp, response_body = self.put(uri, ujson.dumps(request_body))
+        return resp, ujson.loads(response_body)
 
     def patch_notification_method(self, id,
                                   name=None, type=None,
@@ -147,33 +147,33 @@ class MonascaClient(rest_client.RestClient):
             request_body['address'] = address
         if period is not None:
             request_body['period'] = period
-        resp, response_body = self.patch(uri, json.dumps(request_body))
-        return resp, json.loads(response_body)
+        resp, response_body = self.patch(uri, ujson.dumps(request_body))
+        return resp, ujson.loads(response_body)
 
     def list_notification_method_types(self, query_params=None):
         uri = 'notification-methods/types'
         if query_params is not None:
             uri = uri + query_params
         resp, response_body = self.get(uri)
-        return resp, json.loads(response_body)
+        return resp, ujson.loads(response_body)
 
     def create_alarm_definitions(self, alarm_definitions):
         uri = 'alarm-definitions'
-        request_body = json.dumps(alarm_definitions)
+        request_body = ujson.dumps(alarm_definitions)
         resp, response_body = self.post(uri, request_body)
-        return resp, json.loads(response_body)
+        return resp, ujson.loads(response_body)
 
     def list_alarm_definitions(self, query_params=None):
         uri = 'alarm-definitions'
         if query_params is not None:
             uri = uri + query_params
         resp, response_body = self.get(uri)
-        return resp, json.loads(response_body)
+        return resp, ujson.loads(response_body)
 
     def get_alarm_definition(self, id):
         uri = 'alarm-definitions/' + id
         resp, response_body = self.get(uri)
-        return resp, json.loads(response_body)
+        return resp, ujson.loads(response_body)
 
     def delete_alarm_definition(self, id):
         uri = 'alarm-definitions/' + id
@@ -200,8 +200,8 @@ class MonascaClient(rest_client.RestClient):
         for key, value in kwargs.iteritems():
             request_body[key] = value
 
-        resp, response_body = self.put(uri, json.dumps(request_body))
-        return resp, json.loads(response_body)
+        resp, response_body = self.put(uri, ujson.dumps(request_body))
+        return resp, ujson.loads(response_body)
 
     def patch_alarm_definition(self,
                                id,
@@ -239,20 +239,20 @@ class MonascaClient(rest_client.RestClient):
         for key, value in kwargs.iteritems():
             request_body[key] = value
 
-        resp, response_body = self.patch(uri, json.dumps(request_body))
-        return resp, json.loads(response_body)
+        resp, response_body = self.patch(uri, ujson.dumps(request_body))
+        return resp, ujson.loads(response_body)
 
     def list_alarms(self, query_params=None):
         uri = 'alarms'
         if query_params is not None:
             uri = uri + query_params
         resp, response_body = self.get(uri)
-        return resp, json.loads(response_body)
+        return resp, ujson.loads(response_body)
 
     def get_alarm(self, id):
         uri = 'alarms/' + id
         resp, response_body = self.get(uri)
-        return resp, json.loads(response_body)
+        return resp, ujson.loads(response_body)
 
     def delete_alarm(self, id):
         uri = 'alarms/' + id
@@ -269,8 +269,8 @@ class MonascaClient(rest_client.RestClient):
         for key, value in kwargs.iteritems():
             request_body[key] = value
 
-        resp, response_body = self.put(uri, json.dumps(request_body))
-        return resp, json.loads(response_body)
+        resp, response_body = self.put(uri, ujson.dumps(request_body))
+        return resp, ujson.loads(response_body)
 
     def patch_alarm(self, id, state=None, lifecycle_state=None, link=None,
                     **kwargs):
@@ -286,29 +286,29 @@ class MonascaClient(rest_client.RestClient):
         for key, value in kwargs.iteritems():
             request_body[key] = value
 
-        resp, response_body = self.patch(uri, json.dumps(request_body))
-        return resp, json.loads(response_body)
+        resp, response_body = self.patch(uri, ujson.dumps(request_body))
+        return resp, ujson.loads(response_body)
 
     def count_alarms(self, query_params=None):
         uri = 'alarms/count'
         if query_params is not None:
             uri += query_params
         resp, response_body = self.get(uri)
-        return resp, json.loads(response_body)
+        return resp, ujson.loads(response_body)
 
     def list_alarms_state_history(self, query_params=None):
         uri = 'alarms/state-history'
         if query_params is not None:
             uri = uri + query_params
         resp, response_body = self.get(uri)
-        return resp, json.loads(response_body)
+        return resp, ujson.loads(response_body)
 
     def list_alarm_state_history(self, id, query_params=None):
         uri = 'alarms/' + id + '/state-history'
         if query_params is not None:
             uri = uri + query_params
         resp, response_body = self.get(uri)
-        return resp, json.loads(response_body)
+        return resp, ujson.loads(response_body)
 
     # For Negative Tests
     def update_alarm_definition_with_no_ok_actions(self, id, name,
@@ -331,8 +331,8 @@ class MonascaClient(rest_client.RestClient):
         for key, value in kwargs.iteritems():
             request_body[key] = value
 
-        resp, response_body = self.put(uri, json.dumps(request_body))
-        return resp, json.loads(response_body)
+        resp, response_body = self.put(uri, ujson.dumps(request_body))
+        return resp, ujson.loads(response_body)
 
     def update_notification_method_with_no_address(self, id, name, type,
                                                    period=None):
@@ -342,5 +342,5 @@ class MonascaClient(rest_client.RestClient):
         request_body['type'] = type
         if period is not None:
             request_body['period'] = period
-        resp, response_body = self.put(uri, json.dumps(request_body))
-        return resp, json.loads(response_body)
+        resp, response_body = self.put(uri, ujson.dumps(request_body))
+        return resp, ujson.loads(response_body)

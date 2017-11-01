@@ -14,10 +14,9 @@
 
 import datetime
 
-from oslo_serialization import jsonutils as json
-
 from monasca_tempest_tests.tests.api import base
 from tempest.lib import decorators
+import ujson
 
 
 class TestVersions(base.BaseMonascaTest):
@@ -30,7 +29,7 @@ class TestVersions(base.BaseMonascaTest):
     def test_get_version(self):
         resp, response_body = self.monasca_client.get_version()
         self.assertEqual(resp.status, 200)
-        response_body = json.loads(response_body)
+        response_body = ujson.loads(response_body)
 
         self.assertIsInstance(response_body, dict)
         version = response_body
