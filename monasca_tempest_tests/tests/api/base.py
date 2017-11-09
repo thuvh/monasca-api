@@ -40,9 +40,9 @@ class BaseMonascaTest(tempest.test.BaseTestCase):
             identity_version=auth_version)
         credentials = cls.cred_provider.get_creds_by_roles(
             ['monasca-user', 'monasca-read-only-user', 'admin']).credentials
-        cls.os = clients.Manager(credentials=credentials)
-        cls.monasca_client = cls.os.monasca_client
-        cls.projects_client = cls.os.projects_client
+        cls.os_primary = clients.Manager(credentials=credentials)
+        cls.monasca_client = cls.os_primary.monasca_client
+        cls.projects_client = cls.os_primary.projects_client
 
     @staticmethod
     def cleanup_resources(method, list_of_ids):
