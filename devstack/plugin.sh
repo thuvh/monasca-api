@@ -284,6 +284,8 @@ function install_kafka {
     echo_summary "Install Monasca Kafka"
 
     local kafka_tarball=kafka_${KAFKA_VERSION}.tgz
+    #Override APACHE_MIRROR because version of kafka we are using nolonger available at mirror.
+    local APACHE_MIRROR="https://archive.apache.org/dist/"
     local kafka_tarball_url=${APACHE_MIRROR}kafka/${BASE_KAFKA_VERSION}/${kafka_tarball}
 
     local kafka_tarball_dest
