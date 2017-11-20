@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff82abbf_c488fc72",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-11-20T17:59:53Z",
+      "side": 1,
+      "message": "What about renaming it here to avoid disambiguation with APACHE_MIRROR set globally?",
+      "range": {
+        "startLine": 288,
+        "startChar": 10,
+        "endLine": 288,
+        "endChar": 23
+      },
+      "revId": "19c2536ee2f3d945be51791500574b9c015676fb",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
