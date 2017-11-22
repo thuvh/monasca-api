@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff82abbf_d7f39b72",
+        "filename": "monasca_api/v2/reference/resource.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 26141
+      },
+      "writtenOn": "2017-11-22T09:46:28Z",
+      "side": 1,
+      "message": "why you delete one underscore?\nI think this is incorrect.",
+      "range": {
+        "startLine": 40,
+        "startChar": 51,
+        "endLine": 40,
+        "endChar": 52
+      },
+      "revId": "4b9513ca370f23d6e452a3762a1bf6e025002cf4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
