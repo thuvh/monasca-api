@@ -12,6 +12,8 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+import six
+
 
 class SubAlarmDefinition(object):
     """Holds sub alarm definition
@@ -104,7 +106,7 @@ class SubAlarmDefinition(object):
     def __hash__(self):
 
         dimensions_str = "".join(sorted([name + value for name, value in
-                                         self.dimensions.iteritems()]))
+                                         six.iteritems(self.dimensions)]))
 
         # don't use id to hash.
         return (hash(self.alarm_definition_id) ^

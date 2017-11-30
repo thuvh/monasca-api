@@ -22,6 +22,7 @@ from oslo_config import cfg
 from oslo_log import log
 from oslo_utils import timeutils
 import requests
+import six
 
 from monasca_common.rest import utils as rest_utils
 
@@ -237,7 +238,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
         # dimensions - optional
         if dimensions:
             for dimension_name, dimension_value in iter(
-                    sorted(dimensions.iteritems())):
+                    sorted(six.iteritems(dimensions))):
                 # replace ' with \' to make query parsable
                 clean_dimension_name = dimension_name.replace("\'", "\\'")
                 if dimension_value == "":
@@ -575,7 +576,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
                     if not group_by:
                         measurement[u'dimensions'] = dimensions
                     else:
-                        measurement[u'dimensions'] = {key: value for key, value in serie['tags'].iteritems()
+                        measurement[u'dimensions'] = {key: value for key, value in six.iteritems(serie['tags'])
                                                       if not key.startswith('_')}
 
                     json_measurement_list.append(measurement)
@@ -686,7 +687,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
                     if not group_by:
                         statistic[u'dimensions'] = dimensions
                     else:
-                        statistic[u'dimensions'] = {key: value for key, value in serie['tags'].iteritems()
+                        statistic[u'dimensions'] = {key: value for key, value in six.iteritems(serie['tags'])
                                                     if not key.startswith('_')}
 
                     json_statistics_list.append(statistic)
