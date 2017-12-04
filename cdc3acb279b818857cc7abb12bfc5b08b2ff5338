@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df87a7cf_2eaac9d3",
+        "filename": ".zuul.yaml",
+        "patchSetId": 68
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6547
+      },
+      "writtenOn": "2017-12-04T15:14:32Z",
+      "side": 1,
+      "message": "these soon need .yaml extension, please add them so that the job does not break once we merge the Zuul change requesting it.",
+      "range": {
+        "startLine": 4,
+        "startChar": 3,
+        "endLine": 5,
+        "endChar": 56
+      },
+      "revId": "cdc3acb279b818857cc7abb12bfc5b08b2ff5338",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
