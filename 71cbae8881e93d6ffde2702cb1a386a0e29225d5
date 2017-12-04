@@ -111,6 +111,30 @@
     },
     {
       "key": {
+        "uuid": "df87a7cf_d40f2b2c",
+        "filename": "devstack/files/monasca-persister/persister.yml",
+        "patchSetId": 37
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 24580
+      },
+      "writtenOn": "2017-12-04T19:18:06Z",
+      "side": 1,
+      "message": "I have reservation using config variables for the Cassandra port number. All port numbers are statically coded in the monasca devstack, such as kafka, zookeeper, influxdb. Only the server host is dynamic, i.e. configurable.",
+      "parentUuid": "df87a7cf_9a7a3822",
+      "range": {
+        "startLine": 66,
+        "startChar": 8,
+        "endLine": 66,
+        "endChar": 12
+      },
+      "revId": "71cbae8881e93d6ffde2702cb1a386a0e29225d5",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df87a7cf_3a020cb6",
         "filename": "devstack/files/monasca-persister/persister.yml",
         "patchSetId": 37
