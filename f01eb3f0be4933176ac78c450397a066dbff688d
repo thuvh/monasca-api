@@ -16,6 +16,24 @@
       "revId": "f01eb3f0be4933176ac78c450397a066dbff688d",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_c143ccae",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 13478
+      },
+      "writtenOn": "2017-12-05T17:31:05Z",
+      "side": 1,
+      "message": "How many times should the loop retry? What should be the sleep time? Today my influxdb took 5 minutes to do something with wal, and my setup wasn\u0027t that big.",
+      "parentUuid": "df87a7cf_a14a4852",
+      "revId": "f01eb3f0be4933176ac78c450397a066dbff688d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
