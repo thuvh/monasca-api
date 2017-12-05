@@ -15,6 +15,7 @@
 from datetime import datetime
 from datetime import timedelta
 from distutils import version
+import time
 
 from influxdb import client
 from influxdb.exceptions import InfluxDBClientError
@@ -52,18 +53,26 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
         '''Initializes functions for serie builders that are specific to different versions
         of InfluxDB.
         '''
-        try:
-            influxdb_version = self._get_influxdb_version()
-            if influxdb_version < version.StrictVersion('0.11.0'):
+        while True:
+            try:
+                influxdb_version = self._get_influxdb_version()
+                if influxdb_version < version.StrictVersion('0.11.0'):
+                    self._init_serie_builders_to_v0_11_0()
+                else:
+                    self._init_serie_builders_from_v0_11_0()
+                return
+            except (requests.exceptions.ConnectionError,
+                    requests.exceptions.ConnectTimeout):
+                # these errors mean that the backend is not ready yet
+                LOG.error('influxdb is not ready yet, retrying in 10 seconds')
+                time.sleep(10)
+            except Exception as ex:
+                LOG.exception(ex)
+                # Initialize the serie builders to v0_11_0. Not sure when SHOW DIAGNOSTICS added
+                # support for a version string so to address backward compatibility initialize
+                # InfluxDB serie builders <  v0.11.0
                 self._init_serie_builders_to_v0_11_0()
-            else:
-                self._init_serie_builders_from_v0_11_0()
-        except Exception as ex:
-            LOG.exception(ex)
-            # Initialize the serie builders to v0_11_0. Not sure when SHOW DIAGNOSTICS added
-            # support for a version string so to address backward compatibility initialize
-            # InfluxDB serie builders <  v0.11.0
-            self._init_serie_builders_to_v0_11_0()
+                return
 
     def _init_serie_builders_to_v0_11_0(self):
         '''Initialize function for InfluxDB serie builders <  v0.11.0
