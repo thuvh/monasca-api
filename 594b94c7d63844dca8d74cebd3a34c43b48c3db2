@@ -22,6 +22,30 @@
       "revId": "594b94c7d63844dca8d74cebd3a34c43b48c3db2",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_7b34f1fb",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-12-05T16:31:45Z",
+      "side": 1,
+      "message": "The validation change Ic61a325162873572cad387593c7107cba1a41e15 allows parentheses in both dimension keys and values. As discussed with rbrndt on IRC it should be OK, to allow these in dimension keys as well.",
+      "parentUuid": "df87a7cf_ca43e9ae",
+      "range": {
+        "startLine": 390,
+        "startChar": 66,
+        "endLine": 390,
+        "endChar": 69
+      },
+      "revId": "594b94c7d63844dca8d74cebd3a34c43b48c3db2",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
