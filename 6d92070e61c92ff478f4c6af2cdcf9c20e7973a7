@@ -1,0 +1,233 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df87a7cf_b8dda815",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 42
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-12-05T14:49:40Z",
+      "side": 1,
+      "message": "Add space after comment symbol",
+      "revId": "6d92070e61c92ff478f4c6af2cdcf9c20e7973a7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_b112a308",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-12-05T14:49:40Z",
+      "side": 1,
+      "message": "Not sure what you mean in this comment.",
+      "range": {
+        "startLine": 494,
+        "startChar": 35,
+        "endLine": 494,
+        "endChar": 49
+      },
+      "revId": "6d92070e61c92ff478f4c6af2cdcf9c20e7973a7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_ea126d58",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 740,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-12-05T14:49:40Z",
+      "side": 1,
+      "message": "shouldn\u0027t this be before `if key in grouped_metrics:` in line 735",
+      "range": {
+        "startLine": 740,
+        "startChar": 12,
+        "endLine": 740,
+        "endChar": 53
+      },
+      "revId": "6d92070e61c92ff478f4c6af2cdcf9c20e7973a7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_0af471ce",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 799,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-12-05T14:49:40Z",
+      "side": 1,
+      "message": "why you are doing division and multiplication with same variable at the same time?",
+      "range": {
+        "startLine": 799,
+        "startChar": 101,
+        "endLine": 799,
+        "endChar": 119
+      },
+      "revId": "6d92070e61c92ff478f4c6af2cdcf9c20e7973a7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_4a44b91b",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 799,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-12-05T14:49:40Z",
+      "side": 1,
+      "message": "don\u0027t use same name like in line 796",
+      "range": {
+        "startLine": 799,
+        "startChar": 12,
+        "endLine": 799,
+        "endChar": 27
+      },
+      "revId": "6d92070e61c92ff478f4c6af2cdcf9c20e7973a7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_6abc1ddc",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 814,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-12-05T14:49:40Z",
+      "side": 1,
+      "message": "For the first time in this loop stats_min and stats_max are always same here because of line 804, is that what you want?",
+      "range": {
+        "startLine": 814,
+        "startChar": 69,
+        "endLine": 814,
+        "endChar": 89
+      },
+      "revId": "6d92070e61c92ff478f4c6af2cdcf9c20e7973a7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_2a99356d",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 824,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-12-05T14:49:40Z",
+      "side": 1,
+      "message": "why setting both to value if they will be overwritten in line 829-830?",
+      "range": {
+        "startLine": 823,
+        "startChar": 0,
+        "endLine": 824,
+        "endChar": 37
+      },
+      "revId": "6d92070e61c92ff478f4c6af2cdcf9c20e7973a7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_2a9ff503",
+        "filename": "monasca_api/tests/test_repositories.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-12-05T14:49:40Z",
+      "side": 1,
+      "message": "Add Suse Copyright",
+      "revId": "6d92070e61c92ff478f4c6af2cdcf9c20e7973a7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_6a95fde3",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-12-05T14:49:40Z",
+      "side": 1,
+      "message": "Add Suse Copyright",
+      "revId": "6d92070e61c92ff478f4c6af2cdcf9c20e7973a7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_cadf69d4",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 676,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-12-05T14:49:40Z",
+      "side": 1,
+      "message": "Should it be here or before `statistic_elements.append(statistic)`?",
+      "range": {
+        "startLine": 675,
+        "startChar": 15,
+        "endLine": 676,
+        "endChar": 45
+      },
+      "revId": "6d92070e61c92ff478f4c6af2cdcf9c20e7973a7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_aafd453b",
+        "filename": "monasca_tempest_tests/tests/api/helpers.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2017-12-05T14:49:40Z",
+      "side": 1,
+      "message": "Add Suse Copyright",
+      "revId": "6d92070e61c92ff478f4c6af2cdcf9c20e7973a7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
