@@ -58,6 +58,9 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
                 self._init_serie_builders_to_v0_11_0()
             else:
                 self._init_serie_builders_from_v0_11_0()
+        except (requests.exceptions.ConnectionError, requests.exceptions.ConnectTimeout):
+            # these errors mean that the backend is not ready yet
+            raise
         except Exception as ex:
             LOG.exception(ex)
             # Initialize the serie builders to v0_11_0. Not sure when SHOW DIAGNOSTICS added
