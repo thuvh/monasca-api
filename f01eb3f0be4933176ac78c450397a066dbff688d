@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df87a7cf_a14a4852",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 12542
+      },
+      "writtenOn": "2017-12-05T17:06:17Z",
+      "side": 1,
+      "message": "Please turn this into a retry loop that logs a warning every time it fails. There\u0027s no reason to make this a fatal error, for the root cause for this is usually transient (influxdb not started, yet or temporarily unreachable).",
+      "revId": "f01eb3f0be4933176ac78c450397a066dbff688d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
