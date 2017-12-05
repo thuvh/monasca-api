@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df87a7cf_ca43e9ae",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 11809
+      },
+      "writtenOn": "2017-12-05T14:43:19Z",
+      "side": 1,
+      "message": "() are not allowed in the key names, just in the key values",
+      "range": {
+        "startLine": 390,
+        "startChar": 66,
+        "endLine": 390,
+        "endChar": 69
+      },
+      "revId": "594b94c7d63844dca8d74cebd3a34c43b48c3db2",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
