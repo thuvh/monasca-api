@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df87a7cf_c3b658fb",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 2419
+      },
+      "writtenOn": "2017-12-06T14:12:08Z",
+      "side": 1,
+      "message": "The model for Monasca so far has been to fail on start-up if it can\u0027t initialize. So, while I agree adding the additional tests for connectionerror and connecttimeout might be good ideas, looping forever with a 10 second sleep in between is not so good. I would have exited with an error status code and let systemd or kubernetes handle restarting.",
+      "revId": "518c64706b1489b6d28338dbe2481b819b4967ab",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
