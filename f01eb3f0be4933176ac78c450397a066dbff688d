@@ -70,6 +70,24 @@
       "revId": "f01eb3f0be4933176ac78c450397a066dbff688d",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_ea9337a2",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 12542
+      },
+      "writtenOn": "2017-12-06T08:33:50Z",
+      "side": 1,
+      "message": "\u003e 1. Indefinite waiting time will break many things with unproper error messages because in many places default timeout is 60 seconds. Afaik in a typical configuration Horizon waits for 60 seconds for reply from monasca AND the browser waits 60 seconds for reply from Horizon. Timeout errors are bad because we are not sure what happened to our action. It led to hardly-diagnosed errors in keystone some time ago.\n\u003e It will also mean the panel in Horizon will be \"loading\" for $timeout seconds. Do we really want it?\n\nSo the real problem with retrying is getting into a situation where we cause a timeout here. What I don\u0027t want is monasca-api ending up in an unrecoverable state (and crashing is an unrecoverable state) That\u0027s always a bad thing to happen in a system that\u0027s distributed to this extent. Maybe we could introduce an influxdb_version attribute and set this to None if version retrieval fails. Then we check the state of this attribute in list_dimension_{names,values} for every request that uses it and raise a dedicated exception if influxdb_version indicates a previous failed attempt at retrieving the version. We catch this exception if we encounter it during a request and respond with a 501 and a clear error message as long as that situation persists. That way we get indefinite retrying.\n\n\u003e 2. My expectation is that even if monasca-api fails to connect to influxdb on the first attempt, the first request after influxdb is up will spin up a new thread/process where the connection will be re-inited successfully. At least this is what i expect from a wsgi application.\n\nI\u0027d have to check again, but as far as I remember the main process ended up in a broken state and kept launching broken worker processes (with bad influxdb version state). So crashing the main process hard would probably solve this problem. It\u0027s still not pretty, though (and even in that case we should have a dedicated exception we catch and log before exiting so we do not spam the log file with stack traces). I\u0027d be ok with it, though if the net result is the sort of retrying behaviour I outlined above - just be sure to test it to destruction :-)",
+      "parentUuid": "df87a7cf_7c6387b2",
+      "revId": "f01eb3f0be4933176ac78c450397a066dbff688d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
