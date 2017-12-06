@@ -34,6 +34,24 @@
       "revId": "518c64706b1489b6d28338dbe2481b819b4967ab",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_69e08b97",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 13478
+      },
+      "writtenOn": "2017-12-06T15:23:01Z",
+      "side": 1,
+      "message": "\u003e I would have exited with an error status code and let systemd or kubernetes handle restarting.\n\nHow would you suggest to do it in case of wsgi app?",
+      "parentUuid": "df87a7cf_c3b658fb",
+      "revId": "518c64706b1489b6d28338dbe2481b819b4967ab",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
