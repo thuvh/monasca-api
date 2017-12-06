@@ -16,6 +16,24 @@
       "revId": "518c64706b1489b6d28338dbe2481b819b4967ab",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_63a74c51",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 12542
+      },
+      "writtenOn": "2017-12-06T14:29:19Z",
+      "side": 1,
+      "message": "How about sleeping 10s and then exiting with an error status code upon timeout? Otherwise monasca-api will restart a lot, potentially triggering a \"respawning too fast\" safety mechanism systemd, Kubernetes or Apache (depending on where it\u0027s run). For if there\u0027s a nontrivial number of agents using that monasca-api instance it is going to restart at a very high frequency.",
+      "parentUuid": "df87a7cf_c3b658fb",
+      "revId": "518c64706b1489b6d28338dbe2481b819b4967ab",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
