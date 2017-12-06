@@ -1,0 +1,13 @@
+Code-Review+1: Craig Bryant <craig.bryant@hpe.com>
+Code-Review+1: James Gu <jgu@suse.com>
+Code-Review+1: Ryan Brandt <ryan.brandt@hpe.com>
+Code-Review+1: Andrea Adams <aadams@hpe.com>
+Code-Review+1: Kaiyan Sheng <kaiyan.sheng@hpe.com>
+Code-Review+2: Joe Keen <joe.keen@hpe.com>
+Workflow+1: Joe Keen <joe.keen@hpe.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Wed, 06 Dec 2017 10:40:25 +0000
+Reviewed-on: https://review.openstack.org/525627
+Project: openstack/monasca-api
+Branch: refs/heads/master
