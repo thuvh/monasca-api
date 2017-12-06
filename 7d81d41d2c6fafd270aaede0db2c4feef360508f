@@ -1,0 +1,293 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df87a7cf_5b746468",
+        "filename": "devstack/files/cassandra/monasca_schema.cql",
+        "patchSetId": 44
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 6593
+      },
+      "writtenOn": "2017-12-06T21:51:12Z",
+      "side": 1,
+      "message": "I see no versioning here, not even in a comment. what if we ever have to change anything?",
+      "revId": "7d81d41d2c6fafd270aaede0db2c4feef360508f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_1b6edc94",
+        "filename": "devstack/files/cassandra/monasca_schema.cql",
+        "patchSetId": 44
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 6593
+      },
+      "writtenOn": "2017-12-06T21:51:12Z",
+      "side": 1,
+      "message": "should the replication factor really be hardcoded to 1?",
+      "revId": "7d81d41d2c6fafd270aaede0db2c4feef360508f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_a000dd68",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 6593
+      },
+      "writtenOn": "2017-12-06T21:51:12Z",
+      "side": 1,
+      "message": "put this after the last access to self.session rather than at the end",
+      "revId": "7d81d41d2c6fafd270aaede0db2c4feef360508f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_20f4cd85",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 6593
+      },
+      "writtenOn": "2017-12-06T21:51:12Z",
+      "side": 1,
+      "message": "put this after the last access to self.session rather than at the end?",
+      "revId": "7d81d41d2c6fafd270aaede0db2c4feef360508f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_404471b7",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 6593
+      },
+      "writtenOn": "2017-12-06T21:51:12Z",
+      "side": 1,
+      "message": "that complicated _list_metrics..() call here is exactly the same in both cases? call it only once and move the store of teh result inside the if condition",
+      "revId": "7d81d41d2c6fafd270aaede0db2c4feef360508f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_e02ee541",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 6593
+      },
+      "writtenOn": "2017-12-06T21:51:12Z",
+      "side": 1,
+      "message": "metric_list.extend((self._process_metric_row(r) for r in future.result())",
+      "revId": "7d81d41d2c6fafd270aaede0db2c4feef360508f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_206e0d95",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 6593
+      },
+      "writtenOn": "2017-12-06T21:51:12Z",
+      "side": 1,
+      "message": "this is a fairly broad exception statement, can the try/exception clause be made more specific and covering fewer lines of code?",
+      "revId": "7d81d41d2c6fafd270aaede0db2c4feef360508f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_a0dd3d43",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 6593
+      },
+      "writtenOn": "2017-12-06T21:51:12Z",
+      "side": 1,
+      "message": "something more descriptive than key and value would be useful here, but that seems to be in several places in this file (also sometimes k,v is used sometimes key,value)",
+      "revId": "7d81d41d2c6fafd270aaede0db2c4feef360508f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_607735d6",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 6593
+      },
+      "writtenOn": "2017-12-06T21:51:12Z",
+      "side": 1,
+      "message": "no quoting here?!",
+      "revId": "7d81d41d2c6fafd270aaede0db2c4feef360508f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_6025f5c1",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 544,
+      "author": {
+        "id": 6593
+      },
+      "writtenOn": "2017-12-06T21:51:12Z",
+      "side": 1,
+      "message": "is there a way to make this enumerate / index more elegant by pulling the \"first\" case outside the loop?",
+      "revId": "7d81d41d2c6fafd270aaede0db2c4feef360508f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_fb2bf87e",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 6593
+      },
+      "writtenOn": "2017-12-06T21:51:12Z",
+      "side": 1,
+      "message": "whats the reason for this toplevel exception here?",
+      "revId": "7d81d41d2c6fafd270aaede0db2c4feef360508f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_db9b94c6",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 668,
+      "author": {
+        "id": 6593
+      },
+      "writtenOn": "2017-12-06T21:51:12Z",
+      "side": 1,
+      "message": "this looks like code duplication to the previous case where conditions/params are built. can this be split out into a single function and used in both places?",
+      "revId": "7d81d41d2c6fafd270aaede0db2c4feef360508f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_80c7d945",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 6593
+      },
+      "writtenOn": "2017-12-06T21:51:12Z",
+      "side": 1,
+      "message": "split doesn\u0027t really return a tuple so that naming seems confusing",
+      "revId": "7d81d41d2c6fafd270aaede0db2c4feef360508f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_a0b21de5",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 6593
+      },
+      "writtenOn": "2017-12-06T21:51:12Z",
+      "side": 1,
+      "message": "if \"_\" in offset:\n      offset_id_str, _, offset_timestamp \u003d offset.partition(\u0027_\u0027)\n      offset_id \u003d int(offset_id_str)",
+      "revId": "7d81d41d2c6fafd270aaede0db2c4feef360508f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_a083fdcb",
+        "filename": "monasca_api/conf/cassandra.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 6593
+      },
+      "writtenOn": "2017-12-06T21:51:12Z",
+      "side": 1,
+      "message": "add the old name back as deprecatedoption?",
+      "revId": "7d81d41d2c6fafd270aaede0db2c4feef360508f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_404b11af",
+        "filename": "monasca_api/tests/test_repositories.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 6593
+      },
+      "writtenOn": "2017-12-06T21:51:12Z",
+      "side": 1,
+      "message": "ExpectedFail",
+      "revId": "7d81d41d2c6fafd270aaede0db2c4feef360508f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_c05f2170",
+        "filename": "monasca_api/tests/test_repositories.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 6593
+      },
+      "writtenOn": "2017-12-06T21:51:12Z",
+      "side": 1,
+      "message": "wrap this in an expectedFail instead.",
+      "revId": "7d81d41d2c6fafd270aaede0db2c4feef360508f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
