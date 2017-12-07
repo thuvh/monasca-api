@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "df87a7cf_7184e9b1",
+        "filename": "devstack/files/cassandra/monasca_schema.cql",
+        "patchSetId": 44
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 24580
+      },
+      "writtenOn": "2017-12-07T08:41:46Z",
+      "side": 1,
+      "message": "I am adding a version in comments for devstack deployment. For production deployment, I don\u0027t think Monasca supports backwards compatibility on db schema version for vertica or influxdb yet. I imagine we potentially could even tag keyspace name with version number, or a more proper place in metadata. But backwards DB schema version support is  not in the scope of first Cassandra release.",
+      "parentUuid": "df87a7cf_5b746468",
+      "revId": "7d81d41d2c6fafd270aaede0db2c4feef360508f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df87a7cf_1b6edc94",
         "filename": "devstack/files/cassandra/monasca_schema.cql",
         "patchSetId": 44
@@ -30,6 +48,24 @@
       "writtenOn": "2017-12-06T21:51:12Z",
       "side": 1,
       "message": "should the replication factor really be hardcoded to 1?",
+      "revId": "7d81d41d2c6fafd270aaede0db2c4feef360508f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_f1f31972",
+        "filename": "devstack/files/cassandra/monasca_schema.cql",
+        "patchSetId": 44
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 24580
+      },
+      "writtenOn": "2017-12-07T08:41:46Z",
+      "side": 1,
+      "message": "Yes, for devstack, the replication factor should be set to 1.",
+      "parentUuid": "df87a7cf_1b6edc94",
       "revId": "7d81d41d2c6fafd270aaede0db2c4feef360508f",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -87,6 +123,24 @@
     },
     {
       "key": {
+        "uuid": "df87a7cf_8bd931f4",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 24580
+      },
+      "writtenOn": "2017-12-07T08:41:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df87a7cf_404471b7",
+      "revId": "7d81d41d2c6fafd270aaede0db2c4feef360508f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df87a7cf_e02ee541",
         "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
         "patchSetId": 44
@@ -115,6 +169,24 @@
       "writtenOn": "2017-12-06T21:51:12Z",
       "side": 1,
       "message": "this is a fairly broad exception statement, can the try/exception clause be made more specific and covering fewer lines of code?",
+      "revId": "7d81d41d2c6fafd270aaede0db2c4feef360508f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_85d922f4",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 24580
+      },
+      "writtenOn": "2017-12-07T08:41:46Z",
+      "side": 1,
+      "message": "understood the request. Was following existing influxdb repo which try/catch and throw repo exception. there are a number of different type of Cassandra exception that could be raised, but the handling should be the same and it seems that the api expects this method to rethrow them as repoexception.",
+      "parentUuid": "df87a7cf_206e0d95",
       "revId": "7d81d41d2c6fafd270aaede0db2c4feef360508f",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -155,6 +227,24 @@
     },
     {
       "key": {
+        "uuid": "df87a7cf_8587e2b5",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 24580
+      },
+      "writtenOn": "2017-12-07T08:41:46Z",
+      "side": 1,
+      "message": "not sure I fully understand the question. I don\u0027t think quotes are needed. params are passed as string objects to bind the parameterized statement.",
+      "parentUuid": "df87a7cf_607735d6",
+      "revId": "7d81d41d2c6fafd270aaede0db2c4feef360508f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df87a7cf_6025f5c1",
         "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
         "patchSetId": 44
@@ -183,6 +273,24 @@
       "writtenOn": "2017-12-06T21:51:12Z",
       "side": 1,
       "message": "whats the reason for this toplevel exception here?",
+      "revId": "7d81d41d2c6fafd270aaede0db2c4feef360508f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_203364f8",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 24580
+      },
+      "writtenOn": "2017-12-07T08:41:46Z",
+      "side": 1,
+      "message": "This is the catch all and rethrow as repoexception similar to the influxdb repo class. I assume this is what the repo api is expected.",
+      "parentUuid": "df87a7cf_fb2bf87e",
       "revId": "7d81d41d2c6fafd270aaede0db2c4feef360508f",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -240,6 +348,24 @@
     },
     {
       "key": {
+        "uuid": "df87a7cf_5160c501",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 24580
+      },
+      "writtenOn": "2017-12-07T08:41:46Z",
+      "side": 1,
+      "message": "Done!",
+      "parentUuid": "df87a7cf_a0b21de5",
+      "revId": "7d81d41d2c6fafd270aaede0db2c4feef360508f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df87a7cf_a083fdcb",
         "filename": "monasca_api/conf/cassandra.py",
         "patchSetId": 44
@@ -257,6 +383,24 @@
     },
     {
       "key": {
+        "uuid": "df87a7cf_31a74152",
+        "filename": "monasca_api/conf/cassandra.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 24580
+      },
+      "writtenOn": "2017-12-07T08:41:46Z",
+      "side": 1,
+      "message": "Cassandra wasn\u0027t ever completed or released in the previous try. I think we may not want to cause more confusion using deprecated option.",
+      "parentUuid": "df87a7cf_a083fdcb",
+      "revId": "7d81d41d2c6fafd270aaede0db2c4feef360508f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df87a7cf_404b11af",
         "filename": "monasca_api/tests/test_repositories.py",
         "patchSetId": 44
@@ -268,6 +412,24 @@
       "writtenOn": "2017-12-06T21:51:12Z",
       "side": 1,
       "message": "ExpectedFail",
+      "revId": "7d81d41d2c6fafd270aaede0db2c4feef360508f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_d14cd59f",
+        "filename": "monasca_api/tests/test_repositories.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 24580
+      },
+      "writtenOn": "2017-12-07T08:41:46Z",
+      "side": 1,
+      "message": "Nice catch! I forgot to turn back on the test case.",
+      "parentUuid": "df87a7cf_404b11af",
       "revId": "7d81d41d2c6fafd270aaede0db2c4feef360508f",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
