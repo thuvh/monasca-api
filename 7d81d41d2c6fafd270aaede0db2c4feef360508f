@@ -245,6 +245,24 @@
     },
     {
       "key": {
+        "uuid": "df87a7cf_5fd8bd1c",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 6593
+      },
+      "writtenOn": "2017-12-07T14:46:37Z",
+      "side": 1,
+      "message": "Ok, thanks for the clarification!",
+      "parentUuid": "df87a7cf_8587e2b5",
+      "revId": "7d81d41d2c6fafd270aaede0db2c4feef360508f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df87a7cf_6025f5c1",
         "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
         "patchSetId": 44
