@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df87a7cf_f3d30ad4",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 46
+      },
+      "lineNbr": 557,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-12-07T17:33:11Z",
+      "side": 1,
+      "message": "You\u0027re changing how measurement offset is returned. Please update the measurement resource response example in documentation for that. You may also want to add short note on Cassandra offsets here [1].\n\nPlease also wrap the line here.\n\n[1] https://github.com/openstack/monasca-api/blob/master/docs/monasca-api-spec.md#offset",
+      "revId": "3d7162c55182a666f76ac8de6b35e4f6f6c1ba83",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_13eb0e13",
+        "filename": "monasca_tempest_tests/tests/api/test_dimensions.py",
+        "patchSetId": 46
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-12-07T17:33:11Z",
+      "side": 1,
+      "message": "You should put this initialization inside the for loop.",
+      "revId": "3d7162c55182a666f76ac8de6b35e4f6f6c1ba83",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
