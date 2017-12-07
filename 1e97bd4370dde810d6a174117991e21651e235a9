@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df87a7cf_11b6bc3f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 10311
+      },
+      "writtenOn": "2017-12-07T00:15:10Z",
+      "side": 1,
+      "message": "Just to show I read this, \"instead\".",
+      "range": {
+        "startLine": 11,
+        "startChar": 42,
+        "endLine": 11,
+        "endChar": 50
+      },
+      "revId": "1e97bd4370dde810d6a174117991e21651e235a9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
