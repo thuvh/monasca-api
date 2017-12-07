@@ -33,6 +33,24 @@
       "revId": "3d7162c55182a666f76ac8de6b35e4f6f6c1ba83",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_77903dee",
+        "filename": "monasca_tempest_tests/tests/api/test_dimensions.py",
+        "patchSetId": 46
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 24580
+      },
+      "writtenOn": "2017-12-07T22:30:44Z",
+      "side": 1,
+      "message": "very nice catch! Fixed",
+      "parentUuid": "df87a7cf_13eb0e13",
+      "revId": "3d7162c55182a666f76ac8de6b35e4f6f6c1ba83",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
