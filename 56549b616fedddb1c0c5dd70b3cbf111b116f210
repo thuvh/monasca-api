@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df87a7cf_acb39de8",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 48
+      },
+      "lineNbr": 774,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-12-11T15:48:27Z",
+      "side": 1,
+      "message": "Period missing.",
+      "range": {
+        "startLine": 774,
+        "startChar": 207,
+        "endLine": 774,
+        "endChar": 208
+      },
+      "revId": "56549b616fedddb1c0c5dd70b3cbf111b116f210",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_2cea2dd7",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 48
+      },
+      "lineNbr": 774,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-12-11T15:48:27Z",
+      "side": 1,
+      "message": "Please wrap modified lines.",
+      "revId": "56549b616fedddb1c0c5dd70b3cbf111b116f210",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_acb71df5",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 48
+      },
+      "lineNbr": 813,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-12-11T15:48:27Z",
+      "side": 1,
+      "message": "Please put this in the code block as examples above.",
+      "revId": "56549b616fedddb1c0c5dd70b3cbf111b116f210",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_0cf2c99a",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 48
+      },
+      "lineNbr": 819,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-12-11T15:48:27Z",
+      "side": 1,
+      "message": "That has been explained in the preceding paragraph. Please remove.",
+      "range": {
+        "startLine": 819,
+        "startChar": 151,
+        "endLine": 819,
+        "endChar": 497
+      },
+      "revId": "56549b616fedddb1c0c5dd70b3cbf111b116f210",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_6c3cb52e",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 48
+      },
+      "lineNbr": 821,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-12-11T15:48:27Z",
+      "side": 1,
+      "message": "Please wrap.",
+      "revId": "56549b616fedddb1c0c5dd70b3cbf111b116f210",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_0c4e49c0",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 48
+      },
+      "lineNbr": 1396,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-12-11T15:48:27Z",
+      "side": 1,
+      "message": "Please update the returned offset.",
+      "range": {
+        "startLine": 1396,
+        "startChar": 79,
+        "endLine": 1396,
+        "endChar": 103
+      },
+      "revId": "56549b616fedddb1c0c5dd70b3cbf111b116f210",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
