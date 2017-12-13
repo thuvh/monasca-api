@@ -142,6 +142,30 @@
       "revId": "56549b616fedddb1c0c5dd70b3cbf111b116f210",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df87a7cf_4309442f",
+        "filename": "monasca_tempest_tests/tests/api/test_dimensions.py",
+        "patchSetId": 48
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2017-12-13T12:03:51Z",
+      "side": 1,
+      "message": "Any reason for leaving `\u003e\u003d` here?",
+      "parentUuid": "df87a7cf_3c5d5e78",
+      "range": {
+        "startLine": 86,
+        "startChar": 44,
+        "endLine": 86,
+        "endChar": 46
+      },
+      "revId": "56549b616fedddb1c0c5dd70b3cbf111b116f210",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
