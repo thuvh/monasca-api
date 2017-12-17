@@ -34,6 +34,8 @@
           MONASCA_API_IMPLEMENTATION_LANG="{{ api_lang }}"
           MONASCA_PERSISTER_IMPLEMENTATION_LANG="{{ persister_lang }}"
           MONASCA_METRICS_DB="{{ tsdb }}"
+          # Enable Tempest plugin
+          TEMPEST_PLUGINS='/opt/stack/new/monasca-tempest-plugin'
 
           EOF
         executable: /bin/bash
@@ -67,6 +69,7 @@
           export PROJECTS="openstack/python-monascaclient $PROJECTS"
           export PROJECTS="openstack/monasca-grafana-datasource $PROJECTS"
           export PROJECTS="openstack/monasca-ui $PROJECTS"
+          export PROJECTS="openstack/monasca-tempest-plugin $PROJECTS"
 
           function pre_test_hook {
               source $BASE/new/monasca-api/monasca_tempest_tests/contrib/gate_hook.sh
