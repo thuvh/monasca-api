@@ -139,6 +139,24 @@ class TestStatistics(base.BaseMonascaTest):
             column, num_statistics_method, statistics, self.metric_values)
 
     @decorators.attr(type="gate")
+    def test_list_statistics_no_end_time(self):
+        query_parms = '?name=' + str(self._test_name) + \
+                      '&statistics=' + urlparse.quote('avg,sum,min,max,count') + \
+                      '&start_time=' + str(self._start_time_iso) + \
+                      '&merge_metrics=true' + '&period=100000'
+        resp, response_body = self.monasca_client.list_statistics(
+            query_parms)
+        self.assertEqual(200, resp.status)
+        self.assertTrue(set(['links', 'elements']) == set(response_body))
+        element = response_body['elements'][0]
+        self._verify_element(element)
+        column = element['columns']
+        num_statistics_method = 5
+        statistics = element['statistics'][0]
+        self._verify_column_and_statistics(
+            column, num_statistics_method, statistics, self.metric_values)
+
+    @decorators.attr(type="gate")
     @decorators.attr(type=['negative'])
     def test_list_statistics_with_no_name(self):
         query_parms = '?merge_metrics=true&statistics=avg&start_time=' + \
