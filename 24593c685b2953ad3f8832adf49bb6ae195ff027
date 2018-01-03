@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f91af0f_6576a709",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-01-03T12:12:19Z",
+      "side": 1,
+      "message": "Add\n\n  Task: 6085",
+      "revId": "24593c685b2953ad3f8832adf49bb6ae195ff027",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f91af0f_c569b325",
+        "filename": "contrib/post_test_hook.sh",
+        "patchSetId": 14
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-01-03T12:12:19Z",
+      "side": 1,
+      "message": "Log API tests have to be excluded here.",
+      "revId": "24593c685b2953ad3f8832adf49bb6ae195ff027",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
