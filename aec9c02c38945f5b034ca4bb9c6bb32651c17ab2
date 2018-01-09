@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f91af0f_3b68371b",
+        "filename": "perf/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 10311
+      },
+      "writtenOn": "2018-01-09T23:00:00Z",
+      "side": 1,
+      "message": "In the monasca-persister, I pestered James to add info about where to get the JMeter install from.  https://review.openstack.org/#/c/513204/20/perf/README.md   You might even consider referencing that here.",
+      "range": {
+        "startLine": 11,
+        "startChar": 8,
+        "endLine": 11,
+        "endChar": 14
+      },
+      "revId": "aec9c02c38945f5b034ca4bb9c6bb32651c17ab2",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f91af0f_bbd8c7ee",
+        "filename": "perf/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 10311
+      },
+      "writtenOn": "2018-01-09T23:00:00Z",
+      "side": 1,
+      "message": "Typo \u0027queryr\u0027",
+      "range": {
+        "startLine": 22,
+        "startChar": 18,
+        "endLine": 22,
+        "endChar": 19
+      },
+      "revId": "aec9c02c38945f5b034ca4bb9c6bb32651c17ab2",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f91af0f_3b9b5718",
+        "filename": "perf/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 10311
+      },
+      "writtenOn": "2018-01-09T23:00:00Z",
+      "side": 1,
+      "message": "Are there any variables besides PATH that should be set?",
+      "range": {
+        "startLine": 23,
+        "startChar": 7,
+        "endLine": 23,
+        "endChar": 28
+      },
+      "revId": "aec9c02c38945f5b034ca4bb9c6bb32651c17ab2",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f91af0f_5baadb18",
+        "filename": "perf/monasca_query_test.jmx",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 10311
+      },
+      "writtenOn": "2018-01-09T23:00:00Z",
+      "side": 1,
+      "message": "Is this ip address something the user should modify?  Would this work out of the box for devstack?  Might consider mentioning this in the README.md",
+      "range": {
+        "startLine": 33,
+        "startChar": 48,
+        "endLine": 33,
+        "endChar": 60
+      },
+      "revId": "aec9c02c38945f5b034ca4bb9c6bb32651c17ab2",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
