@@ -50,6 +50,7 @@ version = version_info.canonical_version_string()
 release = version_info.version_string_with_vcs()
 bug_project = u'863'
 bug_tag = u''
+giturl = u'https://git.openstack.org/cgit/openstack/monasca-api/tree/api-ref/source'  # noqa
 copyright = u'2014-present, OpenStack Foundation'
 author = u'OpenStack Foundation'
 

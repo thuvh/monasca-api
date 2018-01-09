@@ -46,6 +46,7 @@ version = ''
 release = ''
 bug_project = u'863'
 bug_tag = u''
+giturl = u'https://git.openstack.org/cgit/openstack/monasca-api/tree/releasenotes/source'  # noqa
 copyright = u'2014-present, OpenStack Foundation'
 author = u'OpenStack Foundation'
 
