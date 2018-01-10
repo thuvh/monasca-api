@@ -777,7 +777,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
             if group_by:
                 items.extend(group_by)
             if period:
-                items.append("time(" + str(period) + "s)")
+                items.append("time(" + str(period) + "s) fill(none)")
             clause = " group by " + ','.join(items)
         else:
             clause = ""
