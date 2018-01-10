@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f91af0f_5ae3acd9",
+        "filename": "monasca_tempest_tests/tests/api/test_statistics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-01-10T09:50:21Z",
+      "side": 1,
+      "message": "Please also add this test to monasca-tempest-plugin repository. Tempest tests will be removed from here soon.",
+      "revId": "d7516d44ddbf1aaa583541b7fd42863387014aae",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f91af0f_7ac47040",
+        "filename": "monasca_tempest_tests/tests/api/test_statistics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-01-10T09:50:21Z",
+      "side": 1,
+      "message": "This is an exact copy of test_list_statistics. It would be better to extract own method for it.",
+      "range": {
+        "startLine": 147,
+        "startChar": 8,
+        "endLine": 157,
+        "endChar": 74
+      },
+      "revId": "d7516d44ddbf1aaa583541b7fd42863387014aae",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
