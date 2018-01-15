@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7f96bb07_a1747169",
+        "filename": "monasca_api/tests/test_metrics_repository.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-01-15T12:03:45Z",
+      "side": 1,
+      "message": "I have just noticed that we have similar tests in test_repositories module. Should we move this one there as well?",
+      "revId": "eefc4e47b8d36c3fd40c6446bb319673c801a9ec",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
