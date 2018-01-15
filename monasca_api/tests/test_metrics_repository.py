@@ -83,3 +83,11 @@ class TestMetricsRepo(base.BaseTestCase):
             u'name': u'cpu.utilization',
             u'statistics': [[u'1970-01-01T00:00:00Z', 0.047]]}]
         self.assertEqual(stats_list, expected_result)
+
+    def test_build_group_by_clause(self):
+        group_by = 'hostname,service'
+        period = 300
+        expected_clause = ' group by hostname,service,time(300s) fill(none)'
+
+        clause = self.mr._build_group_by_clause(group_by, period)
+        self.assertEqual(clause, expected_clause)
