@@ -1,0 +1,10 @@
+Code-Review+1: Joe Keen <joe.keen@hpe.com>
+Code-Review+1: James Gu <jgu@suse.com>
+Code-Review+2: Amir Mofakhar <amofakhar@op5.com>
+Workflow+1: Amir Mofakhar <amofakhar@op5.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Wed, 17 Jan 2018 10:55:50 +0000
+Reviewed-on: https://review.openstack.org/533144
+Project: openstack/monasca-api
+Branch: refs/heads/master
