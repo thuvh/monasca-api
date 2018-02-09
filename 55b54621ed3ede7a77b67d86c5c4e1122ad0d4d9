@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3fa0c359_36fdcc6d",
+        "filename": "monasca_api/v2/reference/metrics.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 14517
+      },
+      "writtenOn": "2018-02-09T21:01:09Z",
+      "side": 1,
+      "message": "Do you really want to increment by the total number of metrics in the batch? There may be only one in the batch that is too old or new.",
+      "revId": "55b54621ed3ede7a77b67d86c5c4e1122ad0d4d9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
