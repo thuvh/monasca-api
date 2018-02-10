@@ -1,6 +1,6 @@
 # Copyright 2014 IBM Corp.
 # Copyright 2016-2017 FUJITSU LIMITED
-# (C) Copyright 2016-2017 Hewlett Packard Enterprise Development LP
+# (C) Copyright 2016-2018 Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -17,6 +17,8 @@
 from oslo_config import cfg
 
 _DEFAULT_NOTIF_PERIODS = [0, 60]
+TWO_MINUTES = 2 * 60 * 1000
+TWO_WEEKS = 2 * 7 * 24 * 60 * 60 * 1000
 
 global_opts = [
     cfg.StrOpt('region', sample_default='RegionOne',
@@ -27,6 +29,18 @@ Region that API is running in
                 item_type=int,
                 help='''
 Valid periods for notification methods
+'''),
+    cfg.BoolOpt('should_validate_metric_timestamp_range', default=False,
+                help='''
+Valid metric timestamps are in legal range
+'''),
+    cfg.IntOpt('metric_timestamp_seconds_in_future_to_reject', default=TWO_MINUTES,
+               help='''
+The number of seconds in the future where a metric becomes invalid
+'''),
+    cfg.IntOpt('metric_timestamp_seconds_in_past_to_reject', default=TWO_WEEKS,
+               help='''
+The number of seconds in the past where a metric becomes invalid
 ''')
 ]
 
