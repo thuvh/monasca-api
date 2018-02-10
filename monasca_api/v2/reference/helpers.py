@@ -15,6 +15,7 @@
 # under the License.
 
 import datetime
+import time
 
 import falcon
 from oslo_log import log
@@ -763,3 +764,22 @@ def raise_not_found_exception(resource_name, resource_id, tenant_id):
 
 def str_2_bool(s):
     return s.lower() in ("true")
+
+
+def validate_timestamp_range(metrics, should_validate, future_seconds, past_seconds):
+    if not should_validate:
+        return
+    if isinstance(metrics, list):
+        for metric in metrics:
+            _validate_timestamp_range(metric, future_seconds, past_seconds)
+    else:
+        _validate_timestamp_range(metrics, future_seconds, past_seconds)
+
+
+def _validate_timestamp_range(metric, future_seconds, past_seconds):
+    timestamp = metric['timestamp']
+    time_diff = timestamp - time.time() * 1000
+    if time_diff > future_seconds or time_diff < -1 * past_seconds:
+        msg = "timestamp {} is out of legal range".format(timestamp)
+        LOG.exception(msg)
+        raise HTTPUnprocessableEntityError("Unprocessable Entity", str(msg))
