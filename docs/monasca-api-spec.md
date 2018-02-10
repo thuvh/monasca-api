@@ -407,6 +407,9 @@ For an example of how value meta is used, imagine this metric: http_status{url: 
 
 Up to 16 separate key/value pairs of value meta are allowed per measurement. The keys are required and are trimmed of leading and trailing whitespace and have a maximum length of 255 characters. The value is a string and value meta (with key, value and '{"":""}' combined) has a maximum length of 2048 characters. The value can be an empty string. Whitespace is not trimmed from the values.
 
+### Timestamp
+The timestamp associated with a measurement is measured in milliseconds since the epoch. A measurement can be rejected if it is too far in the future or past. This behavior defaults to off in the python implementation, and two minutes in the future and two weeks in the past in the Java implementation. It can be switched on by specifying should_validate_metric_timestamp_range to true in the monasca api configuration file. The amount of time in the future can be configured by the variable metric_timestamp_seconds_in_future_to_reject and the amount of time in the past can be configured by the variable metric_timestamp_seconds_in_past_to_reject in the monasca api configuration file. Note that the Monasca Agent caches measurements, so make sure and allow enough time in the past before rejecting.
+
 ## Alarm Definitions and Alarms
 
 Alarm Definitions are policies that specify how Alarms should be created. By using Alarm Definitions, the user doesn't have to create individual alarms for each system or service. Instead, a small number of Alarm Definitions can be managed and Monasca will create Alarms for systems and services as they appear.
@@ -3591,7 +3594,7 @@ Returns a JSON object with a 'links' array of links and an 'elements' array of a
 ___
 
 # License
-(C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
+(C) Copyright 2014-2016,2018 Hewlett Packard Enterprise Development LP
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

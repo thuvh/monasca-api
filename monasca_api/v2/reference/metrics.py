@@ -1,4 +1,4 @@
-# (C) Copyright 2014-2017 Hewlett Packard Enterprise Development LP
+# (C) Copyright 2014-2018 Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -52,6 +52,12 @@ class Metrics(metrics_api_v2.MetricsV2API):
         try:
             super(Metrics, self).__init__()
             self._region = cfg.CONF.region
+            self._should_validate_timestamp_range = (
+                cfg.CONF.should_validate_metric_timestamp_range)
+            self._future_seconds = (
+                cfg.CONF.metric_timestamp_seconds_in_future_to_reject)
+            self._past_seconds = (
+                cfg.CONF.metric_timestamp_seconds_in_past_to_reject)
             self._delegate_authorized_roles = (
                 cfg.CONF.security.delegate_authorized_roles)
             self._get_metrics_authorized_roles = (
@@ -103,6 +109,8 @@ class Metrics(metrics_api_v2.MetricsV2API):
             LOG.exception(ex)
             raise HTTPUnprocessableEntityError("Unprocessable Entity", str(ex))
 
+        helpers.validate_timestamp_range(metrics, self._should_validate_timestamp_range,
+                                         self._future_seconds, self._past_seconds)
         tenant_id = (
             helpers.get_x_tenant_or_tenant_id(req,
                                               self._delegate_authorized_roles))
