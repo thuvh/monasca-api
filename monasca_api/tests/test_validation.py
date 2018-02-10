@@ -16,6 +16,7 @@
 
 import falcon
 import mock
+import time
 
 from monasca_api.tests import base
 import monasca_api.v2.common.exceptions as common_exceptions
@@ -24,6 +25,9 @@ import monasca_api.v2.common.schemas.exceptions as schemas_exceptions
 import monasca_api.v2.common.schemas.notifications_request_body_schema as schemas_notifications
 import monasca_api.v2.common.validation as validation
 import monasca_api.v2.reference.helpers as helpers
+
+ONE_MINUTE = 60 * 1000
+ONE_WEEK = 7 * 24 * 60 * 60 * 1000
 
 
 class TestStateValidation(base.BaseTestCase):
@@ -396,3 +400,43 @@ class TestAlarmDefinitionValidation(base.BaseTestCase):
 
     def test_validation_invalid_actions_enabled(self):
         self._ensure_fails_with_new_value("actions_enabled", 42)
+
+
+class TestValidateTimestampRange(base.BaseTestCase):
+
+    def test_validate_timestamp_range(self):
+        timestamp = time.time() * 1000
+        metric = {'timestamp': timestamp}
+        try:
+            helpers.validate_timestamp_range(metric, should_validate=True,
+                                             future_seconds=ONE_MINUTE,
+                                             past_seconds=ONE_WEEK)
+        except common_exceptions.HTTPUnprocessableEntityError:
+            self.fail("Test validate timestamp failed.")
+
+    def test_validate_timestamp_range_invalid_future(self):
+        timestamp = time.time() * 1000 + ONE_MINUTE * 2
+        metric = {'timestamp': timestamp}
+        self.assertRaises(common_exceptions.HTTPUnprocessableEntityError,
+                          helpers.validate_timestamp_range,
+                          metric, should_validate=True,
+                          future_seconds=ONE_MINUTE, past_seconds=ONE_WEEK)
+
+    def test_validate_timestamp_range_invalid_past(self):
+        timestamp = time.time() * 1000 - ONE_WEEK
+        metric = {'timestamp': timestamp}
+        self.assertRaises(common_exceptions.HTTPUnprocessableEntityError,
+                          helpers.validate_timestamp_range,
+                          metric, should_validate=True,
+                          future_seconds=ONE_MINUTE, past_seconds=ONE_WEEK)
+
+    def test_validate_timestamp_range_turn_off(self):
+        timestamp = time.time() * 1000 + ONE_MINUTE * 2  # Invalid future time
+        metric = {'timestamp': timestamp}
+        try:
+            helpers.validate_timestamp_range(metric, should_validate=False,
+                                             future_seconds=ONE_MINUTE,
+                                             past_seconds=ONE_WEEK)
+        except common_exceptions.HTTPUnprocessableEntityError:
+            self.fail("Test validate timestamp failed. "
+                      "Configured flag should skip validation")
