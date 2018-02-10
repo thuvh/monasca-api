@@ -12,6 +12,8 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+import time
+
 import falcon
 from monasca_common.simport import simport
 from monasca_common.validation import metrics as metric_validation
@@ -28,6 +30,8 @@ from monasca_api.v2.reference import helpers
 from monasca_api.v2.reference import resource
 
 LOG = log.getLogger(__name__)
+TWO_MINUTES = 2 * 60 * 1000
+TWO_WEEKS = 2 * 7 * 24 * 60 * 60 * 1000
 
 
 def get_merge_metrics_flag(req):
@@ -52,6 +56,8 @@ class Metrics(metrics_api_v2.MetricsV2API):
         try:
             super(Metrics, self).__init__()
             self._region = cfg.CONF.region
+            self._should_validate_timestamp_range = (
+                cfg.CONF.valid_metric_timestamp_range)
             self._delegate_authorized_roles = (
                 cfg.CONF.security.delegate_authorized_roles)
             self._get_metrics_authorized_roles = (
@@ -103,6 +109,7 @@ class Metrics(metrics_api_v2.MetricsV2API):
             LOG.exception(ex)
             raise HTTPUnprocessableEntityError("Unprocessable Entity", str(ex))
 
+        self._validate_timestamp_range(metrics)
         tenant_id = (
             helpers.get_x_tenant_or_tenant_id(req,
                                               self._delegate_authorized_roles))
@@ -131,6 +138,17 @@ class Metrics(metrics_api_v2.MetricsV2API):
                                     start_timestamp, end_timestamp)
         res.body = helpers.to_json(result)
         res.status = falcon.HTTP_200
+
+    def _validate_timestamp_range(self, metrics):
+        if not self._should_validate_timestamp_range:
+            return
+        for metric in metrics:
+            timestamp = metric['timestamp']
+            time_diff = timestamp - time.time() * 1000
+            if time_diff > TWO_MINUTES or time_diff < -TWO_WEEKS:
+                msg = "timestamp {} is out of legal range".format(timestamp)
+                LOG.exception(msg)
+                raise HTTPUnprocessableEntityError("Unprocessable Entity", str(msg))
 
 
 class MetricsMeasurements(metrics_api_v2.MetricsMeasurementsV2API):

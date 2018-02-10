@@ -27,6 +27,11 @@ Region that API is running in
                 item_type=int,
                 help='''
 Valid periods for notification methods
+'''),
+    cfg.ListOpt('valid_metric_timestamp_range', default=False,
+                item_type=bool,
+                help='''
+Valid metric timestamps are in legal range
 ''')
 ]
 
