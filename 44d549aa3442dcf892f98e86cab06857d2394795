@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3fa0c359_940a46cf",
+        "filename": "monasca_api/tests/test_validation_helpers.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 26733
+      },
+      "writtenOn": "2018-02-14T09:20:09Z",
+      "side": 1,
+      "message": "All helpers validation test cases are implemented in test_validation.py.\nIt is better not to have a separate file for each helper validation.\nIn my opinion, it is better to move whole TestValidateTimestampRange into test_validation.py",
+      "revId": "44d549aa3442dcf892f98e86cab06857d2394795",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3fa0c359_d48a0e62",
+        "filename": "monasca_api/tests/test_validation_helpers.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 26733
+      },
+      "writtenOn": "2018-02-14T09:20:09Z",
+      "side": 1,
+      "message": "using assertRaise makes it more clear and no need for exception handler in the test:\nself.assertRaises(HTTPUnprocessableEntityError,\n                             helpers.validate_timestamp_range,\n                             metric,\n                             should_validate\u003dTrue,\n                             future_seconds\u003dONE_MINUTE,\n                             past_seconds\u003dONE_WEEK)",
+      "revId": "44d549aa3442dcf892f98e86cab06857d2394795",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
