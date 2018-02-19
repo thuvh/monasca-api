@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3fa0c359_173b31c8",
+        "filename": "devstack/settings",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2018-02-19T12:14:11Z",
+      "side": 1,
+      "message": "There is no `stable/queens` branch:\nhttps://github.com/openstack/monasca-grafana-datasource/branches",
+      "revId": "4bff8edc5bb8a4713ef297d201a77fe52bd93d3c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
