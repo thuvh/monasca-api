@@ -1,0 +1,8 @@
+Code-Review+2: Dobroslaw Zybort <dobroslaw.zybort@ts.fujitsu.com>
+Workflow+1: Amir Mofakhar <amofakhar@op5.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Wed, 21 Feb 2018 13:17:30 +0000
+Reviewed-on: https://review.openstack.org/542841
+Project: openstack/monasca-api
+Branch: refs/heads/stable/queens
