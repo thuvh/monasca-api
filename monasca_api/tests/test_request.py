@@ -1,4 +1,5 @@
 # Copyright 2016-2017 FUJITSU LIMITED
+# Copyright 2018 OP5 AB
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -20,6 +21,8 @@ from monasca_api.v2.common import exceptions
 
 
 class TestRequest(base.BaseApiTestCase):
+    def setUp(self):
+        super(TestRequest, self).setUp()
 
     def test_use_context_from_request(self):
         req = request.Request(
@@ -38,6 +41,19 @@ class TestRequest(base.BaseApiTestCase):
         self.assertEqual('222', req.user_id)
         self.assertEqual('333', req.project_id)
         self.assertEqual(['terminator', 'predator'], req.roles)
+
+    def test_check_is_monasca_user_from_request(self):
+        req = request.Request(
+            self.create_environ(
+                path='/',
+                headers={
+                    'X_USER_ID': '2222',
+                    'X_PPROJECT_ID': '3333',
+                    'X_ROLES': 'monasca_user,burger'
+                }
+            )
+        )
+        self.assertTrue(req.is_monasca_user)
 
 
 class TestRequestLimit(base.BaseApiTestCase):
