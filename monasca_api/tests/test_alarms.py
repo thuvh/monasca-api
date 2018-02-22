@@ -2,6 +2,7 @@
 # Copyright 2015 Cray Inc.
 # (C) Copyright 2015,2017 Hewlett Packard Enterprise Development LP
 # Copyright 2016-2017 FUJITSU LIMITED
+# Copyright 2018 OP5 AB
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -192,7 +193,6 @@ class TestAlarmsStateHistory(AlarmTestBase):
                 'X-Roles': CONF.security.default_authorized_roles[0],
                 'X-Tenant-Id': TENANT_ID,
             })
-
         self.assertEqual(self.srmock.status, falcon.HTTP_200)
         self.assertThat(response, RESTResponseEquals(expected_elements))
 
