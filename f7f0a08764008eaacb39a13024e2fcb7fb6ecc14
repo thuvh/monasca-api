@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff6b8bd7_14c61369",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-03-06T15:15:52Z",
+      "side": 1,
+      "message": "Please add empty line.",
+      "revId": "f7f0a08764008eaacb39a13024e2fcb7fb6ecc14",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
