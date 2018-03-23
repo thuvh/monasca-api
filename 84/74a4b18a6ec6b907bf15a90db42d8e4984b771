@@ -1,0 +1,9 @@
+Code-Review+2: Amir Mofakhar <amofakhar@op5.com>
+Code-Review+2: Joseph Davis <joseph.davis@suse.com>
+Workflow+1: Joseph Davis <joseph.davis@suse.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Fri, 23 Mar 2018 15:34:52 +0000
+Reviewed-on: https://review.openstack.org/555203
+Project: openstack/monasca-api
+Branch: refs/heads/stable/ocata
