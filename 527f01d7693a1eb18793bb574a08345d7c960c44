@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bf659307_c940f338",
+        "filename": "monasca_api/conf/security.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-03-26T15:10:24Z",
+      "side": 1,
+      "message": "The spec assumes leaving these configuration options and using them to generate default policy rules.",
+      "revId": "527f01d7693a1eb18793bb574a08345d7c960c44",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
