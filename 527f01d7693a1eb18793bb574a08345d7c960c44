@@ -16,6 +16,24 @@
       "revId": "527f01d7693a1eb18793bb574a08345d7c960c44",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bf659307_156315b3",
+        "filename": "monasca_api/conf/security.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 12542
+      },
+      "writtenOn": "2018-04-10T16:35:51Z",
+      "side": 1,
+      "message": "That was the idea, yes. I\u0027d expect to see these used in `openstack/monasca-api / monasca_api/policies/__init__.py` to set sensible values for READONLY_RULES, AGENT_ROLES, DELEGATE_ROLES, etc. - right now these are static...\n\nWhile there is a case to be made for configuring these through a proper policy.json override, I\u0027d rather not break this for people who used to configure a non-standard role name through monasca-api configuration. For they will get sudden, unexpected 401s that way (if we really must we can fade these settings out through the usual two release deprecate-then-remove cycle at some stage, but let\u0027s not be sudden about it). Can you  retain these settings and use them to populate READONLY_RULES and the like?",
+      "parentUuid": "bf659307_c940f338",
+      "revId": "527f01d7693a1eb18793bb574a08345d7c960c44",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
