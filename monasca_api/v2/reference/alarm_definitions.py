@@ -653,7 +653,7 @@ def get_query_alarm_definition_description(alarm_definition,
 def get_query_alarm_definition_severity(alarm_definition, return_none=False):
     if 'severity' in alarm_definition:
         severity = alarm_definition['severity']
-        severity = severity.decode('utf8').upper()
+        severity = severity.decode('utf8').upper() if six.PY2 else severity.upper()
         if severity not in ['LOW', 'MEDIUM', 'HIGH', 'CRITICAL']:
             raise HTTPUnprocessableEntityError('Unprocessable Entity', 'Invalid severity')
         return severity
@@ -733,7 +733,8 @@ def get_comma_separated_str_as_list(comma_separated_str):
     if not comma_separated_str:
         return []
     else:
-        return comma_separated_str.decode('utf8').split(',')
+        decoded_str = comma_separated_str.decode('utf8') if six.PY2 else comma_separated_str
+        return decoded_str.split(',')
 
 
 def is_definition_deterministic(expression):
