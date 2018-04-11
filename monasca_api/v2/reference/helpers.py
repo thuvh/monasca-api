@@ -366,7 +366,7 @@ def paginate(resource, uri, limit):
     else:
 
         resource = {u'links': ([{u'rel': u'self',
-                                 u'href': self_link.decode('utf8')}]),
+                                 u'href': self_link.decode('utf8') if six.PY2 else self_link}]),
                     u'elements': resource}
 
     return resource

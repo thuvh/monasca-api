@@ -12,6 +12,8 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+import six
+
 
 class SubAlarmDefinition(object):
     """Holds sub alarm definition
@@ -99,7 +101,7 @@ class SubAlarmDefinition(object):
         if self.periods:
             result += " times {}".format(str(self.periods).encode('utf8'))
 
-        return result.decode('utf8')
+        return result.decode('utf8') if six.PY2 else result
 
     def __hash__(self):
 
