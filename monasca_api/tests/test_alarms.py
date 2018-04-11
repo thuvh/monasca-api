@@ -125,7 +125,7 @@ class RESTResponseEquals(object):
         if len(actual) != 1:
             return matchers.Mismatch("Response contains <> 1 item: %r" % actual)
 
-        response_data = json.loads(actual[0])
+        response_data = json.loads(actual[0].decode('utf-8'))
 
         if u"links" in response_data:
             del response_data[u"links"]
@@ -252,15 +252,20 @@ class TestAlarmDefinition(AlarmTestBase):
         return_value.get_alarm_definitions.return_value = []
         return_value.create_alarm_definition.return_value = u"00000001-0001-0001-0001-000000000001"
 
-        valid_expressions = [
-            "max(-_.千幸福的笑脸{घोड़ा=馬,  "
-            "dn2=dv2,千幸福的笑脸घ=千幸福的笑脸घ}) gte 100 "
-            "times 3 && "
-            "(min(ເຮືອນ{dn3=dv3,家=дом}) < 10 or sum(biz{dn5=dv5}) >99 and "
-            "count(fizzle) lt 0or count(baz) > 1)".decode('utf8'),
+        def decode_msg(msg):
+            return msg.decode('utf-8') if six.PY2 else msg
 
-            "max(foo{hostname=mini-mon,千=千}, 120) > 100 and (max(bar)>100 "
-            " or max(biz)>100)".decode('utf8'),
+        valid_expressions = [
+            decode_msg(
+                "max(-_.千幸福的笑脸{घोड़ा=馬,  "
+                "dn2=dv2,千幸福的笑脸घ=千幸福的笑脸घ}) gte 100 "
+                "times 3 && "
+                "(min(ເຮືອນ{dn3=dv3,家=дом}) < 10 or sum(biz{dn5=dv5}) >99 and "
+                "count(fizzle) lt 0or count(baz) > 1)"),
+
+            decode_msg(
+                "max(foo{hostname=mini-mon,千=千}, 120) > 100 and (max(bar)>100 "
+                " or max(biz)>100)"),
 
             "max(foo)>=100",
 
@@ -404,7 +409,7 @@ class TestAlarmDefinition(AlarmTestBase):
                                        body=json.dumps(alarm_def))
 
         self.assertEqual(self.srmock.status, falcon.HTTP_200)
-        result_def = json.loads(result[0])
+        result_def = json.loads(result[0].decode('utf-8'))
         self.assertEqual(result_def, expected_def)
 
     def test_alarm_definition_patch_no_id(self):
@@ -509,7 +514,7 @@ class TestAlarmDefinition(AlarmTestBase):
                                        body=json.dumps(alarm_def))
 
         self.assertEqual(self.srmock.status, falcon.HTTP_200)
-        result_def = json.loads(result[0])
+        result_def = json.loads(result[0].decode('utf-8'))
         self.assertEqual(result_def, expected_def)
         # If the alarm-definition-updated event does not have all of the
         # fields set, the Threshold Engine will get confused. For example,
@@ -518,7 +523,13 @@ class TestAlarmDefinition(AlarmTestBase):
         # create a notification even actions_enabled is True in the
         # database. So, ensure all fields are set correctly
         ((_, event), _) = self._send_event.call_args
-        expr = u'max(test.metric{hostname=host}, 60) gte 1 times 1'
+        expr = '{}({}{{{}}}, {}) {} {} times {}'.format(b'max',
+                                                        b'test.metric',
+                                                        b'hostname=host',
+                                                        b'60',
+                                                        b'gte',
+                                                        b'1',
+                                                        b'1')
         sub_expression = {'11111': {u'expression': expr,
                                     u'function': 'max',
                                     u'metricDefinition': {
@@ -619,7 +630,7 @@ class TestAlarmDefinition(AlarmTestBase):
                                        body=json.dumps(alarm_def))
 
         self.assertEqual(self.srmock.status, falcon.HTTP_200)
-        result_def = json.loads(result[0])
+        result_def = json.loads(result[0].decode('utf-8'))
         self.assertEqual(result_def, expected_def)
 
         for key, value in alarm_def.items():

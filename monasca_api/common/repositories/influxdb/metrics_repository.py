@@ -876,16 +876,17 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
             if 'values' in result.raw['series'][0]:
 
                 for point in result.raw['series'][0]['values']:
-                    alarm_point = {u'timestamp': point[0],
-                                   u'alarm_id': point[1],
-                                   u'metrics': rest_utils.from_json(point[2]),
-                                   u'new_state': point[3],
-                                   u'old_state': point[4],
-                                   u'reason': point[5],
-                                   u'reason_data': point[6],
-                                   u'sub_alarms': rest_utils.from_json(point[7]),
+                    p = list(point)
+                    alarm_point = {u'timestamp': p[0],
+                                   u'alarm_id': p[1],
+                                   u'metrics': rest_utils.from_json(p[2]),
+                                   u'new_state': p[3],
+                                   u'old_state': p[4],
+                                   u'reason': p[5],
+                                   u'reason_data': p[6],
+                                   u'sub_alarms': rest_utils.from_json(p[7]),
                                    u'id': str(self._get_millis_from_timestamp(
-                                       timeutils.parse_isotime(point[0])))}
+                                       timeutils.parse_isotime(p[0])))}
 
                     # java api formats these during json serialization
                     if alarm_point[u'sub_alarms']:
