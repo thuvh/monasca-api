@@ -759,8 +759,13 @@ function install_monasca-api {
     git_clone $MONASCA_API_REPO $MONASCA_API_DIR $MONASCA_API_BRANCH
     setup_develop $MONASCA_API_DIR
 
-    pip_install_gr gunicorn
     install_monasca_common
+
+    if [[ "${MONASCA_API_DEPLOYMENT_MOD}" == 'uwsgi' ]]; then
+        pip_install uwsgi
+    else
+        pip_install_gr gunicorn
+    fi
 
     if [[ "${MONASCA_METRICS_DB,,}" == 'influxdb' ]]; then
         pip_install_gr influxdb
@@ -854,22 +859,39 @@ function configure_monasca_api_python {
         ln -sf $MONASCA_API_PASTE_INI $MON_API_GATE_CONFIGURATION_DIR
         ln -sf $MONASCA_API_LOGGING_CONF $MON_API_GATE_CONFIGURATION_DIR
 
+        if [ "${MONASCA_API_DEPLOYMENT_MOD}" == 'uwsgi' ]; then
+            configure_monasca_api_python_uwsgi
+        fi
+
     fi
+}
+
+function configure_monasca_api_python_uwsgi {
+    rm -rf $MONASCA_API_UWSGI_CONF
+
+    install -m 600 $MONASCA_API_DIR/etc/api-uwsgi.ini $MONASCA_API_UWSGI_CONF
+    write_uwsgi_config "$MONASCA_API_UWSGI_CONF" "$MONASCA_API_BIN_DIR/monasca-api-wsgi" "/metrics"
 }
 
 function start_monasca_api_python {
     if is_service_enabled monasca-api; then
         echo_summary "Starting monasca-api"
 
-        local service_port=$MONASCA_API_SERVICE_PORT
+        local ;=$MONASCA_API_SERVICE_PORT
         local service_protocol=$MONASCA_API_SERVICE_PROTOCOL
         local gunicorn="$MONASCA_API_BIN_DIR/gunicorn"
 
         restart_service memcached
-        run_process "monasca-api" "$gunicorn --paste $MONASCA_API_PASTE_INI"
+        if [ "${MONASCA_API_DEPLOYMENT_MOD}" == 'uwsgi' ]; then
+            service_uri=$service_protocol://$MONASCA_API_SERVICE_HOST/api/v2.0
+            run_process "monasca-api" "$MONASCA_API_BIN_DIR/uwsgi --ini $MONASCA_API_UWSGI_CONF" ""
+        else
+            service_uri=$service_protocol://$MONASCA_API_SERVICE_HOST:$service_port
+            run_process "monasca-api" "$gunicorn --paste $MONASCA_API_PASTE_INI"
+        fi
 
         echo "Waiting for monasca-api to start..."
-        if ! wait_for_service $SERVICE_TIMEOUT $service_protocol://$SERVICE_HOST:$service_port; then
+        if ! wait_for_service $SERVICE_TIMEOUT $service_uri; then
             die $LINENO "monasca-api did not start"
         fi
     fi
@@ -916,6 +938,10 @@ function clean_monasca_api_python {
         apt_get -y purge libpq-dev
     elif is_service_enabled mysql; then
         apt_get -y purge libmysqlclient-dev
+    fi
+
+        if [ "$MONASCA_API_USE_MOD_WSGI" == "uwsgi" ]; then
+            clean_monasca_api_uwsgi
     fi
 
 }
