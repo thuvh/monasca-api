@@ -17,4 +17,9 @@
 
 from monasca_api.api import server
 
-application = server.get_wsgi_app(config_base_path='/etc/monasca')
+
+def main():
+    return server.get_wsgi_app(config_base_path='/etc/monasca')
+
+if __name__ == '__main__' or __name__.startswith('_mod_wsgi'):
+    application = main()
