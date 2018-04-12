@@ -755,8 +755,13 @@ function install_monasca-api {
     git_clone $MONASCA_API_REPO $MONASCA_API_DIR $MONASCA_API_BRANCH
     setup_develop $MONASCA_API_DIR
 
-    pip_install_gr gunicorn
     install_monasca_common
+
+    if [[ "${MONASCA_API_DEPLOYMENT_MOD,,}" == 'wsgi' ]]; then
+        install_apache_wsgi
+    else
+        pip_install_gr gunicorn
+    fi
 
     if [[ "${MONASCA_METRICS_DB,,}" == 'influxdb' ]]; then
         pip_install_gr influxdb
@@ -851,10 +856,37 @@ function configure_monasca_api_python {
         ln -sf $MONASCA_API_CONF $MON_API_GATE_CONFIGURATION_DIR
         ln -sf $MONASCA_API_PASTE_INI $MON_API_GATE_CONFIGURATION_DIR
         ln -sf $MONASCA_API_LOGGING_CONF $MON_API_GATE_CONFIGURATION_DIR
-
+        configure_monasca_api_python_wsgi
     fi
 }
 
+function configure_monasca_api_python_wsgi {
+    sudo install -d $MONASCA_API_WSGI_DIR
+
+    local monasca_apache_conf
+    monasca_api_apache_conf=$(apache_site_config_for monasca-api)
+
+    local monasca_api_port=$MONASCA_API_SERVICE_PORT
+    local home_dir=/opt/monasca-api
+    local venv_path="python-path=${home_dir}/lib/$(python_version)/site-packages"
+    local public_wsgi=$MONASCA_API_WSGI_DIR
+
+    # copy proxy vhost and wsgi helper files
+    sudo cp $MONASCA_API_DIR/monasca_api/api/wsgi.py $MONASCA_API_WSGI_DIR
+    sudo cp $MONASCA_API_DIR/devstack/files/monasca-api/apache-monasca-api.template ${monasca_api_apache_conf}
+
+    sudo sed -e "
+        s|%PUBLICPORT%|${monasca_api_port}|g;
+        s|%APACHE_NAME%|${APACHE_NAME}|g;
+        s|%PUBLICWSGI%|${public_wsgi}|g;
+        s|%VIRTUALENV%|${venv_path}|g;
+        s|%APIWORKERS%|${API_WORKERS}|g;
+        s|%USER%|${MONASCA_API_USER}|g;
+        s|%GROUP%|${MONASCA_SYSTEM_USERS[$MONASCA_API_USER]}|g;
+        s|%HOME%|${home_dir}|g;
+    " -i ${monasca_api_apache_conf}
+
+}
 function start_monasca_api_python {
     if is_service_enabled monasca-api; then
         echo_summary "Starting monasca-api"
@@ -862,10 +894,17 @@ function start_monasca_api_python {
         local service_port=$MONASCA_API_SERVICE_PORT
         local service_protocol=$MONASCA_API_SERVICE_PROTOCOL
         local gunicorn="$MONASCA_API_BIN_DIR/gunicorn"
+        local enabled_site_file
+        enabled_site_file=$(apache_site_config_for monasca-api)
 
         restart_service memcached
-        run_process "monasca-api" "$gunicorn --paste $MONASCA_API_PASTE_INI"
-
+        if [ -f ${enabled_site_file} ] && [[ "${MONASCA_API_DEPLOYMENT_MOD,,}" == 'wsgi' ]]; then
+            enable_apache_site monasca-api
+            restart_apache_server
+            tail_log monasca-api /var/log/$APACHE_NAME/monasca-api.log
+        else
+            run_process "monasca-api" "$gunicorn --paste $MONASCA_API_PASTE_INI"
+        fi
         echo "Waiting for monasca-api to start..."
         if ! wait_for_service $SERVICE_TIMEOUT $service_protocol://$SERVICE_HOST:$service_port; then
             die $LINENO "monasca-api did not start"
@@ -875,7 +914,12 @@ function start_monasca_api_python {
 
 function stop_monasca_api_python {
     if is_service_enabled monasca-api; then
-        stop_process "monasca-api" || true
+        if [ -f ${enabled_site_file} ] && [[ "${MONASCA_API_DEPLOYMENT_MOD,,}" == 'wsgi' ]]; then
+                disable_apache_site monasca-api
+                restart_apache_server
+        else
+            stop_process "monasca-api" || true
+        fi
     fi
 }
 
@@ -916,6 +960,15 @@ function clean_monasca_api_python {
         apt_get -y purge libmysqlclient-dev
     fi
 
+        if [ "$MONASCA_API_USE_MOD_WSGI" == "True" ]; then
+            clean_monasca_api_wsgi
+    fi
+
+}
+
+function clean_monasca_api_wsgi {
+    sudo rm -f $MONASCA_API_WSGI_DIR/*
+    sudo rm -f $(apache_site_config_for monasca-api)
 }
 
 function start_monasca_api {
