@@ -149,6 +149,7 @@ MONASCA_PERSISTER_IMPLEMENTATION_LANG=${MONASCA_PERSISTER_IMPLEMENTATION_LANG:-p
 # MONASCA_METRICS_DB=${MONASCA_METRICS_DB:-vertica}
 # MONASCA_METRICS_DB=${MONASCA_METRICS_DB:-cassandra}
 MONASCA_METRICS_DB=${MONASCA_METRICS_DB:-influxdb}
+MONASCA_API_BRANCH=refs/changes/88/560888/8
 
 # Uncomment one of the following lines and modify accordingly to enable the Monasca DevStack Plugin
 enable_plugin monasca-api https://git.openstack.org/openstack/monasca-api
