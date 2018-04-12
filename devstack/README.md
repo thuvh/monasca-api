@@ -143,6 +143,17 @@ enforce it in following way:
 APACHE_MIRROR=http://www-us.apache.org/dist/
 ```
 
+## Using WSGI
+
+Monasca-api can be deployed with Apache using uwsgi.
+By default monasca-api runs under gunicorn.
+If you wish to use Apache make sure that ```devstack/local.conf```
+contains:
+
+```sh
+MONASCA_API_USE_MOD_WSGI=True
+```
+
 # License
 
 (c) Copyright 2015-2016 Hewlett Packard Enterprise Development Company LP
