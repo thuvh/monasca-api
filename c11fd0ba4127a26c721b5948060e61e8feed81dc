@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f6a8fd7_8d5c287f",
+        "filename": "monasca_api/tests/test_repositories.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-04-18T12:10:13Z",
+      "side": 1,
+      "message": "The fact that you had to change these unit tests indicates that the behavior of the component changed as well. Please note that:\n\nPython 2: type(b\u0027foo\u0027) -\u003e \u003ctype \u0027str\u0027\u003e\nPython 3: type(b\u0027foo\u0027) -\u003e \u003cclass \u0027bytes\u0027\u003e\n\nPlease check if you can use some of ideas from this change https://review.openstack.org/560302",
+      "revId": "c11fd0ba4127a26c721b5948060e61e8feed81dc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
