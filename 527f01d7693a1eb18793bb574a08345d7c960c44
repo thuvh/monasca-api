@@ -34,6 +34,24 @@
       "revId": "527f01d7693a1eb18793bb574a08345d7c960c44",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f6a8fd7_37f3e60c",
+        "filename": "monasca_api/conf/security.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 26733
+      },
+      "writtenOn": "2018-04-18T13:53:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf659307_156315b3",
+      "revId": "527f01d7693a1eb18793bb574a08345d7c960c44",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
