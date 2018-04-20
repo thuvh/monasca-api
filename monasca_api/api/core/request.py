@@ -14,10 +14,10 @@
 
 import falcon
 
+from monasca_common.rest import exceptions
 from oslo_context import context
 
 from monasca_api.common.repositories import constants
-from monasca_api.v2.common import exceptions
 
 _TENANT_ID_PARAM = 'tenant_id'
 """Name of the query-param pointing at project-id (tenant-id)"""
