@@ -13,6 +13,8 @@
 # under the License.
 
 import falcon
+from monasca_common.rest.exceptions import HTTPUnprocessableEntityError
+from monasca_common.rest import utils as rest_utils
 from monasca_common.simport import simport
 from oslo_config import cfg
 from oslo_log import log
@@ -20,7 +22,6 @@ import six
 
 from monasca_api.api import notifications_api_v2
 from monasca_api.common.repositories import exceptions
-from monasca_api.v2.common.exceptions import HTTPUnprocessableEntityError
 from monasca_api.v2.common.schemas import (
     notifications_request_body_schema as schemas_notifications)
 from monasca_api.v2.common.schemas import exceptions as schemas_exceptions
@@ -204,8 +205,8 @@ class Notifications(notifications_api_v2.NotificationsV2API):
 
     @resource.resource_try_catch_block
     def on_post(self, req, res):
-        helpers.validate_json_content_type(req)
-        helpers.validate_authorization(req, self._default_authorized_roles)
+        rest_utils.validate_json_content_type(req)
+        rest_utils.validate_authorization(req, self._default_authorized_roles)
         notification = helpers.from_json(req)
         self._parse_and_validate_notification(notification)
         result = self._create_notification(req.project_id, notification, req.uri)
@@ -215,9 +216,9 @@ class Notifications(notifications_api_v2.NotificationsV2API):
     @resource.resource_try_catch_block
     def on_get(self, req, res, notification_method_id=None):
         if notification_method_id is None:
-            helpers.validate_authorization(req,
-                                           self._get_notifications_authorized_roles)
-            sort_by = helpers.get_query_param(req, 'sort_by', default_val=None)
+            rest_utils.validate_authorization(req,
+                                              self._get_notifications_authorized_roles)
+            sort_by = rest_utils.get_query_param(req, 'sort_by', default_val=None)
             if sort_by is not None:
                 if isinstance(sort_by, six.string_types):
                     sort_by = sort_by.split(',')
@@ -227,7 +228,7 @@ class Notifications(notifications_api_v2.NotificationsV2API):
 
                 validation.validate_sort_by(sort_by, allowed_sort_by)
 
-            offset = helpers.get_query_param(req, 'offset')
+            offset = rest_utils.get_query_param(req, 'offset')
             if offset is not None and not isinstance(offset, int):
                 try:
                     offset = int(offset)
@@ -241,8 +242,8 @@ class Notifications(notifications_api_v2.NotificationsV2API):
             res.body = helpers.to_json(result)
             res.status = falcon.HTTP_200
         else:
-            helpers.validate_authorization(req,
-                                           self._get_notifications_authorized_roles)
+            rest_utils.validate_authorization(req,
+                                              self._get_notifications_authorized_roles)
             result = self._list_notification(req.project_id,
                                              notification_method_id,
                                              req.uri)
@@ -251,14 +252,14 @@ class Notifications(notifications_api_v2.NotificationsV2API):
 
     @resource.resource_try_catch_block
     def on_delete(self, req, res, notification_method_id):
-        helpers.validate_authorization(req, self._default_authorized_roles)
+        rest_utils.validate_authorization(req, self._default_authorized_roles)
         self._delete_notification(req.project_id, notification_method_id)
         res.status = falcon.HTTP_204
 
     @resource.resource_try_catch_block
     def on_put(self, req, res, notification_method_id):
-        helpers.validate_json_content_type(req)
-        helpers.validate_authorization(req, self._default_authorized_roles)
+        rest_utils.validate_json_content_type(req)
+        rest_utils.validate_authorization(req, self._default_authorized_roles)
         notification = helpers.from_json(req)
         self._parse_and_validate_notification(notification, require_all=True)
         result = self._update_notification(notification_method_id, req.project_id,
@@ -268,8 +269,8 @@ class Notifications(notifications_api_v2.NotificationsV2API):
 
     @resource.resource_try_catch_block
     def on_patch(self, req, res, notification_method_id):
-        helpers.validate_json_content_type(req)
-        helpers.validate_authorization(req, self._default_authorized_roles)
+        rest_utils.validate_json_content_type(req)
+        rest_utils.validate_authorization(req, self._default_authorized_roles)
         notification = helpers.from_json(req)
         self._patch_get_notification(req.project_id, notification_method_id, notification)
         self._parse_and_validate_notification(notification, require_all=True)
