@@ -15,6 +15,8 @@
 import re
 
 import falcon
+from monasca_common.rest.exceptions import HTTPUnprocessableEntityError
+from monasca_common.rest import utils as rest_utils
 from monasca_common.simport import simport
 from oslo_config import cfg
 from oslo_log import log
@@ -22,7 +24,6 @@ import six
 
 from monasca_api.api import alarms_api_v2
 from monasca_api.common.repositories import exceptions
-from monasca_api.v2.common.exceptions import HTTPUnprocessableEntityError
 from monasca_api.v2.common.schemas import alarm_update_schema as schema_alarm
 from monasca_api.v2.common import validation
 from monasca_api.v2.reference import alarming
@@ -53,7 +54,7 @@ class Alarms(alarms_api_v2.AlarmsV2API,
     @resource.resource_try_catch_block
     def on_put(self, req, res, alarm_id):
 
-        helpers.validate_authorization(req, self._default_authorized_roles)
+        rest_utils.validate_authorization(req, self._default_authorized_roles)
 
         alarm = helpers.from_json(req)
         schema_alarm.validate(alarm)
@@ -80,7 +81,7 @@ class Alarms(alarms_api_v2.AlarmsV2API,
     @resource.resource_try_catch_block
     def on_patch(self, req, res, alarm_id):
 
-        helpers.validate_authorization(req, self._default_authorized_roles)
+        rest_utils.validate_authorization(req, self._default_authorized_roles)
 
         alarm = helpers.from_json(req)
         schema_alarm.validate(alarm)
@@ -106,7 +107,7 @@ class Alarms(alarms_api_v2.AlarmsV2API,
     @resource.resource_try_catch_block
     def on_delete(self, req, res, alarm_id):
 
-        helpers.validate_authorization(req, self._default_authorized_roles)
+        rest_utils.validate_authorization(req, self._default_authorized_roles)
 
         self._alarm_delete(req.project_id, alarm_id)
 
@@ -114,7 +115,7 @@ class Alarms(alarms_api_v2.AlarmsV2API,
 
     @resource.resource_try_catch_block
     def on_get(self, req, res, alarm_id=None):
-        helpers.validate_authorization(req, self._get_alarms_authorized_roles)
+        rest_utils.validate_authorization(req, self._get_alarms_authorized_roles)
 
         if alarm_id is None:
             query_parms = falcon.uri.parse_query_string(req.query_string)
@@ -136,11 +137,11 @@ class Alarms(alarms_api_v2.AlarmsV2API,
                     'state_updated_timestamp', 'updated_timestamp', 'created_timestamp'}
                 validation.validate_sort_by(query_parms['sort_by'], allowed_sort_by)
 
-            query_parms['metric_dimensions'] = helpers.get_query_dimensions(
+            query_parms['metric_dimensions'] = rest_utils.get_query_dimensions(
                 req, 'metric_dimensions')
-            helpers.validate_query_dimensions(query_parms['metric_dimensions'])
+            rest_utils.validate_query_dimensions(query_parms['metric_dimensions'])
 
-            offset = helpers.get_query_param(req, 'offset')
+            offset = rest_utils.get_query_param(req, 'offset')
             if offset is not None and not isinstance(offset, int):
                 try:
                     offset = int(offset)
@@ -371,7 +372,7 @@ class AlarmsCount(alarms_api_v2.AlarmsCountV2API, alarming.Alarming):
 
     @resource.resource_try_catch_block
     def on_get(self, req, res):
-        helpers.validate_authorization(req, self._get_alarms_authorized_roles)
+        rest_utils.validate_authorization(req, self._get_alarms_authorized_roles)
         query_parms = falcon.uri.parse_query_string(req.query_string)
 
         if 'state' in query_parms:
@@ -387,10 +388,10 @@ class AlarmsCount(alarms_api_v2.AlarmsCountV2API, alarming.Alarming):
                 query_parms['group_by'] = query_parms['group_by'].split(',')
             self._validate_group_by(query_parms['group_by'])
 
-        query_parms['metric_dimensions'] = helpers.get_query_dimensions(req, 'metric_dimensions')
-        helpers.validate_query_dimensions(query_parms['metric_dimensions'])
+        query_parms['metric_dimensions'] = rest_utils.get_query_dimensions(req, 'metric_dimensions')
+        rest_utils.validate_query_dimensions(query_parms['metric_dimensions'])
 
-        offset = helpers.get_query_param(req, 'offset')
+        offset = rest_utils.get_query_param(req, 'offset')
 
         if offset is not None:
             try:
@@ -480,12 +481,12 @@ class AlarmsStateHistory(alarms_api_v2.AlarmsStateHistoryV2API,
     def on_get(self, req, res, alarm_id=None):
 
         if alarm_id is None:
-            helpers.validate_authorization(req, self._get_alarms_authorized_roles)
-            start_timestamp = helpers.get_query_starttime_timestamp(req, False)
-            end_timestamp = helpers.get_query_endtime_timestamp(req, False)
-            offset = helpers.get_query_param(req, 'offset')
-            dimensions = helpers.get_query_dimensions(req)
-            helpers.validate_query_dimensions(dimensions)
+            rest_utils.validate_authorization(req, self._get_alarms_authorized_roles)
+            start_timestamp = rest_utils.get_query_starttime_timestamp(req, False)
+            end_timestamp = rest_utils.get_query_endtime_timestamp(req, False)
+            offset = rest_utils.get_query_param(req, 'offset')
+            dimensions = rest_utils.get_query_dimensions(req)
+            rest_utils.validate_query_dimensions(dimensions)
 
             result = self._alarm_history_list(req.project_id, start_timestamp,
                                               end_timestamp, dimensions,
@@ -495,8 +496,8 @@ class AlarmsStateHistory(alarms_api_v2.AlarmsStateHistoryV2API,
             res.status = falcon.HTTP_200
 
         else:
-            helpers.validate_authorization(req, self._get_alarms_authorized_roles)
-            offset = helpers.get_query_param(req, 'offset')
+            rest_utils.validate_authorization(req, self._get_alarms_authorized_roles)
+            offset = rest_utils.get_query_param(req, 'offset')
 
             result = self._alarm_history(req.project_id, alarm_id,
                                          req.uri, offset,

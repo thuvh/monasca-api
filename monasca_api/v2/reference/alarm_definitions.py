@@ -15,6 +15,9 @@
 import re
 
 import falcon
+from monasca_common.rest.exceptions import HTTPBadRequestError
+from monasca_common.rest.exceptions import HTTPUnprocessableEntityError
+from monasca_common.rest import utils as rest_utils
 from monasca_common.simport import simport
 from monasca_common.validation import metrics as metric_validation
 from oslo_config import cfg
@@ -25,8 +28,6 @@ import six
 from monasca_api.api import alarm_definitions_api_v2
 from monasca_api.common.repositories import exceptions
 import monasca_api.expression_parser.alarm_expr_parser
-from monasca_api.v2.common.exceptions import HTTPBadRequestError
-from monasca_api.v2.common.exceptions import HTTPUnprocessableEntityError
 from monasca_api.v2.common.schemas import (
     alarm_definition_request_body_schema as schema_alarms)
 from monasca_api.v2.common import validation
@@ -58,7 +59,7 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
 
     @resource.resource_try_catch_block
     def on_post(self, req, res):
-        helpers.validate_authorization(req, self._default_authorized_roles)
+        rest_utils.validate_authorization(req, self._default_authorized_roles)
 
         alarm_definition = helpers.from_json(req)
 
@@ -88,14 +89,14 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
     @resource.resource_try_catch_block
     def on_get(self, req, res, alarm_definition_id=None):
         if alarm_definition_id is None:
-            helpers.validate_authorization(req, self._get_alarmdefs_authorized_roles)
+            rest_utils.validate_authorization(req, self._get_alarmdefs_authorized_roles)
             name = helpers.get_query_name(req)
-            dimensions = helpers.get_query_dimensions(req)
-            severity = helpers.get_query_param(req, "severity", default_val=None)
+            dimensions = rest_utils.get_query_dimensions(req)
+            severity = rest_utils.get_query_param(req, "severity", default_val=None)
             if severity is not None:
                 validation.validate_severity_query(severity)
                 severity = severity.upper()
-            sort_by = helpers.get_query_param(req, 'sort_by', default_val=None)
+            sort_by = rest_utils.get_query_param(req, 'sort_by', default_val=None)
             if sort_by is not None:
                 if isinstance(sort_by, six.string_types):
                     sort_by = sort_by.split(',')
@@ -105,7 +106,7 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
 
                 validation.validate_sort_by(sort_by, allowed_sort_by)
 
-            offset = helpers.get_query_param(req, 'offset')
+            offset = rest_utils.get_query_param(req, 'offset')
             if offset is not None and not isinstance(offset, int):
                 try:
                     offset = int(offset)
@@ -122,7 +123,7 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
             res.status = falcon.HTTP_200
 
         else:
-            helpers.validate_authorization(req, self._get_alarmdefs_authorized_roles)
+            rest_utils.validate_authorization(req, self._get_alarmdefs_authorized_roles)
 
             result = self._alarm_definition_show(req.project_id,
                                                  alarm_definition_id)
@@ -139,7 +140,7 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
         if not alarm_definition_id:
             raise HTTPBadRequestError('Bad Request', 'Alarm definition ID not provided')
 
-        helpers.validate_authorization(req, self._default_authorized_roles)
+        rest_utils.validate_authorization(req, self._default_authorized_roles)
 
         alarm_definition = helpers.from_json(req)
 
@@ -181,7 +182,7 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
         if not alarm_definition_id:
             raise HTTPBadRequestError('Bad Request', 'Alarm definition ID not provided')
 
-        helpers.validate_authorization(req, self._default_authorized_roles)
+        rest_utils.validate_authorization(req, self._default_authorized_roles)
 
         alarm_definition = helpers.from_json(req)
 
@@ -230,7 +231,7 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
         if not alarm_definition_id:
             raise HTTPBadRequestError('Bad Request', 'Alarm definition ID not provided')
 
-        helpers.validate_authorization(req, self._default_authorized_roles)
+        rest_utils.validate_authorization(req, self._default_authorized_roles)
         self._alarm_definition_delete(req.project_id, alarm_definition_id)
         res.status = falcon.HTTP_204
 

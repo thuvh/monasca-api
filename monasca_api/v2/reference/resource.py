@@ -17,7 +17,7 @@ import falcon
 from oslo_log import log
 
 from monasca_api.common.repositories import exceptions
-from monasca_api.v2.common.exceptions import HTTPUnprocessableEntityError
+from monasca_common.rest.exceptions import HTTPUnprocessableEntityError
 
 LOG = log.getLogger(__name__)
 

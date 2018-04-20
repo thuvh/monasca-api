@@ -14,22 +14,18 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-import datetime
-
 import falcon
 from oslo_log import log
-from oslo_utils import timeutils
-import six
 import six.moves.urllib.parse as urlparse
 
+from monasca_common.rest.exceptions import HTTPUnprocessableEntityError
 from monasca_common.rest import utils as rest_utils
-from monasca_common.validation import metrics as metric_validation
-
-from monasca_api.v2.common.exceptions import HTTPUnprocessableEntityError
 
 LOG = log.getLogger(__name__)
 
 
+# TODO(dszumski): These json helper methods are very similar to code in
+# monasca-log-api and could be factored out to monasca_common.
 def from_json(req):
     """Read the json_msg from the http request body and return them as JSON.
 
@@ -62,81 +58,8 @@ def to_json(data):
         raise
 
 
-def validate_json_content_type(req):
-    if req.content_type not in ['application/json']:
-        raise falcon.HTTPBadRequest('Bad request', 'Bad content type. Must be '
-                                                   'application/json')
-
-
-def validate_authorization(req, authorized_roles):
-    """Validates whether one or more X-ROLES in the HTTP header is authorized.
-
-    If authorization fails, 401 is thrown with appropriate description.
-    Additionally response specifies 'WWW-Authenticate' header with 'Token'
-    value challenging the client to use different token (the one with
-    different set of roles).
-
-    :param req: HTTP request object. Must contain "X-ROLES" in the HTTP
-                request header.
-    :param authorized_roles: List of authorized roles to check against.
-
-    :raises falcon.HTTPUnauthorized
-    """
-    roles = req.roles
-    challenge = 'Token'
-    if not roles:
-        raise falcon.HTTPUnauthorized('Forbidden',
-                                      'Tenant does not have any roles',
-                                      challenge)
-    roles = roles.split(',') if isinstance(roles, six.string_types) else roles
-    authorized_roles_lower = [r.lower() for r in authorized_roles]
-    for role in roles:
-        role = role.lower()
-        if role in authorized_roles_lower:
-            return
-    raise falcon.HTTPUnauthorized('Forbidden',
-                                  'Tenant ID is missing a required role to '
-                                  'access this service',
-                                  challenge)
-
-
-def get_x_tenant_or_tenant_id(req, delegate_authorized_roles):
-    """Evaluates whether the tenant ID or cross tenant ID should be returned.
-
-    :param req: HTTP request object.
-    :param delegate_authorized_roles: List of authorized roles that have
-                                      delegate privileges.
-
-    :returns: Returns the cross tenant or tenant ID.
-    """
-    if any(x in set(delegate_authorized_roles) for x in req.roles):
-        params = falcon.uri.parse_query_string(req.query_string)
-        if 'tenant_id' in params:
-            tenant_id = params['tenant_id']
-            return tenant_id
-    return req.project_id
-
-
-def get_query_param(req, param_name, required=False, default_val=None):
-    try:
-        params = falcon.uri.parse_query_string(req.query_string)
-        if param_name in params:
-            if isinstance(params[param_name], list):
-                param_val = params[param_name][0].decode('utf8')
-            else:
-                param_val = params[param_name].decode('utf8')
-
-            return param_val
-        else:
-            if required:
-                raise Exception("Missing " + param_name)
-            else:
-                return default_val
-    except Exception as ex:
-        LOG.debug(ex)
-        raise HTTPUnprocessableEntityError('Unprocessable Entity', str(ex))
-
-
+# TODO(dszumski): This could be replaced by get_query_param
+# from rest/utils.py in the monasca_common library.
 def get_query_name(req, name_required=False):
     """Returns the query param "name" if supplied.
 
@@ -155,86 +78,6 @@ def get_query_name(req, name_required=False):
     except Exception as ex:
         LOG.debug(ex)
         raise HTTPUnprocessableEntityError('Unprocessable Entity', str(ex))
-
-
-def get_query_dimensions(req, param_key='dimensions'):
-    """Gets and parses the query param dimensions.
-
-    :param req: HTTP request object.
-    :param dimensions_param: param name for dimensions, default='dimensions'
-    :return: Returns the dimensions as a JSON object
-    :raises falcon.HTTPBadRequest: If dimensions are malformed.
-    """
-    try:
-        params = falcon.uri.parse_query_string(req.query_string)
-        dimensions = {}
-        if param_key not in params:
-            return dimensions
-
-        dimensions_param = params[param_key]
-        if isinstance(dimensions_param, six.string_types):
-            dimensions_str_array = dimensions_param.split(',')
-        elif isinstance(dimensions_param, list):
-            dimensions_str_array = []
-            for sublist in dimensions_param:
-                dimensions_str_array.extend(sublist.split(","))
-        else:
-            raise Exception("Error parsing dimensions, unknown format")
-
-        for dimension in dimensions_str_array:
-            dimension_name_value = dimension.split(':', 1)
-            if len(dimension_name_value) == 2:
-                dimensions[dimension_name_value[0]] = dimension_name_value[1]
-            elif len(dimension_name_value) == 1:
-                dimensions[dimension_name_value[0]] = ""
-        return dimensions
-    except Exception as ex:
-        LOG.debug(ex)
-        raise HTTPUnprocessableEntityError('Unprocessable Entity', str(ex))
-
-
-def get_query_starttime_timestamp(req, required=True):
-    try:
-        params = falcon.uri.parse_query_string(req.query_string)
-        if 'start_time' in params:
-            return _convert_time_string(params['start_time'])
-        else:
-            if required:
-                raise Exception("Missing start time")
-            else:
-                return None
-    except Exception as ex:
-        LOG.debug(ex)
-        raise HTTPUnprocessableEntityError('Unprocessable Entity', str(ex))
-
-
-def get_query_endtime_timestamp(req, required=True):
-    try:
-        params = falcon.uri.parse_query_string(req.query_string)
-        if 'end_time' in params:
-            return _convert_time_string(params['end_time'])
-        else:
-            if required:
-                raise Exception("Missing end time")
-            else:
-                return None
-    except Exception as ex:
-        LOG.debug(ex)
-        raise HTTPUnprocessableEntityError('Unprocessable Entity', str(ex))
-
-
-def validate_start_end_timestamps(start_timestamp, end_timestamp=None):
-    if end_timestamp:
-        if not start_timestamp < end_timestamp:
-            raise falcon.HTTPBadRequest('Bad request',
-                                        'start_time must be before end_time')
-
-
-def _convert_time_string(date_time_string):
-    dt = timeutils.parse_isotime(date_time_string)
-    dt = timeutils.normalize_time(dt)
-    timestamp = (dt - datetime.datetime(1970, 1, 1)).total_seconds()
-    return timestamp
 
 
 def get_query_statistics(req):
@@ -288,45 +131,6 @@ def get_query_group_by(req):
             return group_by
         else:
             return None
-    except Exception as ex:
-        LOG.debug(ex)
-        raise HTTPUnprocessableEntityError('Unprocessable Entity', str(ex))
-
-
-def validate_query_name(name):
-    """Validates the query param name.
-
-    :param name: Query param name.
-    :raises falcon.HTTPBadRequest: If name is not valid.
-    """
-    if not name:
-        return
-    try:
-        metric_validation.validate_name(name)
-    except Exception as ex:
-        LOG.debug(ex)
-        raise HTTPUnprocessableEntityError('Unprocessable Entity', str(ex))
-
-
-def validate_query_dimensions(dimensions):
-    """Validates the query param dimensions.
-
-    :param dimensions: Query param dimensions.
-    :raises falcon.HTTPBadRequest: If dimensions are not valid.
-    """
-    try:
-
-        for key, value in dimensions.items():
-            if key.startswith('_'):
-                raise Exception("Dimension key {} may not start with '_'".format(key))
-            metric_validation.validate_dimension_key(key)
-            if value:
-                if '|' in value:
-                    values = value.split('|')
-                    for v in values:
-                        metric_validation.validate_dimension_value(key, v)
-                else:
-                    metric_validation.validate_dimension_value(key, value)
     except Exception as ex:
         LOG.debug(ex)
         raise HTTPUnprocessableEntityError('Unprocessable Entity', str(ex))
