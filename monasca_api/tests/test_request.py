@@ -14,9 +14,10 @@
 
 from mock import mock
 
+from monasca_common.rest import exceptions
+
 from monasca_api.api.core import request
 from monasca_api.tests import base
-from monasca_api.v2.common import exceptions
 
 
 class TestRequest(base.BaseApiTestCase):

@@ -14,16 +14,13 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-import falcon
-import mock
+from monasca_common.rest import exceptions as common_exceptions
 
 from monasca_api.tests import base
-import monasca_api.v2.common.exceptions as common_exceptions
 import monasca_api.v2.common.schemas.alarm_definition_request_body_schema as schemas_alarm_defs
 import monasca_api.v2.common.schemas.exceptions as schemas_exceptions
 import monasca_api.v2.common.schemas.notifications_request_body_schema as schemas_notifications
 import monasca_api.v2.common.validation as validation
-import monasca_api.v2.reference.helpers as helpers
 
 
 class TestStateValidation(base.BaseTestCase):
@@ -70,115 +67,6 @@ class TestSeverityValidation(base.BaseTestCase):
                           validation.validate_severity_query,
                           '|'.join([self.VALID_SEVERITIES[0], 'BOGUS']))
 
-
-class TestRoleValidation(base.BaseTestCase):
-
-    def test_role_valid(self):
-        req_roles = 'role0', 'rOlE1'
-        authorized_roles = ['RolE1', 'Role2']
-
-        req = mock.Mock()
-        req.roles = req_roles
-
-        helpers.validate_authorization(req, authorized_roles)
-
-    def test_role_invalid(self):
-        req_roles = 'role2', 'role3'
-        authorized_roles = ['role0', 'role1']
-
-        req = mock.Mock()
-        req.roles = req_roles
-
-        self.assertRaises(
-            falcon.HTTPUnauthorized,
-            helpers.validate_authorization, req, authorized_roles)
-
-    def test_empty_role_header(self):
-        req_roles = []
-        authorized_roles = ['Role1', 'Role2']
-
-        req = mock.Mock()
-        req.roles = req_roles
-
-        self.assertRaises(
-            falcon.HTTPUnauthorized,
-            helpers.validate_authorization, req, authorized_roles)
-
-    def test_no_role_header(self):
-        req_roles = None
-        authorized_roles = ['Role1', 'Role2']
-
-        req = mock.Mock()
-        req.roles = req_roles
-
-        self.assertRaises(
-            falcon.HTTPUnauthorized,
-            helpers.validate_authorization, req, authorized_roles)
-
-
-class TestTimestampsValidation(base.BaseTestCase):
-
-    def test_valid_timestamps(self):
-        start_time = '2015-01-01T00:00:00Z'
-        end_time = '2015-01-01T00:00:01Z'
-        start_timestamp = helpers._convert_time_string(start_time)
-        end_timestamp = helpers._convert_time_string(end_time)
-
-        try:
-            helpers.validate_start_end_timestamps(start_timestamp,
-                                                  end_timestamp)
-        except:
-            self.fail("shouldn't happen")
-
-    def test_same_timestamps(self):
-        start_time = '2015-01-01T00:00:00Z'
-        end_time = start_time
-        start_timestamp = helpers._convert_time_string(start_time)
-        end_timestamp = helpers._convert_time_string(end_time)
-
-        self.assertRaises(
-            falcon.HTTPBadRequest,
-            helpers.validate_start_end_timestamps,
-            start_timestamp, end_timestamp)
-
-    def test_end_before_than_start(self):
-        start_time = '2015-01-01T00:00:00Z'
-        end_time = '2014-12-31T23:59:59Z'
-        start_timestamp = helpers._convert_time_string(start_time)
-        end_timestamp = helpers._convert_time_string(end_time)
-
-        self.assertRaises(
-            falcon.HTTPBadRequest,
-            helpers.validate_start_end_timestamps,
-            start_timestamp, end_timestamp)
-
-
-class TestConvertTimeString(base.BaseTestCase):
-
-    def test_valid_date_time_string(self):
-        date_time_string = '2015-01-01T00:00:00Z'
-
-        timestamp = helpers._convert_time_string(date_time_string)
-        self.assertEqual(1420070400., timestamp)
-
-    def test_valid_date_time_string_with_mills(self):
-        date_time_string = '2015-01-01T00:00:00.025Z'
-
-        timestamp = helpers._convert_time_string(date_time_string)
-        self.assertEqual(1420070400.025, timestamp)
-
-    def test_valid_date_time_string_with_timezone(self):
-        date_time_string = '2015-01-01T09:00:00+09:00'
-
-        timestamp = helpers._convert_time_string(date_time_string)
-        self.assertEqual(1420070400., timestamp)
-
-    def test_invalid_date_time_string(self):
-        date_time_string = '2015-01-01T00:00:000Z'
-
-        self.assertRaises(
-            ValueError,
-            helpers._convert_time_string, date_time_string)
 
 valid_periods = [0, 60]
 
