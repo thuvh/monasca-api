@@ -13,10 +13,10 @@
 # under the License.
 
 import falcon
+from monasca_common.rest.exceptions import HTTPUnprocessableEntityError
 import six
 
 from monasca_api.api import versions_api
-from monasca_api.v2.common.exceptions import HTTPUnprocessableEntityError
 from monasca_api.v2.reference import helpers
 
 VERSIONS = {

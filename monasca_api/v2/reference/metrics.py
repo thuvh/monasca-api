@@ -13,6 +13,8 @@
 # under the License.
 
 import falcon
+from monasca_common.rest.exceptions import HTTPUnprocessableEntityError
+from monasca_common.rest import utils as rest_utils
 from monasca_common.simport import simport
 from monasca_common.validation import metrics as metric_validation
 from oslo_config import cfg
@@ -23,7 +25,7 @@ from monasca_api.common.messaging import (
     exceptions as message_queue_exceptions)
 from monasca_api.common.messaging.message_formats import (
     metrics as metrics_message)
-from monasca_api.v2.common.exceptions import HTTPUnprocessableEntityError
+
 from monasca_api.v2.reference import helpers
 from monasca_api.v2.reference import resource
 
@@ -37,10 +39,10 @@ def get_merge_metrics_flag(req):
     string that evaluates to True, otherwise True
     '''
 
-    merge_metrics_flag = helpers.get_query_param(req,
-                                                 'merge_metrics',
-                                                 False,
-                                                 False)
+    merge_metrics_flag = rest_utils.get_query_param(req,
+                                                    'merge_metrics',
+                                                    False,
+                                                    False)
     if merge_metrics_flag is not False:
         return helpers.str_2_bool(merge_metrics_flag)
     else:
@@ -93,9 +95,9 @@ class Metrics(metrics_api_v2.MetricsV2API):
 
     @resource.resource_try_catch_block
     def on_post(self, req, res):
-        helpers.validate_json_content_type(req)
-        helpers.validate_authorization(req,
-                                       self._post_metrics_authorized_roles)
+        rest_utils.validate_json_content_type(req)
+        rest_utils.validate_authorization(req,
+                                          self._post_metrics_authorized_roles)
         metrics = helpers.from_json(req)
         try:
             metric_validation.validate(metrics)
@@ -104,8 +106,8 @@ class Metrics(metrics_api_v2.MetricsV2API):
             raise HTTPUnprocessableEntityError("Unprocessable Entity", str(ex))
 
         tenant_id = (
-            helpers.get_x_tenant_or_tenant_id(req,
-                                              self._delegate_authorized_roles))
+            rest_utils.get_x_tenant_or_tenant_id(req,
+                                                 self._delegate_authorized_roles))
         transformed_metrics = metrics_message.transform(
             metrics, tenant_id, self._region)
         self._send_metrics(transformed_metrics)
@@ -113,18 +115,20 @@ class Metrics(metrics_api_v2.MetricsV2API):
 
     @resource.resource_try_catch_block
     def on_get(self, req, res):
-        helpers.validate_authorization(req, self._get_metrics_authorized_roles)
+        rest_utils.validate_authorization(
+            req, self._get_metrics_authorized_roles)
         tenant_id = (
-            helpers.get_x_tenant_or_tenant_id(req,
-                                              self._delegate_authorized_roles))
+            rest_utils.get_x_tenant_or_tenant_id(req,
+                                                 self._delegate_authorized_roles))
         name = helpers.get_query_name(req)
-        helpers.validate_query_name(name)
-        dimensions = helpers.get_query_dimensions(req)
-        helpers.validate_query_dimensions(dimensions)
-        offset = helpers.get_query_param(req, 'offset')
-        start_timestamp = helpers.get_query_starttime_timestamp(req, False)
-        end_timestamp = helpers.get_query_endtime_timestamp(req, False)
-        helpers.validate_start_end_timestamps(start_timestamp, end_timestamp)
+        rest_utils.validate_query_name(name)
+        dimensions = rest_utils.get_query_dimensions(req)
+        rest_utils.validate_query_dimensions(dimensions)
+        offset = rest_utils.get_query_param(req, 'offset')
+        start_timestamp = rest_utils.get_query_starttime_timestamp(req, False)
+        end_timestamp = rest_utils.get_query_endtime_timestamp(req, False)
+        rest_utils.validate_start_end_timestamps(
+            start_timestamp, end_timestamp)
         result = self._list_metrics(tenant_id, name,
                                     dimensions, req.uri,
                                     offset, req.limit,
@@ -156,18 +160,20 @@ class MetricsMeasurements(metrics_api_v2.MetricsMeasurementsV2API):
 
     @resource.resource_try_catch_block
     def on_get(self, req, res):
-        helpers.validate_authorization(req, self._get_metrics_authorized_roles)
+        rest_utils.validate_authorization(
+            req, self._get_metrics_authorized_roles)
         tenant_id = (
-            helpers.get_x_tenant_or_tenant_id(req,
-                                              self._delegate_authorized_roles))
+            rest_utils.get_x_tenant_or_tenant_id(req,
+                                                 self._delegate_authorized_roles))
         name = helpers.get_query_name(req, True)
-        helpers.validate_query_name(name)
-        dimensions = helpers.get_query_dimensions(req)
-        helpers.validate_query_dimensions(dimensions)
-        start_timestamp = helpers.get_query_starttime_timestamp(req)
-        end_timestamp = helpers.get_query_endtime_timestamp(req, False)
-        helpers.validate_start_end_timestamps(start_timestamp, end_timestamp)
-        offset = helpers.get_query_param(req, 'offset')
+        rest_utils.validate_query_name(name)
+        dimensions = rest_utils.get_query_dimensions(req)
+        rest_utils.validate_query_dimensions(dimensions)
+        start_timestamp = rest_utils.get_query_starttime_timestamp(req)
+        end_timestamp = rest_utils.get_query_endtime_timestamp(req, False)
+        rest_utils.validate_start_end_timestamps(
+            start_timestamp, end_timestamp)
+        offset = rest_utils.get_query_param(req, 'offset')
         merge_metrics_flag = get_merge_metrics_flag(req)
         group_by = helpers.get_query_group_by(req)
 
@@ -218,20 +224,22 @@ class MetricsStatistics(metrics_api_v2.MetricsStatisticsV2API):
 
     @resource.resource_try_catch_block
     def on_get(self, req, res):
-        helpers.validate_authorization(req, self._get_metrics_authorized_roles)
+        rest_utils.validate_authorization(
+            req, self._get_metrics_authorized_roles)
         tenant_id = (
-            helpers.get_x_tenant_or_tenant_id(req,
-                                              self._delegate_authorized_roles))
+            rest_utils.get_x_tenant_or_tenant_id(req,
+                                                 self._delegate_authorized_roles))
         name = helpers.get_query_name(req, True)
-        helpers.validate_query_name(name)
-        dimensions = helpers.get_query_dimensions(req)
-        helpers.validate_query_dimensions(dimensions)
-        start_timestamp = helpers.get_query_starttime_timestamp(req)
-        end_timestamp = helpers.get_query_endtime_timestamp(req, False)
-        helpers.validate_start_end_timestamps(start_timestamp, end_timestamp)
+        rest_utils.validate_query_name(name)
+        dimensions = rest_utils.get_query_dimensions(req)
+        rest_utils.validate_query_dimensions(dimensions)
+        start_timestamp = rest_utils.get_query_starttime_timestamp(req)
+        end_timestamp = rest_utils.get_query_endtime_timestamp(req, False)
+        rest_utils.validate_start_end_timestamps(
+            start_timestamp, end_timestamp)
         statistics = helpers.get_query_statistics(req)
         period = helpers.get_query_period(req)
-        offset = helpers.get_query_param(req, 'offset')
+        offset = rest_utils.get_query_param(req, 'offset')
         merge_metrics_flag = get_merge_metrics_flag(req)
         group_by = helpers.get_query_group_by(req)
 
@@ -283,13 +291,14 @@ class MetricsNames(metrics_api_v2.MetricsNamesV2API):
 
     @resource.resource_try_catch_block
     def on_get(self, req, res):
-        helpers.validate_authorization(req, self._get_metrics_authorized_roles)
+        rest_utils.validate_authorization(
+            req, self._get_metrics_authorized_roles)
         tenant_id = (
-            helpers.get_x_tenant_or_tenant_id(req,
-                                              self._delegate_authorized_roles))
-        dimensions = helpers.get_query_dimensions(req)
-        helpers.validate_query_dimensions(dimensions)
-        offset = helpers.get_query_param(req, 'offset')
+            rest_utils.get_x_tenant_or_tenant_id(req,
+                                                 self._delegate_authorized_roles))
+        dimensions = rest_utils.get_query_dimensions(req)
+        rest_utils.validate_query_dimensions(dimensions)
+        offset = rest_utils.get_query_param(req, 'offset')
         result = self._list_metric_names(tenant_id, dimensions,
                                          req.uri, offset, req.limit)
         res.body = helpers.to_json(result)
@@ -320,18 +329,20 @@ class DimensionValues(metrics_api_v2.DimensionValuesV2API):
 
         except Exception as ex:
             LOG.exception(ex)
-            raise falcon.HTTPInternalServerError('Service unavailable', str(ex))
+            raise falcon.HTTPInternalServerError(
+                'Service unavailable', str(ex))
 
     @resource.resource_try_catch_block
     def on_get(self, req, res):
-        helpers.validate_authorization(req, self._get_metrics_authorized_roles)
+        rest_utils.validate_authorization(
+            req, self._get_metrics_authorized_roles)
         tenant_id = (
-            helpers.get_x_tenant_or_tenant_id(req,
-                                              self._delegate_authorized_roles))
-        metric_name = helpers.get_query_param(req, 'metric_name')
-        dimension_name = helpers.get_query_param(req, 'dimension_name',
-                                                 required=True)
-        offset = helpers.get_query_param(req, 'offset')
+            rest_utils.get_x_tenant_or_tenant_id(req,
+                                                 self._delegate_authorized_roles))
+        metric_name = rest_utils.get_query_param(req, 'metric_name')
+        dimension_name = rest_utils.get_query_param(req, 'dimension_name',
+                                                    required=True)
+        offset = rest_utils.get_query_param(req, 'offset')
         result = self._dimension_values(tenant_id, req.uri, metric_name,
                                         dimension_name, offset, req.limit)
         res.body = helpers.to_json(result)
@@ -368,12 +379,13 @@ class DimensionNames(metrics_api_v2.DimensionNamesV2API):
 
     @resource.resource_try_catch_block
     def on_get(self, req, res):
-        helpers.validate_authorization(req, self._get_metrics_authorized_roles)
+        rest_utils.validate_authorization(
+            req, self._get_metrics_authorized_roles)
         tenant_id = (
-            helpers.get_x_tenant_or_tenant_id(req,
-                                              self._delegate_authorized_roles))
-        metric_name = helpers.get_query_param(req, 'metric_name')
-        offset = helpers.get_query_param(req, 'offset')
+            rest_utils.get_x_tenant_or_tenant_id(req,
+                                                 self._delegate_authorized_roles))
+        metric_name = rest_utils.get_query_param(req, 'metric_name')
+        offset = rest_utils.get_query_param(req, 'offset')
         result = self._dimension_names(tenant_id, req.uri, metric_name,
                                        offset, req.limit)
         res.body = helpers.to_json(result)
