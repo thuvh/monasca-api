@@ -189,7 +189,7 @@ class TestAlarmsStateHistory(AlarmTestBase):
         response = self.simulate_request(
             u'/v2.0/alarms/%s/state-history/' % ALARM_HISTORY[u"alarm_id"],
             headers={
-                'X-Roles': 'admin',
+                'X-Roles': CONF.security.default_authorized_roles[0],
                 'X-Tenant-Id': TENANT_ID,
             })
 
@@ -241,7 +241,8 @@ class TestAlarmDefinition(AlarmTestBase):
         }
 
         response = self.simulate_request("/v2.0/alarm-definitions/",
-                                         headers={'X-Roles': 'admin', 'X-Tenant-Id': TENANT_ID},
+                                         headers={'X-Roles': CONF.security.default_authorized_roles[0],
+                                                  'X-Tenant-Id': TENANT_ID},
                                          method="POST",
                                          body=json.dumps(alarm_def))
 
@@ -297,7 +298,8 @@ class TestAlarmDefinition(AlarmTestBase):
             alarm_def[u'expression'] = expression
             expected_data[u'expression'] = expression
             response = self.simulate_request("/v2.0/alarm-definitions/",
-                                             headers={'X-Roles': 'admin', 'X-Tenant-Id': TENANT_ID},
+                                             headers={'X-Roles': CONF.security.default_authorized_roles[0],
+                                                      'X-Tenant-Id': TENANT_ID},
                                              method="POST",
                                              body=json.dumps(alarm_def))
 
@@ -321,7 +323,8 @@ class TestAlarmDefinition(AlarmTestBase):
         for expression in bad_expressions:
             alarm_def[u'expression'] = expression
             self.simulate_request("/v2.0/alarm-definitions/",
-                                  headers={'X-Roles': 'admin', 'X-Tenant-Id': TENANT_ID},
+                                  headers={'X-Roles': CONF.security.default_authorized_roles[0],
+                                           'X-Tenant-Id': TENANT_ID},
                                   method="POST",
                                   body=json.dumps(alarm_def))
 
@@ -400,7 +403,8 @@ class TestAlarmDefinition(AlarmTestBase):
         }
 
         result = self.simulate_request("/v2.0/alarm-definitions/%s" % expected_def[u'id'],
-                                       headers={'X-Roles': 'admin', 'X-Tenant-Id': TENANT_ID},
+                                       headers={'X-Roles': CONF.security.default_authorized_roles[0],
+                                                'X-Tenant-Id': TENANT_ID},
                                        method="PUT",
                                        body=json.dumps(alarm_def))
 
@@ -416,7 +420,7 @@ class TestAlarmDefinition(AlarmTestBase):
         self.simulate_request(
             "/v2.0/alarm-definitions/",
             headers={
-                'X-Roles': 'admin',
+                'X-Roles': CONF.security.default_authorized_roles[0],
                 'X-Tenant-Id': TENANT_ID},
             method="PATCH",
             body=json.dumps(alarm_def))
@@ -431,7 +435,7 @@ class TestAlarmDefinition(AlarmTestBase):
         self.simulate_request(
             "/v2.0/alarm-definitions/",
             headers={
-                'X-Roles': 'admin',
+                'X-Roles': CONF.security.default_authorized_roles[0],
                 'X-Tenant-Id': TENANT_ID},
             method="PUT",
             body=json.dumps(alarm_def))
@@ -443,7 +447,7 @@ class TestAlarmDefinition(AlarmTestBase):
         self.simulate_request(
             "/v2.0/alarm-definitions/",
             headers={
-                'X-Roles': 'admin',
+                'X-Roles': CONF.security.default_authorized_roles[0],
                 'X-Tenant-Id': TENANT_ID},
             method="DELETE")
 
@@ -519,7 +523,8 @@ class TestAlarmDefinition(AlarmTestBase):
         }
 
         result = self.simulate_request("/v2.0/alarm-definitions/%s" % expected_def[u'id'],
-                                       headers={'X-Roles': 'admin', 'X-Tenant-Id': TENANT_ID},
+                                       headers={'X-Roles': CONF.security.default_authorized_roles[0],
+                                                'X-Tenant-Id': TENANT_ID},
                                        method="PATCH",
                                        body=json.dumps(alarm_def))
 
@@ -629,7 +634,8 @@ class TestAlarmDefinition(AlarmTestBase):
         }
 
         result = self.simulate_request("/v2.0/alarm-definitions/%s" % expected_def[u'id'],
-                                       headers={'X-Roles': 'admin', 'X-Tenant-Id': TENANT_ID},
+                                       headers={'X-Roles': CONF.security.default_authorized_roles[0],
+                                                'X-Tenant-Id': TENANT_ID},
                                        method="PUT",
                                        body=json.dumps(alarm_def))
 
@@ -641,7 +647,8 @@ class TestAlarmDefinition(AlarmTestBase):
             del alarm_def[key]
 
             self.simulate_request("/v2.0/alarm-definitions/%s" % expected_def[u'id'],
-                                  headers={'X-Roles': 'admin', 'X-Tenant-Id': TENANT_ID},
+                                  headers={'X-Roles': CONF.security.default_authorized_roles[0],
+                                           'X-Tenant-Id': TENANT_ID},
                                   method="PUT",
                                   body=json.dumps(alarm_def))
             self.assertEqual(self.srmock.status, "422 Unprocessable Entity",
@@ -683,7 +690,7 @@ class TestAlarmDefinition(AlarmTestBase):
         response = self.simulate_request(
             '/v2.0/alarm-definitions/%s' % (expected_data[u'id']),
             headers={
-                'X-Roles': 'admin',
+                'X-Roles': CONF.security.default_authorized_roles[0],
                 'X-Tenant-Id': TENANT_ID,
             })
 
@@ -722,7 +729,7 @@ class TestAlarmDefinition(AlarmTestBase):
         response = self.simulate_request(
             '/v2.0/alarm-definitions/%s' % (expected_data[u'id']),
             headers={
-                'X-Roles': 'admin',
+                'X-Roles': CONF.security.default_authorized_roles[0],
                 'X-Tenant-Id': TENANT_ID,
             })
 
@@ -760,7 +767,7 @@ class TestAlarmDefinition(AlarmTestBase):
         response = self.simulate_request(
             '/v2.0/alarm-definitions/%s' % (expected_data[u'id']),
             headers={
-                'X-Roles': 'admin',
+                'X-Roles': CONF.security.default_authorized_roles[0],
                 'X-Tenant-Id': TENANT_ID,
             }
         )
