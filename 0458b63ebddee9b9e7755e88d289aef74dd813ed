@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f6a8fd7_e1869066",
+        "filename": "monasca_api/common/repositories/sqla/models.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 26702
+      },
+      "writtenOn": "2018-04-24T14:21:01Z",
+      "side": 1,
+      "message": "What is the difference between create_a_model and create_aa_model? Could the name be more specific to which model this function is for?",
+      "revId": "0458b63ebddee9b9e7755e88d289aef74dd813ed",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f6a8fd7_e1a3f0b0",
+        "filename": "monasca_api/db/alembic/versions/00597b5c8325_initial.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 26702
+      },
+      "writtenOn": "2018-04-24T14:21:01Z",
+      "side": 1,
+      "message": "It is difficult to read how many tables are created. Most of the fields names and tables names are defined inline as Strings.  Could those be separated in Constants or a Dictionary for example so as to highlight better the list of tables, and respective columns?",
+      "range": {
+        "startLine": 93,
+        "startChar": 8,
+        "endLine": 93,
+        "endChar": 27
+      },
+      "revId": "0458b63ebddee9b9e7755e88d289aef74dd813ed",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
