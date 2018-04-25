@@ -1,0 +1,11 @@
+Code-Review+2: Witold Bedyk <witold.bedyk@est.fujitsu.com>
+Code-Review+1: Doug Szumski <doug@stackhpc.com>
+Code-Review+1: Nicolas Seyvet <nseyvet@op5.com>
+Code-Review+2: Dobroslaw Zybort <dobroslaw.zybort@ts.fujitsu.com>
+Workflow+1: Dobroslaw Zybort <dobroslaw.zybort@ts.fujitsu.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Wed, 25 Apr 2018 07:34:23 +0000
+Reviewed-on: https://review.openstack.org/563563
+Project: openstack/monasca-api
+Branch: refs/heads/master
