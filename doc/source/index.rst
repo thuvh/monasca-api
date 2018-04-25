@@ -18,34 +18,34 @@
 Welcome to Monasca's documentation!
 ===================================
 
-Monasca is a open-source multi-tenant, highly scalable, performant,
+Monasca is an open-source multi-tenant, highly scalable, performant,
 fault-tolerant monitoring-as-a-service solution that
 integrates with OpenStack. It uses a REST API for high-speed metrics
 processing and querying and has a streaming
 alarm and notification engine.
 
-The developer documentation provided here is continually kept up-to-date
-based on the latest code, and may not represent the state of the project at
-any specific prior release.
-
-.. note:: This is documentation for developers, if you are looking for more
-          general documentation including API, install, operator and user
-          guides see `docs.openstack.org`_
-
-.. _`docs.openstack.org`: https://docs.openstack.org
-
-.. toctree::
-   :maxdepth: 2
-
-   user/index
-   admin/index
-   install/index
-   configuration/index
-   cli/index
-   contributor/index
+For Contributors
+================
 
 .. toctree::
    :maxdepth: 1
 
-   glossary
+   contributor/index
 
+For Operators
+================
+
+Configuration
+-------------
+
+* :doc:`Sample Config Files </configuration/sample>`
+
+.. toctree::
+   :hidden:
+
+   admin/index
+   cli/index
+   configuration/sample
+   glossary
+   install/index
+   user/index
