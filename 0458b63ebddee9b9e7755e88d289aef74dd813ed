@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9f6a8fd7_7436a553",
+        "filename": "monasca_api/common/repositories/sqla/models.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 12542
+      },
+      "writtenOn": "2018-04-25T13:13:32Z",
+      "side": 1,
+      "message": "It certainly could be, but I didn\u0027t create these methods, I merely call them (they are defined below my code). Given how long some of the table names themselves are, the method names would become rather unwieldy...",
+      "parentUuid": "9f6a8fd7_e1869066",
+      "revId": "0458b63ebddee9b9e7755e88d289aef74dd813ed",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f6a8fd7_e1a3f0b0",
         "filename": "monasca_api/db/alembic/versions/00597b5c8325_initial.py",
         "patchSetId": 1
@@ -30,6 +48,30 @@
       "writtenOn": "2018-04-24T14:21:01Z",
       "side": 1,
       "message": "It is difficult to read how many tables are created. Most of the fields names and tables names are defined inline as Strings.  Could those be separated in Constants or a Dictionary for example so as to highlight better the list of tables, and respective columns?",
+      "range": {
+        "startLine": 93,
+        "startChar": 8,
+        "endLine": 93,
+        "endChar": 27
+      },
+      "revId": "0458b63ebddee9b9e7755e88d289aef74dd813ed",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f6a8fd7_147969c6",
+        "filename": "monasca_api/db/alembic/versions/00597b5c8325_initial.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 12542
+      },
+      "writtenOn": "2018-04-25T13:13:32Z",
+      "side": 1,
+      "message": "It would be possible to separate some things out, but then it would be even harder to read since you\u0027d need to scroll back and forth a lot to find all the information being used for a table.\n\nFor a quick overview of what is being created you can either grep the file for create_table or look at the `downgrade()` methods where all the tables being created are simply being dropped (since `downgrade()` performs the opposite operation of the migration in question).",
+      "parentUuid": "9f6a8fd7_e1a3f0b0",
       "range": {
         "startLine": 93,
         "startChar": 8,
