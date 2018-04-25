@@ -20,6 +20,8 @@
       - openstack/monasca-tempest-plugin
     vars:
       database: mysql
+    irrelevant-files:
+      - ^doc/.*$
 
 - job:
     name: monasca-tempest-python-influxdb
