@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f6a8fd7_9117aca4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 19
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-04-26T14:48:48Z",
+      "side": 1,
+      "message": "We already have story [1] for this.\n\n[1] https://storyboard.openstack.org/#!/story/2001464",
+      "range": {
+        "startLine": 9,
+        "startChar": 7,
+        "endLine": 9,
+        "endChar": 14
+      },
+      "revId": "3c4d94b652698f2493da00f69fb0a2addc1c41d2",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
