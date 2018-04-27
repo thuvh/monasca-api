@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f6a8fd7_933c78c0",
+        "filename": "monasca_api/conf/security.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-04-27T14:58:18Z",
+      "side": 1,
+      "message": "Is it correct?",
+      "range": {
+        "startLine": 20,
+        "startChar": 47,
+        "endLine": 20,
+        "endChar": 51
+      },
+      "revId": "7456faa8d4a20f130aec9a8ec933574bd085765d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
