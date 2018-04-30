@@ -1,0 +1,279 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f6a8fd7_04ba49dd",
+        "filename": "monasca_api/db/alembic.ini",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2018-04-30T10:53:00Z",
+      "side": 1,
+      "message": "I noticed Neutron puts this in a migration sub-folder. Should we structure this in a similar way Eg.\n\nhttps://github.com/openstack/neutron/blob/master/neutron/db/migration/alembic.ini",
+      "revId": "6b6d43d1549e06543900331ccea693752fe52984",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f6a8fd7_242d0d46",
+        "filename": "monasca_api/db/alembic.ini",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2018-04-30T10:53:00Z",
+      "side": 1,
+      "message": "Will this be set via a Monasca config file?",
+      "range": {
+        "startLine": 38,
+        "startChar": 2,
+        "endLine": 38,
+        "endChar": 16
+      },
+      "revId": "6b6d43d1549e06543900331ccea693752fe52984",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f6a8fd7_e4a95590",
+        "filename": "monasca_api/db/alembic/README",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2018-04-30T10:53:00Z",
+      "side": 1,
+      "message": "It would be great if we could add a little more here.",
+      "range": {
+        "startLine": 1,
+        "startChar": 37,
+        "endLine": 1,
+        "endChar": 38
+      },
+      "revId": "6b6d43d1549e06543900331ccea693752fe52984",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f6a8fd7_c43a1133",
+        "filename": "monasca_api/db/alembic/env.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2018-04-30T10:53:00Z",
+      "side": 1,
+      "message": "Should we remove these comments?",
+      "range": {
+        "startLine": 52,
+        "startChar": 2,
+        "endLine": 52,
+        "endChar": 5
+      },
+      "revId": "6b6d43d1549e06543900331ccea693752fe52984",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f6a8fd7_4435a1f6",
+        "filename": "monasca_api/db/alembic/versions/00597b5c8325_initial.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2018-04-30T10:53:00Z",
+      "side": 1,
+      "message": "Where\u0027s this one coming from? I don\u0027t see it in the devstack file:\n\nhttps://github.com/openstack/monasca-api/blob/master/devstack/files/schema/mon_mysql.sql",
+      "range": {
+        "startLine": 80,
+        "startChar": 26,
+        "endLine": 80,
+        "endChar": 37
+      },
+      "revId": "6b6d43d1549e06543900331ccea693752fe52984",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f6a8fd7_27e8af14",
+        "filename": "monasca_api/db/alembic/versions/00597b5c8325_initial.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2018-04-30T10:53:00Z",
+      "side": 1,
+      "message": "Do we want this to be displayed with 11 digits or is that not supported?\nhttps://github.com/openstack/monasca-api/blob/master/devstack/files/schema/mon_mysql.sql#L150",
+      "revId": "6b6d43d1549e06543900331ccea693752fe52984",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f6a8fd7_47eda323",
+        "filename": "monasca_api/db/alembic/versions/00597b5c8325_initial.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2018-04-30T10:53:00Z",
+      "side": 1,
+      "message": "Same as above.",
+      "range": {
+        "startLine": 369,
+        "startChar": 19,
+        "endLine": 369,
+        "endChar": 26
+      },
+      "revId": "6b6d43d1549e06543900331ccea693752fe52984",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f6a8fd7_87b41b37",
+        "filename": "monasca_api/db/alembic/versions/00597b5c8325_initial.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2018-04-30T10:53:00Z",
+      "side": 1,
+      "message": "Looks like we\u0027re missing `is_deterministic`?  https://github.com/openstack/monasca-api/blob/master/devstack/files/schema/mon_mysql.sql#L152\n\n\nEdit: Ah - I see. This is defined in an upgrade.",
+      "range": {
+        "startLine": 372,
+        "startChar": 17,
+        "endLine": 372,
+        "endChar": 19
+      },
+      "revId": "6b6d43d1549e06543900331ccea693752fe52984",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f6a8fd7_67bea700",
+        "filename": "monasca_api/db/alembic/versions/00597b5c8325_initial.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2018-04-30T10:53:00Z",
+      "side": 1,
+      "message": "We don\u0027t need to specify that this references `sub_alarm_definition`?\n\nhttps://github.com/openstack/monasca-api/blob/master/devstack/files/schema/mon_mysql.sql#L164",
+      "range": {
+        "startLine": 386,
+        "startChar": 21,
+        "endLine": 386,
+        "endChar": 31
+      },
+      "revId": "6b6d43d1549e06543900331ccea693752fe52984",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f6a8fd7_a7727f7b",
+        "filename": "monasca_api/db/alembic/versions/00597b5c8325_initial.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2018-04-30T10:53:00Z",
+      "side": 1,
+      "message": "It looks like in other tables you rely on the default charset and collate settings, but here they are explicit. Is there a reason for that?",
+      "range": {
+        "startLine": 409,
+        "startChar": 55,
+        "endLine": 409,
+        "endChar": 73
+      },
+      "revId": "6b6d43d1549e06543900331ccea693752fe52984",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f6a8fd7_07456b17",
+        "filename": "monasca_api/db/alembic/versions/00597b5c8325_initial.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2018-04-30T10:53:00Z",
+      "side": 1,
+      "message": "Looks like we are missing `state`?\n\nhttps://github.com/openstack/monasca-api/blob/master/devstack/files/schema/mon_mysql.sql#L174\n\nEdit: I see this is added in an upgrade.",
+      "revId": "6b6d43d1549e06543900331ccea693752fe52984",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f6a8fd7_671a2718",
+        "filename": "monasca_api/db/alembic/versions/00597b5c8325_initial.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2018-04-30T10:53:00Z",
+      "side": 1,
+      "message": "Can\u0027t see this in the devstack schema, is this created by the events API or is there another schema somewhere I\u0027m missing?",
+      "range": {
+        "startLine": 443,
+        "startChar": 9,
+        "endLine": 443,
+        "endChar": 26
+      },
+      "revId": "6b6d43d1549e06543900331ccea693752fe52984",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f6a8fd7_e7e5d7dd",
+        "filename": "monasca_api/db/alembic/versions/00597b5c8325_initial.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 576,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2018-04-30T10:53:00Z",
+      "side": 1,
+      "message": "femtonit: Doesn\u0027t match the order of creation above.",
+      "revId": "6b6d43d1549e06543900331ccea693752fe52984",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
