@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9f6a8fd7_d87160e0",
+        "filename": "monasca_api/db/alembic.ini",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 12542
+      },
+      "writtenOn": "2018-05-02T15:42:25Z",
+      "side": 1,
+      "message": "I think in our case it\u0027s ok like this - we didn\u0027t have a `db` module at all before we introduced this and I\u0027d rather keep the module name short than needlessly introduce another module. We keep the remaining database stuff in common.repositories anyway, so there\u0027s no overlap anyway.",
+      "parentUuid": "9f6a8fd7_04ba49dd",
+      "revId": "6b6d43d1549e06543900331ccea693752fe52984",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f6a8fd7_242d0d46",
         "filename": "monasca_api/db/alembic.ini",
         "patchSetId": 4
@@ -30,6 +48,30 @@
       "writtenOn": "2018-04-30T10:53:00Z",
       "side": 1,
       "message": "Will this be set via a Monasca config file?",
+      "range": {
+        "startLine": 38,
+        "startChar": 2,
+        "endLine": 38,
+        "endChar": 16
+      },
+      "revId": "6b6d43d1549e06543900331ccea693752fe52984",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f6a8fd7_9829a89c",
+        "filename": "monasca_api/db/alembic.ini",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 12542
+      },
+      "writtenOn": "2018-05-02T15:42:25Z",
+      "side": 1,
+      "message": "Yes. env.py draws this from the regular Monasca configuration file. Any setting we hardcode here would be nonsensical anyway.",
+      "parentUuid": "9f6a8fd7_242d0d46",
       "range": {
         "startLine": 38,
         "startChar": 2,
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "9f6a8fd7_1317bb53",
+        "filename": "monasca_api/db/alembic/README",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 12542
+      },
+      "writtenOn": "2018-05-02T15:42:25Z",
+      "side": 1,
+      "message": "Indeed. Done :-)\n\nAlso, I moved it up to the db/ directory since that\u0027s where `alembic revision` needs to be run.",
+      "parentUuid": "9f6a8fd7_e4a95590",
+      "range": {
+        "startLine": 1,
+        "startChar": 37,
+        "endLine": 1,
+        "endChar": 38
+      },
+      "revId": "6b6d43d1549e06543900331ccea693752fe52984",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f6a8fd7_c43a1133",
         "filename": "monasca_api/db/alembic/env.py",
         "patchSetId": 4
@@ -76,6 +142,30 @@
       "writtenOn": "2018-04-30T10:53:00Z",
       "side": 1,
       "message": "Should we remove these comments?",
+      "range": {
+        "startLine": 52,
+        "startChar": 2,
+        "endLine": 52,
+        "endChar": 5
+      },
+      "revId": "6b6d43d1549e06543900331ccea693752fe52984",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f6a8fd7_ee21fea0",
+        "filename": "monasca_api/db/alembic/env.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 12542
+      },
+      "writtenOn": "2018-05-02T15:42:25Z",
+      "side": 1,
+      "message": "Some of them, yes. I removed the nonsensical ones now.",
+      "parentUuid": "9f6a8fd7_c43a1133",
       "range": {
         "startLine": 52,
         "startChar": 2,
@@ -111,6 +201,30 @@
     },
     {
       "key": {
+        "uuid": "9f6a8fd7_2e37f6b2",
+        "filename": "monasca_api/db/alembic/versions/00597b5c8325_initial.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 12542
+      },
+      "writtenOn": "2018-05-02T15:42:25Z",
+      "side": 1,
+      "message": "Yes. It\u0027s not in `master`. This migration is a migration for the SQL script as found in git revision 00597b5c8325664c2c534625525f59232d243d66 (see comment at the top). The idea behind this is having a dedicated migration for the changes introduced by every git revision. That way we can stamp the current in-database schema with the alembic revision for the git revision it was created from and proceed incrementally with regular migrations from that point onward.",
+      "parentUuid": "9f6a8fd7_4435a1f6",
+      "range": {
+        "startLine": 80,
+        "startChar": 26,
+        "endLine": 80,
+        "endChar": 37
+      },
+      "revId": "6b6d43d1549e06543900331ccea693752fe52984",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f6a8fd7_27e8af14",
         "filename": "monasca_api/db/alembic/versions/00597b5c8325_initial.py",
         "patchSetId": 4
@@ -128,6 +242,24 @@
     },
     {
       "key": {
+        "uuid": "9f6a8fd7_ae21c64f",
+        "filename": "monasca_api/db/alembic/versions/00597b5c8325_initial.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 12542
+      },
+      "writtenOn": "2018-05-02T15:42:25Z",
+      "side": 1,
+      "message": "For me it worked out to 11 digits without specifying it explicitly - at least that\u0027s what I got when I ran the migration.",
+      "parentUuid": "9f6a8fd7_27e8af14",
+      "revId": "6b6d43d1549e06543900331ccea693752fe52984",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f6a8fd7_47eda323",
         "filename": "monasca_api/db/alembic/versions/00597b5c8325_initial.py",
         "patchSetId": 4
@@ -139,6 +271,30 @@
       "writtenOn": "2018-04-30T10:53:00Z",
       "side": 1,
       "message": "Same as above.",
+      "range": {
+        "startLine": 369,
+        "startChar": 19,
+        "endLine": 369,
+        "endChar": 26
+      },
+      "revId": "6b6d43d1549e06543900331ccea693752fe52984",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f6a8fd7_2ed3763a",
+        "filename": "monasca_api/db/alembic/versions/00597b5c8325_initial.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 12542
+      },
+      "writtenOn": "2018-05-02T15:42:25Z",
+      "side": 1,
+      "message": "Same here, see previous comment.",
+      "parentUuid": "9f6a8fd7_47eda323",
       "range": {
         "startLine": 369,
         "startChar": 19,
@@ -197,6 +353,30 @@
     },
     {
       "key": {
+        "uuid": "9f6a8fd7_cee19afe",
+        "filename": "monasca_api/db/alembic/versions/00597b5c8325_initial.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 12542
+      },
+      "writtenOn": "2018-05-02T15:42:25Z",
+      "side": 1,
+      "message": "We do. That\u0027s what the first argument (\u0027sub_alarm_definition.id\u0027 aka \u0027\u003ctarget table name\u003e.\u003ccolumn name\u003e\u0027) is for.",
+      "parentUuid": "9f6a8fd7_67bea700",
+      "range": {
+        "startLine": 386,
+        "startChar": 21,
+        "endLine": 386,
+        "endChar": 31
+      },
+      "revId": "6b6d43d1549e06543900331ccea693752fe52984",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f6a8fd7_a7727f7b",
         "filename": "monasca_api/db/alembic/versions/00597b5c8325_initial.py",
         "patchSetId": 4
@@ -208,6 +388,30 @@
       "writtenOn": "2018-04-30T10:53:00Z",
       "side": 1,
       "message": "It looks like in other tables you rely on the default charset and collate settings, but here they are explicit. Is there a reason for that?",
+      "range": {
+        "startLine": 409,
+        "startChar": 55,
+        "endLine": 409,
+        "endChar": 73
+      },
+      "revId": "6b6d43d1549e06543900331ccea693752fe52984",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f6a8fd7_ae946645",
+        "filename": "monasca_api/db/alembic/versions/00597b5c8325_initial.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 12542
+      },
+      "writtenOn": "2018-05-02T15:42:25Z",
+      "side": 1,
+      "message": "Yes, the SQL script schema being a bit inconsistent as well in that regard :-/\n\nTake a close look at the SQL script schema - it\u0027s got a default charset of latin1 for this table and a explicit UTF8 charset for all fields...\n\nSo this is the \"I wanted to match the SQL script as closely as possible\" thing I mentioned earlier. To later resolve these inconsistencies cleanly with a migration we need to make sure every database out in the field (both the ones fully created by migrations and the ones created by applying the legacy schema) have exactly the same inconsistencies.",
+      "parentUuid": "9f6a8fd7_a7727f7b",
       "range": {
         "startLine": 409,
         "startChar": 55,
@@ -260,6 +464,30 @@
     },
     {
       "key": {
+        "uuid": "9f6a8fd7_4e7caaea",
+        "filename": "monasca_api/db/alembic/versions/00597b5c8325_initial.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 12542
+      },
+      "writtenOn": "2018-05-02T15:42:25Z",
+      "side": 1,
+      "message": "It has been removed (git revisions 30181b42434bdde0c40abd086e903600b24e9684 and d8b80149885016ede0ee403cf9bb07f9b7253297 - we\u0027ve got alembic migrations for both of these) but it was present in the initial revision of the SQL script.",
+      "parentUuid": "9f6a8fd7_671a2718",
+      "range": {
+        "startLine": 443,
+        "startChar": 9,
+        "endLine": 443,
+        "endChar": 26
+      },
+      "revId": "6b6d43d1549e06543900331ccea693752fe52984",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f6a8fd7_e7e5d7dd",
         "filename": "monasca_api/db/alembic/versions/00597b5c8325_initial.py",
         "patchSetId": 4
@@ -271,6 +499,24 @@
       "writtenOn": "2018-04-30T10:53:00Z",
       "side": 1,
       "message": "femtonit: Doesn\u0027t match the order of creation above.",
+      "revId": "6b6d43d1549e06543900331ccea693752fe52984",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f6a8fd7_6ee40ead",
+        "filename": "monasca_api/db/alembic/versions/00597b5c8325_initial.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 576,
+      "author": {
+        "id": 12542
+      },
+      "writtenOn": "2018-05-02T15:42:25Z",
+      "side": 1,
+      "message": "Now \"femtonit\" is a nice term :-)\n\nAlso, it should be `drop_table()` not `delete_table()`. Fixed that now.",
+      "parentUuid": "9f6a8fd7_e7e5d7dd",
       "revId": "6b6d43d1549e06543900331ccea693752fe52984",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
