@@ -377,6 +377,30 @@
     },
     {
       "key": {
+        "uuid": "9f6a8fd7_ad3b0bc6",
+        "filename": "monasca_api/db/alembic/versions/00597b5c8325_initial.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2018-05-02T16:11:49Z",
+      "side": 1,
+      "message": "Got it, thanks!",
+      "parentUuid": "9f6a8fd7_cee19afe",
+      "range": {
+        "startLine": 386,
+        "startChar": 21,
+        "endLine": 386,
+        "endChar": 31
+      },
+      "revId": "6b6d43d1549e06543900331ccea693752fe52984",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f6a8fd7_a7727f7b",
         "filename": "monasca_api/db/alembic/versions/00597b5c8325_initial.py",
         "patchSetId": 4
