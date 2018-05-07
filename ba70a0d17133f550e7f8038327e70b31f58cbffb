@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f7c97a3_7363c9dd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2018-05-07T12:35:56Z",
+      "side": 1,
+      "message": "Should it be part of `Story: 2000975` (include story/task in commit message)?",
+      "revId": "ba70a0d17133f550e7f8038327e70b31f58cbffb",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f7c97a3_3328f184",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2018-05-07T12:35:56Z",
+      "side": 1,
+      "message": "now",
+      "range": {
+        "startLine": 10,
+        "startChar": 12,
+        "endLine": 10,
+        "endChar": 14
+      },
+      "revId": "ba70a0d17133f550e7f8038327e70b31f58cbffb",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f7c97a3_9319c57a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2018-05-07T12:35:56Z",
+      "side": 1,
+      "message": "account",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 6
+      },
+      "revId": "ba70a0d17133f550e7f8038327e70b31f58cbffb",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f7c97a3_d3abbdd3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2018-05-07T12:35:56Z",
+      "side": 1,
+      "message": "This commit should depend on https://review.openstack.org/#/c/554304",
+      "revId": "ba70a0d17133f550e7f8038327e70b31f58cbffb",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f7c97a3_73918999",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2018-05-07T12:35:56Z",
+      "side": 1,
+      "message": "`restart_service`?",
+      "range": {
+        "startLine": 192,
+        "startChar": 51,
+        "endLine": 192,
+        "endChar": 64
+      },
+      "revId": "ba70a0d17133f550e7f8038327e70b31f58cbffb",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
