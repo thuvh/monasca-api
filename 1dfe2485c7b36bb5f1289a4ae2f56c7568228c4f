@@ -22,6 +22,30 @@
       "revId": "1dfe2485c7b36bb5f1289a4ae2f56c7568228c4f",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f7c97a3_928ddfd4",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 842,
+      "author": {
+        "id": 25903
+      },
+      "writtenOn": "2018-05-11T07:41:42Z",
+      "side": 1,
+      "message": "Thank you, Witold Bedyk.\nThese lines have just been removed as your suggestion.\n\nThe commit message has been updated as well.",
+      "parentUuid": "5f7c97a3_72aa8371",
+      "range": {
+        "startLine": 841,
+        "startChar": 8,
+        "endLine": 842,
+        "endChar": 102
+      },
+      "revId": "1dfe2485c7b36bb5f1289a4ae2f56c7568228c4f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
