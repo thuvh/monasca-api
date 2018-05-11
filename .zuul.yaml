@@ -53,6 +53,20 @@
       api_lang: python
       persister_lang: java
 
+- job:
+    name: publish-monasca-sphinx-docs
+    parent: publish-openstack-sphinx-docs-base
+    description: |
+      Publish the results of the build-openstack-sphinx-docs job to
+      https://docs.openstack.org/monasca.
+
+      Publishes depending on branch to latest/ (for master), or the
+      basename of the branch like pike (for stable/pike).
+    post-run:
+      - playbooks/sphinx/post.yaml
+    vars:
+      afs_subpath: "/monasca"
+
 - project:
     check:
       jobs:
@@ -68,3 +82,7 @@
         - monasca-tempest-python-cassandra
         - monasca-tempest-java-cassandra
         - openstack-tox-lower-constraints
+    post:
+      jobs:
+        - publish-monasca-sphinx-docs:
+            branches: ^(?!stable/ocata).*$
