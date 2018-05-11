@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f7c97a3_cc16534a",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-05-11T13:54:11Z",
+      "side": 1,
+      "message": "In https://review.openstack.org/554304 you\u0027re removing the service file, so this code won\u0027t be needed.\n\nW should reverse the dependency direction between these two changes and merge them together. 554304 will pass the gate because tempest jobs are non-voting.\n\nAlternatively you could propose a follow-up change removing redundant code.",
+      "revId": "5effcebd92a770f1f3905f483de659924124c5c6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f7c97a3_6c293f88",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-05-11T13:54:11Z",
+      "side": 1,
+      "message": "see above",
+      "revId": "5effcebd92a770f1f3905f483de659924124c5c6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
