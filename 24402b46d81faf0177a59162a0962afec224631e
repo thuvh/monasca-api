@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f7c97a3_7c2004ad",
+        "filename": "devstack/Vagrantfile",
+        "patchSetId": 30
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 26702
+      },
+      "writtenOn": "2018-05-12T11:06:05Z",
+      "side": 1,
+      "message": "I dont understand the reason to point to a specific branch and not to master.",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 44
+      },
+      "revId": "24402b46d81faf0177a59162a0962afec224631e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f7c97a3_9c04001a",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 30
+      },
+      "lineNbr": 894,
+      "author": {
+        "id": 26702
+      },
+      "writtenOn": "2018-05-12T11:06:05Z",
+      "side": 1,
+      "message": "Is sudo needed here?",
+      "range": {
+        "startLine": 893,
+        "startChar": 4,
+        "endLine": 894,
+        "endChar": 110
+      },
+      "revId": "24402b46d81faf0177a59162a0962afec224631e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
