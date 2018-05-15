@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f7c97a3_ceb36ce8",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 38
+      },
+      "lineNbr": 930,
+      "author": {
+        "id": 26702
+      },
+      "writtenOn": "2018-05-15T12:26:32Z",
+      "side": 1,
+      "message": "service_uri should also be defined in the If close and not only in the elif and else case.",
+      "range": {
+        "startLine": 930,
+        "startChar": 48,
+        "endLine": 930,
+        "endChar": 59
+      },
+      "revId": "66e73e900bd42079187f8f32e9299223f1e6783f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
