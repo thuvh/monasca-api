@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5f7c97a3_a9394af2",
+        "filename": "devstack/Vagrantfile",
+        "patchSetId": 30
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 26141
+      },
+      "writtenOn": "2018-05-15T13:28:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f7c97a3_7c2004ad",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 44
+      },
+      "revId": "24402b46d81faf0177a59162a0962afec224631e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5f7c97a3_9c04001a",
         "filename": "devstack/plugin.sh",
         "patchSetId": 30
