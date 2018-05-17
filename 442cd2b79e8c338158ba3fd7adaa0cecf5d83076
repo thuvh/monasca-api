@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f7c97a3_03d6ecf2",
+        "filename": "doc/source/index.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6547
+      },
+      "writtenOn": "2018-05-17T11:39:41Z",
+      "side": 1,
+      "message": "that is only a mirror, better link to git.openstack.org",
+      "range": {
+        "startLine": 52,
+        "startChar": 16,
+        "endLine": 52,
+        "endChar": 60
+      },
+      "revId": "442cd2b79e8c338158ba3fd7adaa0cecf5d83076",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f7c97a3_63fec06c",
+        "filename": "doc/source/index.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6547
+      },
+      "writtenOn": "2018-05-17T11:39:41Z",
+      "side": 1,
+      "message": "why not link to docs.o.o/ here?",
+      "revId": "442cd2b79e8c338158ba3fd7adaa0cecf5d83076",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
