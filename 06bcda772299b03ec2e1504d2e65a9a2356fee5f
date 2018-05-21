@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f7c97a3_ba592036",
+        "filename": "devstack/README.md",
+        "patchSetId": 43
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2018-05-21T13:21:45Z",
+      "side": 1,
+      "message": "Close ```",
+      "revId": "06bcda772299b03ec2e1504d2e65a9a2356fee5f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f7c97a3_fa78f88f",
+        "filename": "devstack/Vagrantfile",
+        "patchSetId": 43
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2018-05-21T13:21:45Z",
+      "side": 1,
+      "message": "Add space after #",
+      "revId": "06bcda772299b03ec2e1504d2e65a9a2356fee5f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f7c97a3_da9adcc3",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 43
+      },
+      "lineNbr": 948,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2018-05-21T13:21:45Z",
+      "side": 1,
+      "message": "wrong indentation",
+      "range": {
+        "startLine": 948,
+        "startChar": 4,
+        "endLine": 948,
+        "endChar": 8
+      },
+      "revId": "06bcda772299b03ec2e1504d2e65a9a2356fee5f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f7c97a3_3ab3d04f",
+        "filename": "monasca_api/api/wsgi.py",
+        "patchSetId": 43
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2018-05-21T13:21:45Z",
+      "side": 1,
+      "message": "should be `_mod_uwsgi`?",
+      "range": {
+        "startLine": 24,
+        "startChar": 50,
+        "endLine": 24,
+        "endChar": 59
+      },
+      "revId": "06bcda772299b03ec2e1504d2e65a9a2356fee5f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f7c97a3_fa86b865",
+        "filename": "setup.cfg",
+        "patchSetId": 43
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2018-05-21T13:21:45Z",
+      "side": 1,
+      "message": "Should all of this have `uwsgi`?",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 48
+      },
+      "revId": "06bcda772299b03ec2e1504d2e65a9a2356fee5f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
