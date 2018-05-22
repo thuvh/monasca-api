@@ -16,6 +16,24 @@
       "revId": "c11fd0ba4127a26c721b5948060e61e8feed81dc",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f7c97a3_aa86a064",
+        "filename": "monasca_api/tests/test_repositories.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 26141
+      },
+      "writtenOn": "2018-05-22T12:04:36Z",
+      "side": 1,
+      "message": "Yes, It look like the behavior of the component changed.\n\nI will try to use some idea from this change.",
+      "parentUuid": "9f6a8fd7_8d5c287f",
+      "revId": "c11fd0ba4127a26c721b5948060e61e8feed81dc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
