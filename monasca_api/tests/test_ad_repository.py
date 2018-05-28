@@ -47,7 +47,7 @@ class TestAlarmDefinitionRepoDB(base.BaseTestCase):
     @classmethod
     def setUpClass(cls):
         engine = create_engine('sqlite://')
-        qry = open('monasca_api/tests/sqlite_alarm.sql', 'r').read()
+        qry = open('/home/adrian/dev/quick/monasca-api/monasca_api/tests/sqlite_alarm.sql', 'r').read()
         sconn = engine.raw_connection()
         c = sconn.cursor()
         c.executescript(qry)
