@@ -13,6 +13,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+from builtins import str as strtext
 import datetime
 
 from oslo_utils import uuidutils
@@ -315,8 +316,8 @@ class AlarmDefinitionsRepository(sql_repository.SQLRepository,
 
                     sadd_id = sadd_.c.sub_alarm_definition_id
                     query_from = query_from.join(sadd_, sadd_id == sad.c.id)
-                    parms[bind_dimension_name] = n.encode('utf8')
-                    parms[bind_value] = v.encode('utf8')
+                    parms[bind_dimension_name] = strtext(n)
+                    parms[bind_value] = strtext(v)
 
                     i += 1
 
@@ -327,14 +328,14 @@ class AlarmDefinitionsRepository(sql_repository.SQLRepository,
 
             if name:
                 query = query.where(ad.c.name == bindparam('b_name'))
-                parms['b_name'] = name.encode('utf8')
+                parms['b_name'] = strtext(name)
 
             if severity:
                 severities = severity.split('|')
                 query = query.where(or_(ad.c.severity == bindparam(
                     'b_severity' + str(i)) for i in range(len(severities))))
                 for i, s in enumerate(severities):
-                    parms['b_severity' + str(i)] = s.encode('utf8')
+                    parms['b_severity' + str(i)] = strtext(s)
 
             order_columns = []
             if sort_by is not None:
@@ -509,7 +510,7 @@ class AlarmDefinitionsRepository(sql_repository.SQLRepository,
                         msg = 'number of subexpressions must not change'
                     else:
                         msg = 'metrics in subexpression must not change'
-                    raise exceptions.InvalidUpdateException(msg.encode('utf8'))
+                    raise exceptions.InvalidUpdateException(strtext(msg))
             else:
                 unchanged_sub_alarm_defs_by_id = old_sub_alarm_defs_by_id
                 changed_sub_alarm_defs_by_id = {}
@@ -522,7 +523,7 @@ class AlarmDefinitionsRepository(sql_repository.SQLRepository,
             if name is None:
                 new_name = original_row['name']
             else:
-                new_name = name.encode('utf8')
+                new_name = strtext(name)
 
             if description is None:
                 if patch:
@@ -530,12 +531,12 @@ class AlarmDefinitionsRepository(sql_repository.SQLRepository,
                 else:
                     new_description = ''
             else:
-                new_description = description.encode('utf8')
+                new_description = strtext(description)
 
             if expression is None:
                 new_expression = original_row['expression']
             else:
-                new_expression = expression.encode('utf8')
+                new_expression = strtext(expression)
 
             if severity is None:
                 if patch:
@@ -543,7 +544,7 @@ class AlarmDefinitionsRepository(sql_repository.SQLRepository,
                 else:
                     new_severity = 'LOW'
             else:
-                new_severity = severity.encode('utf8')
+                new_severity = strtext(severity)
 
             if match_by is None:
                 if patch:
@@ -551,10 +552,10 @@ class AlarmDefinitionsRepository(sql_repository.SQLRepository,
                 else:
                     new_match_by = None
             else:
-                new_match_by = ",".join(match_by).encode('utf8')
+                new_match_by = strtext(",".join(match_by))
 
             if new_match_by != original_row['match_by']:
-                msg = "match_by must not change".encode('utf8')
+                msg = strtext("match_by must not change")
                 raise exceptions.InvalidUpdateException(msg)
 
             if actions_enabled is None:
@@ -606,9 +607,9 @@ class AlarmDefinitionsRepository(sql_repository.SQLRepository,
             parms_sadd = []
             for sub_alarm_def in new_sub_alarm_defs_by_id.values():
                 adi = sub_alarm_def.alarm_definition_id
-                function = sub_alarm_def.function.encode('utf8')
-                metric_name = sub_alarm_def.metric_name.encode('utf8')
-                operator = sub_alarm_def.operator.encode('utf8')
+                function = strtext(sub_alarm_def.function)
+                metric_name = strtext(sub_alarm_def.metric_name)
+                operator = strtext(sub_alarm_def.operator)
                 threshold = sub_alarm_def.threshold
                 period = sub_alarm_def.period
                 periods = sub_alarm_def.periods
@@ -628,8 +629,8 @@ class AlarmDefinitionsRepository(sql_repository.SQLRepository,
                 for name, value in sub_alarm_def.dimensions.items():
                     sadi = sub_alarm_def.id
                     parms_sadd.append({'b_sub_alarm_definition_id': sadi,
-                                       'b_dimension_name': name.encode('utf8'),
-                                       'b_value': value.encode('utf8')})
+                                       'b_dimension_name': strtext(name),
+                                       'b_value': strtext(value)})
 
             if len(parms) > 0:
                 query = self.update_or_patch_alarm_definition_insert_sad_query
@@ -701,7 +702,7 @@ class AlarmDefinitionsRepository(sql_repository.SQLRepository,
             sad = sub_alarm_definition.SubAlarmDefinition(
                 sub_expr=sub_expr)
             # Inject the alarm definition id.
-            sad.alarm_definition_id = alarm_definition_id.decode('utf8')
+            sad.alarm_definition_id = strtext(alarm_definition_id)
             new_sub_alarm_defs_set.add(sad)
 
         # Identify old or changed expressions
@@ -779,14 +780,14 @@ class AlarmDefinitionsRepository(sql_repository.SQLRepository,
 
         for action in actions:
             row = conn.execute(self.select_nm_query,
-                               b_id=action.encode('utf8')).fetchone()
+                               b_id=strtext(action)).fetchone()
             if row is None:
                 raise exceptions.InvalidUpdateException(
                     "Non-existent notification id {} submitted for {} "
-                    "notification action".format(action.encode('utf8'),
-                                                 alarm_state.encode('utf8')))
+                    "notification action".format(strtext(action.encode),
+                                                 strtext(alarm_state)))
             conn.execute(self.insert_aa_query,
                          b_alarm_definition_id=alarm_definition_id,
-                         b_alarm_state=alarm_state.encode('utf8'),
-                         b_action_id=action.encode('utf8')
+                         b_alarm_state=strtext(alarm_state),
+                         b_action_id=strtext(action)
                          )
