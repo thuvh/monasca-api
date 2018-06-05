@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "5f7c97a3_d36d10cd",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-06-05T11:41:37Z",
+      "side": 1,
+      "message": "I would suggest something like:\n\n\"is authorized according to provided policy rules list.\"",
+      "range": {
+        "startLine": 73,
+        "startChar": 37,
+        "endLine": 73,
+        "endChar": 95
+      },
+      "revId": "52bc81fef5d1913d8b5e53407fc9751c9f4c10cc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5f7c97a3_27b7553d",
         "filename": "monasca_api/v2/reference/helpers.py",
         "patchSetId": 14
