@@ -22,6 +22,30 @@
       "revId": "8f7892c9e921ca4ca6d3a751fc2f393c6ee6d37d",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f7c97a3_02924f4c",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-06-05T13:12:58Z",
+      "side": 1,
+      "message": "I don\u0027t recall any issues with that but I\u0027m not unstacking often.\n\nWe could add a change on master also cleaning up unnecessary --replication-factor and --partitions options. But I don\u0027t want to touch it here on stable branch without having it on master first.",
+      "parentUuid": "5f7c97a3_cee483e3",
+      "range": {
+        "startLine": 211,
+        "startChar": 9,
+        "endLine": 211,
+        "endChar": 12
+      },
+      "revId": "8f7892c9e921ca4ca6d3a751fc2f393c6ee6d37d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
