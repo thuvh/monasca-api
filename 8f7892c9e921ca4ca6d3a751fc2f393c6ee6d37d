@@ -46,6 +46,30 @@
       "revId": "8f7892c9e921ca4ca6d3a751fc2f393c6ee6d37d",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f7c97a3_27199521",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 10311
+      },
+      "writtenOn": "2018-06-05T17:32:46Z",
+      "side": 1,
+      "message": "I\u0027ve had trouble with kafka not deleting topics even with delete enabled (maybe it was a timing issue, not sure).  My process for restacking if I hit the \"Topic already exists\" error  in devstack is\n\nsudo rm -rf /etc/zookeeper\n./unstack.sh\n./clean.sh\nsudo shutdown -r now\nlog back in an run stack.sh\n\nHaving said that, I think this change may help in some cases and won\u0027t hurt.",
+      "parentUuid": "5f7c97a3_02924f4c",
+      "range": {
+        "startLine": 211,
+        "startChar": 9,
+        "endLine": 211,
+        "endChar": 12
+      },
+      "revId": "8f7892c9e921ca4ca6d3a751fc2f393c6ee6d37d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
