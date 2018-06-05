@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f7c97a3_cee483e3",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2018-06-05T12:35:36Z",
+      "side": 1,
+      "message": "If I remember correctly, this can take some time to complete and there was some way of speeding it up by changing the retention period? Do you think it\u0027s worth blocking until the topics are gone?",
+      "range": {
+        "startLine": 211,
+        "startChar": 9,
+        "endLine": 211,
+        "endChar": 12
+      },
+      "revId": "8f7892c9e921ca4ca6d3a751fc2f393c6ee6d37d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
