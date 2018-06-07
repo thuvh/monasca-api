@@ -46,6 +46,30 @@
       "revId": "01348b3a5e97e40eb9b1e644a5b318e69bfb76a1",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f7c97a3_8af7165a",
+        "filename": "monasca_api/db/alembic/versions/00597b5c8325_initial.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-06-07T15:53:50Z",
+      "side": 1,
+      "message": "Here the result of diff for \u0027sub_alarm\u0027 table schema between current devstack and `alembic upgrade head` http://paste.openstack.org/show/722905/\n\nAre you sure that initial database has \u0027latin1\u0027?\nhttps://git.openstack.org/cgit/openstack/monasca-api/tree/devstack/files/schema/mon_mysql.sql?id\u003d00597b5c8325664c2c534625525f59232d243d66#n20",
+      "parentUuid": "5f7c97a3_3bb41bd1",
+      "range": {
+        "startLine": 432,
+        "startChar": 23,
+        "endLine": 432,
+        "endChar": 29
+      },
+      "revId": "01348b3a5e97e40eb9b1e644a5b318e69bfb76a1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
