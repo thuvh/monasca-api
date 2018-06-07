@@ -70,6 +70,30 @@
       "revId": "01348b3a5e97e40eb9b1e644a5b318e69bfb76a1",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f7c97a3_ad546c55",
+        "filename": "monasca_api/db/alembic/versions/00597b5c8325_initial.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 12542
+      },
+      "writtenOn": "2018-06-07T16:19:51Z",
+      "side": 1,
+      "message": "Well...it\u0027s unspecified, so it\u0027ll end up being whatever the system default is, which appears to be latin1 on my Devstack instance. For now I removed the ALTER command that explicitly sets utf8 plus collation from 0cce983d957a_deterministic_alarms.py for that much is definitely wrong.\n\nI\u0027ll need to give this some more thought, but I think it\u0027s best to just leave the bits where the schema leaves it up to the system default alone. In that case, I\u0027ll also need to go through all the migrations with a fine comb and check whether I\u0027m setting latin1 explicitly anywhere it actually creeps in via system default.\n\nI\u0027ll give this a little more thought tomorrow.",
+      "parentUuid": "5f7c97a3_8af7165a",
+      "range": {
+        "startLine": 432,
+        "startChar": 23,
+        "endLine": 432,
+        "endChar": 29
+      },
+      "revId": "01348b3a5e97e40eb9b1e644a5b318e69bfb76a1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
