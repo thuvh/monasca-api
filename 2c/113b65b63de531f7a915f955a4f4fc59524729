@@ -1,0 +1,9 @@
+Code-Review+2: Doug Szumski <doug@stackhpc.com>
+Workflow+1: Stefano Canepa (sc) <sc@linux.it>
+Code-Review+2: Stefano Canepa (sc) <sc@linux.it>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Fri, 08 Jun 2018 21:29:16 +0000
+Reviewed-on: https://review.openstack.org/573195
+Project: openstack/monasca-api
+Branch: refs/heads/stable/pike
