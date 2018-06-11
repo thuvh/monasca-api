@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f7c97a3_b8547123",
+        "filename": "devstack/settings",
+        "patchSetId": 49
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-06-11T13:49:55Z",
+      "side": 1,
+      "message": "To be consistent with devstack and other plugins we should name it `MONASCA_API_USE_MOD_WSGI`. True -\u003e uwsgi, False -\u003e gunicorn. Default should be set to $ENABLE_HTTPD_MOD_WSGI_SERVICES. Please compare [1, 2]. `uwsgi` should be effectively the default deployment method.\n\n[1] https://git.openstack.org/cgit/openstack-dev/devstack/tree/stackrc#n87\n[2] https://git.openstack.org/cgit/openstack/monasca-log-api/tree/devstack/lib/config.sh#n52",
+      "range": {
+        "startLine": 193,
+        "startChar": 0,
+        "endLine": 193,
+        "endChar": 26
+      },
+      "revId": "bee86048ccf35751384aa6067f265af1fdf385d1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
