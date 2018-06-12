@@ -20,6 +20,7 @@
       - openstack/monasca-tempest-plugin
     vars:
       database: mysql
+      api_lang: python
     irrelevant-files:
       - ^.*\.rst$
       - ^.*\.md$
@@ -31,7 +32,6 @@
     parent: monasca-tempest-base
     vars:
       tsdb: influxdb
-      api_lang: python
       persister_lang: python
 
 - job:
@@ -39,7 +39,6 @@
     parent: monasca-tempest-base
     vars:
       tsdb: influxdb
-      api_lang: java
       persister_lang: java
 
 - job:
@@ -47,7 +46,6 @@
     parent: monasca-tempest-base
     vars:
       tsdb: cassandra
-      api_lang: python
       persister_lang: python
 
 - job:
@@ -55,7 +53,6 @@
     parent: monasca-tempest-base
     vars:
       tsdb: cassandra
-      api_lang: python
       persister_lang: java
 
 - project:
