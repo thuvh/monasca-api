@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f7c97a3_b6c22fe8",
+        "filename": "devstack/README.md",
+        "patchSetId": 51
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-06-12T07:56:22Z",
+      "side": 1,
+      "message": "Description is not up-to-date anymore. Default is uwsgi.",
+      "range": {
+        "startLine": 146,
+        "startChar": 0,
+        "endLine": 151,
+        "endChar": 9
+      },
+      "revId": "c0703d8613d2f93020fe06d68995c50e04ea7cd3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f7c97a3_76b81774",
+        "filename": "devstack/Vagrantfile",
+        "patchSetId": 51
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-06-12T07:56:22Z",
+      "side": 1,
+      "message": "Why is it different than in settings?",
+      "range": {
+        "startLine": 159,
+        "startChar": 53,
+        "endLine": 159,
+        "endChar": 58
+      },
+      "revId": "c0703d8613d2f93020fe06d68995c50e04ea7cd3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f7c97a3_b650ef33",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 51
+      },
+      "lineNbr": 948,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-06-12T07:56:22Z",
+      "side": 1,
+      "message": "True",
+      "range": {
+        "startLine": 948,
+        "startChar": 41,
+        "endLine": 948,
+        "endChar": 46
+      },
+      "revId": "c0703d8613d2f93020fe06d68995c50e04ea7cd3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
