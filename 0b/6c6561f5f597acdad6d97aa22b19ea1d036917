@@ -1,0 +1,13 @@
+Code-Review+2: Witold Bedyk <witold.bedyk@est.fujitsu.com>
+Code-Review+1: Adrian Czarnecki <adrian.czarnecki@ts.fujitsu.com>
+Code-Review+1: Akhil jain <akhil.jain@india.nec.com>
+Code-Review+1: zhongshengping <chdzsp@163.com>
+Code-Review+1: Nguyen Hai <nguyentrihai93@gmail.com>
+Code-Review+1: melissaml <ma.lei@99cloud.net>
+Workflow+1: Witold Bedyk <witold.bedyk@est.fujitsu.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Tue, 12 Jun 2018 08:11:15 +0000
+Reviewed-on: https://review.openstack.org/572970
+Project: openstack/monasca-api
+Branch: refs/heads/master
