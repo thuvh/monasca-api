@@ -30,8 +30,6 @@ CONF = config.CONF
 
 
 def launch(conf):
-    config.parse_args()
-
     app = falcon.API(request_type=request.Request)
 
     versions = simport.load(cfg.CONF.dispatcher.versions)()
