@@ -21,8 +21,6 @@ from oslo_config import cfg
 from oslo_log import log
 from oslo_utils import importutils
 
-from monasca_api.conf import security
-
 LOG = log.getLogger(__name__)
 _BASE_MOD_PATH = 'monasca_api.policies.'
 CONF = cfg.CONF
@@ -31,16 +29,6 @@ CONF = cfg.CONF
 def roles_list_to_check_str(roles_list):
     converted_roles_list = ["role:" + role if role != '@' else role for role in roles_list]
     return ' or '.join(converted_roles_list)
-
-
-security.register_opts(CONF)
-
-HEALTHCHECK_ROLES = roles_list_to_check_str(cfg.CONF.security.healthcheck_roles)
-VERSIONS_ROLES = roles_list_to_check_str(cfg.CONF.security.versions_roles)
-DEFAULT_AUTHORIZED_ROLES = roles_list_to_check_str(cfg.CONF.security.default_authorized_roles)
-READ_ONLY_AUTHORIZED_ROLES = roles_list_to_check_str(cfg.CONF.security.read_only_authorized_roles)
-AGENT_AUTHORIZED_ROLES = roles_list_to_check_str(cfg.CONF.security.agent_authorized_roles)
-DELEGATE_AUTHORIZED_ROLES = roles_list_to_check_str(cfg.CONF.security.delegate_authorized_roles)
 
 
 def load_policy_modules():
