@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f7c97a3_1d916554",
+        "filename": "monasca_api/common/repositories/sqla/alarm_definitions_repository.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2018-06-15T12:47:03Z",
+      "side": 1,
+      "message": "match",
+      "range": {
+        "startLine": 556,
+        "startChar": 16,
+        "endLine": 556,
+        "endChar": 21
+      },
+      "revId": "0e1303cacdbeac5ba8154f4dc62382885cc884d3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f7c97a3_3d8ea132",
+        "filename": "monasca_api/common/repositories/sqla/alarm_definitions_repository.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 557,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2018-06-15T12:47:03Z",
+      "side": 1,
+      "message": "match",
+      "range": {
+        "startLine": 557,
+        "startChar": 72,
+        "endLine": 557,
+        "endChar": 77
+      },
+      "revId": "0e1303cacdbeac5ba8154f4dc62382885cc884d3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
