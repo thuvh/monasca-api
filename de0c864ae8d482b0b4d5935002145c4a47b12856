@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f7c97a3_f8b83712",
+        "filename": "monasca_api/common/repositories/sqla/alarms_repository.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2018-06-15T13:20:00Z",
+      "side": 1,
+      "message": "There are helper methods for things like this in oslo utils:\nhttps://github.com/openstack/oslo.utils/blob/master/oslo_utils/encodeutils.py#L66\n\nCan you use those here? Same applies to other changes.",
+      "range": {
+        "startLine": 289,
+        "startChar": 64,
+        "endLine": 289,
+        "endChar": 70
+      },
+      "revId": "de0c864ae8d482b0b4d5935002145c4a47b12856",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
