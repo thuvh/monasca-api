@@ -765,10 +765,11 @@ function install_monasca_api_java {
 
 }
 function install_monasca-api {
+    testtesttest
     echo_summary "Install Monasca monasca_api "
 
     git_clone $MONASCA_API_REPO $MONASCA_API_DIR $MONASCA_API_BRANCH
-    setup_develop $MONASCA_API_DIR
+    setup_install $MONASCA_API_DIR
 
     install_monasca_common
 
@@ -791,6 +792,7 @@ function install_monasca-api {
         apt_get -y install libmysqlclient-dev
         pip_install_gr PyMySQL
     fi
+    testtest
 
 }
 
@@ -1130,7 +1132,11 @@ function install_monasca_agent {
     sudo mkdir -p /opt/monasca-agent || true
     sudo chown $STACK_USER:monasca /opt/monasca-agent
 
-    (cd /opt/monasca-agent ; virtualenv .)
+    if python3_enabled; then
+        (cd /opt/monasca-agent ; virtualenv -p python3 .)
+    else
+        (cd /opt/monasca-agent ; virtualenv .)
+    fi
 
     PIP_VIRTUAL_ENV=/opt/monasca-agent
 
