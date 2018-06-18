@@ -106,6 +106,7 @@ MON_API_GATE_CONFIGURATION_DIR=/etc/monasca-api
 
 function pre_install_monasca {
     echo_summary "Pre-Installing Monasca Components"
+    enable_python3_package monasca-api
     find_nearest_apache_mirror
     install_gate_config_holder
     install_kafka
@@ -1130,7 +1131,11 @@ function install_monasca_agent {
     sudo mkdir -p /opt/monasca-agent || true
     sudo chown $STACK_USER:monasca /opt/monasca-agent
 
-    (cd /opt/monasca-agent ; virtualenv .)
+    if python3_enabled; then
+        (cd /opt/monasca-agent ; virtualenv -p python3 .)
+    else
+        (cd /opt/monasca-agent ; virtualenv .)
+    fi
 
     PIP_VIRTUAL_ENV=/opt/monasca-agent
 
