@@ -1130,7 +1130,11 @@ function install_monasca_agent {
     sudo mkdir -p /opt/monasca-agent || true
     sudo chown $STACK_USER:monasca /opt/monasca-agent
 
-    (cd /opt/monasca-agent ; virtualenv .)
+    if python3_enabled; then
+        (cd /opt/monasca-agent ; virtualenv -p python3 .)
+    else
+        (cd /opt/monasca-agent ; virtualenv .)
+    fi
 
     PIP_VIRTUAL_ENV=/opt/monasca-agent
 
