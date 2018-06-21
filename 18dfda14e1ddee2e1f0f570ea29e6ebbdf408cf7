@@ -22,6 +22,30 @@
       "revId": "18dfda14e1ddee2e1f0f570ea29e6ebbdf408cf7",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f7c97a3_78111053",
+        "filename": "monasca_api/common/repositories/sqla/alarm_definitions_repository.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 26141
+      },
+      "writtenOn": "2018-06-21T12:28:15Z",
+      "side": 1,
+      "message": "safe_encode method always convert string to byte object.\nIn python2, str and byte are the same object, but in python3 byte is different object than string.",
+      "parentUuid": "5f7c97a3_580b6bd4",
+      "range": {
+        "startLine": 320,
+        "startChar": 51,
+        "endLine": 320,
+        "endChar": 57
+      },
+      "revId": "18dfda14e1ddee2e1f0f570ea29e6ebbdf408cf7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
