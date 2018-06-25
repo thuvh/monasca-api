@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f7c97a3_c71fea6d",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-06-25T13:59:32Z",
+      "side": 1,
+      "message": "nit: There is always only one dict item in each list item. We don\u0027t need another sorting and can reduce to:\n\n  key\u003dlambda x: x.values()",
+      "range": {
+        "startLine": 421,
+        "startChar": 70,
+        "endLine": 421,
+        "endChar": 76
+      },
+      "revId": "cfc574df50a04573d7dacee8654343168fcb5542",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
