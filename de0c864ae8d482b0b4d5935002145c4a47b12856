@@ -22,6 +22,30 @@
       "revId": "de0c864ae8d482b0b4d5935002145c4a47b12856",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f7c97a3_3d31fced",
+        "filename": "monasca_api/common/repositories/sqla/alarms_repository.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 26141
+      },
+      "writtenOn": "2018-06-26T08:02:42Z",
+      "side": 1,
+      "message": "Pleas check https://review.openstack.org/#/c/570743/8/monasca_api/common/repositories/sqla/alarm_definitions_repository.py@320",
+      "parentUuid": "5f7c97a3_f8b83712",
+      "range": {
+        "startLine": 289,
+        "startChar": 64,
+        "endLine": 289,
+        "endChar": 70
+      },
+      "revId": "de0c864ae8d482b0b4d5935002145c4a47b12856",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
