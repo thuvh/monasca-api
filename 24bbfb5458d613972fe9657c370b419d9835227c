@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f7c97a3_e1541f56",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-06-27T11:24:57Z",
+      "side": 1,
+      "message": "Sorry, apparently[1] it doesn\u0027t work, my fault. But this does:\n\n  key\u003dlambda x: x[u\u0027dimension_name\u0027]\n\n[1] http://logs.openstack.org/48/559948/6/check/openstack-tox-py35/8dfe996/job-output.txt.gz#_2018-06-27_10_11_39_271272",
+      "range": {
+        "startLine": 421,
+        "startChar": 70,
+        "endLine": 421,
+        "endChar": 80
+      },
+      "revId": "24bbfb5458d613972fe9657c370b419d9835227c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
