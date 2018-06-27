@@ -22,6 +22,30 @@
       "revId": "cfc574df50a04573d7dacee8654343168fcb5542",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f7c97a3_8b9d4abc",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 26141
+      },
+      "writtenOn": "2018-06-27T09:36:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f7c97a3_c71fea6d",
+      "range": {
+        "startLine": 421,
+        "startChar": 70,
+        "endLine": 421,
+        "endChar": 76
+      },
+      "revId": "cfc574df50a04573d7dacee8654343168fcb5542",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
