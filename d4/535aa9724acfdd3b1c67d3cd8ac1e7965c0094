@@ -1,0 +1,8 @@
+Code-Review+2: Doug Szumski <doug@stackhpc.com>
+Workflow+1: Dobroslaw Zybort <dobroslaw.zybort@ts.fujitsu.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Mon, 09 Jul 2018 10:44:32 +0000
+Reviewed-on: https://review.openstack.org/573156
+Project: openstack/monasca-api
+Branch: refs/heads/stable/pike
