@@ -7,7 +7,6 @@ cover*
 .coverage
 *.egg
 *.egg-info
-.testrepository
 .stestr
 .tox
 ChangeLog
