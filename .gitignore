@@ -34,5 +34,6 @@ db/config.yml
 virtenv/*
 .vagrant
 AUTHORS
+.vagrant
 
 *.sample
