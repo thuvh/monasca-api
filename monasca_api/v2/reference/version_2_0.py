@@ -13,6 +13,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+from six import PY3
 from monasca_api.v2.reference import helpers
 
 
@@ -27,7 +28,7 @@ class Version2(object):
             'id': 'v2.0',
             'links': [{
                 'rel': 'self',
-                'href': req.uri.decode('utf-8')
+                'href': req.uri if PY3 else req.uri.decode('utf-8')
             }],
             'status': 'CURRENT',
             'updated': "2013-03-06T00:00:00.000Z"

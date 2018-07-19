@@ -27,6 +27,10 @@ from sqlalchemy import (MetaData, update, delete, select, text,
 from sqlalchemy import or_
 
 
+from oslo_log import log
+LOG = log.getLogger(__name__)
+
+
 class AlarmsRepository(sql_repository.SQLRepository,
                        alarms_repository.AlarmsRepository):
 
@@ -263,6 +267,7 @@ class AlarmsRepository(sql_repository.SQLRepository,
 
     @sql_repository.sql_try_catch_block
     def get_alarms(self, tenant_id, query_parms=None, offset=None, limit=None):
+
         if not query_parms:
             query_parms = {}
 
@@ -297,6 +302,7 @@ class AlarmsRepository(sql_repository.SQLRepository,
                     parms['b_severity' + str(i)] = s.encode('utf8')
 
             if 'state' in query_parms:
+                raise Exception
                 query = query.where(a.c.state == bindparam('b_state'))
                 parms['b_state'] = query_parms['state']
 
@@ -421,7 +427,13 @@ class AlarmsRepository(sql_repository.SQLRepository,
 
             main_query = main_query.order_by(*order_columns)
 
-            return [dict(row) for row in conn.execute(main_query, parms).fetchall()]
+            try:
+                a = [dict(row) for row in conn.execute(main_query, parms).fetchall()]
+
+            except Exception:
+                raise Exception(main_query)
+
+            return a #[dict(row) for row in conn.execute(main_query, parms).fetchall()]
 
     def _remap_columns(self, columns, columns_mapper):
         received_cols = {}
