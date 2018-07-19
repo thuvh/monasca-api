@@ -112,9 +112,10 @@ def get_query_param(req, param_name, required=False, default_val=None):
         params = falcon.uri.parse_query_string(req.query_string)
         if param_name in params:
             if isinstance(params[param_name], list):
-                param_val = params[param_name][0].decode('utf8')
+                param_val = params[param_name][0].decode('utf8') if six.PY2 \
+                    else params[param_name][0]
             else:
-                param_val = params[param_name].decode('utf8')
+                param_val = params[param_name].decode('utf8') if six.PY2 else params[param_name]
 
             return param_val
         else:
@@ -457,15 +458,15 @@ def paginate_alarming(resource, uri, limit):
             next_link += '?' + '&'.join(new_query_params)
 
         resource = {u'links': ([{u'rel': u'self',
-                                 u'href': self_link.decode('utf8')},
+                                 u'href': self_link.decode('utf8') if six.PY2 else self_link},
                                 {u'rel': u'next',
-                                 u'href': next_link.decode('utf8')}]),
+                                 u'href': next_link.decode('utf8') if six.PY2 else next_link}]),
                     u'elements': resource[:limit]}
 
     else:
 
         resource = {u'links': ([{u'rel': u'self',
-                                 u'href': self_link.decode('utf8')}]),
+                                 u'href': self_link.decode('utf8') if six.PY2 else self_link}]),
                     u'elements': resource}
 
     return resource

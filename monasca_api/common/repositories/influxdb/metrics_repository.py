@@ -251,14 +251,13 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
         if name:
             # replace ' with \' to make query parsable
             clean_name = name.replace("'", "\\'")
-            where_clause += ' from  "{}" '.format(clean_name.encode('utf8'))
+            where_clause += ' from  "{}" '.format(clean_name)
 
         # tenant id
-        where_clause += " where _tenant_id = '{}' ".format(tenant_id.encode(
-            "utf8"))
+        where_clause += " where _tenant_id = '{}' ".format(tenant_id)
 
         # region
-        where_clause += " and _region = '{}' ".format(region.encode('utf8'))
+        where_clause += " and _region = '{}' ".format(region)
 
         # dimensions - optional
         if dimensions:
