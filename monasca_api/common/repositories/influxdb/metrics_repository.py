@@ -251,14 +251,13 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
         if name:
             # replace ' with \' to make query parsable
             clean_name = name.replace("'", "\\'")
-            where_clause += ' from  "{}" '.format(clean_name.encode('utf8'))
+            where_clause += ' from  "{}" '.format(clean_name)
 
         # tenant id
-        where_clause += " where _tenant_id = '{}' ".format(tenant_id.encode(
-            "utf8"))
+        where_clause += " where _tenant_id = '{}' ".format(tenant_id)
 
         # region
-        where_clause += " and _region = '{}' ".format(region.encode('utf8'))
+        where_clause += " and _region = '{}' ".format(region)
 
         # dimensions - optional
         if dimensions:
@@ -535,7 +534,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
             entry = {u'name': name[0]}
             json_metric_list.append(entry)
 
-        json_metric_list = sorted(json_metric_list)
+        json_metric_list = sorted(json_metric_list, key=lambda k: k['name'])
         return json_metric_list
 
     def _get_dimensions(self, tenant_id, region, name, dimensions):
