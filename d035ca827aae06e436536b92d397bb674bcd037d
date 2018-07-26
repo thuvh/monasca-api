@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f7c97a3_3b12db62",
+        "filename": "monasca_api/config.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-07-26T11:25:26Z",
+      "side": 1,
+      "message": "You can remove this line now.",
+      "revId": "d035ca827aae06e436536b92d397bb674bcd037d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f7c97a3_bb24abc4",
+        "filename": "monasca_api/config.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-07-26T11:25:26Z",
+      "side": 1,
+      "message": "You\u0027re changing the logic here. `config_file` can be passed as argument of `parse_args()` function and should be used first. `_get_deprecated_config_file()` is supposed to be a fallback only.",
+      "revId": "d035ca827aae06e436536b92d397bb674bcd037d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
