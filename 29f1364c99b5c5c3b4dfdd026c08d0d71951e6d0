@@ -16,6 +16,24 @@
       "revId": "29f1364c99b5c5c3b4dfdd026c08d0d71951e6d0",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f7c97a3_48b306ed",
+        "filename": "monasca_api/config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 12542
+      },
+      "writtenOn": "2018-07-30T12:55:36Z",
+      "side": 1,
+      "message": "Ok, fixed that part now. Let\u0027s hope it works out (still can\u0027t reproduce the problem locally, despite fresh Devstack)...",
+      "parentUuid": "5f7c97a3_1e0b0d22",
+      "revId": "29f1364c99b5c5c3b4dfdd026c08d0d71951e6d0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
