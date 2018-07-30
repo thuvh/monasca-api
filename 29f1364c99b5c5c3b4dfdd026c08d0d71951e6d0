@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f7c97a3_1e0b0d22",
+        "filename": "monasca_api/config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-07-30T09:42:11Z",
+      "side": 1,
+      "message": "Returns \u0027[None]\u0027 instead of \u0027None\u0027 if no deprecated config file is found.",
+      "revId": "29f1364c99b5c5c3b4dfdd026c08d0d71951e6d0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
