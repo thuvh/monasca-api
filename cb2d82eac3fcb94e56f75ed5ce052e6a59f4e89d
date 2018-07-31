@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f7c97a3_077ac274",
+        "filename": "doc/source/admin/index.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-07-31T13:24:34Z",
+      "side": 1,
+      "message": ",",
+      "range": {
+        "startLine": 11,
+        "startChar": 76,
+        "endLine": 11,
+        "endChar": 77
+      },
+      "revId": "cb2d82eac3fcb94e56f75ed5ce052e6a59f4e89d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f7c97a3_a7c2ee84",
+        "filename": "doc/source/admin/index.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-07-31T13:24:34Z",
+      "side": 1,
+      "message": "``",
+      "range": {
+        "startLine": 26,
+        "startChar": 15,
+        "endLine": 26,
+        "endChar": 16
+      },
+      "revId": "cb2d82eac3fcb94e56f75ed5ce052e6a59f4e89d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f7c97a3_674db63a",
+        "filename": "doc/source/admin/index.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-07-31T13:24:34Z",
+      "side": 1,
+      "message": "Obsolete",
+      "range": {
+        "startLine": 26,
+        "startChar": 24,
+        "endLine": 26,
+        "endChar": 26
+      },
+      "revId": "cb2d82eac3fcb94e56f75ed5ce052e6a59f4e89d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f7c97a3_87e4920c",
+        "filename": "doc/source/admin/index.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-07-31T13:24:34Z",
+      "side": 1,
+      "message": "explicitly",
+      "range": {
+        "startLine": 30,
+        "startChar": 9,
+        "endLine": 30,
+        "endChar": 18
+      },
+      "revId": "cb2d82eac3fcb94e56f75ed5ce052e6a59f4e89d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f7c97a3_9c0aa924",
+        "filename": "doc/source/contributor/index.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-07-31T13:24:34Z",
+      "side": 1,
+      "message": "::",
+      "range": {
+        "startLine": 104,
+        "startChar": 32,
+        "endLine": 104,
+        "endChar": 33
+      },
+      "revId": "cb2d82eac3fcb94e56f75ed5ce052e6a59f4e89d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f7c97a3_5c009103",
+        "filename": "doc/source/contributor/index.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-07-31T13:24:34Z",
+      "side": 1,
+      "message": "Please remove. You can check the rendering in the output of build-openstack-sphinx-docs job or locally after running `tox  -e docs`.",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 2
+      },
+      "revId": "cb2d82eac3fcb94e56f75ed5ce052e6a59f4e89d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f7c97a3_3c9595e3",
+        "filename": "monasca_api/config.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-07-31T13:24:34Z",
+      "side": 1,
+      "message": "remove, please",
+      "range": {
+        "startLine": 66,
+        "startChar": 11,
+        "endLine": 66,
+        "endChar": 21
+      },
+      "revId": "cb2d82eac3fcb94e56f75ed5ce052e6a59f4e89d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
