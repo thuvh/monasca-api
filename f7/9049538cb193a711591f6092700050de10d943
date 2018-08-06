@@ -1,0 +1,10 @@
+Code-Review+2: Witold Bedyk <witold.bedyk@est.fujitsu.com>
+Code-Review+1: wangqi <wang.qi@99cloud.net>
+Code-Review+1: Johannes Grassler <jgr-launchpad@btw23.de>
+Workflow+1: Witold Bedyk <witold.bedyk@est.fujitsu.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Mon, 06 Aug 2018 14:18:19 +0000
+Reviewed-on: https://review.openstack.org/587503
+Project: openstack/monasca-api
+Branch: refs/heads/master
