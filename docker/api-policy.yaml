@@ -1,0 +1,106 @@
+# Create an alarm definition.
+# POST  /v2.0/alarm-definitions/
+"api:alarms:definition:post": "role:monasca-user"
+
+# List or get the details of the specified alarm definition.
+# GET  /v2.0/alarm-definitions/{alarm_definition_id}
+# GET  /v2.0/alarm-definitions
+"api:alarms:definition:get": "role:monasca-user or role:monasca-read-only-user"
+
+# Update/Replace the specified alarm definition.
+# PUT  /v2.0/alarm-definitions/{alarm_definition_id}
+"api:alarms:definition:put": "role:monasca-user"
+
+# Update selected parameters of the specified alarm definition, and
+# enable/disable its actions.
+# PATCH  /v2.0/alarm-definitions/{alarm_definition_id}
+"api:alarms:definition:patch": "role:monasca-user"
+
+# Delete the specified alarm definition.
+# DELETE  /v2.0/alarm-definitions/{alarm_definition_id}
+"api:alarms:definition:delete": "role:monasca-user"
+
+# Update/Replace the entire state of the specified alarm.
+# PUT  /v2.0/alarms/{alarm_id}
+"api:alarms:put": "role:monasca-user"
+
+# Update selected parameters of a specified alarm, set the alarm state
+# and enable/disable it.
+# PATCH  /v2.0/alarms/{alarm_id}
+"api:alarms:patch": "role:monasca-user"
+
+# Delete the specified alarm.
+# DELETE  /v2.0/alarms/{alarm_id}
+"api:alarms:delete": "role:monasca-user"
+
+# List or get the details of the specified alarm.
+# GET  /v2.0/alarms/
+# GET  /v2.0/alarms/{alarm_id}
+"api:alarms:get": "role:monasca-user or role:monasca-read-only-user"
+
+# Get the number of alarms that match the criteria.
+# GET  /v2.0/alarms/count/
+"api:alarms:count": "role:monasca-user or role:monasca-read-only-user"
+
+# List alarm state history for alarms.
+# GET  /v2.0/alarms/state-history
+# GET  /v2.0/alarms/{alarm_id}/state-history
+"api:alarms:state_history": "role:monasca-user or role:monasca-read-only-user"
+
+# The rules which allow to access the API on behalf of another tenant.
+"api:delegate": "role:admin"
+
+# Check healthiness.
+# GET  /healthcheck
+"api:healthcheck": "@"
+
+# List metrics, measurements, metric statistics or metric names.
+# GET  /v2.0/metrics
+# GET  /v2.0/metrics/measurements
+# GET  /v2.0/metrics/statistics
+# GET  /v2.0/metrics/names
+"api:metrics:get": "role:monasca-user or role:monasca-read-only-user"
+
+# Create metrics.
+# POST  /v2.0/metrics
+"api:metrics:post": "role:monasca-user or role:agent"
+
+# List dimension values.
+# GET  /v2.0/metrics/dimensions/names/values
+"api:metrics:dimension:values": "role:monasca-user or role:monasca-read-only-user"
+
+# List dimension names.
+# GET  /v2.0/metrics/dimensions/names
+"api:metrics:dimension:names": "role:monasca-user or role:monasca-read-only-user"
+
+# Update the specified notification method.
+# PUT  /v2.0/notification-methods/{notification_method_id}
+"api:notifications:put": "role:monasca-user"
+
+# Update selected parameters of the specified notification method.
+# PATCH  /v2.0/notification-methods/{notification_method_id}
+"api:notifications:patch": "role:monasca-user"
+
+# Delete the specified notification method.
+# DELETE  /v2.0/notification-methods/{notification_method_id}
+"api:notifications:delete": "role:monasca-user"
+
+# List or get the details of the specified notification method.
+# GET  /v2.0/notification-methods
+# GET  /v2.0/notification-methods/{notification_method_id}
+"api:notifications:get": "role:monasca-user or role:monasca-read-only-user"
+
+# Create a notification method.
+# POST  /v2.0/notification-methods
+"api:notifications:post": "role:monasca-user"
+
+# List supported notification method types.
+# GET  /v2.0/notification-methods/types
+"api:notifications:type": "role:monasca-user or role:monasca-read-only-user"
+
+# List supported versions or get the details about the specified
+# version of Monasca API.
+# GET  /
+# GET  /v2.0
+"api:versions": "@"
+
