@@ -1,0 +1,31 @@
+[DEFAULT]
+name = monasca_api
+
+[pipeline:main]
+{% if API_AUTH_DISABLED %}
+pipeline = request_id api
+{% else %}
+pipeline = request_id auth api
+{% endif %}
+
+[app:api]
+paste.app_factory = monasca_api.api.server:launch
+
+[filter:auth]
+paste.filter_factory = monasca_api.healthcheck.keystone_protocol:filter_factory
+
+[filter:request_id]
+paste.filter_factory = oslo_middleware.request_id:RequestId.factory
+
+[server:main]
+use = egg:gunicorn#main
+host = 127.0.0.1
+port = {{ MONASCA_CONTAINER_API_PORT }}
+workers = 9
+worker-connections = 2000
+worker-class = eventlet
+timeout = 30
+backlog = 2048
+keepalive = 2
+proc_name = monasca-api
+loglevel = DEBUG
