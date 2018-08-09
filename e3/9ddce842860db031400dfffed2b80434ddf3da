@@ -1,0 +1,8 @@
+Code-Review+2: Amir Mofakhar <amofakhar@op5.com>
+Workflow+1: Amir Mofakhar <amofakhar@op5.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Thu, 09 Aug 2018 18:45:42 +0000
+Reviewed-on: https://review.openstack.org/590402
+Project: openstack/monasca-api
+Branch: refs/heads/stable/rocky
