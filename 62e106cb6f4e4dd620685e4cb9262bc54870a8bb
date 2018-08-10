@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f79a3b5_cb0bb621",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2018-08-10T11:20:33Z",
+      "side": 1,
+      "message": "No difference between versions?",
+      "range": {
+        "startLine": 556,
+        "startChar": 28,
+        "endLine": 556,
+        "endChar": 63
+      },
+      "revId": "62e106cb6f4e4dd620685e4cb9262bc54870a8bb",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
