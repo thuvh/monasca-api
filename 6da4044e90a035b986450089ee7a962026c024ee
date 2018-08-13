@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f79a3b5_c813985b",
+        "filename": "releasenotes/notes/apache-kafka-101-d5f3454fd445c727.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2018-08-13T08:46:02Z",
+      "side": 1,
+      "message": "This file should include 0.10.2.2 in its filename. Not 101.",
+      "revId": "6da4044e90a035b986450089ee7a962026c024ee",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
