@@ -63,7 +63,7 @@
       - openstack-python-jobs
       - openstack-python35-jobs
       - check-requirements
-      - release-notes-jobs
+      - release-notes-jobs-python3
       - openstack-python35-jobs-nonvoting
     check:
       jobs:
@@ -74,7 +74,7 @@
         - openstack-tox-lower-constraints
         - legacy-monasca-api-maven-build
         - openstack-tox-cover
-        - build-openstack-sphinx-docs
+        - openstack-tox-docs
     gate:
       queue: monasca
       jobs:
@@ -85,7 +85,7 @@
         - openstack-tox-lower-constraints
         - legacy-monasca-api-maven-build
         - openstack-tox-cover
-        - build-openstack-sphinx-docs
+        - openstack-tox-docs
     post:
       jobs:
         - legacy-monasca-api-localrepo-upload
