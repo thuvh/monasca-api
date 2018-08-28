@@ -1,0 +1,9 @@
+Code-Review+2: Doug Szumski <doug@stackhpc.com>
+Code-Review+1: Vieri <15050873171@163.com>
+Workflow+1: Dobroslaw Zybort <dobroslaw.zybort@ts.fujitsu.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Tue, 28 Aug 2018 07:56:28 +0000
+Reviewed-on: https://review.openstack.org/595661
+Project: openstack/monasca-api
+Branch: refs/heads/master
