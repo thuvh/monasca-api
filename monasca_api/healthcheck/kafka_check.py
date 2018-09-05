@@ -59,11 +59,10 @@ class KafkaHealthCheck(base.BaseHealthCheck):
         topics = (CONF.kafka.metrics_topic,
                   CONF.kafka.events_topic,
                   CONF.kafka.alarm_state_transitions_topic)
-
         for topic in topics:
-            for_topic = topic in kafka_client.topic_partitions
-            if not for_topic:
-                error_str = 'Kafka: Topic {0} not found'.format(for_topic)
+            topic_exist = topic in kafka_client.topics
+            if not topic_exist:
+                error_str = 'Kafka: Topic {0} not found'.format(topic)
                 LOG.error(error_str)
                 return False, str(error_str)
         return True, 'OK'
