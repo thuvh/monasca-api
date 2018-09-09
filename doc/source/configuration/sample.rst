@@ -25,16 +25,10 @@ This sample configuration can also be viewed in `api-config.conf.sample
 Sample Configuration For Logging
 --------------------------------
 
-This sample configuration can also be viewed in `api-logging.conf
-<../../../etc/api-logging.conf>`_.
-
 .. literalinclude:: ../../../etc/api-logging.conf
 
 
 Sample Configuration For Paster
 -------------------------------
-
-This sample configuration can also be viewed in `api-config.ini
-<../../../etc/api-config.ini>`_.
 
 .. literalinclude:: ../../../etc/api-config.ini
