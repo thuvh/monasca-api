@@ -1,0 +1,9 @@
+Code-Review+2: Joseph Davis <joseph.davis@suse.com>
+Code-Review+1: Amir Mofakhar <amir@mofakhar.info>
+Workflow+1: Amir Mofakhar <amir@mofakhar.info>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Thu, 13 Sep 2018 16:43:43 +0000
+Reviewed-on: https://review.openstack.org/600384
+Project: openstack/monasca-api
+Branch: refs/heads/master
