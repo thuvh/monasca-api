@@ -1,0 +1,130 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f79a3b5_6daaf21a",
+        "filename": "devstack/files/grafana/dashboards.d/16-zookeper.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2018-09-13T09:46:56Z",
+      "side": 1,
+      "message": "All other services have here 6h.\nAnd openstack and cmm have it set to 1h.\nCould it be possible to remove this time settings? So that when moving between dashboards they all show same time range even when user change it?",
+      "range": {
+        "startLine": 13,
+        "startChar": 17,
+        "endLine": 13,
+        "endChar": 20
+      },
+      "revId": "f3064199b9bfcd1ac5bc6d78f47716c7e5ccbc1c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f79a3b5_c8fc540e",
+        "filename": "devstack/files/grafana/grafana.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2018-09-13T09:46:56Z",
+      "side": 1,
+      "message": "Change name to `grafana-init`",
+      "revId": "f3064199b9bfcd1ac5bc6d78f47716c7e5ccbc1c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f79a3b5_0d57be28",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 1189,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2018-09-13T09:46:56Z",
+      "side": 1,
+      "message": "temporay?",
+      "range": {
+        "startLine": 1189,
+        "startChar": 10,
+        "endLine": 1189,
+        "endChar": 18
+      },
+      "revId": "f3064199b9bfcd1ac5bc6d78f47716c7e5ccbc1c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f79a3b5_8d38aeee",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 1199,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2018-09-13T09:46:56Z",
+      "side": 1,
+      "message": "Does it not working now?\nIf not then it should be split to separate change and merged first.",
+      "range": {
+        "startLine": 1189,
+        "startChar": 0,
+        "endLine": 1199,
+        "endChar": 1
+      },
+      "revId": "f3064199b9bfcd1ac5bc6d78f47716c7e5ccbc1c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f79a3b5_4d2296bc",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 1269,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2018-09-13T09:46:56Z",
+      "side": 1,
+      "message": "All other lines use 4 spaces for indentation.",
+      "range": {
+        "startLine": 1261,
+        "startChar": 0,
+        "endLine": 1269,
+        "endChar": 33
+      },
+      "revId": "f3064199b9bfcd1ac5bc6d78f47716c7e5ccbc1c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f79a3b5_2d271aca",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 1327,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2018-09-13T09:46:56Z",
+      "side": 1,
+      "message": "Unnecessary change.",
+      "revId": "f3064199b9bfcd1ac5bc6d78f47716c7e5ccbc1c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
