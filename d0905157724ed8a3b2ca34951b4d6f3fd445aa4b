@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f79a3b5_f56f8ef7",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 1431,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2018-09-14T12:44:33Z",
+      "side": 1,
+      "message": "2018-09-14 08:23:26.323292 | ubuntu-xenial | ./devstack/plugin.sh:1426:1: E003 Indent not multiple of 4\n2018-09-14 08:23:26.323369 | ubuntu-xenial | ./devstack/plugin.sh:1427:1: E003 Indent not multiple of 4\n2018-09-14 08:23:26.323451 | ubuntu-xenial | ./devstack/plugin.sh:1428:1: E003 Indent not multiple of 4\n2018-09-14 08:23:26.323529 | ubuntu-xenial | ./devstack/plugin.sh:1429:1: E003 Indent not multiple of 4\n2018-09-14 08:23:26.323607 | ubuntu-xenial | ./devstack/plugin.sh:1430:1: E003 Indent not multiple of 4\n2018-09-14 08:23:26.323685 | ubuntu-xenial | ./devstack/plugin.sh:1431:1: E003 Indent not multiple of 4",
+      "range": {
+        "startLine": 1426,
+        "startChar": 0,
+        "endLine": 1431,
+        "endChar": 42
+      },
+      "revId": "d0905157724ed8a3b2ca34951b4d6f3fd445aa4b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
