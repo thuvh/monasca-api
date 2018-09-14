@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3f79a3b5_f46f94f7",
+        "filename": "devstack/files/grafana/dashboards.d/16-zookeper.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 16171
+      },
+      "writtenOn": "2018-09-14T08:20:07Z",
+      "side": 1,
+      "message": "Done for all dasboards. Set for 1h",
+      "parentUuid": "3f79a3b5_6daaf21a",
+      "range": {
+        "startLine": 13,
+        "startChar": 17,
+        "endLine": 13,
+        "endChar": 20
+      },
+      "revId": "f3064199b9bfcd1ac5bc6d78f47716c7e5ccbc1c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3f79a3b5_c8fc540e",
         "filename": "devstack/files/grafana/grafana.py",
         "patchSetId": 3
@@ -36,6 +60,24 @@
       "writtenOn": "2018-09-13T09:46:56Z",
       "side": 1,
       "message": "Change name to `grafana-init`",
+      "revId": "f3064199b9bfcd1ac5bc6d78f47716c7e5ccbc1c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f79a3b5_d45db848",
+        "filename": "devstack/files/grafana/grafana.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16171
+      },
+      "writtenOn": "2018-09-14T08:20:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f79a3b5_c8fc540e",
       "revId": "f3064199b9bfcd1ac5bc6d78f47716c7e5ccbc1c",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -88,6 +130,30 @@
     },
     {
       "key": {
+        "uuid": "3f79a3b5_b4791cc6",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 1199,
+      "author": {
+        "id": 16171
+      },
+      "writtenOn": "2018-09-14T08:20:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f79a3b5_8d38aeee",
+      "range": {
+        "startLine": 1189,
+        "startChar": 0,
+        "endLine": 1199,
+        "endChar": 1
+      },
+      "revId": "f3064199b9bfcd1ac5bc6d78f47716c7e5ccbc1c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3f79a3b5_4d2296bc",
         "filename": "devstack/plugin.sh",
         "patchSetId": 3
@@ -111,6 +177,30 @@
     },
     {
       "key": {
+        "uuid": "3f79a3b5_544a0883",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 1269,
+      "author": {
+        "id": 16171
+      },
+      "writtenOn": "2018-09-14T08:20:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f79a3b5_4d2296bc",
+      "range": {
+        "startLine": 1261,
+        "startChar": 0,
+        "endLine": 1269,
+        "endChar": 33
+      },
+      "revId": "f3064199b9bfcd1ac5bc6d78f47716c7e5ccbc1c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3f79a3b5_2d271aca",
         "filename": "devstack/plugin.sh",
         "patchSetId": 3
@@ -122,6 +212,24 @@
       "writtenOn": "2018-09-13T09:46:56Z",
       "side": 1,
       "message": "Unnecessary change.",
+      "revId": "f3064199b9bfcd1ac5bc6d78f47716c7e5ccbc1c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f79a3b5_744dc497",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 1327,
+      "author": {
+        "id": 16171
+      },
+      "writtenOn": "2018-09-14T08:20:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f79a3b5_2d271aca",
       "revId": "f3064199b9bfcd1ac5bc6d78f47716c7e5ccbc1c",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
