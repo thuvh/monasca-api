@@ -28,7 +28,8 @@ _REVS = {"43e5913b0272077321ab6f25ffbcda7149b6284b": "00597b5c8325",
 
          # Database created with UTF8 default charset
          "5dda7af1fd708095e6c9298976abb1242bbd1848": "8781a256f0c1",
-         "7fb1ce4a60f0065505096843bfd21f4ef4c5d1e0": "f69cb3152a76"}
+         "7fb1ce4a60f0065505096843bfd21f4ef4c5d1e0": "f69cb3152a76",
+         "7fb1ce4a60f0065505096843bfd21f4ef4c5d1e0": "26083b298bb7"}
 
 
 class Fingerprint(object):
