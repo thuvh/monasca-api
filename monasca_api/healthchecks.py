@@ -40,7 +40,6 @@ class HealthChecks(healthcheck_api.HealthCheckApi):
         res.cache_control = self.CACHE_CONTROL
 
     def on_get(self, req, res):
-        helpers.validate_authorization(req, ['api:healthcheck'])
         kafka_result = self._kafka_check.health_check()
         alarms_db_result = self._alarm_db_check.health_check()
         metrics_db_result = self._metrics_db_check.health_check()
