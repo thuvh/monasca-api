@@ -1,0 +1,9 @@
+Code-Review+2: Amir Mofakhar <amir@mofakhar.info>
+Workflow+1: Witold Bedyk <witold.bedyk@est.fujitsu.com>
+Code-Review+1: Joseph Davis <joseph.davis@suse.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Wed, 19 Sep 2018 14:41:46 +0000
+Reviewed-on: https://review.openstack.org/590369
+Project: openstack/monasca-api
+Branch: refs/heads/stable/rocky
