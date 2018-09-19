@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f79a3b5_b5921a9e",
+        "filename": "monasca_api/db/fingerprint.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2018-09-19T13:53:34Z",
+      "side": 1,
+      "message": "I can\u0027t seem to reproduce this fingerprint, but the schema hasn\u0027t changed (this revision is a \u0027data migration\u0027 which just deletes some rows). With either revision f69cb3 or 26083 I get the same fingerprint.\n\nExample:\n\nMariaDB [(none)]\u003e CREATE DATABASE monasca CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;\n(monasca-api)[root@operator monasca-api]#monasca_db upgrade\n\u003cSNIP\u003e\nINFO  [alembic.runtime.migration] Running upgrade 8781a256f0c1 -\u003e f69cb3152a76, Remove inhibited and silenced from alarms (Git revision f69cb3152a76e7c586dcc9a03600d1d4ed32c4e6)\n(monasca-api)[root@operator monasca-api]# monasca_db fingerprint\n80f1bab3839430faceb0f99b2b1473204f0c763d\n\nAnd then my change (same hash as expected):\n(monasca-api)[root@operator monasca-api]# alembic -c /monasca-api/monasca_api/db/alembic.ini upgrade head\nINFO  [alembic.runtime.migration] Context impl MySQLImpl.\nINFO  [alembic.runtime.migration] Will assume non-transactional DDL.\nINFO  [alembic.runtime.migration] Running upgrade f69cb3152a76 -\u003e 26083b298bb7, Remove builtin notification types\n(monasca-api)[root@operator monasca-api]# monasca_db fingerprint\n80f1bab3839430faceb0f99b2b1473204f0c763d\n\nExactly how was the database create for these fingerprints? Have I missed something?",
+      "range": {
+        "startLine": 32,
+        "startChar": 9,
+        "endLine": 32,
+        "endChar": 10
+      },
+      "revId": "7da423f3c1b5886ddf14897bcf7f37ff7ca7cff3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f79a3b5_55d626f4",
+        "filename": "monasca_api/db/fingerprint.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2018-09-19T13:53:34Z",
+      "side": 1,
+      "message": "Is this supposed to match the final commit id?",
+      "range": {
+        "startLine": 32,
+        "startChar": 54,
+        "endLine": 32,
+        "endChar": 66
+      },
+      "revId": "7da423f3c1b5886ddf14897bcf7f37ff7ca7cff3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
