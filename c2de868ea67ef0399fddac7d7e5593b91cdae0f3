@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f79a3b5_befbc478",
+        "filename": "devstack/files/grafana/dashboards.d/09-cmm.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2018-09-20T12:22:46Z",
+      "side": 1,
+      "message": "Change file name to use monasca.",
+      "revId": "c2de868ea67ef0399fddac7d7e5593b91cdae0f3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f79a3b5_fe05bc7a",
+        "filename": "devstack/files/grafana/dashboards.d/09-cmm.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2018-09-20T12:22:46Z",
+      "side": 1,
+      "message": "It should not be `CMM` but Monasca.",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 36
+      },
+      "revId": "c2de868ea67ef0399fddac7d7e5593b91cdae0f3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f79a3b5_7e3e8c29",
+        "filename": "devstack/files/grafana/dashboards.d/09-cmm.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 1530,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2018-09-20T12:22:46Z",
+      "side": 1,
+      "message": "You need to add alias here like `kafka.consumer_lag: @consumer_group`. Now it\u0027s showing 3 times `kafka.consumer_lag` without any info for what this lags are for.",
+      "range": {
+        "startLine": 1530,
+        "startChar": 14,
+        "endLine": 1530,
+        "endChar": 45
+      },
+      "revId": "c2de868ea67ef0399fddac7d7e5593b91cdae0f3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
