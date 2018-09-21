@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f79a3b5_7460c8a5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6873
+      },
+      "writtenOn": "2018-09-21T20:18:06Z",
+      "side": 1,
+      "message": "Add Task: 26142",
+      "revId": "622f20415a158b9b9563b7b407ff3120a162874f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f79a3b5_34b6d0fb",
+        "filename": "tools/monasca-status.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6873
+      },
+      "writtenOn": "2018-09-21T20:18:06Z",
+      "side": 1,
+      "message": "Hmm, I\u0027d maybe remove this, or rename it or write a description that indicates to operators it\u0027s really a noop and there is nothing to do.\n\nLike, maybe you\u0027d want something like this?\n\n+----------------------------------------------------+\n| Upgrade Check Results                              |\n+----------------------------------------------------+\n| Check: Initial check                               |\n| Result: Success                                    |\n| Details: This is the initial check for Monasca and |\n| does nothing; subsequent releases may have real    |\n| pre-upgrade checks as needed.                      |\n+----------------------------------------------------+",
+      "range": {
+        "startLine": 81,
+        "startChar": 4,
+        "endLine": 97,
+        "endChar": 5
+      },
+      "revId": "622f20415a158b9b9563b7b407ff3120a162874f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f79a3b5_34281032",
+        "filename": "tools/monasca-status.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 6873
+      },
+      "writtenOn": "2018-09-21T20:18:06Z",
+      "side": 1,
+      "message": "You might want to add a NOTE that the example here is from nova-status upgrade check, and is just for illustration. If/when you cutover to the oslo upgradecheck library, you wouldn\u0027t need this since it\u0027s part of the library.",
+      "range": {
+        "startLine": 127,
+        "startChar": 8,
+        "endLine": 139,
+        "endChar": 64
+      },
+      "revId": "622f20415a158b9b9563b7b407ff3120a162874f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
