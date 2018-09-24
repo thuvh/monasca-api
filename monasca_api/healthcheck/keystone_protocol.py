@@ -17,7 +17,7 @@ from oslo_log import log
 
 LOG = log.getLogger(__name__)
 
-_SKIP_PATH = '/version', '/healthcheck'
+_SKIP_PATH = '/version', '/healthcheck', '/metrics/version', '/metrics/healthcheck'
 """Tuple of non-application endpoints"""
 
 
