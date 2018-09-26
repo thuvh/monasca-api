@@ -45,6 +45,54 @@
       "revId": "7da423f3c1b5886ddf14897bcf7f37ff7ca7cff3",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f79a3b5_3c38aed2",
+        "filename": "monasca_api/db/fingerprint.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 12542
+      },
+      "writtenOn": "2018-09-26T13:04:39Z",
+      "side": 1,
+      "message": "No. This is a SHA1 fingerprint of a schema dump as computed here:\n\nhttps://github.com/openstack/monasca-api/blob/0250f81cdcb9e49361f24b52e76e1597a0674739/monasca_api/db/fingerprint.py#L60\n\nGetting it to match the commit ID would pose a bit of a chicken-egg problem :-)\n\nThe bit that _does_ match commit IDs are the values (i.e. revision IDs) in that hash for any legacy revisions (those created by SQL scripts). For these, the commits are in the past so I used the shortened commit IDs as revision identifiers (to make locating the matching SQL script easier).",
+      "parentUuid": "3f79a3b5_55d626f4",
+      "range": {
+        "startLine": 32,
+        "startChar": 54,
+        "endLine": 32,
+        "endChar": 66
+      },
+      "revId": "7da423f3c1b5886ddf14897bcf7f37ff7ca7cff3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f79a3b5_5cc7aa66",
+        "filename": "monasca_api/db/fingerprint.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 12542
+      },
+      "writtenOn": "2018-09-26T13:04:39Z",
+      "side": 1,
+      "message": "\u003e this revision is a \u0027data migration\u0027 which just deletes some rows\n\n\u0027data migration\u0027 is the keyword here. Since it only changes data but not the schema, the fingerprint would not be affected since it uses just the schema as its input.\n\nAlso, there is no real need to add fingerprints for any migrations introduced after the transition to Alembic: the database will be \"fingerprinted\" automatically by virtue of having the alembic revision ID stored in the database (Alembic does that automatically). The fingerprinting mechanism is only useful for identifying legacy revisions that do not have a alembic revision ID stored because they were created by an SQL script.\n\nActually we should modify\n\nhttps://github.com/openstack/monasca-api/blob/0250f81cdcb9e49361f24b52e76e1597a0674739/monasca_api/db/fingerprint.py#L66\n\nto set the revision attribute to the stored alembic revision if it exists (rather than guessing it from the schema fingerprint). That\u0027s less error prone and will work for data migrations as well. Also, we should definitely output a warning in that case.",
+      "parentUuid": "3f79a3b5_b5921a9e",
+      "range": {
+        "startLine": 32,
+        "startChar": 9,
+        "endLine": 32,
+        "endChar": 10
+      },
+      "revId": "7da423f3c1b5886ddf14897bcf7f37ff7ca7cff3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
