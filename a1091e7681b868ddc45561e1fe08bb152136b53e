@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f79a3b5_6dd5ddb6",
+        "filename": "monasca_api/healthcheck/keystone_protocol.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2018-09-28T13:36:50Z",
+      "side": 1,
+      "message": "This will work only in Devstack. Would it be possible to create it in such way to make it work everywhere (without providing additional configuration option, we already have too many)?",
+      "range": {
+        "startLine": 20,
+        "startChar": 39,
+        "endLine": 20,
+        "endChar": 83
+      },
+      "revId": "a1091e7681b868ddc45561e1fe08bb152136b53e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
