@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f79a3b5_e3eb0e0f",
+        "filename": "config-generator/policy.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 10311
+      },
+      "writtenOn": "2018-10-01T18:01:56Z",
+      "side": 1,
+      "message": "I\u0027m not seeing a change in this file.  Was there a whitespace change?",
+      "revId": "f0e5de00e8c590d6bdfc267f92ad60d03b7ca35d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
