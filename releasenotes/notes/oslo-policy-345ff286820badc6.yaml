@@ -1,0 +1,5 @@
+---
+fixes:
+  - |
+    ``agent_authorized_roles`` was wrongly configured by default
+    to be ``agent``, changed default value to ``monasca-agent``.
