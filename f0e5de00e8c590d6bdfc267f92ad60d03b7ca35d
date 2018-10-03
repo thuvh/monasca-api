@@ -16,6 +16,24 @@
       "revId": "f0e5de00e8c590d6bdfc267f92ad60d03b7ca35d",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f79a3b5_ea03b6bc",
+        "filename": "config-generator/policy.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2018-10-03T12:36:16Z",
+      "side": 1,
+      "message": "Yes, adding one empty line at the end. I can remove it if you prefer that.",
+      "parentUuid": "3f79a3b5_e3eb0e0f",
+      "revId": "f0e5de00e8c590d6bdfc267f92ad60d03b7ca35d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
