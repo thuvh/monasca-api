@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f79a3b5_7f1bca7e",
+        "filename": "devstack/lib/persister.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2018-10-04T12:18:53Z",
+      "side": 1,
+      "message": "Could we offload the parsing of boolean strings to Oslo by removing the if statement and replacing it with```iniset $MONASCA_PERSISTER_CONF DEFAULT use_syslog $SYSLOG```?",
+      "revId": "8bd78bb185c51fd8243ae9705847c64f61e69843",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
