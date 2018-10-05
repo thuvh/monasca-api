@@ -16,6 +16,24 @@
       "revId": "8bd78bb185c51fd8243ae9705847c64f61e69843",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f79a3b5_2fc66b4c",
+        "filename": "devstack/lib/persister.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-10-05T10:03:20Z",
+      "side": 1,
+      "message": "Good point. Done.",
+      "parentUuid": "3f79a3b5_7f1bca7e",
+      "revId": "8bd78bb185c51fd8243ae9705847c64f61e69843",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
