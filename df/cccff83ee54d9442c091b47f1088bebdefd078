@@ -1,0 +1,9 @@
+Code-Review+2: Joseph Davis <joseph.davis@suse.com>
+Code-Review+2: Witold Bedyk <witold.bedyk@est.fujitsu.com>
+Workflow+1: Witold Bedyk <witold.bedyk@est.fujitsu.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Mon, 08 Oct 2018 15:34:56 +0000
+Reviewed-on: https://review.openstack.org/601081
+Project: openstack/monasca-api
+Branch: refs/heads/master
