@@ -2,6 +2,75 @@
   "comments": [
     {
       "key": {
+        "uuid": "3f79a3b5_0add7640",
+        "filename": "config-generator/README.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-10-08T13:27:19Z",
+      "side": 1,
+      "message": "It contains",
+      "range": {
+        "startLine": 14,
+        "startChar": 32,
+        "endLine": 14,
+        "endChar": 44
+      },
+      "revId": "f0e5de00e8c590d6bdfc267f92ad60d03b7ca35d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f79a3b5_cade9e3b",
+        "filename": "config-generator/README.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-10-08T13:27:19Z",
+      "side": 1,
+      "message": "suit",
+      "range": {
+        "startLine": 15,
+        "startChar": 23,
+        "endLine": 15,
+        "endChar": 28
+      },
+      "revId": "f0e5de00e8c590d6bdfc267f92ad60d03b7ca35d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f79a3b5_0ab6d6fa",
+        "filename": "config-generator/README.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-10-08T13:27:19Z",
+      "side": 1,
+      "message": "the new policy configuration",
+      "range": {
+        "startLine": 16,
+        "startChar": 26,
+        "endLine": 16,
+        "endChar": 36
+      },
+      "revId": "f0e5de00e8c590d6bdfc267f92ad60d03b7ca35d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3f79a3b5_e3eb0e0f",
         "filename": "config-generator/policy.conf",
         "patchSetId": 1
