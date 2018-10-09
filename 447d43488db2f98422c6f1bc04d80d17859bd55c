@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f79a3b5_c811adfa",
+        "filename": "doc/source/contributor/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2018-10-09T13:23:00Z",
+      "side": 1,
+      "message": "It\u0027s a shame that this can\u0027t point to the latest release so that we don\u0027t need to update it every release.",
+      "revId": "447d43488db2f98422c6f1bc04d80d17859bd55c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
