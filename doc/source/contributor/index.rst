@@ -33,8 +33,14 @@ desires for new features using Storyboard stories. The workflow is very simple:
 Bug Reports
 -----------
 
-Current bugs can be found in this `Worklist
+All open bugs can be found in this `Worklist
 <https://storyboard.openstack.org/#!/worklist/213>`_.
+
+Bugs triaged in Stein release can be listed `here
+<https://storyboard.openstack.org/#!/worklist/467>`_.
+
+The progress of bug-fixing can be tracked in `this board
+<https://storyboard.openstack.org/#!/board/114>`_.
 
 When filing a bug please remember to add the *bug* tag to the story. Please
 provide information on what the problem is, how to replicate it, any
