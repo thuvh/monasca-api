@@ -93,6 +93,30 @@
       "revId": "7da423f3c1b5886ddf14897bcf7f37ff7ca7cff3",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f79a3b5_065c58ee",
+        "filename": "monasca_api/db/fingerprint.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2018-10-10T13:31:29Z",
+      "side": 1,
+      "message": "Thanks for the feedback Johannes! Don\u0027t worry, I wasn\u0027t planning on making the hash match the commit id :) What I meant was that I think I need to update the revision ID to match the commit ID of this commit once people are happy with it?",
+      "parentUuid": "3f79a3b5_5cc7aa66",
+      "range": {
+        "startLine": 32,
+        "startChar": 9,
+        "endLine": 32,
+        "endChar": 10
+      },
+      "revId": "7da423f3c1b5886ddf14897bcf7f37ff7ca7cff3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
