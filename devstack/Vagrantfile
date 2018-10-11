@@ -121,7 +121,7 @@ LOG_COLOR=False
 
 DEST=/opt/stack
 
-disable_all_services
+#disable_all_services
 enable_service rabbit key tempest horizon
 
 # Enable more OpenStack services if neccessary:
