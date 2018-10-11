@@ -222,7 +222,6 @@ configure_monasca_persister_python() {
         iniset "$MONASCA_PERSISTER_CONF" repositories alarm_state_history_driver ${AH_REPO_DRIVER_CASSANDRA}
     fi
 
-    ln -sf ${MONASCA_PERSISTER_CONF} ${MONASCA_PERSISTER_GATE_CONFIG}
     ln -sf ${MONASCA_PERSISTER_LOGGING_CONF} ${MONASCA_PERSISTER_GATE_CONFIG}
 }
 
