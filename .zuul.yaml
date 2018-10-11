@@ -1,8 +1,6 @@
 - job:
     name: monasca-tempest-base
-    parent: legacy-dsvm-base
-    run: playbooks/legacy/monasca-tempest-base/run.yaml
-    post-run: playbooks/legacy/monasca-tempest-base/post.yaml
+    parent: devstack-tempest
     timeout: 7800
     required-projects:
       - openstack-infra/devstack-gate
@@ -19,7 +17,15 @@
       - openstack/tempest
       - openstack/monasca-tempest-plugin
     vars:
-      database: mysql
+      tempest_test_regex: monasca_tempest_tests.tests.api
+      devstack_localrc:
+        MONASCA_API_IMPLEMENTATION_LANG: python
+        MONASCA_PERSISTER_IMPLEMENTATION_LANG: python
+        MONASCA_METRICS_DB: mysql
+        TEMPEST_PLUGINS: /opt/stack/new/monasca-tempest-plugin
+      devstack_plugins:
+        monasca-api: https://git.openstack.org/openstack/monasca-api
+
     irrelevant-files:
       - ^.*\.rst$
       - ^.*\.md$
@@ -30,9 +36,10 @@
     name: monasca-tempest-python-influxdb
     parent: monasca-tempest-base
     vars:
-      tsdb: influxdb
-      api_lang: python
-      persister_lang: python
+      devstack_localrc:
+            MONASCA_API_IMPLEMENTATION_LANG: python
+            MONASCA_PERSISTER_IMPLEMENTATION_LANG: python
+            MONASCA_METRICS_DB: influxdb
 
 - job:
     name: monasca-tempest-java-influxdb
@@ -71,18 +78,10 @@
     check:
       jobs:
         - monasca-tempest-python-influxdb
-        - monasca-tempest-java-influxdb
-        - monasca-tempest-python-cassandra
-        - monasca-tempest-java-cassandra
-        - legacy-monasca-api-maven-build
     gate:
       queue: monasca
       jobs:
         - monasca-tempest-python-influxdb
-        - monasca-tempest-java-influxdb
-        - monasca-tempest-python-cassandra
-        - monasca-tempest-java-cassandra
-        - legacy-monasca-api-maven-build
     post:
       jobs:
         - legacy-monasca-api-localrepo-upload
