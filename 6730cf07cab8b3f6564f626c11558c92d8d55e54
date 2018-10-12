@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f79a3b5_bd13ff01",
+        "filename": "releasenotes/notes/oslo-policy-345ff286820badc6.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-10-12T09:54:58Z",
+      "side": 1,
+      "message": "In my opinion it\u0027s not a fix, just different configuration. I agree it should be consistent across different places.\n\nI\u0027d suggest to move that note to `upgrade` section and say that admins upgrading from older versions should check this config option because of changed default value.",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 64
+      },
+      "revId": "6730cf07cab8b3f6564f626c11558c92d8d55e54",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
