@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f79a3b5_a248972a",
+        "filename": ".zuul.yaml",
+        "patchSetId": 23
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-10-26T12:49:45Z",
+      "side": 1,
+      "message": "Please make a note about it in the commit message.",
+      "revId": "a178c79b7f3c57300acf526e0542df6d2b6d43e9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
