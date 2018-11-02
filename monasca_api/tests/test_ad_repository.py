@@ -499,7 +499,7 @@ class TestAlarmDefinitionRepoDB(base.BaseTestCase):
         expected['alarm_actions'] = None
         self.assertEqual(alarmDef2, expected)
 
-    def test_shoud_find_sub_alarm_metric_definitions(self):
+    def test_should_find_sub_alarm_metric_definitions(self):
         sub_alarms = self.repo.get_sub_alarm_definitions('123')
 
         expected = [{'alarm_definition_id': '123',
