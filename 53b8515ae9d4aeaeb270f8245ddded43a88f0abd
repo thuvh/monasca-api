@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f79a3b5_39c71914",
+        "filename": ".zuul.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 22348
+      },
+      "writtenOn": "2018-11-06T15:03:26Z",
+      "side": 1,
+      "message": "expected str for dictionary value @ data[\u0027check\u0027][\u0027jobs\u0027][4][\u0027legacy-monasca-api-maven-build\u0027]",
+      "range": {
+        "startLine": 61,
+        "startChar": 2,
+        "endLine": 85,
+        "endChar": 0
+      },
+      "revId": "53b8515ae9d4aeaeb270f8245ddded43a88f0abd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
