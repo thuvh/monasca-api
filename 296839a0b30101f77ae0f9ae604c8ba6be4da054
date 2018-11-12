@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f79a3b5_f83610df",
+        "filename": "doc/source/cli/index.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2018-11-12T16:04:33Z",
+      "side": 1,
+      "message": "Nit: From the entry point it looks like this should be a hyphen.",
+      "range": {
+        "startLine": 18,
+        "startChar": 7,
+        "endLine": 18,
+        "endChar": 8
+      },
+      "revId": "296839a0b30101f77ae0f9ae604c8ba6be4da054",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f79a3b5_18674cee",
+        "filename": "monasca_api/cmd/status.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2018-11-12T16:04:33Z",
+      "side": 1,
+      "message": "Should this just be \u0027monasca\u0027 and then we put all the checks for all services in the monasca-api repo?",
+      "range": {
+        "startLine": 57,
+        "startChar": 27,
+        "endLine": 57,
+        "endChar": 38
+      },
+      "revId": "296839a0b30101f77ae0f9ae604c8ba6be4da054",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
