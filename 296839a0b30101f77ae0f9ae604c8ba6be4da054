@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3f79a3b5_3356e95e",
+        "filename": "doc/source/cli/index.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 10311
+      },
+      "writtenOn": "2018-11-12T19:25:27Z",
+      "side": 1,
+      "message": "Good catch. The standard is \u003cproject\u003e-status.  The _ must have snuck in from the monasca_db entry.",
+      "parentUuid": "3f79a3b5_f83610df",
+      "range": {
+        "startLine": 18,
+        "startChar": 7,
+        "endLine": 18,
+        "endChar": 8
+      },
+      "revId": "296839a0b30101f77ae0f9ae604c8ba6be4da054",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3f79a3b5_18674cee",
         "filename": "monasca_api/cmd/status.py",
         "patchSetId": 7
@@ -36,6 +60,30 @@
       "writtenOn": "2018-11-12T16:04:33Z",
       "side": 1,
       "message": "Should this just be \u0027monasca\u0027 and then we put all the checks for all services in the monasca-api repo?",
+      "range": {
+        "startLine": 57,
+        "startChar": 27,
+        "endLine": 57,
+        "endChar": 38
+      },
+      "revId": "296839a0b30101f77ae0f9ae604c8ba6be4da054",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f79a3b5_33a589b3",
+        "filename": "monasca_api/cmd/status.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 10311
+      },
+      "writtenOn": "2018-11-12T19:25:27Z",
+      "side": 1,
+      "message": "Good point. I\u0027d like this upgrade check to be for all monasca services (at least the ones configured on the node this status.py runs on).  We can split out separate services if needed in the future.",
+      "parentUuid": "3f79a3b5_18674cee",
       "range": {
         "startLine": 57,
         "startChar": 27,
