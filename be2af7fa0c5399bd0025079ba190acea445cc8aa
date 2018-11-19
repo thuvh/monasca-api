@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f79a3b5_c3f50ecb",
+        "filename": "monasca_api/db/fingerprint.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2018-11-19T13:32:50Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we raise exception here? Also there is no test for such case.",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 38
+      },
+      "revId": "be2af7fa0c5399bd0025079ba190acea445cc8aa",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
