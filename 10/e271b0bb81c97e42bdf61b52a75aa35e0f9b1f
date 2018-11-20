@@ -1,0 +1,9 @@
+Code-Review+2: Adrian Czarnecki <adrian.czarnecki@ts.fujitsu.com>
+Workflow+1: Adrian Czarnecki <adrian.czarnecki@ts.fujitsu.com>
+Code-Review+1: Akhil jain <akhil.jain@india.nec.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Tue, 20 Nov 2018 09:16:28 +0000
+Reviewed-on: https://review.openstack.org/618122
+Project: openstack/monasca-api
+Branch: refs/heads/master
