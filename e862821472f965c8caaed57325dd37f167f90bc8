@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f79a3b5_bee560a5",
+        "filename": ".zuul.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 22348
+      },
+      "writtenOn": "2018-11-21T09:00:44Z",
+      "side": 1,
+      "message": "extra keys not allowed @ data[\u0027devstack_services\u0027]",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 62,
+        "endChar": 0
+      },
+      "revId": "e862821472f965c8caaed57325dd37f167f90bc8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
