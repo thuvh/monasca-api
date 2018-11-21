@@ -16,8 +16,10 @@
       - openstack/python-monascaclient
       - openstack/tempest
       - openstack/monasca-tempest-plugin
-
     vars:
+      devstack_services:
+          # Disable unneeded services.
+          horizon: false
       tox_envlist: all
       tempest_test_regex: monasca_tempest_tests.tests.api
       devstack_plugins:
