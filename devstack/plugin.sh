@@ -166,7 +166,7 @@ function extra_monasca {
     install_monasca_profile
 
     if is_service_enabled horizon; then
-        install_node_nvm
+        install_nodejs
         install_go
         install_monasca_grafana
     fi
@@ -253,7 +253,7 @@ function clean_monasca {
     clean_ui
 
     if is_service_enabled horizon; then
-        clean_node_nvm
+        clean_nodejs
         clean_monasca_grafana
         clean_go
     fi
@@ -1233,28 +1233,16 @@ function clean_monasca_agent {
     fi
 }
 
-# install node with nvm, works behind corporate proxy
+# install nodejs and npm packages, works behind corporate proxy
 # and does not result in gnutsl_handshake error
-function install_node_nvm {
+function install_nodejs {
 
-    echo_summary "Install Node ${NODE_JS_VERSION} with NVM ${NVM_VERSION}"
+    echo_summary "Install Node.js"
 
-    local nvm_url=https://raw.githubusercontent.com/creationix/nvm/v${NVM_VERSION}/install.sh
-
-    local nvm_dest
-    nvm_dest=`get_extra_file ${nvm_url}`
-
-    set -i
-    bash ${nvm_dest}
-    (
-        source "${HOME}"/.nvm/nvm.sh >> /dev/null; \
-            nvm install ${NODE_JS_VERSION}; \
-            nvm use ${NODE_JS_VERSION}; \
-            npm config set registry "http://registry.npmjs.org/"; \
-            npm config set proxy "${HTTP_PROXY}"; \
-            npm set strict-ssl false;
-    )
-    set +i
+    apt_get install -y nodejs npm
+    npm config set registry "http://registry.npmjs.org/"; \
+    npm config set proxy "${HTTP_PROXY}"; \
+    npm set strict-ssl false;
 }
 
 function init_monasca_grafana {
@@ -1291,14 +1279,10 @@ function install_monasca_grafana {
 
     go run build.go build
 
-    set -i
-
-    (source "${HOME}"/.nvm/nvm.sh >> /dev/null; nvm use ${NODE_JS_VERSION}; npm config set unsafe-perm true)
-    (source "${HOME}"/.nvm/nvm.sh >> /dev/null; nvm use ${NODE_JS_VERSION}; npm install)
-    (source "${HOME}"/.nvm/nvm.sh >> /dev/null; nvm use ${NODE_JS_VERSION}; npm install -g grunt-cli)
-    (source "${HOME}"/.nvm/nvm.sh >> /dev/null; nvm use ${NODE_JS_VERSION}; grunt --force)
-
-    set +i
+    npm config set unsafe-perm true
+    npm install
+    sudo npm install -g grunt-cli
+    grunt --force
 
     cd "${MONASCA_BASE}"
     sudo rm -r grafana
@@ -1326,10 +1310,8 @@ function install_monasca_grafana {
     sudo systemctl enable grafana-server
 }
 
-function clean_node_nvm {
-    sudo rm -rf "${HOME}"/.nvm
-
-    sudo rm -f ${FILES}/nvm_install.sh
+function clean_nodejs {
+    apt_get purge -y nodejs npm
 }
 
 function clean_monasca_grafana {
