@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f79a3b5_cf638917",
+        "filename": "monasca_api/cmd/status.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6873
+      },
+      "writtenOn": "2018-11-26T14:59:03Z",
+      "side": 1,
+      "message": "Why even do this? If you don\u0027t support localization, just don\u0027t use _().",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 18
+      },
+      "revId": "22be5aa57fae08ca5a43393a5b94af7b2e65ce17",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f79a3b5_8f7111e2",
+        "filename": "releasenotes/notes/add-monasca-status-upgrade-check-c37e6910c2eb0150.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6873
+      },
+      "writtenOn": "2018-11-26T14:59:03Z",
+      "side": 1,
+      "message": "This is a bit redundant.",
+      "range": {
+        "startLine": 4,
+        "startChar": 4,
+        "endLine": 5,
+        "endChar": 72
+      },
+      "revId": "22be5aa57fae08ca5a43393a5b94af7b2e65ce17",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
