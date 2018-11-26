@@ -30,6 +30,17 @@
       - ^releasenotes/.*$
 
 - job:
+    name: monasca-tempest-python3-influxdb
+    parent: monasca-tempest-base
+    vars:
+      devstack_localrc:
+        USE_PYTHON3: true
+        MONASCA_API_IMPLEMENTATION_LANG: python
+        MONASCA_PERSISTER_IMPLEMENTATION_LANG: python
+        MONASCA_METRICS_DB: influxdb
+        TEMPEST_PLUGINS: /opt/stack/monasca-tempest-plugin
+
+- job:
     name: monasca-tempest-python-influxdb
     parent: monasca-tempest-base
     vars:
@@ -83,6 +94,7 @@
     check:
       jobs:
         - monasca-tempest-python-influxdb
+        - monasca-tempest-python3-influxdb
         - monasca-tempest-java-influxdb
         - monasca-tempest-python-cassandra
         - monasca-tempest-java-cassandra
