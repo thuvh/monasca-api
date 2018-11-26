@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "3f79a3b5_ebfe4e05",
+        "filename": "doc/source/cli/index.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 6873
+      },
+      "writtenOn": "2018-11-26T14:57:22Z",
+      "side": 1,
+      "message": "nit: could leave a TODO to add more details to the monasca_db command.\n\nAlso, is it \"monasca_db\" with the underscore? Or \"monasca db\"?",
+      "revId": "296839a0b30101f77ae0f9ae604c8ba6be4da054",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3f79a3b5_f83610df",
         "filename": "doc/source/cli/index.rst",
         "patchSetId": 7
@@ -42,6 +59,29 @@
         "startChar": 7,
         "endLine": 18,
         "endChar": 8
+      },
+      "revId": "296839a0b30101f77ae0f9ae604c8ba6be4da054",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f79a3b5_a6facb0d",
+        "filename": "doc/source/cli/index.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 6873
+      },
+      "writtenOn": "2018-11-26T14:57:22Z",
+      "side": 1,
+      "message": "Should be \"monasca-status\" right?",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 14
       },
       "revId": "296839a0b30101f77ae0f9ae604c8ba6be4da054",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
