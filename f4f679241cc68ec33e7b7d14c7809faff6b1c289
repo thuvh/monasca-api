@@ -22,6 +22,30 @@
       "revId": "f4f679241cc68ec33e7b7d14c7809faff6b1c289",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f79a3b5_e65dc753",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 831,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-12-03T15:45:00Z",
+      "side": 1,
+      "message": "No, actually we should wrap all the others, or even better convert to reStructuredText, move to doc/ directory and publish to https://developer.openstack.org/",
+      "parentUuid": "3f79a3b5_a2bee27a",
+      "range": {
+        "startLine": 829,
+        "startChar": 0,
+        "endLine": 831,
+        "endChar": 52
+      },
+      "revId": "f4f679241cc68ec33e7b7d14c7809faff6b1c289",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
