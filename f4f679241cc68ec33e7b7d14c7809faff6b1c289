@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f79a3b5_a2bee27a",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 831,
+      "author": {
+        "id": 28062
+      },
+      "writtenOn": "2018-12-03T10:11:51Z",
+      "side": 1,
+      "message": "Content information is fine, but shouldn\u0027t it be written in a single line?",
+      "range": {
+        "startLine": 829,
+        "startChar": 0,
+        "endLine": 831,
+        "endChar": 52
+      },
+      "revId": "f4f679241cc68ec33e7b7d14c7809faff6b1c289",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
