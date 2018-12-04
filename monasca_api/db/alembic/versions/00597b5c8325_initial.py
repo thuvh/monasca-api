@@ -33,6 +33,8 @@ depends_on = None
 def upgrade():
     # Enum tables (will be prepopulated with values through bulk_insert)
 
+    op.execute("SET foreign_key_checks = 0;")
+
     alarm_states = op.create_table('alarm_state',
                                    sa.Column('name',
                                              sa.String(length=20),
@@ -564,6 +566,8 @@ def upgrade():
         sa.Index('updated_at', 'updated_at'),
         sa.UniqueConstraint('tenant_id', 'name', name='tenant_name'),
         mysql_charset='utf8mb4')
+
+    op.execute("SET foreign_key_checks = 1;")
 
 
 def downgrade():
