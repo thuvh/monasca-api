@@ -48,6 +48,9 @@ postgresql:
   database: mon
 
 notification_types:
+    plugins:
+     - monasca_notification.plugins.email_notifier:EmailNotifier
+     - monasca_notification.plugins.webhook_notifier:WebhookNotifier
 
     email:
         server: "localhost"
