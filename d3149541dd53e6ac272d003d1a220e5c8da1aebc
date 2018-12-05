@@ -70,6 +70,30 @@
       "revId": "d3149541dd53e6ac272d003d1a220e5c8da1aebc",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f79a3b5_bbf024dd",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 653,
+      "author": {
+        "id": 12542
+      },
+      "writtenOn": "2018-12-05T14:06:52Z",
+      "side": 0,
+      "message": "It\u0027s part of Devstack itself and gets sourced before Devstack sources plugin.sh. It must be done that way because otherwise it would be way to easy to debug if anything ever goes wrong with it...",
+      "parentUuid": "3f79a3b5_ca1af0c6",
+      "range": {
+        "startLine": 653,
+        "startChar": 4,
+        "endLine": 653,
+        "endChar": 21
+      },
+      "revId": "d3149541dd53e6ac272d003d1a220e5c8da1aebc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
