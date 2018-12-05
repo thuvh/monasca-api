@@ -22,6 +22,30 @@
       "revId": "d3149541dd53e6ac272d003d1a220e5c8da1aebc",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f79a3b5_434c7796",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 653,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2018-12-05T08:46:42Z",
+      "side": 0,
+      "message": "Yes, it creates Monasca DB. It is DevStack\u0027s function[1].\n\n[1] https://git.openstack.org/cgit/openstack-dev/devstack/tree/lib/database#n109",
+      "parentUuid": "3f79a3b5_ca1af0c6",
+      "range": {
+        "startLine": 653,
+        "startChar": 4,
+        "endLine": 653,
+        "endChar": 21
+      },
+      "revId": "d3149541dd53e6ac272d003d1a220e5c8da1aebc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
