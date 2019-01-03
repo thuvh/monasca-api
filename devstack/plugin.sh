@@ -1274,6 +1274,8 @@ function install_monasca_grafana {
         git_timed clone $GRAFANA_REPO $GRAFANA_DIR --branch $GRAFANA_BRANCH --depth 1
     fi
 
+    npm config set python /usr/bin/python2.7
+
     cd "${MONASCA_BASE}"
 
     mkdir grafana-build || true
