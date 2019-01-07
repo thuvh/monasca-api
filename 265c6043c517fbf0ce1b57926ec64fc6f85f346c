@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "dfd5e7cf_284508b4",
+        "filename": "monasca_api/config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-01-07T16:43:07Z",
+      "side": 1,
+      "message": "It looks like the DB migration code also needs updating and this needs reverting to a public method:\n\n`doug@old_cranky:~/git/monasca-api/monasca_api$ grep -rin get_config_file\\(\ncmd/monasca_db.py:160:         default_config_files\u003dmonasca_api.config.get_config_file(None),`",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 24
+      },
+      "revId": "265c6043c517fbf0ce1b57926ec64fc6f85f346c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dfd5e7cf_19dc1d73",
         "filename": "monasca_api/config.py",
         "patchSetId": 1
@@ -49,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "dfd5e7cf_08760408",
+        "filename": "monasca_api/config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-01-07T16:43:07Z",
+      "side": 1,
+      "message": "Thanks for the link.",
+      "parentUuid": "dfd5e7cf_74b690dc",
+      "range": {
+        "startLine": 75,
+        "startChar": 15,
+        "endLine": 75,
+        "endChar": 29
+      },
+      "revId": "265c6043c517fbf0ce1b57926ec64fc6f85f346c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dfd5e7cf_79820952",
         "filename": "monasca_api/config.py",
         "patchSetId": 1
@@ -84,6 +131,30 @@
       "side": 1,
       "message": "I think no. The old behavior was wrong because the standard oslo.config file names were not recognized. \nSo I would be in favor of changing this.",
       "parentUuid": "dfd5e7cf_79820952",
+      "range": {
+        "startLine": 78,
+        "startChar": 12,
+        "endLine": 78,
+        "endChar": 40
+      },
+      "revId": "265c6043c517fbf0ce1b57926ec64fc6f85f346c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dfd5e7cf_e864e0bb",
+        "filename": "monasca_api/config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-01-07T16:43:07Z",
+      "side": 1,
+      "message": "So if I do an upgrade I could have the new config file and the old config file in the same directory. Won\u0027t the new code now find and return all of them? Previously, it only looked for deprecated config files if the standard one wasn\u0027t there.",
+      "parentUuid": "dfd5e7cf_74ebf0af",
       "range": {
         "startLine": 78,
         "startChar": 12,
