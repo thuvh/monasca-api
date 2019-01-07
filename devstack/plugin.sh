@@ -105,6 +105,10 @@ MONASCA_API_URI_V2=${MONASCA_API_BASE_URI}/v2.0
 MON_API_GATE_CONFIGURATION_DIR=/etc/monasca-api
 
 function pre_install_monasca {
+    export LANGUAGE=en_US.UTF-8
+    export LC_ALL=en_US.UTF-8
+    export LANG=en_US.UTF-8
+    export LC_TYPE=en_US.UTF-8
     echo_summary "Pre-Installing Monasca Components"
     find_nearest_apache_mirror
     install_gate_config_holder
