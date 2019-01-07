@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dfd5e7cf_19dc1d73",
+        "filename": "monasca_api/config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-01-07T15:09:29Z",
+      "side": 1,
+      "message": "Can this ever be None?",
+      "range": {
+        "startLine": 75,
+        "startChar": 15,
+        "endLine": 75,
+        "endChar": 29
+      },
+      "revId": "265c6043c517fbf0ce1b57926ec64fc6f85f346c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dfd5e7cf_79820952",
+        "filename": "monasca_api/config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-01-07T15:09:29Z",
+      "side": 1,
+      "message": "Should we stick with the original behaviour here and just return the first file?",
+      "range": {
+        "startLine": 78,
+        "startChar": 12,
+        "endLine": 78,
+        "endChar": 40
+      },
+      "revId": "265c6043c517fbf0ce1b57926ec64fc6f85f346c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
