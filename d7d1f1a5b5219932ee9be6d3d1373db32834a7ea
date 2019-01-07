@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dfd5e7cf_ae3b459a",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 829,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-01-07T15:12:03Z",
+      "side": 1,
+      "message": "missing hyphen",
+      "range": {
+        "startLine": 829,
+        "startChar": 23,
+        "endLine": 829,
+        "endChar": 43
+      },
+      "revId": "d7d1f1a5b5219932ee9be6d3d1373db32834a7ea",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
