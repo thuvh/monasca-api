@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dfd5e7cf_34aec82e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7102
+      },
+      "writtenOn": "2019-01-07T16:03:10Z",
+      "side": 1,
+      "message": "Could you add a *why* please? So others know why this is useful?",
+      "revId": "c85636d4e8881859b66a2b69b9cb2d3924376d33",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
