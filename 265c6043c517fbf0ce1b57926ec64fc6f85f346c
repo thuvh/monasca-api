@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "dfd5e7cf_fe201afa",
+        "filename": "monasca_api/config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7102
+      },
+      "writtenOn": "2019-01-07T19:04:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dfd5e7cf_284508b4",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 24
+      },
+      "revId": "265c6043c517fbf0ce1b57926ec64fc6f85f346c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dfd5e7cf_19dc1d73",
         "filename": "monasca_api/config.py",
         "patchSetId": 1
@@ -155,6 +179,30 @@
       "side": 1,
       "message": "So if I do an upgrade I could have the new config file and the old config file in the same directory. Won\u0027t the new code now find and return all of them? Previously, it only looked for deprecated config files if the standard one wasn\u0027t there.",
       "parentUuid": "dfd5e7cf_74ebf0af",
+      "range": {
+        "startLine": 78,
+        "startChar": 12,
+        "endLine": 78,
+        "endChar": 40
+      },
+      "revId": "265c6043c517fbf0ce1b57926ec64fc6f85f346c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dfd5e7cf_7eb74a88",
+        "filename": "monasca_api/config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7102
+      },
+      "writtenOn": "2019-01-07T19:04:28Z",
+      "side": 1,
+      "message": "The thing with \"the standard one\" is, that oslo.config has a couple of standard files. See https://github.com/openstack/oslo.config/blob/master/oslo_config/cfg.py#L293\n\nThe current code would look first for the new paths and then for the deprecated ones. So a config option defined in both places would then the option would be taken from the first (new paths) place. So I think that is fine.",
+      "parentUuid": "dfd5e7cf_e864e0bb",
       "range": {
         "startLine": 78,
         "startChar": 12,
