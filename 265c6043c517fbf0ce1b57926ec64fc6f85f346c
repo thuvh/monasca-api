@@ -263,6 +263,30 @@
     },
     {
       "key": {
+        "uuid": "dfd5e7cf_766685f0",
+        "filename": "monasca_api/config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-01-08T11:51:47Z",
+      "side": 1,
+      "message": "It\u0027s not a problem as such, it\u0027s more of a nit that we\u0027re announcing that the new config file is called `monasca-api.conf` but we\u0027ve also added undocumented support for `monasca.conf` as well. I\u0027m happy enough now. Thanks for fixing it up.",
+      "parentUuid": "dfd5e7cf_82940446",
+      "range": {
+        "startLine": 78,
+        "startChar": 12,
+        "endLine": 78,
+        "endChar": 40
+      },
+      "revId": "265c6043c517fbf0ce1b57926ec64fc6f85f346c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dfd5e7cf_471b8e1a",
         "filename": "releasenotes/notes/use-standard-config-file-path-a4c1a29d9d3fcc07.yaml",
         "patchSetId": 1
