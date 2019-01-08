@@ -239,6 +239,30 @@
     },
     {
       "key": {
+        "uuid": "dfd5e7cf_82940446",
+        "filename": "monasca_api/config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7102
+      },
+      "writtenOn": "2019-01-08T11:18:58Z",
+      "side": 1,
+      "message": "Re \"not set `project`\": I would prefer to do what other projects do. What\u0027s the problem with having multiple locations?\n\nRe \"deprecation files usage\". Done. deprecated files are now only used if none of the standard files are found.",
+      "parentUuid": "dfd5e7cf_6751f2d8",
+      "range": {
+        "startLine": 78,
+        "startChar": 12,
+        "endLine": 78,
+        "endChar": 40
+      },
+      "revId": "265c6043c517fbf0ce1b57926ec64fc6f85f346c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dfd5e7cf_471b8e1a",
         "filename": "releasenotes/notes/use-standard-config-file-path-a4c1a29d9d3fcc07.yaml",
         "patchSetId": 1
