@@ -212,6 +212,30 @@
       "revId": "265c6043c517fbf0ce1b57926ec64fc6f85f346c",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dfd5e7cf_6751f2d8",
+        "filename": "monasca_api/config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-01-08T10:22:03Z",
+      "side": 1,
+      "message": "Regarding the new config file, can we *not* set `project` so that there is only one standard one: `monasca-api.conf`?\n\nRegarding returning multiple files, the Oslo docs suggest that the last file will take precedence [1]. This would mean that the old config file could take precedence over the new one if someone forgot to remove it. Even if that wasn\u0027t the case I still don\u0027t think we should change the old behaviour of only returning the old config file if we don\u0027t find a new one. It makes it harder to review the change, has potential to introduce bugs and doesn\u0027t offer any benefit that I can see.\n\n[1] https://docs.openstack.org/oslo.config/latest/configuration/options.html",
+      "parentUuid": "dfd5e7cf_7eb74a88",
+      "range": {
+        "startLine": 78,
+        "startChar": 12,
+        "endLine": 78,
+        "endChar": 40
+      },
+      "revId": "265c6043c517fbf0ce1b57926ec64fc6f85f346c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
