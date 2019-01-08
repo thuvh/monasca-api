@@ -236,6 +236,29 @@
       "revId": "265c6043c517fbf0ce1b57926ec64fc6f85f346c",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dfd5e7cf_471b8e1a",
+        "filename": "releasenotes/notes/use-standard-config-file-path-a4c1a29d9d3fcc07.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-01-08T10:24:11Z",
+      "side": 1,
+      "message": "nit: s/monaca/monasca",
+      "range": {
+        "startLine": 7,
+        "startChar": 21,
+        "endLine": 7,
+        "endChar": 28
+      },
+      "revId": "265c6043c517fbf0ce1b57926ec64fc6f85f346c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
