@@ -19,6 +19,9 @@
 set -x  # Print each script step.
 set -eo pipefail  # Exit the script if any statement returns error.
 
+REAL_PATH=$(python -c "import os,sys;print(os.path.realpath('$0'))")
+cd "$(dirname "$REAL_PATH")/../docker/"
+
 # This script is used for building Docker image with proper labels
 # and proper version of monasca-common.
 #
