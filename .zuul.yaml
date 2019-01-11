@@ -129,6 +129,17 @@
         MONASCA_METRICS_DB: cassandra
         TEMPEST_PLUGINS: /opt/stack/monasca-tempest-plugin
 
+- job:
+    name: docker-build-monasca-api
+    timeout: 10200
+    post-timeout: 3600
+    run: playbooks/docker_build.yml
+    attempts: 1
+    irrelevant-files:
+      - ^.*\.rst$
+      - ^.*\.md$
+      - ^doc/.*$
+      - ^releasenotes/.*$
 
 - project:
     templates:
@@ -149,6 +160,7 @@
         - monasca-tempest-python3-cassandra
         - monasca-tempest-python2-java-cassandra
         - monasca-tempest-python3-java-cassandra
+        - docker-build-monasca-api
         - legacy-monasca-api-maven-build:
             voting: false
     gate:
