@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bfdaf3ff_f2025db4",
+        "filename": "playbooks/run.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 26141
+      },
+      "writtenOn": "2019-01-15T08:45:52Z",
+      "side": 1,
+      "message": "I think is better to change name of this playbook to playbooks/docker-build-run.yaml or playbooks/docker-build/run.yaml.",
+      "range": {
+        "startLine": 1,
+        "startChar": 1,
+        "endLine": 1,
+        "endChar": 3
+      },
+      "revId": "6a0e92aa30932548170776be3ba32682ecc6aa36",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
