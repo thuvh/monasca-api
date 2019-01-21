@@ -154,6 +154,7 @@
         - monasca-tempest-python3-cassandra
         - monasca-tempest-python2-java-cassandra
         - monasca-tempest-python3-java-cassandra
+        - docker-build-monasca-service
         - legacy-monasca-api-maven-build:
             voting: false
     gate:
