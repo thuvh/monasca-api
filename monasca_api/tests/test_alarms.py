@@ -82,7 +82,6 @@ ALARM_HISTORY = OrderedDict((
 
 
 class InfluxClientAlarmHistoryResponseFixture(fixtures.MockPatch):
-
     def _build_series(self, name, column_dict):
         return {
             "name": name,
@@ -135,7 +134,6 @@ class RESTResponseEquals(object):
 
 
 class AlarmTestBase(base.BaseApiTestCase):
-
     def setUp(self):
         super(AlarmTestBase, self).setUp()
 
@@ -165,7 +163,6 @@ class AlarmTestBase(base.BaseApiTestCase):
 
 
 class TestAlarmsStateHistory(AlarmTestBase):
-
     def setUp(self):
         super(TestAlarmsStateHistory, self).setUp()
 
@@ -198,7 +195,6 @@ class TestAlarmsStateHistory(AlarmTestBase):
 
 
 class TestAlarmDefinition(AlarmTestBase):
-
     def setUp(self):
         super(TestAlarmDefinition, self).setUp()
 
@@ -242,7 +238,7 @@ class TestAlarmDefinition(AlarmTestBase):
 
         response = self.simulate_request("/v2.0/alarm-definitions/",
                                          headers={'X-Roles':
-                                                  CONF.security.default_authorized_roles[0],
+                                                      CONF.security.default_authorized_roles[0],
                                                   'X-Tenant-Id': TENANT_ID},
                                          method="POST",
                                          body=json.dumps(alarm_def))
@@ -300,7 +296,7 @@ class TestAlarmDefinition(AlarmTestBase):
             expected_data[u'expression'] = expression
             response = self.simulate_request("/v2.0/alarm-definitions/",
                                              headers={'X-Roles':
-                                                      CONF.security.default_authorized_roles[0],
+                                                          CONF.security.default_authorized_roles[0],
                                                       'X-Tenant-Id': TENANT_ID},
                                              method="POST",
                                              body=json.dumps(alarm_def))
@@ -333,6 +329,30 @@ class TestAlarmDefinition(AlarmTestBase):
             self.assertEqual(self.srmock.status, '422 Unprocessable Entity',
                              u'Expression {} should have failed'.format(expression))
 
+    def test_alarm_definition_create_with_occupied_alarm_definition_name(self):
+        self.alarm_def_repo_mock.return_value.get_alarm_definitions.return_value = [{
+            'alarm_actions': None,
+            'ok_actions': None,
+            'description': None,
+            'match_by': u'hostname',
+            'name': u'Test Alarm',
+            'actions_enabled': 1,
+            'undetermined_actions': None,
+            'expression': u'max(test.metric{hostname=host}) gte 1',
+            'id': u'00000001-0001-0001-0001-000000000001',
+            'severity': u'LOW'
+        }]
+        alarm_def = {
+            u'name': u'Test Definition',
+            u'expression': u'max(test.metric{hostname=host}) gte 1'
+        }
+        self.simulate_request("/v2.0/alarm-definitions/",
+                              headers={'X-Roles': CONF.security.default_authorized_roles[0],
+                                       'X-Tenant-Id': TENANT_ID},
+                              method="POST",
+                              body=json.dumps(alarm_def))
+        self.assertEqual(self.srmock.status, falcon.HTTP_409)
+
     def test_alarm_definition_update(self):
         self.alarm_def_repo_mock.return_value.get_alarm_definitions.return_value = []
         self.alarm_def_repo_mock.return_value.update_or_patch_alarm_definition.return_value = (
@@ -358,20 +378,20 @@ class TestAlarmDefinition(AlarmTestBase):
                      'period': 60,
                      'is_deterministic': False,
                      'periods': 1})},
-             'changed': {},
-             'new': {},
-             'unchanged': {'11111': sub_alarm_definition.SubAlarmDefinition(
-                 row={'id': '11111',
-                      'alarm_definition_id': u'00000001-0001-0001-0001-000000000001',
-                      'function': 'max',
-                      'metric_name': 'test.metric',
-                      'dimensions': 'hostname=host',
-                      'operator': 'gte',
-                      'threshold': 1,
-                      'period': 60,
-                      'is_deterministic': False,
-                      'periods': 1})}
-             }
+                'changed': {},
+                'new': {},
+                'unchanged': {'11111': sub_alarm_definition.SubAlarmDefinition(
+                    row={'id': '11111',
+                         'alarm_definition_id': u'00000001-0001-0001-0001-000000000001',
+                         'function': 'max',
+                         'metric_name': 'test.metric',
+                         'dimensions': 'hostname=host',
+                         'operator': 'gte',
+                         'threshold': 1,
+                         'period': 60,
+                         'is_deterministic': False,
+                         'periods': 1})}
+            }
         )
 
         expected_def = {
@@ -406,7 +426,7 @@ class TestAlarmDefinition(AlarmTestBase):
 
         result = self.simulate_request("/v2.0/alarm-definitions/%s" % expected_def[u'id'],
                                        headers={'X-Roles':
-                                                CONF.security.default_authorized_roles[0],
+                                                    CONF.security.default_authorized_roles[0],
                                                 'X-Tenant-Id': TENANT_ID},
                                        method="PUT",
                                        body=json.dumps(alarm_def))
@@ -414,6 +434,32 @@ class TestAlarmDefinition(AlarmTestBase):
         self.assertEqual(self.srmock.status, falcon.HTTP_200)
         result_def = jsonutils.loads(result[0])
         self.assertEqual(result_def, expected_def)
+
+    def test_alarm_definition_patch_incorrect_id(self):
+        self.alarm_def_repo_mock.return_value.get_alarm_definitions.return_value = [{
+            'alarm_actions': None,
+            'ok_actions': None,
+            'description': None,
+            'match_by': u'hostname',
+            'name': u'Test Alarm',
+            'actions_enabled': 1,
+            'undetermined_actions': None,
+            'expression': u'max(test.metric{hostname=host}) gte 1',
+            'id': u'00000001-0001-0001-0001-000000000001',
+            'severity': u'LOW'
+        }]
+        alarm_def = {
+            u'name': u'Test Alarm Definition Updated',
+        }
+        self.simulate_request(
+            "/v2.0/alarm-definitions/9999999-0001-0001-0001-000000000001",
+            headers={
+                'X-Roles': CONF.security.default_authorized_roles[0],
+                'X-Tenant-Id': TENANT_ID},
+            method="PATCH",
+            body=json.dumps(alarm_def))
+
+        self.assertEqual(self.srmock.status, falcon.HTTP_409)
 
     def test_alarm_definition_patch_no_id(self):
         alarm_def = {
@@ -444,6 +490,54 @@ class TestAlarmDefinition(AlarmTestBase):
             body=json.dumps(alarm_def))
 
         self.assertEqual(self.srmock.status, falcon.HTTP_400)
+
+    def test_alarm_definition_delete(self):
+
+        self.alarm_def_repo_mock.return_value.get_get_sub_alarm_definitions.return_value = [{
+            'alarm_definition_id': '123',
+            'dimensions': 'flavor_id=777',
+            'function': 'AVG',
+            'id': '111',
+            'metric_name': 'cpu.idle_perc',
+            'operator': 'GT',
+            'period': 60,
+            'periods': 1,
+            'is_deterministic': False,
+            'threshold': 10.0}]
+        self.alarm_def_repo_mock.return_value.get_alarm_metrics.return_value = [{
+            'alarm_id': '1',
+            'dimensions': 'flavor_id=777',
+            'name': 'cpu.idle_perc'}]
+        self.alarm_def_repo_mock.return_value.get_sub_alarms.return_value = [{
+            'alarm_definition_id': '1',
+            'alarm_id': '2',
+            'expression': 'avg(cpu.idle_perc{flavor_id=777}) > 10',
+            'sub_alarm_id': '43'}]
+        self.alarm_def_repo_mock.return_value.delete_alarm_definition.return_value = True
+
+        self.simulate_request(
+            "/v2.0/alarm-definitions/00000001-0001-0001-0001-000000000001",
+            headers={
+                'X-Roles': CONF.security.default_authorized_roles[0],
+                'X-Tenant-Id': TENANT_ID},
+            method="DELETE")
+
+        self.assertEqual(self.srmock.status, falcon.HTTP_204)
+
+    def test_alarm_definition_delete_alarm_definition_not_exist(self):
+        self.alarm_def_repo_mock.return_value.get_get_sub_alarm_definitions.return_value = []
+        self.alarm_def_repo_mock.return_value.get_alarm_metrics.return_value = []
+        self.alarm_def_repo_mock.return_value.get_sub_alarms.return_value = []
+        self.alarm_def_repo_mock.return_value.delete_alarm_definition.return_value = False
+
+        self.simulate_request(
+            "/v2.0/alarm-definitions/00000001-0001-0001-0001-000000000001",
+            headers={
+                'X-Roles': CONF.security.default_authorized_roles[0],
+                'X-Tenant-Id': TENANT_ID},
+            method="DELETE")
+
+        self.assertEqual(self.srmock.status, falcon.HTTP_404)
 
     def test_alarm_definition_delete_no_id(self):
 
@@ -488,20 +582,20 @@ class TestAlarmDefinition(AlarmTestBase):
                      'period': 60,
                      'is_deterministic': False,
                      'periods': 1})},
-             'changed': {},
-             'new': {},
-             'unchanged': {'11111': sub_alarm_definition.SubAlarmDefinition(
-                 row={'id': '11111',
-                      'alarm_definition_id': u'00000001-0001-0001-0001-000000000001',
-                      'function': 'max',
-                      'metric_name': 'test.metric',
-                      'dimensions': 'hostname=host',
-                      'operator': 'gte',
-                      'threshold': 1,
-                      'period': 60,
-                      'is_deterministic': False,
-                      'periods': 1})}
-             }
+                'changed': {},
+                'new': {},
+                'unchanged': {'11111': sub_alarm_definition.SubAlarmDefinition(
+                    row={'id': '11111',
+                         'alarm_definition_id': u'00000001-0001-0001-0001-000000000001',
+                         'function': 'max',
+                         'metric_name': 'test.metric',
+                         'dimensions': 'hostname=host',
+                         'operator': 'gte',
+                         'threshold': 1,
+                         'period': 60,
+                         'is_deterministic': False,
+                         'periods': 1})}
+            }
         )
 
         expected_def = {
@@ -527,7 +621,7 @@ class TestAlarmDefinition(AlarmTestBase):
 
         result = self.simulate_request("/v2.0/alarm-definitions/%s" % expected_def[u'id'],
                                        headers={'X-Roles':
-                                                CONF.security.default_authorized_roles[0],
+                                                    CONF.security.default_authorized_roles[0],
                                                 'X-Tenant-Id': TENANT_ID},
                                        method="PATCH",
                                        body=json.dumps(alarm_def))
@@ -592,20 +686,20 @@ class TestAlarmDefinition(AlarmTestBase):
                      'period': 60,
                      'periods': 1,
                      'is_deterministic': False})},
-             'changed': {},
-             'new': {},
-             'unchanged': {'11111': sub_alarm_definition.SubAlarmDefinition(
-                 row={'id': '11111',
-                      'alarm_definition_id': u'00000001-0001-0001-0001-000000000001',
-                      'function': 'max',
-                      'metric_name': 'test.metric',
-                      'dimensions': 'hostname=host',
-                      'operator': 'gte',
-                      'threshold': 1,
-                      'period': 60,
-                      'periods': 1,
-                      'is_deterministic': False})}
-             }
+                'changed': {},
+                'new': {},
+                'unchanged': {'11111': sub_alarm_definition.SubAlarmDefinition(
+                    row={'id': '11111',
+                         'alarm_definition_id': u'00000001-0001-0001-0001-000000000001',
+                         'function': 'max',
+                         'metric_name': 'test.metric',
+                         'dimensions': 'hostname=host',
+                         'operator': 'gte',
+                         'threshold': 1,
+                         'period': 60,
+                         'periods': 1,
+                         'is_deterministic': False})}
+            }
         )
 
         expected_def = {
@@ -639,7 +733,7 @@ class TestAlarmDefinition(AlarmTestBase):
 
         result = self.simulate_request("/v2.0/alarm-definitions/%s" % expected_def[u'id'],
                                        headers={'X-Roles':
-                                                CONF.security.default_authorized_roles[0],
+                                                    CONF.security.default_authorized_roles[0],
                                                 'X-Tenant-Id': TENANT_ID},
                                        method="PUT",
                                        body=json.dumps(alarm_def))
@@ -653,7 +747,7 @@ class TestAlarmDefinition(AlarmTestBase):
 
             self.simulate_request("/v2.0/alarm-definitions/%s" % expected_def[u'id'],
                                   headers={'X-Roles':
-                                           CONF.security.default_authorized_roles[0],
+                                               CONF.security.default_authorized_roles[0],
                                            'X-Tenant-Id': TENANT_ID},
                                   method="PUT",
                                   body=json.dumps(alarm_def))
@@ -780,3 +874,88 @@ class TestAlarmDefinition(AlarmTestBase):
 
         self.assertEqual(self.srmock.status, falcon.HTTP_200)
         self.assertThat(response, RESTResponseEquals(expected_data))
+
+    def test_alarm_definition_get_alarm_definition_list(self):
+        self.alarm_def_repo_mock.return_value.get_alarm_definitions.return_value = [{
+            'alarm_actions': None,
+            'ok_actions': None,
+            'description': None,
+            'match_by': u'hostname',
+            'name': u'Test Alarm',
+            'actions_enabled': 1,
+            'undetermined_actions': None,
+            'expression': u'max(test.metric{hostname=host}) gte 1',
+            'id': u'00000001-0001-0001-0001-000000000001',
+            'severity': u'LOW'
+        }]
+        link = 'http://falconframework.org/v2.0/alarm-definitions/' \
+               '00000001-0001-0001-0001-000000000001'
+        expected_data = {
+            u'elements': [{
+                u'alarm_actions': [],
+                u'ok_actions': [],
+                u'description': '',
+                u'match_by': [u'hostname'],
+                u'name': u'Test Alarm',
+                u'actions_enabled': True,
+                u'undetermined_actions': [],
+                u'deterministic': False,
+                u'expression': u'max(test.metric{hostname=host}) gte 1',
+                u'id': u'00000001-0001-0001-0001-000000000001',
+                'links': [{
+                    'href': link,
+                    'rel': 'self'}],
+                u'severity': u'LOW'}]
+        }
+
+        response = self.simulate_request(
+            '/v2.0/alarm-definitions',
+            headers={
+                'X-Roles': CONF.security.default_authorized_roles[0],
+                'X-Tenant-Id': TENANT_ID
+            },
+            query_string='name=Test Alarm')
+
+        self.assertEqual(self.srmock.status, falcon.HTTP_200)
+        self.assertThat(response, RESTResponseEquals(expected_data))
+
+        response = self.simulate_request(
+            '/v2.0/alarm-definitions',
+            headers={
+                'X-Roles': CONF.security.default_authorized_roles[0],
+                'X-Tenant-Id': TENANT_ID
+            },
+            query_string='sort_by=name')
+
+        self.assertEqual(self.srmock.status, falcon.HTTP_200)
+        self.assertThat(response, RESTResponseEquals(expected_data))
+
+        response = self.simulate_request(
+            '/v2.0/alarm-definitions',
+            headers={
+                'X-Roles': CONF.security.default_authorized_roles[0],
+                'X-Tenant-Id': TENANT_ID
+            },
+            query_string='severity=LOW')
+        self.assertEqual(self.srmock.status, falcon.HTTP_200)
+        self.assertThat(response, RESTResponseEquals(expected_data))
+
+        response = self.simulate_request(
+            '/v2.0/alarm-definitions',
+            headers={
+                'X-Roles': CONF.security.default_authorized_roles[0],
+                'X-Tenant-Id': TENANT_ID
+            },
+            query_string='offset=1')
+        self.assertEqual(self.srmock.status, falcon.HTTP_200)
+        self.assertThat(response, RESTResponseEquals(expected_data))
+
+    def test_alarm_definition_get_alarm_definition_list_incorrect(self):
+        self.simulate_request(
+            '/v2.0/alarm-definitions',
+            headers={
+                'X-Roles': CONF.security.default_authorized_roles[0],
+                'X-Tenant-Id': TENANT_ID
+            },
+            query_string='offset=definitelyNotINT')
+        self.assertEqual(self.srmock.status, falcon.HTTP_422)
