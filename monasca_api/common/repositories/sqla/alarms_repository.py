@@ -294,7 +294,7 @@ class AlarmsRepository(sql_repository.SQLRepository,
                 query = query.where(or_(ad.c.severity == bindparam(
                     'b_severity' + str(i)) for i in range(len(severities))))
                 for i, s in enumerate(severities):
-                    parms['b_severity' + str(i)] = s.encode('utf8')
+                    parms['b_severity' + str(i)] = s.encode('utf-8') if six.PY2 else s
 
             if 'state' in query_parms:
                 query = query.where(a.c.state == bindparam('b_state'))

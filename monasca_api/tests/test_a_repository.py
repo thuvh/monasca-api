@@ -34,7 +34,7 @@ class TestAlarmRepoDB(base.BaseTestCase):
     def setUpClass(cls):
         engine = create_engine('sqlite://')
 
-        qry = open('monasca_api/tests/sqlite_alarm.sql', 'r').read()
+        qry = open('/home/adrian/dev/quick/monasca-api/monasca_api/tests/sqlite_alarm.sql', 'r').read()
         sconn = engine.raw_connection()
         c = sconn.cursor()
         c.executescript(qry)
@@ -230,7 +230,7 @@ class TestAlarmRepoDB(base.BaseTestCase):
                             {'id': '234',
                              'tenant_id': 'bob',
                              'name': '50% CPU',
-                             'severity': 'LOW',
+                             'severity': 'CRITICAL',
                              'expression': 'AVG(cpu.sys_mem'
                              '{service=monitoring})'
                              ' > 20 and AVG(cpu.idle_perc'
@@ -412,6 +412,9 @@ class TestAlarmRepoDB(base.BaseTestCase):
                             {'dimension_set_id': b'2',
                              'name': 'flavor_id',
                              'value': '222'},
+                            {'dimension_set_id': b'22',
+                             'name': 'flavor_id',
+                             'value': '333'},
                             {'dimension_set_id': b'21',
                              'name': 'service',
                              'value': 'monitoring'},
@@ -464,7 +467,7 @@ class TestAlarmRepoDB(base.BaseTestCase):
                        'updated_timestamp': '2015-03-14T09:26:54Z'}
         self.alarm_compound = {'alarm_definition': {'id': '234',
                                                     'name': '50% CPU',
-                                                    'severity': 'LOW'},
+                                                    'severity': 'CRITICAL'},
                                'created_timestamp': '2015-03-15T09:26:53Z',
                                'id': '234111',
                                'lifecycle_state': None,
@@ -475,6 +478,7 @@ class TestAlarmRepoDB(base.BaseTestCase):
                                                    'service': 'monitoring'},
                                     'name': 'cpu.sys_mem'},
                                    {'dimensions': {'extra': 'vivi',
+                                                   'flavor_id': '333',
                                                    'hostname': 'roland',
                                                    'region': 'colorado',
                                                    'service': 'monitoring'},
@@ -666,6 +670,26 @@ class TestAlarmRepoDB(base.BaseTestCase):
 
         self.assertEqual(res, expected)
 
+        query_parms = {'metric_dimensions': {'flavor_id': '333'}}
+        res = self.repo.get_alarms(tenant_id=tenant_id,
+                                   query_parms=query_parms,
+                                   limit=1000)
+        res = self.helper_builder_result(res)
+        expected = [self.alarm_compound]
+
+        self.assertEqual(res, expected)
+
+        query_parms = {'metric_dimensions': {'flavor_id': '222|333'}}
+        res = self.repo.get_alarms(tenant_id=tenant_id,
+                                   query_parms=query_parms,
+                                   limit=1000)
+        res = self.helper_builder_result(res)
+        expected = [self.alarm1,
+                    self.alarm_compound,
+                    self.alarm3]
+
+        self.assertEqual(res, expected)
+
         query_parms = {'metric_name': 'cpu.idle_perc',
                        'metric_dimensions': {'service': 'monitoring',
                                              'hostname': 'roland'}}
@@ -793,6 +817,133 @@ class TestAlarmRepoDB(base.BaseTestCase):
         expected = []
 
         self.assertEqual(res, expected)
+
+        query_parms = {'severity': 'LOW'}
+        res = self.repo.get_alarms(tenant_id=tenant_id,
+                                   query_parms=query_parms,
+                                   limit=1000)
+        res = self.helper_builder_result(res)
+        expected = [self.alarm1,
+                    self.alarm2,
+                    self.alarm3]
+        self.assertEqual(expected, res)
+
+        query_parms = {'severity': 'CRITICAL'}
+        res = self.repo.get_alarms(tenant_id=tenant_id,
+                                   query_parms=query_parms,
+                                   limit=1000)
+        res = self.helper_builder_result(res)
+        expected = [self.alarm_compound]
+        self.assertEqual(expected, res)
+
+        query_parms = {'severity': 'LOW|CRITICAL'}
+        res = self.repo.get_alarms(tenant_id=tenant_id,
+                                   query_parms=query_parms,
+                                   limit=1000)
+        res = self.helper_builder_result(res)
+        expected = [self.alarm1,
+                    self.alarm2,
+                    self.alarm_compound,
+                    self.alarm3]
+        self.assertEqual(expected, res)
+
+    def test_should_sort_and_find(self):
+        tenant_id = 'bob'
+        query_parms = {'metric_name': 'cpu.idle_perc',
+                       'sort_by': ['alarm_id']}
+        res = self.repo.get_alarms(tenant_id=tenant_id,
+                                   query_parms=query_parms,
+                                   limit=1000)
+        res = self.helper_builder_result(res)
+        expected = [self.alarm1,
+                    self.alarm2,
+                    self.alarm_compound,
+                    self.alarm3]
+        self.assertEqual(expected, res)
+
+        query_parms = {'metric_name': 'cpu.idle_perc',
+                       'sort_by': ['alarm_definition_id']}
+        res = self.repo.get_alarms(tenant_id=tenant_id,
+                                   query_parms=query_parms,
+                                   limit=1000)
+        res = self.helper_builder_result(res)
+        expected = [self.alarm1,
+                    self.alarm2,
+                    self.alarm3,
+                    self.alarm_compound]
+        self.assertEqual(expected, res)
+
+        query_parms = {'metric_name': 'cpu.idle_perc',
+                       'sort_by': ['alarm_definition_name']}
+        res = self.repo.get_alarms(tenant_id=tenant_id,
+                                   query_parms=query_parms,
+                                   limit=1000)
+        expected = [self.alarm_compound,
+                    self.alarm1,
+                    self.alarm2,
+                    self.alarm3]
+        res = self.helper_builder_result(res)
+        self.assertEqual(expected, res)
+
+        query_parms = {'metric_name': 'cpu.idle_perc',
+                       'sort_by': ['severity']}
+        res = self.repo.get_alarms(tenant_id=tenant_id,
+                                   query_parms=query_parms,
+                                   limit=1000)
+        expected = [self.alarm1,
+                    self.alarm2,
+                    self.alarm3,
+                    self.alarm_compound]
+        res = self.helper_builder_result(res)
+        self.assertEqual(expected, res)
+
+        query_parms = {'metric_name': 'cpu.idle_perc',
+                       'sort_by': ['state']}
+        res = self.repo.get_alarms(tenant_id=tenant_id,
+                                   query_parms=query_parms,
+                                   limit=1000)
+        expected = [self.alarm1,
+                    self.alarm2,
+                    self.alarm_compound,
+                    self.alarm3]
+        res = self.helper_builder_result(res)
+        self.assertEqual(expected, res)
+
+        query_parms = {'metric_name': 'cpu.idle_perc',
+                       'sort_by': ['alarm_id asc']}
+        res = self.repo.get_alarms(tenant_id=tenant_id,
+                                   query_parms=query_parms,
+                                   limit=1000)
+        res = self.helper_builder_result(res)
+        expected = [self.alarm1,
+                    self.alarm2,
+                    self.alarm_compound,
+                    self.alarm3]
+        self.assertEqual(expected, res)
+
+        query_parms = {'metric_name': 'cpu.idle_perc',
+                       'sort_by': ['alarm_id desc']}
+        res = self.repo.get_alarms(tenant_id=tenant_id,
+                                   query_parms=query_parms,
+                                   limit=1000)
+        res = self.helper_builder_result(res)
+        expected = [self.alarm3,
+                    self.alarm_compound,
+                    self.alarm2,
+                    self.alarm1]
+        self.assertEqual(expected, res)
+
+        query_parms = {'metric_name': 'cpu.idle_perc',
+                       'sort_by': ['alarm_id nfl']}
+        res = self.repo.get_alarms(tenant_id=tenant_id,
+                                   query_parms=query_parms,
+                                   limit=1000)
+        res = self.helper_builder_result(res)
+        expected = [self.alarm1,
+                    self.alarm2,
+                    self.alarm_compound,
+                    self.alarm3]
+        self.assertEqual(expected, res)
 
     def test_should_update(self):
         tenant_id = 'bob'
