@@ -29,7 +29,7 @@ LOG = log.getLogger(__name__)
 CONF = config.CONF
 
 
-def launch(conf):
+def launch():
     config.parse_args()
 
     app = falcon.API(request_type=request.Request)
