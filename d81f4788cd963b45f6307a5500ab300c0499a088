@@ -22,6 +22,30 @@
       "revId": "d81f4788cd963b45f6307a5500ab300c0499a088",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9fdfeff1_990fdf86",
+        "filename": "devstack/lib/notification.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 7102
+      },
+      "writtenOn": "2019-02-01T06:00:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9fdfeff1_12099394",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 59
+      },
+      "revId": "d81f4788cd963b45f6307a5500ab300c0499a088",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
