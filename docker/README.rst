@@ -69,6 +69,8 @@ KEYSTONE_ADMIN_USER            admin                                            
 KEYSTONE_ADMIN_PASSWORD        secretadmin                                                             OpenStack administrator user password
 KEYSTONE_ADMIN_TENANT          admin                                                                   OpenStack administrator tenant name
 KEYSTONE_ADMIN_DOMAIN          default                                                                 OpenStack administrator domain
+KEYSTONE_INSECURE              false                                                                   Allow insecure Keystone connection
+KEYSTONE_REGION_NAME           undefined                                                               Keystone admin account region
 GUNICORN_WORKERS               9                                                                       Number of gunicorn (WSGI-HTTP server) workers
 GUNICORN_WORKER_CLASS          gevent                                                                  Used gunicorn worker class
 GUNICORN_WORKER_CONNECTIONS    2000                                                                    Number of gunicorn worker connections
