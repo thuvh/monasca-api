@@ -24,6 +24,7 @@ from oslo_config import fixture as oo_cfg
 from oslo_context import fixture as oo_ctx
 from oslo_serialization import jsonutils
 from oslotest import base as oslotest_base
+import testtools.matchers as matchers
 
 from monasca_api.api.core import request
 from monasca_api import conf
@@ -139,3 +140,30 @@ class PolicyFixture(fixtures.Fixture):
         for rule in policies.list_rules():
             if rule.name not in rules:
                 rules[rule.name] = rule.check_str
+
+
+class RESTResponseEquals(object):
+    """Match if the supplied data contains a single string containing a JSON
+    object which decodes to match expected_data, excluding the contents of
+    the 'links' key.
+    """
+
+    def __init__(self, expected_data):
+        self.expected_data = expected_data
+
+        if u"links" in expected_data:
+            del expected_data[u"links"]
+
+    def __str__(self):
+        return 'RESTResponseEquals(%s)' % (self.expected,)
+
+    def match(self, actual):
+        if len(actual) != 1:
+            return matchers.Mismatch("Response contains <> 1 item: %r" % actual)
+
+        response_data = jsonutils.loads(actual[0])
+
+        if u"links" in response_data:
+            del response_data[u"links"]
+
+        return matchers.Equals(self.expected_data).match(response_data)
