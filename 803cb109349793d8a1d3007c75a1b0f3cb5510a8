@@ -1,0 +1,510 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5fc1f717_e12de0a8",
+        "filename": "monasca_api/common/repositories/sqla/alarms_repository.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-03-06T14:27:20Z",
+      "side": 1,
+      "message": "change order to have py3 tested first",
+      "range": {
+        "startLine": 297,
+        "startChar": 72,
+        "endLine": 297,
+        "endChar": 79
+      },
+      "revId": "803cb109349793d8a1d3007c75a1b0f3cb5510a8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fc1f717_c11ea46f",
+        "filename": "monasca_api/common/repositories/sqla/alarms_repository.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 525,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-03-06T14:27:20Z",
+      "side": 1,
+      "message": "add space",
+      "range": {
+        "startLine": 525,
+        "startChar": 69,
+        "endLine": 525,
+        "endChar": 70
+      },
+      "revId": "803cb109349793d8a1d3007c75a1b0f3cb5510a8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fc1f717_81189c81",
+        "filename": "monasca_api/common/repositories/sqla/alarms_repository.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-03-06T14:27:20Z",
+      "side": 1,
+      "message": "add space",
+      "range": {
+        "startLine": 565,
+        "startChar": 72,
+        "endLine": 565,
+        "endChar": 73
+      },
+      "revId": "803cb109349793d8a1d3007c75a1b0f3cb5510a8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fc1f717_f5a7da4e",
+        "filename": "monasca_api/common/repositories/sqla/notifications_repository.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-03-06T14:27:20Z",
+      "side": 1,
+      "message": "change to have python 3 check",
+      "range": {
+        "startLine": 182,
+        "startChar": 39,
+        "endLine": 182,
+        "endChar": 45
+      },
+      "revId": "803cb109349793d8a1d3007c75a1b0f3cb5510a8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fc1f717_1524e6c5",
+        "filename": "monasca_api/tests/test_a_repository.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 677,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-03-06T14:27:20Z",
+      "side": 1,
+      "message": "please, use different name",
+      "range": {
+        "startLine": 677,
+        "startChar": 8,
+        "endLine": 677,
+        "endChar": 11
+      },
+      "revId": "803cb109349793d8a1d3007c75a1b0f3cb5510a8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fc1f717_10407435",
+        "filename": "monasca_api/tests/test_a_repository.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 840,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-03-06T14:27:20Z",
+      "side": 1,
+      "message": "use same order like previously",
+      "range": {
+        "startLine": 840,
+        "startChar": 25,
+        "endLine": 840,
+        "endChar": 38
+      },
+      "revId": "803cb109349793d8a1d3007c75a1b0f3cb5510a8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fc1f717_d0498c60",
+        "filename": "monasca_api/tests/test_a_repository.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 848,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-03-06T14:27:20Z",
+      "side": 1,
+      "message": "use same order like previously",
+      "range": {
+        "startLine": 848,
+        "startChar": 25,
+        "endLine": 848,
+        "endChar": 38
+      },
+      "revId": "803cb109349793d8a1d3007c75a1b0f3cb5510a8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fc1f717_f0460850",
+        "filename": "monasca_api/tests/test_a_repository.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 859,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-03-06T14:27:20Z",
+      "side": 1,
+      "message": "use same order like previously",
+      "range": {
+        "startLine": 859,
+        "startChar": 25,
+        "endLine": 859,
+        "endChar": 38
+      },
+      "revId": "803cb109349793d8a1d3007c75a1b0f3cb5510a8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fc1f717_3094908b",
+        "filename": "monasca_api/tests/test_a_repository.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 1061,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-03-06T14:27:20Z",
+      "side": 1,
+      "message": "change asserts to have expected values as last one (and same order like previously)",
+      "range": {
+        "startLine": 865,
+        "startChar": 25,
+        "endLine": 1061,
+        "endChar": 38
+      },
+      "revId": "803cb109349793d8a1d3007c75a1b0f3cb5510a8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fc1f717_9036a4b4",
+        "filename": "monasca_api/tests/test_ad_repository.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 754,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-03-06T14:27:20Z",
+      "side": 1,
+      "message": "add one empty line",
+      "range": {
+        "startLine": 753,
+        "startChar": 51,
+        "endLine": 754,
+        "endChar": 8
+      },
+      "revId": "803cb109349793d8a1d3007c75a1b0f3cb5510a8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fc1f717_900464c8",
+        "filename": "monasca_api/tests/test_ad_repository.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 757,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-03-06T14:27:20Z",
+      "side": 1,
+      "message": "you have limit\u003d1 so why it\u0027s not failing?, also change order to have expected as last",
+      "range": {
+        "startLine": 757,
+        "startChar": 25,
+        "endLine": 757,
+        "endChar": 44
+      },
+      "revId": "803cb109349793d8a1d3007c75a1b0f3cb5510a8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fc1f717_f017e8ec",
+        "filename": "monasca_api/tests/test_ad_repository.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 761,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-03-06T14:27:20Z",
+      "side": 1,
+      "message": "you are not testing decreasing order so use positional here expected[1], move expected to the end",
+      "range": {
+        "startLine": 761,
+        "startChar": 25,
+        "endLine": 761,
+        "endChar": 39
+      },
+      "revId": "803cb109349793d8a1d3007c75a1b0f3cb5510a8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fc1f717_50b59ced",
+        "filename": "monasca_api/tests/test_ad_repository.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 789,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-03-06T14:27:20Z",
+      "side": 1,
+      "message": "+2",
+      "range": {
+        "startLine": 789,
+        "startChar": 54,
+        "endLine": 789,
+        "endChar": 58
+      },
+      "revId": "803cb109349793d8a1d3007c75a1b0f3cb5510a8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fc1f717_d0c8ac75",
+        "filename": "monasca_api/tests/test_ad_repository.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 790,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-03-06T14:27:20Z",
+      "side": 1,
+      "message": "Move expected value to the end.",
+      "range": {
+        "startLine": 790,
+        "startChar": 25,
+        "endLine": 790,
+        "endChar": 40
+      },
+      "revId": "803cb109349793d8a1d3007c75a1b0f3cb5510a8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fc1f717_7004587c",
+        "filename": "monasca_api/tests/test_alarms.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 988,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-03-06T14:27:20Z",
+      "side": 1,
+      "message": "fileds?",
+      "range": {
+        "startLine": 988,
+        "startChar": 38,
+        "endLine": 988,
+        "endChar": 44
+      },
+      "revId": "803cb109349793d8a1d3007c75a1b0f3cb5510a8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fc1f717_50b11ce1",
+        "filename": "monasca_api/tests/test_alarms.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 1053,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-03-06T14:27:20Z",
+      "side": 1,
+      "message": "Allow me to complain that you are mixing `\"` with `\u0027` all the time.",
+      "range": {
+        "startLine": 202,
+        "startChar": 30,
+        "endLine": 1053,
+        "endChar": 55
+      },
+      "revId": "803cb109349793d8a1d3007c75a1b0f3cb5510a8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fc1f717_9061c43c",
+        "filename": "monasca_api/tests/test_alarms.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 1347,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-03-06T14:27:20Z",
+      "side": 1,
+      "message": "Maybe I\u0027m blind but where is period set here?",
+      "range": {
+        "startLine": 1325,
+        "startChar": 8,
+        "endLine": 1347,
+        "endChar": 61
+      },
+      "revId": "803cb109349793d8a1d3007c75a1b0f3cb5510a8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fc1f717_30001035",
+        "filename": "monasca_api/tests/test_alarms.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 2090,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-03-06T14:27:20Z",
+      "side": 1,
+      "message": "move expected value to end",
+      "range": {
+        "startLine": 2090,
+        "startChar": 25,
+        "endLine": 2090,
+        "endChar": 30
+      },
+      "revId": "803cb109349793d8a1d3007c75a1b0f3cb5510a8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fc1f717_d0fc2c40",
+        "filename": "monasca_api/tests/test_alarms.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 2094,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-03-06T14:27:20Z",
+      "side": 1,
+      "message": "move expected value to end",
+      "range": {
+        "startLine": 2094,
+        "startChar": 25,
+        "endLine": 2094,
+        "endChar": 29
+      },
+      "revId": "803cb109349793d8a1d3007c75a1b0f3cb5510a8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fc1f717_f08e08cf",
+        "filename": "monasca_api/tests/test_message_formats.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-03-06T14:27:20Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 39,
+        "startChar": 29,
+        "endLine": 39,
+        "endChar": 37
+      },
+      "revId": "803cb109349793d8a1d3007c75a1b0f3cb5510a8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fc1f717_7071b8e0",
+        "filename": "monasca_api/tests/test_nm_repository.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-03-06T14:27:20Z",
+      "side": 1,
+      "message": "move expected to end",
+      "range": {
+        "startLine": 176,
+        "startChar": 25,
+        "endLine": 176,
+        "endChar": 33
+      },
+      "revId": "803cb109349793d8a1d3007c75a1b0f3cb5510a8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fc1f717_307330ea",
+        "filename": "monasca_api/tests/test_nm_repository.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-03-06T14:27:20Z",
+      "side": 1,
+      "message": "move expected to end",
+      "range": {
+        "startLine": 190,
+        "startChar": 25,
+        "endLine": 190,
+        "endChar": 33
+      },
+      "revId": "803cb109349793d8a1d3007c75a1b0f3cb5510a8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
