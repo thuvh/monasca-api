@@ -144,7 +144,6 @@ class NotificationsRepository(sql_repository.SQLRepository,
                 parms['b_offset'] = offset
 
             rows = conn.execute(select_nm_query, parms).fetchall()
-
         return [dict(row) for row in rows]
 
     @sql_repository.sql_try_catch_block
