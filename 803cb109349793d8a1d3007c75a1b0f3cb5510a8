@@ -117,6 +117,30 @@
     },
     {
       "key": {
+        "uuid": "5fc1f717_4ea8861e",
+        "filename": "monasca_api/tests/test_a_repository.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 677,
+      "author": {
+        "id": 26141
+      },
+      "writtenOn": "2019-03-07T10:16:57Z",
+      "side": 1,
+      "message": "in my opinion there is no good reason to create new variable here, especially that whole method use this schema.",
+      "parentUuid": "5fc1f717_1524e6c5",
+      "range": {
+        "startLine": 677,
+        "startChar": 8,
+        "endLine": 677,
+        "endChar": 11
+      },
+      "revId": "803cb109349793d8a1d3007c75a1b0f3cb5510a8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5fc1f717_10407435",
         "filename": "monasca_api/tests/test_a_repository.py",
         "patchSetId": 20
@@ -128,6 +152,30 @@
       "writtenOn": "2019-03-06T14:27:20Z",
       "side": 1,
       "message": "use same order like previously",
+      "range": {
+        "startLine": 840,
+        "startChar": 25,
+        "endLine": 840,
+        "endChar": 38
+      },
+      "revId": "803cb109349793d8a1d3007c75a1b0f3cb5510a8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fc1f717_aee9ea80",
+        "filename": "monasca_api/tests/test_a_repository.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 840,
+      "author": {
+        "id": 26141
+      },
+      "writtenOn": "2019-03-07T10:16:57Z",
+      "side": 1,
+      "message": "def assertEqual(self, expected, observed, message\u003d\u0027\u0027):\n\nExpected should be firs element. In code sometimes expected value is first and sometimes is second. When  i create new method i prefer to use proper order.",
+      "parentUuid": "5fc1f717_10407435",
       "range": {
         "startLine": 840,
         "startChar": 25,
@@ -255,6 +303,30 @@
     },
     {
       "key": {
+        "uuid": "5fc1f717_a4210ba2",
+        "filename": "monasca_api/tests/test_ad_repository.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 757,
+      "author": {
+        "id": 26141
+      },
+      "writtenOn": "2019-03-07T10:16:57Z",
+      "side": 1,
+      "message": "To be honest limit in this place is unnecessary/ \nIn this case indexing starting from 0, probably this is bug.",
+      "parentUuid": "5fc1f717_900464c8",
+      "range": {
+        "startLine": 757,
+        "startChar": 25,
+        "endLine": 757,
+        "endChar": 44
+      },
+      "revId": "803cb109349793d8a1d3007c75a1b0f3cb5510a8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5fc1f717_f017e8ec",
         "filename": "monasca_api/tests/test_ad_repository.py",
         "patchSetId": 20
@@ -278,6 +350,30 @@
     },
     {
       "key": {
+        "uuid": "5fc1f717_e475d399",
+        "filename": "monasca_api/tests/test_ad_repository.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 761,
+      "author": {
+        "id": 26141
+      },
+      "writtenOn": "2019-03-07T10:16:57Z",
+      "side": 1,
+      "message": "This revert order of list , in this case is necessary to revert list.",
+      "parentUuid": "5fc1f717_f017e8ec",
+      "range": {
+        "startLine": 761,
+        "startChar": 25,
+        "endLine": 761,
+        "endChar": 39
+      },
+      "revId": "803cb109349793d8a1d3007c75a1b0f3cb5510a8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5fc1f717_50b59ced",
         "filename": "monasca_api/tests/test_ad_repository.py",
         "patchSetId": 20
@@ -289,6 +385,30 @@
       "writtenOn": "2019-03-06T14:27:20Z",
       "side": 1,
       "message": "+2",
+      "range": {
+        "startLine": 789,
+        "startChar": 54,
+        "endLine": 789,
+        "endChar": 58
+      },
+      "revId": "803cb109349793d8a1d3007c75a1b0f3cb5510a8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fc1f717_a46fcbc3",
+        "filename": "monasca_api/tests/test_ad_repository.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 789,
+      "author": {
+        "id": 26141
+      },
+      "writtenOn": "2019-03-07T10:16:57Z",
+      "side": 1,
+      "message": ": )",
+      "parentUuid": "5fc1f717_50b59ced",
       "range": {
         "startLine": 789,
         "startChar": 54,
@@ -381,6 +501,30 @@
       "writtenOn": "2019-03-06T14:27:20Z",
       "side": 1,
       "message": "Maybe I\u0027m blind but where is period set here?",
+      "range": {
+        "startLine": 1325,
+        "startChar": 8,
+        "endLine": 1347,
+        "endChar": 61
+      },
+      "revId": "803cb109349793d8a1d3007c75a1b0f3cb5510a8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fc1f717_4474e735",
+        "filename": "monasca_api/tests/test_alarms.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 1347,
+      "author": {
+        "id": 26141
+      },
+      "writtenOn": "2019-03-07T10:16:57Z",
+      "side": 1,
+      "message": "Period is in expression times 0",
+      "parentUuid": "5fc1f717_9061c43c",
       "range": {
         "startLine": 1325,
         "startChar": 8,
