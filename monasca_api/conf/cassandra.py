@@ -29,6 +29,10 @@ Comma separated list of Cassandra node IP addresses
                help='''
 keyspace where metric are stored
 '''),
+    cfg.IntOpt('port', default=9042,
+               help='''
+Cassandra port number
+'''),
     cfg.StrOpt('user', default='',
                help='''
 Cassandra user for monasca-api service
