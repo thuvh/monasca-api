@@ -36,7 +36,9 @@ Cassandra user for monasca-api service
     cfg.StrOpt('password', default='', secret=True,
                help='''
 Cassandra user password for monasca-api service
-''')
+'''),
+    cfg.StrOpt('local_data_center',
+               help='Cassandra local data center name')
 ]
 
 cassandra_group = cfg.OptGroup(name='cassandra')
