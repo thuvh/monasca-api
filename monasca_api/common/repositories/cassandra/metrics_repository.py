@@ -14,6 +14,8 @@
 # under the License.
 
 import binascii
+
+
 from collections import namedtuple
 from datetime import datetime
 from datetime import timedelta
@@ -23,6 +25,8 @@ import urllib
 
 from cassandra.auth import PlainTextAuthProvider
 from cassandra.cluster import Cluster
+from cassandra.cluster import DCAwareRoundRobinPolicy
+from cassandra.cluster import TokenAwarePolicy
 from cassandra.query import FETCH_SIZE_UNSET
 from cassandra.query import SimpleStatement
 from monasca_common.rest import utils as rest_utils
@@ -33,7 +37,6 @@ from oslo_utils import timeutils
 
 from monasca_api.common.repositories import exceptions
 from monasca_api.common.repositories import metrics_repository
-
 
 CONF = cfg.CONF
 LOG = log.getLogger(__name__)
@@ -119,7 +122,11 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
             else:
                 auth_provider = None
 
-            self.cluster = Cluster(self.conf.cassandra.contact_points, auth_provider=auth_provider)
+            self.cluster = Cluster(self.conf.cassandra.contact_points, auth_provider=auth_provider,
+                                   load_balancing_policy=TokenAwarePolicy(
+                                       DCAwareRoundRobinPolicy(
+                                           local_dc=self.conf.cassandra.local_data_center)),
+                                   )
             self.session = self.cluster.connect(self.conf.cassandra.keyspace)
 
             self.dim_val_by_metric_stmt = self.session.prepare(DIMENSION_VALUE_BY_METRIC_CQL)
