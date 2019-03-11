@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5fc1f717_3532efa8",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 26141
+      },
+      "writtenOn": "2019-03-11T09:36:44Z",
+      "side": 1,
+      "message": "This lane is too long, line must be shorter then 100 character.\n\nhttp://logs.openstack.org/16/642216/4/check/openstack-tox-pep8/a0f5ecf/job-output.txt.gz#_2019-03-11_01_12_24_838040",
+      "range": {
+        "startLine": 122,
+        "startChar": 12,
+        "endLine": 122,
+        "endChar": 130
+      },
+      "revId": "da21c4e56fe78293b690271ee8f3170cb38de4b0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fc1f717_15a253af",
+        "filename": "monasca_api/conf/cassandra.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 26141
+      },
+      "writtenOn": "2019-03-11T09:36:44Z",
+      "side": 1,
+      "message": "Please use PortOpt.",
+      "range": {
+        "startLine": 32,
+        "startChar": 8,
+        "endLine": 32,
+        "endChar": 14
+      },
+      "revId": "da21c4e56fe78293b690271ee8f3170cb38de4b0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
