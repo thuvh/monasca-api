@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5fc1f717_f55f876f",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-03-11T09:58:02Z",
+      "side": 1,
+      "message": "Are you actually using multiple data centres or could you use `RoundRobinPolicy` for a single DC?",
+      "range": {
+        "startLine": 126,
+        "startChar": 39,
+        "endLine": 126,
+        "endChar": 62
+      },
+      "revId": "906b642709877bb888c2887545d4fe6d1fe84f70",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
