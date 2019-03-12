@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5fc1f717_43456a42",
+        "filename": "monasca_api/conf/cassandra.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 26141
+      },
+      "writtenOn": "2019-03-12T09:46:45Z",
+      "side": 1,
+      "message": "Pleas add new line character at the beginning and end.\nI think is good idea to use the same schema like for the other helps.\n\n\u0027\u0027\u0027\nCassandra local data center name\n\u0027\u0027\u0027",
+      "range": {
+        "startLine": 41,
+        "startChar": 20,
+        "endLine": 41,
+        "endChar": 53
+      },
+      "revId": "31cd7f2649a6e917dcf6ea7b73bccad170c0fd94",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
