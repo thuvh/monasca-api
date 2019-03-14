@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5fc1f717_9e7297ac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-03-14T10:29:07Z",
+      "side": 1,
+      "message": "Configure Cassandra cluster port",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 49
+      },
+      "revId": "9fb66003438cd6392cba03b02553e8b4ff921aea",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fc1f717_fe32bbf1",
+        "filename": "monasca_api/conf/cassandra.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-03-14T10:29:07Z",
+      "side": 1,
+      "message": "Port is related to IP address so move under `contact_points` option (so into line 28, replace places with `keyspace`)",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 5
+      },
+      "revId": "9fb66003438cd6392cba03b02553e8b4ff921aea",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fc1f717_fe195b79",
+        "filename": "releasenotes/notes/fix-cassandra-cluster-port.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-03-14T10:29:07Z",
+      "side": 1,
+      "message": "User can configure Cassandra cluster port via configuration option. Default value for port number is ``9042``.",
+      "range": {
+        "startLine": 4,
+        "startChar": 4,
+        "endLine": 4,
+        "endChar": 102
+      },
+      "revId": "9fb66003438cd6392cba03b02553e8b4ff921aea",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
