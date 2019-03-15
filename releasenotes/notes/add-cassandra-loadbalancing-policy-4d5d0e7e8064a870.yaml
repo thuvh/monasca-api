@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    support cassandra cluster configuration with loadbalancing policy DCAwareRoundRobinPolicy.
+    data center default value is 'local_data_center'.
