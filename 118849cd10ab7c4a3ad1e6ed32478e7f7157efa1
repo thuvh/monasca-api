@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5fc1f717_457e77af",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6825
+      },
+      "writtenOn": "2019-03-27T21:12:43Z",
+      "side": 1,
+      "message": "Per the git commit guidelines, https://wiki.openstack.org/wiki/GitCommitMessages#Summary_of_Git_commit_message_structure, this message could be improved a bit including:\n- a more meaningful summary message.  Perhaps something like \u0027Filter alarm counts on multiple dimension values\u0027\n- some more context in the detail.  It appears that this is giving an example for usage, and that could be a bit more explicit.  It would be worth mentioning the rationale for the change (parity with the alarm list API, IIUC).",
+      "revId": "118849cd10ab7c4a3ad1e6ed32478e7f7157efa1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
