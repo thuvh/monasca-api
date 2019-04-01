@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5fc1f717_905f8474",
+        "filename": "monasca_api/common/repositories/sqla/alarms_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2019-04-01T09:31:48Z",
+      "side": 1,
+      "message": "The name is misleading, should be `dimension_value`.",
+      "range": {
+        "startLine": 551,
+        "startChar": 20,
+        "endLine": 551,
+        "endChar": 32
+      },
+      "revId": "07d946e9a48c103dc9d0d913218b438d5f49fb43",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fc1f717_10d874ee",
+        "filename": "monasca_api/common/repositories/sqla/alarms_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 552,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2019-04-01T09:31:48Z",
+      "side": 1,
+      "message": "nit: I\u0027d prefer to use `oslo_utils.encodeutils.safe_encode(metric_dimension[1], incoming\u003d\u0027utf-8\u0027)` as recommended here [1].\n\n[1] https://wiki.openstack.org/wiki/Python3#safe_encode",
+      "range": {
+        "startLine": 551,
+        "startChar": 35,
+        "endLine": 552,
+        "endChar": 58
+      },
+      "revId": "07d946e9a48c103dc9d0d913218b438d5f49fb43",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fc1f717_30fed038",
+        "filename": "monasca_api/common/repositories/sqla/alarms_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 580,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2019-04-01T09:31:48Z",
+      "side": 1,
+      "message": "Compare the note above about `oslo_utils`.",
+      "range": {
+        "startLine": 579,
+        "startChar": 37,
+        "endLine": 580,
+        "endChar": 58
+      },
+      "revId": "07d946e9a48c103dc9d0d913218b438d5f49fb43",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
