@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "5fc1f717_3a1e7d74",
+        "filename": "monasca_api/common/repositories/sqla/alarms_repository.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 552,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2019-04-03T09:29:08Z",
+      "side": 1,
+      "message": "You\u0027re right. I guess you can leave it as is.",
+      "parentUuid": "5fc1f717_57748dfe",
+      "range": {
+        "startLine": 551,
+        "startChar": 35,
+        "endLine": 552,
+        "endChar": 58
+      },
+      "revId": "07d946e9a48c103dc9d0d913218b438d5f49fb43",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5fc1f717_30fed038",
         "filename": "monasca_api/common/repositories/sqla/alarms_repository.py",
         "patchSetId": 4
