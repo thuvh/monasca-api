@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5fc1f717_fa2795c6",
+        "filename": "monasca_api/common/repositories/sqla/alarms_repository.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2019-04-03T09:29:08Z",
+      "side": 1,
+      "message": "Please rename this variable to `dimension_value`.",
+      "range": {
+        "startLine": 551,
+        "startChar": 20,
+        "endLine": 551,
+        "endChar": 32
+      },
+      "revId": "bb49d1e8f92ab3e34a451e9b7e5c56b418d7a6e5",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fc1f717_8e42d20e",
+        "filename": "releasenotes/notes/story-2005311-f746ca6c725335b2.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2019-04-03T09:29:08Z",
+      "side": 1,
+      "message": "Looks good. Please just rename the file to something meaningful like `alarms-count-dimensions-*`.",
+      "revId": "bb49d1e8f92ab3e34a451e9b7e5c56b418d7a6e5",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fc1f717_9a61b114",
+        "filename": "releasenotes/notes/story-2005311-f746ca6c725335b2.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2019-04-03T09:29:08Z",
+      "side": 1,
+      "message": "please remove",
+      "range": {
+        "startLine": 6,
+        "startChar": 58,
+        "endLine": 6,
+        "endChar": 60
+      },
+      "revId": "bb49d1e8f92ab3e34a451e9b7e5c56b418d7a6e5",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
