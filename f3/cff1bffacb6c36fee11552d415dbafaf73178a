@@ -1,0 +1,8 @@
+Code-Review+2: Joseph Davis <joseph.davis@suse.com>
+Workflow+1: Dobroslaw Zybort <dobroslaw.zybort@ts.fujitsu.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Mon, 08 Apr 2019 17:20:03 +0000
+Reviewed-on: https://review.openstack.org/650299
+Project: openstack/monasca-api
+Branch: refs/heads/stable/stein
