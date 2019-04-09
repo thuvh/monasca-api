@@ -14,9 +14,9 @@
 
 import falcon
 from monasca_common.policy import policy_engine as policy
-from monasca_log_api import policies
-from monasca_log_api.app.base import request_context
-from monasca_log_api.app.base import validation
+from monasca_api import policies
+from monasca_api.api.core.log import request_context
+from monasca_api.api.core.log import validation
 
 policy.POLICIES = policies
 
