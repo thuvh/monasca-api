@@ -29,6 +29,14 @@ rules = [
             {'path': '/healthcheck', 'method': 'GET'}
         ]
     ),
+    policy.DocumentedRuleDefault(
+            name='api:healthcheck:head',
+            check_str=HEALTHCHECK_ROLES,
+            description='Healthcheck head rule',
+            operations=[
+                {'path': '/healthcheck', 'method': 'HEAD'}
+            ]
+        )
 ]
 
 
