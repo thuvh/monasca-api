@@ -14,24 +14,35 @@
 
 from oslo_config import cfg
 
+_MAX_MESSAGE_SIZE = 1048576
 _DEFAULT_MAX_LOG_SIZE = 1024 * 1024
 
-service_opts = [
+log_publisher_opts = [
+    cfg.IntOpt('max_message_size',
+               default=_MAX_MESSAGE_SIZE,
+               required=True,
+               help='''
+Message max size that can be sent to kafka, default to %d bytes
+''' % _MAX_MESSAGE_SIZE),
     cfg.StrOpt('region',
-               default=None,
-               help='Region'),
+               default='Region;',
+               help='''
+Region
+'''),
     cfg.IntOpt('max_log_size',
                default=_DEFAULT_MAX_LOG_SIZE,
-               help=('Refers to payload/envelope size. If either is exceeded'
-                     'API will throw an error'))
+               help='''
+Refers to payload/envelope size. If either is exceeded API will throw an error
+''')
 ]
-service_group = cfg.OptGroup(name='service', title='service')
+
+log_publisher_group = cfg.OptGroup(name='log_publisher', title='log_publisher')
 
 
 def register_opts(conf):
-    conf.register_group(service_group)
-    conf.register_opts(service_opts, service_group)
+    conf.register_group(log_publisher_group)
+    conf.register_opts(log_publisher_opts, log_publisher_group)
 
 
 def list_opts():
-    return service_group, service_opts
+    return log_publisher_group, log_publisher_opts
