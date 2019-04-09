@@ -12,26 +12,29 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+from monasca_log_api import policies
 from oslo_config import cfg
 from oslo_policy import policy
 
-from monasca_api import policies
 
-CONF = cfg.CONF
-VERSIONS_ROLES = policies.roles_list_to_check_str(cfg.CONF.security.versions_roles)
+DEFAULT_AUTHORIZED_ROLES = policies.roles_list_to_check_str(
+    cfg.CONF.security.default_authorized_roles)
+AGENT_AUTHORIZED_ROLES = policies.roles_list_to_check_str(
+    cfg.CONF.security.agent_authorized_roles)
+DELEGATE_AUTHORIZED_ROLES = policies.roles_list_to_check_str(
+    cfg.CONF.security.delegate_authorized_roles)
 
 rules = [
     policy.DocumentedRuleDefault(
-        name='api:versions',
-        check_str=VERSIONS_ROLES,
-        description='List supported versions '
-                    'or get the details about the specified version of Monasca API.',
+        name='api:logs:post',
+        check_str=' or '.join(filter(None, [AGENT_AUTHORIZED_ROLES,
+                                            DEFAULT_AUTHORIZED_ROLES,
+                                            DELEGATE_AUTHORIZED_ROLES])),
+        description='Logs post rule',
         operations=[
-            {'path': '/', 'method': 'GET'},
-            {'path': '/v2.0', 'method': 'GET'},
-            {'path': '/v4.0', 'method': 'GET'}
+            {'path': '/logs', 'method': 'POST'},
         ]
-    ),
+    )
 ]
 
 
