@@ -1,0 +1,7 @@
+
+features:
+  - |
+    Merge monasca-log-api source code into the monasca-api and enable logs endpoints
+  - |
+    Introduce configuration options that allow to enable/disable metrics and logs endpoints
+
