@@ -15,11 +15,11 @@
 import falcon
 import mock
 
+from monasca_api.common.rest import utils
 from monasca_api import config
 from monasca_api.healthcheck import base
 from monasca_api import healthchecks
 from monasca_api.tests import base as test_base
-from monasca_common.rest import utils
 
 CONF = config.CONF
 ENDPOINT = '/healthcheck'
