@@ -47,6 +47,25 @@ def launch(conf):
     version_2_0 = simport.load(cfg.CONF.dispatcher.version_2_0)()
     app.add_route("/v2.0", version_2_0)
 
+    healthchecks = simport.load(cfg.CONF.dispatcher.healthchecks)()
+    app.add_route("/healthcheck", healthchecks)
+    import q
+    q('aaa')
+    q(cfg.CONF.enable_metrics_api)
+    q(cfg.CONF.enable_logs_api)
+    if cfg.CONF.enable_metrics_api:
+        q('metrics ok')
+        launch_metrics_api(app)
+
+    if cfg.CONF.enable_logs_api:
+        q('log_ok')
+        launch_log_api(app)
+
+    LOG.debug('Dispatcher drivers have been added to the routes!')
+    return app
+
+
+def launch_metrics_api(app):
     metrics = simport.load(cfg.CONF.dispatcher.metrics)()
     app.add_route("/v2.0/metrics", metrics)
 
@@ -94,11 +113,11 @@ def launch(conf):
         cfg.CONF.dispatcher.notification_method_types)()
     app.add_route("/v2.0/notification-methods/types", notification_method_types)
 
-    healthchecks = simport.load(cfg.CONF.dispatcher.healthchecks)()
-    app.add_route("/healthcheck", healthchecks)
 
-    LOG.debug('Dispatcher drivers have been added to the routes!')
-    return app
+def launch_log_api(app):
+    logs = simport.load(
+        cfg.CONF.dispatcher.logs)()
+    app.add_route("/v2.0/logs", logs)
 
 
 def get_wsgi_app(config_base_path=None, **kwargs):
