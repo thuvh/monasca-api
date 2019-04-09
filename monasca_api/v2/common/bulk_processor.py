@@ -12,10 +12,10 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-from monasca_log_api import conf
-from monasca_log_api.app.base import log_publisher
-from monasca_log_api.app.base import model
-from monasca_log_api.app.base import validation
+from monasca_api import conf
+from monasca_api.api.core.log import log_publisher
+from monasca_api.api.core.log import model
+from monasca_api.api.core.log import validation
 from oslo_log import log
 
 LOG = log.getLogger(__name__)
@@ -39,13 +39,14 @@ class BulkProcessor(log_publisher.LogPublisher):
         """
         super(BulkProcessor, self).__init__()
 
-        if CONF.monitoring.enable:
-            assert logs_in_counter is not None
-            assert logs_rejected_counter is not None
-            self._logs_in_counter = logs_in_counter
-            self._logs_rejected_counter = logs_rejected_counter
+        #todo refactor monitoring part
+        #if CONF.monitoring.enable:
+        #    assert logs_in_counter is not None
+        #    assert logs_rejected_counter is not None
+        #    self._logs_in_counter = logs_in_counter
+        #    self._logs_rejected_counter = logs_rejected_counter
 
-        self.service_region = CONF.service.region
+        self.service_region = CONF.region
 
     def send_message(self, logs, global_dimensions=None, log_tenant_id=None):
         """Sends bulk package to kafka
@@ -69,11 +70,11 @@ class BulkProcessor(log_publisher.LogPublisher):
                                                log_tenant_id)
                 if t_el:
                     to_send_msgs.append(t_el)
-            if CONF.monitoring.enable:
-                with self._publish_time_ms.time(name=None):
-                    self._publish(to_send_msgs)
-            else:
-                self._publish(to_send_msgs)
+            # todo Refactor self monitoring
+            #if CONF.monitoring.enable:
+            #    with self._publish_time_ms.time(name=None):
+            #        self._publish(to_send_msgs)
+            self._publish(to_send_msgs)
 
             sent_count = len(to_send_msgs)
 
@@ -82,10 +83,11 @@ class BulkProcessor(log_publisher.LogPublisher):
                       num_of_msgs, global_dimensions)
             LOG.exception(ex)
             raise ex
-        finally:
-            if CONF.monitoring.enable:
-                self._update_counters(len(to_send_msgs), num_of_msgs)
-            self._after_publish(sent_count, len(to_send_msgs))
+        #finally:
+            # todo Refactor self monitoring
+            #if CONF.monitoring.enable:
+            #    self._update_counters(len(to_send_msgs), num_of_msgs)
+            #self._after_publish(sent_count, len(to_send_msgs))
 
     def _update_counters(self, in_counter, to_send_counter):
         rejected_counter = to_send_counter - in_counter
