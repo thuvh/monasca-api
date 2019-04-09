@@ -1,0 +1,10 @@
+Code-Review+1: Ashwin Agate <ashwin.agate@suse.com>
+Code-Review+2: Doug Szumski <doug@stackhpc.com>
+Workflow+1: Joseph Davis <joseph.davis@suse.com>
+Code-Review+1: Joseph Davis <joseph.davis@suse.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Tue, 09 Apr 2019 02:30:54 +0000
+Reviewed-on: https://review.openstack.org/649760
+Project: openstack/monasca-api
+Branch: refs/heads/stable/rocky
