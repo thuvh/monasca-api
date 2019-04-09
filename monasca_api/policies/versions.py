@@ -28,7 +28,8 @@ rules = [
                     'or get the details about the specified version of Monasca API.',
         operations=[
             {'path': '/', 'method': 'GET'},
-            {'path': '/v2.0', 'method': 'GET'}
+            {'path': '/v2.0', 'method': 'GET'},
+            {'path': '/v4.0', 'method': 'GET'}
         ]
     ),
 ]

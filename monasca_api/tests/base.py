@@ -1,3 +1,4 @@
+# coding=utf-8
 # Copyright 2015 kornicameister@gmail.com
 # Copyright 2015-2017 FUJITSU LIMITED
 # Copyright 2018 OP5 AB
@@ -13,17 +14,22 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
+import codecs
 import os
+import random
+import string
 
 import falcon
 from falcon import testing
 import fixtures
+import mock
 from monasca_common.policy import policy_engine as policy
 from oslo_config import cfg
 from oslo_config import fixture as oo_cfg
 from oslo_context import fixture as oo_ctx
 from oslo_serialization import jsonutils
 from oslotest import base as oslotest_base
+import six
 import testtools.matchers as matchers
 
 from monasca_api.api.core import request
@@ -156,3 +162,79 @@ class RESTResponseEquals(object):
             del response_data[u"links"]
 
         return matchers.Equals(self.expected_data).match(response_data)
+
+
+def generate_unique_message(size):
+    letters = string.ascii_letters
+
+    def rand(amount, space=True):
+        space = ' ' if space else ''
+        return ''.join((random.choice(letters + space) for _ in range(amount)))
+
+    return rand(size)
+
+
+def _hex_to_unicode(hex_raw):
+    hex_raw = six.b(hex_raw.replace(' ', ''))
+    hex_str_raw = codecs.getdecoder('hex')(hex_raw)[0]
+    hex_str = hex_str_raw.decode('utf-8', 'replace')
+    return hex_str
+
+# NOTE(trebskit) => http://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-test.txt
+UNICODE_MESSAGES = [
+    # Unicode is evil...
+    {'case': 'arabic', 'input': 'يونيكود هو الشر'},
+    {'case': 'polish', 'input': 'Unicode to zło'},
+    {'case': 'greek', 'input': 'Unicode είναι κακό'},
+    {'case': 'portuguese', 'input': 'Unicode é malvado'},
+    {'case': 'lao', 'input': 'unicode ເປັນຄວາມຊົ່ວຮ້າຍ'},
+    {'case': 'german', 'input': 'Unicode ist böse'},
+    {'case': 'japanese', 'input': 'ユニコードは悪です'},
+    {'case': 'russian', 'input': 'Unicode - зло'},
+    {'case': 'urdu', 'input': 'یونیسیڈ برائی ہے'},
+    {'case': 'weird', 'input': '🆄🅽🅸🅲🅾🅳🅴 🅸🆂 🅴🆅🅸🅻...'},  # funky, huh ?
+    # conditions from link above
+    # 2.3  Other boundary conditions
+    {'case': 'stress_2_3_1', 'input': _hex_to_unicode('ed 9f bf')},
+    {'case': 'stress_2_3_2', 'input': _hex_to_unicode('ee 80 80')},
+    {'case': 'stress_2_3_3', 'input': _hex_to_unicode('ef bf bd')},
+    {'case': 'stress_2_3_4', 'input': _hex_to_unicode('f4 8f bf bf')},
+    {'case': 'stress_2_3_5', 'input': _hex_to_unicode('f4 90 80 80')},
+    # 3.5 Impossible byes
+    {'case': 'stress_3_5_1', 'input': _hex_to_unicode('fe')},
+    {'case': 'stress_3_5_2', 'input': _hex_to_unicode('ff')},
+    {'case': 'stress_3_5_3', 'input': _hex_to_unicode('fe fe ff ff')},
+    # 4.1 Examples of an overlong ASCII character
+    {'case': 'stress_4_1_1', 'input': _hex_to_unicode('c0 af')},
+    {'case': 'stress_4_1_2', 'input': _hex_to_unicode('e0 80 af')},
+    {'case': 'stress_4_1_3', 'input': _hex_to_unicode('f0 80 80 af')},
+    {'case': 'stress_4_1_4', 'input': _hex_to_unicode('f8 80 80 80 af')},
+    {'case': 'stress_4_1_5', 'input': _hex_to_unicode('fc 80 80 80 80 af')},
+    # 4.2 Maximum overlong sequences
+    {'case': 'stress_4_2_1', 'input': _hex_to_unicode('c1 bf')},
+    {'case': 'stress_4_2_2', 'input': _hex_to_unicode('e0 9f bf')},
+    {'case': 'stress_4_2_3', 'input': _hex_to_unicode('f0 8f bf bf')},
+    {'case': 'stress_4_2_4', 'input': _hex_to_unicode('f8 87 bf bf bf')},
+    {'case': 'stress_4_2_5', 'input': _hex_to_unicode('fc 83 bf bf bf bf')},
+    # 4.3  Overlong representation of the NUL character
+    {'case': 'stress_4_3_1', 'input': _hex_to_unicode('c0 80')},
+    {'case': 'stress_4_3_2', 'input': _hex_to_unicode('e0 80 80')},
+    {'case': 'stress_4_3_3', 'input': _hex_to_unicode('f0 80 80 80')},
+    {'case': 'stress_4_3_4', 'input': _hex_to_unicode('f8 80 80 80 80')},
+    {'case': 'stress_4_3_5', 'input': _hex_to_unicode('fc 80 80 80 80 80')},
+    # and some cheesy example from polish novel 'Pan Tadeusz'
+    {'case': 'mr_t', 'input': 'Hajże na Soplicę!'},
+    # it won't be complete without that one
+    {'case': 'mr_b', 'input': 'Grzegorz Brzęczyszczykiewicz, '
+                              'Chrząszczyżewoszyce, powiat Łękołody'},
+    # great success, christmas time
+    {'case': 'olaf', 'input': '☃'}
+]
+
+class DisableStatsdFixture(fixtures.Fixture):
+
+    def setUp(self):
+        super(DisableStatsdFixture, self).setUp()
+        statsd_patch = mock.patch('monascastatsd.Connection')
+        statsd_patch.start()
+        self.addCleanup(statsd_patch.stop)
