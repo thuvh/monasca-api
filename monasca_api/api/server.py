@@ -94,6 +94,10 @@ def launch(conf):
         cfg.CONF.dispatcher.notification_method_types)()
     app.add_route("/v2.0/notification-methods/types", notification_method_types)
 
+    logs = simport.load(
+        cfg.CONF.dispatcher.logs)()
+    app.add_route("/v2.0/logs", logs)
+
     healthchecks = simport.load(cfg.CONF.dispatcher.healthchecks)()
     app.add_route("/healthcheck", healthchecks)
 
