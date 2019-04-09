@@ -16,10 +16,11 @@
 # under the License.
 
 import falcon
-from monasca_common.rest import utils as rest_utils
-from monasca_log_api.app.base import exceptions
-from monasca_log_api.app.base import validation
 from oslo_log import log
+
+from monasca_api.api.core.log import exceptions
+from monasca_api.api.core.log import validation
+from monasca_common.rest import utils as rest_utils
 
 
 LOG = log.getLogger(__name__)
