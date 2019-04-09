@@ -13,7 +13,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-from monasca_common.policy import policy_engine as policy
+from monasca_api.common.policy import policy_engine as policy
 from oslo_context import context
 
 from monasca_api import policies
