@@ -15,7 +15,7 @@
 
 import falcon
 
-from monasca_common.policy import policy_engine as policy
+from monasca_api.common.policy import policy_engine as policy
 
 from monasca_api.api.core import request_context
 from monasca_api.common.repositories import constants

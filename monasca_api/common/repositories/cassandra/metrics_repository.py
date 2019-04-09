@@ -25,7 +25,7 @@ from cassandra.auth import PlainTextAuthProvider
 from cassandra.cluster import Cluster
 from cassandra.query import FETCH_SIZE_UNSET
 from cassandra.query import SimpleStatement
-from monasca_common.rest import utils as rest_utils
+from monasca_api.common.rest import utils as rest_utils
 from oslo_config import cfg
 from oslo_log import log
 from oslo_utils import encodeutils
