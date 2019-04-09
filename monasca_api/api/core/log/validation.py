@@ -13,13 +13,13 @@
 # under the License.
 
 import re
+
 import falcon
-import six
-from monasca_log_api import conf
-from monasca_log_api.app.base import exceptions
 from oslo_log import log
+import six
 
-
+from monasca_api.api.core.log import exceptions
+from monasca_api import conf
 
 LOG = log.getLogger(__name__)
 CONF = conf.CONF
@@ -207,7 +207,7 @@ def validate_payload_size(req):
         )
 
     if payload_size >= max_size:
-        raise falcon.HTTPRequestEntityTooLarge(
+        raise falcon.HTTPPayloadTooLarge(
             title='Log payload size exceeded',
             description='Maximum allowed size is %d bytes' % max_size
         )
@@ -244,24 +244,3 @@ def validate_log_message(log_object):
         raise exceptions.HTTPUnprocessableEntity(
             'Log property should have message'
         )
-
-
-def validate_authorization(http_request, authorized_rules_list):
-    """Validates whether is authorized according to provided policy rules list.
-
-        If authorization fails, 401 is thrown with appropriate description.
-        Additionally response specifies 'WWW-Authenticate' header with 'Token'
-        value challenging the client to use different token (the one with
-        different set of roles which can access the service).
-    """
-    challenge = 'Token'
-    for rule in authorized_rules_list:
-        try:
-            http_request.can(rule)
-            return
-        except Exception as ex:
-            LOG.debug(ex)
-
-    raise falcon.HTTPUnauthorized('Forbidden',
-                                  'The request does not have access to this service',
-                                  challenge)
