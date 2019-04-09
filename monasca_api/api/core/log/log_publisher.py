@@ -14,19 +14,15 @@
 # under the License.
 
 import time
+
 import falcon
 from monasca_common.kafka import producer
 from monasca_common.rest import utils as rest_utils
-from monasca_log_api import conf
-from monasca_log_api.app.base import model
-from monasca_log_api.monitoring import client
-from monasca_log_api.monitoring import metrics
 from oslo_log import log
 from oslo_utils import encodeutils
 
-
-
-
+from monasca_api.api.core.log import model
+from monasca_api import conf
 
 LOG = log.getLogger(__name__)
 CONF = conf.CONF
@@ -64,28 +60,12 @@ class LogPublisher(object):
     """
 
     def __init__(self):
-        self._topics = CONF.log_publisher.topics
+        self._topics = CONF.kafka.logs_topics
         self.max_message_size = CONF.log_publisher.max_message_size
 
         self._kafka_publisher = producer.KafkaProducer(
-            url=CONF.log_publisher.kafka_url
+            url=CONF.kafka.uri
         )
-        if CONF.monitoring.enable:
-            self._statsd = client.get_client()
-
-            # setup counter, gauges etc
-            self._logs_published_counter = self._statsd.get_counter(
-                metrics.LOGS_PUBLISHED_METRIC
-            )
-            self._publish_time_ms = self._statsd.get_timer(
-                metrics.LOGS_PUBLISH_TIME_METRIC
-            )
-            self._logs_lost_counter = self._statsd.get_counter(
-                metrics.LOGS_PUBLISHED_LOST_METRIC
-            )
-            self._logs_truncated_gauge = self._statsd.get_gauge(
-                metrics.LOGS_TRUNCATED_METRIC
-            )
 
         LOG.info('Initializing LogPublisher <%s>', self)
 
@@ -107,7 +87,6 @@ class LogPublisher(object):
         if not isinstance(messages, list):
             messages = [messages]
 
-        sent_counter = 0
         num_of_msgs = len(messages)
 
         LOG.debug('About to publish %d messages to %s topics',
@@ -119,18 +98,11 @@ class LogPublisher(object):
             for message in messages:
                 msg = self._transform_message(message)
                 send_messages.append(msg)
-            if CONF.monitoring.enable:
-                with self._publish_time_ms.time(name=None):
-                    self._publish(send_messages)
-            else:
                 self._publish(send_messages)
 
-            sent_counter = len(send_messages)
         except Exception as ex:
             LOG.exception('Failure in publishing messages to kafka')
             raise ex
-        finally:
-            self._after_publish(sent_counter, num_of_msgs)
 
     def _transform_message(self, message):
         """Transforms message into JSON.
@@ -189,13 +161,8 @@ class LogPublisher(object):
 
             envelope['log']['truncated'] = True
             envelope['log']['message'] = truncated_log_msg
-            if CONF.monitoring.enable:
-                self._logs_truncated_gauge.send(name=None, value=truncated_by)
 
             msg_str = rest_utils.as_json(envelope)
-        else:
-            if CONF.monitoring.enable:
-                self._logs_truncated_gauge.send(name=None, value=0)
 
         return msg_str
 
@@ -247,6 +214,3 @@ class LogPublisher(object):
             error_str = ('Failed to send all messages, %d '
                          'messages out of %d have not been published')
             LOG.error(error_str, failed_to_send, to_send_count)
-        if CONF.monitoring.enable:
-            self._logs_published_counter.increment(value=send_count)
-            self._logs_lost_counter.increment(value=failed_to_send)

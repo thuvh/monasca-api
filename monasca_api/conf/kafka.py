@@ -32,7 +32,11 @@ The topic that metrics will be published to
 '''),
     cfg.StrOpt('events_topic', default='events',
                help='''
-The topic that events will be published too
+The topic that events will be published to
+'''),
+    cfg.MultiStrOpt('logs_topics', default=['log'],
+                    help='''
+The topic that logs will be published to
 '''),
     cfg.StrOpt('alarm_state_transitions_topic',
                default='alarm-state-transitions',
