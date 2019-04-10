@@ -1,0 +1,9 @@
+Code-Review+2: Joseph Davis <joseph.davis@suse.com>
+Code-Review+2: Witold Bedyk <witold.bedyk@suse.com>
+Workflow+1: Witold Bedyk <witold.bedyk@suse.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Wed, 10 Apr 2019 15:08:34 +0000
+Reviewed-on: https://review.openstack.org/650957
+Project: openstack/monasca-api
+Branch: refs/heads/stable/rocky
