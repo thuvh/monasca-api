@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5fc1f717_cc429468",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-04-10T12:57:31Z",
+      "side": 1,
+      "message": "What will happen if user don\u0027t provide this configuration option? Or when default value is empty?",
+      "range": {
+        "startLine": 129,
+        "startChar": 52,
+        "endLine": 129,
+        "endChar": 89
+      },
+      "revId": "383a805531b465c3a9cada01790a8cb051f7489f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fc1f717_6c8a80bc",
+        "filename": "monasca_api/conf/cassandra.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-04-10T12:57:31Z",
+      "side": 1,
+      "message": "could you provide some default value here? even empty string is ok",
+      "revId": "383a805531b465c3a9cada01790a8cb051f7489f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fc1f717_2c679827",
+        "filename": "releasenotes/notes/add-cassandra-loadbalancing-policy-4d5d0e7e8064a870.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-04-10T12:57:31Z",
+      "side": 1,
+      "message": "Added configuration option: \u0027local_data_center\u0027 with default value set to \u0027\u0027.",
+      "range": {
+        "startLine": 5,
+        "startChar": 4,
+        "endLine": 5,
+        "endChar": 32
+      },
+      "revId": "383a805531b465c3a9cada01790a8cb051f7489f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
