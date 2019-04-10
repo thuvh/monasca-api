@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5fc1f717_8c6d6c33",
+        "filename": "docker/monasca-api.conf.j2",
+        "patchSetId": 1
+      },
+      "lineNbr": 492,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-04-10T12:50:08Z",
+      "side": 1,
+      "message": "This is already in line 555 of this file:\n\nhttps://github.com/openstack/monasca-api/blob/master/docker/monasca-api.conf.j2#L555",
+      "range": {
+        "startLine": 492,
+        "startChar": 0,
+        "endLine": 492,
+        "endChar": 34
+      },
+      "revId": "ac315a04c2d7fd4810bedd8222cdc1e8fd49e7f8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
