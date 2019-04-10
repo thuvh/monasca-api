@@ -1,0 +1,11 @@
+Code-Review+2: Witold Bedyk <witold.bedyk@suse.com>
+Workflow+1: Witold Bedyk <witold.bedyk@suse.com>
+Verified-1: Zuul
+Code-Review+2: Ian Wienand <iwienand@redhat.com>
+Verified+2: Ian Wienand <iwienand@redhat.com>
+Workflow+1: Ian Wienand <iwienand@redhat.com>
+Submitted-by: Ian Wienand <iwienand@redhat.com>
+Submitted-at: Wed, 10 Apr 2019 00:43:18 +0000
+Reviewed-on: https://review.openstack.org/646497
+Project: openstack/monasca-api
+Branch: refs/heads/stable/ocata
