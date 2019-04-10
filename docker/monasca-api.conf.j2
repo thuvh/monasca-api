@@ -489,6 +489,7 @@ project_domain_name = Default
 {% if KEYSTONE_REGION_NAME is defined %}
 region_name = {{ KEYSTONE_REGION_NAME }}
 {% endif %}
+insecure = {{ KEYSTONE_INSECURE }}
 
 #
 # From keystonemiddleware.auth_token
