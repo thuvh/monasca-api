@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3fce034c_5688411e",
+        "filename": "docker/monasca-api.conf.j2",
+        "patchSetId": 4
+      },
+      "lineNbr": 781,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-04-11T08:06:29Z",
+      "side": 1,
+      "message": "You don\u0027t need to copy docs here, just move\n`{% if DATABASE_BACKEND | lower \u003d\u003d \u0027cassandra\u0027 %}`\ndown to before `metrics_driver`\n\nso it\u0027s like\n```\nif casssandra\nmetrics_driver \u003d ...casssandra...\nelse\nmetrics_driver \u003d ...influxdb...\nendif",
+      "range": {
+        "startLine": 777,
+        "startChar": 0,
+        "endLine": 781,
+        "endChar": 41
+      },
+      "revId": "aa124779bdec6d52ee1540c68b2ce470cec90362",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
