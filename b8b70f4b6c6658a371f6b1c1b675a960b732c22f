@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3fce034c_9670d074",
+        "filename": "devstack/settings",
+        "patchSetId": 2
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-04-12T10:31:28Z",
+      "side": 1,
+      "message": "Does this one not have a stable branch?",
+      "range": {
+        "startLine": 156,
+        "startChar": 0,
+        "endLine": 156,
+        "endChar": 78
+      },
+      "revId": "b8b70f4b6c6658a371f6b1c1b675a960b732c22f",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
