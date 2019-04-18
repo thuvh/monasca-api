@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3fce034c_a823c0bc",
+        "filename": "docker/README.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-04-18T12:40:36Z",
+      "side": 1,
+      "message": "This will be fixed with docs cleaning I did in https://review.openstack.org/#/c/651756/3/docker/README.rst\n\nPlease, add only `MYSQL_PORT` here.",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 110
+      },
+      "revId": "4ab13eeff0d838ff7f1cf1df27b3443b11d3ba37",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
