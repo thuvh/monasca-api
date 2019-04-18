@@ -1,0 +1,11 @@
+Code-Review+2: Doug Szumski <doug@stackhpc.com>
+Code-Review+2: Joseph Davis <joseph.davis@suse.com>
+Workflow+1: Joseph Davis <joseph.davis@suse.com>
+Workflow+1: Doug Szumski <doug@stackhpc.com>
+Code-Review+1: 98k <18552437190@163.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Thu, 18 Apr 2019 15:29:04 +0000
+Reviewed-on: https://review.openstack.org/651265
+Project: openstack/monasca-api
+Branch: refs/heads/stable/stein
