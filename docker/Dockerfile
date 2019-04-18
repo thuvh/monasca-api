@@ -30,6 +30,7 @@ ENV \
     CASSANDRA_USER=mon_persister \
     CASSANDRA_PASSWORD=password \
     MYSQL_HOST=mysql \
+    MYSQL_PORT=3306 \
     MYSQL_USER=monapi \
     MYSQL_PASSWORD=password \
     MYSQL_DB=mon \

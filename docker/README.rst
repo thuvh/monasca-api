@@ -55,11 +55,11 @@ CASSANDRA_CONTACT_POINTS       cassandra                                        
 CASSANDRA_PORT                 9042                                                                    Cassandra port number
 CASSANDRA_USER                 mon_persister                                                           Cassandra user name
 CASSANDRA_PASSWORD             password                                                                Cassandra password
-MYSQL_DB_HOST                  mysql                                                                   The host for MySQL
-MYSQL_DB_PORT                  3306                                                                    The port for MySQL
-MYSQL_DB_USERNAME              monapi                                                                  The MySQL username
-MYSQL_DB_PASSWORD              password                                                                The MySQL password
-MYSQL_DB_DATABASE              mon                                                                     The MySQL database name
+MYSQL_HOST                     mysql                                                                   The host for MySQL
+MYSQL_PORT                     3306                                                                    The port for MySQL
+MYSQL_USERNAME                 monapi                                                                  The MySQL username
+MYSQL_PASSWORD                 password                                                                The MySQL password
+MYSQL_DB                       mon                                                                     The MySQL database name
 MYSQL_WAIT_RETRIES             24                                                                      Number of MySQL connection attempts
 MYSQL_WAIT_DELAY               5                                                                       Seconds to wait between attempts
 API_MYSQL_DISABLED             unset                                                                   If 'true' do not use a mysql database. Only metric API will work
