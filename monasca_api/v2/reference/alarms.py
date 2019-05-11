@@ -154,7 +154,11 @@ class Alarms(alarms_api_v2.AlarmsV2API,
             res.status = falcon.HTTP_200
 
         else:
-            result = self._alarm_show(req.uri, req.project_id, alarm_id)
+            result = {}
+            try:
+                result = self._alarm_show(req.uri, req.project_id, alarm_id)
+            except Exception as ex:
+                LOG.exception(ex)
 
             res.body = helpers.to_json(result)
             res.status = falcon.HTTP_200
