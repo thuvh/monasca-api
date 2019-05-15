@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dfbec78f_6f059810",
+        "filename": "docker/Dockerfile",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 14123
+      },
+      "writtenOn": "2019-05-15T20:51:58Z",
+      "side": 1,
+      "message": "I think this is just https://opendev.org/....",
+      "range": {
+        "startLine": 2,
+        "startChar": 28,
+        "endLine": 2,
+        "endChar": 35
+      },
+      "revId": "56f6d4f8eb1d7ed6058251e424703bb978d8cda9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
