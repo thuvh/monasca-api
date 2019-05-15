@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dfbec78f_2dad709a",
+        "filename": "monasca_api/v2/reference/helpers.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-05-15T14:47:34Z",
+      "side": 1,
+      "message": "JSON schema is supported out of the box:\n\nhttps://falcon.readthedocs.io/en/stable/api/media.html#media\n\nThis fixes the unit tests under py35 for me. Internally it calls bounded_stream, which introduces a slight performance cost according to commentary in the code:\n\nFor a slight performance cost, you may instead wish to use\n            :py:attr:`bounded_stream`, which wraps the native WSGI\n            input object to normalize its behavior.",
+      "range": {
+        "startLine": 43,
+        "startChar": 8,
+        "endLine": 43,
+        "endChar": 14
+      },
+      "revId": "616677e6e30b0e72292ba4865be6777e3df7cc6b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
