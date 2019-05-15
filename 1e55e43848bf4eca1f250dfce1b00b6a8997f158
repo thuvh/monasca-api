@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dfbec78f_83346ddf",
+        "filename": "monasca_api/api/server.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-05-15T16:11:39Z",
+      "side": 1,
+      "message": "This option doesn\u0027t appear to exist in 1.0.0, we could try/catch if we need to support older versions than 2.0.0.",
+      "range": {
+        "startLine": 39,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 7
+      },
+      "revId": "1e55e43848bf4eca1f250dfce1b00b6a8997f158",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
