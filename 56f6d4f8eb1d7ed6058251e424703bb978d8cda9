@@ -22,6 +22,30 @@
       "revId": "56f6d4f8eb1d7ed6058251e424703bb978d8cda9",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dfbec78f_d16ea1c7",
+        "filename": "docker/Dockerfile",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-05-16T11:33:09Z",
+      "side": 1,
+      "message": "opendev.org doesn\u0027t have access to gerrit references like: refs/changes/59/658759/4\n\nSo without this change we would lost option to build images from gerrit changes.",
+      "parentUuid": "dfbec78f_6f059810",
+      "range": {
+        "startLine": 2,
+        "startChar": 28,
+        "endLine": 2,
+        "endChar": 35
+      },
+      "revId": "56f6d4f8eb1d7ed6058251e424703bb978d8cda9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
