@@ -46,6 +46,30 @@
       "revId": "dda465c0d8be2f92cf6355b50e5fceaea29ce789",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bfb3d3c7_f6f47e89",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2019-05-22T10:32:26Z",
+      "side": 1,
+      "message": "This option has been added in 1.2.0 but even with that one the tests fail.",
+      "parentUuid": "bfb3d3c7_2bddd341",
+      "range": {
+        "startLine": 20,
+        "startChar": 52,
+        "endLine": 21,
+        "endChar": 57
+      },
+      "revId": "dda465c0d8be2f92cf6355b50e5fceaea29ce789",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
