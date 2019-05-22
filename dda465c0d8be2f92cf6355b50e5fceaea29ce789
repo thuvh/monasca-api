@@ -22,6 +22,30 @@
       "revId": "dda465c0d8be2f92cf6355b50e5fceaea29ce789",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bfb3d3c7_2bddd341",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-05-22T09:38:03Z",
+      "side": 1,
+      "message": "I am aware of one issue in 1.0.0, but there may be more:\n\n- app.req_options.strip_url_path_trailing_slash doesn\u0027t exist in Falcon 1.0.0",
+      "parentUuid": "bfb3d3c7_dd53dde1",
+      "range": {
+        "startLine": 20,
+        "startChar": 52,
+        "endLine": 21,
+        "endChar": 57
+      },
+      "revId": "dda465c0d8be2f92cf6355b50e5fceaea29ce789",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
