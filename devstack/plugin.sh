@@ -636,7 +636,8 @@ function install_schema_kafka_topics {
     sudo chmod 0766 /opt/kafka/logs
 
     /opt/kafka/bin/kafka-topics.sh --create --zookeeper localhost:2181 \
-        --replication-factor 1 --partitions 64 --topic metrics
+        --replication-factor 1 --partitions 16 --topic metrics
+#       --replication-factor 1 --partitions 64 --topic metrics
     /opt/kafka/bin/kafka-topics.sh --create --zookeeper localhost:2181 \
         --replication-factor 1 --partitions 12 --topic events
     /opt/kafka/bin/kafka-topics.sh --create --zookeeper localhost:2181 \
