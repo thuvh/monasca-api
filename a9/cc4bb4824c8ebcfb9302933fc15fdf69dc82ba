@@ -1,0 +1,9 @@
+Code-Review+2: Stefano Canepa (sc) <sc@linux.it>
+Workflow+1: Stefano Canepa (sc) <sc@linux.it>
+Code-Review+2: Witold Bedyk <witold.bedyk@suse.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Wed, 29 May 2019 18:34:03 +0000
+Reviewed-on: https://review.opendev.org/659264
+Project: openstack/monasca-api
+Branch: refs/heads/master
