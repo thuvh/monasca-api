@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9fb8cfa7_510ebf32",
+        "filename": "releasenotes/notes/upgrade-influxdb-3fa94ef4b15c8217.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-06-05T16:44:43Z",
+      "side": 1,
+      "message": "So with this link, we should turn on the disk based TSI in the config file right? Or you could have a separate commit on top of this to do it..\n\nEither way, i\u0027m in favour of turning it on. It should help reduce RAM requirements in devstack.",
+      "revId": "0cd218d2715897907b193519cd30fd00f1fcbaf7",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
