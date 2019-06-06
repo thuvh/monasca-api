@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9fb8cfa7_6af660fc",
+        "filename": "devstack/files/influxdb/influxdb.conf",
+        "patchSetId": 7
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-06-06T08:45:46Z",
+      "side": 1,
+      "message": "Got spot. nit: It can sometimes be helpful to leave the default setting commented for reference.",
+      "range": {
+        "startLine": 289,
+        "startChar": 0,
+        "endLine": 289,
+        "endChar": 2
+      },
+      "revId": "a3ee00b9d94bd31c9568a936e959e3d2d803aad2",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
