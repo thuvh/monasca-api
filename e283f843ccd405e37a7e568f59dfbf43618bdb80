@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9fb8cfa7_23b961cb",
+        "filename": "releasenotes/notes/upgrade-influxdb-3fa94ef4b15c8217.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2019-06-07T07:22:25Z",
+      "side": 1,
+      "message": "You\u0027ve mentioned the recommended migration process in the team meeting. Could add this mention here as well please?",
+      "range": {
+        "startLine": 4,
+        "startChar": 4,
+        "endLine": 6,
+        "endChar": 105
+      },
+      "revId": "e283f843ccd405e37a7e568f59dfbf43618bdb80",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
