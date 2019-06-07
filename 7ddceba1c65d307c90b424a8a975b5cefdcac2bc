@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9fb8cfa7_199ccabe",
+        "filename": "doc/source/admin/index.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2019-06-07T09:12:46Z",
+      "side": 1,
+      "message": "\"Schema Setup\" section refers to SQL DB. I\u0027d create the new section: \"Time Series Databases Setup\" and put this information as the first item.",
+      "revId": "7ddceba1c65d307c90b424a8a975b5cefdcac2bc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
