@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9fb8cfa7_866db633",
+        "filename": "doc/source/admin/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-06-07T13:37:34Z",
+      "side": 1,
+      "message": "nit: I think we removed a line here, but as long as the docs build..",
+      "revId": "5262540cd5ca912eeeba0e5da2e8940e96fb62c6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
