@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9fb8cfa7_f3013b3b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 23
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 14123
+      },
+      "writtenOn": "2019-06-17T13:05:35Z",
+      "side": 1,
+      "message": "missing an \"e\" at the end",
+      "revId": "7dac3dd2c74954644f64030bc061dd632adbe744",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
