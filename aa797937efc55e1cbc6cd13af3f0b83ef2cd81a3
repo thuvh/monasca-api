@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9fb8cfa7_32647bb9",
+        "filename": "monasca_api/tests/test_helpers.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-06-19T17:34:49Z",
+      "side": 1,
+      "message": "This as_json method is wrapped by helpers.to_json that we call below. I think we should avoid generating any expected messages with the code that we are testing. Can we hard code it?",
+      "range": {
+        "startLine": 50,
+        "startChar": 24,
+        "endLine": 50,
+        "endChar": 53
+      },
+      "revId": "aa797937efc55e1cbc6cd13af3f0b83ef2cd81a3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9fb8cfa7_92b0c78d",
+        "filename": "monasca_api/tests/test_metrics.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-06-19T17:34:49Z",
+      "side": 1,
+      "message": "Should we set this to \u0027dummy_name\u0027 or something to make it more clear that the actual name here is irrelevant because of the mock? Right now it\u0027s very similar but not the same as the expected metric name which confused me for a second.\n\nAdd a test demonstrating that we get a 422 if the query string is invalid?",
+      "range": {
+        "startLine": 153,
+        "startChar": 60,
+        "endLine": 153,
+        "endChar": 75
+      },
+      "revId": "aa797937efc55e1cbc6cd13af3f0b83ef2cd81a3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9fb8cfa7_727c33b5",
+        "filename": "monasca_api/tests/test_metrics.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-06-19T17:34:49Z",
+      "side": 1,
+      "message": "Same comment as above",
+      "range": {
+        "startLine": 195,
+        "startChar": 60,
+        "endLine": 195,
+        "endChar": 75
+      },
+      "revId": "aa797937efc55e1cbc6cd13af3f0b83ef2cd81a3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9fb8cfa7_7255131d",
+        "filename": "monasca_api/tests/test_metrics.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-06-19T17:34:49Z",
+      "side": 1,
+      "message": "Maybe this should be factored out, but no big deal.",
+      "range": {
+        "startLine": 206,
+        "startChar": 7,
+        "endLine": 208,
+        "endChar": 15
+      },
+      "revId": "aa797937efc55e1cbc6cd13af3f0b83ef2cd81a3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9fb8cfa7_321ebb70",
+        "filename": "monasca_api/tests/test_metrics.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-06-19T17:34:49Z",
+      "side": 1,
+      "message": "Again, this can just be anything right? Maybe `dummy_dimension_name` or something to make it clear that it doesn\u0027t actually get used?",
+      "range": {
+        "startLine": 295,
+        "startChar": 70,
+        "endLine": 295,
+        "endChar": 78
+      },
+      "revId": "aa797937efc55e1cbc6cd13af3f0b83ef2cd81a3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9fb8cfa7_4d1b9272",
+        "filename": "monasca_api/tests/test_notifications.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-06-19T17:34:49Z",
+      "side": 1,
+      "message": "We could factor out all the common logic here with the above test. Not to worry too much. Merging the APIs is more important.",
+      "range": {
+        "startLine": 81,
+        "startChar": 8,
+        "endLine": 81,
+        "endChar": 53
+      },
+      "revId": "aa797937efc55e1cbc6cd13af3f0b83ef2cd81a3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9fb8cfa7_8dad0aec",
+        "filename": "monasca_api/tests/test_notifications.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-06-19T17:34:49Z",
+      "side": 1,
+      "message": "Maybe add another test with an invalid sort_by and then assert you get 422? I see you\u0027ve done this for some of the others.",
+      "range": {
+        "startLine": 169,
+        "startChar": 37,
+        "endLine": 169,
+        "endChar": 44
+      },
+      "revId": "aa797937efc55e1cbc6cd13af3f0b83ef2cd81a3",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
