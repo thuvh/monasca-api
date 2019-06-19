@@ -1,0 +1,10 @@
+Code-Review+2: Adrian Czarnecki <adrian.czarnecki@ts.fujitsu.com>
+Workflow+1: Adrian Czarnecki <adrian.czarnecki@ts.fujitsu.com>
+Code-Review+2: Stefano Canepa (sc) <sc@linux.it>
+Workflow+1: Stefano Canepa (sc) <sc@linux.it>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Wed, 19 Jun 2019 17:02:28 +0000
+Reviewed-on: https://review.opendev.org/665615
+Project: openstack/monasca-api
+Branch: refs/heads/master
