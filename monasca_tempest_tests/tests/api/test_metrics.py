@@ -58,7 +58,7 @@ class TestMetrics(base.BaseMonascaTest):
             self.assertEqual(200, resp.status)
             elements = response_body['elements']
             for element in elements:
-                if str(element['name']) == name:
+                if str(element['name'].encode('utf8')) == name:
                     self._verify_list_measurements_element(element, key, value)
                     measurement = element['measurements'][0]
                     self._verify_list_measurements_measurement(
@@ -234,7 +234,7 @@ class TestMetrics(base.BaseMonascaTest):
             self.assertEqual(200, resp.status)
             elements = response_body['elements']
             for element in elements:
-                if str(element['name']) == name:
+                if str(element['name'].encode('utf8')) == name:
                     self._verify_list_measurements_element(
                         element, test_key=None, test_value=None)
                     if len(element['measurements']) > 0:
@@ -273,7 +273,7 @@ class TestMetrics(base.BaseMonascaTest):
             self.assertEqual(200, resp.status)
             elements = response_body['elements']
             for element in elements:
-                if str(element['name']) == name:
+                if str(element['name'].encode('utf8')) == name:
                     self._verify_list_measurements_element(element, key, value)
                     measurement = element['measurements'][0]
                     self._verify_list_measurements_measurement(
@@ -470,7 +470,7 @@ class TestMetrics(base.BaseMonascaTest):
             self.assertEqual(200, resp.status)
             elements = response_body['elements']
             for element in elements:
-                if str(element['name']) == name:
+                if str(element['name'].encode('utf8')) == name:
                     self._verify_list_metrics_element(element, test_key=key,
                                                       test_value=value)
                     return
@@ -502,7 +502,7 @@ class TestMetrics(base.BaseMonascaTest):
             self.assertEqual(200, resp.status)
             elements = response_body['elements']
             for element in elements:
-                if str(element['name']) == name:
+                if str(element['name'].encode('utf8')) == name:
                     self._verify_list_metrics_element(element, test_key=key,
                                                       test_value=value)
                     return
