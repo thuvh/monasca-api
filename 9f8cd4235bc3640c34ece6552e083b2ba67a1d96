@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9fb8cfa7_b26a54b0",
+        "filename": "devstack/lib/notification.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2019-06-25T15:38:59Z",
+      "side": 1,
+      "message": "Good point. Updated.",
+      "parentUuid": "bfb3d3c7_2a3d58dc",
+      "range": {
+        "startLine": 22,
+        "startChar": 86,
+        "endLine": 22,
+        "endChar": 103
+      },
+      "revId": "9f8cd4235bc3640c34ece6552e083b2ba67a1d96",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bfb3d3c7_5d8ad469",
         "filename": "devstack/lib/notification.sh",
         "patchSetId": 6
@@ -36,6 +60,30 @@
       "writtenOn": "2019-05-29T16:51:35Z",
       "side": 1,
       "message": "Are we missing the zookeeper URL? Does it work?",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 4
+      },
+      "revId": "9f8cd4235bc3640c34ece6552e083b2ba67a1d96",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9fb8cfa7_925dd016",
+        "filename": "devstack/lib/notification.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2019-06-25T15:38:59Z",
+      "side": 1,
+      "message": "The defaults should be fine for DevStack.",
+      "parentUuid": "bfb3d3c7_5d8ad469",
       "range": {
         "startLine": 97,
         "startChar": 0,
