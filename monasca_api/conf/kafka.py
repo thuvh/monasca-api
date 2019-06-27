@@ -81,6 +81,12 @@ Default is to listen on partition 0
                 help='''
 Specify if received data should be simply dropped.
 This parameter is only for testing purposes
+'''),
+    cfg.IntOpt('max_metrics_per_batch', default=1000,
+               help='''
+The maximum number of metrics per payload sent to
+Kafka. Posts to the Monasca API which exceed this will
+be chunked into batches not exceeding this number.
 ''')
 ]
 
