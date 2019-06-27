@@ -64,8 +64,11 @@ class Metrics(metrics_api_v2.MetricsV2API):
                                                  str(ex))
 
     def _send_metrics(self, metrics):
+        batch_size = cfg.CONF.kafka.max_metrics_per_batch
         try:
-            self._message_queue.send_message(metrics)
+            for i in range(0, len(metrics), batch_size):
+                batch = metrics[i:i + batch_size]
+                self._message_queue.send_message(batch)
         except message_queue_exceptions.MessageQueueException as ex:
             LOG.exception(ex)
             raise falcon.HTTPServiceUnavailable('Service unavailable',
