@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9fb8cfa7_826dfdcd",
+        "filename": "monasca_api/v2/reference/metrics.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2019-07-03T15:38:49Z",
+      "side": 1,
+      "message": "We could move this initialization to the constructor.",
+      "revId": "901e35e232be301df11b875e300215d153364d40",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
