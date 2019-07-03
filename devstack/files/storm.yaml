@@ -61,3 +61,4 @@ transactional.zookeeper.root: /storm-transactional
 ### topology.* configs are for specific executing storms
 topology.acker.executors: 1
 topology.debug: False
+topology.max.spout.pending: 500
