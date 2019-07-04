@@ -1,0 +1,9 @@
+Code-Review+2: Witold Bedyk <witold.bedyk@suse.com>
+Code-Review+2: Doug Szumski <doug@stackhpc.com>
+Workflow+1: Doug Szumski <doug@stackhpc.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Thu, 04 Jul 2019 17:54:12 +0000
+Reviewed-on: https://review.opendev.org/633194
+Project: openstack/monasca-api
+Branch: refs/heads/master
