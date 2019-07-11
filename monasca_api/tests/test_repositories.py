@@ -194,57 +194,78 @@ class TestRepoMetricsInfluxDB(base.BaseTestCase):
            "metrics_repository.client.InfluxDBClient")
     def test_list_dimension_values(self, influxdb_client_mock):
         mock_client = influxdb_client_mock.return_value
+
+        tenant = u'38dc2a2549f94d2e9a4fa1cc45a4970c'
+        region = u'useast'
+        metric = u'custom_metric'
+        column = u'hostname'
+        hostname = u'custom_host'
+        start_timestamp = 1571917171275
+        end_timestamp = 1572917171275
         mock_client.query.return_value.raw = {
-            u'series': [
-                {
-                    u'values': [[u'custom_host']],
-                    u'name': u'custom_metric',
-                    u'columns': [u'hostname']
-                }]
+            u'series': [{
+                u'values': [[hostname]],
+                u'name': metric,
+                u'columns': [column]
+            }]
         }
 
         repo = influxdb_repo.MetricsRepository()
         mock_client.query.reset_mock()
+        result = repo.list_dimension_values(tenant, region, metric, column,
+                                            start_timestamp, end_timestamp)
 
-        result = repo.list_dimension_values(
-            "38dc2a2549f94d2e9a4fa1cc45a4970c",
-            "useast",
-            "custom_metric",
-            "hostname")
-
-        self.assertEqual(result, [{u'dimension_value': u'custom_host'}])
+        self.assertEqual(result, [{u'dimension_value': hostname}])
 
         mock_client.query.assert_called_once_with(
-            'show tag values from "custom_metric" with key = "hostname"'
+            'show tag values from "{metric}" with key = "{column}"'
             ' where _tenant_id = \'{tenant}\''
-            '  and _region = \'{region}\' '.format(tenant='38dc2a2549f94d2e9a4fa1cc45a4970c',
-                                                   region='useast'))
+            '  and _region = \'{region}\''
+            '  and time >= {start_timestamp}000000u'
+            ' and time < {end_timestamp}000000u'
+            .format(tenant=tenant, region=region, metric=metric,
+                    column=column, start_timestamp=start_timestamp,
+                    end_timestamp=end_timestamp))
 
     @patch("monasca_api.common.repositories.influxdb."
            "metrics_repository.client.InfluxDBClient")
     def test_list_dimension_names(self, influxdb_client_mock):
         mock_client = influxdb_client_mock.return_value
+
+        tenant = u'38dc2a2549f94d2e9a4fa1cc45a4970c'
+        region = u'useast'
+        metric = u'custom_metric'
+        start_timestamp = 1571917171275
+        end_timestamp = 1572917171275
         mock_client.query.return_value.raw = {
             u'series': [{
                 u'values': [[u'_region'], [u'_tenant_id'], [u'hostname'],
                             [u'service']],
-                u'name': u'custom_metric',
+                u'name': metric,
                 u'columns': [u'tagKey']
             }]
         }
 
         repo = influxdb_repo.MetricsRepository()
-
-        result = repo.list_dimension_names(
-            "38dc2a2549f94d2e9a4fa1cc45a4970c",
-            "useast",
-            "custom_metric")
+        mock_client.query.reset_mock()
+        result = repo.list_dimension_names(tenant, region, metric,
+                                           start_timestamp, end_timestamp)
 
         self.assertEqual(result,
                          [
                              {u'dimension_name': u'hostname'},
                              {u'dimension_name': u'service'}
                          ])
+
+        mock_client.query.assert_called_once_with(
+            'show tag keys from "{metric}"'
+            ' where _tenant_id = \'{tenant}\''
+            '  and _region = \'{region}\''
+            '  and time >= {start_timestamp}000000u'
+            ' and time < {end_timestamp}000000u'
+            .format(tenant=tenant, region=region, metric=metric,
+                    start_timestamp=start_timestamp,
+                    end_timestamp=end_timestamp))
 
     @patch("monasca_api.common.repositories.influxdb."
            "metrics_repository.requests.head")
