@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7faddb67_2754e5fe",
+        "filename": "monasca_api/common/repositories/cassandra/metrics_repository.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-07-12T15:44:50Z",
+      "side": 1,
+      "message": "It\u0027s probably worth adding something like this here, to help people who want might want to implement this: #NOTE(bkunwar) See story https://storyboard.openstack.org/#!/story/2006204 for more details",
+      "range": {
+        "startLine": 164,
+        "startChar": 16,
+        "endLine": 164,
+        "endChar": 20
+      },
+      "revId": "d52a86af45f95c58ec8124e7437e16c11c418455",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7faddb67_874039a7",
+        "filename": "monasca_api/tests/test_repositories.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-07-12T15:44:50Z",
+      "side": 1,
+      "message": "Looking at the code, I think this should support being called without start and end times (i.e. it supports the old behaviour which is good).\n\nInstead of changing these tests to support the new behaviour, can we create new tests(and factor out the common bits perhaps)?\n\nAlso we don\u0027t reject requests which have just a start, or just an end time. We could add tests for those cases too, and check that the query to Influx looks sane. I see that if we just specify an end time, then it looks like no times are included in the Influx query, which seems sensible.",
+      "range": {
+        "startLine": 195,
+        "startChar": 4,
+        "endLine": 195,
+        "endChar": 7
+      },
+      "revId": "d52a86af45f95c58ec8124e7437e16c11c418455",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
