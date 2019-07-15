@@ -1,0 +1,9 @@
+Code-Review+1: Manik Bindlish <manikbindlish19@gmail.com>
+Code-Review+2: Dobroslaw Zybort <dobroslaw.zybort@ts.fujitsu.com>
+Workflow+1: Dobroslaw Zybort <dobroslaw.zybort@ts.fujitsu.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Mon, 15 Jul 2019 10:17:09 +0000
+Reviewed-on: https://review.opendev.org/668439
+Project: openstack/monasca-api
+Branch: refs/heads/master
