@@ -1,0 +1,10 @@
+Code-Review+2: Adrian Czarnecki <adrian.czarnecki@ts.fujitsu.com>
+Code-Review+1: melissaml <ma.lei@99cloud.net>
+Code-Review+2: Dobroslaw Zybort <dobroslaw.zybort@ts.fujitsu.com>
+Workflow+1: Dobroslaw Zybort <dobroslaw.zybort@ts.fujitsu.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Mon, 15 Jul 2019 13:46:05 +0000
+Reviewed-on: https://review.opendev.org/670115
+Project: openstack/monasca-api
+Branch: refs/heads/master
