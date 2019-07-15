@@ -1,0 +1,6 @@
+---
+upgrade:
+  - |
+    Upgrade Apache Kafka from version 1.0.1 to 2.3.0. Please consult official
+    `upgrading notes <https://kafka.apache.org/documentation/#upgrade_2_3_0>`
+    for complete information on upgrading from previous versions.
