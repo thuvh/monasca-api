@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7faddb67_28a7b5a9",
+        "filename": "tox.ini",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 8556
+      },
+      "writtenOn": "2019-07-16T04:20:33Z",
+      "side": 1,
+      "message": "you  do not need to add this if it is present early. adding py37 is enough.",
+      "range": {
+        "startLine": 2,
+        "startChar": 10,
+        "endLine": 2,
+        "endChar": 15
+      },
+      "revId": "c3ead6bb86f6e5ab0405b6534648636eb8dcf2e0",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
