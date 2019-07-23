@@ -54,6 +54,7 @@ source ${MONASCA_API_DIR}/devstack/lib/profile.sh
 source ${MONASCA_API_DIR}/devstack/lib/client.sh
 source ${MONASCA_API_DIR}/devstack/lib/persister.sh
 source ${MONASCA_API_DIR}/devstack/lib/storm.sh
+source ${MONASCA_API_DIR}/devstack/lib/monasca-log.sh
 # source lib/*
 
 # Set default implementations to python
@@ -828,6 +829,7 @@ function configure_monasca_api_python {
         # default settings
         iniset "$MONASCA_API_CONF" DEFAULT region $REGION_NAME
         iniset "$MONASCA_API_CONF" DEFAULT log_config_append $MONASCA_API_LOGGING_CONF
+        iniset "$MONASCA_aPI_CONF" DEFAULT enable_logs_api is_service_enabled monasca-log
 
         # logging
         iniset "$MONASCA_API_LOGGING_CONF" handler_file args "('$MONASCA_API_LOG_DIR/monasca-api.log', 'a', 104857600, 5)"
@@ -1431,6 +1433,50 @@ if is_service_enabled monasca; then
         # Remember clean.sh first calls unstack.sh
         echo_summary "Cleaning Monasca"
         clean_monasca
+    fi
+fi
+
+# check for service enabled
+if is_service_enabled monasca-log; then
+
+    if [[ "$1" == "stack" && "$2" == "pre-install" ]]; then
+        # Set up system services
+        echo_summary "Configuring Monasca Log Management system services"
+        pre_install_logs_services
+
+    elif [[ "$1" == "stack" && "$2" == "install" ]]; then
+        # Perform installation of service source
+        echo_summary "Installing Monasca Log Management"
+        install_monasca_log
+
+    elif [[ "$1" == "stack" && "$2" == "post-config" ]]; then
+        # Configure after the other layer 1 and 2 services have been configured
+        echo_summary "Configuring Monasca Log Management"
+        configure_monasca_log
+
+    elif [[ "$1" == "stack" && "$2" == "extra" ]]; then
+        # Initialize and start the Monasca service
+        echo_summary "Initializing Monasca Log Management"
+        init_monasca_log
+        init_monasca_grafana_dashboards
+        if is_service_enabled monasca-agent; then
+            init_agent
+        fi
+        start_monasca_log
+    fi
+
+    if [[ "$1" == "unstack" ]]; then
+        # Shut down Monasca services
+        echo_summary "Unstacking Monasca Log Management"
+        stop_monasca_log
+        delete_kafka_topics
+    fi
+
+    if [[ "$1" == "clean" ]]; then
+        # Remove state and transient data
+        # Remember clean.sh first calls unstack.sh
+        echo_summary "Cleaning Monasca Log Management"
+        clean_monasca_log
     fi
 fi
 
