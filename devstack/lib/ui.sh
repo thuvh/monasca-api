@@ -34,9 +34,22 @@ function configure_ui {
     if is_ui_enabled; then
         _link_ui_files
 
+        local localSettings="${MONASCA_BASE}"/monasca-ui/monitoring/config/local_settings.py
+
         sed -e "
             s#getattr(settings, 'GRAFANA_URL', None)#{'RegionOne': \"http:\/\/${SERVICE_HOST}:3000\", }#g;
-        " -i "${MONASCA_BASE}"/monasca-ui/monitoring/config/local_settings.py
+        " -i ${localSettings}
+
+        if is_service_enabled horizon && is_service_enabled kibana; then
+            echo_summary "Configure Horizon with Kibana access"
+            sudo sed -e "
+                s|KIBANA_HOST = getattr(settings, 'KIBANA_HOST', 'http://192.168.10.4:5601/')|KIBANA_HOST = getattr(settings, 'KIBANA_HOST', 'http://${KIBANA_SERVICE_HOST}:${KIBANA_SERVICE_PORT}/')|g;
+            " -i ${localSettings}
+
+            sudo sed -e "
+                s|'ENABLE_LOG_MANAGEMENT_BUTTON', False|'ENABLE_LOG_MANAGEMENT_BUTTON', True|g;
+            " -i ${localSettings}
+        fi
         if python3_enabled; then
             DJANGO_SETTINGS_MODULE=openstack_dashboard.settings python3 "${MONASCA_BASE}"/horizon/manage.py collectstatic --noinput
             DJANGO_SETTINGS_MODULE=openstack_dashboard.settings python3 "${MONASCA_BASE}"/horizon/manage.py compress --force
