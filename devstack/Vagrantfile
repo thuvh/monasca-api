@@ -145,6 +145,7 @@ enable_service monasca-storm-nimbus
 enable_service monasca-storm-supervisor
 enable_service monasca-storm-ui
 enable_service monasca-storm-logviewer
+enable_service monasca-log
 
 # Enable/Disable ORM support for mysql/postgresql
 # HINT: If postgresql service is enabled, ORM is enforced
