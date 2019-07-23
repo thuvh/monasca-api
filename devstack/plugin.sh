@@ -1434,6 +1434,50 @@ if is_service_enabled monasca; then
     fi
 fi
 
+# check for service enabled
+if is_service_enabled monasca-log; then
+
+    if [[ "$1" == "stack" && "$2" == "pre-install" ]]; then
+        # Set up system services
+        echo_summary "Configuring Monasca Log Management system services"
+        pre_install
+
+    elif [[ "$1" == "stack" && "$2" == "install" ]]; then
+        # Perform installation of service source
+        echo_summary "Installing Monasca Log Management"
+        install_monasca_log
+
+    elif [[ "$1" == "stack" && "$2" == "post-config" ]]; then
+        # Configure after the other layer 1 and 2 services have been configured
+        echo_summary "Configuring Monasca Log Management"
+        configure_monasca_log
+
+    elif [[ "$1" == "stack" && "$2" == "extra" ]]; then
+        # Initialize and start the Monasca service
+        echo_summary "Initializing Monasca Log Management"
+        init_monasca_log
+        init_monasca_grafana_dashboards
+        if is_service_enabled monasca-agent; then
+            init_agent
+        fi
+        start_monasca_log
+    fi
+
+    if [[ "$1" == "unstack" ]]; then
+        # Shut down Monasca services
+        echo_summary "Unstacking Monasca Log Management"
+        stop_monasca_log
+        delete_kafka_topics
+    fi
+
+    if [[ "$1" == "clean" ]]; then
+        # Remove state and transient data
+        # Remember clean.sh first calls unstack.sh
+        echo_summary "Cleaning Monasca Log Management"
+        clean_monasca_log
+    fi
+fi
+
 #Restore errexit
 $ERREXIT
 
