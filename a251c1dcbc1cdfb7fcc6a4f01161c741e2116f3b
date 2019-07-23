@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7faddb67_5eada42f",
+        "filename": "monasca_api/v2/reference/logs.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-07-23T09:24:13Z",
+      "side": 1,
+      "message": "add empty line",
+      "revId": "a251c1dcbc1cdfb7fcc6a4f01161c741e2116f3b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7faddb67_1e2acc8f",
+        "filename": "monasca_log_api_code/app/base/request.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-07-23T09:24:13Z",
+      "side": 1,
+      "message": "would it be possible to drop `.api` from this? so at the end we have something like `monasca_api.core.log`",
+      "range": {
+        "startLine": 18,
+        "startChar": 13,
+        "endLine": 18,
+        "endChar": 20
+      },
+      "revId": "a251c1dcbc1cdfb7fcc6a4f01161c741e2116f3b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7faddb67_f11a816d",
+        "filename": "monasca_log_api_code/app/controller/healthchecks.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-07-23T09:24:13Z",
+      "side": 1,
+      "message": "So, where healthcheck went now? Was it dropped?",
+      "revId": "a251c1dcbc1cdfb7fcc6a4f01161c741e2116f3b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7faddb67_513cb5be",
+        "filename": "monasca_log_api_code/db_wip_remove/__init__.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-07-23T09:24:13Z",
+      "side": 1,
+      "message": "What is `db_wip_remove` folder?",
+      "revId": "a251c1dcbc1cdfb7fcc6a4f01161c741e2116f3b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7faddb67_11463d51",
+        "filename": "monasca_log_api_code/monitoring_wip_refactore/__init__.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-07-23T09:24:13Z",
+      "side": 1,
+      "message": "`monitoring_wip_refactore`?",
+      "revId": "a251c1dcbc1cdfb7fcc6a4f01161c741e2116f3b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
