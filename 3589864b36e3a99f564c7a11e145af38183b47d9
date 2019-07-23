@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7faddb67_b0741500",
+        "filename": "monasca_api/policies/versions.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-07-23T09:24:13Z",
+      "side": 1,
+      "message": "are we using v4 version or will we stick to v2? personally I would prefer to use v4 because joining apis is quite big change.",
+      "range": {
+        "startLine": 32,
+        "startChar": 12,
+        "endLine": 32,
+        "endChar": 46
+      },
+      "revId": "3589864b36e3a99f564c7a11e145af38183b47d9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7faddb67_70c53d0a",
+        "filename": "monasca_api/tests/base.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-07-23T09:24:13Z",
+      "side": 1,
+      "message": "Added only to one file?",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 14
+      },
+      "revId": "3589864b36e3a99f564c7a11e145af38183b47d9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7faddb67_9098f91b",
+        "filename": "monasca_api/tests/base.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-07-23T09:24:13Z",
+      "side": 1,
+      "message": "add empty line",
+      "revId": "3589864b36e3a99f564c7a11e145af38183b47d9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7faddb67_b005f516",
+        "filename": "monasca_api/tests/base.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-07-23T09:24:13Z",
+      "side": 1,
+      "message": "you wanted to remove statsd?",
+      "range": {
+        "startLine": 234,
+        "startChar": 0,
+        "endLine": 241,
+        "endChar": 42
+      },
+      "revId": "3589864b36e3a99f564c7a11e145af38183b47d9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7faddb67_a074c6ff",
+        "filename": "monasca_api/v2/reference/logs.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-07-23T09:24:13Z",
+      "side": 1,
+      "message": "add empty line",
+      "revId": "3589864b36e3a99f564c7a11e145af38183b47d9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}

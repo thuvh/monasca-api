@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7faddb67_f0f7ed8b",
+        "filename": "monasca_api/api/core/log/validation.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-07-23T09:24:13Z",
+      "side": 0,
+      "message": "does this validation is not needed any more?",
+      "range": {
+        "startLine": 249,
+        "startChar": 0,
+        "endLine": 267,
+        "endChar": 44
+      },
+      "revId": "e297463ff4162df6252001b858af0051083a61f8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
