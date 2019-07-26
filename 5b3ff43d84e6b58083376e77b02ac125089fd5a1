@@ -22,6 +22,30 @@
       "revId": "5b3ff43d84e6b58083376e77b02ac125089fd5a1",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7faddb67_100d9e8f",
+        "filename": "devstack/files/kafka/log4j.properties",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 30617
+      },
+      "writtenOn": "2019-07-26T09:02:51Z",
+      "side": 1,
+      "message": "Thanks for input. Done now.",
+      "parentUuid": "7faddb67_7d85dbce",
+      "range": {
+        "startLine": 43,
+        "startChar": 29,
+        "endLine": 43,
+        "endChar": 37
+      },
+      "revId": "5b3ff43d84e6b58083376e77b02ac125089fd5a1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
