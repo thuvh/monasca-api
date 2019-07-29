@@ -4,7 +4,7 @@
     description: |
       Base job for running tempest tests with monasca-api devstack plugin.
     timeout: 7800
-    required-projects:
+    required-projects: &base_required_projects
       - openstack/devstack-gate
       - openstack/monasca-agent
       - openstack/monasca-api
@@ -19,7 +19,7 @@
       - openstack/tempest
       - openstack/monasca-tempest-plugin
     vars:
-      devstack_services:
+      devstack_services: &base_devstack_services
         # Disable unneeded services.
         etcd3: false
         g-api: false
@@ -50,14 +50,14 @@
       tempest_test_regex: monasca_tempest_tests.tests.api
       devstack_plugins:
         monasca-api: https://opendev.org/openstack/monasca-api
-      zuul_copy_output:
+      zuul_copy_output: &base_zuul_copy_output
         /var/log/kafka: logs
         /var/log/monasca/notification: logs
         /etc/kafka/server.properties: logs
         /etc/kafka/producer.properties: logs
         /etc/kafka/consumer.properties: logs
         /etc/monasca/monasca-notification.conf: logs
-    irrelevant-files:
+    irrelevant-files: &base_irrelevant_files
       - ^.*\.rst$
       - ^.*\.md$
       - ^doc/.*$
@@ -137,6 +137,27 @@
         TEMPEST_PLUGINS: /opt/stack/monasca-tempest-plugin
 
 - job:
+    name: monasca-tempest-influxdb-ipv6-only
+    parent: devstack-tempest-ipv6
+    description: |
+      monasca integration job with influxdb and IPv6-only deployment
+    irrelevant-files: *base_irrelevant_files
+    required-projects: *base_required_projects
+    timeout: 7800
+    vars:
+      devstack_services: *base_devstack_services
+      tox_envlist: all
+      tempest_test_regex: monasca_tempest_tests.tests.api
+      devstack_plugins:
+        monasca-api: https://opendev.org/openstack/monasca-api
+      zuul_copy_output: *base_zuul_copy_output
+      devstack_localrc:
+        MONASCA_API_IMPLEMENTATION_LANG: python
+        MONASCA_PERSISTER_IMPLEMENTATION_LANG: python
+        MONASCA_METRICS_DB: influxdb
+        TEMPEST_PLUGINS: /opt/stack/monasca-tempest-plugin
+
+- job:
     name: monasca-tempest-java-influxdb
     parent: monasca-tempest-base
     voting: false
@@ -167,6 +188,27 @@
       devstack_localrc:
         MONASCA_API_IMPLEMENTATION_LANG: python
         MONASCA_PERSISTER_IMPLEMENTATION_LANG: java
+        MONASCA_METRICS_DB: cassandra
+        TEMPEST_PLUGINS: /opt/stack/monasca-tempest-plugin
+
+- job:
+    name: monasca-tempest-cassandra-ipv6-only
+    parent: devstack-tempest-ipv6
+    description: |
+      monasca integration job with cassandra and IPv6-only deployment
+    irrelevant-files: *base_irrelevant_files
+    required-projects: *base_required_projects
+    timeout: 7800
+    voting: false
+    vars:
+      devstack_services: *base_devstack_services
+      tox_envlist: all
+      devstack_plugins:
+        monasca-api: https://opendev.org/openstack/monasca-api
+      zuul_copy_output: *base_zuul_copy_output
+      devstack_localrc:
+        MONASCA_API_IMPLEMENTATION_LANG: python
+        MONASCA_PERSISTER_IMPLEMENTATION_LANG: python
         MONASCA_METRICS_DB: cassandra
         TEMPEST_PLUGINS: /opt/stack/monasca-tempest-plugin
       tempest_test_regex: (?!.*\[.*\btimerange\b.*\])(^monasca_tempest_tests.tests.api)
@@ -207,11 +249,15 @@
         - monasca-tempest-python3-influxdb
         - monasca-tempest-python3-cassandra
         - build-monasca-docker-image
+        - monasca-tempest-influxdb-ipv6-only
+        - monasca-tempest-cassandra-ipv6-only
     gate:
       queue: monasca
       jobs:
         - monasca-tempest-log-python3-influxdb
         - monasca-tempest-python3-influxdb
+        - monasca-tempest-influxdb-ipv6-only
+        - monasca-tempest-cassandra-ipv6-only
     post:
       jobs:
         - publish-monasca-api-docker-image
