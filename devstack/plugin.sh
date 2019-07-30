@@ -834,13 +834,13 @@ function configure_monasca_api_python {
 
         # messaging
         iniset "$MONASCA_API_CONF" messaging driver "monasca_api.common.messaging.kafka_publisher:KafkaPublisher"
-        iniset "$MONASCA_API_CONF" kafka uri "$SERVICE_HOST:9092"
+        iniset "$MONASCA_API_CONF" kafka uri "$(ipv6_unquote $SERVICE_HOST):9092"
 
         # databases
         iniset "$MONASCA_API_CONF" database connection $dbAlarmUrl
         iniset "$MONASCA_API_CONF" repositories metrics_driver $dbMetricDriver
-        iniset "$MONASCA_API_CONF" cassandra contact_points $SERVICE_HOST
-        iniset "$MONASCA_API_CONF" influxdb ip_address $SERVICE_HOST
+        iniset "$MONASCA_API_CONF" cassandra contact_points $(ipv6_unquote $SERVICE_HOST)
+        iniset "$MONASCA_API_CONF" influxdb ip_address $(ipv6_unquote $SERVICE_HOST)
         iniset "$MONASCA_API_CONF" influxdb port 8086
 
         # keystone & security
