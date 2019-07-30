@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7faddb67_0c079e1e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 15197
+      },
+      "writtenOn": "2019-07-30T08:45:36Z",
+      "side": 1,
+      "message": "1) The correct syntax is \"Depends-On\", not \"Depend-On\"\n2) I don\u0027t think this line is needed anyway, this patch should work without the requirements change being merged.",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 49
+      },
+      "revId": "d853aa45fa606e625ab9b98ccae31271e537d5f8",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
