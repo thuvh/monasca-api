@@ -218,7 +218,7 @@ class TestRepoMetricsInfluxDB(base.BaseTestCase):
             'show tag values from "custom_metric" with key = "hostname"'
             ' where _tenant_id = \'{tenant}\''
             '  and _region = \'{region}\' '.format(tenant='38dc2a2549f94d2e9a4fa1cc45a4970c',
-                                                   region='useast'))
+                                                   region='useast'), database=None)
 
     @patch("monasca_api.common.repositories.influxdb."
            "metrics_repository.client.InfluxDBClient")
