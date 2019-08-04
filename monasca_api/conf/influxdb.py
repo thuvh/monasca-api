@@ -19,23 +19,17 @@ from oslo_config import cfg
 
 influxdb_opts = [
     cfg.StrOpt('database_name', default='mon',
-               help='''
-Database name where metrics are stored
-'''),
+               help='Database name where metrics are stored'),
+    cfg.BoolOpt('db_per_tenant', default=False,
+               help='Whether to use a separate database per tenant'),
     cfg.HostAddressOpt('ip_address', default='127.0.0.1',
-                       help='''
-IP address to Influxdb server
-'''),
+                       help='IP address to Influxdb server'),
     cfg.PortOpt('port', default=8086,
                 help='Port to Influxdb server'),
     cfg.StrOpt('user', required=True,
-               sample_default='monasca-api', help='''
-Influxdb user
-'''),
+               sample_default='monasca-api', help='Influxdb user'),
     cfg.StrOpt('password', secret=True, sample_default='password',
-               help='''
-Influxdb password
-''')
+               help='Influxdb password')
 ]
 
 influxdb_group = cfg.OptGroup(name='influxdb', title='influxdb')
