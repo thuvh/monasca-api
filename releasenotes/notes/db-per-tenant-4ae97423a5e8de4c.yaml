@@ -1,0 +1,10 @@
+---
+features:
+  - |
+   Support for separate database per tenancy in InfluxDB. Enable by setting
+   db_per_tenant to True in configuration file. This should speed up queries
+   for tenants because at present, all time series are accumulated in the same
+   database in InfluxDB. This makes queries slow for tenants that have less
+   data. This option will also need to be enabled in monasca-persister. A
+   migration tool provided enables users to migrate their existing data to a
+   database per tenant model.
