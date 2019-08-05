@@ -34,6 +34,47 @@
       "revId": "d57c2855a1a3d0076f4388cf7798b478c87774a6",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7faddb67_82e8d9e1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-08-05T15:13:27Z",
+      "side": 1,
+      "message": "Thanks, although I see where you are coming from I am still reluctant to change the formatting of influxdb_opts because the downsides (review time checking the formatting matches the standard in Monasca API, time people might have to spend rebasing patches which *might* get broken, watering down of the git history) out weight the advantages.\n\nThe commit message still needs to follow the guidance here:\n\nhttps://wiki.openstack.org/wiki/GitCommitMessages",
+      "parentUuid": "7faddb67_cc112a5f",
+      "revId": "d57c2855a1a3d0076f4388cf7798b478c87774a6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7faddb67_87b30b98",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-08-05T15:13:27Z",
+      "side": 1,
+      "message": "This isn\u0027t used outside the constructor so no need for it to be an instance var. Also, we should be able to use the global CONF var directly?",
+      "range": {
+        "startLine": 42,
+        "startChar": 12,
+        "endLine": 42,
+        "endChar": 16
+      },
+      "revId": "d57c2855a1a3d0076f4388cf7798b478c87774a6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
