@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7faddb67_0c4e6296",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-08-05T14:06:37Z",
+      "side": 1,
+      "message": "We need a convincing reason here why this should be merged.\n\nI think the change to influxdb conf makes the code more readable, and I don\u0027t mind merging that, but it\u0027s not clear what the change to the influxdb_opts brings. For that reason I would rather not merge that part because it clutters up the git history.",
+      "revId": "d57c2855a1a3d0076f4388cf7798b478c87774a6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
