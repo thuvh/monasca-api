@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7faddb67_290a30d1",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 28022
+      },
+      "writtenOn": "2019-08-05T12:44:26Z",
+      "side": 1,
+      "message": "Sure no problem.",
+      "parentUuid": "7faddb67_89dec46a",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 40
+      },
+      "revId": "fbb40d000a45f5a5133599f64f517f6a369a50fb",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7faddb67_a9c2a083",
         "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2019-08-05T12:41:53Z",
       "side": 1,
       "message": "If this is None because the feature is off, then presumably the query will fail? Set to self.conf.database_name?",
+      "range": {
+        "startLine": 313,
+        "startChar": 49,
+        "endLine": 313,
+        "endChar": 58
+      },
+      "revId": "fbb40d000a45f5a5133599f64f517f6a369a50fb",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7faddb67_6966e8bd",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 28022
+      },
+      "writtenOn": "2019-08-05T12:44:26Z",
+      "side": 1,
+      "message": "This defaults to self.conf.database_name if the provided database\u003dNone here as the client is configured that way.",
+      "parentUuid": "7faddb67_a9c2a083",
       "range": {
         "startLine": 313,
         "startChar": 49,
