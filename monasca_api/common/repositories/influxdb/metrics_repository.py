@@ -39,11 +39,13 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
     def __init__(self):
 
         try:
-            self.conf = cfg.CONF
+            self.conf = cfg.CONF.influxdb
             self.influxdb_client = client.InfluxDBClient(
-                self.conf.influxdb.ip_address, self.conf.influxdb.port,
-                self.conf.influxdb.user, self.conf.influxdb.password,
-                self.conf.influxdb.database_name)
+                self.conf.ip_address,
+                self.conf.port,
+                self.conf.user,
+                self.conf.password,
+                self.conf.database_name)
             self._version = None
             self._init_version()
         except Exception as ex:
