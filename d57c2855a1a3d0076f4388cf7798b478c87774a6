@@ -16,6 +16,24 @@
       "revId": "d57c2855a1a3d0076f4388cf7798b478c87774a6",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7faddb67_cc112a5f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 28022
+      },
+      "writtenOn": "2019-08-05T14:10:32Z",
+      "side": 1,
+      "message": "The change to influxdb_opts was to bring the config in line with the equivalent piece of code in monasca-persister which was formatted slightly differently.",
+      "parentUuid": "7faddb67_0c4e6296",
+      "revId": "d57c2855a1a3d0076f4388cf7798b478c87774a6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
