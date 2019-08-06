@@ -46,6 +46,30 @@
       "revId": "b00fef28cc332df9241c03d252f6bad1504a4dde",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7faddb67_708316cc",
+        "filename": "devstack/files/kafka/server.properties",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-08-06T13:53:58Z",
+      "side": 1,
+      "message": "Got it, thanks.",
+      "parentUuid": "7faddb67_7028f631",
+      "range": {
+        "startLine": 68,
+        "startChar": 15,
+        "endLine": 68,
+        "endChar": 16
+      },
+      "revId": "b00fef28cc332df9241c03d252f6bad1504a4dde",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
