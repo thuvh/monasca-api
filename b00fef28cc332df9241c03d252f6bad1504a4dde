@@ -22,6 +22,30 @@
       "revId": "b00fef28cc332df9241c03d252f6bad1504a4dde",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7faddb67_7028f631",
+        "filename": "devstack/files/kafka/server.properties",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2019-08-06T13:41:54Z",
+      "side": 1,
+      "message": "It doesn\u0027t matter really, because we explicitly set the number of partitions during topics creation. I just kept the default from the official Kafka distribution.",
+      "parentUuid": "7faddb67_909c92c0",
+      "range": {
+        "startLine": 68,
+        "startChar": 15,
+        "endLine": 68,
+        "endChar": 16
+      },
+      "revId": "b00fef28cc332df9241c03d252f6bad1504a4dde",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
