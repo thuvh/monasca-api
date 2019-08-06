@@ -172,6 +172,11 @@ MONASCA_API_USE_MOD_WSGI=${MONASCA_API_USE_MOD_WSGI:-True}
 # Start devstack with services running under Python 3
 USE_PYTHON3=True
 
+MONASCA_API_BRANCH=refs/changes/05/674805/2
+MONASCA_UI_BRANCH=refs/changes/01/674601/4
+MONASCA_AGENT_BRANCH=refs/changes/37/672937/4
+
+
 # Uncomment one of the following lines and modify accordingly to enable the Monasca DevStack Plugin
 enable_plugin monasca-api https://git.openstack.org/openstack/monasca-api
 # enable_plugin monasca-api file:///vagrant_home/Documents/repos/openstack/monasca-api.vertica
