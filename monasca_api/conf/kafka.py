@@ -23,65 +23,46 @@ kafka_opts = [
     cfg.ListOpt('uri',
                 default=['127.0.0.1:9092'],
                 item_type=types.HostAddressPortType(),
-                help='''
-Comma separated list of Kafka broker host:port
-'''),
+                help='Comma separated list of Kafka broker host:port'),
     cfg.StrOpt('metrics_topic', default='metrics',
-               help='''
-The topic that metrics will be published to
-'''),
+               help='The topic that metrics will be published to'),
     cfg.StrOpt('events_topic', default='events',
-               help='''
-The topic that events will be published too
-'''),
+               help='The topic that events will be published too'),
     cfg.StrOpt('alarm_state_transitions_topic',
                default='alarm-state-transitions',
-               help='''
-The topic that alarm state will be published too
-'''),
+               help='The topic that alarm state will be published too'),
     cfg.StrOpt('group', default='api',
-               help='''
-The group name that this service belongs to
-'''),
+               help='The group name that this service belongs to'),
     cfg.IntOpt('wait_time', default=1,
                advanced=True, min=1,
-               help='''
-The wait time when no messages on kafka queue
-'''),
+               help='The wait time when no messages on kafka queue'),
     cfg.IntOpt('ack_time', default=20,
-               help='''
-The ack time back to kafka.
-'''),
+               help='The ack time back to kafka.'),
     cfg.IntOpt('max_retry', default=3,
-               help='''
-The number of retry when there is a connection error
-'''),
+               help='The number of retry when there is a connection error'),
     cfg.BoolOpt('auto_commit', default=False,
-                advanced=True, help='''
-Should messages be automatically committed
-'''),
+                advanced=True,
+                help='Should messages be automatically committed'),
     cfg.BoolOpt('is_async', default=True,
-                help='''
-The type of posting
-'''),
+                help='The type of posting'),
     cfg.BoolOpt('compact', default=True,
-                help='''
-Specify if the message received should be parsed.
-If True, message will not be parsed, otherwise
-messages will be parsed
-'''),
+                help='Specify if the message received should be parsed. If '
+                     'True, message will not be parsed, otherwise messages '
+                     'will be parsed'),
     cfg.ListOpt('partitions', item_type=int,
-                default=[0], help='''
-The partitions this connection should
-listen for messages on. Currently does not
-support multiple partitions.
-Default is to listen on partition 0
-'''),
+                default=[0],
+                help='The partitions this connection should listen for '
+                     'messages on. Currently does not support multiple '
+                     'partitions. Default is to listen on partition 0'),
     cfg.BoolOpt('drop_data', default=False,
-                help='''
-Specify if received data should be simply dropped.
-This parameter is only for testing purposes
-''')
+                help='Specify if received data should be simply dropped. '
+                     'This parameter is only for testing purposes'),
+    cfg.BoolOpt(name='legacy_kafka_client_enabled', default=True,
+                required=True, advanced=True,
+                help='Enable legacy Kafka client. When set old version of '
+                     'kafka-python library is used. Message format version '
+                     'for the brokers should be set to 0.9.0.0 to avoid '
+                     'performance issues until all consumers are upgraded.')
 ]
 
 kafka_group = cfg.OptGroup(name='kafka', title='kafka')
