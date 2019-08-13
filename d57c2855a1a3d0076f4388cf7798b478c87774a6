@@ -75,6 +75,29 @@
       "revId": "d57c2855a1a3d0076f4388cf7798b478c87774a6",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7faddb67_01b78088",
+        "filename": "monasca_api/conf/influxdb.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 26141
+      },
+      "writtenOn": "2019-08-13T12:23:05Z",
+      "side": 1,
+      "message": "This code format is used because we wanted to have new line symbol before and after help.I\u0027m not sure witch format is better.\n\n\"\\nHELP\\n\" \nor \n\u0027\u0027\u0027\nHELP\n\u0027\u0027\u0027",
+      "range": {
+        "startLine": 22,
+        "startChar": 21,
+        "endLine": 22,
+        "endChar": 59
+      },
+      "revId": "d57c2855a1a3d0076f4388cf7798b478c87774a6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
