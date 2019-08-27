@@ -42,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "7faddb67_43c83c74",
+        "filename": "monasca_log_api_code/app/base/request.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 26141
+      },
+      "writtenOn": "2019-08-27T09:42:02Z",
+      "side": 1,
+      "message": "It is possible to drop api from this, but I don\u0027t know if it is good idea. This folder contain more then 10 files. Maybe in future we can refactor whole structure of api.",
+      "parentUuid": "7faddb67_1e2acc8f",
+      "range": {
+        "startLine": 18,
+        "startChar": 13,
+        "endLine": 18,
+        "endChar": 20
+      },
+      "revId": "a251c1dcbc1cdfb7fcc6a4f01161c741e2116f3b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7faddb67_f11a816d",
         "filename": "monasca_log_api_code/app/controller/healthchecks.py",
         "patchSetId": 26
@@ -53,6 +77,24 @@
       "writtenOn": "2019-07-23T09:24:13Z",
       "side": 1,
       "message": "So, where healthcheck went now? Was it dropped?",
+      "revId": "a251c1dcbc1cdfb7fcc6a4f01161c741e2116f3b",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7faddb67_a387b012",
+        "filename": "monasca_log_api_code/app/controller/healthchecks.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 26141
+      },
+      "writtenOn": "2019-08-27T09:42:02Z",
+      "side": 1,
+      "message": "monasca-api/healthchecks.py (original monasca-api healthcheck)",
+      "parentUuid": "7faddb67_f11a816d",
       "revId": "a251c1dcbc1cdfb7fcc6a4f01161c741e2116f3b",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
