@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "7faddb67_5f47c24d",
+        "filename": "monasca_api/tests/base.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 26141
+      },
+      "writtenOn": "2019-08-27T09:42:02Z",
+      "side": 1,
+      "message": "Yes, because this is needed only in this file.\nThis line is needed to properly encode string used in this file(check UNICODE_MESSAGES line 184)",
+      "parentUuid": "7faddb67_70c53d0a",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 14
+      },
+      "revId": "3589864b36e3a99f564c7a11e145af38183b47d9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7faddb67_9098f91b",
         "filename": "monasca_api/tests/base.py",
         "patchSetId": 24
@@ -59,6 +83,24 @@
       "writtenOn": "2019-07-23T09:24:13Z",
       "side": 1,
       "message": "add empty line",
+      "revId": "3589864b36e3a99f564c7a11e145af38183b47d9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7faddb67_e3e1289d",
+        "filename": "monasca_api/tests/base.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 26141
+      },
+      "writtenOn": "2019-08-27T09:42:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7faddb67_9098f91b",
       "revId": "3589864b36e3a99f564c7a11e145af38183b47d9",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -99,6 +141,24 @@
       "writtenOn": "2019-07-23T09:24:13Z",
       "side": 1,
       "message": "add empty line",
+      "revId": "3589864b36e3a99f564c7a11e145af38183b47d9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7faddb67_43d35cd4",
+        "filename": "monasca_api/v2/reference/logs.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 26141
+      },
+      "writtenOn": "2019-08-27T09:42:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7faddb67_a074c6ff",
       "revId": "3589864b36e3a99f564c7a11e145af38183b47d9",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
