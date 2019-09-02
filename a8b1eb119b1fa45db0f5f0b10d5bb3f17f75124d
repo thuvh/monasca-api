@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7faddb67_e9f44d57",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-09-02T14:38:00Z",
+      "side": 1,
+      "message": "When this is enabled, can we get rid of the redundant `where tenant_id\u003d\u003dblah` in the query to InfluxDB?",
+      "revId": "a8b1eb119b1fa45db0f5f0b10d5bb3f17f75124d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
