@@ -69,6 +69,30 @@
       "revId": "7f126286abeea6e8c93aa17382212fcb3f601d6d",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7faddb67_003f3eb5",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-09-02T09:46:48Z",
+      "side": 1,
+      "message": "I think we should remove it on line 46 and explicitly set it here.",
+      "parentUuid": "7faddb67_1d9ecb53",
+      "range": {
+        "startLine": 311,
+        "startChar": 61,
+        "endLine": 311,
+        "endChar": 65
+      },
+      "revId": "7f126286abeea6e8c93aa17382212fcb3f601d6d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
