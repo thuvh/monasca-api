@@ -145,7 +145,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
                                                 region, start_timestamp,
                                                 end_timestamp)
 
-        query = 'show series ' + where_clause
+        query = u'show series ' + where_clause
 
         return query
 
@@ -154,7 +154,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
         where_clause = self._build_where_clause(dimensions, name, tenant_id,
                                                 region)
 
-        query = 'show measurements ' + where_clause
+        query = u'show measurements ' + where_clause
 
         return query
 
@@ -169,7 +169,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
 
         where_clause = self._build_where_clause(None, None, tenant_id, region)
 
-        query = 'show tag values' + from_with_clause + where_clause
+        query = u'show tag values' + from_with_clause + where_clause
 
         return query
 
@@ -180,7 +180,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
 
         where_clause = self._build_where_clause(None, None, tenant_id, region)
 
-        query = 'show tag keys' + from_with_clause + where_clause
+        query = u'show tag keys' + from_with_clause + where_clause
 
         return query
 
@@ -198,7 +198,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
 
         limit_clause = self._build_limit_clause(limit)
 
-        query = 'select value, value_meta '\
+        query = u'select value, value_meta '\
                 + from_clause + offset_clause\
                 + group_by_clause + limit_clause
 
@@ -233,7 +233,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
 
         statistic_string = ",".join(statistics)
 
-        query = 'select ' + statistic_string + ' ' + from_clause
+        query = u'select ' + statistic_string + ' ' + from_clause
 
         query += self._build_group_by_clause(group_by, period)
 
@@ -843,7 +843,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
                         "Input from user contains single quote ['] or "
                         "semi-colon [;] characters[ {} ]".format(alarm_id))
 
-            query = """
+            query = u"""
               select alarm_id, metrics, new_state, old_state,
                      reason, reason_data, sub_alarms, tenant_id
               from alarm_state_history
