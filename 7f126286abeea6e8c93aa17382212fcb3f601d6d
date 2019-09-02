@@ -45,6 +45,30 @@
       "revId": "7f126286abeea6e8c93aa17382212fcb3f601d6d",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7faddb67_1d9ecb53",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 28022
+      },
+      "writtenOn": "2019-09-02T09:20:23Z",
+      "side": 1,
+      "message": "The default behaviour when database\u003dNone here is to query the database specified when the client is created. But if you want, I can set this explicitly.",
+      "parentUuid": "7faddb67_7d9fbf64",
+      "range": {
+        "startLine": 311,
+        "startChar": 61,
+        "endLine": 311,
+        "endChar": 65
+      },
+      "revId": "7f126286abeea6e8c93aa17382212fcb3f601d6d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
