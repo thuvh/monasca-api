@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7faddb67_1d900b4e",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-09-02T09:04:57Z",
+      "side": 1,
+      "message": "If we have db per tenant enabled then it doesn\u0027t make sense to set this. For readability I would prefer that in the query we explicitly specify the database name.",
+      "range": {
+        "startLine": 46,
+        "startChar": 16,
+        "endLine": 46,
+        "endChar": 48
+      },
+      "revId": "7f126286abeea6e8c93aa17382212fcb3f601d6d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7faddb67_7d9fbf64",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-09-02T09:04:57Z",
+      "side": 1,
+      "message": "I think we should explicitly set this for clarity.",
+      "range": {
+        "startLine": 311,
+        "startChar": 61,
+        "endLine": 311,
+        "endChar": 65
+      },
+      "revId": "7f126286abeea6e8c93aa17382212fcb3f601d6d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
