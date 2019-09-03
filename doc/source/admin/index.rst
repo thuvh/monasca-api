@@ -72,3 +72,9 @@ Enabling InfluxDB Time Series Index in existing deployments
 If enabling TSI on an existing InfluxDB install please follow the instructions
 for migrating existing data here:
 https://docs.influxdata.com/influxdb/v1.7/administration/upgrading/#upgrading-influxdb-1-3-1-4-no-tsi-preview-to-1-7-x-tsi-enabled
+
+Migrating to Database Per Tenant
+--------------------------------
+
+In order to migrate to database per tenant, refer to README.rst in:
+https://opendev.org/openstack/monasca-persister/src/branch/master/monasca_persister/tools/db-per-tenant/
