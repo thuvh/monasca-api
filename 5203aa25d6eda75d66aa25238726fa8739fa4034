@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7faddb67_9df2a504",
+        "filename": "doc/source/admin/index.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-09-03T16:23:31Z",
+      "side": 1,
+      "message": "Please could we add some more wording here (the commit message has some good info) to help explain what the problem is and why this helps fix it.",
+      "revId": "5203aa25d6eda75d66aa25238726fa8739fa4034",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
