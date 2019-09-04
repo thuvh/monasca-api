@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7faddb67_be5af14c",
+        "filename": "doc/source/conf.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 6547
+      },
+      "writtenOn": "2019-09-04T04:47:12Z",
+      "side": 1,
+      "message": "this needs to be doc-monasca-api.tex",
+      "revId": "f646fe7b695215caef612f13b3f331bb8ffcb980",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
