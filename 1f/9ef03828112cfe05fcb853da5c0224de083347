@@ -1,0 +1,11 @@
+Code-Review+1: Joseph Davis <joseph.davis@suse.com>
+Review-Priority+1: Joseph Davis <joseph.davis@suse.com>
+Code-Review+2: Doug Szumski <doug@stackhpc.com>
+Code-Review+2: Witold Bedyk <witold.bedyk@suse.com>
+Workflow+1: Witold Bedyk <witold.bedyk@suse.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Wed, 11 Sep 2019 16:36:53 +0000
+Reviewed-on: https://review.opendev.org/679311
+Project: openstack/monasca-api
+Branch: refs/heads/master
