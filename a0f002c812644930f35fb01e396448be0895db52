@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5faad753_42c9bca9",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 14826
+      },
+      "writtenOn": "2019-09-13T15:30:09Z",
+      "side": 0,
+      "message": "try testing with this in place",
+      "range": {
+        "startLine": 46,
+        "startChar": 16,
+        "endLine": 46,
+        "endChar": 48
+      },
+      "revId": "a0f002c812644930f35fb01e396448be0895db52",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
