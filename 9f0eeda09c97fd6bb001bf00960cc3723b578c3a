@@ -22,6 +22,52 @@
       "revId": "9f0eeda09c97fd6bb001bf00960cc3723b578c3a",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5faad753_0223c457",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 14826
+      },
+      "writtenOn": "2019-09-13T15:34:24Z",
+      "side": 1,
+      "message": "Probably only want to do this in DB per tenancy mode?",
+      "range": {
+        "startLine": 318,
+        "startChar": 16,
+        "endLine": 318,
+        "endChar": 27
+      },
+      "revId": "9f0eeda09c97fd6bb001bf00960cc3723b578c3a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5faad753_e2fc68b6",
+        "filename": "monasca_api/common/repositories/influxdb/metrics_repository.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 14826
+      },
+      "writtenOn": "2019-09-13T15:34:24Z",
+      "side": 1,
+      "message": "this should be \u0027ex\u0027. But actually you can just do \u0027raise\u0027",
+      "range": {
+        "startLine": 320,
+        "startChar": 22,
+        "endLine": 320,
+        "endChar": 25
+      },
+      "revId": "9f0eeda09c97fd6bb001bf00960cc3723b578c3a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
