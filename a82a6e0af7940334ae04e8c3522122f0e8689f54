@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3fa7e38b_f2883172",
+        "filename": "monasca_log_api_code/app/base/request.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2019-09-18T13:26:52Z",
+      "side": 1,
+      "message": "Have you forgotten to remove this file?",
+      "revId": "a82a6e0af7940334ae04e8c3522122f0e8689f54",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
