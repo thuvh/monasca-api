@@ -1,0 +1,10 @@
+Code-Review+2: Adrian Czarnecki <adrian.czarnecki@ts.fujitsu.com>
+Code-Review+1: Scott Grasley <scott.grasley@suse.com>
+Code-Review+2: Doug Szumski <doug@stackhpc.com>
+Workflow+1: Joseph Davis <joseph.davis@suse.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Wed, 18 Sep 2019 14:04:56 +0000
+Reviewed-on: https://review.opendev.org/670047
+Project: openstack/monasca-api
+Branch: refs/heads/master
