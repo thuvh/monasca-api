@@ -119,6 +119,24 @@
     },
     {
       "key": {
+        "uuid": "3fa7e38b_5584760c",
+        "filename": "monasca_api/conf/kafka.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 14123
+      },
+      "writtenOn": "2019-09-19T14:47:29Z",
+      "side": 1,
+      "message": "OK",
+      "parentUuid": "3fa7e38b_6651d1d8",
+      "revId": "90b891ae3d490a75143bab939a920b62d3e55a7e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3fa7e38b_8bcf387e",
         "filename": "monasca_api/conf/kafka.py",
         "patchSetId": 4
