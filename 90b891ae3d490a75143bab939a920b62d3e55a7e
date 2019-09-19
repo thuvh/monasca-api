@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3fa7e38b_864acd24",
+        "filename": "monasca_api/conf/kafka.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2019-09-19T11:43:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3fa7e38b_cbdc5048",
+      "range": {
+        "startLine": 30,
+        "startChar": 61,
+        "endLine": 30,
+        "endChar": 64
+      },
+      "revId": "90b891ae3d490a75143bab939a920b62d3e55a7e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3fa7e38b_ebe10c00",
         "filename": "monasca_api/conf/kafka.py",
         "patchSetId": 4
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "3fa7e38b_a647c91d",
+        "filename": "monasca_api/conf/kafka.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2019-09-19T11:43:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3fa7e38b_ebe10c00",
+      "revId": "90b891ae3d490a75143bab939a920b62d3e55a7e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3fa7e38b_abcc7489",
         "filename": "monasca_api/conf/kafka.py",
         "patchSetId": 4
@@ -53,6 +95,24 @@
       "writtenOn": "2019-09-19T10:52:28Z",
       "side": 1,
       "message": "I\u0027d change in: Number of retries in case connection error",
+      "revId": "90b891ae3d490a75143bab939a920b62d3e55a7e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3fa7e38b_6651d1d8",
+        "filename": "monasca_api/conf/kafka.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2019-09-19T11:43:28Z",
+      "side": 1,
+      "message": "All these options are not actually used anywhere. I\u0027ve updated some of the help messages and marked them as NOT USED.",
+      "parentUuid": "3fa7e38b_abcc7489",
       "revId": "90b891ae3d490a75143bab939a920b62d3e55a7e",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
