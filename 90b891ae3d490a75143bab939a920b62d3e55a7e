@@ -1,0 +1,129 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3fa7e38b_cbdc5048",
+        "filename": "monasca_api/conf/kafka.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 14123
+      },
+      "writtenOn": "2019-09-19T10:52:28Z",
+      "side": 1,
+      "message": "should be to and not too.",
+      "range": {
+        "startLine": 30,
+        "startChar": 61,
+        "endLine": 30,
+        "endChar": 64
+      },
+      "revId": "90b891ae3d490a75143bab939a920b62d3e55a7e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3fa7e38b_ebe10c00",
+        "filename": "monasca_api/conf/kafka.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 14123
+      },
+      "writtenOn": "2019-09-19T10:52:28Z",
+      "side": 1,
+      "message": "should be to and not too.",
+      "revId": "90b891ae3d490a75143bab939a920b62d3e55a7e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3fa7e38b_abcc7489",
+        "filename": "monasca_api/conf/kafka.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 14123
+      },
+      "writtenOn": "2019-09-19T10:52:28Z",
+      "side": 1,
+      "message": "I\u0027d change in: Number of retries in case connection error",
+      "revId": "90b891ae3d490a75143bab939a920b62d3e55a7e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3fa7e38b_8bcf387e",
+        "filename": "monasca_api/conf/kafka.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 14123
+      },
+      "writtenOn": "2019-09-19T10:52:28Z",
+      "side": 1,
+      "message": "I\u0027d change in: Whether the message have to be automatically committed",
+      "revId": "90b891ae3d490a75143bab939a920b62d3e55a7e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3fa7e38b_2bc16455",
+        "filename": "monasca_api/conf/kafka.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 14123
+      },
+      "writtenOn": "2019-09-19T10:52:28Z",
+      "side": 1,
+      "message": "I\u0027d change in: whether posting is asynchronous or not",
+      "revId": "90b891ae3d490a75143bab939a920b62d3e55a7e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3fa7e38b_cbaa1084",
+        "filename": "monasca_api/conf/kafka.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 14123
+      },
+      "writtenOn": "2019-09-19T10:52:28Z",
+      "side": 1,
+      "message": "For the sake of coherence I think this message should be one line like: Whether the message is should be parsed otherwise we have to add long explanations to all other. I\u0027m for short descriptions.",
+      "revId": "90b891ae3d490a75143bab939a920b62d3e55a7e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3fa7e38b_0b8a681a",
+        "filename": "monasca_api/conf/kafka.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 14123
+      },
+      "writtenOn": "2019-09-19T10:52:28Z",
+      "side": 1,
+      "message": "Previous comment applies plus: should we describe defaults?",
+      "revId": "90b891ae3d490a75143bab939a920b62d3e55a7e",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
