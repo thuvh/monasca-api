@@ -1,0 +1,10 @@
+Review-Priority+1: Witold Bedyk <witold.bedyk@suse.com>
+Code-Review+2: Stefano Canepa (sc) <sc@linux.it>
+Code-Review+2: Adrian Czarnecki <adrian.czarnecki@ts.fujitsu.com>
+Workflow+1: Adrian Czarnecki <adrian.czarnecki@ts.fujitsu.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Tue, 24 Sep 2019 15:35:17 +0000
+Reviewed-on: https://review.opendev.org/676405
+Project: openstack/monasca-api
+Branch: refs/heads/master
