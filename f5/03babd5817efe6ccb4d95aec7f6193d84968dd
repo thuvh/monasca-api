@@ -1,0 +1,9 @@
+Code-Review+1: Bharat Kunwar <bharat@stackhpc.com>
+Code-Review+2: Adrian Czarnecki <adrian.czarnecki@ts.fujitsu.com>
+Workflow+1: Adrian Czarnecki <adrian.czarnecki@ts.fujitsu.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Tue, 24 Sep 2019 09:39:23 +0000
+Reviewed-on: https://review.opendev.org/683913
+Project: openstack/monasca-api
+Branch: refs/heads/master
