@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3fa7e38b_2a4c8240",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 36
+      },
+      "lineNbr": 3614,
+      "author": {
+        "id": 26141
+      },
+      "writtenOn": "2019-09-26T10:04:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3fa7e38b_e7746338",
+      "range": {
+        "startLine": 3614,
+        "startChar": 10,
+        "endLine": 3614,
+        "endChar": 14
+      },
+      "revId": "063e49de8b1f4e9a9800653f6897a2766af00287",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3fa7e38b_67963341",
         "filename": "docs/monasca-api-spec.md",
         "patchSetId": 36
@@ -36,6 +60,30 @@
       "writtenOn": "2019-09-26T09:52:39Z",
       "side": 1,
       "message": "v2.0",
+      "range": {
+        "startLine": 3652,
+        "startChar": 6,
+        "endLine": 3652,
+        "endChar": 10
+      },
+      "revId": "063e49de8b1f4e9a9800653f6897a2766af00287",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3fa7e38b_8a433613",
+        "filename": "docs/monasca-api-spec.md",
+        "patchSetId": 36
+      },
+      "lineNbr": 3652,
+      "author": {
+        "id": 26141
+      },
+      "writtenOn": "2019-09-26T10:04:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3fa7e38b_67963341",
       "range": {
         "startLine": 3652,
         "startChar": 6,
