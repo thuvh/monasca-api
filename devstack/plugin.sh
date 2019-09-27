@@ -847,7 +847,7 @@ function configure_monasca_api_python {
         iniset "$MONASCA_API_CONF" security default_authorized_roles "monasca-user"
         iniset "$MONASCA_API_CONF" security agent_authorized_roles "monasca-agent"
         iniset "$MONASCA_API_CONF" security read_only_authorized_roles "monasca-read-only-user"
-        iniset "$MONASCA_API_CONF" security delegate_authorized_roles "admin"
+        iniset "$MONASCA_API_CONF" security delegate_authorized_roles "monasca-agent"
 
         # server setup
         iniset "$MONASCA_API_PASTE_INI" server:main host $MONASCA_API_SERVICE_HOST
@@ -1129,7 +1129,7 @@ function install_monasca_agent {
 
         PIP_VIRTUAL_ENV=/opt/monasca-agent
 
-        setup_install $MONASCA_AGENT_DIR kafka_plugin
+        setup_install $MONASCA_AGENT_DIR kafka_plugin,libvirt
         setup_dev_lib "python-monascaclient"
 
         unset PIP_VIRTUAL_ENV
@@ -1174,6 +1174,10 @@ function install_monasca_agent {
             s|%SERVICE_DOMAIN_NAME%|$SERVICE_DOMAIN_NAME|g;
             s|%REGION_NAME%|$REGION_NAME|g;
         " -i /usr/local/bin/monasca-reconfigure
+
+        if is_service_enabled nova && [ "$VIRT_DRIVER" = "libvirt" ]; then
+            sudo /opt/monasca-agent/bin/monasca-setup -d libvirt
+        fi
     fi
 }
 
