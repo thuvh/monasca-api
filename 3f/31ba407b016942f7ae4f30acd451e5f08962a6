@@ -1,0 +1,11 @@
+Code-Review+1: Gloria Gu <gfgu@suse.com>
+Code-Review+1: Joseph Davis <joseph.davis@suse.com>
+Code-Review+2: Stefano Canepa (sc) <sc@linux.it>
+Code-Review+2: Adrian Czarnecki <adrian.czarnecki@ts.fujitsu.com>
+Workflow+1: Witold Bedyk <witold.bedyk@suse.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Mon, 30 Sep 2019 16:24:58 +0000
+Reviewed-on: https://review.opendev.org/682325
+Project: openstack/monasca-api
+Branch: refs/heads/master
