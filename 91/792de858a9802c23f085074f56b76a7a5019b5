@@ -1,0 +1,9 @@
+Code-Review+2: Joseph Davis <joseph.davis@suse.com>
+Code-Review+2: Adrian Czarnecki <adrian.czarnecki@ts.fujitsu.com>
+Workflow+1: Adrian Czarnecki <adrian.czarnecki@ts.fujitsu.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Mon, 07 Oct 2019 09:31:34 +0000
+Reviewed-on: https://review.opendev.org/685356
+Project: openstack/monasca-api
+Branch: refs/heads/master
