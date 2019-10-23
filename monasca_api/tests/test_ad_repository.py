@@ -32,13 +32,15 @@ ALARM_DEF_123_FIELDS = {'actions_enabled': False,
                         'alarm_actions': u'29387234,77778687',
                         'description': None,
                         'expression': u'AVG(hpcs.compute{flavor_id=777, '
-                        'image_id=888, metric_name=cpu, device=1}) > 10',
+                        'image_id=888, metric_name=cpu, device=1},deterministic) > 10',
                         'id': u'123',
                         'match_by': u'flavor_id,image_id',
                         'name': u'90% CPU',
                         'ok_actions': None,
                         'severity': u'LOW',
                         'undetermined_actions': None}
+
+
 TENANT_ID = 'bob'
 
 
@@ -134,7 +136,7 @@ class TestAlarmDefinitionRepoDB(base.BaseTestCase):
                              'name': '90% CPU',
                              'severity': 'LOW',
                              'expression': 'AVG(hpcs.compute{flavor_id=777,'
-                             ' image_id=888, metric_name=cpu, device=1}) > 10',
+                             ' image_id=888, metric_name=cpu, device=1},deterministic) > 10',
                              'match_by': 'flavor_id,image_id',
                              'actions_enabled': False,
                              'created_at': datetime.datetime.now(),
@@ -161,7 +163,7 @@ class TestAlarmDefinitionRepoDB(base.BaseTestCase):
                               'threshold': 10,
                               'period': 60,
                               'periods': 1,
-                              'is_deterministic': False,
+                              'is_deterministic': True,
                               'created_at': datetime.datetime.now(),
                               'updated_at': datetime.datetime.now()},
                              {'id': '222',
@@ -380,7 +382,7 @@ class TestAlarmDefinitionRepoDB(base.BaseTestCase):
                      'alarm_actions': '29387234,77778687',
                      'description': None,
                      'expression': 'AVG(hpcs.compute{flavor_id=777, '
-                     'image_id=888, metric_name=cpu, device=1}) > 10',
+                     'image_id=888, metric_name=cpu, device=1},deterministic) > 10',
                      'id': '123',
                      'match_by': 'flavor_id,image_id',
                      'name': '90% CPU',
@@ -408,7 +410,7 @@ class TestAlarmDefinitionRepoDB(base.BaseTestCase):
                      'alarm_actions': '29387234,77778687',
                      'description': None,
                      'expression': 'AVG(hpcs.compute{flavor_id=777, '
-                     'image_id=888, metric_name=cpu, device=1}) > 10',
+                     'image_id=888, metric_name=cpu, device=1},deterministic) > 10',
                      'id': '123',
                      'match_by': 'flavor_id,image_id',
                      'name': '90% CPU',
@@ -504,7 +506,7 @@ class TestAlarmDefinitionRepoDB(base.BaseTestCase):
                     'alarm_actions': '29387234,77778687',
                     'description': None,
                     'expression': 'AVG(hpcs.compute{flavor_id=777, '
-                    'image_id=888, metric_name=cpu, device=1}) > 10',
+                    'image_id=888, metric_name=cpu, device=1},deterministic) > 10',
                     'id': '123',
                     'match_by': 'flavor_id,image_id',
                     'name': '90% CPU',
@@ -531,7 +533,7 @@ class TestAlarmDefinitionRepoDB(base.BaseTestCase):
                      'operator': 'GT',
                      'period': 60,
                      'periods': 1,
-                     'is_deterministic': False,
+                     'is_deterministic': True,
                      'threshold': 10.0}]
 
         self.assertEqual(len(sub_alarms), len(expected))
@@ -594,7 +596,7 @@ class TestAlarmDefinitionRepoDB(base.BaseTestCase):
                     'alarm_actions': '29387234,77778687',
                     'description': None,
                     'expression': 'AVG(hpcs.compute{flavor_id=777, '
-                    'image_id=888, metric_name=cpu, device=1}) > 10',
+                    'image_id=888, metric_name=cpu, device=1},deterministic) > 10',
                     'id': '123',
                     'match_by': 'flavor_id,image_id',
                     'name': '90% CPU',
@@ -614,7 +616,7 @@ class TestAlarmDefinitionRepoDB(base.BaseTestCase):
                      'alarm_actions': '29387234,77778687',
                      'description': None,
                      'expression': 'AVG(hpcs.compute{flavor_id=777, '
-                     'image_id=888, metric_name=cpu, device=1}) > 10',
+                     'image_id=888, metric_name=cpu, device=1},deterministic) > 10',
                      'id': '123',
                      'match_by': 'flavor_id,image_id',
                      'name': '90% CPU',
@@ -677,7 +679,7 @@ class TestAlarmDefinitionRepoDB(base.BaseTestCase):
                      'alarm_actions': '29387234,77778687',
                      'description': None,
                      'expression': 'AVG(hpcs.compute{flavor_id=777, '
-                     'image_id=888, metric_name=cpu, device=1}) > 10',
+                     'image_id=888, metric_name=cpu, device=1},deterministic) > 10',
                      'id': '123',
                      'match_by': 'flavor_id,image_id',
                      'name': '90% CPU',
@@ -707,7 +709,7 @@ class TestAlarmDefinitionRepoDB(base.BaseTestCase):
                      'alarm_actions': '29387234,77778687',
                      'description': None,
                      'expression': 'AVG(hpcs.compute{flavor_id=777, '
-                     'image_id=888, metric_name=cpu, device=1}) > 10',
+                     'image_id=888, metric_name=cpu, device=1},deterministic) > 10',
                      'id': '123',
                      'match_by': 'flavor_id,image_id',
                      'name': '90% CPU',
@@ -732,7 +734,7 @@ class TestAlarmDefinitionRepoDB(base.BaseTestCase):
                      'alarm_actions': '29387234,77778687',
                      'description': None,
                      'expression': 'AVG(hpcs.compute{flavor_id=777, '
-                     'image_id=888, metric_name=cpu, device=1}) > 10',
+                     'image_id=888, metric_name=cpu, device=1},deterministic) > 10',
                      'id': '123',
                      'match_by': 'flavor_id,image_id',
                      'name': '90% CPU',
@@ -819,6 +821,10 @@ class TestAlarmDefinitionRepoDB(base.BaseTestCase):
 
     def test_should_patch_expression_threshold_change(self):
         self.run_patch_test(expression=ALARM_DEF_123_FIELDS['expression'].replace(' 10', ' 20'))
+
+    def test_should_patch_expression_deterministic_change(self):
+        self.run_patch_test(expression=ALARM_DEF_123_FIELDS['expression'].replace(',deterministic',
+                                                                                  ''))
 
     def test_should_patch_expression_function_change(self):
         self.run_patch_test(expression=ALARM_DEF_123_FIELDS['expression'].replace('AVG', 'MAX'))
