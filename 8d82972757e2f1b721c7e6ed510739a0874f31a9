@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3fa7e38b_b6c88621",
+        "filename": "devstack/Vagrantfile",
+        "patchSetId": 52
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-11-06T15:13:44Z",
+      "side": 1,
+      "message": "should it be here?",
+      "range": {
+        "startLine": 182,
+        "startChar": 74,
+        "endLine": 182,
+        "endChar": 100
+      },
+      "revId": "8d82972757e2f1b721c7e6ed510739a0874f31a9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3fa7e38b_364fb6bf",
+        "filename": "devstack/Vagrantfile",
+        "patchSetId": 52
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-11-06T15:13:44Z",
+      "side": 1,
+      "message": "could be removed now, change is merged",
+      "range": {
+        "startLine": 186,
+        "startChar": 96,
+        "endLine": 186,
+        "endChar": 120
+      },
+      "revId": "8d82972757e2f1b721c7e6ed510739a0874f31a9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3fa7e38b_f6f6fe5d",
+        "filename": "devstack/files/monasca-agent/kafka_consumer.yaml",
+        "patchSetId": 52
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-11-06T15:13:44Z",
+      "side": 1,
+      "message": "wrong indentation, some parsers will not work correctly with this",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 18
+      },
+      "revId": "8d82972757e2f1b721c7e6ed510739a0874f31a9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3fa7e38b_9691cafa",
+        "filename": "devstack/files/monasca-log-agent/agent.conf",
+        "patchSetId": 52
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-11-06T15:13:44Z",
+      "side": 1,
+      "message": "is this comment still valid?",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 50
+      },
+      "revId": "8d82972757e2f1b721c7e6ed510739a0874f31a9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3fa7e38b_766e8e01",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 52
+      },
+      "lineNbr": 1115,
+      "author": {
+        "id": 21922
+      },
+      "writtenOn": "2019-11-06T15:13:44Z",
+      "side": 1,
+      "message": "should it be `monasca-log`?",
+      "range": {
+        "startLine": 1115,
+        "startChar": 26,
+        "endLine": 1115,
+        "endChar": 41
+      },
+      "revId": "8d82972757e2f1b721c7e6ed510739a0874f31a9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
