@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3fa7e38b_c6051ec3",
+        "filename": "monasca_api/api/core/log/helpers.py",
+        "patchSetId": 54
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2019-11-12T11:53:31Z",
+      "side": 1,
+      "message": "This module is a duplicate of monasca_api.v2.common.helpers.py",
+      "revId": "177188085c984003d908e9bfff5e863935c8206a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
