@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3fa7e38b_b3fcdf0c",
+        "filename": "monasca_api/conf/kafka.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2019-11-12T14:09:58Z",
+      "side": 1,
+      "message": "Let\u0027s rename it to `queue_buffering_max_messages`, so that we can move to Confluent Kafka client configuration option using the same name[1] after we remove the legacy code.\n\nPlease also add a release note describing the new configuration option.\n\n[1] https://github.com/edenhill/librdkafka/blob/master/CONFIGURATION.md",
+      "range": {
+        "startLine": 68,
+        "startChar": 16,
+        "endLine": 68,
+        "endChar": 37
+      },
+      "revId": "e2f989f4695b2bdcec1482c3dfcfa864ae289087",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
