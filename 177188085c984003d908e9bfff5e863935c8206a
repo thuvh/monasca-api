@@ -16,6 +16,24 @@
       "revId": "177188085c984003d908e9bfff5e863935c8206a",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3fa7e38b_0115603d",
+        "filename": "monasca_api/api/core/log/helpers.py",
+        "patchSetId": 54
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 26141
+      },
+      "writtenOn": "2019-11-12T12:51:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3fa7e38b_c6051ec3",
+      "revId": "177188085c984003d908e9bfff5e863935c8206a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
