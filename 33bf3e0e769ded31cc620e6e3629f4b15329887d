@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3fa7e38b_d83bab36",
+        "filename": "devstack/lib/monasca-log.sh",
+        "patchSetId": 56
+      },
+      "lineNbr": 743,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2019-11-13T11:26:17Z",
+      "side": 1,
+      "message": "This is a duplicate of configure_ui function from lib/ui.sh\nPlease remove.",
+      "revId": "33bf3e0e769ded31cc620e6e3629f4b15329887d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3fa7e38b_380e7f8c",
+        "filename": "devstack/lib/ui.sh",
+        "patchSetId": 56
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2019-11-13T11:26:17Z",
+      "side": 1,
+      "message": "This is 192.168.10.6 in the source file",
+      "range": {
+        "startLine": 49,
+        "startChar": 73,
+        "endLine": 49,
+        "endChar": 85
+      },
+      "revId": "33bf3e0e769ded31cc620e6e3629f4b15329887d",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
