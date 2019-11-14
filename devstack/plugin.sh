@@ -622,17 +622,17 @@ function install_schema_kafka_topics {
     sudo chmod 0766 /opt/kafka/logs
 
     /opt/kafka/bin/kafka-topics.sh --create --zookeeper localhost:2181 \
-        --replication-factor 1 --partitions 64 --topic metrics
+        --replication-factor 1 --partitions 3 --topic metrics
     /opt/kafka/bin/kafka-topics.sh --create --zookeeper localhost:2181 \
-        --replication-factor 1 --partitions 12 --topic events
+        --replication-factor 1 --partitions 2 --topic events
     /opt/kafka/bin/kafka-topics.sh --create --zookeeper localhost:2181 \
-        --replication-factor 1 --partitions 12 --topic alarm-state-transitions
+        --replication-factor 1 --partitions 2 --topic alarm-state-transitions
     /opt/kafka/bin/kafka-topics.sh --create --zookeeper localhost:2181 \
-        --replication-factor 1 --partitions 12 --topic alarm-notifications
+        --replication-factor 1 --partitions 2 --topic alarm-notifications
     /opt/kafka/bin/kafka-topics.sh --create --zookeeper localhost:2181 \
-        --replication-factor 1 --partitions 3 --topic retry-notifications
+        --replication-factor 1 --partitions 2 --topic retry-notifications
     /opt/kafka/bin/kafka-topics.sh --create --zookeeper localhost:2181 \
-        --replication-factor 1 --partitions 3 --topic 60-seconds-notifications
+        --replication-factor 1 --partitions 2 --topic 60-seconds-notifications
 }
 
 function install_schema_alarm_database {
