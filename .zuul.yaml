@@ -220,6 +220,7 @@
         MONASCA_PERSISTER_IMPLEMENTATION_LANG: python
         MONASCA_METRICS_DB: influxdb
         TEMPEST_PLUGINS: /opt/stack/monasca-tempest-plugin
+        ULIMIT_NOFILE: 65535
 
 - job:
     name: monasca-log-tempest-python2-influxdb
@@ -232,6 +233,7 @@
         MONASCA_PERSISTER_IMPLEMENTATION_LANG: python
         MONASCA_METRICS_DB: influxdb
         TEMPEST_PLUGINS: /opt/stack/monasca-tempest-plugin
+        ULIMIT_NOFILE: 65535
 
 - job:
     name: monasca-log-tempest-oldapi-python3-influxdb
@@ -244,6 +246,7 @@
         MONASCA_PERSISTER_IMPLEMENTATION_LANG: python
         MONASCA_METRICS_DB: influxdb
         TEMPEST_PLUGINS: /opt/stack/monasca-tempest-plugin
+        ULIMIT_NOFILE: 65535
 
 - project:
     templates:
