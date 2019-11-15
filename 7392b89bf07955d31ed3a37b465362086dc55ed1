@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3fa7e38b_f3dd4113",
+        "filename": "devstack/Vagrantfile",
+        "patchSetId": 57
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 28062
+      },
+      "writtenOn": "2019-11-15T14:09:25Z",
+      "side": 1,
+      "message": "I stacked without this line and I have all log pipeline enabled and working, even the Kibana button in Monasca-UI.",
+      "range": {
+        "startLine": 148,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 26
+      },
+      "revId": "7392b89bf07955d31ed3a37b465362086dc55ed1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3fa7e38b_d32b6530",
+        "filename": "devstack/Vagrantfile",
+        "patchSetId": 57
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 28062
+      },
+      "writtenOn": "2019-11-15T14:09:25Z",
+      "side": 1,
+      "message": "Should it be \u0027True\u0027?",
+      "range": {
+        "startLine": 178,
+        "startChar": 12,
+        "endLine": 178,
+        "endChar": 16
+      },
+      "revId": "7392b89bf07955d31ed3a37b465362086dc55ed1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3fa7e38b_0e3316f8",
+        "filename": "devstack/files/monasca-log-agent/agent.conf",
+        "patchSetId": 57
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 28062
+      },
+      "writtenOn": "2019-11-15T14:09:25Z",
+      "side": 1,
+      "message": "Can it be renamed to monasca_api ?",
+      "range": {
+        "startLine": 36,
+        "startChar": 2,
+        "endLine": 36,
+        "endChar": 17
+      },
+      "revId": "7392b89bf07955d31ed3a37b465362086dc55ed1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3fa7e38b_2e2e128c",
+        "filename": "devstack/files/monasca-log-agent/agent.conf",
+        "patchSetId": 57
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 28062
+      },
+      "writtenOn": "2019-11-15T14:09:25Z",
+      "side": 1,
+      "message": "Same as above",
+      "range": {
+        "startLine": 37,
+        "startChar": 4,
+        "endLine": 37,
+        "endChar": 23
+      },
+      "revId": "7392b89bf07955d31ed3a37b465362086dc55ed1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
