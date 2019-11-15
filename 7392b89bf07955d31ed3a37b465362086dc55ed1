@@ -48,6 +48,69 @@
     },
     {
       "key": {
+        "uuid": "3fa7e38b_68115b53",
+        "filename": "devstack/Vagrantfile",
+        "patchSetId": 57
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-11-15T17:09:58Z",
+      "side": 1,
+      "message": "do you mean `https://opendev.org/openstack/monasca-api`?",
+      "range": {
+        "startLine": 182,
+        "startChar": 34,
+        "endLine": 182,
+        "endChar": 74
+      },
+      "revId": "7392b89bf07955d31ed3a37b465362086dc55ed1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3fa7e38b_e826abba",
+        "filename": "devstack/Vagrantfile",
+        "patchSetId": 57
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-11-15T17:09:58Z",
+      "side": 1,
+      "message": "nit: redirects to: https://opendev.org/openstack/monasca-tempest-plugin",
+      "revId": "7392b89bf07955d31ed3a37b465362086dc55ed1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3fa7e38b_283043e9",
+        "filename": "devstack/files/monasca-agent/process.yaml",
+        "patchSetId": 57
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 17669
+      },
+      "writtenOn": "2019-11-15T17:09:58Z",
+      "side": 1,
+      "message": "This looks like a copy and paste error (the duplicates)?",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 9
+      },
+      "revId": "7392b89bf07955d31ed3a37b465362086dc55ed1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3fa7e38b_0e3316f8",
         "filename": "devstack/files/monasca-log-agent/agent.conf",
         "patchSetId": 57
