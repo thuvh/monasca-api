@@ -44,8 +44,10 @@ class KafkaPublisher(publisher.Publisher):
         self.partitions = cfg.CONF.kafka.partitions
         self.drop_data = cfg.CONF.kafka.drop_data
 
+        config = {'queue.buffering.max.messages':
+                      cfg.CONF.queue_buffering_max_messages}
         self._producer = client_factory.get_kafka_producer(
-            self.uri, cfg.CONF.kafka.legacy_kafka_client_enabled)
+            self.uri, cfg.CONF.kafka.legacy_kafka_client_enabled, **config)
 
     def close(self):
         pass
