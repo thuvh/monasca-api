@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3fa7e38b_ae78662a",
+        "filename": "devstack/plugin.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 1234,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2019-11-22T12:15:16Z",
+      "side": 1,
+      "message": "I get here:\n\n 2019-11-22 11:11:29.033 | ## Run `sudo apt-get install -y nodejs` to install Node.js 10.x and npm\n2019-11-22 11:11:29.033 | ## You may also need development tools to build native addons:\n2019-11-22 11:11:29.033 |      sudo apt-get install gcc g++ make\n2019-11-22 11:11:29.033 | ## To install the Yarn package manager, run:\n2019-11-22 11:11:29.034 |      curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -\n2019-11-22 11:11:29.034 |      echo \"deb https://dl.yarnpkg.com/debian/ stable main\" | sudo tee /etc/apt/sources.list.d/yarn.list\n2019-11-22 11:11:29.034 |      sudo apt-get update \u0026\u0026 sudo apt-get install yarn\n2019-11-22 11:11:29.034 | \n2019-11-22 11:11:29.034 | \n2019-11-22 11:11:29.044 | ++ /opt/stack/monasca-api/devstack/plugin.sh:install_nodejs:1236 :   apt_get install nodejs npm\n2019-11-22 11:11:29.098 | ++ functions-common:apt_get:1110            :   sudo DEBIAN_FRONTEND\u003dnoninteractive http_proxy\u003d https_proxy\u003d no_proxy\u003d apt-get --option Dpkg::Options::\u003d--force-confold --assume-yes install nodejs npm\n2019-11-22 11:11:29.622 | Reading package lists...\n2019-11-22 11:11:30.192 | Building dependency tree...\n2019-11-22 11:11:30.195 | Reading state information...\n2019-11-22 11:11:30.324 | Some packages could not be installed. This may mean that you have\n2019-11-22 11:11:30.324 | requested an impossible situation or if you are using the unstable\n2019-11-22 11:11:30.324 | distribution that some required packages have not yet been created\n2019-11-22 11:11:30.324 | or been moved out of Incoming.\n2019-11-22 11:11:30.324 | The following information may help to resolve the situation:\n2019-11-22 11:11:30.324 | \n2019-11-22 11:11:30.325 | The following packages have unmet dependencies:\n2019-11-22 11:11:30.432 |  nodejs : Conflicts: npm\n2019-11-22 11:11:30.459 | E: Unable to correct problems, you have held broken packages.",
+      "revId": "bb3c05572f7c2ff768bb6f931e4b3b2f0c942d75",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
