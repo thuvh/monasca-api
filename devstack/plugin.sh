@@ -127,8 +127,12 @@ function install_monasca {
     echo_summary "Installing Monasca"
 
     install_monasca_common_java
-    stack_install_service monasca-persister
-    stack_install_service monasca-notification
+    if is_service_enabled monasca-persister; then
+        stack_install_service monasca-persister
+    fi
+    if is_service_enabled monasca-notification; then
+        stack_install_service monasca-notification
+    fi
 
     if is_service_enabled monasca-thresh; then
         if ! is_storm_enabled; then
