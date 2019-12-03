@@ -177,6 +177,30 @@
       "revId": "7392b89bf07955d31ed3a37b465362086dc55ed1",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3fa7e38b_a8a0dea5",
+        "filename": "devstack/files/monasca-log-metrics/log-metrics.conf",
+        "patchSetId": 57
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2019-12-03T12:14:26Z",
+      "side": 1,
+      "message": "It has just been copied from the old configuration file. New Logstash will require changes here as you propose in https://review.opendev.org/#/c/675061/97/devstack/files/monasca-log-metrics/log-metrics.conf",
+      "parentUuid": "3fa7e38b_4556f3d0",
+      "range": {
+        "startLine": 19,
+        "startChar": 18,
+        "endLine": 19,
+        "endChar": 34
+      },
+      "revId": "7392b89bf07955d31ed3a37b465362086dc55ed1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
