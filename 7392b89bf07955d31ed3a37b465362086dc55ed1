@@ -154,6 +154,29 @@
       "revId": "7392b89bf07955d31ed3a37b465362086dc55ed1",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3fa7e38b_4556f3d0",
+        "filename": "devstack/files/monasca-log-metrics/log-metrics.conf",
+        "patchSetId": 57
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 30221
+      },
+      "writtenOn": "2019-12-03T11:03:10Z",
+      "side": 1,
+      "message": "isn\u0027t it supposed to be an expression that would be substituted during the install (e.g. \"%ZOOKEEPER_HOST%:%ZOOKEEPER_PORT%\")?",
+      "range": {
+        "startLine": 19,
+        "startChar": 18,
+        "endLine": 19,
+        "endChar": 34
+      },
+      "revId": "7392b89bf07955d31ed3a37b465362086dc55ed1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
