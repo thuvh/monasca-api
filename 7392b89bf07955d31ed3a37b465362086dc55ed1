@@ -272,6 +272,30 @@
     },
     {
       "key": {
+        "uuid": "3fa7e38b_d6403e09",
+        "filename": "devstack/files/monasca-log-agent/agent.conf",
+        "patchSetId": 57
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2019-12-04T16:21:52Z",
+      "side": 1,
+      "message": "I would leave the name as is for compatibility reasons. On the Logstash output plugin side nothing changes in fact.",
+      "parentUuid": "3fa7e38b_020218bb",
+      "range": {
+        "startLine": 36,
+        "startChar": 2,
+        "endLine": 36,
+        "endChar": 17
+      },
+      "revId": "7392b89bf07955d31ed3a37b465362086dc55ed1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3fa7e38b_2e2e128c",
         "filename": "devstack/files/monasca-log-agent/agent.conf",
         "patchSetId": 57
