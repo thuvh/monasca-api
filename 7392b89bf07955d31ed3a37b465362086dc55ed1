@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3fa7e38b_bc1faab6",
+        "filename": "devstack/Vagrantfile",
+        "patchSetId": 57
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 26141
+      },
+      "writtenOn": "2019-12-04T13:06:24Z",
+      "side": 1,
+      "message": "By default all service are enabled, to disable service is needed to add disable_service line.\nI added extra line that show how to disable log part (pleas check line 151)",
+      "parentUuid": "3fa7e38b_f3dd4113",
+      "range": {
+        "startLine": 148,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 26
+      },
+      "revId": "7392b89bf07955d31ed3a37b465362086dc55ed1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3fa7e38b_d32b6530",
         "filename": "devstack/Vagrantfile",
         "patchSetId": 57
@@ -36,6 +60,30 @@
       "writtenOn": "2019-11-15T14:09:25Z",
       "side": 1,
       "message": "Should it be \u0027True\u0027?",
+      "range": {
+        "startLine": 178,
+        "startChar": 12,
+        "endLine": 178,
+        "endChar": 16
+      },
+      "revId": "7392b89bf07955d31ed3a37b465362086dc55ed1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3fa7e38b_3c797afa",
+        "filename": "devstack/Vagrantfile",
+        "patchSetId": 57
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 26141
+      },
+      "writtenOn": "2019-12-04T13:06:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3fa7e38b_d32b6530",
       "range": {
         "startLine": 178,
         "startChar": 12,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "3fa7e38b_fc8202c7",
+        "filename": "devstack/Vagrantfile",
+        "patchSetId": 57
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 26141
+      },
+      "writtenOn": "2019-12-04T13:06:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3fa7e38b_68115b53",
+      "range": {
+        "startLine": 182,
+        "startChar": 34,
+        "endLine": 182,
+        "endChar": 74
+      },
+      "revId": "7392b89bf07955d31ed3a37b465362086dc55ed1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3fa7e38b_e826abba",
         "filename": "devstack/Vagrantfile",
         "patchSetId": 57
@@ -88,6 +160,24 @@
     },
     {
       "key": {
+        "uuid": "3fa7e38b_9c698e27",
+        "filename": "devstack/Vagrantfile",
+        "patchSetId": 57
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 26141
+      },
+      "writtenOn": "2019-12-04T13:06:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3fa7e38b_e826abba",
+      "revId": "7392b89bf07955d31ed3a37b465362086dc55ed1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3fa7e38b_283043e9",
         "filename": "devstack/files/monasca-agent/process.yaml",
         "patchSetId": 57
@@ -99,6 +189,30 @@
       "writtenOn": "2019-11-15T17:09:58Z",
       "side": 1,
       "message": "This looks like a copy and paste error (the duplicates)?",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 9
+      },
+      "revId": "7392b89bf07955d31ed3a37b465362086dc55ed1",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3fa7e38b_bc648a4e",
+        "filename": "devstack/files/monasca-agent/process.yaml",
+        "patchSetId": 57
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 26141
+      },
+      "writtenOn": "2019-12-04T13:06:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3fa7e38b_283043e9",
       "range": {
         "startLine": 93,
         "startChar": 0,
