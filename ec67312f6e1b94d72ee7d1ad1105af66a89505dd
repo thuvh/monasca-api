@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3fa7e38b_57399ed5",
+        "filename": "devstack/files/monasca-log-agent/agent.conf",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2019-12-05T11:06:08Z",
+      "side": 1,
+      "message": "Something went wrong here when rebasing.",
+      "revId": "ec67312f6e1b94d72ee7d1ad1105af66a89505dd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
