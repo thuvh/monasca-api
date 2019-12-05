@@ -52,6 +52,24 @@
       "revId": "ec67312f6e1b94d72ee7d1ad1105af66a89505dd",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3fa7e38b_3a6e4964",
+        "filename": "devstack/files/monasca-log-agent/agent.conf",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 30221
+      },
+      "writtenOn": "2019-12-05T12:34:31Z",
+      "side": 1,
+      "message": "yeah, it\u0027s fine \nthe multiline filter is deprecated, the codec is used now\nhttps://discuss.elastic.co/t/logstash-filter-multiline-not-working/91885/2\ninfo about the codec:\nhttps://www.elastic.co/guide/en/logstash/current/plugins-codecs-multiline.html#_description_174",
+      "parentUuid": "3fa7e38b_5a48e52c",
+      "revId": "ec67312f6e1b94d72ee7d1ad1105af66a89505dd",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
