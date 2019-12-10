@@ -1,0 +1,9 @@
+Code-Review+2: Doug Szumski <doug@stackhpc.com>
+Code-Review+2: Adrian Czarnecki <adrian.czarnecki@ts.fujitsu.com>
+Workflow+1: Adrian Czarnecki <adrian.czarnecki@ts.fujitsu.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Tue, 10 Dec 2019 12:58:10 +0000
+Reviewed-on: https://review.opendev.org/694740
+Project: openstack/monasca-api
+Branch: refs/heads/master
