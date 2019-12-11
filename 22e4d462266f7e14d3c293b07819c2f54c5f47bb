@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3fa7e38b_f896243d",
+        "filename": "devstack/lib/monasca-log.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2019-12-11T18:12:59Z",
+      "side": 1,
+      "message": "This fails in when testing locally. The $LOGSTASH_DATA_DIR is writable only for root and the service attempts to run with \u0027ubuntu\u0027 user. The same happens for -transformer and -metrics.\n\n  Dec 11 14:08:12 witek-bionic-devstack logstash[8459]: [FATAL] 2019-12-11 14:08:12.028 [main] runner - An unexpected error occurred! {:error\u003d\u003e#\u003cArgumentError: Path \"/opt/stack/logstash-data/monasca-log-transformer\" does not exist, and I failed trying to create it: Errno::EACCES - Permission denied - /opt/stack/logstash-data/monasca-log-transformer\u003e",
+      "revId": "22e4d462266f7e14d3c293b07819c2f54c5f47bb",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
