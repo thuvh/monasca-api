@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3fa7e38b_ae0951dc",
+        "filename": "devstack/settings",
+        "patchSetId": 9
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2019-12-11T09:46:54Z",
+      "side": 1,
+      "message": "Can we please move these to monasca-log.sh? These are ES specific and seem to fit better there.",
+      "revId": "8b679e952821e3f977fef692756ec8df0f0a0b13",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
