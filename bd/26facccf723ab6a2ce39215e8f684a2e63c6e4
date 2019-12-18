@@ -1,0 +1,8 @@
+Code-Review+2: Doug Szumski <doug@stackhpc.com>
+Workflow+1: Doug Szumski <doug@stackhpc.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Wed, 18 Dec 2019 12:40:57 +0000
+Reviewed-on: https://review.opendev.org/699380
+Project: openstack/monasca-api
+Branch: refs/heads/master
