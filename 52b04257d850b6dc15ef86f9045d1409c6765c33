@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3fa7e38b_3a2ebef9",
+        "filename": "devstack/lib/monasca-log.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 26141
+      },
+      "writtenOn": "2020-01-13T15:48:23Z",
+      "side": 1,
+      "message": "This is magic number for me, can you add short description ?",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 44
+      },
+      "revId": "52b04257d850b6dc15ef86f9045d1409c6765c33",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
