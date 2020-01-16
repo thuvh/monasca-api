@@ -154,7 +154,7 @@ enable_service monasca-log
 # Enable/Disable ORM support for mysql/postgresql
 # HINT: If postgresql service is enabled, ORM is enforced
 MONASCA_DATABASE_USE_ORM=${MONASCA_DATABASE_USE_ORM:-false}
-
+#GRAFANA_REPO=https://github.com/adriancz/grafana.git
 # The following two variables allow switching between Java and Python for the implementations
 # of the Monasca API and the Monasca Persister. If these variables are not set, then the
 # default is to install the Python implementations of both the Monasca API and the Monasca Persister.
@@ -184,6 +184,7 @@ USE_PYTHON3=True
 
 # Uncomment one of the following lines and modify accordingly to enable the Monasca DevStack Plugin
 enable_plugin monasca-api https://opendev.org/openstack/monasca-api
+#refs/changes/59/695459/4
 # enable_plugin monasca-api file:///vagrant_home/Documents/repos/openstack/monasca-api.vertica
 
 # Uncomment to install tempest tests
