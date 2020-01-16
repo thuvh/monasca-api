@@ -56,6 +56,9 @@ def launch(conf):
     if cfg.CONF.enable_logs_api:
         launch_log_api(app)
 
+    if cfg.CONF.enable_events_api:
+        launch_events_api(app)
+
     LOG.debug('Dispatcher drivers have been added to the routes!')
     return app
 
@@ -113,6 +116,12 @@ def launch_log_api(app):
     logs = simport.load(
         cfg.CONF.dispatcher.logs)()
     app.add_route("/v2.0/logs", logs)
+
+
+def launch_events_api(app):
+    events = simport.load(
+        cfg.CONF.dispatcher.events)()
+    app.add_route("/v2.0/events", events)
 
 
 def get_wsgi_app(config_base_path=None, **kwargs):
