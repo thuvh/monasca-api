@@ -28,6 +28,8 @@ kafka_opts = [
                help='The topic that metrics will be published to'),
     cfg.StrOpt('events_topic', default='events',
                help='The topic that events will be published to'),
+    cfg.StrOpt('alarm_def_events_topic', default='alarm_def_topic',
+               help='The topic that alarm definition events will bew published to'),
     cfg.MultiStrOpt('logs_topics', default=['log'],
                     help='The topic that logs will be published to'),
     cfg.StrOpt('alarm_state_transitions_topic',

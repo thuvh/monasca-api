@@ -36,7 +36,7 @@ class Alarming(object):
         super(Alarming, self).__init__()
 
         self.events_message_queue = simport.load(
-            cfg.CONF.messaging.driver)(cfg.CONF.kafka.events_topic)
+            cfg.CONF.messaging.driver)(cfg.CONF.kafka.alarm_def_events_topic)
 
         self.alarm_state_transitions_message_queue = simport.load(
             cfg.CONF.messaging.driver)(cfg.CONF.kafka.alarm_state_transitions_topic)
