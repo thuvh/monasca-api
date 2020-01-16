@@ -23,6 +23,8 @@ set +o xtrace
 _ERREXIT_MON_LOG=$(set +o | grep errexit)
 set -o errexit
 
+source ${MONASCA_API_DIR}/devstack/lib/ELK.sh
+
 # configuration bits of various services
 LOG_PERSISTER_DIR=$DEST/monasca-log-persister
 LOG_TRANSFORMER_DIR=$DEST/monasca-log-transformer
@@ -69,19 +71,9 @@ run_process_sleep() {
     sleep ${sleepTime}
 }
 
-is_logstash_required() {
-    is_service_enabled monasca-log-persister \
-        || is_service_enabled monasca-log-transformer \
-        || is_service_enabled monasca-log-metrics \
-        || is_service_enabled monasca-log-agent \
-        && return 0
-}
-
 # TOP_LEVEL functions called from devstack coordinator
 ###############################################################################
 function pre_install_logs_services {
-    install_elk
-    install_nodejs
     install_gate_config_holder
 }
 
@@ -91,13 +83,6 @@ function install_monasca_log {
         install_old_log_api
     fi
 }
-
-function install_elk {
-    install_logstash
-    install_elasticsearch
-    install_kibana
-}
-
 function install_gate_config_holder {
     sudo install -d -o $STACK_USER $GATE_CONFIGURATION_DIR
 }
@@ -289,6 +274,7 @@ function configure_monasca_log_api {
     fi
 }
 
+<<<<<<< HEAD
 function install_logstash {
     if is_logstash_required; then
         echo_summary "Installing Logstash ${LOGSTASH_VERSION}"
@@ -457,6 +443,8 @@ function create_default_index_pattern {
     curl -X GET "$KIBANA_SERVICE_HOST:$KIBANA_SERVICE_PORT/api/saved_objects/index-pattern/$index_pattern" -H 'kbn-xsrf: true'
 }
 
+=======
+>>>>>>> 77c5b6e9... [WIP]Add support for events pipeline
 function configure_monasca_log_persister {
     if is_service_enabled monasca-log-persister; then
         echo_summary "Configuring monasca-log-persister"
@@ -644,25 +632,6 @@ function start_monasca_log_agent {
         echo_summary "Starting monasca-log-agent"
         local logstash="$LOGSTASH_DIR/bin/logstash"
         run_process "monasca-log-agent" "$logstash -f $LOG_AGENT_DIR/agent.conf --path.data $LOGSTASH_DATA_DIR/monasca-log-agent" "root" "root"
-    fi
-}
-
-function install_nodejs {
-    if is_service_enabled kibana; then
-        # refresh installation
-        apt_get install nodejs npm
-        (
-            npm config set registry "http://registry.npmjs.org/"; \
-            npm config set proxy "${HTTP_PROXY}"; \
-            npm set strict-ssl false;
-        )
-    fi
-}
-
-function clean_nodejs {
-    if is_service_enabled kibana; then
-        echo_summary "Cleaning Node.js"
-        apt_get purge nodejs npm
     fi
 }
 
