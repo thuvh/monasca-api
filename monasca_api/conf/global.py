@@ -33,7 +33,10 @@ Valid periods for notification methods
 Enable Metrics api endpoints'''),
     cfg.BoolOpt('enable_logs_api', default='false',
                 help='''
-Enable Logs api endpoints''')
+Enable Logs api endpoints'''),
+    cfg.BoolOpt('enable_events_api', default='false',
+                help='''
+Enable Events api endpoints''')
 ]
 
 

@@ -29,11 +29,14 @@ class TestKafkaHealthCheckLogic(base.BaseTestCase):
     mock_kafka_url = 'localhost:1234'
     mocked_topics = b'test1'
     mocked_event_topic = b'test2'
-    mocked_alarm_state_topic = b'test3'
+    mocked_alarm_def_events_topic = b'test3'
+    mocked_alarm_state_topic = b'test4'
     mocked_config = {
         'uri': mock_kafka_url,
         'metrics_topic': mocked_topics.decode('utf-8') if PY3 else mocked_topics,
-        'events_topic': mocked_event_topic.decode('utf-8') if PY3 else mocked_event_topic,
+        'openstack_events_topic': mocked_event_topic.decode('utf-8') if PY3 else mocked_event_topic,
+        'events_topic':
+            mocked_alarm_def_events_topic.decode('utf-8') if PY3 else mocked_alarm_def_events_topic,
         'alarm_state_transitions_topic':
             mocked_alarm_state_topic.decode('utf-8') if PY3 else mocked_alarm_state_topic
     }
@@ -75,6 +78,7 @@ class TestKafkaHealthCheckLogic(base.BaseTestCase):
         kafka = mock.Mock()
         kafka.topics = [self.mocked_topics,
                         self.mocked_event_topic,
+                        self.mocked_alarm_def_events_topic,
                         self.mocked_alarm_state_topic]
         kafka_client.return_value = kafka
 
