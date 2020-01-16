@@ -64,6 +64,9 @@ dispatcher_opts = [
     cfg.StrOpt('logs',
                default='monasca_api.v2.reference.logs:Logs',
                help='Logs controller'),
+    cfg.StrOpt('events',
+               default='monasca_api.v2.reference.events:Events',
+               help='Events controller'),
     cfg.StrOpt('healthchecks',
                default='monasca_api.healthchecks:HealthChecks',
                help='Health checks endpoint controller')
