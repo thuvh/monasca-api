@@ -36,6 +36,7 @@ ELASTICSEARCH_DATA_DIR=$DATA_DIR/elasticsearch
 
 KIBANA_DIR=$DEST/kibana
 KIBANA_CFG_DIR=$KIBANA_DIR/config
+KIBANA_DEV_DIR=$DEST/kibana_dev
 
 LOGSTASH_DIR=$DEST/logstash
 LOGSTASH_DATA_DIR=$DEST/logstash-data
@@ -86,6 +87,7 @@ function pre_install_logs_services {
 }
 
 function install_monasca_log {
+    build_kibana_plugin
     install_log_agent
     if $USE_OLD_LOG_API = true; then
         install_old_log_api
@@ -113,6 +115,7 @@ function configure_monasca_log {
     configure_kafka
     configure_elasticsearch
     configure_kibana
+    install_kibana_plugin
     if $USE_OLD_LOG_API = true; then
         configure_old_monasca_log_api
     fi
@@ -447,14 +450,56 @@ function start_kibana {
     fi
 }
 
-function create_default_index_pattern {
-    local tenant_id
-    tenant_id=`get_or_create_project "mini-mon"`
-    local index_pattern="logs-$tenant_id*"
+function configure_yarn {
+    REPOS_UPDATED=False
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | \
+        sudo tee /etc/apt/sources.list.d/yarn.list
+    apt_get_update
+    apt_get install yarn
+}
 
-    curl -XPOST "$KIBANA_SERVICE_HOST:$KIBANA_SERVICE_PORT/api/saved_objects/index-pattern/$index_pattern" \
-        -H 'kbn-xsrf: true' -H "Content-Type: application/json" -d '{"attributes":{"title":"'$index_pattern'", "timeFieldName": "@timestamp"}}'
-    curl -X GET "$KIBANA_SERVICE_HOST:$KIBANA_SERVICE_PORT/api/saved_objects/index-pattern/$index_pattern" -H 'kbn-xsrf: true'
+function clean_yarn {
+    if is_service_enabled kibana; then
+        echo_summary "Cleaning Yarn"
+        apt_get purge yarn
+    fi
+}
+
+function build_kibana_plugin {
+    if is_service_enabled kibana; then
+        echo "Building Kibana plugin"
+        configure_yarn
+
+        echo_summary "Cloning and initializing Kibana development environment"
+
+        git clone $KIBANA_DEV_REPO $KIBANA_DEV_DIR --branch $KIBANA_DEV_BRANCH --depth 1
+
+        git_clone $MONASCA_KIBANA_PLUGIN_REPO $MONASCA_KIBANA_PLUGIN_DIR $MONASCA_KIBANA_PLUGIN_BRANCH
+        cp -r $MONASCA_KIBANA_PLUGIN_DIR "$KIBANA_DEV_DIR/plugins"
+        local plugin_dir="$KIBANA_DEV_DIR/plugins/monasca-kibana-plugin"
+
+        yarn --cwd $KIBANA_DEV_DIR kbn bootstrap
+        yarn --cwd $plugin_dir build
+
+        local get_version_script="import json; obj = json.load(open('$plugin_dir/package.json')); print obj['version']"
+        local monasca_kibana_plugin_version
+        monasca_kibana_plugin_version=$(python -c "$get_version_script")
+        local pkg="$plugin_dir/build/monasca-kibana-plugin-$monasca_kibana_plugin_version.zip"
+        local easyPkg=$DEST/monasca-kibana-plugin.zip
+        ln $pkg $easyPkg
+        rm -rf $KIBANA_DEV_DIR
+    fi
+}
+
+function install_kibana_plugin {
+    if is_service_enabled kibana; then
+        echo_summary "Install Kibana plugin"
+        # note(trebskit) that needs to happen after kibana received
+        # its configuration otherwise the plugin fails to be installed
+        local pkg=file://$DEST/monasca-kibana-plugin.zip
+        $KIBANA_DIR/bin/kibana-plugin install $pkg
+    fi
 }
 
 function configure_monasca_log_persister {
