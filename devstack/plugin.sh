@@ -221,7 +221,7 @@ function delete_kafka_topics {
         /opt/kafka/bin/kafka-topics.sh --delete --zookeeper localhost:2181 \
                 --topic metrics || true
         /opt/kafka/bin/kafka-topics.sh --delete --zookeeper localhost:2181 \
-                --topic events || true
+                --topic alarms_events || true
         /opt/kafka/bin/kafka-topics.sh --delete --zookeeper localhost:2181 \
                 --topic alarm-state-transitions || true
         /opt/kafka/bin/kafka-topics.sh --delete --zookeeper localhost:2181 \
@@ -630,7 +630,7 @@ function install_schema_kafka_topics {
     /opt/kafka/bin/kafka-topics.sh --create --zookeeper localhost:2181 \
         --replication-factor 1 --partitions 3 --topic metrics
     /opt/kafka/bin/kafka-topics.sh --create --zookeeper localhost:2181 \
-        --replication-factor 1 --partitions 2 --topic events
+        --replication-factor 1 --partitions 2 --topic alarms_events
     /opt/kafka/bin/kafka-topics.sh --create --zookeeper localhost:2181 \
         --replication-factor 1 --partitions 2 --topic alarm-state-transitions
     /opt/kafka/bin/kafka-topics.sh --create --zookeeper localhost:2181 \
