@@ -1,0 +1,7 @@
+---
+upgrade:
+  - |
+    Change name of topic used to send alarm and alarm def events,
+    from events_topic to alarms_events_topic,
+    and chage defoult valut from events to alarms_events
+

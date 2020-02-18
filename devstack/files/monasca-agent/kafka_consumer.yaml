@@ -6,7 +6,7 @@ instances:
       1_metrics:
         metrics: []
     thresh-event:
-      events: []
+      alarms_events: []
       thresh-metric:
         metrics: []
     kafka_connect_str: 127.0.0.1:9092
