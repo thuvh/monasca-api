@@ -57,7 +57,7 @@ metricSpoutConfig:
 eventSpoutConfig:
   kafkaConsumerConfiguration:
   # See http://kafka.apache.org/documentation.html#api for semantics and defaults.
-    topic: "events"
+    topic: "alarms_events_topic"
     numThreads: 1
     groupId: "thresh-event"
     zookeeperConnect: "127.0.0.1:2181"
