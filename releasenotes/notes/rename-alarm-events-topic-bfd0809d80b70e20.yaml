@@ -1,0 +1,8 @@
+---
+upgrade:
+  - |
+    Change name and default value of topic used to send alarm and alarm def events.
+    Change name from events_topic to alarms_events_topic,
+    and default value from events to alarms_events
+
+
