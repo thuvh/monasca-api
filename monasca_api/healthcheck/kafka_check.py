@@ -58,7 +58,7 @@ class KafkaHealthCheck(base.BaseHealthCheck):
     @staticmethod
     def _verify_topics(kafka_client):
         topics = (CONF.kafka.metrics_topic,
-                  CONF.kafka.events_topic,
+                  CONF.kafka.alarms_events_topic,
                   CONF.kafka.alarm_state_transitions_topic)
         if PY3:
             topics = tuple(topic.encode('utf-8') for topic in topics)
