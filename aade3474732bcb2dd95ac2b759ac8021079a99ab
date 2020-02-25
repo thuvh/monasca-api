@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1fa4df85_8a942f8d",
+        "filename": "devstack/Vagrantfile",
+        "patchSetId": 5
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2020-02-25T12:46:24Z",
+      "side": 1,
+      "message": "We don\u0027t want to merge that.",
+      "revId": "aade3474732bcb2dd95ac2b759ac8021079a99ab",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
