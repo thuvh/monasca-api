@@ -46,15 +46,17 @@ ERREXIT=$(set +o | grep errexit)
 set -o errexit
 
 # source lib/*
-source ${MONASCA_API_DIR}/devstack/lib/constants.sh
-source ${MONASCA_API_DIR}/devstack/lib/zookeeper.sh
-source ${MONASCA_API_DIR}/devstack/lib/ui.sh
-source ${MONASCA_API_DIR}/devstack/lib/notification.sh
-source ${MONASCA_API_DIR}/devstack/lib/profile.sh
 source ${MONASCA_API_DIR}/devstack/lib/client.sh
-source ${MONASCA_API_DIR}/devstack/lib/persister.sh
-source ${MONASCA_API_DIR}/devstack/lib/storm.sh
+source ${MONASCA_API_DIR}/devstack/lib/constants.sh
+source ${MONASCA_API_DIR}/devstack/lib/ELK.sh
+source ${MONASCA_API_DIR}/devstack/lib/monasca-events.sh
 source ${MONASCA_API_DIR}/devstack/lib/monasca-log.sh
+source ${MONASCA_API_DIR}/devstack/lib/notification.sh
+source ${MONASCA_API_DIR}/devstack/lib/persister.sh
+source ${MONASCA_API_DIR}/devstack/lib/profile.sh
+source ${MONASCA_API_DIR}/devstack/lib/storm.sh
+source ${MONASCA_API_DIR}/devstack/lib/ui.sh
+source ${MONASCA_API_DIR}/devstack/lib/zookeeper.sh
 # source lib/*
 
 # Set default implementations to python
@@ -1493,6 +1495,15 @@ if is_service_enabled monasca; then
     fi
 fi
 
+if is_service_enabled monasca-log || is_service_enabled monasca-events; then
+    if [[ "$1" == "stack" && "$2" == "pre-install" ]]; then
+        # Set up system services
+        echo_summary "Install ELK"
+        install_elk
+    fi
+fi
+
+
 # check for service enabled
 if is_service_enabled monasca-log; then
 
@@ -1536,6 +1547,51 @@ if is_service_enabled monasca-log; then
         clean_monasca_log
     fi
 fi
+
+# check for service enabled
+if is_service_enabled monasca-log; then
+
+    if [[ "$1" == "stack" && "$2" == "pre-install" ]]; then
+        # Set up system services
+        echo_summary "Configuring Monasca Log Management system services"
+        pre_install_logs_services
+
+    elif [[ "$1" == "stack" && "$2" == "install" ]]; then
+        # Perform installation of service source
+        echo_summary "Installing Monasca Log Management"
+        install_monasca_log
+
+    elif [[ "$1" == "stack" && "$2" == "post-config" ]]; then
+        # Configure after the other layer 1 and 2 services have been configured
+        echo_summary "Configuring Monasca Log Management"
+        configure_monasca_log
+
+    elif [[ "$1" == "stack" && "$2" == "extra" ]]; then
+        # Initialize and start the Monasca service
+        echo_summary "Initializing Monasca Log Management"
+        init_monasca_log
+        init_monasca_grafana_dashboards
+        if is_service_enabled monasca-agent; then
+            init_agent
+        fi
+        start_monasca_log
+    fi
+
+    if [[ "$1" == "unstack" ]]; then
+        # Shut down Monasca services
+        echo_summary "Unstacking Monasca Log Management"
+        stop_monasca_log
+        delete_kafka_topics
+    fi
+
+    if [[ "$1" == "clean" ]]; then
+        # Remove state and transient data
+        # Remember clean.sh first calls unstack.sh
+        echo_summary "Cleaning Monasca Log Management"
+        clean_monasca_log
+    fi
+fi
+
 
 #Restore errexit
 $ERREXIT
