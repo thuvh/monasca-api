@@ -99,6 +99,43 @@ configure_monasca-persister() {
 
     configure_monasca_persister_$MONASCA_PERSISTER_IMPLEMENTATION_LANG
 }
+
+
+function configure_events_persister {
+    if is_events_persister_enabled; then
+        echo_summary "Configuring Events Persister"
+        # Put config files in ``$MONASCA_EVENTS_PERSISTER_CONF_DIR`` for everyone to find
+        sudo install -d -o $STACK_USER $MONASCA_EVENTS_PERSISTER_CONF_DIR
+
+        # ensure fresh installation of configuration files
+        rm -rf $MONASCA_EVENTS_PERSISTER_CONF $MONASCA_EVENTS_PERSISTER_LOGGING_CONF
+
+        oslo-config-generator \
+            --config-file $MONASCA_EVENTS_PERSISTER_DIR/config-generator/persister.conf \
+            --output-file $MONASCA_EVENTS_PERSISTER_CONF
+
+        iniset "$MONASCA_EVENTS_PERSISTER_CONF" DEFAULT log_config_append $MONASCA_EVENTS_PERSISTER_LOGGING_CONF
+        iniset "$MONASCA_EVENTS_PERSISTER_CONF" zookeeper partition_interval_recheck_seconds 15
+        iniset "$MONASCA_EVENTS_PERSISTER_CONF" kafka num_processors 0
+        iniset "$MONASCA_EVENTS_PERSISTER_CONF" kafka_events num_processors 1
+        iniset "$MONASCA_EVENTS_PERSISTER_CONF" kafka_events enabled True
+        iniset "$MONASCA_EVENTS_PERSISTER_CONF" kafka_events uri $SERVICE_HOST:9092
+        iniset "$MONASCA_EVENTS_PERSISTER_CONF" elasticsearch hosts ${ELASTICSEARCH_BIND_HOST}:${ELASTICSEARCH_BIND_PORT}
+
+        sudo cp -f "${MONASCA_EVENTS_DEVSTACK_DIR}"/files/monasca-events-persister/events-persister-logging.conf \
+                    "${MONASCA_EVENTS_PERSISTER_LOGGING_CONF}"
+
+        sudo sed -e "
+            s|%MONASCA_EVENTS_LOG_DIR%|$MONASCA_EVENTS_LOG_DIR|g;
+        " -i ${MONASCA_EVENTS_PERSISTER_LOGGING_CONF}
+    fi
+}
+
+function start_events_persister {
+    echo_summary "Starting Events Persister"
+    run_process "monasca-events-persister" "/usr/local/bin/monasca-persister --config-file $MONASCA_EVENTS_PERSISTER_CONF"
+}
+
 start_monasca-persister() {
     if ! is_monasca_persister_enabled; then
         return
@@ -119,6 +156,7 @@ start_monasca-persister() {
     $SYSTEMCTL enable $systemd_service
     $SYSTEMCTL start $systemd_service
 }
+
 stop_monasca-persister() {
     if ! is_monasca_persister_enabled; then
         return
@@ -126,6 +164,13 @@ stop_monasca-persister() {
     echo_summary "Stopping monasca-persister"
     stop_process "monasca-persister"
 }
+
+
+function stop_events_persister {
+    echo_summary "Stopping Events Persister"
+    stop_process "monasca-events-persister" || true
+}
+
 clean_monasca-persister() {
     if ! is_monasca_persister_enabled; then
         return
@@ -133,6 +178,14 @@ clean_monasca-persister() {
     echo_summary "Cleaning monasca-persister"
     clean_monasca_persister_$MONASCA_PERSISTER_IMPLEMENTATION_LANG
     rm -rf ${MONASCA_PERSISTER_GATE_CONFIG}
+}
+
+function clean_events_persister {
+    echo_summary "Cleaning Events Persister"
+    sudo rm -f $MONASCA_EVENTS_PERSISTER_CONF || true
+    sudo rm -f $MONASCA_EVENTS_PERSISTER_LOGGING_CONF  || true
+
+    sudo rm -rf $MONASCA_EVENTS_PERSISTER_DIR || true
 }
 # common
 
@@ -150,6 +203,11 @@ install_monasca_persister_python() {
     elif [[ "${MONASCA_METRICS_DB,,}" == 'cassandra' ]]; then
         pip_install_gr cassandra-driver
     fi
+    if is_service_enabled monasca-events; then
+         echo_summary "Installing Events Persister dependencies"
+        pip_install "elasticsearch>=2.0.0,<3.0.0"
+    fi
+
 }
 
 configure_monasca_persister_python() {
