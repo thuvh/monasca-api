@@ -17,13 +17,8 @@
 _XTRACE_DASHBOARD=$(set +o | grep xtrace)
 set +o xtrace
 
-function is_ui_enabled {
-    is_service_enabled horizon && return 0
-    return 1
-}
-
 function clean_ui {
-    if is_ui_enabled; then
+    is_service_enabled horizon; then
         rm -rf "${HORIZON_DIR}/monitoring" \
             "${HORIZON_DIR}/openstack_dashboard/local/enabled/_50_admin_add_monitoring_panel.py" \
             "${HORIZON_DIR}/openstack_dashboard/conf/monitoring_policy.json"
@@ -31,7 +26,7 @@ function clean_ui {
 }
 
 function configure_ui {
-    if is_ui_enabled; then
+    if is_service_enabled horizon; then
         _link_ui_files
 
         cp $MONASCA_UI_DIR/monitoring/config/local_settings.py \
@@ -43,7 +38,7 @@ function configure_ui {
             s#getattr(settings, 'GRAFANA_URL', None)#{'RegionOne': \"http:\/\/${SERVICE_HOST}:3000\", }#g;
         " -i ${localSettings}
 
-        if is_service_enabled horizon && is_service_enabled kibana && is_service_enabled monasca-log; then
+        if is_service_enabled monasca-log || if is_service_enabled monasca-envent && is_service_enabled kibana; then
             echo_summary "Configure Horizon with Kibana access"
             sudo sed -e "
                 s|KIBANA_HOST = getattr(settings, 'KIBANA_HOST', 'http://192.168.10.6:5601/')|KIBANA_HOST = getattr(settings, 'KIBANA_HOST', 'http://${KIBANA_SERVICE_HOST}:${KIBANA_SERVICE_PORT}/')|g;
@@ -65,7 +60,7 @@ function configure_ui {
 }
 
 function install_ui {
-    if is_ui_enabled; then
+    if is_service_enabled horizon; then
         git_clone $MONASCA_UI_REPO $MONASCA_UI_DIR $MONASCA_UI_BRANCH
         git_clone $MONASCA_CLIENT_REPO $MONASCA_CLIENT_DIR $MONASCA_CLIENT_BRANCH
         if python3_enabled; then
