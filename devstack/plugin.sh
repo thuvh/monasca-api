@@ -46,15 +46,17 @@ ERREXIT=$(set +o | grep errexit)
 set -o errexit
 
 # source lib/*
-source ${MONASCA_API_DIR}/devstack/lib/constants.sh
-source ${MONASCA_API_DIR}/devstack/lib/zookeeper.sh
-source ${MONASCA_API_DIR}/devstack/lib/ui.sh
-source ${MONASCA_API_DIR}/devstack/lib/notification.sh
-source ${MONASCA_API_DIR}/devstack/lib/profile.sh
 source ${MONASCA_API_DIR}/devstack/lib/client.sh
-source ${MONASCA_API_DIR}/devstack/lib/persister.sh
-source ${MONASCA_API_DIR}/devstack/lib/storm.sh
+source ${MONASCA_API_DIR}/devstack/lib/constants.sh
+source ${MONASCA_API_DIR}/devstack/lib/ELK.sh
+source ${MONASCA_API_DIR}/devstack/lib/monasca-events.sh
 source ${MONASCA_API_DIR}/devstack/lib/monasca-log.sh
+source ${MONASCA_API_DIR}/devstack/lib/notification.sh
+source ${MONASCA_API_DIR}/devstack/lib/persister.sh
+source ${MONASCA_API_DIR}/devstack/lib/profile.sh
+source ${MONASCA_API_DIR}/devstack/lib/storm.sh
+source ${MONASCA_API_DIR}/devstack/lib/ui.sh
+source ${MONASCA_API_DIR}/devstack/lib/zookeeper.sh
 # source lib/*
 
 # Set default implementations to python
@@ -1482,6 +1484,15 @@ if is_service_enabled monasca; then
         clean_monasca
     fi
 fi
+
+if is_service_enabled monasca-log || is_service_enabled monasca-events; then
+    if [[ "$1" == "stack" && "$2" == "pre-install" ]]; then
+        # Set up system services
+        echo_summary "Install ELK"
+        install_elk
+    fi
+fi
+
 
 # check for service enabled
 if is_service_enabled monasca-log; then
