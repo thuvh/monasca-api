@@ -23,6 +23,8 @@ set +o xtrace
 _ERREXIT_MON_LOG=$(set +o | grep errexit)
 set -o errexit
 
+source ${MONASCA_API_DIR}/devstack/lib/ELK.sh
+
 # configuration bits of various services
 LOG_PERSISTER_DIR=$DEST/monasca-log-persister
 LOG_TRANSFORMER_DIR=$DEST/monasca-log-transformer
@@ -71,19 +73,9 @@ run_process_sleep() {
     sleep ${sleepTime}
 }
 
-is_logstash_required() {
-    is_service_enabled monasca-log-persister \
-        || is_service_enabled monasca-log-transformer \
-        || is_service_enabled monasca-log-metrics \
-        || is_service_enabled monasca-log-agent \
-        && return 0
-}
-
 # TOP_LEVEL functions called from devstack coordinator
 ###############################################################################
 function pre_install_logs_services {
-    install_elk
-    install_nodejs
     install_gate_config_holder
 }
 
@@ -95,12 +87,6 @@ function install_monasca_log {
     if $USE_OLD_LOG_API = true; then
         install_old_log_api
     fi
-}
-
-function install_elk {
-    install_logstash
-    install_elasticsearch
-    install_kibana
 }
 
 function install_gate_config_holder {
@@ -713,25 +699,6 @@ function start_monasca_log_agent {
         echo_summary "Starting monasca-log-agent"
         local logstash="$LOGSTASH_DIR/bin/logstash"
         run_process "monasca-log-agent" "$logstash -f $LOG_AGENT_DIR/agent.conf --path.data $LOGSTASH_DATA_DIR/monasca-log-agent" "root" "root"
-    fi
-}
-
-function install_nodejs {
-    if is_service_enabled kibana; then
-        # refresh installation
-        apt_get install nodejs npm
-        (
-            npm config set registry "http://registry.npmjs.org/"; \
-            npm config set proxy "${HTTP_PROXY}"; \
-            npm set strict-ssl false;
-        )
-    fi
-}
-
-function clean_nodejs {
-    if is_service_enabled kibana; then
-        echo_summary "Cleaning Node.js"
-        apt_get purge nodejs npm
     fi
 }
 
