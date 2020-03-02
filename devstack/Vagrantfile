@@ -147,9 +147,13 @@ enable_service monasca-storm-ui
 enable_service monasca-storm-logviewer
 enable_service monasca-log
 
-
 # Uncomment this line to disable log part
 # disable_service monasca-log
+
+# Uncomment on of the following lines to enable or disable events services
+disable_service monasca-events
+# enable_service monasca-events
+
 
 # Enable/Disable ORM support for mysql/postgresql
 # HINT: If postgresql service is enabled, ORM is enforced
