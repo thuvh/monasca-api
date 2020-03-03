@@ -22,6 +22,30 @@
       "revId": "7ce0db2691f631c2bce5fd44176fbef75f5f1a03",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1fa4df85_2b54b4fe",
+        "filename": "monasca_api/conf/kafka.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 10311
+      },
+      "writtenOn": "2020-03-03T16:46:30Z",
+      "side": 1,
+      "message": "Good point.  If we can keep both options and mark one as deprecated that may be a better user experience.",
+      "parentUuid": "1fa4df85_487b3bbd",
+      "range": {
+        "startLine": 29,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 92
+      },
+      "revId": "7ce0db2691f631c2bce5fd44176fbef75f5f1a03",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
