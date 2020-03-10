@@ -82,7 +82,6 @@ is_logstash_required() {
 function pre_install_logs_services {
     install_elk
     install_nodejs
-    install_gate_config_holder
 }
 
 function install_monasca_log {
@@ -96,10 +95,6 @@ function install_elk {
     install_logstash
     install_elasticsearch
     install_kibana
-}
-
-function install_gate_config_holder {
-    sudo install -d -o $STACK_USER $GATE_CONFIGURATION_DIR
 }
 
 function install_monasca_statsd {
@@ -275,7 +270,6 @@ function clean_monasca_log {
     clean_elasticsearch
     clean_logstash
     clean_nodejs
-    clean_gate_config_holder
 }
 ###############################################################################
 
@@ -357,8 +351,6 @@ function configure_elasticsearch {
             s|%ES_LOG_DIR%|$ELASTICSEARCH_LOG_DIR|g;
         " -i $ELASTICSEARCH_CFG_DIR/elasticsearch.yml
 
-        ln -sf $ELASTICSEARCH_CFG_DIR/elasticsearch.yml $GATE_CONFIGURATION_DIR/elasticsearch.yml
-
         echo "[Service]" | sudo tee --append /etc/systemd/system/devstack\@elasticsearch.service > /dev/null
         echo "LimitNOFILE=$LIMIT_NOFILE" | sudo tee --append /etc/systemd/system/devstack\@elasticsearch.service > /dev/null
 
@@ -423,8 +415,6 @@ function configure_kibana {
             s|%KIBANA_SERVER_BASE_PATH%|$KIBANA_SERVER_BASE_PATH|g;
             s|%KEYSTONE_AUTH_URI%|$KEYSTONE_AUTH_URI|g;
         " -i $KIBANA_CFG_DIR/kibana.yml
-
-        ln -sf $KIBANA_CFG_DIR/kibana.yml $GATE_CONFIGURATION_DIR/kibana.yml
     fi
 }
 
@@ -472,8 +462,6 @@ function configure_monasca_log_persister {
             s|%KAFKA_SERVICE_HOST%|$KAFKA_SERVICE_HOST|g;
             s|%KAFKA_SERVICE_PORT%|$KAFKA_SERVICE_PORT|g;
         " -i $LOG_PERSISTER_DIR/persister.conf
-
-        ln -sf $LOG_PERSISTER_DIR/persister.conf $GATE_CONFIGURATION_DIR/log-persister.conf
     fi
 }
 
@@ -506,8 +494,6 @@ function configure_monasca_log_transformer {
             s|%KAFKA_SERVICE_HOST%|$KAFKA_SERVICE_HOST|g;
             s|%KAFKA_SERVICE_PORT%|$KAFKA_SERVICE_PORT|g;
         " -i $LOG_TRANSFORMER_DIR/transformer.conf
-
-        ln -sf $LOG_TRANSFORMER_DIR/transformer.conf $GATE_CONFIGURATION_DIR/log-transformer.conf
     fi
 }
 
@@ -540,8 +526,6 @@ function configure_monasca_log_metrics {
             s|%KAFKA_SERVICE_HOST%|$KAFKA_SERVICE_HOST|g;
             s|%KAFKA_SERVICE_PORT%|$KAFKA_SERVICE_PORT|g;
         " -i $LOG_METRICS_DIR/log-metrics.conf
-
-        ln -sf $LOG_METRICS_DIR/log-metrics.conf $GATE_CONFIGURATION_DIR/log-metrics.conf
     fi
 }
 
@@ -583,8 +567,6 @@ function configure_monasca_log_agent {
             s|%MONASCA_API_URI_V2%|$MONASCA_API_URI_V2|g;
             s|%KEYSTONE_AUTH_URI%|$KEYSTONE_AUTH_URI_V3|g;
         " -i $LOG_AGENT_DIR/agent.conf
-
-        ln -sf $LOG_AGENT_DIR/agent.conf $GATE_CONFIGURATION_DIR/log-agent.conf
 
     fi
 }
@@ -664,10 +646,6 @@ function clean_nodejs {
         echo_summary "Cleaning Node.js"
         apt_get purge nodejs npm
     fi
-}
-
-function clean_gate_config_holder {
-    sudo rm -rf $GATE_CONFIGURATION_DIR || true
 }
 
 function configure_kafka {

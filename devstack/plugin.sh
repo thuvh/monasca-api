@@ -104,13 +104,9 @@ fi
 
 MONASCA_API_URI_V2=${MONASCA_API_BASE_URI}/v2.0
 
-# Files inside this directory will be visible in gates log
-MON_API_GATE_CONFIGURATION_DIR=/etc/monasca-api
-
 function pre_install_monasca {
     echo_summary "Pre-Installing Monasca Components"
     find_nearest_apache_mirror
-    install_gate_config_holder
     configure_system_encoding_format
     install_kafka
     install_zookeeper
@@ -875,12 +871,6 @@ function configure_monasca_api_python {
         iniset "$MONASCA_API_PASTE_INI" server:main host $MONASCA_API_SERVICE_HOST
         iniset "$MONASCA_API_PASTE_INI" server:main port $MONASCA_API_SERVICE_PORT
         iniset "$MONASCA_API_PASTE_INI" server:main workers $API_WORKERS
-
-        # link configuration for the gate
-        ln -sf $MONASCA_API_CONF $MON_API_GATE_CONFIGURATION_DIR
-        ln -sf $MONASCA_API_PASTE_INI $MON_API_GATE_CONFIGURATION_DIR
-        ln -sf $MONASCA_API_LOGGING_CONF $MON_API_GATE_CONFIGURATION_DIR
-
         if [ "${MONASCA_API_USE_MOD_WSGI}" == 'True' ]; then
             configure_monasca_api_python_uwsgi
         fi
@@ -953,7 +943,6 @@ function clean_monasca_api_python {
     sudo rm -rf /etc/monasca/monasca-api.conf
     sudo rm -rf /etc/monasca/api-logging.conf
     sudo rm -rf /etc/monasca/api-config.ini
-    sudo rm -rf $MON_API_GATE_CONFIGURATION_DIR
     sudo rm -rf $MONASCA_API_LOG_DIR
 
     if is_service_enabled postgresql; then
@@ -1418,10 +1407,6 @@ function install_monasca_common {
 function install_monasca_statsd {
     git_clone $MONASCA_STATSD_REPO $MONASCA_STATSD_DIR $MONASCA_STATSD_BRANCH
     setup_dev_lib "monasca-statsd"
-}
-
-function install_gate_config_holder {
-    sudo install -d -o $STACK_USER $MON_API_GATE_CONFIGURATION_DIR
 }
 
 function find_nearest_apache_mirror {
