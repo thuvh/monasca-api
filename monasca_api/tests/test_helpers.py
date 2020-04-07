@@ -47,7 +47,7 @@ class TestHelpersFunction(base.BaseTestCase):
 
     def test_to_json(self):
         test_dict = {'test_body': 'test'}
-        expected_json = '{"test_body":"test"}'
+        expected_json = '{"test_body": "test"}'
         response = helpers.to_json(test_dict)
         self.assertEqual(expected_json, response)
 
