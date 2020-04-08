@@ -70,7 +70,7 @@ Vagrant.configure(2) do |config|
       sudo cp ./maven_proxy_settings.xml /root/.m2/settings.xml
     fi
 
-    git clone https://opendev.org/openstack/devstack.git -b master --depth 1
+    git clone https://github.com/adriancz/devstack  -b master  --depth 1
 
     # If using vagrant-cachier, restore cached downloads of 3rd-party dependencies
     if [ -d "/tmp/vagrant-cache" ]; then
@@ -123,6 +123,8 @@ DEST=/opt/stack
 
 disable_all_services
 enable_service rabbit key tempest horizon
+enable_service keystone
+enable_service key
 
 # Enable more OpenStack services if neccessary:
 # https://opendev.org/openstack/devstack/src/branch/master/stackrc#L56-L81
@@ -149,7 +151,7 @@ enable_service monasca-log
 
 
 # Uncomment this line to disable log part
-# disable_service monasca-log
+#disable_service monasca-log
 
 # Enable/Disable ORM support for mysql/postgresql
 # HINT: If postgresql service is enabled, ORM is enforced
@@ -179,8 +181,7 @@ MONASCA_API_USE_MOD_WSGI=${MONASCA_API_USE_MOD_WSGI:-True}
 # enable_service monasca-log-api
 
 # Start devstack with services running under Python 3
-USE_PYTHON3=True
-
+#USE_PYTHON3=true
 
 # Uncomment one of the following lines and modify accordingly to enable the Monasca DevStack Plugin
 enable_plugin monasca-api https://opendev.org/openstack/monasca-api
