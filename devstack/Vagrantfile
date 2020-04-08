@@ -70,7 +70,7 @@ Vagrant.configure(2) do |config|
       sudo cp ./maven_proxy_settings.xml /root/.m2/settings.xml
     fi
 
-    git clone https://opendev.org/openstack/devstack.git -b master --depth 1
+    git clone https://github.com/adriancz/devstack.git -b master --depth 1
 
     # If using vagrant-cachier, restore cached downloads of 3rd-party dependencies
     if [ -d "/tmp/vagrant-cache" ]; then
@@ -175,8 +175,8 @@ MONASCA_METRICS_DB=${MONASCA_METRICS_DB:-influxdb}
 MONASCA_API_USE_MOD_WSGI=${MONASCA_API_USE_MOD_WSGI:-True}
 
 # Uncomment to stack devstack with old log-api
-# USE_OLD_LOG_API=true
-# enable_service monasca-log-api
+USE_OLD_LOG_API=true
+enable_service monasca-log-api
 
 # Start devstack with services running under Python 3
 USE_PYTHON3=True
