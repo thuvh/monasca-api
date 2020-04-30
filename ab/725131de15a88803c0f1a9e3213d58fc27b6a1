@@ -1,0 +1,10 @@
+Code-Review+2: Witold Bedyk <witold.bedyk@suse.com>
+Workflow+1: Witold Bedyk <witold.bedyk@suse.com>
+Code-Review+2: Martin Chacon Piza <MartinDavid.ChaconPiza1@est.fujitsu.com>
+Workflow+1: Martin Chacon Piza <MartinDavid.ChaconPiza1@est.fujitsu.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Thu, 30 Apr 2020 12:33:06 +0000
+Reviewed-on: https://review.opendev.org/723579
+Project: openstack/monasca-api
+Branch: refs/heads/master
