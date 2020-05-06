@@ -109,11 +109,23 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
             LOG.info('Initialize InfluxDB serie builders <  v0.11.0')
 
     def _get_influxdb_version(self):
-        '''If Version found in the result set, return the InfluxDB Version,
+        '''New versions of InfluxDB implements the method ping() which returns
+        the version. In case that the method isn't present, the query SHOW DIAGNOSTICS
+        will be used.
+        If Version found in the result set, return the InfluxDB Version,
         otherwise raise an exception. InfluxDB has changed the format of their
         result set and SHOW DIAGNOSTICS was introduced at some point so earlier releases
         of InfluxDB might not return a Version.
         '''
+        try:
+            result = self.influxdb_client.ping()
+            LOG.info("Found Influxdb version {0}".format(result))
+            return version.StrictVersion(result)
+        except Exception as ex:
+            LOG.warn(ex)
+            LOG.warn("Getting version from method ping failed,"
+                     " now trying with SHOW DIAGNOSTICS")
+
         try:
             result = self.influxdb_client.query('SHOW DIAGNOSTICS')
         except InfluxDBClientError as ex:
@@ -613,7 +625,9 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
                     measurements_list = []
                     for point in serie['values']:
                         value_meta = rest_utils.from_json(point[2]) if point[2] else {}
-                        timestamp = point[0][:19] + '.' + point[0][20:-1].ljust(3, '0') + 'Z'
+                        datetime = point[0][:19]
+                        fraction = point[0][20:-1].ljust(3, '0')
+                        timestamp = datetime + '.' + fraction[:3] + 'Z'
 
                         measurements_list.append([timestamp,
                                                   point[1],
