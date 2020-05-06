@@ -109,11 +109,23 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
             LOG.info('Initialize InfluxDB serie builders <  v0.11.0')
 
     def _get_influxdb_version(self):
-        '''If Version found in the result set, return the InfluxDB Version,
+        '''New versions of InfluxDB implements the method ping() which returns
+        the version. In case that the method isn't present, the query SHOW DIAGNOSTICS
+        will be used.
+        If Version found in the result set, return the InfluxDB Version,
         otherwise raise an exception. InfluxDB has changed the format of their
         result set and SHOW DIAGNOSTICS was introduced at some point so earlier releases
         of InfluxDB might not return a Version.
         '''
+        try:
+            result = self.influxdb_client.ping()
+            LOG.info("Found Influxdb version {0}".format(result))
+            return version.StrictVersion(result)
+        except Exception as ex:
+            LOG.warn(ex)
+            LOG.warn("Getting version from method ping failed,"
+                     " now trying with SHOW DIAGNOSTICS")
+
         try:
             result = self.influxdb_client.query('SHOW DIAGNOSTICS')
         except InfluxDBClientError as ex:
