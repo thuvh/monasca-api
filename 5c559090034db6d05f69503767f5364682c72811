@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff570b3c_4ddf5239",
+        "filename": "doc/source/contributor/contributing.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 10311
+      },
+      "writtenOn": "2020-05-19T21:02:23Z",
+      "side": 1,
+      "message": "This section is specifically about migrations for the configuration db.  Do we need to also mention the data in the time-series database?  I think the existing wording is clear that alembic applies to the configuration, but some unfamiliar users may find this confusing and ask about tsdb data migration.\n\nWe could add a simple statement \"Measurement data stored in a Time Series database (such as InfluxDB) would be migrated to a new version using standard practice for the TSDB.\"",
+      "revId": "5c559090034db6d05f69503767f5364682c72811",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
