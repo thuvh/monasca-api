@@ -69,11 +69,11 @@ def do_stamp():
                   "fingerprint.")
             sys.exit(1)
         else:
-            fp = Fingerprint(engine)
-            if fp.revision is None:
-                print(_FP_NOREVISION % fp.sha1)
+            fingerprint = Fingerprint(engine)
+            if fingerprint.revision is None:
+                print(_FP_NOREVISION % fingerprint.sha1)
                 sys.exit(1)
-            rev = fp.revision
+            rev = fingerprint.revision
 
     alembic_ext.stamp(rev)
 
