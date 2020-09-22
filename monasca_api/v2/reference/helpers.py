@@ -21,8 +21,7 @@ import falcon
 from oslo_log import log
 from oslo_utils import encodeutils
 from oslo_utils import timeutils
-import six
-import six.moves.urllib.parse as urlparse
+import urllib.parse as urlparse
 
 from monasca_api.common.rest import utils as rest_utils
 from monasca_api import conf
@@ -193,7 +192,7 @@ def get_query_dimensions(req, param_key='dimensions'):
             return dimensions
 
         dimensions_param = params[param_key]
-        if isinstance(dimensions_param, six.string_types):
+        if isinstance(dimensions_param, str):
             dimensions_str_array = dimensions_param.split(',')
         elif isinstance(dimensions_param, list):
             dimensions_str_array = []

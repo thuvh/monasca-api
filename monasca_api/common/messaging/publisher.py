@@ -14,11 +14,8 @@
 
 import abc
 
-import six
 
-
-@six.add_metaclass(abc.ABCMeta)
-class Publisher(object):
+class Publisher(object, metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def send_message(self, message):
         return

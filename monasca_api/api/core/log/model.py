@@ -12,26 +12,20 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-from oslo_utils import timeutils
-import six
-
 from monasca_api.common.rest import utils as rest_utils
+from oslo_utils import timeutils
 
 
 def serialize_envelope(envelope):
     """Returns json representation of an envelope.
 
     :return: json object of envelope
-    :rtype: six.text_type
+    :rtype: str
 
     """
     json = rest_utils.as_json(envelope, ensure_ascii=False)
 
-    if six.PY2:
-        raw = six.text_type(json.replace(r'\\', r'\\\\'), encoding='utf-8',
-                            errors='replace')
-    else:
-        raw = json
+    raw = json
 
     return raw
 

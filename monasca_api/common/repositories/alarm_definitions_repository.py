@@ -14,11 +14,8 @@
 
 import abc
 
-import six
 
-
-@six.add_metaclass(abc.ABCMeta)
-class AlarmDefinitionsRepository(object):
+class AlarmDefinitionsRepository(object, metaclass=abc.ABCMeta):
     def __init__(self):
         super(AlarmDefinitionsRepository, self).__init__()
 

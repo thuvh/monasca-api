@@ -14,11 +14,8 @@
 
 import abc
 
-import six
 
-
-@six.add_metaclass(abc.ABCMeta)
-class AbstractMetricsRepository(object):
+class AbstractMetricsRepository(object, metaclass=abc.ABCMeta):
 
     MULTIPLE_METRICS_MESSAGE = ("Found multiple metrics matching metric name" +
                                 " and dimensions. Please refine your search" +

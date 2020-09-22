@@ -14,8 +14,7 @@
 
 import monasca_api.v2.common.validation as validation
 from oslo_log import log
-import six
-import six.moves.urllib.parse as urlparse
+import urllib.parse as urlparse
 from voluptuous import All
 from voluptuous import Any
 from voluptuous import Length
@@ -30,9 +29,9 @@ LOG = log.getLogger(__name__)
 schemes = ['http', 'https']
 
 notification_schema = {
-    Required('name'): Schema(All(Any(str, six.text_type), Length(max=250))),
-    Required('type'): Schema(Any(str, six.text_type)),
-    Required('address'): Schema(All(Any(str, six.text_type), Length(max=512))),
+    Required('name'): Schema(All(Any(str, str), Length(max=250))),
+    Required('type'): Schema(Any(str, str)),
+    Required('address'): Schema(All(Any(str, str), Length(max=512))),
     Marker('period'): All(Any(int, str))}
 
 request_body_schema = Schema(Any(notification_schema))

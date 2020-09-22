@@ -15,11 +15,8 @@
 
 import abc
 
-import six
 
-
-@six.add_metaclass(abc.ABCMeta)
-class NotificationsRepository(object):
+class NotificationsRepository(object, metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     def create_notification(self, tenant_id, name, notification_type,

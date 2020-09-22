@@ -14,8 +14,6 @@
 
 from unittest import mock
 
-from six import PY3
-
 from monasca_common.kafka_lib import client
 
 from monasca_api import config
@@ -33,10 +31,10 @@ class TestKafkaHealthCheckLogic(base.BaseTestCase):
     mocked_alarm_state_topic = b'test3'
     mocked_config = {
         'uri': mock_kafka_url,
-        'metrics_topic': mocked_topics.decode('utf-8') if PY3 else mocked_topics,
-        'events_topic': mocked_event_topic.decode('utf-8') if PY3 else mocked_event_topic,
+        'metrics_topic': mocked_topics.decode('utf-8'),
+        'events_topic': mocked_event_topic.decode('utf-8'),
         'alarm_state_transitions_topic':
-            mocked_alarm_state_topic.decode('utf-8') if PY3 else mocked_alarm_state_topic
+            mocked_alarm_state_topic.decode('utf-8')
     }
 
     def __init__(self, *args, **kwargs):
