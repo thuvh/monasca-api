@@ -14,8 +14,6 @@
 # under the License.
 
 import falcon
-import six
-
 from monasca_api.api import versions_api
 from monasca_api.v2.common.exceptions import HTTPUnprocessableEntityError
 from monasca_api.v2.reference import helpers
@@ -38,7 +36,7 @@ class Versions(versions_api.VersionsAPI):
         super(Versions, self).__init__()
 
     def on_get(self, req, res, version_id=None):
-        req_uri = req.uri.decode('utf8') if six.PY2 else req.uri
+        req_uri = req.uri
         helpers.validate_authorization(req,
                                        ['api:versions'])
         result = {

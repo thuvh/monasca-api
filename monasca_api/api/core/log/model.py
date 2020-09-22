@@ -13,8 +13,6 @@
 # under the License.
 
 from oslo_utils import timeutils
-import six
-
 from monasca_api.common.rest import utils as rest_utils
 
 
@@ -27,11 +25,7 @@ def serialize_envelope(envelope):
     """
     json = rest_utils.as_json(envelope, ensure_ascii=False)
 
-    if six.PY2:
-        raw = six.text_type(json.replace(r'\\', r'\\\\'), encoding='utf-8',
-                            errors='replace')
-    else:
-        raw = json
+    raw = json
 
     return raw
 

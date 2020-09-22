@@ -27,7 +27,6 @@ import testtools.matchers as matchers
 from unittest.mock import Mock
 
 import oslo_config.fixture
-import six
 
 from monasca_api.common.repositories.model import sub_alarm_definition
 from monasca_api.tests import base
@@ -1717,8 +1716,6 @@ class TestAlarmDefinition(AlarmTestBase):
 
     def test_get_alarm_definitions_with_multibyte_character(self):
         def_name = 'ａｌａｒｍ＿ｄｅｆｉｎｉｔｉｏｎ'
-        if six.PY2:
-            def_name = def_name.decode('utf8')
 
         expected_data = {
             u'alarm_actions': [], u'ok_actions': [],
