@@ -13,7 +13,6 @@
 # under the License.
 
 import re
-
 import falcon
 from oslo_log import log
 import six
