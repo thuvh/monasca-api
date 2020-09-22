@@ -22,7 +22,6 @@ from oslo_config import cfg
 from oslo_log import log
 from oslo_utils import timeutils
 import requests
-from six import PY3
 
 from monasca_api.common.rest import utils as rest_utils
 
@@ -261,8 +260,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
         # name - optional
         if name:
             # replace ' with \' to make query parsable
-            clean_name = name.replace("'", "\\'") if PY3 \
-                else name.replace("'", "\\'").encode('utf-8')
+            clean_name = name.replace("'", "\\'")
             where_clause += ' from  "{}" '.format(clean_name)
 
         # region
@@ -277,23 +275,20 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
             for dimension_name, dimension_value in iter(
                     sorted(dimensions.items())):
                 # replace ' with \' to make query parsable
-                clean_dimension_name = dimension_name.replace("\'", "\\'") if PY3 \
-                    else dimension_name.replace("\'", "\\'").encode('utf-8')
+                clean_dimension_name = dimension_name.replace("\'", "\\'")
                 if dimension_value == "":
                     where_clause += " and \"{}\" =~ /.+/".format(
                         clean_dimension_name)
                 elif '|' in dimension_value:
                     # replace ' with \' to make query parsable
-                    clean_dimension_value = dimension_value.replace("\'", "\\'") if PY3 else \
-                        dimension_value.replace("\'", "\\'").encode('utf-8')
+                    clean_dimension_value = dimension_value.replace("\'", "\\'")
 
                     where_clause += " and \"{}\" =~ /^{}$/".format(
                         clean_dimension_name,
                         clean_dimension_value)
                 else:
                     # replace ' with \' to make query parsable
-                    clean_dimension_value = dimension_value.replace("\'", "\\'") if PY3 else \
-                        dimension_value.replace("\'", "\\'").encode('utf-8')
+                    clean_dimension_value = dimension_value.replace("\'", "\\'")
 
                     where_clause += " and \"{}\" = '{}'".format(
                         clean_dimension_name,
@@ -809,12 +804,11 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
                      reason, reason_data, sub_alarms, tenant_id
               from alarm_state_history
               """
-            tenant_id = tenant_id if PY3 else tenant_id.encode('utf-8')
             where_clause = (
                 " where tenant_id = '{}' ".format(tenant_id))
 
             alarm_id_where_clause_list = (
-                [" alarm_id = '{}' ".format(alarm_id if PY3 else alarm_id.encode('utf8'))
+                [" alarm_id = '{}' ".format(alarm_id)
                  for alarm_id in alarm_id_list])
 
             alarm_id_where_clause = " or ".join(alarm_id_where_clause_list)

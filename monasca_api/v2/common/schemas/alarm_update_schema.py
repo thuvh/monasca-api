@@ -13,7 +13,6 @@
 # under the License.
 
 from oslo_log import log
-import six
 import voluptuous
 
 from monasca_api.v2.common.schemas import exceptions
@@ -25,9 +24,9 @@ alarm_update_schema = {
     voluptuous.Optional('state'): voluptuous.All(
         voluptuous.Any('OK', 'ALARM', 'UNDETERMINED')),
     voluptuous.Optional('lifecycle_state'): voluptuous.All(
-        voluptuous.Any(str, six.text_type), voluptuous.Length(max=50)),
+        voluptuous.Any(str, str), voluptuous.Length(max=50)),
     voluptuous.Optional('link'): voluptuous.All(
-        voluptuous.Any(str, six.text_type), voluptuous.Length(max=512))
+        voluptuous.Any(str, str), voluptuous.Length(max=512))
 }
 
 

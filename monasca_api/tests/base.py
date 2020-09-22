@@ -29,7 +29,6 @@ from oslo_config import fixture as oo_cfg
 from oslo_context import fixture as oo_ctx
 from oslo_serialization import jsonutils
 from oslotest import base as oslotest_base
-import six
 import testtools.matchers as matchers
 
 from monasca_api.api.core import request
@@ -175,7 +174,7 @@ def generate_unique_message(size):
 
 
 def _hex_to_unicode(hex_raw):
-    hex_raw = six.b(hex_raw.replace(' ', ''))
+    hex_raw = hex_raw.replace(' ', '')
     hex_str_raw = codecs.getdecoder('hex')(hex_raw)[0]
     hex_str = hex_str_raw.decode('utf-8', 'replace')
     return hex_str

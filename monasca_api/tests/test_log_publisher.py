@@ -21,7 +21,6 @@ from unittest import mock
 from oslo_config import cfg
 from oslo_log import log
 import simplejson as json
-import six
 import unittest
 
 from monasca_api.api.core.log import log_publisher
@@ -205,8 +204,7 @@ class TestSendMessage(base.BaseTestCase):
 
                 expected_message = json.dumps(envelope, ensure_ascii=False)
 
-                if six.PY3:
-                    expected_message = expected_message.encode('utf-8')
+                expected_message = expected_message.encode('utf-8')
 
                 instance._kafka_publisher.publish.assert_called_with(
                     cfg.CONF.kafka.logs_topics[0],

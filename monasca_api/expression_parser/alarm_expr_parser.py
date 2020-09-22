@@ -16,7 +16,6 @@
 import sys
 
 import pyparsing
-import six
 
 _DETERMINISTIC_ASSIGNMENT_LEN = 3
 _DETERMINISTIC_ASSIGNMENT_SHORT_LEN = 1
@@ -224,7 +223,7 @@ def periodsValidation(instr, loc, tokens):
 
 # Initialize non-ascii unicode code points in the Basic Multilingual Plane.
 unicode_printables = u''.join(
-    six.unichr(c) for c in range(128, 65536) if not six.unichr(c).isspace())
+    chr(c) for c in range(128, 65536) if not chr(c).isspace())
 
 # Does not like comma. No Literals from above allowed.
 valid_identifier_chars = (

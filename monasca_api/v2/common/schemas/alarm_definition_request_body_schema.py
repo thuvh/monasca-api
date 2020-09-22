@@ -13,7 +13,6 @@
 # under the License.
 
 from oslo_log import log
-import six
 from voluptuous import All
 from voluptuous import Any
 from voluptuous import Invalid
@@ -36,7 +35,7 @@ def validate_action_list(notification_ids, action_type):
         raise Invalid('Not a list: {}'.format(type(notification_ids)))
     existing = []
     for notification_id in notification_ids:
-        if not isinstance(notification_id, (str, six.text_type)):
+        if not isinstance(notification_id, (str, str)):
             raise Invalid('list item <{}> -> {} not one of (str, unicode)'
                           .format(notification_id, type(notification_id)))
         if len(notification_id) > MAX_ITEM_LENGTH:
@@ -61,11 +60,11 @@ def validate_undetermined_action_list(v):
 
 
 alarm_definition_schema = {
-    Required('name'): All(Any(str, six.text_type), Length(max=255)),
-    Required('expression'): All(Any(str, six.text_type)),
-    Marker('description'): All(Any(str, six.text_type), Length(max=255)),
+    Required('name'): All(Any(str, str), Length(max=255)),
+    Required('expression'): All(Any(str, str)),
+    Marker('description'): All(Any(str, str), Length(max=255)),
     Marker('severity'): All(Upper, Any('LOW', 'MEDIUM', 'HIGH', 'CRITICAL')),
-    Marker('match_by'): Any([six.text_type], [str]),
+    Marker('match_by'): Any([str], [str]),
     Marker('ok_actions'): validate_ok_action_list,
     Marker('alarm_actions'): validate_alarm_action_list,
     Marker('undetermined_actions'): validate_undetermined_action_list,

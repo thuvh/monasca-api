@@ -14,11 +14,8 @@
 
 import abc
 
-import six
 
-
-@six.add_metaclass(abc.ABCMeta)
-class NotificationMethodTypeRepository(object):
+class NotificationMethodTypeRepository(object, metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     def list_notification_method_types(self):
