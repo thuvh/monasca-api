@@ -14,11 +14,8 @@
 
 import abc
 
-import six
 
-
-@six.add_metaclass(abc.ABCMeta)
-class AlarmsRepository(object):
+class AlarmsRepository(object, metaclass=abc.ABCMeta):
 
     def __init__(self):
 
