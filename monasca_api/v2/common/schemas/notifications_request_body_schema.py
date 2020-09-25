@@ -15,7 +15,7 @@
 import monasca_api.v2.common.validation as validation
 from oslo_log import log
 import six
-import six.moves.urllib.parse as urlparse
+import urllib.parse as urlparse
 from voluptuous import All
 from voluptuous import Any
 from voluptuous import Length

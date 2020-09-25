@@ -22,7 +22,7 @@ from oslo_log import log
 from oslo_utils import encodeutils
 from oslo_utils import timeutils
 import six
-import six.moves.urllib.parse as urlparse
+import urllib.parse as urlparse
 
 from monasca_api.common.rest import utils as rest_utils
 from monasca_api import conf
