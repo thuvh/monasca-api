@@ -147,7 +147,6 @@ enable_service monasca-storm-ui
 enable_service monasca-storm-logviewer
 enable_service monasca-log
 
-
 # Uncomment this line to disable log part
 # disable_service monasca-log
 
