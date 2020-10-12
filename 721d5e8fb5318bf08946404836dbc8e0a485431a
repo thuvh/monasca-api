@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f560f44_69ca1146",
+        "filename": "devstack/lib/zookeeper.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2020-10-12T09:58:49Z",
+      "side": 0,
+      "message": "Is `configure_zookeeper` being called anywhere? I think we should keep it or drop completely.",
+      "revId": "721d5e8fb5318bf08946404836dbc8e0a485431a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
