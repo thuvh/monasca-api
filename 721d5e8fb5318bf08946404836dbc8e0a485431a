@@ -16,6 +16,24 @@
       "revId": "721d5e8fb5318bf08946404836dbc8e0a485431a",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f560f44_09627516",
+        "filename": "devstack/lib/zookeeper.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 26141
+      },
+      "writtenOn": "2020-10-12T10:13:47Z",
+      "side": 0,
+      "message": "This change remove configure_zookeeper function.",
+      "parentUuid": "9f560f44_69ca1146",
+      "revId": "721d5e8fb5318bf08946404836dbc8e0a485431a",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
     }
   ]
 }
