@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9f560f44_91498733",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 28062
+      },
+      "writtenOn": "2020-10-12T13:46:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f560f44_69bfb1fb",
+      "revId": "a3cde75bdfa7e369ad3914eaa91cddfc891f51dc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f560f44_a96d4968",
         "filename": "devstack/files/zookeeper/log4j.properties",
         "patchSetId": 5
@@ -30,6 +48,24 @@
       "writtenOn": "2020-10-12T09:58:49Z",
       "side": 1,
       "message": "Please add license info at the top of the file.",
+      "revId": "a3cde75bdfa7e369ad3914eaa91cddfc891f51dc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f560f44_b14acb20",
+        "filename": "devstack/files/zookeeper/log4j.properties",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28062
+      },
+      "writtenOn": "2020-10-12T13:46:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f560f44_a96d4968",
       "revId": "a3cde75bdfa7e369ad3914eaa91cddfc891f51dc",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "9f560f44_31587bf7",
+        "filename": "devstack/files/zookeeper/log4j.properties",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 28062
+      },
+      "writtenOn": "2020-10-12T13:46:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f560f44_497f4d16",
+      "revId": "a3cde75bdfa7e369ad3914eaa91cddfc891f51dc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f560f44_69c97177",
         "filename": "devstack/files/zookeeper/log4j.properties",
         "patchSetId": 5
@@ -64,6 +118,24 @@
       "writtenOn": "2020-10-12T09:58:49Z",
       "side": 1,
       "message": "You\u0027re changing the log level to DEBUG. Please add a note about it in the commit message.",
+      "revId": "a3cde75bdfa7e369ad3914eaa91cddfc891f51dc",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f560f44_9172277b",
+        "filename": "devstack/files/zookeeper/log4j.properties",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 28062
+      },
+      "writtenOn": "2020-10-12T13:46:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f560f44_69c97177",
       "revId": "a3cde75bdfa7e369ad3914eaa91cddfc891f51dc",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
       "unresolved": false
