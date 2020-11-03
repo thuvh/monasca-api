@@ -15,8 +15,6 @@
 import abc
 import collections
 
-import six
-
 
 class CheckResult(collections.namedtuple('CheckResult', ['healthy', 'message'])):
     """Result for the health check
@@ -26,8 +24,7 @@ class CheckResult(collections.namedtuple('CheckResult', ['healthy', 'message']))
     """
 
 
-@six.add_metaclass(abc.ABCMeta)
-class BaseHealthCheck(object):
+class BaseHealthCheck(object, metaclass=abc.ABCMeta):
     """Abstract class implemented by the monasca-api healthcheck classes"""
 
     @abc.abstractmethod
