@@ -25,8 +25,8 @@ import sys
 
 from oslo_utils.encodeutils import safe_decode
 from oslo_utils.encodeutils import safe_encode
-from six.moves import urllib
-import six.moves.urllib.parse as urlparse
+import urllib
+import urllib.parse as urlparse
 
 ADMIN = 'root'
 ADMIN_PASS = 'root'
