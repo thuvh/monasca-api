@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f621f24_961fe659",
+        "filename": "devstack/settings",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2020-11-10T13:08:19Z",
+      "side": 1,
+      "message": "no stable branch available",
+      "revId": "76b67a23b77f65217607e2f97bf3043223b0b5d9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1f621f24_7624caaf",
+        "filename": "devstack/settings",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 16222
+      },
+      "writtenOn": "2020-11-10T13:08:19Z",
+      "side": 1,
+      "message": "no stable branch available",
+      "revId": "76b67a23b77f65217607e2f97bf3043223b0b5d9",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543",
+      "unresolved": false
+    }
+  ]
+}
