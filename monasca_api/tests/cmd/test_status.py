@@ -26,8 +26,13 @@ class TestUpgradeChecks(unittest.TestCase):
         super(TestUpgradeChecks, self).setUp()
         self.cmd = status.Checks()
 
-    def test__check_placeholder(self):
-        check_result = self.cmd._check_placeholder()
-        self.assertEqual(
-            Code.SUCCESS, check_result.code,
-            "Placeholder should always succeed.")
+    def test_checks(self):
+        check_result = self.cmd._sample_check()
+        for name, func in self.cmd._upgrade_checks:
+            if isinstance(func, tuple):
+                func_name, kwargs = func
+                result = func_name(self, **kwargs)
+            else:
+                result = func(self)
+            self.assertEqual(
+               Code.SUCCESS, result.code)
