@@ -14,7 +14,7 @@ coverage==4.0
 cryptography==2.7
 debtcollector==1.2.0
 decorator==3.4.0
-doc8==0.6.0
+doc8==0.8.1
 docutils==0.12
 dulwich==0.15.0
 eventlet==0.18.2
