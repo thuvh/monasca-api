@@ -173,10 +173,10 @@ class TestAlarmsStateHistory(AlarmTestBase):
 
         self.alarms_resource = alarms.AlarmsStateHistory()
         self.app.add_route(
-            '/v2.0/alarms/{alarm_id}/state-history/', self.alarms_resource)
+            '/v2.0/alarms/{alarm_id}/state-history', self.alarms_resource)
 
         self.app.add_route(
-            '/v2.0/alarms/state-history/', self.alarms_resource)
+            '/v2.0/alarms/state-history', self.alarms_resource)
 
     def test_alarm_state_history(self):
         expected_elements = {u"elements": [dict(ALARM_HISTORY)]}
@@ -202,9 +202,9 @@ class TestAlarmsStateHistory(AlarmTestBase):
                 'X-Roles': CONF.security.default_authorized_roles[0],
                 'X-Tenant-Id': TENANT_ID,
             })
+
         self.assertEqual(response.status, falcon.HTTP_200)
         self.assertThat(response, RESTResponseEquals(expected_elements))
-
 
 class TestAlarmsCount(AlarmTestBase):
     def setUp(self):
@@ -1064,7 +1064,7 @@ class TestAlarmDefinition(AlarmTestBase):
         self.alarm_definition_resource.send_event = Mock()
         self._send_event = self.alarm_definition_resource.send_event
 
-        self.app.add_route("/v2.0/alarm-definitions/",
+        self.app.add_route("/v2.0/alarm-definitions",
                            self.alarm_definition_resource)
         self.app.add_route("/v2.0/alarm-definitions/{alarm_definition_id}",
                            self.alarm_definition_resource)
