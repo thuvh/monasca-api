@@ -208,7 +208,7 @@
         - monasca-tempest-log-python3-influxdb
         - monasca-tempest-python3-influxdb
         - monasca-tempest-python3-cassandra
-        - build-monasca-docker-image
+        # - build-monasca-docker-image
     gate:
       queue: monasca
       jobs:
@@ -216,13 +216,13 @@
         - monasca-tempest-log-python3-influxdb
     post:
       jobs:
-        - publish-monasca-api-docker-image
+        # - publish-monasca-api-docker-image
     periodic:
       jobs:
-        - publish-monasca-api-docker-image
+        # - publish-monasca-api-docker-image
     release:
       jobs:
-        - publish-monasca-api-docker-image
+        # - publish-monasca-api-docker-image
 
 - job:
     name: publish-monasca-api-docker-image
