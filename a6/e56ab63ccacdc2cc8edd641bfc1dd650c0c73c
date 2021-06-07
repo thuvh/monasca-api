@@ -1,0 +1,9 @@
+Review-Priority+2: Martin Chacon Piza <martin@chaconpiza.com>
+Code-Review+2: Adrian Czarnecki <adrian.czarnecki@ts.fujitsu.com>
+Workflow+1: Adrian Czarnecki <adrian.czarnecki@ts.fujitsu.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Mon, 07 Jun 2021 09:25:12 +0000
+Reviewed-on: https://review.opendev.org/c/openstack/monasca-api/+/794765
+Project: openstack/monasca-api
+Branch: refs/heads/master
