@@ -23,7 +23,6 @@ monasca.log
 .idea
 .project
 .target/
-java/debs/*
 .settings/
 target
 test-output/
