@@ -57,8 +57,6 @@ class AlarmDefinitionsRepository(object):
     @abc.abstractmethod
     def update_or_patch_alarm_definition(self, tenant_id, id,
                                          name,
-                                         expression,
-                                         sub_expr_list,
                                          actions_enabled,
                                          description,
                                          alarm_actions,

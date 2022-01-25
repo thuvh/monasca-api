@@ -29,7 +29,6 @@ from unittest.mock import Mock
 import oslo_config.fixture
 import six
 
-from monasca_api.common.repositories.model import sub_alarm_definition
 from monasca_api.tests import base
 from monasca_api.v2.common.exceptions import HTTPUnprocessableEntityError
 from monasca_api.v2.reference import alarm_definitions
@@ -1225,31 +1224,7 @@ class TestAlarmDefinition(AlarmTestBase):
              u'is_deterministic': False,
              u'expression': u'max(test.metric{hostname=host}) gte 1',
              u'id': u'00000001-0001-0001-0001-000000000001',
-             u'severity': u'LOW'},
-            {'old': {'11111': sub_alarm_definition.SubAlarmDefinition(
-                row={'id': '11111',
-                     'alarm_definition_id': u'00000001-0001-0001-0001-000000000001',
-                     'function': 'max',
-                     'metric_name': 'test.metric',
-                     'dimensions': 'hostname=host',
-                     'operator': 'gte',
-                     'threshold': 1,
-                     'period': 60,
-                     'is_deterministic': False,
-                     'periods': 1})},
-                'changed': {},
-                'new': {},
-                'unchanged': {'11111': sub_alarm_definition.SubAlarmDefinition(
-                    row={'id': '11111',
-                         'alarm_definition_id': u'00000001-0001-0001-0001-000000000001',
-                         'function': 'max',
-                         'metric_name': 'test.metric',
-                         'dimensions': 'hostname=host',
-                         'operator': 'gte',
-                         'threshold': 1,
-                         'period': 60,
-                         'is_deterministic': False,
-                         'periods': 1})}})
+             u'severity': u'LOW'})
 
         expected_def = {
             u'id': u'00000001-0001-0001-0001-000000000001',
@@ -1317,31 +1292,6 @@ class TestAlarmDefinition(AlarmTestBase):
             body=json.dumps(alarm_def))
 
         self.assertEqual(response.status, falcon.HTTP_409)
-
-    def test_alarm_definition_put_incorrect_period_value(self):
-        self.alarm_def_repo_mock.return_value.get_alarm_definitions.return_value = []
-        period = 'times 0'
-        alarm_def = {
-            u'alarm_actions': [],
-            u'ok_actions': [],
-            u'description': u'',
-            u'match_by': [u'hostname'],
-            u'name': u'Test Alarm',
-            u'actions_enabled': True,
-            u'undetermined_actions': [],
-            u'deterministic': False,
-            u'expression': u'max(test.metric{hostname=host}) gte 1 ' + period,
-            u'severity': u'LOW',
-        }
-
-        response = self.simulate_request(
-            path="/v2.0/alarm-definitions/00000001-0001-0001-0001-000000000001",
-            headers={'X-Roles': CONF.security.default_authorized_roles[0],
-                     'X-Tenant-Id': TENANT_ID},
-            method="PUT",
-            body=json.dumps(alarm_def))
-
-        self.assertEqual(response.status, falcon.HTTP_422)
 
     def test_alarm_definition_patch_no_id(self):
         alarm_def = {
@@ -1452,31 +1402,7 @@ class TestAlarmDefinition(AlarmTestBase):
              u'is_deterministic': False,
              u'expression': alarm_expression,
              u'id': alarm_def_id,
-             u'severity': severity},
-            {'old': {'11111': sub_alarm_definition.SubAlarmDefinition(
-                row={'id': '11111',
-                     'alarm_definition_id': u'00000001-0001-0001-0001-000000000001',
-                     'function': 'max',
-                     'metric_name': 'test.metric',
-                     'dimensions': 'hostname=host',
-                     'operator': 'gte',
-                     'threshold': 1,
-                     'period': 60,
-                     'is_deterministic': False,
-                     'periods': 1})},
-                'changed': {},
-                'new': {},
-                'unchanged': {'11111': sub_alarm_definition.SubAlarmDefinition(
-                    row={'id': '11111',
-                         'alarm_definition_id': u'00000001-0001-0001-0001-000000000001',
-                         'function': 'max',
-                         'metric_name': 'test.metric',
-                         'dimensions': 'hostname=host',
-                         'operator': 'gte',
-                         'threshold': 1,
-                         'period': 60,
-                         'is_deterministic': False,
-                         'periods': 1})}})
+             u'severity': severity})
 
         expected_def = {
             u'id': alarm_def_id,
@@ -1516,28 +1442,14 @@ class TestAlarmDefinition(AlarmTestBase):
         # create a notification even actions_enabled is True in the
         # database. So, ensure all fields are set correctly
         ((_, event), _) = self._send_event.call_args
-        expr = u'max(test.metric{hostname=host}, 60) gte 1 times 1'
-        sub_expression = {'11111': {u'expression': expr,
-                                    u'function': 'max',
-                                    u'metricDefinition': {
-                                        u'dimensions': {'hostname': 'host'},
-                                        u'name': 'test.metric'},
-                                    u'operator': 'gte',
-                                    u'period': 60,
-                                    u'periods': 1,
-                                    u'threshold': 1}}
         fields = {u'alarmActionsEnabled': actions_enabled,
                   u'alarmDefinitionId': alarm_def_id,
                   u'alarmDescription': description,
                   u'alarmExpression': alarm_expression,
                   u'alarmName': new_name,
-                  u'changedSubExpressions': {},
                   u'matchBy': [match_by],
                   u'severity': severity,
-                  u'tenantId': u'fedcba9876543210fedcba9876543210',
-                  u'newAlarmSubExpressions': {},
-                  u'oldAlarmSubExpressions': sub_expression,
-                  u'unchangedSubExpressions': sub_expression}
+                  u'tenantId': u'fedcba9876543210fedcba9876543210'}
         reference = {u'alarm-definition-updated': fields}
         self.assertEqual(reference, event)
 
@@ -1554,31 +1466,7 @@ class TestAlarmDefinition(AlarmTestBase):
              u'expression': u'max(test.metric{hostname=host}) gte 1',
              u'id': u'00000001-0001-0001-0001-000000000001',
              u'is_deterministic': False,
-             u'severity': u'LOW'},
-            {'old': {'11111': sub_alarm_definition.SubAlarmDefinition(
-                row={'id': '11111',
-                     'alarm_definition_id': u'00000001-0001-0001-0001-000000000001',
-                     'function': 'max',
-                     'metric_name': 'test.metric',
-                     'dimensions': 'hostname=host',
-                     'operator': 'gte',
-                     'threshold': 1,
-                     'period': 60,
-                     'periods': 1,
-                     'is_deterministic': False})},
-                'changed': {},
-                'new': {},
-                'unchanged': {'11111': sub_alarm_definition.SubAlarmDefinition(
-                    row={'id': '11111',
-                         'alarm_definition_id': u'00000001-0001-0001-0001-000000000001',
-                         'function': 'max',
-                         'metric_name': 'test.metric',
-                         'dimensions': 'hostname=host',
-                         'operator': 'gte',
-                         'threshold': 1,
-                         'period': 60,
-                         'periods': 1,
-                         'is_deterministic': False})}})
+             u'severity': u'LOW'})
 
         expected_def = {
             u'id': u'00000001-0001-0001-0001-000000000001',
