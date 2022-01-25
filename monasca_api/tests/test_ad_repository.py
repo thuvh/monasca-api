@@ -307,16 +307,11 @@ class TestAlarmDefinitionRepoDB(base.BaseTestCase):
                           self.repo.create_alarm_definition, *args)
 
     def test_should_update(self):
-        expression = ''.join(['AVG(hpcs.compute{flavor_id=777, image_id=888,',
-                              ' metric_name=mem}) > 20 and',
-                              ' AVG(hpcs.compute) < 100'])
         description = ''
         match_by = ['flavor_id', 'image_id']
-        sub_expr_list = (alarm_expr_parser.AlarmExprParser(expression).sub_expr_list)
         alarm_actions = ['29387234', '77778687']
         self.repo.update_or_patch_alarm_definition('bob', '234',
-                                                   '90% CPU', expression,
-                                                   sub_expr_list, False,
+                                                   '90% CPU', False,
                                                    description, alarm_actions,
                                                    None, None,
                                                    match_by, 'LOW')
@@ -436,14 +431,12 @@ class TestAlarmDefinitionRepoDB(base.BaseTestCase):
         self.assertEqual(ads, expected)
 
         self.repo.update_or_patch_alarm_definition('bob', '234',
-                                                   '90% CPU', None,
-                                                   sub_expr_list, False,
+                                                   '90% CPU', False,
                                                    description, alarm_actions,
                                                    None, None,
                                                    match_by, 'LOW')
 
         self.repo.update_or_patch_alarm_definition('bob', '234',
-                                                   None, None,
                                                    None, True,
                                                    None, None,
                                                    None, None,
@@ -455,11 +448,9 @@ class TestAlarmDefinitionRepoDB(base.BaseTestCase):
                                                    None, None,
                                                    None, None,
                                                    None, None,
-                                                   None, None,
                                                    True)
 
         self.repo.update_or_patch_alarm_definition('bob', '234',
-                                                   None, None,
                                                    None, None,
                                                    None, [],
                                                    [], [],
@@ -467,7 +458,6 @@ class TestAlarmDefinitionRepoDB(base.BaseTestCase):
                                                    True)
 
         self.repo.update_or_patch_alarm_definition('bob', '234',
-                                                   None, None,
                                                    None, False,
                                                    None, None,
                                                    None, None,
@@ -477,7 +467,6 @@ class TestAlarmDefinitionRepoDB(base.BaseTestCase):
         self.assertRaises(exceptions.InvalidUpdateException,
                           self.repo.update_or_patch_alarm_definition,
                           'bob', '234',
-                          None, None,
                           None, False,
                           None, None,
                           None, None,
@@ -487,8 +476,7 @@ class TestAlarmDefinitionRepoDB(base.BaseTestCase):
         self.assertRaises(exceptions.InvalidUpdateException,
                           self.repo.update_or_patch_alarm_definition,
                           'bob', '234',
-                          '90% CPU', None,
-                          sub_expr_list, False,
+                          '90% CPU', False,
                           description, alarm_actions,
                           None, None,
                           'update_match_by', 'LOW')
@@ -580,7 +568,6 @@ class TestAlarmDefinitionRepoDB(base.BaseTestCase):
         args = ('koala', '999',
                 None, None,
                 None, True,
-                None, None,
                 None, None,
                 None, None,
                 True)
