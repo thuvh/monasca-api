@@ -139,7 +139,6 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
         self._validate_alarm_definition(alarm_definition, require_all=True)
 
         name = get_query_alarm_definition_name(alarm_definition)
-        expression = get_query_alarm_definition_expression(alarm_definition)
         actions_enabled = (
             get_query_alarm_definition_actions_enabled(alarm_definition))
         description = get_query_alarm_definition_description(alarm_definition)
@@ -153,7 +152,6 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
         result = self._alarm_definition_update_or_patch(req.project_id,
                                                         alarm_definition_id,
                                                         name,
-                                                        expression,
                                                         actions_enabled,
                                                         description,
                                                         alarm_actions,
@@ -181,8 +179,6 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
         # Optional args
         name = get_query_alarm_definition_name(alarm_definition,
                                                return_none=True)
-        expression = get_query_alarm_definition_expression(alarm_definition,
-                                                           return_none=True)
         actions_enabled = (
             get_query_alarm_definition_actions_enabled(alarm_definition,
                                                        return_none=True))
@@ -202,7 +198,6 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
         result = self._alarm_definition_update_or_patch(req.project_id,
                                                         alarm_definition_id,
                                                         name,
-                                                        expression,
                                                         actions_enabled,
                                                         description,
                                                         alarm_actions,
@@ -373,7 +368,6 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
     def _alarm_definition_update_or_patch(self, tenant_id,
                                           definition_id,
                                           name,
-                                          expression,
                                           actions_enabled,
                                           description,
                                           alarm_actions,
@@ -383,33 +377,15 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
                                           severity,
                                           patch):
 
-        if expression:
-            try:
-                sub_expr_list = (
-                    monasca_api.expression_parser.alarm_expr_parser.
-                    AlarmExprParser(expression).sub_expr_list)
-
-            except (pyparsing.ParseException,
-                    pyparsing.ParseFatalException) as ex:
-                LOG.exception(ex)
-                title = "Invalid alarm expression"
-                msg = "parser failed on expression '{}' at column {}: {}".format(
-                      expression.encode('utf8'), str(ex.column).encode('utf8'),
-                      ex.msg.encode('utf8'))
-                raise HTTPUnprocessableEntityError(title, msg)
-        else:
-            sub_expr_list = None
 
         if name:
             self._validate_name_not_conflicting(tenant_id, name, expected_id=definition_id)
 
-        alarm_def_row, sub_alarm_def_dicts = (
+        alarm_def_row = (
             self._alarm_definitions_repo.update_or_patch_alarm_definition(
                 tenant_id,
                 definition_id,
                 name,
-                expression,
-                sub_expr_list,
                 actions_enabled,
                 description,
                 alarm_actions,
@@ -418,22 +394,22 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
                 match_by,
                 severity,
                 patch))
-
-        old_sub_alarm_def_event_dict = (
-            self._build_sub_alarm_def_update_dict(
-                sub_alarm_def_dicts['old']))
-
-        new_sub_alarm_def_event_dict = (
-            self._build_sub_alarm_def_update_dict(sub_alarm_def_dicts[
-                'new']))
-
-        changed_sub_alarm_def_event_dict = (
-            self._build_sub_alarm_def_update_dict(sub_alarm_def_dicts[
-                'changed']))
-
-        unchanged_sub_alarm_def_event_dict = (
-            self._build_sub_alarm_def_update_dict(sub_alarm_def_dicts[
-                'unchanged']))
+        #
+        # old_sub_alarm_def_event_dict = (
+        #     self._build_sub_alarm_def_update_dict(
+        #         sub_alarm_def_dicts['old']))
+        #
+        # new_sub_alarm_def_event_dict = (
+        #     self._build_sub_alarm_def_update_dict(sub_alarm_def_dicts[
+        #         'new']))
+        #
+        # changed_sub_alarm_def_event_dict = (
+        #     self._build_sub_alarm_def_update_dict(sub_alarm_def_dicts[
+        #         'changed']))
+        #
+        # unchanged_sub_alarm_def_event_dict = (
+        #     self._build_sub_alarm_def_update_dict(sub_alarm_def_dicts[
+        #         'unchanged']))
 
         result = self._build_alarm_definition_show_result(alarm_def_row)
         # Not all of the passed in parameters will be set if this called
@@ -448,11 +424,7 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
              u'alarmExpression': result['expression'],
              u'severity': result['severity'],
              u'matchBy': result['match_by'],
-             u'alarmActionsEnabled': result['actions_enabled'],
-             u'oldAlarmSubExpressions': old_sub_alarm_def_event_dict,
-             u'changedSubExpressions': changed_sub_alarm_def_event_dict,
-             u'unchangedSubExpressions': unchanged_sub_alarm_def_event_dict,
-             u'newAlarmSubExpressions': new_sub_alarm_def_event_dict})
+             u'alarmActionsEnabled': result['actions_enabled']})
 
         alarm_definition_updated_event = (
             {u'alarm-definition-updated': alarm_def_event_dict})
@@ -618,23 +590,6 @@ def get_query_alarm_definition_name(alarm_definition, return_none=False):
     except Exception as ex:
         LOG.debug(ex)
         raise HTTPUnprocessableEntityError('Unprocessable Entity', str(ex))
-
-
-def get_query_alarm_definition_expression(alarm_definition,
-                                          return_none=False):
-    try:
-        if 'expression' in alarm_definition:
-            expression = alarm_definition['expression']
-            return expression
-        else:
-            if return_none:
-                return None
-            else:
-                raise Exception("Missing expression")
-    except Exception as ex:
-        LOG.debug(ex)
-        raise HTTPUnprocessableEntityError('Unprocessable Entity', str(ex))
-
 
 def get_query_alarm_definition_description(alarm_definition,
                                            return_none=False):

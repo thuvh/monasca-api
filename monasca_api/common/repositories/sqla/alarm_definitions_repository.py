@@ -474,8 +474,7 @@ class AlarmDefinitionsRepository(sql_repository.SQLRepository,
 
     @sql_repository.sql_try_catch_block
     def update_or_patch_alarm_definition(self, tenant_id, alarm_definition_id,
-                                         name, expression,
-                                         sub_expr_list, actions_enabled,
+                                         name, actions_enabled,
                                          description, alarm_actions,
                                          ok_actions, undetermined_actions,
                                          match_by, severity, patch=False):
@@ -486,37 +485,6 @@ class AlarmDefinitionsRepository(sql_repository.SQLRepository,
                                                       alarm_definition_id)
             rows = self._get_sub_alarm_definitions(conn, alarm_definition_id)
 
-            old_sub_alarm_defs_by_id = {}
-
-            for row in rows:
-                sad = sub_alarm_definition.SubAlarmDefinition(row=row)
-                old_sub_alarm_defs_by_id[sad.id] = sad
-
-            if expression:
-                (
-                    changed_sub_alarm_defs_by_id,
-                    new_sub_alarm_defs_by_id,
-                    old_sub_alarm_defs_by_id,
-                    unchanged_sub_alarm_defs_by_id
-                ) = self._determine_sub_expr_changes(
-                    alarm_definition_id, old_sub_alarm_defs_by_id,
-                    sub_expr_list)
-
-                if old_sub_alarm_defs_by_id or new_sub_alarm_defs_by_id:
-                    new_count = (len(new_sub_alarm_defs_by_id) +
-                                 len(changed_sub_alarm_defs_by_id) +
-                                 len(unchanged_sub_alarm_defs_by_id))
-                    old_count = len(old_sub_alarm_defs_by_id)
-                    if new_count != old_count:
-                        msg = 'number of subexpressions must not change'
-                    else:
-                        msg = 'metrics in subexpression must not change'
-                    raise exceptions.InvalidUpdateException(msg.encode('utf8'))
-            else:
-                unchanged_sub_alarm_defs_by_id = old_sub_alarm_defs_by_id
-                changed_sub_alarm_defs_by_id = {}
-                new_sub_alarm_defs_by_id = {}
-                old_sub_alarm_defs_by_id = {}
 
             # Get a common update time
             now = datetime.datetime.utcnow()
@@ -533,11 +501,6 @@ class AlarmDefinitionsRepository(sql_repository.SQLRepository,
                     new_description = ''
             else:
                 new_description = description.encode('utf-8') if six.PY2 else description
-
-            if expression is None:
-                new_expression = original_row['expression']
-            else:
-                new_expression = expression.encode('utf8') if six.PY2 else expression
 
             if severity is None:
                 if patch:
@@ -577,24 +540,13 @@ class AlarmDefinitionsRepository(sql_repository.SQLRepository,
                          ),
                          b_name=new_name,
                          b_description=new_description,
-                         b_expression=new_expression,
+                         b_expression=original_row['expression'],
                          b_match_by=new_match_by,
                          b_severity=new_severity,
                          b_actions_enabled=bool(new_actions_enabled),
                          b_updated_at=now,
                          b_tenant_id=tenant_id,
                          b_id=alarm_definition_id)
-            parms = []
-            for sub_alarm_definition_id, sub_alarm_def in (
-                    changed_sub_alarm_defs_by_id.items()):
-                parms.append({'b_operator': sub_alarm_def.operator,
-                              'b_threshold': sub_alarm_def.threshold,
-                              'b_is_deterministic': sub_alarm_def.deterministic,
-                              'b_updated_at': now,
-                              'b_id': sub_alarm_definition_id})
-            if len(parms) > 0:
-                query = self.update_or_patch_alarm_definition_update_sad_query
-                conn.execute(query, parms)
 
             # Delete old alarm actions
             if patch:
@@ -638,91 +590,8 @@ class AlarmDefinitionsRepository(sql_repository.SQLRepository,
             if updated_row is None:
                 raise Exception("Failed to find current alarm definition")
 
-            sub_alarm_defs_dict = {'old': old_sub_alarm_defs_by_id,
-                                   'changed': changed_sub_alarm_defs_by_id,
-                                   'new': new_sub_alarm_defs_by_id,
-                                   'unchanged': unchanged_sub_alarm_defs_by_id}
-
             # Return the alarm def and the sub alarm defs
-            return updated_row, sub_alarm_defs_dict
-
-    def _determine_sub_expr_changes(self, alarm_definition_id,
-                                    old_sub_alarm_defs_by_id,
-                                    sub_expr_list):
-
-        old_sub_alarm_defs_set = set(
-            old_sub_alarm_defs_by_id.values())
-
-        new_sub_alarm_defs_set = set()
-        for sub_expr in sub_expr_list:
-            sad = sub_alarm_definition.SubAlarmDefinition(
-                sub_expr=sub_expr)
-            # Inject the alarm definition id.
-            sad.alarm_definition_id = alarm_definition_id.decode('utf8') if six.PY2 \
-                else alarm_definition_id
-            new_sub_alarm_defs_set.add(sad)
-
-        # Identify old or changed expressions
-        old_or_changed_sub_alarm_defs_set = (
-            old_sub_alarm_defs_set - new_sub_alarm_defs_set)
-        # Identify new or changed expressions
-        new_or_changed_sub_alarm_defs_set = (
-            new_sub_alarm_defs_set - old_sub_alarm_defs_set)
-        # Find changed expressions. O(n^2) == bad!
-        # This algo may not work if sub expressions are duplicated.
-        changed_sub_alarm_defs_by_id = {}
-        old_or_changed_sub_alarm_defs_set_to_remove = set()
-        new_or_changed_sub_alarm_defs_set_to_remove = set()
-        for old_or_changed in old_or_changed_sub_alarm_defs_set:
-            for new_or_changed in new_or_changed_sub_alarm_defs_set:
-                if old_or_changed.same_key_fields(new_or_changed):
-                    old_or_changed_sub_alarm_defs_set_to_remove.add(
-                        old_or_changed
-                    )
-                    new_or_changed_sub_alarm_defs_set_to_remove.add(
-                        new_or_changed
-                    )
-                    changed_sub_alarm_defs_by_id[
-                        old_or_changed.id] = (
-                        new_or_changed)
-                    # patch id:
-                    changed_sub_alarm_defs_by_id[
-                        old_or_changed.id].id = old_or_changed.id
-        old_or_changed_sub_alarm_defs_set = (
-            old_or_changed_sub_alarm_defs_set -
-            old_or_changed_sub_alarm_defs_set_to_remove
-        )
-        new_or_changed_sub_alarm_defs_set = (
-            new_or_changed_sub_alarm_defs_set -
-            new_or_changed_sub_alarm_defs_set_to_remove
-        )
-        # Create the list of unchanged expressions
-        unchanged_sub_alarm_defs_by_id = (
-            old_sub_alarm_defs_by_id.copy())
-        for old_sub_alarm_def in old_or_changed_sub_alarm_defs_set:
-            del unchanged_sub_alarm_defs_by_id[old_sub_alarm_def.id]
-        for sub_alarm_definition_id in (
-                changed_sub_alarm_defs_by_id.keys()):
-            del unchanged_sub_alarm_defs_by_id[
-                sub_alarm_definition_id]
-
-        # Remove old sub expressions
-        temp = {}
-        for old_sub_alarm_def in old_or_changed_sub_alarm_defs_set:
-            temp[old_sub_alarm_def.id] = old_sub_alarm_def
-        old_sub_alarm_defs_by_id = temp
-        # Create IDs for new expressions
-        new_sub_alarm_defs_by_id = {}
-        for new_sub_alarm_def in new_or_changed_sub_alarm_defs_set:
-            sub_alarm_definition_id = uuidutils.generate_uuid()
-            new_sub_alarm_def.id = sub_alarm_definition_id
-            new_sub_alarm_defs_by_id[sub_alarm_definition_id] = (
-                new_sub_alarm_def)
-
-        return (changed_sub_alarm_defs_by_id,
-                new_sub_alarm_defs_by_id,
-                old_sub_alarm_defs_by_id,
-                unchanged_sub_alarm_defs_by_id)
+            return updated_row
 
     def _delete_alarm_actions(self, conn, _id, alarm_action_name):
         conn.execute(self.delete_aa_state_query,
