@@ -340,7 +340,7 @@ class AlarmDefinitions(alarm_definitions_api_v2.AlarmDefinitionsV2API,
             ad = {u'id': alarm_definition_row['id'],
                   u'name': alarm_definition_row['name'],
                   u'description': alarm_definition_row['description'] if (
-                      alarm_definition_row['description']) else u'',
+                      alarm_definition_row['description']) else '',
                   u'expression': alarm_definition_row['expression'],
                   u'deterministic': is_deterministic,
                   u'match_by': match_by,
