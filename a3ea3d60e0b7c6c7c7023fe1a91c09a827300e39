@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fcfc997_8b5602f0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14826
+      },
+      "writtenOn": "2022-03-31T09:01:57Z",
+      "side": 1,
+      "message": "Hi, it would be great to see this patch merged, since it will create a stable/yoga tarball which we need in kolla. Thanks!",
+      "revId": "a3ea3d60e0b7c6c7c7023fe1a91c09a827300e39",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543"
+    }
+  ]
+}
