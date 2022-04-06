@@ -207,6 +207,8 @@
       jobs:
         - monasca-tempest-log-python3-influxdb
         - monasca-tempest-python3-influxdb
+        - monasca-tempest-influxdb
+        - monasca-tempest-influxdb-victoria
         - monasca-tempest-python3-cassandra
         - build-monasca-docker-image
     gate:
