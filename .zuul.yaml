@@ -199,8 +199,12 @@
     templates:
       - check-requirements
       - openstack-cover-jobs
+<<<<<<< HEAD   (5ce41f Update TOX_CONSTRAINTS_FILE for stable/yoga)
       - openstack-lower-constraints-jobs
       - openstack-python3-yoga-jobs
+=======
+      - openstack-python3-zed-jobs
+>>>>>>> CHANGE (658c68 Drop lower-constraints.txt and its testing)
       - publish-openstack-docs-pti
       - release-notes-jobs-python3
     check:
