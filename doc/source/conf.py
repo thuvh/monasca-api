@@ -43,8 +43,8 @@ extensions = [
 openstackdocs_repo_name = u'openstack/monasca-api'
 openstackdocs_pdf_link = True
 openstackdocs_use_storyboard = True
-copyright = u'2014-present, OpenStack Foundation'
-author = u'OpenStack Foundation'
+copyright = '2014-present, OpenStack Foundation'
+author = 'OpenStack Foundation'
 
 # sample config
 config_generator_config_file = [
@@ -193,7 +193,7 @@ htmlhelp_basename = 'MonitoringApiDoc'
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'doc-monasca-api.tex', u'Monasca Documentation',
+    (master_doc, 'doc-monasca-api.tex', 'Monasca Documentation',
      [author], 'manual'),
 ]
 
@@ -231,7 +231,7 @@ latex_use_xindy = False
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'monitoringapi', u'Monasca Documentation',
+    (master_doc, 'monitoringapi', 'Monasca Documentation',
      [author], 1)
 ]
 
