@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff2ec4c1_6b55dde6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 17685
+      },
+      "writtenOn": "2022-09-28T15:22:11Z",
+      "side": 1,
+      "message": "Please approve this as soon as possible, otherwise reno page will not be generated for zed.\nBesides, generated patch \u0026 looks correct.",
+      "revId": "26e31e8acbcc91b7db28a102b2917659a8b513b4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543"
+    }
+  ]
+}
