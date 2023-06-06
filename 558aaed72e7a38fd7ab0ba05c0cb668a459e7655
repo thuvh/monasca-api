@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "764f0eae_0e1dfd81",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13252
+      },
+      "writtenOn": "2023-06-06T16:31:25Z",
+      "side": 1,
+      "message": "Force-merging to avoid CI issues.",
+      "revId": "558aaed72e7a38fd7ab0ba05c0cb668a459e7655",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543"
+    }
+  ]
+}
