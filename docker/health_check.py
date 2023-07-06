@@ -40,6 +40,6 @@ def main():
         logger.error('Exception during request handling: ' + repr(ex))
         sys.exit(1)
 
-
+# dummy test change
 if __name__ == '__main__':
     main()
