@@ -16,6 +16,23 @@
       "message": "not sure about the latest gate status but this looks good to me and let\u0027s check gate again",
       "revId": "9ec0b4298f9f520f3ffbcdf5fb3aafdd68742eb2",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96ead303_e3f5c178",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8556
+      },
+      "writtenOn": "2023-08-31T18:44:20Z",
+      "side": 1,
+      "message": "recheck",
+      "revId": "9ec0b4298f9f520f3ffbcdf5fb3aafdd68742eb2",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543"
     }
   ]
 }
