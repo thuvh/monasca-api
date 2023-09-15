@@ -8,6 +8,7 @@ Contents:
    :maxdepth: 1
 
    unreleased
+   2023.2
    yoga
    xena
    wallaby
