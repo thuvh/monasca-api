@@ -76,7 +76,7 @@ class Fingerprint(object):
 
     @staticmethod
     def _get_schema_sha1(schema_raw):
-        return hashlib.sha1(encodeutils.to_utf8(schema_raw)).hexdigest()
+        return hashlib.sha256(encodeutils.to_utf8(schema_raw)).hexdigest()
 
     @staticmethod
     def _get_revision(metadata, engine, sha1):
