@@ -37,7 +37,7 @@ ELASTICSEARCH_DATA_DIR=$DATA_DIR/elasticsearch
 KIBANA_DIR=$DEST/kibana
 KIBANA_CFG_DIR=$KIBANA_DIR/config
 KIBANA_DEV_DIR=$DEST/kibana_dev
-KIBANA_DEV_NODE_JS_VERSION=${KIBANA_DEV_NODE_JS_VERSION:-"10.15.2"}
+KIBANA_DEV_NODE_JS_VERSION=${KIBANA_DEV_NODE_JS_VERSION:-"18.19.0"}
 
 LOGSTASH_DIR=$DEST/logstash
 LOGSTASH_DATA_DIR=$DEST/logstash-data
@@ -300,7 +300,7 @@ function install_logstash {
     if is_logstash_required; then
         echo_summary "Installing Logstash ${LOGSTASH_VERSION}"
 
-        local logstash_tarball=logstash-oss-${LOGSTASH_VERSION}.tar.gz
+        local logstash_tarball=logstash-${LOGSTASH_VERSION}-linux-x86_64.tar.gz
         local logstash_url=https://artifacts.elastic.co/downloads/logstash/${logstash_tarball}
 
         local logstash_dest
@@ -471,7 +471,7 @@ function start_kibana {
 function configure_nvm {
     if is_service_enabled kibana; then
         echo_summary "Configuring NVM"
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
         source ~/.nvm/nvm.sh
         nvm install $KIBANA_DEV_NODE_JS_VERSION
         nvm use $KIBANA_DEV_NODE_JS_VERSION
