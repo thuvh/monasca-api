@@ -116,7 +116,7 @@ logging.verbose: true
 optimize.useBundleCache: False
 console.enabled: False
 
-monasca-kibana-plugin.enabled: True
-monasca-kibana-plugin.auth_uri: %KEYSTONE_AUTH_URI%
-monasca-kibana-plugin.elasticsearch.url: "http://%ES_SERVICE_BIND_HOST%:%ES_SERVICE_BIND_PORT%"
-monasca-kibana-plugin.cookie.isSecure: False
+monascaKibanaPlugin.enabled: True
+monascaKibanaPlugin.auth_uri: %KEYSTONE_AUTH_URI%
+monascaKibanaPlugin.elasticsearch.url: "http://%ES_SERVICE_BIND_HOST%:%ES_SERVICE_BIND_PORT%"
+monascaKibanaPlugin.cookie.isSecure: False
