@@ -541,7 +541,7 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
                 query += " slimit 1"
 
             result = self.query_tenant_db(query, tenant_id)
-
+            
             if not result:
                 return json_measurement_list
 
