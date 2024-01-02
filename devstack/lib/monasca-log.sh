@@ -92,9 +92,6 @@ function install_monasca_log {
     configure_yarn
     build_kibana_plugin
     install_log_agent
-    if $USE_OLD_LOG_API = true; then
-        install_old_log_api
-    fi
 }
 
 function install_elk {
@@ -119,9 +116,6 @@ function configure_monasca_log {
     configure_elasticsearch
     configure_kibana
     install_kibana_plugin
-    if $USE_OLD_LOG_API = true; then
-        configure_old_monasca_log_api
-    fi
     configure_monasca_log_api
     configure_monasca_log_transformer
     configure_monasca_log_metrics
@@ -265,9 +259,6 @@ function start_monasca_log {
     start_monasca_log_transformer
     start_monasca_log_metrics
     start_monasca_log_persister
-    if $USE_OLD_LOG_API = true; then
-        start_monasca_log_api
-    fi
     start_monasca_log_agent
 }
 
@@ -309,7 +300,7 @@ function install_logstash {
         tar xzf ${logstash_dest} -C $DEST
 
         sudo chown -R $STACK_USER $DEST/logstash-${LOGSTASH_VERSION}
-        ln -sf $DEST/logstash-${LOGSTASH_VERSION} $LOGSTASH_DIR
+        sudo ln -sf $DEST/logstash-${LOGSTASH_VERSION} $LOGSTASH_DIR
 
         sudo mkdir -p $LOGSTASH_DATA_DIR
         sudo chown $STACK_USER:monasca $LOGSTASH_DATA_DIR
@@ -339,7 +330,7 @@ function install_elasticsearch {
         tar xzf ${es_dest} -C $DEST
 
         sudo chown -R $STACK_USER $DEST/elasticsearch-${ELASTICSEARCH_VERSION}
-        ln -sf $DEST/elasticsearch-${ELASTICSEARCH_VERSION} $ELASTICSEARCH_DIR
+        sudo ln -sf $DEST/elasticsearch-${ELASTICSEARCH_VERSION} $ELASTICSEARCH_DIR
     fi
 }
 
@@ -364,7 +355,7 @@ function configure_elasticsearch {
             s|%ES_LOG_DIR%|$ELASTICSEARCH_LOG_DIR|g;
         " -i $ELASTICSEARCH_CFG_DIR/elasticsearch.yml
 
-        ln -sf $ELASTICSEARCH_CFG_DIR/elasticsearch.yml $GATE_CONFIGURATION_DIR/elasticsearch.yml
+        sudo ln -sf $ELASTICSEARCH_CFG_DIR/elasticsearch.yml $GATE_CONFIGURATION_DIR/elasticsearch.yml
 
         echo "[Service]" | sudo tee --append /etc/systemd/system/devstack\@elasticsearch.service > /dev/null
         echo "LimitNOFILE=$LIMIT_NOFILE" | sudo tee --append /etc/systemd/system/devstack\@elasticsearch.service > /dev/null
@@ -420,7 +411,7 @@ function install_kibana {
         local kibana_version_name
         kibana_version_name=`_get_kibana_version_name`
         sudo chown -R $STACK_USER $DEST/${kibana_version_name}
-        ln -sf $DEST/${kibana_version_name} $KIBANA_DIR
+        sudo ln -sf $DEST/${kibana_version_name} $KIBANA_DIR
     fi
 }
 
@@ -443,7 +434,7 @@ function configure_kibana {
             s|%KEYSTONE_AUTH_URI%|$KEYSTONE_AUTH_URI|g;
         " -i $KIBANA_CFG_DIR/kibana.yml
 
-        ln -sf $KIBANA_CFG_DIR/kibana.yml $GATE_CONFIGURATION_DIR/kibana.yml
+        sudo ln -sf $KIBANA_CFG_DIR/kibana.yml $GATE_CONFIGURATION_DIR/kibana.yml
     fi
 }
 
@@ -522,7 +513,7 @@ function build_kibana_plugin {
         yarn --cwd $KIBANA_DEV_DIR kbn bootstrap
         yarn --cwd $plugin_dir build
 
-        local get_version_script="import json; obj = json.load(open('$plugin_dir/package.json')); print obj['version']"
+        local get_version_script="import json; obj = json.load(open('$plugin_dir/package.json')); print(obj['version'])"
         local monasca_kibana_plugin_version
         monasca_kibana_plugin_version=$(python -c "$get_version_script")
         local pkg="$plugin_dir/build/monasca-kibana-plugin-$monasca_kibana_plugin_version.zip"
@@ -763,22 +754,12 @@ function create_log_management_accounts {
 
         get_or_create_service "logs" "logs" "Monasca Log service"
 
-        if $USE_OLD_LOG_API = true; then
-            get_or_create_endpoint \
-                "logs" \
-                "$REGION_NAME" \
-                "$MONASCA_LOG_API_BASE_URI" \
-                "$MONASCA_LOG_API_BASE_URI" \
-                "$MONASCA_LOG_API_BASE_URI"
-        else
-            get_or_create_endpoint \
-                "logs" \
-                "$REGION_NAME" \
-                "$MONASCA_API_URI_V2" \
-                "$MONASCA_API_URI_V2" \
-                "$MONASCA_API_URI_V2"
-
-        fi
+        get_or_create_endpoint \
+            "logs" \
+            "$REGION_NAME" \
+            "$MONASCA_API_URI_V2" \
+            "$MONASCA_API_URI_V2" \
+            "$MONASCA_API_URI_V2"
 
         get_or_create_service "logs-search" "logs-search" "Monasca Log search service"
         get_or_create_endpoint \
