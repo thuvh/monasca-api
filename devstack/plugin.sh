@@ -414,7 +414,7 @@ function install_monasca_influxdb {
         echo_summary "Install Monasca Influxdb"
 
         local influxdb_deb=influxdb_${INFLUXDB_VERSION}_amd64.deb
-        local influxdb_deb_url=https://dl.influxdata.com/influxdb/releases/${influxdb_deb}
+        local influxdb_deb_url=https://dl.influxdata.com/influxdb2/releases/${influxdb_deb}
 
         local influxdb_deb_dest
         influxdb_deb_dest=`get_extra_file ${influxdb_deb_url}`
