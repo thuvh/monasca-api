@@ -540,7 +540,10 @@ class MetricsRepository(metrics_repository.AbstractMetricsRepository):
                 dimensions = self._get_dimensions(tenant_id, region, name, dimensions)
                 query += " slimit 1"
 
-            result = self.query_tenant_db(query, tenant_id)
+            if 'tenant_id' not in dimensions.keys():
+                result = self.query_tenant_db(query, tenant_id)
+            else:
+                result = self.query_tenant_db(query, dimensions['tenant_id'])
 
             if not result:
                 return json_measurement_list
