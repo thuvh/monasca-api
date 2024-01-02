@@ -8,11 +8,11 @@ ARG CONSTRAINTS_BRANCH=master
 # Extra Python3 dependencies.
 # gevent is not in upper constrains and v1.3.6 is not working with
 # older greenlet.
-ARG EXTRA_DEPS="gunicorn gevent==1.5.0 python-memcached influxdb"
+ARG EXTRA_DEPS="gunicorn gevent==21.12.0 python-memcached influxdb"
 
 # Always start from `monasca-base` image and use specific tag of it.
 ARG BASE_TAG=master
-FROM monasca/base:$BASE_TAG
+FROM 272600/monasca_common:$BASE_TAG
 
 # Environment variables used for our service or wait scripts.
 ENV \
