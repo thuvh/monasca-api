@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0257cd12_f3394be3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 20865
+      },
+      "writtenOn": "2024-02-22T16:43:23Z",
+      "side": 1,
+      "message": "well done Hasan, good job, thanks.",
+      "revId": "a24fd834d075978bd7f43346fb3b2a440c4d2064",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543"
+    }
+  ]
+}
