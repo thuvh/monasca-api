@@ -68,7 +68,7 @@ class Notifications(notifications_api_v2.NotificationsV2API):
                 raise exceptions.AlreadyExistsException(
                     "A notification method with the name {} already exists".format(name))
 
-            found_notification_id = notification['id']
+            found_notification_id = notification._mapping['id']
             if found_notification_id != expected_id:
                 LOG.warning(
                     "Found existing notification method for {} "
