@@ -37,13 +37,13 @@ class NotificationsRepository(sql_repository.SQLRepository,
 
         nm = self.nm
 
-        self._select_nm_count_name_query = (select([func.count()])
+        self._select_nm_count_name_query = (select(func.count())
                                             .select_from(nm)
                                             .where(
                                                 and_(nm.c.tenant_id == bindparam('b_tenant_id'),
                                                      nm.c.name == bindparam('b_name'))))
 
-        self._select_nm_count_id_query = (select([func.count()])
+        self._select_nm_count_id_query = (select(func.count())
                                           .select_from(nm)
                                           .where(
                                               and_(nm.c.tenant_id == bindparam('b_tenant_id'),
@@ -74,12 +74,12 @@ class NotificationsRepository(sql_repository.SQLRepository,
                                      period=bindparam('b_period'),
                                      updated_at=bindparam('b_updated_at')))
 
-        self._select_nm_id_query = (select([nm])
+        self._select_nm_id_query = (select(nm)
                                     .where(
                                         and_(nm.c.tenant_id == bindparam('b_tenant_id'),
                                              nm.c.id == bindparam('b_id'))))
 
-        self._select_nm_name_query = (select([nm])
+        self._select_nm_name_query = (select(nm)
                                       .where(
                                           and_(nm.c.tenant_id == bindparam('b_tenant_id'),
                                                nm.c.name == bindparam('b_name'))))
@@ -88,9 +88,13 @@ class NotificationsRepository(sql_repository.SQLRepository,
                             notification_type, address, period):
 
         with self._db_engine.connect() as conn:
-            row = conn.execute(self._select_nm_count_name_query,
-                               b_tenant_id=tenant_id,
-                               b_name=name.encode('utf8')).fetchone()
+            row = conn.execute(
+                self._select_nm_count_name_query,
+                parameters={
+                    'b_tenant_id': tenant_id,
+                    'b_name': name.encode('utf8')
+                }
+            ).fetchone()
 
             if int(row[0]) > 0:
                 raise exceptions.AlreadyExistsException('Notification already '
@@ -99,15 +103,19 @@ class NotificationsRepository(sql_repository.SQLRepository,
             now = datetime.datetime.utcnow()
             notification_id = uuidutils.generate_uuid()
 
-            conn.execute(self._insert_nm_query,
-                         b_id=notification_id,
-                         b_tenant_id=tenant_id,
-                         b_name=name.encode('utf8'),
-                         b_type=notification_type.encode('utf8'),
-                         b_address=address.encode('utf8'),
-                         b_period=period,
-                         b_created_at=now,
-                         b_updated_at=now)
+            conn.execute(
+                self._insert_nm_query,
+                parameters={
+                    'b_id': notification_id,
+                    'b_tenant_id': tenant_id,
+                    'b_name': name.encode('utf8'),
+                    'b_type': notification_type.encode('utf8'),
+                    'b_address': address.encode('utf8'),
+                    'b_period': period,
+                    'b_created_at': now,
+                    'b_updated_at': now
+                }
+            )
 
         return notification_id
 
@@ -119,7 +127,7 @@ class NotificationsRepository(sql_repository.SQLRepository,
         with self._db_engine.connect() as conn:
             nm = self.nm
 
-            select_nm_query = (select([nm])
+            select_nm_query = (select(nm)
                                .where(nm.c.tenant_id == bindparam('b_tenant_id')))
 
             parms = {'b_tenant_id': tenant_id}
@@ -152,25 +160,37 @@ class NotificationsRepository(sql_repository.SQLRepository,
 
         with self._db_engine.connect() as conn:
 
-            row = conn.execute(self._select_nm_count_id_query,
-                               b_tenant_id=tenant_id,
-                               b_id=_id).fetchone()
+            row = conn.execute(
+                self._select_nm_count_id_query,
+                parameters={
+                    'b_tenant_id': tenant_id,
+                    'b_id': _id
+                }               
+            ).fetchone()
 
             if int(row[0]) < 1:
                 raise exceptions.DoesNotExistException
 
-            conn.execute(self._delete_nm_query,
-                         b_tenant_id=tenant_id,
-                         b_id=_id)
+            conn.execute(
+                self._delete_nm_query,
+                parameters={
+                    'b_tenant_id': tenant_id,
+                    'b_id': _id
+                }
+            )
 
     @sql_repository.sql_try_catch_block
     def list_notification(self, tenant_id, notification_id):
 
         with self._db_engine.connect() as conn:
 
-            row = conn.execute(self._select_nm_id_query,
-                               b_tenant_id=tenant_id,
-                               b_id=notification_id).fetchone()
+            row = conn.execute(
+                self._select_nm_id_query,
+                parameters={
+                    'b_tenant_id': tenant_id,
+                    'b_id': notification_id
+                }
+            ).fetchone()
 
             if row is not None:
                 return dict(row)
@@ -181,9 +201,13 @@ class NotificationsRepository(sql_repository.SQLRepository,
     def find_notification_by_name(self, tenant_id, name):
         name = name if six.PY3 else name.encode('utf8')
         with self._db_engine.connect() as conn:
-            return conn.execute(self._select_nm_name_query,
-                                b_tenant_id=tenant_id,
-                                b_name=name).fetchone()
+            return conn.execute(
+                self._select_nm_name_query,
+                parameters={
+                    'b_tenant_id': tenant_id,
+                    'b_name': name
+                }
+            ).fetchone()
 
     @sql_repository.sql_try_catch_block
     def update_notification(
@@ -197,14 +221,18 @@ class NotificationsRepository(sql_repository.SQLRepository,
         with self._db_engine.connect() as conn:
             now = datetime.datetime.utcnow()
 
-            cursor = conn.execute(self._update_nm_query,
-                                  b_id=notification_id,
-                                  b_tenant_id=tenant_id,
-                                  b_name=name.encode('utf8'),
-                                  b_type=notification_type.encode('utf8'),
-                                  b_address=address.encode('utf8'),
-                                  b_period=period,
-                                  b_updated_at=now)
+            cursor = conn.execute(
+                self._update_nm_query,
+                parameters={
+                    'b_id': notification_id,
+                    'b_tenant_id': tenant_id,
+                    'b_name': name.encode('utf8'),
+                    'b_type': notification_type.encode('utf8'),
+                    'b_address': address.encode('utf8'),
+                    'b_period': period,
+                    'b_updated_at': now
+                }
+            )
 
             if cursor.rowcount < 1:
                 raise exceptions.DoesNotExistException('Not Found')
