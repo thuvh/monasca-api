@@ -20,7 +20,7 @@ import fixtures
 from oslo_config import cfg
 from oslo_config import fixture as fixture_config
 from oslo_db.sqlalchemy.engines import create_engine
-from sqlalchemy import delete, MetaData, insert, bindparam
+from sqlalchemy import delete, MetaData, insert, inspect, bindparam
 
 from monasca_api.common.repositories.sqla import models
 from monasca_api.tests import base
@@ -109,6 +109,8 @@ class TestNotificationMethodRepoDB(base.BaseTestCase):
         with self.engine.connect() as conn:
             conn.execute(self._delete_nm_query)
             conn.execute(self._insert_nm_query, self.default_nms)
+            # TODO(thuvh) find better solution
+            conn.commit()
 
     def test_fixture_and_setup(self):
         class A(object):
@@ -133,7 +135,8 @@ class TestNotificationMethodRepoDB(base.BaseTestCase):
                                 'sub_alarm_definition_dimension']
 
         self.assertEqual(self.engine, a.engine)
-        self.assertEqual(self.engine.table_names(), expected_list_tables)
+        inspection = inspect(self.engine)
+        self.assertEqual(inspection.get_table_names(), expected_list_tables)
 
     def test_should_create(self):
         from monasca_api.common.repositories import exceptions
