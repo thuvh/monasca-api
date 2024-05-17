@@ -272,18 +272,18 @@ class TestAlarmDefinitionRepoDB(base.BaseTestCase):
 
         self.assertEqual(alarmA_id, alarmB['id'])
 
-        query_sad = (select([self.sad.c.id])
+        query_sad = (select(self.sad.c.id)
                      .select_from(self.sad)
                      .where(self.sad.c.alarm_definition_id == alarmA_id))
 
-        query_sadd = (select([func.count()])
+        query_sadd = (select(func.count())
                       .select_from(self.sadd)
-                      .where(self.sadd.c.sub_alarm_definition_id == bindparam('id')))
+                      .where(self.sadd.c.sub_alarm_definition_id == bindparam('b_id')))
 
         with self.engine.connect() as conn:
             count_sad = conn.execute(query_sad).fetchall()
             self.assertEqual(len(count_sad), 1)
-            count_sadd = conn.execute(query_sadd, id=count_sad[0][0]).fetchone()
+            count_sadd = conn.execute(query_sadd, parameters={'b_id': count_sad[0][0]}).fetchone()
             self.assertEqual(count_sadd[0], 3)
 
     def test_should_try_to_create_with_wrong_alarm_action(self):
