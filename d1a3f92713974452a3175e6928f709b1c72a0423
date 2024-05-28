@@ -16,6 +16,24 @@
       "message": "Thanks for the patch.\nThere are missing issues with sqlalchemy 2.x for example https://github.com/openstack/monasca-api/blob/master/monasca_api/common/repositories/sqla/notification_method_type_repository.py#L33\n\nYou can see errors from https://zuul.opendev.org/t/openstack/build/b55e0a89897541d7ab9ee3d8a3820ccd/log/controller/logs/screen-monasca-api.txt#114-160",
       "revId": "d1a3f92713974452a3175e6928f709b1c72a0423",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ac6df82_9462ba09",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13114
+      },
+      "writtenOn": "2024-05-28T16:15:23Z",
+      "side": 1,
+      "message": "oh, I skip it because no unittest, fix in next patchset, if ci is green, I try adding unittest for it",
+      "parentUuid": "3f41f990_ca192066",
+      "revId": "d1a3f92713974452a3175e6928f709b1c72a0423",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543"
     }
   ]
 }
