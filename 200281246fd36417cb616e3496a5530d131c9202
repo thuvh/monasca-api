@@ -16,6 +16,24 @@
       "message": "work in progress, but review it for me",
       "revId": "200281246fd36417cb616e3496a5530d131c9202",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f63df799_b06503a7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13114
+      },
+      "writtenOn": "2024-05-28T16:29:09Z",
+      "side": 1,
+      "message": "done.",
+      "parentUuid": "d6d2d13e_4e98472a",
+      "revId": "200281246fd36417cb616e3496a5530d131c9202",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543"
     }
   ]
 }
