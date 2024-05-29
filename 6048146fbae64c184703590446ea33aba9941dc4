@@ -16,6 +16,24 @@
       "message": "recheck tempest jobs are not triggered",
       "revId": "6048146fbae64c184703590446ea33aba9941dc4",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06aaa82b_80a8eb03",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13114
+      },
+      "writtenOn": "2024-05-29T07:01:36Z",
+      "side": 1,
+      "message": "do you know how to re invoke pipeline?",
+      "parentUuid": "e427a857_b15e9a50",
+      "revId": "6048146fbae64c184703590446ea33aba9941dc4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543"
     }
   ]
 }
