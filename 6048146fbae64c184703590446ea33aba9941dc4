@@ -34,6 +34,24 @@
       "parentUuid": "e427a857_b15e9a50",
       "revId": "6048146fbae64c184703590446ea33aba9941dc4",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a091622_fd0bef8b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 20865
+      },
+      "writtenOn": "2024-05-29T07:41:01Z",
+      "side": 1,
+      "message": "it seems there are changes on zuul. we can ask openstack tc.",
+      "parentUuid": "06aaa82b_80a8eb03",
+      "revId": "6048146fbae64c184703590446ea33aba9941dc4",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543"
     }
   ]
 }
