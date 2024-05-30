@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "487aab63_3d57ef36",
+        "filename": "monasca_api/common/repositories/sqla/alarms_repository.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 35988
+      },
+      "writtenOn": "2024-05-30T08:42:17Z",
+      "side": 1,
+      "message": "Just like here, you need to use _mapping on the v2/reference/* as well\n\nAn example of where you need to change:\nhttps://opendev.org/openstack/monasca-api/src/commit/a24fd834d075978bd7f43346fb3b2a440c4d2064/monasca_api/v2/reference/alarms.py#L211",
+      "range": {
+        "startLine": 224,
+        "startChar": 0,
+        "endLine": 224,
+        "endChar": 53
+      },
+      "revId": "5c7268fb52ae26464d6ad36b418311720a9716da",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543"
+    }
+  ]
+}
