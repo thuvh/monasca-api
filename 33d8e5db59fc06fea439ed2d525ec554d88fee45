@@ -16,6 +16,24 @@
       "message": "plz review for me",
       "revId": "33d8e5db59fc06fea439ed2d525ec554d88fee45",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca159c98_08beb675",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35988
+      },
+      "writtenOn": "2024-05-30T08:28:07Z",
+      "side": 1,
+      "message": "Most of the errors are \"tuple indices must be integers or slices, not str\". RowProxy has been removed with SQLAlchemy 2.  you should use \"_mapping\" instead of string key directly in all required query outputs. \n\nExample : (https://docs.sqlalchemy.org/en/20/changelog/migration_14.html#change-4710-orm)",
+      "parentUuid": "36212c3b_19d8559d",
+      "revId": "33d8e5db59fc06fea439ed2d525ec554d88fee45",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543"
     }
   ]
 }
