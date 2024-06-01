@@ -22,6 +22,30 @@
       },
       "revId": "5c7268fb52ae26464d6ad36b418311720a9716da",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "351287ee_eaa867a2",
+        "filename": "monasca_api/common/repositories/sqla/alarms_repository.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 13114
+      },
+      "writtenOn": "2024-06-01T19:47:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "487aab63_3d57ef36",
+      "range": {
+        "startLine": 224,
+        "startChar": 0,
+        "endLine": 224,
+        "endChar": 53
+      },
+      "revId": "5c7268fb52ae26464d6ad36b418311720a9716da",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543"
     }
   ]
 }
