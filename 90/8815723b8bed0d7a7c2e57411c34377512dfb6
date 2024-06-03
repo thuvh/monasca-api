@@ -1,0 +1,10 @@
+Verified+2: Zuul
+Workflow+1: Gökhan <gokhan.isik@tubitak.gov.tr>
+Code-Review+2: Gökhan <gokhan.isik@tubitak.gov.tr>
+Code-Review+2: Hasan Acar <hasan.acar@tubitak.gov.tr>
+Submitted-by: Zuul
+Submitted-at: Mon, 03 Jun 2024 20:12:34 +0000
+Reviewed-on: https://review.opendev.org/c/openstack/monasca-api/+/919983
+Comments-Total: 18
+Project: openstack/monasca-api
+Branch: refs/heads/master
