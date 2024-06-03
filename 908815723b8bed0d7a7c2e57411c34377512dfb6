@@ -16,6 +16,23 @@
       "message": "recheck intermittent failure",
       "revId": "908815723b8bed0d7a7c2e57411c34377512dfb6",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc08aa32_748fb192",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13114
+      },
+      "writtenOn": "2024-06-03T16:09:52Z",
+      "side": 1,
+      "message": "regate",
+      "revId": "908815723b8bed0d7a7c2e57411c34377512dfb6",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543"
     }
   ]
 }
