@@ -33,6 +33,23 @@
       "message": "recheck sqlalchemy 2.x patch merged",
       "revId": "14f120f0c5089815867cd5d8d7f9e44cc7707651",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4401ae50_04f5a72f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 20865
+      },
+      "writtenOn": "2024-06-04T05:56:06Z",
+      "side": 1,
+      "message": "recheck monasca_tempest_tests.tests.api.test_dimensions.TestDimensions is failed",
+      "revId": "14f120f0c5089815867cd5d8d7f9e44cc7707651",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543"
     }
   ]
 }
