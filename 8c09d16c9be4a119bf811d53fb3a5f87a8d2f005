@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a9397ec_65ddd139",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 17685
+      },
+      "writtenOn": "2024-06-21T14:10:48Z",
+      "side": 1,
+      "message": "some more part of this gate fixing patch might be required in this branch, too... let\u0027s see...",
+      "revId": "8c09d16c9be4a119bf811d53fb3a5f87a8d2f005",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543"
+    }
+  ]
+}
