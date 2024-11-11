@@ -17,7 +17,6 @@ import sys
 
 from oslo_config import cfg
 from oslo_log import log
-from oslo_policy import opts as policy_opts
 
 from monasca_api import conf
 from monasca_api import version
@@ -57,7 +56,6 @@ def parse_args(argv=None):
               product_name='monasca-api',
               version=version.version_str)
     conf.register_opts()
-    policy_opts.set_defaults(CONF)
 
     _CONF_LOADED = True
 
