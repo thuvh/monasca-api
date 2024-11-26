@@ -16,6 +16,23 @@
       "message": "recheck depends-on is updated to delay the doc job migration to noble",
       "revId": "0fc3e7a960b9c7d79ae930fea6555e16762e3e7c",
       "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f32ad5e5_8c4c7d1e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8556
+      },
+      "writtenOn": "2024-11-26T20:29:26Z",
+      "side": 1,
+      "message": "seems like gate is broken on Jammy also https://review.opendev.org/c/openstack/monasca-api/+/934573\n\nlast change merged was 5 months ago",
+      "revId": "0fc3e7a960b9c7d79ae930fea6555e16762e3e7c",
+      "serverId": "4a232e18-c5a9-48ee-94c0-e04e7cca6543"
     }
   ]
 }
