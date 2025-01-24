@@ -51,6 +51,8 @@
         monasca-api: https://opendev.org/openstack/monasca-api
       zuul_copy_output:
         /var/log/kafka: logs
+        /var/log/storm: logs
+        /var/log/zookeeper: logs
         /var/log/monasca/notification: logs
         /etc/kafka/server.properties: logs
         /etc/kafka/producer.properties: logs
