@@ -20,7 +20,7 @@
         <computedVersion>${project.version}-${timestamp}-${gitRevision}</computedVersion>
         <computedName>${project.artifactId}-${computedVersion}</computedName>
         <mon.common.version>1.3.0-SNAPSHOT</mon.common.version>
-        <dropwizard.version>0.7.0</dropwizard.version>
+        <dropwizard.version>1.3.29</dropwizard.version>
         <hikaricp.version>2.3.9</hikaricp.version>
 
         <skipITs>false</skipITs>
